@@ -52,7 +52,7 @@ Follow the steps below to integrate an external user store with SAML:
   1. Supply the SAML Identity Provider metadata in one of the following ways:
     * provide the metadata URL and click **Fetch Metadata**
     * click **Upload Identity Provider Metadata** to upload the XML metadata
-    See [Configuring Single Sign-On](./opsguide/sso.html).
+    See [Configuring Single Sign-On](../pivotalcf/opsguide/sso.html).
 
 The Entity ID, SSO URL, and NameID of your new user store should be visible.
 
@@ -71,7 +71,7 @@ Bind an application with the Pivotal Single Sign-On service:
   1. If your **Application Type** is 'Web App', enter a whitelist of valid **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the uris specified in this list, otherwise the Pivotal Single Sign-On service will reject the request.
   1. Enter the **Scopes** that this application can request. This field defaults to 'openid'. Scopes are permissions that the application requests on the user’s behalf.  If this application is purely for authentication purposes then the 'openid' scope is sufficient. If the application is going to make API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
   1. All defined scopes in the **Scopes** field are available for selection as **Auto-Approved Scopes**. Scopes selected as Auto-Approved do not require explicit authorization from the end user. To determine whether a scope should be 'Auto-Approved', decide whether the application you are binding is trusted. Company owned and managed applications fall under this category. Scopes that pertain to permission or actions on resources from applications external to PCF are not candidates for auto-approval.
-  1. Once saved, the **Next Steps** display. This outlines the important endpoints required for application integration. Refer to “Application Integration <link>” for more details.
+  1. Once saved, the **Next Steps** display. This outlines the important endpoints required for application integration. Refer to the [Application Integration](#app-integration) section for more details.
 
 ## <a id='app-integration'></a>Application Integration
 
