@@ -1,5 +1,5 @@
 ---
-title: Pivotal Single Sign-On
+title: Getting Started with Pivotal Single Sign-On
 ---
 
 This documentation outlines the process for installing and configuring the Pivotal Single Sign-On service according to your organization's needs.
@@ -10,9 +10,9 @@ Make sure that you have downloaded and installed Pivotal Single Sign-On. Refer t
 ## <a id='create-plan'></a>Step 2: Create one or more Service Plans
 Pivotal Single Sign-On is a multi-tenant service. A Pivotal Single Sign-On tenant corresponds to a service plan. As an enterprise adopting Pivotal Single Sign-On, you might want to segregate your tenants into separate plans. For example, the following tenants might require separate plans:
 
-    * Business units and geographical locations
-    * Employees, consumers, and partners
-    * Development, staging, and production instances
+  * Business units and geographical locations
+  * Employees, consumers, and partners
+  * Development, staging, and production instances
 
 You can create one or more plans under your Pivotal Single Sign-On service. Refer to [Plan Creation](./installation#plan-management).
 
@@ -31,17 +31,17 @@ Configure the external identity providers for your PCF platform. External identi
 ## <a id='register-apps'></a>Step 5:  Register your Applications
 Secure your applications in one of the following ways:
 
-    1. Bind your application to a service instance from the Apps Manager Console.
-    2.  Register your application from the Pivotal Single Sign-On service dashboard.
+  1. Bind your application to a service instance from the Apps Manager Console.
+  2.  Register your application from the Pivotal Single Sign-On service dashboard.
 
  When you bind an application with the Pivotal Single Sign-On service, an OAuth Client is registered with the Single Sign-On server which acts as an OAuth 2.0 Authorization Server and issues tokens.
 
 If you bind your application from the Apps Manager Console, then the following defaults are chosen:
 
-    * the application you are securing is a web application.
-    * you are using the Internal User Store for authentication.
+  * The application type is set to 'Web App'.
+  * The **User Store Connection** is set to 'Internal User Store'. This means that users are stored in the user store provided by Pivotal Single Sign-On.
 
-If you register your application with the Pivotal Single Sign-On service dashboard, you gain access to a larger selection of application types. You can also bind your application to varied External Providers.
+If you register your application with the Pivotal Single Sign-On service dashboard, you gain access to a larger selection of application types. You can also configure the User Store Connection to an external identity provider with SAML.
 
 ## <a id='enable-oauth'></a>Step 6: Enable OAuth 2.0 for your applications OAuth 2.0 aware
 Your application should be able to request and validate an OAuth or OpenID Connect token. Refer to the [Application Integration](#app-integration) section for more information.
