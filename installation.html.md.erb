@@ -1,0 +1,73 @@
+---
+title: Using the Pivotal Single Sign-On Dashboard for Installation
+---
+
+_Pivotal Single Sign-On requires Pivotal Cloud Foundry version 1.5 or greater_
+
+    1. Download the Pivotal Single Sign-On product tile from https://network.pivotal.io.
+    1. Upload the product tile to your Ops Manager installation. See [Adding and Deleting Products](http://docs.pivotal.io/pivotalcf/customizing/add-delete.html).
+    1. Click **Add** next to the uploaded product description in the Available Products view to add this product to your staging area.
+    1. Click **Apply Changes** to deploy the service.
+
+## <a id='plan-management'></a>Service Plan Management
+
+You can create multiple plans depending upon your business needs for segregation of applications and identities.
+
+To create a new service plan:
+    1. Navigate to the [Plan Administration User Interface](https://p-identity.{YOUR_SYSTEM_DOMAIN}).
+    1. Log in with your administrator credentials. 
+    1. Click **New Plan**.
+    1. Enter a **Plan Name**. This plan name will show up in the Apps Manager Console Services Marketplace.
+    1. Enter a **Description**. This will appear as one of the plan features in the Services Marketplace.
+    1. Enter an **Auth Domain**. Applications on this plan use this auth domain for their access URI.
+    <p class="note"><strong>Note</strong>: the auth domain cannot be edited later.
+    1. Enter an **Instance Name**. The instance name appears on the login page and in other user-facing content such as email communications.
+    1. Select the orgs in which you want the plan to be visible. If you do not select any orgs, that plan will be completely hidden in the Services Marketplace.
+
+The Plan Administrator User Interface lists all the defined plans. Click on a plan name to edit that plan.
+
+## <a id='instance-management'></a>Service Instance Management
+
+Service instances are created based on the service plan and are visible within the confines of a space. 
+
+In order to create a new service instance:
+
+    1. Log in to your [Apps Manager instance](https://console.{system-domain) as a Space Developer.
+    1. Navigate to the Marketplace and select **Pivotal Single Sign-On**.
+    1. Select your service plan.
+    1. Enter an **Instance Name**.
+    1. Choose a space for the instance from the Add to Space dropdown menu. This option defaults to `development`.
+    1. Choose an application to bind the service instance to from the Bind to App dropdown menu. This option defaults to `[do not bind]`.
+
+## <a id='user-store-management'></a>User Store Management
+Follow the steps below to integrate an external user store with SAML:
+
+    1. Log in to your [Apps Manager instance](https://console.{system-domain) as a Space Developer.
+    1. Select a space from the left navigation.
+    1. Click the **Manage** link under the Pivotal Single Sign-On service instance to launch the Pivotal, which displays with the instance name configured in the previous step. This launches the Pivotal Single Sign-On service dashboard.
+    1. Click **User Stores** in the top right corner.
+    1. Click **New User Store**.
+    1. Enter a **User Store Name**. This will be visible on the application login page if more than one Identity Provider is associated with an application.
+    1. Supply the SAML Identity Provider metadata in one of the following ways:
+        * provide the metadata URL and click **Fetch Metadata**
+        * click **Upload Identity Provider Metadata** to upload the XML metadata
+    See [Configuring Single Sign-On](../opsguide/sso.html).
+
+The Entity ID, SSO URL, and NameID of your new user store should be visible.
+
+## <a id='app-managemnet'></a>Application Management
+
+Bind an application with the Pivotal Single Sign-On service:
+
+    1. Log in as a user with the role of a Space Developer.
+    1. Select the space that contains your application.
+    1. Click the **Manage** link under the Pivotal Single Sign-On service instance to launch the service dashboard.
+    1. Click **New App**.
+    1. Enter an **App Name**.
+    1. Select an **Application Type**. Refer to [Choosing an Application Type for Pivotal Single Sign-On](./app-type.html) to determine the application type you should choose.
+    1. User Store Connections defaults to `Internal User Store`, but you can choose to use one or more SAML User Store Connections. This option governs the users who are allowed to authenticate to the application.
+        <p class="note"><strong>Note</strong>: This option is applicable for all application types except the `Service-to-Service App`.
+    1. If your **Application Type** is `Web App`, enter a whitelist of valid **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the uris specified in this list, otherwise the Pivotal Single Sign-On service will reject the request.
+    1. Enter the **Scopes** that this application can request. This field defaults to `openid`. Scopes are permissions that the application requests on the user’s behalf.  If this application is purely for authentication purposes then the `openid` scope is sufficient. If the application is going to make API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
+    1. All defined scopes in the **Scopes** field are available for selection as **Auto-Approved Scopes**. Scopes selected as Auto-Approved do not require explicit authorization from the end user. To determine whether a scope should be Auto-Approved, decide whether the application you are binding is trusted. Company owned and managed applications fall under this category. Scopes that pertain to permission or actions on resources from a third party API are not candidates for auto-approval.
+    1. Once saved, the **Next Steps** display. This outlines the important endpoints required for application integration. Refer to “Application Integration <link>” for more details.

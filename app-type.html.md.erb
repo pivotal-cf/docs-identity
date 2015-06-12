@@ -1,0 +1,16 @@
+---
+title: Choosing an Application Type for Pivotal Single Sign-On
+---
+
+The `Application Type` you select depends on the types of both your application and the user your application is authenticating.
+
+    1. A Web Application trying to authenticate end users
+        Select **Web App** as the application type. This translates to the “authorization code” grant type in OAuth.
+    1. Is this a Native Mobile App trying to authenticate ...?
+        If your application is a thick client application such as desktop apps, command line apps, or Native Mobile apps with no browser interaction, choose the **Native Mobile App** type. This translates to the "Resource Owner Password" grant type in OAuth.
+        <p class="note"><strong>Note</strong>: This application type is intended only for highly trusted applications such as company owned and managed applications.
+    1. Is this application trying to authenticate itself?
+        If the application is trying to access other services or APIs on its own behalf rather than on the user’s behalf, the application must authenticate itself using the Single Sign-On service. Choose the **Service-to-Service App** type. This translates to the "Client Credentials" grant type in OAuth.
+    1. Is this a Single Page Javascript application to authenticate end users?
+        If your web application is a Single Page Javascript Application (In-browser apps), choose the **Single Page JavaScript App** type. This translates to the "implicit" grant type in OAuth.
+
