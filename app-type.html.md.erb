@@ -2,18 +2,34 @@
 title: Choosing an Application Type
 ---
 
-The **Application Type** you select depends on the types of both your application and the user your application is authenticating.
+The **Application Type** you select in the Pivotal Single Sign-On dashboard depends on the type of application and the type of user your application authenticates.
 
-  1. Is this a Web Application trying to authenticate end users?
+* If your application is trying to access other services or APIs on its own behalf rather than on the user’s behalf, the application must authenticate itself using the Single Sign-On service. Choose the <strong>Service-to-Service App</strong> type. This corresponds to the "Client Credentials" grant type in OAuth.
 
-    Select **Web App** as the application type. This translates to the “authorization code” grant type in OAuth.
-  1. Is this a Native Mobile App trying to authenticate end users?
+    <p class="note"><strong>Note</strong>: The <strong>Service-to-Service App</strong> application type is intended only for highly trusted applications such as company owned and managed applications.
 
-    If your application is a thick client application such as desktop apps, command line apps, or Native Mobile apps with no browser interaction, choose the **Native Mobile App** type. This translates to the "Resource Owner Password" grant type in OAuth.
-    <p class="note"><strong>Note</strong>: This application type is intended only for highly trusted applications such as company owned and managed applications.
-  1. Is this application trying to authenticate itself?
+* If your application is authenticating end users, refer to the table below. Find your application type in the first column to determine which **Application Type** to select in the Pivotal SSO dashboard.
 
-    If the application is trying to access other services or APIs on its own behalf rather than on the user’s behalf, the application must authenticate itself using the Single Sign-On service. Choose the **Service-to-Service App** type. This translates to the "Client Credentials" grant type in OAuth.
-  1. Is this a Single Page Javascript application to authenticate end users?
+    <table border="1" class="nice" >
+      <tr>
+        <th><strong>APPLICATION TYPE</strong></th>
+        <th><strong>PIVOTAL SSO APPLICATION TYPE</strong></th>
+        <th><strong>OAUTH GRANT TYPE EQUIVALENT</strong></th>
+      </tr>
+      <tr>
+        <td>Web</td>
+        <td>Web App</td>
+        <td>Authorization code</td>
+      </tr>
+      <tr>
+        <td>Native Mobile, Desktop, or Command Line</td>
+        <td>Native Mobile App</td>
+        <td>Resource Owner Password</td>
+      </tr>
+      <tr>
+        <td>Single Page JavaScript</td>
+        <td>Single Page JavaScript App</td>
+        <td>Implicit</td>
+      </tr>
+    </table>
 
-    If your web application is a Single Page Javascript Application (In-browser apps), choose the **Single Page JavaScript App** type. This translates to the "implicit" grant type in OAuth.
