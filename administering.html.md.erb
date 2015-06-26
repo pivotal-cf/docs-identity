@@ -36,7 +36,7 @@ To create a new service instance:
   1. Select your service plan.
   1. Enter an **Instance Name**.
   1. Choose a space for the instance from the **Add to Space** dropdown menu. The default is 'development'.
-  1. Choose an application to bind the service instance to from the **Bind to App** dropdown menu. This option defaults to '[do not bind]'.
+  1. Choose an application to bind the service instance to from the **Bind to App** dropdown menu. This option defaults to [do not bind].
 
 ## <a id='user-store-management'></a>Manage User Stores
 
@@ -47,13 +47,13 @@ Follow the steps below to integrate an external user store with SAML:
   1. Click the **Manage** link under the Pivotal Single Sign-On service instance to launch the Pivotal Single Sign-On service dashboard, which displays with the instance name configured in the previous step.
   1. Click **User Stores** in the top right corner.
   1. Click **New User Store**.
-  1. Enter a **User Store Name**. This will be visible on the application login page if more than one Identity Provider is associated with an application.
+  1. Enter a **User Store Name**. This is visible on the application login page if more than one Identity Provider is associated with an application.
   1. Supply the SAML Identity Provider metadata in one of the following ways:
     * Provide the metadata URL and click **Fetch Metadata**.
     * Click **Upload Identity Provider Metadata** to upload the XML metadata.
     See [Configuring Single Sign-On](../pivotalcf/opsguide/sso.html#configure-identity-provider) for more information about configuring your identity provider.
 
-The Entity ID, SSO URL, and NameID of your new user store should be visible.
+After you complete the steps above, the Entity ID, SSO URL, and NameID of your new user store should be visible.
 
 ## <a id='app-managemnet'></a>Manage Applications
 
@@ -67,7 +67,7 @@ Bind an application with the Pivotal Single Sign-On service:
   1. Select an **Application Type**. Refer to [Choosing an Application Type for Pivotal Single Sign-On](./app-type.html) to determine the application type you should choose.
   1. User Store Connections defaults to `Internal User Store`, but you can choose to use one or more SAML User Store Connections. This option governs the users who are allowed to authenticate to the application.
     <p class="note"><strong>Note</strong>: This option is available for all application types except the Service-to-Service App.
-  1. If your **Application Type** is 'Web App', enter a whitelist of valid **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the uris specified in this list, otherwise, the Pivotal Single Sign-On service rejects the request.
+  1. If your **Application Type** is 'Web App', enter a whitelist of valid **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, the Pivotal Single Sign-On service rejects the request.
   1. Enter the **Scopes** that this application can request. This field defaults to `openid`. Scopes are permissions that the application requests on the user’s behalf.  If this application is purely for authentication purposes, then the 'openid' scope is sufficient. If the application makes API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
   1. Select scopes pertaining to company owned and managed applications as **Auto-Approved Scopes**. All defined scopes in the **Scopes** field are available for selection as **Auto-Approved Scopes**. Scopes selected as Auto-Approved do not require explicit authorization from the end user. To determine whether a scope should be 'Auto-Approved', decide whether the application you are binding is trusted. Company owned and managed applications fall under this category. Scopes that pertain to permission or actions on resources from applications external to PCF are not candidates for auto-approval.
   1. After you click **Create App**, the **Next Steps** view displays. These steps describe the important endpoints required for application integration. Refer to the [Application Integration](#app-integration) section for more details.
@@ -80,23 +80,23 @@ Java-based sample applications, created using [Spring Boot](https://projects.spr
 
 Provide the following information to your application:
 
-  1. Application ID, also known as OAuth Client ID
-  1. Application Secret, also known as OAuth Client Secret
-  1. Access Token URI:  `ID Service URL from Next Steps/oauth/token`
-  1. Authorization URI:  `ID Service URL from Next Steps/oauth/authorize`
+  * Application ID, also known as OAuth Client ID
+  * Application Secret, also known as OAuth Client Secret
+  * Access Token URI:  `ID Service URL from Next Steps/oauth/token`
+  * Authorization URI:  `ID Service URL from Next Steps/oauth/authorize`
 
-  <p class="note"><strong>Note</strong>: The **Application ID** and **Application Secret** are both available on the 'Next Steps' page of the Pivotal Single Sign-On service dashboard.
+  <p class="note"><strong>Note</strong>: The **Application ID** and **Application Secret** are both available on the Next Steps page of the Pivotal Single Sign-On service dashboard.
 
 Validation of the token requires that you verify the following:
 
-  1. The token is a JSON Web Token which is properly signed with an appropriate Public Key. The key can be downloaded from ` https://login.YOUR-SYSTEM-DOMAIN/token_key`
-  1. The value of **aud** in the token matches your Application ID. 
-  1. The value of **iss** matches `https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token`
-  1. The expiry time (**exp**) of the token has not passed.
+  1. The token is a properly signed JSON Web Token with an appropriate Public Key. The key can be downloaded from ` https://login.YOUR-SYSTEM-DOMAIN/token_key`.
+  1. The value of <code>aud</code> in the token matches your Application ID. 
+  1. The value of <code>iss</code> matches `https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token`.
+  1. The expiry time (<code>exp</code>) of the token has not passed.
 
 Example token:
 
-```
+<pre>
 {
   "jti" : "a9e02776-aa00-441e-a09b-fd57219b0bf5",
   "sub" : "bbd4996b-4e92-4bbe-aeab-1d5da6cf0ac9",
@@ -109,9 +109,9 @@ Example token:
   "user_name" : "test@abc.com",
   "email" : "test@abc..com",
   "iat" : 1434145304,
-  <strong>"exp" : 1434188504</strong>,
-  <strong>"iss" : "https://abc.uaa.cf.com/oauth/token"</strong>,
+  <b>"exp" : 1434188504</b>,
+  <b>"iss" : "https://abc.uaa.cf.com/oauth/token"</b>,
   "zid" : "7072036e-f689-47ac-a1a2-e72e86f7e781",
-  <strong>"aud" : [ "1ace0c4c-bcfc-4a77-ba93-10fd845f7e89", "openid" ]</strong>
+  <b>"aud" : [ "1ace0c4c-bcfc-4a77-ba93-10fd845f7e89", "openid" ]</b>
 }
-```
+</pre>
