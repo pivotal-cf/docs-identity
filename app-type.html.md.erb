@@ -4,10 +4,6 @@ title: Choosing an Application Type
 
 The **Application Type** you select in the Pivotal Single Sign-On dashboard depends on the type of application and the type of user your application authenticates.
 
-* If your application is trying to access other services or APIs on its own behalf rather than on the user’s behalf, the application must authenticate itself using the Single Sign-On service. Choose the <strong>Service-to-Service App</strong> type. This corresponds to the "Client Credentials" grant type in OAuth.
-
-    <p class="note"><strong>Note</strong>: The <strong>Service-to-Service App</strong> application type is intended only for highly trusted applications such as company owned and managed applications.
-
 * If your application is authenticating end users, refer to the table below. Find your application type in the first column to determine which **Application Type** to select in the Pivotal SSO dashboard.
 
     <table border="1" class="nice" >
@@ -32,4 +28,8 @@ The **Application Type** you select in the Pivotal Single Sign-On dashboard depe
         <td>Implicit</td>
       </tr>
     </table>
+
+    <p class="note"><strong>Note</strong>: The <strong>Native Mobile App</strong> application type is intended only for highly trusted applications such as company owned and managed applications.
+
+* If your application is trying to access other services or APIs on its own behalf rather than on the user’s behalf, the application must authenticate itself using the Single Sign-On service. Choose the <strong>Service-to-Service App</strong> type. This corresponds to the "Client Credentials" grant type in OAuth.
 
