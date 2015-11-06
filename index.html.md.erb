@@ -8,9 +8,9 @@ This documentation describes installing and configuring the Pivotal Single Sign-
 
 <dl>
   <dt>Current Pivotal Single Sign-On for <a href="https://network.pivotal.io/products/pivotal-cf">Pivotal Cloud Foundry&reg;</a> Details</dt>
-  <dd><strong>Version</strong>: 1.0.0</dd>
-  <dd><strong>Release Date</strong>: 27th October 2015</dd>
-  <dd><strong>Software component version</strong>: Pivotal Single Sign-On 1.0.0 Installer based on Elastic Runtime 1.5.x</dd>
+  <dd><strong>Version</strong>: 1.0.1</dd>
+  <dd><strong>Release Date</strong>: 2015-11-02</dd>
+  <dd><strong>Software component version</strong>: Pivotal Single Sign-On 1.0.1 Installer based on Elastic Runtime 1.6.x</dd>
   <dd><strong>Compatible Ops Manager Version(s)</strong>: 1.6.x</dd>
   <dd><strong>Compatible Elastic Runtime Version(s)</strong>: 1.6.x</dd>
   <dd><strong>vSphere support?</strong> Yes</dd>
@@ -21,7 +21,7 @@ This documentation describes installing and configuring the Pivotal Single Sign-
 ## <a id='install-tile'></a>Step 1: Install the Service Tile in Ops Manager
 
   1. Download the Pivotal Single Sign-On product tile from [Pivotal Network](https://network.pivotal.io).
-  1. Upload the product tile to your Ops Manager installation. See [Adding and Deleting Products](http://docs.pivotal.io/pivotalcf/customizing/add-delete.html).
+  1. Upload the product tile to your Ops Manager installation. See [Adding and Deleting Products](../pivotalcf/customizing/add-delete.html).
   1. Click **Add** next to the uploaded product description in the Available Products view to add this product to your staging area.
   1. Click **Apply Changes** to deploy the service.
 
@@ -32,7 +32,7 @@ Pivotal Single Sign-On is a multi-tenant service. A Pivotal Single Sign-On tenan
   * Employees, consumers, and partners
   * Development, staging, and production instances
 
-You can create one or more plans under your Pivotal Single Sign-On service. Refer to [Manage Service Plans](./administering.html#plan-management) for more information.
+You can create one or more plans under your Pivotal Single Sign-On service. Refer to [Manage Service Plans](administering.html#plan-management) for more information.
 
 <p class="note"><strong>Note</strong>: You can create and configure service plans at any time. However, you must create at least one plan in order to register and use the Service with applications on your <a href="https://network.pivotal.io/products/pivotal-cf">Pivotal Cloud Foundry&reg;</a> installation.</p>
 
@@ -48,14 +48,14 @@ You must update the SSL Certificate for the domains listed below. In addition, d
   * `.uaa.<SYSTEM-DOMAIN`
 
 ## <a id='create-instance'></a>Step 4: Create Service Instances
-After you have made the plans visible in the relevant PCF organizations, create a service instance to use the service plan within a space. Refer to the [Manage Service Instances](./administering.html#instance-management) section of the *Administering Pivotal Single Sign-On* topic for more information about how to create a service instance within orgs and spaces.
+After you have made the plans visible in the relevant PCF organizations, create a service instance to use the service plan within a space. Refer to the [Manage Service Instances](administering.html#instance-management) section of the *Administering Pivotal Single Sign-On* topic for more information about how to create a service instance within orgs and spaces.
 
 While service instances are accessible only within a space, service plans are visible across spaces and orgs. Every plan needs a service instance in every space containing applications it will access.
 
 If you have a plan that allows Single Sign-On to applications in multiple spaces, you must create a service instance for the plan in each of the spaces.
 
 ## <a id='config-ext-providers'></a>Step 5: Configure External Identity Providers
-Configure the external identity providers for your PCF platform. External identity providers must be SAML 2.0 compliant. Refer to [Manage Identity providers](../pivotalcf/opsguide/sso.html#configure-identity-provider) for more information.
+Configure the external identity providers for your PCF platform. External identity providers must be SAML 2.0 compliant. Refer to [Administering Pivotal Single Sign-On](administering.html#user-store-management) for more information on configuring External Identity Providers.
 
 ## <a id='register-apps'></a>Step 6:  Register your Applications
 Secure your applications in one of the following ways:
@@ -73,4 +73,4 @@ If you bind your application from the Apps Manager Console, then you are choosin
 If you register your application with the Pivotal Single Sign-On service dashboard, you gain access to a larger selection of application types. You can also configure the User Store Connection to an external identity provider with SAML.
 
 ## <a id='enable-oauth'></a>Step 7: Enable OAuth 2.0 for your applications
-Your application must be able to request and validate an OAuth or OpenID Connect token. Refer to the [Application Integration](./administering.html#app-integration) section for more information.
+Your application must be able to request and validate an OAuth or OpenID Connect token. Refer to the [Application Integration](administering.html#app-integration) section for more information.
