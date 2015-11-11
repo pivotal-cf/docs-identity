@@ -68,30 +68,29 @@ After you complete the steps above, the Entity ID, SSO URL, and NameID of your n
 ### Binding Applications running on Pivotal Cloud Foundry
 
   1. Log in as a user with the role of a Space Developer.
-  1. Set the GRANT_TYPE Environment Variable for the Application depending on the Application Type. Refer to [Choosing an Application Type for Pivotal Single Sign-On](http://docs.pivotal.io/p-identity/app-type.html).
-
-<table>
-  <tr>
-    <td>Application Type</td>
-    <td>Grant Type Env Value</td>
-  </tr>
-  <tr>
-    <td>Web App</td>
-    <td>authorization_code</td>
-  </tr>
- <tr>
-    <td>Native Mobile App</td>
-    <td>password</td>
- </tr>
- <tr>
-	<td>Single Page JavaScript App</td>
-    <td>client_credentials</td>
-  </tr>
-  <tr>
-	<td>Service-to-Service App</td>
-    <td>implicit</td>
-  </tr>
-</table>
+  1. Set the GRANT\_TYPE Environment Variable for the Application depending on the Application Type. Refer to [Choosing an Application Type for Pivotal Single Sign-On](http://docs.pivotal.io/p-identity/app-type.html).
+  <table>
+    <tr>
+      <td>Application Type</td>
+      <td>Grant Type Env Value</td>
+    </tr>
+    <tr>
+      <td>Web App</td>
+      <td>authorization_code</td>
+    </tr>
+    <tr>
+      <td>Native Mobile App</td>
+      <td>password</td>
+   </tr>
+   <tr>
+  	  <td>Single Page JavaScript App</td>
+      <td>client_credentials</td>
+    </tr>
+    <tr>
+	  <td>Service-to-Service App</td>
+      <td>implicit</td>
+    </tr>
+    </table>
 
   1. Bind the Application with the Service Instance.
   1. Binding the Application creates an OAuth Client based on the Grant Type set.
@@ -139,4 +138,3 @@ Validation of the token requires that you verify the following:
   1. The value of <code>iss</code> matches `https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token`.
   1. The expiry time (<code>exp</code>) of the token has not passed.
 
-E
