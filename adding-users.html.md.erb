@@ -59,7 +59,7 @@ The highlighted text in the example URL above is the Identity Zone ID of the Ser
 <pre class="terminal">
 uaac curl -k -H"Accept:application/json" -H"Content-Type:application/json" -H"X-Identity-Zone-Id:YOUR-IDENTITY-ZONE-ID" -XPOST --data           '{"client_id":"service_plan_admin_client","client_secret":"secret","authorized_grant_types":["client_credentials"],"authorities":["scim.write","clients.admin","scim.read"]}' /oauth/clients</pre>
 
-## <a id="add-users"></a>Adding Users
+## <a id="adding-users"></a>Adding Users
 
 1. Target the [auth domain](index.html#create-plan) of your Single Sign-On Service Plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
