@@ -2,28 +2,15 @@
 title: Administering Pivotal Single Sign-On
 ---
 
-_Pivotal Single Sign-On requires [Pivotal Cloud Foundry&reg;](https://network.pivotal.io/products/pivotal-cf) (PCF) version 1.5 or greater_.
-
-  1. Download the Pivotal Single Sign-On product tile from [Pivotal Network](https://network.pivotal.io).
-  1. Upload the product tile to your Ops Manager installation. See [Adding and Deleting Products](http://docs.pivotal.io/pivotalcf/customizing/add-delete.html).
-  1. Click **Add** next to the uploaded product description in the Available Products view to add this product to your staging area.
-  1. Click **Apply Changes** to deploy the service.
-
 ## <a id='plan-management'></a>Manage Service Plans
 
-To create a new service plan:
+Pivotal Single Sign-On is a multi-tenant service. A Pivotal Single Sign-On tenant corresponds to a service plan. As an enterprise adopting Pivotal Single Sign-On, you might want to segregate your tenants into separate plans. For example, the following tenants might require separate plans:
 
-  1. Navigate to the Plan Administration User Interface at `https://p-identity.YOUR-SYSTEM-DOMAIN`.
-  1. Log in with your administrator credentials.
-  1. Click **New Plan**.
-  1. Enter a **Plan Name**. This plan name appears in the Apps Manager Console Services Marketplace.
-  1. Enter a **Description**. This appears as one of the plan features in the Services Marketplace.
-  1. Enter an **Auth Domain**. Applications on this plan use this auth domain for their access URI.
-    <p class="note"><strong>Note</strong>: You cannot edit the auth domain later.</p>
-  1. Enter an **Instance Name**. The instance name appears on the login page and in other user-facing content, such as email communications.
-  1. Select the orgs in which you want the plan to be visible. If you do not select any orgs, that plan will be completely hidden in the Services Marketplace.
+  * Business units and geographical locations
+  * Employees, consumers, and partners
+  * Development, staging, and production instances
 
-The Plan Administrator User Interface lists all the defined plans. Select a plan name to edit that plan.
+You can create new Single Sign-On Service Plans at any time from the SSO dashboard by logging in with your administrator credentials to `p-identity.YOUR-SYSTEM-DOMAIN`.
 
 ## <a id='instance-management'></a>Manage Service Instances
 

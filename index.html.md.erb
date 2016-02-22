@@ -25,14 +25,25 @@ This documentation describes installing and configuring the [Pivotal Single Sign
   1. Click **Add** next to the uploaded product description in the Available Products view to add this product to your staging area.
   1. Click **Apply Changes** to deploy the service.
 
-## <a id='create-plan'></a>Step 2: Create one or more Service Plans
-Pivotal Single Sign-On is a multi-tenant service. A Pivotal Single Sign-On tenant corresponds to a service plan. As an enterprise adopting Pivotal Single Sign-On, you might want to segregate your tenants into separate plans. For example, the following tenants might require separate plans:
+## <a id='configure-elastic-runtime'></a>Step 2: Configure Elastic Runtime
 
-  * Business units and geographical locations
-  * Employees, consumers, and partners
-  * Development, staging, and production instances
+  1. From the **Installation Dashboard**, click the **Elastic Runtime** tile.
+  1. Select **SSO Config** on the Settings tab.
+  1. Under **Provider Name**, enter `https://login.YOUR-SYSTEM-DOMAIN`.
+  1. Under **Provider Metadata URL**, enter `https://login.YOUR-SYSTEM-DOMAIN/saml/metadata`. Or download your metadata from `https://login.YOUR-SYSTEM-DOMAIN/saml/metadata` and enter it under **Provider Metadata** area.
+  1. Click **Save**.
+  1. Return to the **Installation Dashboard** and click **Apply changes**.
 
-You can create one or more plans under your Pivotal Single Sign-On service. Refer to [Manage Service Plans](administering.html#plan-management) for more information.
+## <a id='create-plan'></a>Step 3: Login to the SSO Dashboard
+
+  1. After Ops Manager has finished applying your changes, login to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find those credentials in your **Pivotal Elastic Runtime** tile under the **Credentials** tab. 
+  1. From the SSO dashboard, create a new Single Sign-On Service Plan by clicking **New Plan**. 
+  <img src="images/sso_plan.png"=/>
+  1. Choose a **Plan Name**, and enter a **Description**. 
+  1. Enter a **Auth Domain**, which is the URL your users will enter to access their Single Sign-On Service Plan. 
+  1. Choose an **Instance Name**. The instance name appears on the login page and in other user-facing content, such as email communications.
+  1. Under **Org Visibility**, select which organizations should have access to your Single Sign-On Service Plan. If you do not select any orgs, that plan will be completely hidden in the Services Marketplace.
+  1. Click **Save Plan**. Your new plan will appear in the Apps Manager Marketplace to users in the organizations you have selected. You can also access the Services Marketplace by entering `cf marketplace` in a terminal window.
 
 <p class="note"><strong>Note</strong>: You can create and configure service plans at any time. However, you must create at least one plan in order to register and use the Service with applications on your <a href="https://network.pivotal.io/products/pivotal-cf">Pivotal Cloud Foundry&reg;</a> installation.</p>
 
