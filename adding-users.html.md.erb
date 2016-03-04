@@ -1,8 +1,9 @@
 ---
 title: Adding Users to a Single Sign-On Service Plan
+owner: Identity
 ---
 
-You cannot add users to Service Plans from the Single Sign-On dashboard. In order to add users to the Internal User Store for a given Service Plan, you must use the UAA Command Line Interface (UAAC). If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window. 
+You cannot add users to Service Plans from the Single Sign-On dashboard. In order to add users to the Internal User Store for a given Service Plan, you must use the UAA Command Line Interface (UAAC). If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
 
 The following steps describe how to use UAAC to add users to your Service Plans.
 
@@ -14,8 +15,8 @@ The following steps describe how to use UAAC to add users to your Service Plans.
 
 1. Fetch your admin client token.
 <pre class="terminal">$ uaac token client get admin
-Client secret: 
-</pre> 
+Client secret:
+</pre>
 1. When prompted with `Client secret`, enter your **Admin Client Credentials** located in the **Credentials** tab of your **Pivotal Elastic Runtime** tile.
 1. Update client registrations for `identity` and add `password` as a supported authorization grant type.
 <pre class="terminal">$ uaac client update identity --authorized\_grant\_types "refresh\_token,password,client\_credentials,authorization\_code"
