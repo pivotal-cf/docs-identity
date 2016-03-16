@@ -1,0 +1,46 @@
+---
+title: TK
+owner: Identity Service
+---
+
+## Installation
+
+<Table of Contents>
+
+### Installation Prerequisites
+
+* Pivotal Cloud Foundry ([Elastic Runtime](https://network.pivotal.io/products/elastic-runtime) and [Ops Manager](https://network.pivotal.io/products/ops-manager))
+
+* SSL Certificate
+
+    
+
+### Installing via Ops Manager
+
+To install Single Sign-On for Pivotal Cloud Foundry, please follow the steps listed below:
+
+1. Download the Single Sign-On product tile from [Pivotal Network](https://network.pivotal.io/).
+
+2. Upload the product file to the Ops Manager Installation Dashboard (via the Import a Product button).
+
+3. Click Add next to the uploaded product description in the Available Products view to add this product to your staging area
+
+4. Click on the Single Sign-On tile to enter any configurations.
+
+5. Click Apply Changes to install the product.
+
+## Update SSL Certificate
+
+As described in the above section, every service plan corresponds to a tenant. Each service plan is accessible at a tenant-specific URL in the format https://<AUTH-DOMAIN>.login.<SYSTEM-DOMAIN>.
+
+You must update the SSL Certificate for the domains listed below for each plan you create. In addition, depending on your infrastructure and type of load balancer, update your load balancer configuration for the following domains:
+
+* *.<SYSTEM-DOMAIN>
+
+* *.<APPS-DOMAIN>
+
+* *.login.<SYSTEM-DOMAIN>
+
+* .uaa.<SYSTEM-DOMAIN>
+
+    

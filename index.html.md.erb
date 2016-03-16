@@ -1,87 +1,129 @@
 ---
 title: Getting Started with Pivotal Single Sign-On
+owner: Identity Service
 ---
 
 This documentation describes installing and configuring the [Pivotal Single Sign-On](https://network.pivotal.io/products/p-identity) service.
 
-## <a id='product-snapshot'></a>Product Snapshot
+# Single Sign-On Overview
 
-<dl>
-  <dt>Current <a href="https://network.pivotal.io/products/p-identity">Pivotal Single Sign-On</a> for Pivotal Cloud Foundry&reg; Details</dt>
-  <dd><strong>Version</strong>: 1.0.9</dd>
-  <dd><strong>Release Date</strong>: 2016-02-24</dd>
-  <dd><strong>Software component version</strong>: Pivotal Single Sign-On 1.0.8 Installer based on Elastic Runtime 1.6.x</dd>
-  <dd><strong>Compatible Ops Manager Version(s)</strong>: 1.6.x</dd>
-  <dd><strong>Compatible Elastic Runtime Version(s)</strong>: 1.6.x</dd>
-  <dd><strong>vSphere support?</strong> Yes</dd>
-  <dd><strong>AWS support?</strong> Yes</dd>
-  <dd><strong>OpenStack support?</strong> No</dd>
-</dl>
+<Table of Contents>
 
-## <a id='install-tile'></a>Step 1: Install the Service Tile in Ops Manager
+## Product Snapshot
 
-  1. Download the Pivotal Single Sign-On product tile from [Pivotal Network](https://network.pivotal.io).
-  1. Upload the product tile to your Ops Manager installation. See [Adding and Deleting Products](../pivotalcf/customizing/add-delete.html).
-  1. Click **Add** next to the uploaded product description in the Available Products view to add this product to your staging area.
-  1. Click **Apply Changes** to deploy the service.
+Current [Single Sign-On](https://network.pivotal.io/products/p-identity) for Pivotal Cloud Foundry® Details
 
-## <a id='configure-elastic-runtime'></a>Step 2: Configure Elastic Runtime
+Version: 1.0.9
 
-  1. From the **Installation Dashboard**, click the **Elastic Runtime** tile.
-  1. Select **SSO Config** on the Settings tab.
-  1. Under **Provider Name**, enter `https://login.YOUR-SYSTEM-DOMAIN`.
-  1. Under **Provider Metadata URL**, enter `https://login.YOUR-SYSTEM-DOMAIN/saml/metadata`. Or download your metadata from `https://login.YOUR-SYSTEM-DOMAIN/saml/metadata` and enter it under **Provider Metadata** area.
-  1. Click **Save**.
-  1. Return to the **Installation Dashboard** and click **Apply changes**.
+Release Date: 2016-02-24
 
-## <a id='create-plan'></a>Step 3: Login to the SSO Dashboard
+Software component version: Single Sign-On 1.0.9 Installer based on Elastic Runtime 1.7.x
 
-  1. After Ops Manager has finished applying your changes, login to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find those credentials in your **Pivotal Elastic Runtime** tile under the **Credentials** tab. 
-  1. From the SSO dashboard, create a new Single Sign-On Service Plan by clicking **New Plan**. 
-  <img src="images/sso_plan.png"=/>
-  1. Choose a **Plan Name**, and enter a **Description**. 
-  1. Enter a **Auth Domain**, which is the URL your users will enter to access their Single Sign-On Service Plan. 
-  1. Choose an **Instance Name**. The instance name appears on the login page and in other user-facing content, such as email communications.
-  1. Under **Org Visibility**, select which organizations should have access to your Single Sign-On Service Plan. If you do not select any orgs, that plan will be completely hidden in the Services Marketplace.
-  1. Click **Save Plan**. Your new plan will appear in the Apps Manager Marketplace to users in the organizations you have selected. You can also access the Services Marketplace by entering `cf marketplace` in a terminal window.
+Compatible Ops Manager Version(s): 1.7.x
 
-<p class="note"><strong>Note</strong>: You can create and configure service plans at any time. However, you must create at least one plan in order to register and use the Service with applications on your <a href="https://network.pivotal.io/products/pivotal-cf">Pivotal Cloud Foundry&reg;</a> installation.</p>
+Compatible Elastic Runtime Version(s): 1.7.x
 
-## <a id='update-ssl-certificate'></a>Step 4: Update SSL Certificate
+vSphere support? Yes
 
-As described in the above section, every service plan corresponds to a tenant. Each service plan is accessible at a tenant-specific URL in the format `https://<AUTH-DOMAIN>.login.<SYSTEM-DOMAIN>`.
+AWS support? Yes
 
-You must update the SSL Certificate for the domains listed below. In addition, depending on your infrastructure and type of load balancer, update your load balancer configuration for the following domains:
+OpenStack support? No
 
-  * `*.<SYSTEM-DOMAIN>`
-  * `*.<APPS-DOMAIN>`
-  * `*.login.<SYSTEM-DOMAIN>`
-  * `.uaa.<SYSTEM-DOMAIN>`
 
-## <a id='create-instance'></a>Step 5: Create Service Instances
-After you have made the plans visible in the relevant PCF organizations, create a service instance to use the service plan within a space. Refer to the [Manage Service Instances](administering.html#instance-management) section of the *Administering Pivotal Single Sign-On* topic for more information about how to create a service instance within orgs and spaces.
 
-While service instances are accessible only within a space, service plans are visible across spaces and orgs. Every plan needs a service instance in every space containing applications it will access.
+## Upgrading to the Latest Version
 
-If you have a plan that allows Single Sign-On to applications in multiple spaces, you must create a service instance for the plan in each of the spaces.
+Consider the following compatibility information before upgrading Single Sign-On for Pivotal Cloud Foundry®.
 
-## <a id='config-ext-providers'></a>Step 6: Configure External Identity Providers
-Configure the external identity providers for your PCF platform. External identity providers must be SAML 2.0 compliant. Refer to [Administering Pivotal Single Sign-On](administering.html#user-store-management) for more information about configuring External Identity Providers.
+Ops Manager Version
 
-## <a id='register-apps'></a>Step 6: Register your Applications
-Secure your applications in one of the following ways:
+Supported Upgrades from Imported SSO Installation
 
-  * Bind your application to a service instance from the Apps Manager Console.
-  * Register your application from the Pivotal Single Sign-On service dashboard.
+1.6.x
 
- When you bind an application with the Pivotal Single Sign-On service, an OAuth Client is registered with the Single Sign-On server. This OAuth Client acts as an OAuth 2.0 Authorization Server and issues tokens.
+* From 1.0.1 to 1.0.10
 
-If you bind your application from the Apps Manager Console, then you are choosing the following defaults:
+* From 1.0.2 to 1.0.10
 
-  * The application type is Web App.
-  * The User Store Connection is an Internal User Store. This means that users are stored in the user store provided by Pivotal Single Sign-On.
+* From 1.0.3 to 1.0.10
 
-If you register your application with the Pivotal Single Sign-On service dashboard, you gain access to a larger selection of application types. You can also configure the User Store Connection to an external identity provider with SAML.
+* From 1.0.4 to 1.0.10
 
-## <a id='enable-oauth'></a>Step 7: Enable OAuth 2.0 for your applications
-Your application must be able to request and validate an OAuth or OpenID Connect token. Refer to the [Application Integration](administering.html#app-integration) section for more information.
+* From 1.0.5 to 1.0.10
+
+* From 1.0.6 to 1.0.10
+
+* From 1.0.7 to 1.0.10
+
+* From 1.0.8 to 1.0.10
+
+* From 1.0.9 to 1.0.10
+
+
+
+## About
+
+
+
+The Single Sign-On service enables Pivotal Cloud Foundry users to authenticate with an external identity provider without creating a new account or re-entering credentials. Administrators can also manage user access in the one application - the external identity provider.
+
+Add value proposition and diagram.
+
+## Installation
+
+Please follow these [instructions](https://docs.google.com/document/d/1eYM4_dA1avxcIEZgg19rzgYkXSD4Fzip_6TzmmMXBFo/edit) to install Single Sign-On via Ops Manager.
+
+## Set Up
+
+### Create a Service Plan
+
+The Single Sign-On service is a multi-tenant service and a service plan corresponds to a tenant. This allows an enterprise to segregate users or environments using plans.
+
+Follow these [instructions](https://docs.google.com/document/d/1CIexMlTwIjJjhBncH0JoHhLBOw5tNxtv0SBgpZUQp4Q/edit) to create a service plan.
+
+### Create a Service Instance
+
+Single Sign-On service plans can be used across spaces to provide single sign-on capabilities for applications in various spaces. A service instance enables the binding of an application to a service plan.
+
+Follow these [instructions](https://docs.google.com/document/d/1Y0ZKBoevRTDxml6uCF0QDNkf3Gyj9Xp7UT39pU0_zSI/edit) to create a service instance.
+
+### Configure an Identity Provider
+
+In addition to the internal user store, external identity providers can be configured to provide single sign-on to applications. External identity providers must support SAML 2.0.
+
+
+
+Follow these [instructions](https://docs.google.com/document/d/1zjmFzJFXGeMoxMAFikcgDS4Y7JFR67IfPeFQbjoUxLI/edit) to configure identity providers.
+
+### Register Applications
+
+Single Sign-On supports both Pivotal Cloud Foundry hosted applications as well as externally hosted applications. Your applications must be able to request an OAuth or OpenID Connect token.
+
+Follow these [instructions](https://docs.google.com/document/d/1Rg8JhEHroldjxjW6tv-KIjcWH0Jh_6i4KX7vyVyi7zE/edit#heading=h.hgtah512qxo) to register your applications.
+
+### Create Resources
+
+Once your applications are registered you can create resources to permit and restrict user access. These will allow users and clients (or applications) to tell an authorization server what permissions they’ll need on resources they’re accessing.
+
+Follow these [instructions](https://docs.google.com/document/d/1Om32PjJ1K4Nt3yaWmZJd7EnQ66BGaVuACs3ivWuZXg0/edit) to create resources for your applications.
+
+## Other Usages
+
+Single Sign-On also supports single sign-on for other components of Pivotal Cloud Foundry. This includes single sign-on to Ops Manager and Apps Manager. This allows the reuse of existing users and credentials that are managed in an external identity provider to sign into Pivotal services.
+
+For more information on how to configure these services to use Single Sign-On, refer to the following pages:
+
+* Ops Manager
+
+* [Apps Manager](http://docs.pivotal.io/pivotalcf/opsguide/sso.html)
+
+
+-=-=-
+
+<table class="c17"><tbody>
+  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c13 c19">Actions</span></p></td><td class="c6 c20" colspan="1" rowspan="1"><p class="c7"><span class="c19 c13">PCF Administrator</span></p></td><td class="c5" colspan="1" rowspan="1"><p class="c7"><span class="c14 c13">Plan Administrator</span></p></td><td class="c9 c20" colspan="1" rowspan="1"><p class="c7"><span class="c13 c14">Space Developer</span></p></td></tr>
+  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Service Plans</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1 c11"><span class="c0"></span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1 c11"><span class="c0"></span></p></td></tr>
+  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Identity Providers</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1 c11"><span class="c0"></span></p></td></tr>
+  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Service Instances</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td></tr>
+  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Applications</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td></tr>
+  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Resources</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td></tr></tbody></table>

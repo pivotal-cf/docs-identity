@@ -1,0 +1,164 @@
+---
+title: TK
+owner: Identity Service
+---
+
+# Manage Identity Providers
+
+<Table of Contents>
+
+# 
+
+For each plan or tenant, the Single Sign-On service provides an internal user store that allows for management of authentication and authorization of users. In addition to the internal user store, administrators can add external identity providers to allow users who are externally managed to access applications.
+
+## Configure Internal User Store
+
+1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
+
+2. Click Manage Identity Providers in the dropdown by clicking the plan name.
+
+3. Click on Internal User Store.
+
+4. Enter a Description.
+
+5. Configure Password Policy Settings for the internal user store. You can use the default, recommended settings or custom settings.
+
+6. Click Save Identity Provider.
+
+## Add Users to the Internal User Store
+
+Add content in <http://docs.pivotal.io/p-identity/adding-users.html> to this section
+
+## Configure Password Policy
+
+Administrators can configure password policy for users that are stored in the Internal User Store per Single Sign-On service plan. The Internal User Store password policy allows you to manage passwords users create by defining and enforcing strong passwords to protect application resources.
+
+# 
+
+1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
+
+2. Click Manage Identity Providers in the dropdown by clicking the plan name.
+
+3. Click on Internal User Store.
+
+4. Configure the following under the Password Complexity section:
+    
+    1. Min Length - Specify the minimum password length.
+    
+    2. Uppercase - Specify the minimum number of uppercase characters are required in the password.
+    
+    3. Lowercase - Specify the minimum number of lowercase characters are required in the password.
+    
+    4. Special Characters - Specify the minimum number of special characters are required in the password.
+    
+    5. Numerals - Specify the minimum number of numeric characters are required in the password.
+
+5. Configure the following under the Lockout Policy section:
+    
+    1. Failures Allowed - Specify the number of failed login attempts are allowed before a user is locked out.
+    
+    2. Within Milliseconds - Specify the frequency range that the failed login attempts need to be made before a user is locked out.
+    
+    3. Lockout Period - Specify how long a user is locked out for.
+    
+    4. Expires - Specify how long passwords are valid for before the user needs to enter a new password.
+
+6. Click Save Identity Provider.
+
+# 
+
+Note: You can use the default, recommended settings or custom settings for password policy and lockout policy.
+
+## Configure External Identity Provider
+
+1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
+
+2. Click Manage Identity Providers in the dropdown by clicking the plan name.
+
+3. Click New Identity Provider.
+
+4. Enter an Identity Provider Name.
+
+5. Enter a Description.
+
+6. Enter the external identity provider metadata in one of the following ways:
+    
+    1. Provide the Identity Provider Metadata URL and click Fetch Metadata
+    
+    2. Click Upload Identity Provider Metadata to upload downloaded XML metadata from the external identity provider.
+
+For complete guides on how to integrate with external identity providers and exchange metadata, please see the Integration Guide section.
+
+1. Configure any User Attributes or Custom Attributes that should be propagated from the identity provider to the service provider (i.e. Email, First/Last Name, Role, etc)
+
+2. Click Create Identity Provider to save the identity provider.
+
+Note: To configure the service provider SAML settings, click on Configure SAML Service Provider on the Identity Providers page. You will be able to configure the signing of authentication requests and signing of incoming assertions.
+
+## Delete Identity Provider
+
+Note: Deleting an external identity provider will delete all the configurations. Users will no longer be able to authenticate using the external identity provider. This cannot be undone.
+
+# 
+
+1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
+
+2. Click Manage Identity Providers in the dropdown by clicking the plan name.
+
+3. Click on the identity provider name.
+
+4. Click Delete at the bottom of the page and a confirmation modal should appear to ensure that this is the intended action.
+
+5. Click Delete Identity Provider to delete the identity provider.
+
+## Create or Edit Resource Permissions
+
+Once resources have been created by a Space Developer to define what permissions an application needs on resources they’re accessing, an administrator can grant users access to access their information. Users can authorize or deny the client access to access their information on their behalf. The Single Sign-On service allows you to map groups of users from the identity provider with permissions defined in the service
+
+# 
+
+1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
+
+2. Click Manage Identity Providers in the dropdown by clicking the plan name.
+
+3. Click Resource Permissions for the identity provider that you would like to define permissions for.
+
+4. Click New Permissions Mapping.
+
+5. Enter a Group Name.
+
+6. Click Select Permissions to select the permissions that the users in the group should have access to.
+
+7. Click Save Permissions Mapping.
+
+## Delete Resource Permissions
+
+1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
+
+2. Click Manage Identity Providers in the dropdown by clicking the plan name.
+
+3. Click Resource Permissions for the identity provider that you would like to define permissions for.
+
+4. Click on the group name of the resource permission you would like to delete.
+
+5. Click Delete at the bottom of the page and a confirmation modal should appear to ensure that this is the intended action.
+
+6. Click Delete Permissions Mapping to delete the resource.
+
+## Configure Group Whitelist
+
+An administrator can configure groups from an external identity provider to be propagated in the ID token by including the group in the Group Whitelist. This will provide information about the external groups that the user is a member of.
+
+Note: The ‘roles’ scope must be requested by the application and the external group must be listed in the Group Whitelist.
+
+1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
+
+2. Click Manage Identity Providers in the dropdown by clicking the plan name.
+
+3. Click Group Whitelist.
+
+4. Add group name from the identity provider.
+
+5. Click Save Group Whitelist.
+
+#

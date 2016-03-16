@@ -1,0 +1,54 @@
+---
+title: TK
+owner: Identity Service
+---
+
+# Manage Resources
+
+<Table of Contents>
+
+# 
+
+After you have applications bound to the Single Sign-On service, you can start defining what the application needs access to from the resource server allowed by the authorization server. Access is defined by resources, which are API endpoints to a resource server. A space developer creates resources and for an application, selects the correct resources that it should have access to on the application. An administrator can then grant users access to certain resources that they can authorize applications to retrieve on their behalf by configuring the identity provider.
+
+# 
+
+Note: Resources are created within a space context and can only be used by applications within that space. Space developers will only see the resources created in the spaces they have access to and can only assign those to the applications in those spaces.
+
+### Create or Edit Resources
+
+1. Log in to Apps Manager as a user with the role of a Space Developer.
+
+2. Click the Manage link under the Single Sign-On service instance to launch the service dashboard.
+
+3. Navigate to the Resources tab.
+
+4. Click New Resource.
+
+5. Enter a Resource Name.
+
+6. Create Permissions that the OAuth client for your application will need to access from the resource server.
+    
+    1. Enter one or more Attributes or Actions for each permission.
+    
+    2. Enter a Description for each permission.
+
+7. Click Save Resource.
+
+Note: If you delete a resource permission, the permission will be removed from the permission mappings and from the application. You will have to reconfigure the updated permissions in both areas.
+
+### Delete Resources
+
+1. Log in to Apps Manager as a user with the role of a Space Developer.
+
+2. Click the Manage link under the Single Sign-On service instance to launch the service dashboard.
+
+3. Navigate to the Resources tab.
+
+4. Click on your Resource.
+
+5. Click Delete at the bottom of the page and a confirmation modal should appear to ensure that this is the intended action.
+
+6. Click Delete Resource to delete the resource.
+
+#
