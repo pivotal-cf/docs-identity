@@ -1,13 +1,9 @@
 ---
-title: TK
+title: Manage Applications
 owner: Identity Service
 ---
 
-# Manage Applications
-
-<Table of Contents>
-
-# 
+## <a id='overview'></a> Application Management Overview
 
 When you bind an application with the Single Sign-On service, an OAuth Client is registered with the Single Sign-On server. This OAuth Client acts as an OAuth 2.0 Authorization Server and issues tokens.
 
@@ -25,7 +21,7 @@ If you bind your application from the Apps Manager Console, then you are choosin
 
 If you register your application with the Single Sign-On service dashboard, you gain access to a larger selection of application types. You can configure an external identity provider that supports SAML to be the identity store and authentication provider.
 
-# Choose an Application Type
+## <a id='choose-type'></a> Choose an Application Type
 
 The Application Type you select in the Pivotal Single Sign-On dashboard depends on the type of application and the type of user your application authenticates.
 
@@ -33,39 +29,17 @@ The Application Type you select in the Pivotal Single Sign-On dashboard depends 
 
 * If your application is trying to access other services or APIs on its own behalf rather than on the user’s behalf, the application must authenticate itself using the Single Sign-On service. Choose the Service-to-Service App type.
 
-APPLICATION TYPE
 
-PIVOTAL SSO APPLICATION TYPE
-
-OAUTH GRANT TYPE EQUIVALENT
-
-Web
-
-Web App
-
-Authorization Code
-
-Native Mobile, Desktop, or Command Line
-
-Native Mobile App
-
-Resource Owner Password
-
-Single Page JavaScript
-
-Single Page JavaScript App
-
-Implicit
-
-Service-to-Service
-
-Service-to-Service App
-
-Client Credentials
+	| APPLICATION TYPE  | PIVOTAL SSO APPLICATION TYPE | OAUTH GRANT TYPE EQUIVALENT |
+	|-------------------|------------------------------|-------------------------------|
+ 	| Web | Web App | Authorization Code |
+	| Native Mobile, Desktop, or Command Line | Native Mobile App | Resource Owner Password |
+	| Single Page JavaScript | Single Page JavaScript App | Implicit |
+	| Service-to-Service | Service-to-Service App | Client Credentials |
 
 * Note: The Native Mobile App application type is intended only for highly trusted applications such as company owned and managed applications.
 
-### Bind an Application Hosted on Pivotal Cloud Foundry
+## <a id='bind'></a> Bind an Application Hosted on Pivotal Cloud Foundry
 
 1. Log in to Apps Manager as a user with the role of a Space Developer.
 
@@ -93,7 +67,7 @@ Note: In Select Scopes, Space Developers can select from resources that have bee
 
 1. After you click Create App, the Next Steps view displays. These steps describe the important endpoints required for application integration. Refer to the Application Integration section below for more details.
 
-### Register an External Application (Application Not Hosted on Pivotal Cloud Foundry)
+## <a id='register'></a> Register an External Application (Application Not Hosted on Pivotal Cloud Foundry)
 
 1. Log in to Apps Manager as a user with the role of a Space Developer.
 
@@ -119,7 +93,7 @@ Note: In Select Scopes, Space Developers can select from resources that have bee
 
 1. After you click Create App, the Next Steps view displays. These steps describe the important endpoints required for application integration. Refer to the Application Integration section below for more details.
 
-### Delete Application
+## <a id='delete'></a> Delete Application
 
 Deleting an application hosted on Pivotal Cloud Foundry:
 
@@ -131,15 +105,9 @@ Deleting an application hosted on Pivotal Cloud Foundry:
 
 4. Click Delete to delete the application.
 
-# 
-
 Note: This will remove the application and its configurations from Apps Manager and the service dashboard.
 
-# 
-
 Deleting an external application not hosted on Pivotal Cloud Foundry:
-
-# 
 
 1. Log in to Apps Manager as a user with the role of a Space Developer.
 

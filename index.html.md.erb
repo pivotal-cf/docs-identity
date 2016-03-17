@@ -1,67 +1,64 @@
 ---
-title: Getting Started with Pivotal Single Sign-On
+title: Single Sign-On Overview
 owner: Identity Service
 ---
 
 This documentation describes installing and configuring the [Pivotal Single Sign-On](https://network.pivotal.io/products/p-identity) service.
 
-# Single Sign-On Overview
+## <a id='product-snapshot'></a> Product Snapshot
 
-<Table of Contents>
+Current [Single Sign-On](https://network.pivotal.io/products/p-identity) for Pivotal Cloud Foundry&reg; Details
+<div style="line-height: 1; padding-left: 3em">
 
-## Product Snapshot
-
-Current [Single Sign-On](https://network.pivotal.io/products/p-identity) for Pivotal Cloud Foundry® Details
-
-Version: 1.0.9
-
-Release Date: 2016-02-24
-
-Software component version: Single Sign-On 1.0.9 Installer based on Elastic Runtime 1.7.x
-
-Compatible Ops Manager Version(s): 1.7.x
-
-Compatible Elastic Runtime Version(s): 1.7.x
-
-vSphere support? Yes
-
-AWS support? Yes
-
-OpenStack support? No
+- **Version**: 1.0.9
+- **Release Date**: 2016-02-24
+- **Software component versions**: Single Sign-On 1.0.9 Installer based on Elastic Runtime 1.7.x
+- **Compatible Ops Manager Version(s)**: 1.7x
+- **Compatible Elastic Runtime Version(s)**: 1.7x
+- **vSphere support?** Yes
+- **AWS support?** Yes
+- **OpenStack support?** No
+</div>
 
 
-
-## Upgrading to the Latest Version
+## <a id='upgrading'></a> Upgrading to the Latest Version
 
 Consider the following compatibility information before upgrading Single Sign-On for Pivotal Cloud Foundry®.
 
-Ops Manager Version
 
-Supported Upgrades from Imported SSO Installation
+<table border="1" class="nice">
+<tr>
+  <th rowspan="2">Ops Manager Version</th>
+  <th colspan="2">Supported Upgrades from SSO Versions</th>
+</tr>
+<tr>
+  <th>From</th>
+  <th>To</th>
+</tr><tr>
+  <th rowspan="9">1.6.x</th>
+  <td>1.0.1</td>
+  <td rowspan="9">1.0.10</td>
+</tr><tr>
+  <td>1.0.2</td>
+</tr><tr>
+  <td>1.0.3</td>
+</tr><tr>
+  <td>1.0.4</td>
+</tr><tr>
+  <td>1.0.5</td>
+</tr><tr>
+  <td>1.0.6</td>
+</tr><tr>
+  <td>1.0.7</td>
+</tr><tr>
+  <td>1.0.8</td>
+</tr><tr>
+  <td>1.0.9</td>
+</tr>
+</table>
 
-1.6.x
 
-* From 1.0.1 to 1.0.10
-
-* From 1.0.2 to 1.0.10
-
-* From 1.0.3 to 1.0.10
-
-* From 1.0.4 to 1.0.10
-
-* From 1.0.5 to 1.0.10
-
-* From 1.0.6 to 1.0.10
-
-* From 1.0.7 to 1.0.10
-
-* From 1.0.8 to 1.0.10
-
-* From 1.0.9 to 1.0.10
-
-
-
-## About
+## <a id='about'></a> About
 
 
 
@@ -69,45 +66,45 @@ The Single Sign-On service enables Pivotal Cloud Foundry users to authenticate w
 
 Add value proposition and diagram.
 
-## Installation
+## <a id='install'></a> Installation
 
-Please follow these [instructions](https://docs.google.com/document/d/1eYM4_dA1avxcIEZgg19rzgYkXSD4Fzip_6TzmmMXBFo/edit) to install Single Sign-On via Ops Manager.
+Please follow these [instructions](./installing.html) to install Single Sign-On via Ops Manager.
 
-## Set Up
+## <a id='setup'></a> Set Up
 
-### Create a Service Plan
+### <a id='svc-plan'></a> Create a Service Plan
 
 The Single Sign-On service is a multi-tenant service and a service plan corresponds to a tenant. This allows an enterprise to segregate users or environments using plans.
 
-Follow these [instructions](https://docs.google.com/document/d/1CIexMlTwIjJjhBncH0JoHhLBOw5tNxtv0SBgpZUQp4Q/edit) to create a service plan.
+Follow these [instructions](./manage-service-plans.html) to create a service plan.
 
-### Create a Service Instance
+### <a id='svc-instance'></a> Create a Service Instance
 
 Single Sign-On service plans can be used across spaces to provide single sign-on capabilities for applications in various spaces. A service instance enables the binding of an application to a service plan.
 
-Follow these [instructions](https://docs.google.com/document/d/1Y0ZKBoevRTDxml6uCF0QDNkf3Gyj9Xp7UT39pU0_zSI/edit) to create a service instance.
+Follow these [instructions](./manage-service-instances.html) to create a service instance.
 
-### Configure an Identity Provider
+### <a id='idp-config'></a> Configure an Identity Provider
 
 In addition to the internal user store, external identity providers can be configured to provide single sign-on to applications. External identity providers must support SAML 2.0.
 
 
 
-Follow these [instructions](https://docs.google.com/document/d/1zjmFzJFXGeMoxMAFikcgDS4Y7JFR67IfPeFQbjoUxLI/edit) to configure identity providers.
+Follow these [instructions](./manage-id-providers.html) to configure identity providers.
 
-### Register Applications
+### <a id='reg-apps'></a> Register Applications
 
 Single Sign-On supports both Pivotal Cloud Foundry hosted applications as well as externally hosted applications. Your applications must be able to request an OAuth or OpenID Connect token.
 
-Follow these [instructions](https://docs.google.com/document/d/1Rg8JhEHroldjxjW6tv-KIjcWH0Jh_6i4KX7vyVyi7zE/edit#heading=h.hgtah512qxo) to register your applications.
+Follow these [instructions](./manage-apps.html) to register your applications.
 
-### Create Resources
+### <a id='resources'></a> Create Resources
 
 Once your applications are registered you can create resources to permit and restrict user access. These will allow users and clients (or applications) to tell an authorization server what permissions they’ll need on resources they’re accessing.
 
-Follow these [instructions](https://docs.google.com/document/d/1Om32PjJ1K4Nt3yaWmZJd7EnQ66BGaVuACs3ivWuZXg0/edit) to create resources for your applications.
+Follow these [instructions](./manage-resources.html) to create resources for your applications.
 
-## Other Usages
+## <a id='other'></a> Other Usages
 
 Single Sign-On also supports single sign-on for other components of Pivotal Cloud Foundry. This includes single sign-on to Ops Manager and Apps Manager. This allows the reuse of existing users and credentials that are managed in an external identity provider to sign into Pivotal services.
 
@@ -120,10 +117,28 @@ For more information on how to configure these services to use Single Sign-On, r
 
 -=-=-
 
-<table class="c17"><tbody>
-  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c13 c19">Actions</span></p></td><td class="c6 c20" colspan="1" rowspan="1"><p class="c7"><span class="c19 c13">PCF Administrator</span></p></td><td class="c5" colspan="1" rowspan="1"><p class="c7"><span class="c14 c13">Plan Administrator</span></p></td><td class="c9 c20" colspan="1" rowspan="1"><p class="c7"><span class="c13 c14">Space Developer</span></p></td></tr>
-  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Service Plans</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1 c11"><span class="c0"></span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1 c11"><span class="c0"></span></p></td></tr>
-  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Identity Providers</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1 c11"><span class="c0"></span></p></td></tr>
-  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Service Instances</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td></tr>
-  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Applications</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td></tr>
-  <tr class="c16"><td class="c8" colspan="1" rowspan="1"><p class="c7"><span class="c0">Manage Resources</span></p></td><td class="c6" colspan="1" rowspan="1"><p class="c7"><span class="c0">X</span></p></td><td class="c10" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td><td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0">X</span></p></td></tr></tbody></table>
+## <a id='roles'></a> Single Sign-On Roles
+
+Single Sign-On for Pivotal Cloud Foundry utilizes existing user roles as well as a SSO-specific Plan Administrator role. These roles are allowed the following actions listed below.
+
+<table border="1" class="nice">
+  <tr><th>Actions</th><th>PCF Administrator</th><th>Plan Administrator</th><th>Space Developer</th></tr>
+  <tr><th>Manage Service Plans</th><td>X</td><td></td><td></td></tr>
+  <tr><th>Manage Identity Providers</th><td>X</td><td>X</td><td></td></tr>
+  <tr><th>Manage Service Instances</th><td>X</td><td>X</td><td>X</span></td></tr>
+  <tr><th>Manage Applications</th><td>X</td><td>X</td><td>X</td></tr>
+  <tr><th>Manage Resources</th><td>X</td><td>X</td><td>X</td></tr>
+</table>
+
+Manage Service Plans - Access includes the create, edit and delete of service plans.
+
+Manage Identity Providers - Access includes the management of the internal user store and its password policy. This also allows users to create and configure external identity providers for single sign-on.
+
+Manage Service Instances - Access includes create, edit and delete of services instances. This also allows users to bind applications to a service instance to be associated with a plan.
+
+Manage Applications - Access includes create, edit and delete of applications.
+
+Manage Resources - Access includes create, edit and delete of resources and permissions.
+
+<strong>For more detailed access and actions that user roles can have, please view the corresponding manage guides.</strong>
+

@@ -1,0 +1,72 @@
+---
+title: Okta Integration Guide
+owner: Identity Service
+---
+
+Legal Notice
+
+Contents
+
+Chapter 1: Pivotal Cloud Foundry and Okta Overview
+
+Chapter 2: Configure Okta as Identity Provider
+
+Chapter 3: Configure Single Sign-On Service Provider
+
+Chapter 4: Federation Testing & Target Services
+
+Chapter 5: Exception Handling
+
+Chapter 6: Summary
+  
+
+## <a id='chapter1'></a> Chapter 1: Pivotal Cloud Foundry and Okta Overview
+
+
+Document Overview
+
+The scope of this document is to provide the necessary steps to configure the federation partnership to achieve single sign-on (SSO) between Okta, acting as the Identity Provider (IdP), and Pivotal Single Sign-On Service, acting as the Service Provider (SP). The Pivotal Single Sign-On service enables single sign-on to Pivotal Cloud Foundry and applications deployed on Pivotal Cloud Foundry.
+
+# 
+
+Pivotal Cloud Foundry Overview
+
+Pivotal Cloud Foundry is an enterprise platform-as-a-service (Paas) that is a key enabler for achieving the modern, software-driven organization. Pivotal Cloud Foundry allows developers to focus on building applications by taking care of deploying, upgrading, operating and scaling. IT empowers businesses to deliver applications and update them with new features with disruptive speed.
+
+# 
+
+Okta Overview
+
+Okta is an enterprise-grade, identity management service built for the cloud, but it is also compatible with on-premise applications. With Okta, IT can manage employee access to applications or devices. Okta is a cloud application that integrates with cloud and on-premise applications, directories, and identity management systems.
+
+# 
+
+Prerequisites
+
+Pivotal Cloud Foundry - v1.6.0.0
+
+Okta - 2016.07
+
+#
+
+Pivotal Cloud Foundry Deployment
+
+Before you configure SAML, you must have the Single Sign-On service broker installed on your PCF deployment. You need to create a plan, grant any plan administrators and specify any organizations this plan should be the authentication authority for. For help configuring plans, see <http://docs.pivotal.io/p-identity/administering.html#plan-management>.
+
+# 
+
+Pivotal Web Services Deployment
+
+Before you configure SAML, you must contact Pivotal to have Single Sign-On enabled for your PWS organizations via plan(s) creation. You should be added as a plan administrator. For help configuring plans, see <http://docs.pivotal.io/p-identity/administering.html#plan-management>.
+
+## <a id='chapter6'></a> Chapter 6: Summary
+
+* The Single Sign-On service supports service provider-initiated authentication flow
+
+* The Single Sign-On service does not supports identity provider-initiated authentication flow
+
+* The Single Sign-On service supports Single Logout
+
+* All communication is over SSL
+
+#

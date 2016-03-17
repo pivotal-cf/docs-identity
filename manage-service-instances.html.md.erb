@@ -1,17 +1,11 @@
 ---
-title: TK
+title: Manage Service Instances
 owner: Identity Service
 ---
 
-# Manage Service Instances
-
-<Table of Contents>
-
-# 
-
 Once a plan is made visible to organizations, users can a create service instance for the service plan within a space. A service instance must exist in each space containing applications the service plan will provide access. If a plan allows single sign-on to applications in multiple spaces you must create a service instance for the plan in each space.
 
-## Create Service Instances
+## <a id='create-svc-instance'></a> Create Service Instances
 
 1. Log in to Apps Manager at https://console.YOUR-SYSTEM-DOMAIN as a Space Developer.
 
@@ -29,7 +23,7 @@ Once a plan is made visible to organizations, users can a create service instanc
 
 8. Click Add to create the service instance.
 
-## Delete Service Instances
+## <a id='delete-svc-instance'></a> Delete Service Instances
 
 Note: Deleting a Single Sign-On service instance will delete all the configurations on the service instance. This will delete all the associated service bindings. All applications bound to the service instance will need to be rebound to another service instance in Apps Manager. This cannot be undone.
 
@@ -40,5 +34,3 @@ Note: Deleting a Single Sign-On service instance will delete all the configurati
 3. Click Delete on the service instance and a confirmation modal should appear to ensure that this is the intended action
 
 4. Click Delete to delete the service instance and service bindings.
-
-#

@@ -1,13 +1,7 @@
 ---
-title: TK
+title: Manage Service Plans
 owner: Identity Service
 ---
-
-# Manage Service Plans
-
-<Table of Contents>
-
-## 
 
 The Single Sign-On service is a multi-tenant service and a service plan corresponds to a tenant. As an enterprise adopting Single Sign-On for Pivotal Cloud Foundry, you might want to segregate your tenants into separate plans. For example, the following tenants might require separate plans:
 
@@ -19,7 +13,7 @@ The Single Sign-On service is a multi-tenant service and a service plan correspo
 
 You can create new Single Sign-On Service Plans at any time from the SSO dashboard with administrator credentials.
 
-## Create or Edit Service Plans
+## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
 Note: You can create and configure service plans at any time. However, you must create at least one plan in order to register and use the service with applications on your [Pivotal Cloud Foundry®](https://network.pivotal.io/products/pivotal-cf) installation.
 
@@ -43,9 +37,9 @@ Note: You can find the UAA administrator credentials in your Pivotal Elastic Run
 
 8. Click Save Plan. Your new plan will appear in the Apps Manager Marketplace to users in the organizations you have selected. You can also access the Services Marketplace by entering cf marketplace in a terminal window.
 
-![](https://lh3.googleusercontent.com/prt9B5M_eP96gwG9J1bulqN7iuGwBOqeQKZzKiEvCYck6Lu8FHsmRyLQ6NUwVMV6nMawN-VpQabcdR69dzkIgEHQ9VP6X6leQtVrbdHbCMHU24udjM-wFBQgF7_-TOlCM_wa89_j)
+<%= image_tag 'images/managing_create_plan.png' %>
 
-## Delete Service Plans
+## <a id='delete-svc-plan'></a> Delete Service Plans
 
 Note: Deleting a Single Sign-On service plan will delete all the configurations and identity providers on the plan. Users and configurations in the internal user store will be deleted. This will also delete all the associated service instances and service bindings. All applications bound to the service instances will need to be rebound to another service instance in Apps Manager. This cannot be undone.
 

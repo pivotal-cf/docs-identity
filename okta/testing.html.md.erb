@@ -1,0 +1,94 @@
+---
+title: Okta Integration Guide
+owner: Identity Service
+---
+
+Legal Notice
+
+Contents
+
+Chapter 1: Pivotal Cloud Foundry and Okta Overview
+
+Chapter 2: Configure Okta as Identity Provider
+
+Chapter 3: Configure Single Sign-On Service Provider
+
+Chapter 4: Federation Testing & Target Services
+
+Chapter 5: Exception Handling
+
+Chapter 6: Summary
+  
+
+## <a id='chapter4'></a> Chapter 4: Federation Testing & Target Services
+
+# 
+
+Service Provider Initiated Testing
+
+1. Sign into Apps Manager and navigate to the organization and space that the app is located.
+
+2. Click Manage on the service instance that the app is bound to.
+
+![](https://lh4.googleusercontent.com/Hxibw6CHQPaX9MKkCm8Bc2n4RWEDKf_M4BHnsKnEGH3NmGOHtOKUEQlnT2IooSvC0DnHDOg-fCTWoRykvDPUOROZTIysfqhErxNch5OJEQZDjKLOqbvO1rslWE9PCC4bXcZq6k4O)
+
+1. Navigate to the Apps tab and select the app.
+
+![](https://lh3.googleusercontent.com/yn26pNDc17gVsdCU3QPAFotaJWfE9I-9Y_ZpAT5zmfY8L-POJiVuwFLpFBmscX14-x71nPW1RSZfPBTOTUSmnGHU2KZ21sKw7fYQeJF0DcyKxcBDVCa_a1rRJszXV4vwZ7qf8iyx)
+
+1. Select the configured identity provider under Identity Providers.
+
+![](https://lh6.googleusercontent.com/dFFdAzpVu1jO5CdXa1vz36vWpFE4_XxyO0A9uhui62blXRNUQFUI1jPULGvQ6NbWGHcm9_NhIqvpM0W3MUb_6uFGYe5-dSaD1-JmyRo4YtWN2VfeGCEvIa_pGNwiPcTT0SGZyrm7)
+
+1. In Apps Manager, click the app URL to be redirected to the identity provider to authenticate.
+
+![](https://lh3.googleusercontent.com/7GQEyONejblwO93FjXU_8nDISKVfole1kMYiDzsvn8ZgGjfBQSb4qQc24fK5qmKYfsV6QeIJ56kT6bYaDpw4BOnNNI8zDnf3ZLR6ioitfi6qhpRPZ9REDn6J5oevR9P0XLKrHhtT)
+
+![](https://lh4.googleusercontent.com/az7ns5tlOaNWUJUr98EotJqqRz328twnLOSYnl2Xf0WNcqOesyUxq8Uka_Xlf6ycyZHyH02irxHxjQxIa9LGriG2vofJ4KYhnS3_dGbTDe4fpy8ZpysGO8FKobo5SRcQ8Ox1lRJI)
+
+![](https://lh5.googleusercontent.com/jFnc-mUAusOiauxbbCVPRgswSE5uIkCg4I2E_ixpa1Nw1I16wrJapim8Lca-LKZHjaH4uS_dE0QQ2Gf8y_kNX9cqGIja0NW9bgvlwMqWvD3ekvMddGhIbWq444lHOwoIdooHLCAQ)
+
+1. Once authenticated, the app should ask for authorization to the necessary scopes.
+
+![](https://lh6.googleusercontent.com/ajWlKGDxCeRXj4WuNqfVnk6cTZZr85Uzqf4kNi5jpXAGOU4P6lKW9EpXAzQNb_Ufrv3DYzCpcyHonBc0YCBYb_IXiEWpmI6MKEH-Z4eLEP7o_ZYafWI06Ru_sFtr9Da4zz-1IQB7)
+
+1. Finally, you should see the access token and ID token.
+
+![](https://lh5.googleusercontent.com/vnsFZOVQ45JTBlet8MtH5MiewJGb-L3LkSVW6LlyIMs7TKhr9S9ZrRznHuqotlTTiVaRKp4d_VV1SaP5CN-nHeF8gNDY2iksfOn_-hmTH7WufJYw0oSsujl0tKvFoCHWJTGdSswC)
+
+# 
+
+Identity Provider Initiated Testing
+
+# 
+
+Note: The Single Sign-On service does not support identity provider initiated flow into applications, but it does redirect the user to the UAA page to select applications assigned to the user.
+
+# 
+
+1. Sign into Okta.
+
+![](https://lh5.googleusercontent.com/jFnc-mUAusOiauxbbCVPRgswSE5uIkCg4I2E_ixpa1Nw1I16wrJapim8Lca-LKZHjaH4uS_dE0QQ2Gf8y_kNX9cqGIja0NW9bgvlwMqWvD3ekvMddGhIbWq444lHOwoIdooHLCAQ)
+
+1. Navigate to the application.
+
+![](https://lh6.googleusercontent.com/6fE0f7a3KagErgAMlGAOVomhR_WGz3TcO34KNp7LD_GGaMc9u_tkhdhDYd2ue0QqzzCJ6Hua80ZUdcLsxIVjzEPxuQPcDQ4_7BsbBqhAyUkWAmlFkZbkYTbRJIOsu22A5gCKefeE)
+
+1. You should be redirected to the page that lists applications you have access to.
+
+![](https://lh6.googleusercontent.com/GxU7Uc8GRUT-XZzqAPMOlUMMwcfQl1O3p-V_PzgnzZnBWGmxrxn-83IXIw2pjVHII66yPnX6ppdy6S7pTGakBZH1oW_WIf7_krxWmDW0QBix6E63YFO7x8Hdv_kf-9Ej1XAjjf5b)
+
+#   
+  
+
+
+Single Sign-Off Testing
+
+1. Sign into the sample application. You should see information about the access and ID token. You should also see the “What Do You Want to Do?” section.
+
+![](https://lh3.googleusercontent.com/AsVOC4RLqfA3G35j9QlTL5QN4Xm3BfckOD7RFnJCBDIbiCL9BluMm5bD2NEDRdt23fAEWOVFFflua-mVgN8YNYgjPV3zw0Tj4CgPIU_GV73Ea51JKv_TTy-bXKrSlt26jmyfsdho)
+
+1. Click Log out and you will be logged out and redirected to the Okta log in page.
+
+![](https://lh5.googleusercontent.com/jFnc-mUAusOiauxbbCVPRgswSE5uIkCg4I2E_ixpa1Nw1I16wrJapim8Lca-LKZHjaH4uS_dE0QQ2Gf8y_kNX9cqGIja0NW9bgvlwMqWvD3ekvMddGhIbWq444lHOwoIdooHLCAQ)
+

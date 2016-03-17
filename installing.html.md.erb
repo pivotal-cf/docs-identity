@@ -1,13 +1,9 @@
 ---
-title: TK
+title: Installation
 owner: Identity Service
 ---
 
-## Installation
-
-<Table of Contents>
-
-### Installation Prerequisites
+## <a id='pre-reqs'></a> Installation Prerequisites
 
 * Pivotal Cloud Foundry ([Elastic Runtime](https://network.pivotal.io/products/elastic-runtime) and [Ops Manager](https://network.pivotal.io/products/ops-manager))
 
@@ -15,7 +11,7 @@ owner: Identity Service
 
     
 
-### Installing via Ops Manager
+## <a id='install'></a> Installing via Ops Manager
 
 To install Single Sign-On for Pivotal Cloud Foundry, please follow the steps listed below:
 
@@ -29,18 +25,18 @@ To install Single Sign-On for Pivotal Cloud Foundry, please follow the steps lis
 
 5. Click Apply Changes to install the product.
 
-## Update SSL Certificate
+## <a id='update'></a> Update SSL Certificate
 
 As described in the above section, every service plan corresponds to a tenant. Each service plan is accessible at a tenant-specific URL in the format https://<AUTH-DOMAIN>.login.<SYSTEM-DOMAIN>.
 
 You must update the SSL Certificate for the domains listed below for each plan you create. In addition, depending on your infrastructure and type of load balancer, update your load balancer configuration for the following domains:
 
-* *.<SYSTEM-DOMAIN>
+* `*.SYSTEM-DOMAIN`
 
-* *.<APPS-DOMAIN>
+* `*.APPS-DOMAIN`
 
-* *.login.<SYSTEM-DOMAIN>
+* `*.login.SYSTEM-DOMAIN`
 
-* .uaa.<SYSTEM-DOMAIN>
+* `.uaa.SYSTEM-DOMAIN`
 
     

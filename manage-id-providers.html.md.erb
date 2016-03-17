@@ -1,17 +1,11 @@
 ---
-title: TK
+title:  Manage Identity Providers
 owner: Identity Service
 ---
 
-# Manage Identity Providers
-
-<Table of Contents>
-
-# 
-
 For each plan or tenant, the Single Sign-On service provides an internal user store that allows for management of authentication and authorization of users. In addition to the internal user store, administrators can add external identity providers to allow users who are externally managed to access applications.
 
-## Configure Internal User Store
+## <a id='config-int-store'></a> Configure Internal User Store
 
 1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
 
@@ -25,15 +19,13 @@ For each plan or tenant, the Single Sign-On service provides an internal user st
 
 6. Click Save Identity Provider.
 
-## Add Users to the Internal User Store
+## <a id='add-to-int'></a> Add Users to the Internal User Store
 
 Add content in <http://docs.pivotal.io/p-identity/adding-users.html> to this section
 
-## Configure Password Policy
+## <a id='passwd-policy'></a> Configure Password Policy
 
 Administrators can configure password policy for users that are stored in the Internal User Store per Single Sign-On service plan. The Internal User Store password policy allows you to manage passwords users create by defining and enforcing strong passwords to protect application resources.
-
-# 
 
 1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
 
@@ -69,7 +61,7 @@ Administrators can configure password policy for users that are stored in the In
 
 Note: You can use the default, recommended settings or custom settings for password policy and lockout policy.
 
-## Configure External Identity Provider
+## <a id='config-ext-prov'></a> Configure External Identity Provider
 
 1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
 
@@ -95,7 +87,7 @@ For complete guides on how to integrate with external identity providers and exc
 
 Note: To configure the service provider SAML settings, click on Configure SAML Service Provider on the Identity Providers page. You will be able to configure the signing of authentication requests and signing of incoming assertions.
 
-## Delete Identity Provider
+## <a id='delete-idp'></a> Delete Identity Provider
 
 Note: Deleting an external identity provider will delete all the configurations. Users will no longer be able to authenticate using the external identity provider. This cannot be undone.
 
@@ -111,11 +103,9 @@ Note: Deleting an external identity provider will delete all the configurations.
 
 5. Click Delete Identity Provider to delete the identity provider.
 
-## Create or Edit Resource Permissions
+## <a id='create-resource-perm'></a> Create or Edit Resource Permissions
 
 Once resources have been created by a Space Developer to define what permissions an application needs on resources they’re accessing, an administrator can grant users access to access their information. Users can authorize or deny the client access to access their information on their behalf. The Single Sign-On service allows you to map groups of users from the identity provider with permissions defined in the service
-
-# 
 
 1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
 
@@ -131,7 +121,7 @@ Once resources have been created by a Space Developer to define what permissions
 
 7. Click Save Permissions Mapping.
 
-## Delete Resource Permissions
+## <a id='delete-resource-perm'></a> Delete Resource Permissions
 
 1. Log in to https://p-identity.YOUR-SYSTEM-DOMAIN using your administrator credentials where you will find the SSO dashboard.
 
@@ -145,7 +135,7 @@ Once resources have been created by a Space Developer to define what permissions
 
 6. Click Delete Permissions Mapping to delete the resource.
 
-## Configure Group Whitelist
+## <a id='config-whitelist'></a> Configure Group Whitelist
 
 An administrator can configure groups from an external identity provider to be propagated in the ID token by including the group in the Group Whitelist. This will provide information about the external groups that the user is a member of.
 
@@ -160,5 +150,3 @@ Note: The ‘roles’ scope must be requested by the application and the externa
 4. Add group name from the identity provider.
 
 5. Click Save Group Whitelist.
-
-#
