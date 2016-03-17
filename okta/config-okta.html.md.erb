@@ -32,11 +32,12 @@ In Pivotal Cloud Foundry
 
 2. Click on Manage Identity Providers in the dropdown off by selecting the plan name.
 
-![](https://lh3.googleusercontent.com/QjScF2tdI4SnyaomA9mYtezptb1JPtuXVrAZHQP6XzUDbIemJs3pOfvFoQnt_6JiNKponmK_pUI1VcbeNqDSmIyVD8XnpfwCRlJzs-eoP11LQeYHsB4x-tWMk-qyWO-XPM9wOpBB)
+<%= image_tag '../images/manage_id_providers.png' %>
+
 
 1. Click on Configure SAML Service Provider.
 
-![](https://lh4.googleusercontent.com/jju7maQH5IpYtZItaexChGKGmvKkyA2L1Om-6uCzeCtMZdv99ebT9ap1w2Qn3nxfBwN7XEvNx5mR_LvPFefUoCnHZae5j-_m8JPRaAOmdbfw225ChgKzrs_iVq4IBZ4LPMBdYHMl)
+<%= image_tag '../images/config_saml_service_provider.png' %>
 
 1. (Optional) Select Perform signed authentication requests.
 
@@ -44,7 +45,7 @@ In Pivotal Cloud Foundry
 
 3. Click Download Metadata to download the service provider metadata.
 
-![](https://lh4.googleusercontent.com/I0yjTAWJTpD88oBAbMZZPNhsevUnqU4ZGNx-_YUEMX6J1MOw89l8S2yRqXaj5yPqQXRKOPGD7vnh2dFfBVOINW_oQsl5sQLQRrd5JexOC0XNAPjoQYRyec4G8S_bTdbSZF79r3oY)
+<%= image_tag '../images/saml_auth_checkbox.png' %>
 
 In Okta
 
@@ -54,7 +55,7 @@ In Okta
 
 3. Under Settings, click the Edit button, and select the SAML 2.0 radio button.
 
-![](https://lh5.googleusercontent.com/EFT9YxsVohi_yCrtnuDohOMAlQtMcs3VQ__sjKHq6N5lFii1FSNtCqA8RI0dhR3yawq1YtwSltA2NcfZ6blbJ-4-Dz1oWv31Nup5gTRJ8f8dNnEhWuvmt9S5YEsrhAcNiTXWJsRd)
+<%= image_tag '../images/saml_radio_button.png' %>
 
 1. Click on the General tab.
 
@@ -62,7 +63,7 @@ In Okta
 
 3. In the SAML Settings section fill in the following configurations:
 
-![](https://lh3.googleusercontent.com/TxEA4ninOalijlM7g3fodT-aRfxxcbAoCZU3ps7IH9uz2MOEpzo4ihy7Hq5kkX0vIVh2i8uEJ2hjlAzz4ixuDPCsHpYkY_Yo7VhF9dvTvrIwU8oDcEhz_1unJgNzomInO2hsua6p)
+<%= image_tag '../images/saml_config.png' %>
 
 1. Input the AssertionConsumerService Location URL from the downloaded service provider metadata into Single sign on URL. Example: “https://<AUTH-DOMAIN>/saml/SSO/alias/<AUTH-DOMAIN>”
 
