@@ -3,49 +3,46 @@ title: Okta Integration Guide
 owner: Identity Service
 ---
 
-Legal Notice
+## <a id='troubleshooting'></a> Troubleshooting
 
-Contents
+#### Symptom
 
-Chapter 1: Pivotal Cloud Foundry and Okta Overview
+<%= image_tag '../images/error_404.png' %>
 
-Chapter 2: Configure Okta as Identity Provider
+#### Explanations
 
-Chapter 3: Configure Single Sign-On Service Provider
+- Okta Instance is Inactive
 
-Chapter 4: Federation Testing & Target Services
+- Recipient URL is misconfigured in Okta
 
-Chapter 5: Exception Handling
+- Identity provider SSO URL is misconfigured in Single Sign-On plan settings
 
-Chapter 6: Summary
-  
 
-## <a id='chapter5'></a> Chapter 5: Exception Handling
+#### Symptom
 
-* Okta Instance is Inactive
+<%= image_tag '../images/error_no_valid_assertion.png' %>
 
-![](https://lh4.googleusercontent.com/_zMB7eYd62vRW2P0fmnODRcnlFch2C_3-BOj6KCp-7NUpw0GIejtHttrIBlCMH5mTAJ6zIk8bdhYmZOhPj_YNXokSLAEIFYQiwrNlzE1HNtvcevtl-QIl3G8iw621TP03iWIhtmV)
+#### Explanations
 
-* Service provider Entity ID is misconfigured in Okta
+- Service provider Entity ID is misconfigured in Okta
 
-![](https://lh5.googleusercontent.com/jv-B_BMENRJXk-JaULFVPFInf7Jc8Qry9WIDazW1U_vvVOs7yMMuDWYjoXOS0Vu73aPuD7WDbIczem-milUYuWcCgucgp0w8MdSMLCN8XfRs3R6HVUzZjUSb1ByL_CC93abntizI)
+- Destination URL is misconfigured in Okta
 
-* When Single Sign On URL is misconfigured in Okta
 
-![](https://lh6.googleusercontent.com/rRSIOwJ9tCukruFMW74r9CutOX2jC9aE1oSBLPDCrS--MCpe5n3ALuvHmeJR5X18o6LgUdJy0xKSIojBHZJ9pxrP84vKKdLJVEWb9H36YfLiBW3kpaACMMsn5Z1vKi3MiS6JnojO)
+#### Symptom
 
-* When Recipient URL is misconfigured in Okta
+<%= image_tag '../images/error_webpage_not_available.png' %>
 
-![](https://lh5.googleusercontent.com/jv-B_BMENRJXk-JaULFVPFInf7Jc8Qry9WIDazW1U_vvVOs7yMMuDWYjoXOS0Vu73aPuD7WDbIczem-milUYuWcCgucgp0w8MdSMLCN8XfRs3R6HVUzZjUSb1ByL_CC93abntizI)
+#### Explanation
 
-* When Destination URL is misconfigured in Okta
+- Single Sign On URL is misconfigured in Okta
 
-![](https://lh5.googleusercontent.com/gXlglllhzK6MozelgI9xRoIk10zsFJANlhMzhw9fQZ1gCZkthpsc98VE0_eMZn_GCvCmO9zp3823WfM7rNornZD5vXup4qyXo5KiOKH39GIPOoKUc2fQNtCO8vhkTIDcQ8MPZ-Bf)
 
-* When identity provider Entity ID is misconfigured in the Single Sign-On plan settings
+#### Symptom
 
-![](https://lh5.googleusercontent.com/QoG-L3OYGhRBJrTaSp1tBd9j8F9KjXxZVoSOoqZ1Ha7fWGoWxcCGdWerfdbchmztP6RQhYR4kpipBruwWiACvM0Y8FUzXBFawowfFEGeEFL1DMVAWVnsGrHMALSbkUSvmEpISYAn)
+<%= image_tag '../images/error_metadata_not_found.png' %>
 
-* When identity provider SSO URL is misconfigured in Single Sign-On plan settings
+#### Explanation
 
-![](https://lh3.googleusercontent.com/2zRmi2dAzEuZX-yy-Z5QNUT0GY52pcbGydjF3XmXuF9fXTvKevswXgFIWxTzIWlJz3KE51hKLYmVYcy8Of8Rxu62MVUQ-cvRzTVdZIcS6WPTUOvwCefJSQSlN2Ac-7u0AxtZW7bv)
+- When identity provider Entity ID is misconfigured in the Single Sign-On plan settings
+
