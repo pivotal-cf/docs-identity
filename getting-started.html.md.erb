@@ -19,24 +19,9 @@ This topic outlines the steps for installing and configuring the [Pivotal Single
 
 1. [Create resources for your applications](./manage-resources.html#create-resources). If your registered applications need to make external API calls, you can assign the API endpoints as resources permitted for the application. This will whitelist the endpoint for use by the application or client.
 
-### <a id='roles'></a> SSO Management and User Roles
+## <a id='roles'></a> SSO User Roles
 
-To set up Single Sign-On access for applications, Pivotal Cloud Foundry users create and configure service plans, as described above. 
-
-For ongoing management of Single Sign-On access, refer to
-the following topics: 
-
-  - [Manage Service Plans](manage-service-plans.html) - Create, edit and delete service plans.
-
-  - [Manage Service Instances](manage-service-instances.html) Create, edit and delete services instances. Also bind applications to service instances to be associated with a plan.
-
-  - [Configure Identity Providers](manage-id-providers.html) - Manage the internal user store and its password policy. Also create and configure external identity providers for single sign-on.
-
-  - [Bind or Register Applications](manage-apps.html) - Create, edit and delete applications.
-
-  - [Assign Resources](manage-resources.html) - Create, edit and delete resources and permissions.
-
-A user's role determines which parts of an SSO configuration it can manage. SSO roles are PCF Administrator, Space Developer, and a SSO-specific Plan Administrator role. This chart shows the management permissions for each role.
+A user's role determines which parts of an SSO configuration it can manage. SSO uses the existing user roles PCF Administrator and Space Developer, as well as a SSO-specific Plan Administrator role. This chart shows the management permissions for each role.
 
 <table border="1" class="nice">
   <tr><th>Management access by role</th><th>PCF Administrator</th><th>Plan Administrator</th><th>Space Developer</th></tr>

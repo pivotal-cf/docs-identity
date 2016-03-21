@@ -3,6 +3,8 @@ title: Manage Service Plans
 owner: Identity Service
 ---
 
+This topic describes how Pivotal Cloud Foundry&reg; (PCF) Administrators create and delete Single Sign-On service plans.
+
 Single Sign-On is a multi-tenant service, which enables a deployment to host multiple service plans. Each service plan corresponds to a tenant, which can represent multiple users. This lets enterprises segregate their tenants into separate plans. For example, the following tenants might require separate plans:
 
 * Business units and geographical locations
@@ -11,15 +13,17 @@ Single Sign-On is a multi-tenant service, which enables a deployment to host mul
 
 * Development, staging, and production instances
 
-Administrators can create new Single Sign-On Service plans at any time from the SSO dashboard.
+Administrators can create new Single Sign-On service plans at any time from the SSO dashboard.
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
 You can create and configure service plans at any time. However, you must create at least one plan in order to register and use the service with applications on your [Pivotal Cloud Foundry®](https://network.pivotal.io/products/pivotal-cf) installation.
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
 1. Click **New Plan** on the SSO dashboard to create a new Single Sign-On service plan.
+
+	<%= image_tag 'images/managing_create_plan.png' %>
 
 1. Enter a **Plan Name**.
 
@@ -33,18 +37,16 @@ You can create and configure service plans at any time. However, you must create
 
 1. Under **Org Visibility**, select which organizations in your Pivotal Cloud Foundry deployment should have access to your Single Sign-On service plan. If you do not select any organizations, the plan will not be available for use and it will not be displayed in the Services Marketplace.
 
-1. Click **Save Plan**. Your new plan will appear in the Services Marketplace in the organizations you have selected. Users in those organizations will be able to view it either in Apps Manager or through the CF CLI by entering `cf marketplace` in a terminal window.
-
-<%= image_tag 'images/managing_create_plan.png' %>
+1. Click **Create Plan**. Your new plan appears in the Services Marketplace in the organizations you have selected. Users in those organizations view the plan either in Apps Manager or through the CF CLI by entering `cf marketplace` in a terminal window.
 
 ## <a id='delete-svc-plan'></a> Delete Service Plans
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
-2. Select the name of the plan you want to delete, and click **Edit Plan** in the dropdown.
+2. Select the name of the plan you want to delete, and click **Edit Plan** in the dropdown menu.
 
 3. Select **Delete** at the bottom of the page.
 
 4. In the popup that appears, click **Delete Plan** to confirm that you want to delete the plan, along with all of its identity providers, service instances and service bindings.
 
-<p class='note'><strong>Note</strong>: Deleting a Single Sign-On service plan will delete all the configurations and identity providers on the plan. Users and configurations in the internal user store will be deleted. This will also delete all the associated service instances and service bindings. All applications bound to the service instances will need to be rebound to another service instance in Apps Manager. This action cannot be undone.
+<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a Single Sign-On service plan deletes all the configurations and identity providers on the plan, as well as the users and configurations in the internal user store. It also deletes the associated service instances and service bindings. You must bind any applications bound to the deleted service instances to new service instances.</p>
