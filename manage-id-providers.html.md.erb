@@ -66,7 +66,7 @@ uaac curl -k -H"Accept:application/json" -H"Content-Type:application/json" -H"X-
 
 ### <a id="adding-users"></a>Step 3: User Creation
 
-1. Target the [auth domain](index.html#create-plan) of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
+1. Target the auth domain of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
 1. Fetch the token for your Service Plan admin client.
 <pre class="terminal">$ uaac token client get service\_plan\_admin\_client
