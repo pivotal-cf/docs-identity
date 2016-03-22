@@ -3,29 +3,27 @@ title: Okta Integration Guide
 owner: Identity Service
 ---
 
-This documentation describes configuring a federation partnership to achieve single sign-on (SSO) between Okta, acting as the Identity Provider (IdP), and the Single Sign-On Service for Pivotal Cloud Foundry&reg; acting as the Service Provider (SP). 
+Okta is an enterprise identity management and single sign-on service that integrates with applications in the cloud, on-premises, or on a mobile device. This documentation describes how to configure a single sign-on partnership between Okta as the Identity Provider (IdP) and the Single Sign-On Service (SSO) for Pivotal Cloud Foundry&reg; as the Service Provider (SP). 
 
-Okta is an enterprise-grade, identity management service built for the cloud, but it is also compatible with on-premise applications. With Okta, IT can manage employee access to applications or devices. Okta is a cloud application that integrates with cloud and on-premise applications, directories, and identity management systems.
-
-The Single Sign-On (SSO) service supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
+SSO supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
 
 ## <a id='prereqs'></a>Prerequisites
 
-To integrate Okta with Pivotal Cloud Foundry, you need:
+To integrate Okta with Pivotal Cloud Foundry&reg; (PCF), you need:
 
-- Pivotal Cloud Foundry, version 1.6.0.0 or later
+- PCF, version 1.6.0.0 or later.
 
-- Okta, version 2016.07 or later
+- Okta, version 2016.07 or later.
 
-- To configure SAML, you must <%=vars.sso_plan_enabled%>.
+<p class="note"><strong>Note</strong>: To configure SAML, you must <%=vars.sso_plan_enabled%></p>
 
 ## <a id='okta'></a> Okta Integration Guide
 
 - [Configure Okta as an Identity Provider](config-okta.html)
 
-- [Configure a Single Sign-On Service (SSO) Provider for <%=vars.product_name%>](config-sso.html)
+- [Configure a Single Sign-On Service (SSO) Provider](config-sso.html)
 
-- [Testing and Target Services](testing.html)
+- [Testing](testing.html)
 
 - [Troubleshooting](troubleshooting.html)
 

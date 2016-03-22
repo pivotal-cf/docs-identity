@@ -3,46 +3,51 @@ title: Okta Integration Guide
 owner: Identity Service
 ---
 
-## <a id='troubleshooting'></a> Troubleshooting
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Okta and Pivotal Single Sign-On (SSO).
 
-#### Symptom
+##<a id='404'></a> Page Not Found
+
+#### Symptom:
 
 <%= image_tag '../images/error_404.png' %>
 
-#### Explanations
+#### Explanations:
 
-- Okta Instance is Inactive
+- The Okta instance is inactive.
 
-- Recipient URL is misconfigured in Okta
+- The Recipient URL is misconfigured in Okta.
 
-- Identity provider SSO URL is misconfigured in Single Sign-On plan settings
+- The identity provider SSO URL is misconfigured in the SSO plan settings.
 
+##<a id="no-valid-assertion"></a> No Valid Assertion
 
-#### Symptom
+#### Symptom:
 
 <%= image_tag '../images/error_no_valid_assertion.png' %>
 
-#### Explanations
+#### Explanations:
 
-- Service provider Entity ID is misconfigured in Okta
+- The service provider Entity ID is misconfigured in Okta.
 
-- Destination URL is misconfigured in Okta
+- The Destination URL is misconfigured in Okta.
 
+##<a id="no-webpage"></a> Webpage Not Available
 
-#### Symptom
+#### Symptom:
 
 <%= image_tag '../images/error_webpage_not_available.png' %>
 
-#### Explanation
+#### Explanation:
 
-- Single Sign On URL is misconfigured in Okta
+- The SSO URL is misconfigured in Okta.
 
+##<a id="no-metadata"></a> Metadata Not Found
 
-#### Symptom
+#### Symptom:
 
 <%= image_tag '../images/error_metadata_not_found.png' %>
 
-#### Explanation
+#### Explanation:
 
-- When identity provider Entity ID is misconfigured in the Single Sign-On plan settings
+- The identity provider Entity ID is misconfigured in the SSO plan settings.
 
