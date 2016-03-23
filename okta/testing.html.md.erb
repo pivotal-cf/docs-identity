@@ -1,90 +1,67 @@
 ---
-title: Okta Integration Guide
+title: Testing
 owner: Identity Service
 ---
 
-Legal Notice
+## <a id="service-provider"></a>Service Provider Initiated Testing
 
-Contents
+1. Log in to Apps Manager at `https://console.YOUR-SYSTEM-DOMAIN` and navigate to the organization and space where your application is located.
 
-Chapter 1: Pivotal Cloud Foundry and Okta Overview
+	<%= image_tag '../images/click_manage.png' %>
 
-Chapter 2: Configure Okta as Identity Provider
+2. Under **Services**, locate the service instance of the Single Sign-On (SSO) plan bound to your application and click **Manage**.
 
-Chapter 3: Configure Single Sign-On Service Provider
+	<%= image_tag '../images/select_authcode_app_tile.png' %>
 
-Chapter 4: Federation Testing & Target Services
+1. Under the **Apps** tab, click your application.
 
-Chapter 5: Exception Handling
+	<%= image_tag '../images/click_okta_pcf.png' %>
 
-Chapter 6: Summary
-  
+1. Under **Identity Providers**, select the Okta identity provider.
 
-## <a id='chapter4'></a> Chapter 4: Federation Testing & Target Services
+	<%= image_tag '../images/authcode_sample_address.png' %>
 
-# 
+1. Return to Apps Manager and click on the URL below your application to be redirected to the identity provider to authenticate.
 
-Service Provider Initiated Testing
+	<%= image_tag '../images/authcode_sample.png' %>
 
-1. Sign into Apps Manager and navigate to the organization and space that the app is located.
+1. Click the link.
 
-2. Click Manage on the service instance that the app is bound to.
+	<%= image_tag '../images/pivotal_signing.png' %>
 
-<%= image_tag '../images/click_manage.png' %>
+1. On the identity provider sign-in page, enter your credentials and click **Sign In**.
 
-1. Navigate to the Apps tab and select the app.
+	<%= image_tag '../images/popup_authcode.png' %>
 
-<%= image_tag '../images/select_authcode_app_tile.png' %>
+1. The application asks for authorization to the necessary scopes. Click **Authorize**.
 
-1. Select the configured identity provider under Identity Providers.
+	<%= image_tag '../images/authcode_sample_code.png' %>
 
-<%= image_tag '../images/click_okta_pcf.png' %>
+1. The access token and ID token displays.
 
-1. In Apps Manager, click the app URL to be redirected to the identity provider to authenticate.
+## <a id="identity-provider"></a>Identity Provider Initiated Testing
 
-<%= image_tag '../images/authcode_sample_address.png' %>
-
-<%= image_tag '../images/authcode_sample.png' %>
-
-<%= image_tag '../images/pivotal_signing.png' %>
-
-1. Once authenticated, the app should ask for authorization to the necessary scopes.
-
-<%= image_tag '../images/popup_authcode.png' %>
-
-1. Finally, you should see the access token and ID token.
-
-<%= image_tag '../images/authcode_sample_code.png' %>
-
-# 
-
-Identity Provider Initiated Testing
-
-# 
-
-Note: The Single Sign-On service does not support identity provider initiated flow into applications, but it does redirect the user to the UAA page to select applications assigned to the user.
-
-# 
+<p class="note"><strong>Note</strong>: SSO does not support identity provider-initiated flow into applications, but it does redirect the user to the User Account and Authentication (UAA) page to select applications assigned to the user.</p>
 
 1. Sign into Okta.
 
-<%= image_tag '../images/pivotal_signing.png' %>
+	<%= image_tag '../images/pivotal_signing.png' %>
 
 1. Navigate to the application.
 
-<%= image_tag '../images/pcf_app_tile.png' %>
+	<%= image_tag '../images/pcf_app_tile.png' %>
 
 1. You should be redirected to the page that lists applications you have access to.
 
-<%= image_tag '../images/where_to.png' %>
+	<%= image_tag '../images/where_to.png' %>
 
-Single Sign-Off Testing
+## <a id="sso"></a>Single Sign-Off Testing
 
 1. Sign into the sample application. You should see information about the access and ID token. You should also see the “What Do You Want to Do?” section.
 
-<%= image_tag '../images/what_do_you_want.png' %>
+	<%= image_tag '../images/what_do_you_want.png' %>
 
-1. Click Log out and you will be logged out and redirected to the Okta log in page.
+1. Click **Log out** to be logged out and redirected to the Okta log in page.
 
-<%= image_tag '../images/pivotal_signing.png' %>
+	<%= image_tag '../images/pivotal_signing.png' %>
 

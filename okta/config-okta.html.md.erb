@@ -1,97 +1,66 @@
 ---
-title: Okta Integration Guide
+title: Configure Okta as an Identity Provider
 owner: Identity Service
 ---
 
-Legal Notice
+This topic describes how to set up Okta as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry&reg; (PCF) and Okta. 
 
-Contents
+## <a id='pcf'></a> Set up SAML in PCF
 
-Chapter 1: Pivotal Cloud Foundry and Okta Overview
+1. Log into the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 
-Chapter 2: Configure Okta as Identity Provider
+	<%= image_tag '../images/manage_id_providers.png' %>
 
-Chapter 3: Configure Single Sign-On Service Provider
+1. Select your plan and click **Manage Identity Providers** on the dropdown menu.
 
-Chapter 4: Federation Testing & Target Services
+	<%= image_tag '../images/config_saml_service_provider.png' %>
 
-Chapter 5: Exception Handling
+1. Click **Configure SAML Service Provider**.
 
-Chapter 6: Summary
-  
+	<%= image_tag '../images/saml_auth_checkbox.png' %>
 
-## <a id='chapter2'></a> Chapter 2: Configure Okta as Identity Provider
+1. (Optional) Select **Perform signed authentication requests**.
 
-# 
+2. (Optional) Select **Sign incoming assertions**.
 
-SAML Setup
+3. Click **Download Metadata** to download the service provider metadata.
 
-In Pivotal Cloud Foundry
+1. Click **Save**.
 
-1. Sign in as a plan administrator. You should land on the Plans Dashboard.
-
-2. Click on Manage Identity Providers in the dropdown off by selecting the plan name.
-
-<%= image_tag '../images/manage_id_providers.png' %>
-
-
-1. Click on Configure SAML Service Provider.
-
-<%= image_tag '../images/config_saml_service_provider.png' %>
-
-1. (Optional) Select Perform signed authentication requests.
-
-2. (Optional) Select Sign incoming assertions.
-
-3. Click Download Metadata to download the service provider metadata.
-
-<%= image_tag '../images/saml_auth_checkbox.png' %>
-
-In Okta
+## <a id='okta'></a> Set up SAML in Okta
 
 1. Sign in as an Okta administrator.
 
-2. Navigate to your application, then click on the Sign On tab.
+2. Navigate to your application, then click the **Sign On** tab.
 
-3. Under Settings, click the Edit button, and select the SAML 2.0 radio button.
+3. Under **Settings**, click **Edit**, and select **SAML 2.0**.
 
-<%= image_tag '../images/saml_radio_button.png' %>
+	<%= image_tag '../images/saml_radio_button.png' %>
 
-1. Click on the General tab.
+1. Click the **General** tab.
 
-2. Under SAML Settings, click the Edit button followed by the Next button to configure SAML.
+2. Under SAML Settings, click the **Edit** button followed by the **Next** button to configure SAML.
 
-3. In the SAML Settings section fill in the following configurations:
+	<%= image_tag '../images/saml_config.png' %>
 
-<%= image_tag '../images/saml_config.png' %>
+3. In the **SAML Settings** section, perform the following steps:
 
-1. Input the AssertionConsumerService Location URL from the downloaded service provider metadata into Single sign on URL. Example: “https://<AUTH-DOMAIN>/saml/SSO/alias/<AUTH-DOMAIN>”
+	1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into **Single sign on URL**. For example, `https://AUTH-DOMAIN/saml/SSO/alias/AUTH-DOMAIN`.
 
-2. Input the Auth Domain URL into Audience URI (SP Entity ID).
+	2. Enter your Auth Domain URL into **Audience URI (SP Entity ID)**. You can view the Auth Domain for a plan by logging into the SSO dashboard, clicking the name of your plan, and selecting **Edit Plan**. For example, `https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`.
 
-3. Select a Name ID format.
+	3. Select a **Name ID format**.
 
-4. Select an Application username.
+	4. Select an **Application username**.
 
-5. (Optional) Configure Single Logout.
-    
-    1. Click Show Advanced Settings.
-    
-    2. Select Allow application to initiate Single Logout for Enable Single Logout.
-    
-    3. Input the SingleLogoutService Location URL from the downloaded service provider metadata into Single Logout URL.
-    
-    4. Input the Auth Domain URL into SP Issuer.
-    
-    5. Upload Signature Certificate from the downloaded service provider metadata.
+4. (Optional) To configure single logout, perform the following steps:
+  
+    1. Click **Show Advanced Settings**.
+    2. For **Enable Single Logout**, select **Allow application** to initiate single logout.
+    3. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into **Single Logout URL**.
+    4. Enter your Auth Domain URL into **SP Issuer**.
+    5. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service provider metadata.
+6. (Optional) Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map to users in the ID token.
+7. (Optional) Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you want to map to users in the ID token. This is a group that users are in within Okta.
 
-6. (Optional) Specify any Attribute Statements that you want to map to users in the ID token.
-
-7. (Optional) Specify any Group Attribute Statements that you want to map to users in the ID token. This is a group that users are in within Okta.
-
-1. Select the Next button followed by the Finish button.
-
-# 
-
-Note: The Auth Domain can be found on the View or Edit Plans page.
-
+1. Click the **Next** button followed by the **Finish** button.
