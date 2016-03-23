@@ -13,11 +13,11 @@ This topic outlines the steps for installing and configuring the [Single Sign-On
 
 1. [Create a service instance](./manage-service-instances.html#create-svc-instance). Single Sign-On service plans can provide single sign-on capabilities for applications in various spaces. A service instance lets you bind an application to a service plan.
 
-1. [Configure an identity provider](./manage-id-providers.html). In addition to the [internal user store](./manage-id-providers.html#config-int-store), you can configure [external identity providers](./manage-id-providers.html#config-ext-prov) to provide single sign-on to applications. External identity providers must support SAML 2.0.
+1. [Configure an identity provider](./manage-id-providers.html). In addition to the [Internal User Store](./manage-id-providers.html#config-int-store), you can configure [external identity providers](./manage-id-providers.html#config-ext-prov) to provide single sign-on to applications. External identity providers must support SAML 2.0.
 
 1. [Register your applications](./manage-apps.html). Single Sign-On supports both Pivotal Cloud Foundry-hosted applications as well as externally hosted applications. Your applications must be able to request an OAuth or OpenID Connect token.
 
-1. [Create resources for your applications](./manage-resources.html#create-resources). If your registered applications need to make external API calls, you can assign the API endpoints as resources permitted for the application. This will whitelist the endpoint for use by the application or client.
+1. [Create resources for your applications](./manage-resources.html#create-resources). If your registered applications need to make external API calls, you can assign the API endpoints as resources permitted for the application. This will whitelist the endpoints for use by the application or client.
 
 ## <a id='roles'></a> SSO User Roles
 
