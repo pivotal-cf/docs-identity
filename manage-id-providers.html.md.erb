@@ -1,5 +1,5 @@
 ---
-title:  Configure Identity Providers
+title: Configure Identity Providers
 owner: Identity Service
 ---
 
@@ -17,7 +17,7 @@ For each plan, SSO provides an internal user store that manages users. As an alt
 
 4. Enter a **Description**.
 
-5. Under **Password Policy Settings**, select **Default** or **Custom**.
+5. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**, or enter custom settings in the fields below.
 
 6. Click **Save Identity Provider**.
 
@@ -118,7 +118,7 @@ Administrators can define the password policy for SSO users that are stored in t
 
 6. Click **Save Identity Provider**.
 
-<p class="note"><strong>Note</strong>: You can use the default, recommended settings or custom settings for password policy and lockout policy.</p>
+<p class="note"><strong>Note</strong>: Under **Password Policy Settings**, you can select **Use Recommended Settings**, **Use Default Settings**, or enter custom settings in the fields below.</p>
 
 ## <a id='config-ext-prov'></a> Add an External Identity Provider
 
@@ -158,9 +158,9 @@ Administrators can define the password policy for SSO users that are stored in t
 
 ## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
-An administrator can configure groups from an external identity provider to be propagated in the ID token by including the group in the Group Whitelist. This will provide information about the external groups that the user is a member of.
+An administrator can configure groups from an external identity provider to be propagated in the ID token by including the group in the Group Whitelist. This will provide information to the application about the external identity groups that the user belongs to.
 
-<p class="note"><strong>Note</strong: The `roles` scope must be requested by the application and the external group must be listed in the Group Whitelist.</p>
+<p class="note"><strong>Note</strong>: The <code>roles</code> scope must be requested by the application and the external group must be listed in the Group Whitelist.</p>
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
