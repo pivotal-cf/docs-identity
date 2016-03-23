@@ -38,14 +38,14 @@ Before you bind or register an application, you must know your SSO application t
 1. From the dropdown menu, select your SSO service instance. Click **Bind**, which creates an OAuth Client based on the grant type you set.
 4. Click **Manage** under the SSO service instance to launch the SSO dashboard.
 5. Click your application.
-6. Under **Identity Providers**, select either **Internal User Store** or **External Identity Provider**. Internal User Store is the default.
+6. Under **Identity Providers**, select either **Internal User Store** or the name of your external identity provider. Internal User Store is the default.
 1. Click **Save Config**.
 1. If your Application Type is `Web App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
 2. Enter the **Scopes** that this application can request. This field defaults to `openid`. Scopes are permissions that the application requests on the user’s behalf. If this application is purely for authentication purposes, then the `openid` scope is sufficient. If the application makes API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
 	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single Page Javascript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 3. Under **Auto-Approved Scopes**, select which scopes should not require explicit authorization from the end user. Only scopes pertaining to company owned and managed applications should be selected. Do not select scopes that pertain to applications external to PCF.
 
-1. Click **Create App**. The **Next Steps** view appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
+1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
 
 ## <a id='register'></a> Register an External Application
 
@@ -55,44 +55,37 @@ Before you bind or register an application, you must know your SSO application t
 3. Click **New App**.
 4. Enter an **App Name**.
 5. Under **Select an Application Type**, select **Web App**, **Native Mobile App**, **Service-to-Service App**, or **Single-Page JavaScript App**.
-1. Under **Identity Providers**, select **Internal User Store** or **External Identity Provider**. Internal User Store is the default. You can choose to use multiple identity providers by selecting both  internal and external identity providers. 
-	<p class="note"><strong>Note</strong>: This option is available for all application types except the Service-to-Service App.</p> 
+1. Under **Identity Providers**, select **Internal User Store** or the name of your external identity provider. Internal User Store is the default. 
+	<p class="note"><strong>Note</strong>: When registering an externally hosted application, a Space Developer can choose multiple internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except the Service-to-Service App.</p> 
 
 1. If your Application Type is `Web App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
 2. Enter the **Scopes** that this application can request. This field defaults to `openid`. Scopes are permissions that the application requests on the user’s behalf. If this application is purely for authentication purposes, then the `openid` scope is sufficient. If the application makes API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
 	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single Page Javascript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 3. Under **Auto-Approved Scopes**, select which scopes should not require explicit authorization from the end user. Only scopes pertaining to company owned and managed applications should be selected. Do not select scopes that pertain to applications external to PCF.
-1. Click **Create App**. The **Next Steps** view appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
+1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
 
 ## <a id="app-integration"></a>Application Integration
 
 The SSO service is based on the OAuth protocol. As a result, you must make your applications OAuth-aware.
 
-If you are using Java, refer to the [Pivotal Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps). These are sample applications created using [Spring Boot](https://projects.spring.io/spring-boot/) for all four application types. They use the SSO Service Connector, which auto-configures the application for OAuth. The only step involved after binding the application with the SSO Service is to restart the application for the new SSO configuration to take effect.
+If you are using Java, refer to the [Pivotal Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps). These are sample applications created using [Spring Boot](https://projects.spring.io/spring-boot/) for all four application types (`Web App`, `Native Mobile App`, `Single Page Javascript App`, and `Service-to-Service App`). They use the SSO Service Connector, which auto-configures the application for OAuth. After binding the application to an SSO service instance, the user only has to restart the application for the new SSO configuration to take effect.
 
-For non-Java applications, the following information needs to be supplied to the application after the SSO service bind.
+For non-Java applications, the following information from the **Next Steps** page of the SSO dashboard must be supplied to the application after the SSO service bind:
 
-<p class="note"><strong>Note</strong>: All the information above is available on the Next Steps page.</p>
+* **App ID**, also known as OAuth Client ID.
+* **App Secret**, also known as OAuth Client Secret.
+* **OAuth Authorization URL**, the endpoint for client authorization.
+* **OAuth Token URL**, the endpoint for token retrieval.
 
-* App ID, also known as OAuth Client ID
+To validate the token, you must verify the following:
 
-* App Secret, also known as OAuth Client Secret
+1. The token is a properly signed JSON Web Token with an appropriate public key. The key can be downloaded from the **Token Verification Key** endpoint specified on the **Next Steps** page.
 
-* OAuth Authorization URL: This is the endpoint for Client Authorization
-
-* OAuth Token URL: This is the end point for token retrieval
-
-<p class="note"><strong>Note</strong>: The App ID and App Secret are both available on the Next Steps page of the SSO service dashboard.</p>
-
-Validation of the token requires that you verify the following:
-
-1. The token is a properly signed JSON Web Token with an appropriate Public Key. The key can be downloaded from the Token Verification Key end point specified on the Next Steps Page.
-
-2. The value of `aud` in the token matches your App ID.
+2. The value of `aud` in the token matches your **App ID**.
 
 3. The value of `iss` matches `https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token`.
 
-4. The expiry time (`exp`) of the token has not passed.
+4. The expiry time of the token, `exp`, has not passed.
 
 ## <a id='delete'></a> Delete Application
 
