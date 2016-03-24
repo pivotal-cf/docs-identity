@@ -26,16 +26,7 @@ This documentation describes installing and configuring the [Pivotal Single Sign
   1. Click **Add** next to the uploaded product description in the Available Products view to add this product to your staging area.
   1. Click **Apply Changes** to deploy the service.
 
-## <a id='configure-elastic-runtime'></a>Step 2: Configure Elastic Runtime
-
-  1. From the **Installation Dashboard**, click the **Elastic Runtime** tile.
-  1. Select **SSO Config** on the Settings tab.
-  1. Under **Provider Name**, enter `https://login.YOUR-SYSTEM-DOMAIN`.
-  1. Under **Provider Metadata URL**, enter `https://login.YOUR-SYSTEM-DOMAIN/saml/metadata`. Or download your metadata from `https://login.YOUR-SYSTEM-DOMAIN/saml/metadata` and enter it under **Provider Metadata** area.
-  1. Click **Save**.
-  1. Return to the **Installation Dashboard** and click **Apply changes**.
-
-## <a id='create-plan'></a>Step 3: Login to the SSO Dashboard
+## <a id='create-plan'></a>Step 2: Login to the SSO Dashboard
 
   1. After Ops Manager has finished applying your changes, login to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find those credentials in your **Pivotal Elastic Runtime** tile under the **Credentials** tab.
   1. From the SSO dashboard, create a new Single Sign-On Service Plan by clicking **New Plan**.
@@ -48,7 +39,7 @@ This documentation describes installing and configuring the [Pivotal Single Sign
 
 <p class="note"><strong>Note</strong>: You can create and configure service plans at any time. However, you must create at least one plan in order to register and use the Service with applications on your <a href="https://network.pivotal.io/products/pivotal-cf">Pivotal Cloud Foundry&reg;</a> installation.</p>
 
-## <a id='update-ssl-certificate'></a>Step 4: Update SSL Certificate
+## <a id='update-ssl-certificate'></a>Step 3: Update SSL Certificate
 
 As described in the above section, every service plan corresponds to a tenant. Each service plan is accessible at a tenant-specific URL in the format `https://<AUTH-DOMAIN>.login.<SYSTEM-DOMAIN>`.
 
@@ -59,14 +50,14 @@ You must update the SSL Certificate for the domains listed below. In addition, d
   * `*.login.<SYSTEM-DOMAIN>`
   * `.uaa.<SYSTEM-DOMAIN>`
 
-## <a id='create-instance'></a>Step 5: Create Service Instances
+## <a id='create-instance'></a>Step 4: Create Service Instances
 After you have made the plans visible in the relevant PCF organizations, create a service instance to use the service plan within a space. Refer to the [Manage Service Instances](administering.html#instance-management) section of the *Administering Pivotal Single Sign-On* topic for more information about how to create a service instance within orgs and spaces.
 
 While service instances are accessible only within a space, service plans are visible across spaces and orgs. Every plan needs a service instance in every space containing applications it will access.
 
 If you have a plan that allows Single Sign-On to applications in multiple spaces, you must create a service instance for the plan in each of the spaces.
 
-## <a id='config-ext-providers'></a>Step 6: Configure External Identity Providers
+## <a id='config-ext-providers'></a>Step 5: Configure External Identity Providers
 Configure the external identity providers for your PCF platform. External identity providers must be SAML 2.0 compliant. Refer to [Administering Pivotal Single Sign-On](administering.html#user-store-management) for more information about configuring External Identity Providers.
 
 ## <a id='register-apps'></a>Step 6: Register your Applications
