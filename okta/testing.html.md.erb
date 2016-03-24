@@ -3,7 +3,9 @@ title: Testing
 owner: Identity Service
 ---
 
-## <a id="service-provider"></a>Service Provider Initiated Testing
+This topic describes how an administrator can test the connection between SSO and Okta services. An administrator can test both service provider and identity provider connections.
+
+## <a id="service-provider"></a>Test Your Service Provider Connection
 
 1. Log in to Apps Manager at `https://console.YOUR-SYSTEM-DOMAIN` and navigate to the organization and space where your application is located.
 
@@ -39,7 +41,7 @@ owner: Identity Service
 
 1. The access token and ID token displays.
 
-## <a id="identity-provider"></a>Identity Provider Initiated Testing
+## <a id="identity-provider"></a>Test Your Identity Provider Connection
 
 <p class="note"><strong>Note</strong>: SSO does not support identity provider-initiated flow into applications, but it does redirect the user to the User Account and Authentication (UAA) page to select applications assigned to the user.</p>
 
@@ -55,7 +57,9 @@ owner: Identity Service
 
 	<%= image_tag '../images/where_to.png' %>
 
-## <a id="sso"></a>Single Sign-Off Testing
+## <a id="sso"></a>Test Your Single Sign-Off
+
+Test single sign-off to ensure that when users log out of the application, they are logged out of Okta as well.
 
 1. Sign into the sample application. You should see information about the access and ID token. You should also see the “What Do You Want to Do?” section.
 
