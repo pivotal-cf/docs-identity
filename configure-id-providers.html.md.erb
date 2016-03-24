@@ -62,7 +62,7 @@ The highlighted text in the example URL above is the Identity Zone ID of the Ser
 
 1. Execute the following command, replacing `YOUR-IDENTITY-ZONE-ID` with the Identity Zone ID of your Service Plan. You can also replace `service_plan_admin_client` with a different name for your client, and `secret` with a different client secret.
 <pre class="terminal">
-uaac curl -k -H"Accept:application/json" -H"Content-Type:application/json" -H"X-Identity-Zone-Id:YOUR-IDENTITY-ZONE-ID" -XPOST --data           '{"client\_id":"service\_plan\_admin\_client","client\_secret":"secret","authorized\_grant\_types":["client\_credentials"],"authorities":["scim.write","clients.admin","scim.read"]}' /oauth/clients</pre>
+uaac curl -k -H"Accept:application/json" -H"Content-Type:application/json" -H"X-Identity-Zone-Id:YOUR-IDENTITY-ZONE-ID" -XPOST --data           '{"client\_id":"ssoadmin","client\_secret":"secret","authorized\_grant\_types":["client\_credentials"],"authorities":["scim.write","clients.admin","scim.read"]}' /oauth/clients</pre>
 
 ### <a id="adding-users"></a>Step 3: User Creation
 
