@@ -111,10 +111,9 @@ Administrators can define the password policy for SSO users that are stored in t
     * **Numerals**: Specify the minimum number of numeric characters are required in the password.
 
 5. Configure the following under the **Lockout Policy** section:
-    * **Failures Allowed**: Specify the number of failed login attempts are allowed before a user is locked out.
-    * **Within Milliseconds**: Specify the frequency range that the failed login attempts need to be made before a user is locked out.
-    * **Lockout Period**: Specify how long a user is locked out for.
-    * **Expires**: Specify how long passwords are valid for before the user needs to enter a new password.
+    * **Failures Allowed**: Specify the number of failed login attempts allowed per hour before a user is locked out.
+    * **Lockout Period**: Specify the number of seconds a user is locked out for after excessive failed login attempts.
+    * **Password Expires**: Specify the number of months passwords are valid for before users needs to enter a new password.
 
 6. Click **Save Identity Provider**.
 
