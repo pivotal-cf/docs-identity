@@ -105,9 +105,9 @@ Administrators can define the password policy for SSO users that are stored in t
 
 4. Configure the following under the **Password Complexity** section:
     * **Min Length**: Specify the minimum password length.
-    * **Uppercase**: Specify the minimum number of uppercase characters are required in the password.
-    * **Lowercase**: Specify the minimum number of lowercase characters are required in the password.
-    * **Special Characters**: Specify the minimum number of special characters are required in the password.
+    * **Uppercase**: Specify the minimum number of uppercase characters required in a password.
+    * **Lowercase**: Specify the minimum number of lowercase characters required in a password.
+    * **Special Characters**: Specify the minimum number of special characters required in a password.
     * **Numerals**: Specify the minimum number of numeric characters are required in the password.
 
 5. Configure the following under the **Lockout Policy** section:
@@ -116,8 +116,6 @@ Administrators can define the password policy for SSO users that are stored in t
     * **Password Expires**: Specify the number of months passwords are valid for before users needs to enter a new password.
 
 6. Click **Save Identity Provider**.
-
-<p class="note"><strong>Note</strong>: Under <strong>Password Policy Settings</strong>, you can select <strong>Use Recommended Settings</strong>, <strong>Use Default Settings</strong>, or enter custom settings in the fields below.</p>
 
 ## <a id='config-ext-prov'></a> Add an External Identity Provider
 
@@ -129,15 +127,21 @@ Administrators can define the password policy for SSO users that are stored in t
 
 4. Enter an **Identity Provider Name**.
 
-5. Enter a **Description**.
+5. Enter a **Description**. This is displayed to Space Developers when selecting an identity provider for their applicaiton.
 
 6. Enter the external identity provider metadata in one of the following ways:
     * Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
     * Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
 
-1. Configure any **User Attributes** or **Custom Attributes** that should be propagated from the identity provider to the service provider. For instance, e-mail addresses, first or last name, or role. 
+1. Configure any **User Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service. For instance, e-mail addresses, first or last name, or external group. 
+	* Select an **User Scheme Attribute** from the dropdown.
+	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
-2. Click **Create Identity Provider** to save the identity provider.
+2. Configure any **Custom Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service.
+	* Enter a **Custom Attribute Name**.
+	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion. 
+
+3. Click **Create Identity Provider** to save the identity provider.
 
 <p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click on <strong>Configure SAML Service Provider</strong> on the Identity Providers page.</p>
 
