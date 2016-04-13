@@ -108,7 +108,7 @@ Administrators can define the password policy for SSO users that are stored in t
     * **Uppercase**: Specify the minimum number of uppercase characters required in a password.
     * **Lowercase**: Specify the minimum number of lowercase characters required in a password.
     * **Special Characters**: Specify the minimum number of special characters required in a password.
-    * **Numerals**: Specify the minimum number of numeric characters are required in the password.
+    * **Numerals**: Specify the minimum number of numeric characters required in a password.
 
 5. Configure the following under the **Lockout Policy** section:
     * **Failures Allowed**: Specify the number of failed login attempts allowed per hour before a user is locked out.
@@ -129,8 +129,8 @@ The SSO service provides the ability to sign authentication requests and require
 3. Click **Configure SAML Service Provider**.
 
 4. Configure the following settings:
-	* **Perform signed authentication requests** - The service provider will sign requests sent to the external identity provider.
-	* **Require signed assertions** - The service provider will require that responses from the external identity provider are signed.
+	* **Perform signed authentication requests**: The service provider signs requests sent to the external identity provider.
+	* **Require signed assertions**: The service provider requires that responses from the external identity provider are signed.
 
 5. Click **Save** to save the SAML configurations.
 
@@ -146,14 +146,14 @@ The SSO service provides the ability to sign authentication requests and require
 
 4. Enter an **Identity Provider Name**.
 
-5. Enter a **Description**. This is displayed to Space Developers when selecting an identity provider for their applicaiton.
+5. Enter a **Description**. This is displayed to Space Developers when selecting an identity provider for their application.
 
 6. Enter the external identity provider metadata in one of the following ways:
     * Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
     * Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
 
-1. Configure any **User Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service. For instance, e-mail addresses, first or last name, or external group. 
-	* Select an **User Scheme Attribute** from the dropdown.
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include e-mail addresses, first or last names, or external groups. They will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service. 
+	* Select a **User Scheme Attribute** from the dropdown menu.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
 2. Configure any **Custom Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service.

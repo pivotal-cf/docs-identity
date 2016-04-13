@@ -17,7 +17,9 @@ Administrators can create new Single Sign-On service plans at any time from the 
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-You can create and configure service plans at any time. However, **you must create at least one plan in order to register and use the service with applications** on your [Pivotal Cloud Foundry®](https://network.pivotal.io/products/pivotal-cf) installation.
+You can use the SSO dashboard to create and configure service plans at any time. 
+
+<p class="note"><strong>Note</strong>: You must create at least one plan for any service before your applications can use it.</p>
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
@@ -49,4 +51,4 @@ You can create and configure service plans at any time. However, **you must crea
 
 4. In the popup that appears, click **Delete Plan** to confirm that you want to delete the plan.
 
-<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a Single Sign-On service plan removes all the plan configurations, identity providers, users, application configurations and resources from the database. It also deletes the associated service instances and service bindings. You must rebind any applications bound to the deleted service instances to new service instances.</p>
+<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a Single Sign-On service plan removes from the SSO database all of the configurations, identity providers, users, application configurations and resources associated with the plan. It also deletes the associated service instances and service bindings. You must rebind any applications bound to the deleted service instances to new service instances.</p>
