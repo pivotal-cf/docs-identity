@@ -105,20 +105,36 @@ Administrators can define the password policy for SSO users that are stored in t
 
 4. Configure the following under the **Password Complexity** section:
     * **Min Length**: Specify the minimum password length.
-    * **Uppercase**: Specify the minimum number of uppercase characters are required in the password.
-    * **Lowercase**: Specify the minimum number of lowercase characters are required in the password.
-    * **Special Characters**: Specify the minimum number of special characters are required in the password.
+    * **Uppercase**: Specify the minimum number of uppercase characters required in a password.
+    * **Lowercase**: Specify the minimum number of lowercase characters required in a password.
+    * **Special Characters**: Specify the minimum number of special characters required in a password.
     * **Numerals**: Specify the minimum number of numeric characters are required in the password.
 
 5. Configure the following under the **Lockout Policy** section:
-    * **Failures Allowed**: Specify the number of failed login attempts are allowed before a user is locked out.
-    * **Within Milliseconds**: Specify the frequency range that the failed login attempts need to be made before a user is locked out.
-    * **Lockout Period**: Specify how long a user is locked out for.
-    * **Expires**: Specify how long passwords are valid for before the user needs to enter a new password.
+    * **Failures Allowed**: Specify the number of failed login attempts allowed per hour before a user is locked out.
+    * **Lockout Period**: Specify the number of seconds a user is locked out for after excessive failed login attempts.
+    * **Password Expires**: Specify the number of months passwords are valid for before users needs to enter a new password.
 
 6. Click **Save Identity Provider**.
 
-<p class="note"><strong>Note</strong>: Under <strong>Password Policy Settings</strong>, you can select <strong>Use Recommended Settings</strong>, <strong>Use Default Settings</strong>, or enter custom settings in the fields below.</p>
+## <a id='config-sp-saml-settings'></a> Configure Service Provider SAML Settings
+
+For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider. 
+The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
+
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+
+2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+
+3. Click **Configure SAML Service Provider**.
+
+4. Configure the following settings:
+	* **Perform signed authentication requests** - The service provider will sign requests sent to the external identity provider.
+	* **Require signed assertions** - The service provider will require that responses from the external identity provider are signed.
+
+5. Click **Save** to save the SAML configurations.
+
+6. Click **Download Metadata**.
 
 ## <a id='config-ext-prov'></a> Add an External Identity Provider
 
@@ -130,15 +146,21 @@ Administrators can define the password policy for SSO users that are stored in t
 
 4. Enter an **Identity Provider Name**.
 
-5. Enter a **Description**.
+5. Enter a **Description**. This is displayed to Space Developers when selecting an identity provider for their applicaiton.
 
 6. Enter the external identity provider metadata in one of the following ways:
     * Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
     * Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
 
-1. Configure any **User Attributes** or **Custom Attributes** that should be propagated from the identity provider to the service provider. For instance, e-mail addresses, first or last name, or role. 
+1. Configure any **User Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service. For instance, e-mail addresses, first or last name, or external group. 
+	* Select an **User Scheme Attribute** from the dropdown.
+	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
-2. Click **Create Identity Provider** to save the identity provider.
+2. Configure any **Custom Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service.
+	* Enter a **Custom Attribute Name**.
+	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion. 
+
+3. Click **Create Identity Provider** to save the identity provider.
 
 <p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click on <strong>Configure SAML Service Provider</strong> on the Identity Providers page.</p>
 
