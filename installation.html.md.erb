@@ -1,0 +1,38 @@
+---
+title: Installation
+owner: Identity Service
+---
+
+This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundry&reg;.
+
+## <a id='pre-reqs'></a> Prerequisites
+
+* Pivotal Cloud Foundry&reg; ([Ops Manager](https://network.pivotal.io/products/ops-manager) and [Elastic Runtime](https://network.pivotal.io/products/elastic-runtime)) version 1.7 or later.
+
+* SSL Certificates.
+
+## <a id='install'></a>Step 1: Install SSO via Ops Manager
+
+1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select a **Single Sign-On** tile version and download the product release file.
+
+2. From the Ops Manager Installation Dashboard, select the **Import a Product** button to upload the product file.
+
+3. Click **Add** next to the uploaded product description in the Available Products view to add this product to your staging area.
+
+4. Click on the **Single Sign-On** tile to enter any configurations.
+
+5. Click **Apply Changes** to install the product.
+
+## <a id='update'></a>Step 2: Update SSL and Load Balancer
+
+You must update the SSL certificate for the domains listed below for each plan you create. Depending on your infrastructure and load balancer, you must also update your load balancer configuration for the following domains:
+
+* `*.SYSTEM-DOMAIN`
+
+* `*.APPS-DOMAIN`
+
+* `*.login.SYSTEM-DOMAIN`
+
+* `.uaa.SYSTEM-DOMAIN`
+
+    

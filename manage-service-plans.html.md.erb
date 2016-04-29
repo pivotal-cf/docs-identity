@@ -1,0 +1,54 @@
+---
+title: Manage Service Plans
+owner: Identity Service
+---
+
+This topic describes how Pivotal Cloud Foundry&reg; (PCF) Administrators create and delete Single Sign-On service plans.
+
+Single Sign-On is a multi-tenant service, which enables a deployment to host multiple service plans. Each service plan corresponds to a tenant, which can represent multiple users. This lets enterprises segregate their tenants into separate plans. For example, the following tenants might require separate plans:
+
+* Business units and geographical locations
+
+* Employees, consumers, and partners
+
+* Development, staging, and production instances
+
+Administrators can create new Single Sign-On service plans at any time from the SSO dashboard.
+
+## <a id='create-svc-plan'></a> Create or Edit Service Plans
+
+You can use the SSO dashboard to create and configure service plans at any time. 
+
+<p class="note"><strong>Note</strong>: You must create at least one plan for any service before your applications can use it.</p>
+
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+
+1. Click **New Plan** on the SSO dashboard to create a new Single Sign-On service plan.
+
+	<%= image_tag 'images/managing_create_plan.png' %>
+
+1. Enter a **Plan Name**.
+
+1. Enter a **Description** to appear as a plan feature in the Services Marketplace.
+
+1. Enter an **Auth Domain** to be the URL where users authenticate to access applications covered by the service plan.
+
+1. Enter an **Instance Name** to appear on the login page and in other user-facing content, such as email communications.
+
+1. Add **Plan Administrators**. These users can view the plan and manage identity providers.
+
+1. Under **Org Visibility**, select which organizations in your Pivotal Cloud Foundry deployment should have access to your Single Sign-On service plan. If you do not select any organizations, the plan will not be available for use and it will not be displayed in the Services Marketplace.
+
+1. Click **Create Plan**. Your new plan appears in the Services Marketplace in the organizations you have selected. Users in those organizations view the plan either in Apps Manager or through the CF CLI by entering `cf marketplace` in a terminal window.
+
+## <a id='delete-svc-plan'></a> Delete Service Plans
+
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+
+2. Select the name of the plan you want to delete, and click **Edit Plan** in the dropdown menu.
+
+3. Select **Delete** at the bottom of the page.
+
+4. In the popup that appears, click **Delete Plan** to confirm that you want to delete the plan.
+
+<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a Single Sign-On service plan removes from the SSO database all of the configurations, identity providers, users, application configurations and resources associated with the plan. It also deletes the associated service instances and service bindings. You must rebind any applications bound to the deleted service instances to new service instances.</p>
