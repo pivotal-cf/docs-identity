@@ -62,7 +62,7 @@ The highlighted text in the example URL above is the Identity Zone ID of the Ser
 
 1. Execute the following command, replacing `YOUR-IDENTITY-ZONE-ID` with the Identity Zone ID of your Service Plan. You can also replace `service_plan_admin_client` with a different name for your client, and `secret` with a different client secret.
 <pre class="terminal">
-uaac curl -k -H"Accept:application/json" -H"Content-Type:application/json" -H"X-Identity-Zone-Id:YOUR-IDENTITY-ZONE-ID" -XPOST --data           '{"client\_id":"ssoadmin","client\_secret":"secret","authorized\_grant\_types":["client\_credentials"],"authorities":["scim.write","clients.admin","scim.read"]}' /oauth/clients</pre>
+uaac curl -k -H"Accept:application/json" -H"Content-Type:application/json" -H"X-Identity-Zone-Id:YOUR-IDENTITY-ZONE-ID" -XPOST --data  '{"client\_id":"service_plan_admin_client","client\_secret":"secret","authorized\_grant\_types":["client\_credentials"],"authorities":["scim.write","clients.admin","scim.read"]}' /oauth/clients</pre>
 
 ### <a id="adding-users"></a>Step 3: User Creation
 
@@ -149,8 +149,8 @@ The SSO service provides the ability to sign authentication requests and require
 5. Enter a **Description**. This is displayed to Space Developers when selecting an identity provider for their application.
 
 6. Enter the external identity provider metadata in one of the following ways:
-    * Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
-    * Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
+    * Option 1: Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
+    * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
 
 1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include e-mail addresses, first or last names, or external groups. They will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service. 
 	* Select a **User Scheme Attribute** from the dropdown menu.
