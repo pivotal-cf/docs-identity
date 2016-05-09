@@ -3,9 +3,33 @@ title: Release Notes
 owner: Identity Service
 ---
 
+## <a id='11X'></a> 1.1.1
+
+**Release date: 5 May 2016**
+
+* Single Sign-On (SSO) for Pivotal Cloud Foundry&reg; (PCF) now defaults the access token and refresh token validity time to UAA defaults, 12 hours and 30 days, respectively. For any plans created in SSO 1.1.0, please resolve this bug in one of the following ways:
+	 
+	 * Option 1: Recreate the plan(s) created in SSO 1.1.0.
+	 
+	 * Option 2: Edit the identity zone within UAA and set your desired token validity time. 
+
+* PCF updated stemcell to 3232.2. This is a security upgrade that resolves the following:
+    
+    * [USN-2959-1](http://www.ubuntu.com/usn/USN-2959-1)
+    
+    * [USN-2957-1](http://www.ubuntu.com/usn/USN-2957-1)
+	
+	* [USN-2949-1](http://www.ubuntu.com/usn/USN-2949-1)
+	
+	* [USN-2943-1](http://www.ubuntu.com/usn/USN-2943-1)
+	
+	* [USN-2935-2](http://www.ubuntu.com/usn/USN-2935-2)
+
+Additional information can be found at <https://pivotal.io/security>.
+
 ## 1.1.0
 
-Release date: 29 April 2016
+**Release date: 29 April 2016**
 
 **What’s New**
 
@@ -35,11 +59,29 @@ If you are a customer upgrading from PCF 1.6 to PCF 1.7 and you are using SSO v1
 
 * SSO now supports SAML single logout flow which ends UAA and external identity provder sessions.
 
+## <a id='10X'></a> 1.0.11
+
+**Release date: 5 May 2016**
+
+* PCF updated stemcell to 3146.11. This is a security upgrade that resolves the following:
+    
+    * [USN-2959-1](http://www.ubuntu.com/usn/USN-2959-1)
+    
+    * [USN-2957-1](http://www.ubuntu.com/usn/USN-2957-1)
+	
+	* [USN-2949-1](http://www.ubuntu.com/usn/USN-2949-1)
+	
+	* [USN-2943-1](http://www.ubuntu.com/usn/USN-2943-1)
+	
+	* [USN-2935-2](http://www.ubuntu.com/usn/USN-2935-2)
+
+Additional information can be found at <https://pivotal.io/security>.
+
 ## 1.0.10
 
 **Release date: 16 March 2016**
 
-* Updated stemcell to 3146.10. This is a security upgrade that resolves the following:
+* PCF updated stemcell to 3146.10. This is a security upgrade that resolves the following:
     
     * [CVE-2016-0800](https://pivotal.io/security/cve-2016-0800)
 
@@ -49,7 +91,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 24 February 2016**
 
-* Updated stemcell to 3146.9. This is a security upgrade that resolves the following:
+* PCF updated stemcell to 3146.9. This is a security upgrade that resolves the following:
     
     * [USN-2910-1](http://www.ubuntu.com/usn/usn-2910-1/)
 
@@ -59,7 +101,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 19 February 2016**
 
-* Updated stemcell to 3146.8. This is a security upgrade that resolves the following:
+* PCF updated stemcell to 3146.8. This is a security upgrade that resolves the following:
     
     * [USN-2900-1](http://www.ubuntu.com/usn/usn-2900-1), a critical GNU C lib (glibc) CVE
     
@@ -73,7 +115,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 2 February 2016**
 
-* Updated stemcell to 3146.6. This is a security upgrade that resolves the following:
+* PCF updated stemcell to 3146.6. This is a security upgrade that resolves the following:
     
     * [USN-2882-1](http://www.ubuntu.com/usn/usn-2882-1)
     
@@ -97,7 +139,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 22 January 2016**
 
-* Updated stemcell to 3146.5. This is a security upgrade that resolves the following:
+* PCF updated stemcell to 3146.5. This is a security upgrade that resolves the following:
     
     * [USN-2871-1](http://www.ubuntu.com/usn/usn-2871-1/)
 
@@ -107,7 +149,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 18 January 2016**
 
-* Updated stemcell to 3146.3. This is a security upgrade that resolves the following:
+* PCF updated stemcell to 3146.3. This is a security upgrade that resolves the following:
     
     * [USN-2869-1](http://www.ubuntu.com/usn/usn-2869-1)
     
@@ -119,7 +161,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 07 January 2016**
 
-* Updated stemcell to 3146.2. This is a security upgrade that resolves the following Ubuntu Security Notices:
+* PCF updated stemcell to 3146.2. This is a security upgrade that resolves the following Ubuntu Security Notices:
     
     * [USN-2857-1](http://www.ubuntu.com/usn/usn-2857-1/)
     
@@ -141,7 +183,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 03 December 2015**
 
-* Updated stemcell to 3146. This is a security upgrade that resolves the following Ubuntu Security Notices:
+* PCF updated stemcell to 3146. This is a security upgrade that resolves the following Ubuntu Security Notices:
     
     * [USN-2821-1](http://www.ubuntu.com/usn/usn-2821-1/)
 
@@ -151,7 +193,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 14 November 2015**
 
-* Updated stemcell to 3130. This is a security upgrade that resolves the following Ubuntu Security Notices:
+* PCF updated stemcell to 3130. This is a security upgrade that resolves the following Ubuntu Security Notices:
     
     * [USN-2806-1](http://www.ubuntu.com/usn/usn-2806-1/)
     
@@ -163,7 +205,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 **Release date: 02 November 2015**
 
-* Updated stemcell to 3112. This is a security upgrade that resolves the following Ubuntu Security Notices:
+* PCF updated stemcell to 3112. This is a security upgrade that resolves the following Ubuntu Security Notices:
     
     * [USN-2778-1](http://www.ubuntu.com/usn/usn-2778-1/)
 
@@ -171,7 +213,7 @@ Additional information can be found at <https://pivotal.io/security>.
 
 ## 1.0.0
 
-Release date: 2 November 2015
+**Release date: 2 November 2015**
 
 **What’s New**
 
