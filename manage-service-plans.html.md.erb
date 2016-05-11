@@ -18,21 +18,19 @@ Single Sign-On is a multi-tenant service, which enables a deployment to host mul
 
 You can use the SSO dashboard to configure service plans at any time. 
 
-<p class="note"><strong>Note</strong>: You must request at least one plan for any service before your applications can use it.</p>
+<p class="note"><strong>Note</strong>: You must request at least one plan for a service before your applications can use it.</p>
 
-1. Log into the SSO dashboard at `https://p-identity.run.pivotal.io` using your User Account and Authentication (UAA) administrator credentials. 
+1. Log into the SSO dashboard at `https://p-identity.run.pivotal.io` using your administrator credentials. 
 
-1. Click **YOUR-PLAN**>**Edit Plan** on the SSO dashboard to edit a new Single Sign-On service plan.
+1. Click **YOUR-PLAN** > **Edit Plan** on the SSO dashboard to edit a Single Sign-On service plan.
 
 	<%= image_tag 'images/edit-svc-plan-1.png' %>
 
 1. Choose a **Plan Name**.
 
-	<%= image_tag 'images/managing_create_plan.png' %>
+	<%= image_tag 'images/edit_plan.png' %>
 
 1. Enter a **Description** to appear as a plan feature in the Services Marketplace.
-
-1. Enter an **Auth Domain** to be the URL where users authenticate to access applications covered by the service plan.
 
 1. Enter an **Instance Name** to appear on the login page and in other user-facing content, such as email communications.
 
@@ -40,4 +38,4 @@ You can use the SSO dashboard to configure service plans at any time.
 
 1. Under **Org Visibility**, select which organizations in your Pivotal Web Services deployment should have access to your Single Sign-On service plan. If you do not select any organizations, the plan will not be available for use and it will not be displayed in the Services Marketplace.
 
-1. Click **Create Plan**. Your new plan appears in the Services Marketplace in the organizations you have selected. Users in those organizations view the plan either in Apps Manager or through the CF CLI by entering `cf marketplace` in a terminal window.
+1. Click **Save Plan**. Your updated plan appears in the Services Marketplace in the organizations you have selected. Users in those organizations view the plan either in Apps Manager or through the cf CLI by entering `cf marketplace` in a terminal window.
