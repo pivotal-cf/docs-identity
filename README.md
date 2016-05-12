@@ -3,7 +3,7 @@
 This a guide to the Pivotal Single Sign-On service, which enables Pivotal Cloud Foundry® users to 
 authenticate with an external identity provider rather than having to create a new account or re-enter credentials. Single Sign-On grants users centralized access to applications in various spaces, as well as to Ops Manager, Apps Manager, and other Cloud Foundry components.
 
-<strong>Note:</strong> The 'master' branch of this repository publishes to docs.pivotal.io, and the 'master-pws' branch publishes to docs.run.pivotal.io. 
+<strong>Note:</strong> The <code>master</code> branch of this repository publishes to docs.pivotal.io, and the <code>master-pws</code> branch publishes to docs.run.pivotal.io. 
 
 This doc repository is one of several doc repositories that go into a complete documentation set.
 
