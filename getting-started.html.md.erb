@@ -7,9 +7,11 @@ This topic outlines the steps for accessing and configuring the Single Sign-On s
 
 ## <a id='install'></a> Request Access and Set Up SSO for Applications
 
-1. [Request a service plan](https://support.pivotal.io/). The Single Sign-On service is available to users of Pivotal Web Services (PWS) with Enterprise support. Contact Pivotal Support to request access to the Single Sign-On service and to request service plans.
+1. [Request the Single Sign-On service](https://support.pivotal.io/). The Single Sign-On service is available to users of Pivotal Web Services (PWS) with Enterprise support. You must request the service to access it from the services marketplace. 
 
-1. [Edit a service plan](./manage-service-plans.html#edit-svc-plan). The Single Sign-On service is a multi-tenant service, and a service plan corresponds to a tenant. This allows an enterprise to segregate users or environments using plans. Each service plan is accessible at a tenant-specific URL in the format `https://p-identity.run.pivotal.io`. 
+1. [Request a service plan](https://support.pivotal.io/). The Single Sign-On service is a multi-tenant service, and a service plan corresponds to a tenant. This allows an enterprise to segregate users or environments using plans. Each service plan is accessible at a tenant-specific URL in the format `https://AUTH-DOMAIN.login.run.pivotal.io`. 
+
+1. [Edit a service plan](./manage-service-plans.html#edit-svc-plan). You can use the SSO dashboard to configure service plans at any time.
 
 1. [Create a service instance](./manage-service-instances.html#create-svc-instance). Single Sign-On service plans can provide single sign-on capabilities for applications in various spaces. A service instance lets you bind an application to a service plan.
 
