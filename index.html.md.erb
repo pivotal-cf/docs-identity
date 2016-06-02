@@ -5,9 +5,30 @@ owner: Identity Service
 
 This documentation describes installing and configuring the [Single Sign-On](https://network.pivotal.io/products/p-identity) service.
 
+<<<<<<< f5a136f6332fb30dac2decce2ad9d15483d36846
 The Single Sign-On service enables Pivotal Cloud Foundry users to authenticate with an external identity provider rather than having to create a new account or re-enter credentials. Single Sign-On grants users centralized access to applications in various spaces, as well as to Ops Manager, Apps Manager, and other Cloud Foundry components.
+=======
+The Single Sign-On service is an "all-in-one" solution for securing access to applications and APIs on Pivotal Cloud Foundry&reg;. The Single Sign-On service provides support for native authentication, federated single sign-on and authorization. Native authentication or federated single sign-on (i.e. SAML or OpenID Connect) can be configured to verify the identities of the users of applications. Once authenticated, the Single Sign-On service uses OAuth 2.0 to secure resources or APIs. 
+>>>>>>> Added more comprehensive overview of the SSO service with diagrams on the index page.
 
-The Single Sign-On service also lets administrators use an external identity provider to manage all user access.
+### OAuth 2.0 Concepts
+
+- **Resource Owner**: A subject that is capable of granting access to a protected resource (i.e. a person or system).
+- **Resource Server**: The server hosting protected resources (via APIs), which is capable of accepting and responding to protected resource requests using access tokens.
+- **Applications**: A client that makes protected requests on behalf of the resource owner using their authorization.
+- **Authorization Server**: The Single Sign-On server, which issues access tokens to client applications after successfully authenticating the resource owner using their authorization.
+
+### OAuth 2.0 Example Flow
+
+<%= image_tag 'images/oauth_auth_code.png' %>
+
+1. The user is using a web application to access their to-do list. The application redirects the user to the OAuth authorization server before it returns the data.
+2. The user logs into their account and the to-do list authorization server asks, "Do you want to allow the to-do list app to access your to-do items?" The user clicks Yes to authorize the application to access their items on their behalf.
+3. The to-do list app receives an authorization code from the authorization server.
+4. The application receives the authorization code and exchanges it for an access token which gives the application access to the user's to-do items.
+5. The application sends the access token to the resource server, and receives the to-do items.
+
+As a developer, you are responsible for selecting the authentication method for users of your application. You can select from native authentication provided by the UAA or external identity providers. Developers also define the permissions associated with API endpoints for the resource server that is pushed to PCF under a given space and organization. To do this, developers create resources which correspond to API endpoints secured by the Single Sign-On service. Applications are granted access to resources which they can access on behalf of users. 
 
 ## <a id='product-snapshot'></a> Product Snapshot
 
