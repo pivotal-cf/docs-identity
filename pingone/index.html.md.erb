@@ -1,0 +1,42 @@
+---
+title: PingOne Cloud Integration Guide Overview
+owner: Identity Service
+---
+
+PingOne Cloud is an identity-as-a-service solution that delivers secure single sign-on to SaaS. legacy and web applications. This documentation describes how to configure a single sign-on partnership between PingOne Cloud as the Identity Provider (IdP) and the Single Sign-On Service (SSO) for Pivotal Cloud Foundry&reg; as the Service Provider (SP). 
+
+SSO supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
+
+## <a id='prereqs'></a>Prerequisites
+
+To integrate PingOne Cloud with Pivotal Cloud Foundry&reg; (PCF), you need:
+
+Pivotal 
+
+- PCF, version 1.6.0 or later.
+
+- Single Sign-On, version 1.1.0 or later.
+
+PingOne Cloud
+
+- PingOne Cloud
+
+- A user with Application Admin privileges. 
+
+<p class="note"><strong>Note</strong>: To configure SAML, you must <%=vars.sso_plan_enabled%></p>
+
+## <a id='pingOne'></a> PingOne Cloud Integration Guide
+
+### Configuring PingOne Cloud with SSO 
+Complete both steps below to integrate your deployment with PingOne Cloud and SSO.
+
+1. [Configure PingOne Cloud as an Identity Provider](config-pingone.html)
+
+1. [Configure a Single Sign-On Service Provider](config-sso.html)
+
+### Testing and Troubleshooting
+
+- [Testing](testing.html)
+
+- [Troubleshooting](troubleshooting.html)
+

@@ -1,0 +1,72 @@
+---
+title: Testing
+owner: Identity Service
+---
+
+This topic describes how an administrator can test the connection between SSO and Okta services. An administrator can test both service provider and identity provider connections.
+
+## <a id="service-provider"></a>Test Your Service Provider Connection
+
+1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN` and navigate to the organization and space where your application is located.
+
+2. Under **Services**, locate the service instance of the Single Sign-On (SSO) plan bound to your application and click **Manage**.
+
+	<%= image_tag '../images/click_manage.png' %>
+
+1. Under the **Apps** tab, click your application.
+
+	<%= image_tag '../images/select_authcode_app_tile.png' %>
+
+1. Under **Identity Providers**, select the Okta identity provider.
+
+	<%= image_tag '../images/click_okta_pcf.png' %>
+
+1. Return to Apps Manager and click on the URL below your application to be redirected to the identity provider to authenticate.
+
+	<%= image_tag '../images/authcode_sample_address.png' %>
+
+1. Click the link.
+
+	<%= image_tag '../images/authcode_sample.png' %>
+
+1. On the identity provider sign-in page, enter your credentials and click **Sign In**.
+
+	<%= image_tag '../images/pivotal_signing.png' %>
+
+1. The application asks for authorization to the necessary scopes. Click **Authorize**.
+
+	<%= image_tag '../images/popup_authcode.png' %>
+
+1. The access token and ID token displays.
+
+	<%= image_tag '../images/authcode_sample_code.png' %>
+
+## <a id="identity-provider"></a>Test Your Identity Provider Connection
+
+<p class="note"><strong>Note</strong>: SSO does not support identity provider-initiated flow into applications, but it does redirect the user to the User Account and Authentication (UAA) page to select applications assigned to the user.</p>
+
+1. Sign into Okta.
+
+	<%= image_tag '../images/pivotal_signing.png' %>
+
+1. Navigate to the application tile and click it.
+
+	<%= image_tag '../images/pcf_app_tile.png' %>
+
+1. You are redirected to the page that lists applications you have access to.
+
+	<%= image_tag '../images/where_to.png' %>
+
+## <a id="sso"></a>Test Your Single Sign-Off
+
+Test single sign-off to ensure that when users log out of the application, they are logged out of Okta as well.
+
+1. Sign into the sample application. Information about the access and ID token displays, as well as the “What do you want to do?” section.
+1. Under "What do you want to do?", click **Log out**.
+
+	<%= image_tag '../images/what_do_you_want.png' %>
+
+1. You are logged out and redirected to the Okta login page.
+
+	<%= image_tag '../images/pivotal_signing.png' %>
+
