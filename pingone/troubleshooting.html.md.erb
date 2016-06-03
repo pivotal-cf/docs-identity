@@ -1,0 +1,53 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Okta and Pivotal Single Sign-On (SSO).
+
+##<a id='404'></a> Page Not Found
+
+#### Symptom:
+
+<%= image_tag '../images/error_404.png' %>
+
+#### Explanations:
+
+- The Okta instance is inactive.
+
+- The Recipient URL is misconfigured in Okta.
+
+- The identity provider SSO URL is misconfigured in the SSO plan settings.
+
+##<a id="no-valid-assertion"></a> No Valid Assertion
+
+#### Symptom:
+
+<%= image_tag '../images/error_no_valid_assertion.png' %>
+
+#### Explanations:
+
+- The service provider Entity ID is misconfigured in Okta.
+
+- The Destination URL is misconfigured in Okta.
+
+##<a id="no-webpage"></a> Webpage Not Available
+
+#### Symptom:
+
+<%= image_tag '../images/error_webpage_not_available.png' %>
+
+#### Explanation:
+
+- The SSO URL is misconfigured in Okta.
+
+##<a id="no-metadata"></a> Metadata Not Found
+
+#### Symptom:
+
+<%= image_tag '../images/error_metadata_not_found.png' %>
+
+#### Explanation:
+
+- The identity provider Entity ID is misconfigured in the SSO plan settings.
+
