@@ -1,0 +1,59 @@
+---
+title: Configure PingFederate as an Identity Provider
+owner: Identity Service
+---
+
+This topic describes how to set up PingFederate as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry&reg; (PCF) and PingFederate. 
+
+## <a id='pcf'></a> Set up SAML in PCF
+
+1. Log into the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
+1. Select your plan and click **Manage Identity Providers** on the dropdown menu.
+
+	<%= image_tag '../images/pingfederate_manage_id_providers.png' %>
+
+1. Click **Configure SAML Service Provider**.
+
+	<%= image_tag '../images/pingfederate_config_saml_service_provider.png' %>
+
+1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
+
+	<%= image_tag '../images/saml_auth_checkbox.png' %>
+
+2. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
+
+3. Click **Download Metadata** to download the service provider metadata.
+
+4. Click **Save**.
+
+## <a id='pingone'></a> Set up SAML in PingFederate
+
+1. Sign in as an PingOne Cloud administrator.
+
+2. Navigate to your application by clicking on the **Applications** tab.
+
+3. Click the **Add Application** button and choose **New SAML Application**.
+
+	<%= image_tag '../images/saml_add_application.png' %>
+
+1. Enter the **Application Name**, **Application Description**, **Category** and any **Graphics**.
+
+2. Click the **Continue to Next Step** button to configure SAML.
+
+	<%= image_tag '../images/pingone_saml_config.png' %>
+
+3. In the **Application Configuration** section, perform the following steps:
+
+	1. Select **I have the SAML configuration**.
+
+	2. For **SAML Metadata**, click **Download** to download the identity provider metadata.
+
+	3. For **Protocal Version**, select **SAML v 2.0**.
+
+	4. For **Upload Metadata**, click **Select File** and select the service provider metadata.
+	
+	5. Click the **Continue to Next Step** button.
+
+4. (Optional) Under **SSO Attribute Mapping**, specify any application or group attributes that you want to map to users in the ID token.
+
+5. Click the **Save \& Publish** button followed by the **Finish** button.

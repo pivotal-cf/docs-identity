@@ -1,0 +1,50 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between PingOne Cloud and Pivotal Single Sign-On (SSO).
+
+##<a id='error'></a> Error
+
+#### Symptom:
+
+<%= image_tag '../images/error_pingone.png' %>
+
+#### Explanations:
+
+- Single Sign-On is disabled on PingOne.
+
+- The service provider Entity ID is misconfigured on PingOne.
+
+- The identity provider Single Sign-On URL is misconfigured in the SSO plan settings.
+
+##<a id="uh-oh"></a> Something went amiss 
+
+#### Symptom:
+
+<%= image_tag '../images/something_went_amiss.png' %>
+
+#### Explanation:
+
+- The service provider Assertion Consumer Service (ACS) is misconfigured on PingOne.
+
+##<a id="no-metadata"></a> Metadata Not Found
+
+#### Symptom:
+
+<%= image_tag '../images/pingone_error_metadata_not_found.png' %>
+
+#### Explanation:
+
+- The identity provider Entity ID is misconfigured in the SSO plan settings.
+
+##<a id="missing-nameid"></a> Missing Name ID 
+
+#### Symptom:
+
+<%= image_tag '../images/pingone_missing_nameid.png' %>
+
+#### Explanation:
+
+- The identity provider metadata is missing configurations for Name ID. See [Configure Identity Provider Metadata ](config-sso.html#configure-metadata).
