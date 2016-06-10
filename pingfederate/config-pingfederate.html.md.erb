@@ -26,34 +26,96 @@ This topic describes how to set up PingFederate as your identity provider by con
 
 4. Click **Save**.
 
-## <a id='pingone'></a> Set up SAML in PingFederate
+## <a id='pingfederate'></a> Set up SAML in PingFederate
 
-1. Sign in as an PingOne Cloud administrator.
+1. Sign in as a PingFederate administrator.
 
-2. Navigate to your application by clicking on the **Applications** tab.
+2. Navigate to your identity provider configurations by clicking on the **IDP Configuration** tab.
 
-3. Click the **Add Application** button and choose **New SAML Application**.
+3. Under **SP Connections**, click the **Create New** button.
 
-	<%= image_tag '../images/saml_add_application.png' %>
+	<%= image_tag '../images/pingfederate_create_new_sp.png' %>
 
-1. Enter the **Application Name**, **Application Description**, **Category** and any **Graphics**.
+1. Select the **Browser SSO Profiles** connection template on the Connection Type tab and click **Next**.
 
-2. Click the **Continue to Next Step** button to configure SAML.
+2. Select **Browser SSO** on the Connection Options tab and click **Next**.
 
-	<%= image_tag '../images/pingone_saml_config.png' %>
+3. Select **File** as the method for importing metadata and click **Choose file** to choose the SSO metadata on the **Import Metadata** tab. Click **Next**.
 
-3. In the **Application Configuration** section, perform the following steps:
+	<%= image_tag '../images/pingfederate_import_metadata.png' %>
 
-	1. Select **I have the SAML configuration**.
+4. Review information on the **Metadata Summary** tab and click **Next**.
 
-	2. For **SAML Metadata**, click **Download** to download the identity provider metadata.
+5. Ensure that the **Partner's Entity ID**, **Connection Name** and **Base URL** fields are pre-populated based on the metadata. Click **Next**.
 
-	3. For **Protocal Version**, select **SAML v 2.0**.
+	<%= image_tag '../images/pingfederate_general_info.png' %>
 
-	4. For **Upload Metadata**, click **Select File** and select the service provider metadata.
+6. Click **Configure Browser SSO** on the **Browser SSO** tab.
+
+7. Select the **IdP-Initiated SSO** and **SP-Initiated SSO** options on the **SAML Profiles** tab and click **Next**.
+
+	<%= image_tag '../images/pingfederate_saml_profiles.png' %>
+
+8. Enter your desired assertion validity time from on the **Assertion Lifetime** tab and click **Next**.
+
+9. Click **Configure Assertion Creation** on the **Assertion Creation** tab.
+
+10. Select the **Standard** option on the **Identity Mapping** tab and click **Next**.
+
+11. Select a **Subject Name Format** for the **SAML_SUBJECT** on the **Attribute Contract** tab and click **Next**.
+
+	<%= image_tag '../images/pingfederate_attribute_contract.png' %>
 	
-	5. Click the **Continue to Next Step** button.
+12. Click **Map New Adapter Instance** on the **Authentication Source Mapping** tab.
 
-4. (Optional) Under **SSO Attribute Mapping**, specify any application or group attributes that you want to map to users in the ID token.
+13. Select an **Adapter Instance** and click **Next**. The adapter must include the user's email address.
 
-5. Click the **Save \& Publish** button followed by the **Finish** button.
+	<%= image_tag '../images/pingfederate_adapter_instance.png' %>
+
+14. Select the **Use only the adapter contract values in the SAML assertion** option on the **Mapping Method** tab and click **Next**.
+
+	<%= image_tag '../images/pingfederate_mapping_method.png' %>
+
+15. Select your adapter instance as the **Source** and the email as the **Value** on the **Attribute Contract Fullfillment** tab and click **Next**.
+
+	<%= image_tag '../images/pingfederate_attribute_contract_fullfillment.png' %>
+	
+16. (Optional) Select any authorization conditions you would like on the **Issuance Criteria** tab and click **Next**.
+
+17. Click **Done** on the **Summary** tab.
+
+18. Click **Next** on the **Authentication Source Mapping** tab.
+
+19. Click **Done** on the **Summary** tab.
+
+20. Click **Next** on the **Assertion Creation** tab.
+
+21. Click **Configure Protocol Settings** on the **Protocol Settings** tab.
+
+22. Select POST for **Binding** and specify the single sign-on endpoint url in the **Endpoint URL** field on the **Assertion Consumer Service URL** tab. Click **Next**
+
+	<%= image_tag '../images/pingfederate_service_url.png' %>
+	
+23. Select **POST** on the **Allowable SAML Bindings** tab and click **Next**.
+
+	<%= image_tag '../images/pingfederate_saml_bindings.png' %>
+	
+24. Select the desired signature policies for assertions on the **Signature Policy** tab and click **Next**.
+
+25. Select the desired encryption policy for assertions on the **Encryption Policy** tab and click **Next**.
+
+26. Click **Done** on the **Protocol Settings Summary** tab.
+
+27. Click **Done** on the **Browser SSO Summary** tab.
+
+28. Click **Configure Credentials** on the **Credentials** tab.
+
+29. Select the **Signing Certificate** to use with the Single Sign-On service and select **Include the certificate in the signature <keyinfo> element**. Click **Next**.
+
+	<%= image_tag '../images/pingfederate_digital_signature.png' %>
+	
+30. Click **Done** on the **Summary** tab.
+
+31. Click **Next** on the **Credentials** tab.
+
+32. Select **Active** for the **Connection Status** on the **Activation & Summary** tab and click **Save**.
