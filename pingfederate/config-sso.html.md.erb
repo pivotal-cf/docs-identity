@@ -5,15 +5,7 @@ owner: Identity Service
 
 This topic describes how to add an external identity provider to your Pivotal Single Sign-On (SSO) service plan.
 
-##<a id='configure-metadata'></a> Configure Identity Provider Metadata
-
-1. Edit the Identity Provider Metadata file which is typically named `saml2-metadata-idp.xml`.
-
-- The Single Sign-On service requires that the Name ID Format is specified. Replace the following text: `<saml:Attribute NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic" Name="PingOne.idpid" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"/>` with: `<saml:Attribute NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic" Name="PingOne.idpid" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"/>
-<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>`
-
-
-##<a id='set-up-saml'></a> Setting up SAML 
+## Setting up SAML 
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
 
