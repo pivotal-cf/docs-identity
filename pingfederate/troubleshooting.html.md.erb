@@ -1,0 +1,30 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between PingFederate and Pivotal Single Sign-On (SSO).
+
+##<a id='error'></a> Error
+
+#### Symptom:
+
+<%= image_tag '../images/error_pingfederate.png' %>
+
+#### Explanations:
+
+- Connection Status is disabled on PingFederate.
+
+- The service provider Entity ID is misconfigured on PingFederate.
+
+- The identity provider Single Sign-On URL is misconfigured in the SSO plan settings.
+
+##<a id="no-metadata"></a> Metadata Not Found
+
+#### Symptom:
+
+<%= image_tag '../images/pingfederate_error_metadata_not_found.png' %>
+
+#### Explanation:
+
+- The identity provider Entity ID is misconfigured in the SSO plan settings.
