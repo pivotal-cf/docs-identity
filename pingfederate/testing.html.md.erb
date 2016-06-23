@@ -1,0 +1,74 @@
+---
+title: Testing
+owner: Identity Service
+---
+
+This topic describes how an administrator can test the connection between SSO and PingFederate. An administrator can test both service provider and identity provider connections.
+
+## <a id="service-provider"></a>Test Your Service Provider Connection
+
+1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN` and navigate to the organization and space where your application is located.
+
+2. Under **Services**, locate the service instance of the Single Sign-On (SSO) plan bound to your application. Click the service instance and then click **Manage**.
+
+	<%= image_tag '../images/click_service.png' %>
+	
+	<%= image_tag '../images/pingfederate_click_manage.png' %>
+
+1. Under the **Apps** tab, click your application.
+
+	<%= image_tag '../images/pingfederate_select_authcode_app_tile.png' %>
+
+1. Under **Identity Providers**, select the PingFederate identity provider.
+
+	<%= image_tag '../images/click_pingfederate_pcf.png' %>
+
+1. Return to Apps Manager and click the URL below your application to authenticate with the identity provider.
+
+	<%= image_tag '../images/authcode_sample_address.png' %>
+
+1. Click the link to **Log in via Auth Code Grant Type**.
+
+	<%= image_tag '../images/authcode_sample.png' %>
+
+1. On the identity provider sign-in page, enter your credentials and click **Sign On**.
+
+	<%= image_tag '../images/pingfederate_sign_in.png' %>
+
+1. The application asks for authorization to the necessary scopes. Click **Authorize**.
+
+	<%= image_tag '../images/popup_authcode.png' %>
+
+1. View the access token and ID token.
+
+	<%= image_tag '../images/pingfederate_authcode_sample_code.png' %>
+
+## <a id="identity-provider"></a>Test Your Identity Provider Connection
+
+<p class="note"><strong>Note</strong>: SSO does not support identity provider-initiated flow into applications, but it does redirect the user to the User Account and Authentication (UAA) page to select applications assigned to the user.</p>
+
+1. Sign in to PingFederate.
+
+	<%= image_tag '../images/pingfederate_sign_in.png' %>
+
+1. Navigate to and click the **Pivotal Cloud Foundry** application tile.
+
+	<%= image_tag '../images/pcf_app_tile.png' %>
+
+1. View the list of applications you have access to.
+
+	<%= image_tag '../images/where_to.png' %>
+
+## <a id="sso"></a>Test Your Single Sign-Off
+
+Test single sign-off to ensure that when users log out of the application, they are logged out of PingFederate as well.
+
+1. Sign into the sample application. Information about the access and ID token displays, as well as the “What do you want to do?” section.
+1. Under **What do you want to do?**, click **Log out**.
+
+	<%= image_tag '../images/what_do_you_want.png' %>
+
+1. Ensure that you are logged out and redirected to the PingFederate login page.
+
+	<%= image_tag '../images/pingfederate_sign_in.png' %>
+

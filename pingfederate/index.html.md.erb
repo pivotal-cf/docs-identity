@@ -1,0 +1,42 @@
+---
+title: PingFederate Integration Guide Overview
+owner: Identity Service
+---
+
+PingFederate is a federation server that provides identity management, single sign-on, and API security for the enterprise. This documentation describes how to configure a single sign-on partnership between PingFederate as the Identity Provider (IdP) and the Single Sign-On Service (SSO) for Pivotal Cloud Foundry&reg; as the Service Provider (SP). 
+
+SSO supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
+
+## <a id='prereqs'></a>Prerequisites
+
+To integrate PingFederate with Pivotal Cloud Foundry&reg; (PCF), you need:
+
+Pivotal 
+
+- PCF, version 1.7.0 or later.
+
+- Single Sign-On, version 1.1.0 or later.
+
+Ping
+
+- PingFederate
+
+- A user with Administrator privileges. 
+
+<p class="note"><strong>Note</strong>: To configure SAML, you must <%=vars.sso_plan_enabled%></p>
+
+## <a id='pingFederate'></a> PingFederate Integration Guide
+
+### Configuring PingFederate with SSO 
+Complete both steps below to integrate your deployment with PingFederate and SSO.
+
+1. [Configure PingFederate as an Identity Provider](config-pingfederate.html)
+
+1. [Configure a Single Sign-On Service Provider](config-sso.html)
+
+### Testing and Troubleshooting
+
+- [Testing](testing.html)
+
+- [Troubleshooting](troubleshooting.html)
+
