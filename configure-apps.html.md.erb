@@ -24,15 +24,12 @@ If your application authenticates end users, then your application type is `Web 
 
 <p class="note"><strong>Note</strong>: The Native Mobile App application type is intended only for highly trusted applications such as company owned and managed applications.</p>
 
+## <a id='optional'></a> Preconfigure an Application Hosted on PCF
 
-## <a id='bind'></a> Bind an Application Hosted on PCF
-
-1. Log into Apps Manager as a Space Developer.
-1. Select the space where your application is located.
-1. Under **Applications**, click the name of your application.
 1. Perform the following steps to add the `GRANT_TYPE` environment variable:
 	1. From the Application page, click the **Env Variables** tab.
 	2. Click **Add an Env Variable**.
+<<<<<<< 0a066167526e76f3399d70f6e007fe9cc719e379:bind-apps.html.md.erb
 	3. For **Variable Name**, enter `GRANT_TYPE`.
 	4. For **Value**, enter your application type. For example, `Single Page JavaScript App`. If you do not provide a `GRANT_TYPE` variable, the application type defaults to `Web App`.
 1. Click the **Services** tab.
@@ -47,8 +44,38 @@ If your application authenticates end users, then your application type is `Web 
 	<p class="note"><strong>Note</strong>: Add the <code>user_attributes</code> scope to the client scopes to return user attributes from the ID token.</p>
 	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single Page Javascript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 3. Under **Auto-Approved Scopes**, select which scopes should not require explicit authorization from the end user. Only scopes pertaining to company owned and managed applications should be selected. Do not select scopes that pertain to applications external to PCF.
+=======
+	3. For **Variable Name**, enter `GRANT_TYPE`. 
+	4. For **Value**, enter your application type. For example, `Single Page JavaScript App`. If you do not provide a `GRANT_TYPE` variable, the application type defaults to `Web App`. 
 
-1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
+## <a id='bind'></a> Bind an Application Hosted on PCF
+>>>>>>> Updating layout of information for binding and configuring apps.:configure-apps.html.md.erb
+
+1. Log into Apps Manager as a Space Developer.
+2. Select the space where your application is located.
+3. Under **Applications**, click the name of your application.
+4. Click the **Services** tab.
+5. Click **Bind a Service**.
+6. Bind your application to a service to create an associated OAuth Client.
+	 1. Select an existing service instance.
+	 	1. Select your SSO service instance from the dropdown menu and click **Bind**.
+	 1. Create a new service instance.
+	 	2. Click **or add from Marketplace**.
+		3. Select the **Single Sign-On** service under Services Marketplace.
+		4. Select a Service Plan and click **Select this plan**.
+		5. Enter an **Instance Name**, select a space, select an app and click **Add**.
+7. Click **Manage** under the SSO service instance to launch the SSO dashboard.
+8. Click your application.
+9. Enter an **App Launch URL** that will be the address of your application.
+10. Upload an app icon for your application.
+11. (Optional) Click **Show on homepage** to display the application on the UAA or Pivotal Account home page.
+	<p class="note"><strong>Note</strong>: If you would like application to be displayed on the home page, you must enter an **App Launch URL** or Upload an app icon.</p> 
+12. Select one or more **Identity Providers** for your application. Internal User Store is the default.
+13. Enter **Auth Redirect URIs**.
+14. Select **Scopes** or permissions that the application can request.
+15. Select any **Auto-Approved Scopes** that the app is automatically approved to request on behalf of a user.
+16. Click **Save Config**.
+	<p class="note"><strong>Note</strong>: **MANIFEST CONFIGS**</p>
 
 ## <a id='register'></a> Register an External Application
 
@@ -61,11 +88,20 @@ If your application authenticates end users, then your application type is `Web 
 1. Under **Identity Providers**, select **Internal User Store** or the name of your external identity provider. Internal User Store is the default.
 	<p class="note"><strong>Note</strong>: When registering an externally hosted application, a Space Developer can choose multiple internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except the Service-to-Service App.</p>
 
+<!-- ## <a id='configure'></a> Configure an Application
+
+1. Log into Apps Manager as a Space Developer.
+2. Select the space where your application is located.
+3. Click **Manage** under the SSO service instance to launch the SSO dashboard.
+4. Click your application.
+5. Under **Identity Providers**, select either **Internal User Store** or the name of your external identity provider. Internal User Store is the default.
+6. Click **Save Config**.
+
 1. If your Application Type is `Web App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
 2. Enter the **Scopes** that this application can request. This field defaults to `openid`. Scopes are permissions that the application requests on the user’s behalf. If this application is purely for authentication purposes, then the `openid` scope is sufficient. If the application makes API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
 	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single Page Javascript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 3. Under **Auto-Approved Scopes**, select which scopes should not require explicit authorization from the end user. Only scopes pertaining to company owned and managed applications should be selected. Do not select scopes that pertain to applications external to PCF.
-1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
+1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details. -->
 
 ## <a id="app-integration"></a>Application Integration
 
