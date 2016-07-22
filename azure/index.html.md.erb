@@ -1,15 +1,15 @@
 ---
-title: PingOne Cloud Integration Guide Overview
+title: Azure Active Directory Integration Guide Overview
 owner: Identity Service
 ---
 
-PingOne Cloud is an identity-as-a-service solution that delivers secure single sign-on to SaaS. legacy and web applications. This documentation describes how to configure a single sign-on partnership between PingOne Cloud as the Identity Provider (IdP) and the Single Sign-On Service (SSO) for Pivotal Cloud Foundry&reg; as the Service Provider (SP). 
+Azure Active Directory (Azure AD) is Microsoft's multi-tenant cloud based directory and identity management service. This documentation describes how to configure a single sign-on partnership between Azure AD as the Identity Provider (IdP) and the Single Sign-On Service (SSO) for Pivotal Cloud Foundry&reg; as the Service Provider (SP). 
 
 SSO supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
 
 ## <a id='prereqs'></a>Prerequisites
 
-To integrate PingOne Cloud with Pivotal Cloud Foundry&reg; (PCF), you need:
+To integrate Azure AD with Pivotal Cloud Foundry&reg; (PCF), you need:
 
 <strong>Pivotal</strong> 
 
@@ -17,20 +17,20 @@ To integrate PingOne Cloud with Pivotal Cloud Foundry&reg; (PCF), you need:
 
 - Single Sign-On, version 1.1.0 or later.
 
-<strong>PingOne Cloud</strong>
+<strong>Azure Active Directory</strong>
 
-- PingOne Cloud
+- Azure Active Directory subscription.
 
-- A user with Application Admin privileges. 
+- A user with admin privileges. 
 
 <p class="note"><strong>Note</strong>: To configure SAML, you must <%=vars.sso_plan_enabled%>.</p>
 
-## <a id='pingOne'></a> PingOne Cloud Integration Guide
+## <a id='azure'></a> Azure AD Integration Guide
 
-### Configuring PingOne Cloud with SSO 
-Complete both steps below to integrate your deployment with PingOne Cloud and SSO.
+### Configuring Azure AD with SSO 
+Complete both steps below to integrate your deployment with Azure AD and SSO.
 
-1. [Configure PingOne Cloud as an Identity Provider](config-pingone.html)
+1. [Configure Azure AD as an Identity Provider](config-azure.html)
 
 1. [Configure a Single Sign-On Service Provider](config-sso.html)
 
