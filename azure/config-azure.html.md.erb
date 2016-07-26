@@ -1,20 +1,20 @@
 ---
-title: Configure PingOne Cloud as an Identity Provider
+title: Configure Azure Active Directory as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up PingOne Cloud as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry&reg; (PCF) and PingOne Cloud. 
+This topic describes how to set up Azure Active Directory (AD) as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry&reg; (PCF) and Azure AD. 
 
 ## <a id='pcf'></a> Set up SAML in PCF
 
 1. Log into the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the dropdown menu.
 
-	<%= image_tag '../images/pingone_manage_id_providers.png' %>
+	<%= image_tag '../images/azure_manage_id_providers.png' %>
 
 1. Click **Configure SAML Service Provider**.
 
-	<%= image_tag '../images/pingone_config_saml_service_provider.png' %>
+	<%= image_tag '../images/azure_config_saml_service_provider.png' %>
 
 1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
 
@@ -26,36 +26,52 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 
 4. Click **Save**.
 
-## <a id='pingone'></a> Set up SAML in PingOne Cloud
+## <a id='azure'></a> Set up SAML in Azure Active Directory
 
-1. Sign in as a PingOne Cloud administrator.
+1. Sign into Azure AD at `https://manage.windowsazure.com` as an administrator.
 
-2. Navigate to your application by clicking on the **Applications** tab.
+2. Navigate to your application by clicking on your directory and the **Applications** tab.
 
-3. Click the **Add Application** button and choose **New SAML Application**.
+3. Click the **Add** button.
 
-	<%= image_tag '../images/saml_add_application.png' %>
+	<%= image_tag '../images/add_azure_application.png' %>
 
-1. Enter the **Application Name**, **Application Description**, **Category** and any **Graphics**.
+1. Select **Add an application my organization is developing**.
 
-2. Click the **Continue to Next Step** button to configure SAML.
+	<%= image_tag '../images/azure_developing_application.png' %>
 
-	<%= image_tag '../images/pingone_saml_config.png' %>
+1. Enter the **Name** and **Type** for the application.
 
-3. In the **Application Configuration** section, perform the following steps:
+	<%= image_tag '../images/azure_application_name.png' %>
 
-	1. Select **I have the SAML configuration**.
+2. Enter the **Sign-On URL** and **App ID URI** for the application.
 
-	2. For **SAML Metadata**, click **Download** to download the identity provider metadata.
+	<%= image_tag '../images/azure_application_properties.png' %>
 
-	3. For **Protocal Version**, select **SAML v 2.0**.
+3. Click the application and configure the following properties:
 
-	4. For **Upload Metadata**, click **Select File** and select the service provider metadata.
+	1. Enter the application **Name**.
+
+	2. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into **Sign-On URL**. For example, `https://AUTH-DOMAIN/saml/SSO/alias/AUTH-DOMAIN`.
+
+	3. Configure the application **Logo**, **Application is Multi-Tenant** and **User Assignment Required to Access App** properties.
+
+	4. Enter your `Auth Domain URL` into **App ID URI**.
 	
-	5. Click the **Continue to Next Step** button.
+	5. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into **Reply URL**.
 
-4. (Optional) Under **SSO Attribute Mapping**, specify any application or group attributes that you want to map to users in the ID token.
+	6. (Optional) If you want to enable user attribute mappings, grant the application the following permissions to Windows Azure Active Directory:
+	
+		1. Read directory data.
+		
+		2. Read all groups.
+		
+		3. Read all users' full profiles or Read all users' basic profiles.
 
-	<%= image_tag '../images/pingone_attribute_mapping.png' %>
+	<%= image_tag '../images/azure_application.png' %>
 
-5. Click the **Save \& Publish** button followed by the **Finish** button.
+5. Click the **Save** button.
+
+6. Click **View Endpoints** and download the **Federation Metadata Document**.
+
+	<%= image_tag '../images/azure_metadata.png' %>
