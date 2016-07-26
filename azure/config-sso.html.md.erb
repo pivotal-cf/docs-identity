@@ -7,10 +7,17 @@ This topic describes how to add an external identity provider to your Pivotal Si
 
 ##<a id='configure-metadata'></a> Configure Identity Provider Metadata
 
-1. Edit the Identity Provider Metadata file which is typically named `saml2-metadata-idp.xml`.
+Edit the Identity Provider Metadata file you downloaded, named `federationmetadata.xml`.
 
-- The Single Sign-On service requires that the Name ID Format is specified. Replace the following text: `<saml:Attribute NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic" Name="PingOne.idpid" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"/>` with: `<saml:Attribute NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic" Name="PingOne.idpid" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"/>
-<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>`
+1. Find and remove the 2 `RoleDescriptor` elements from the metadata:
+	
+	1. `<RoleDescriptor xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fed:ApplicationServiceType" protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">`
+			
+	2. `<RoleDescriptor xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fed:SecurityTokenServiceType" protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">`
+	
+
+2. The Single Sign-On service requires that the Name ID Format is specified. Replace the following text: `<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.microsoftonline.com/025c050a-9f19-4074-882f-4b522871e8c3/saml2" />` with: `<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.microsoftonline.com/025c050a-9f19-4074-882f-4b522871e8c3/saml2" />
+      <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>`
 
 
 ##<a id='set-up-saml'></a> Setting up SAML 
@@ -19,7 +26,7 @@ This topic describes how to add an external identity provider to your Pivotal Si
 
 2. Select your plan and click **Manage Identity Providers** on the dropdown menu.
 
-	<%= image_tag '../images/pingone_manage_id_providers.png' %>
+	<%= image_tag '../images/azure_manage_id_providers.png' %>
 
 3. Click **New Identity Provider** to create a new identity provider.
 
