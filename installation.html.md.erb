@@ -3,11 +3,11 @@ title: Installation
 owner: Identity Service
 ---
 
-This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundry&reg;.
+This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundry.
 
 ## <a id='pre-reqs'></a> Prerequisites
 
-* Pivotal Cloud Foundry&reg; ([Ops Manager](https://network.pivotal.io/products/ops-manager) and [Elastic Runtime](https://network.pivotal.io/products/elastic-runtime)) version 1.7 or later.
+* Pivotal Cloud Foundry ([Ops Manager](https://network.pivotal.io/products/ops-manager) and [Elastic Runtime](https://network.pivotal.io/products/elastic-runtime)) version 1.7 or later.
 
 * SSL Certificates.
 
@@ -39,10 +39,10 @@ You must update the SSL certificate for the domains listed below for each plan y
 
 ## <a id='configure'></a>Configure Application Security Groups
 
-The Single Sign-On service requires the following network connections: 
+The Single Sign-On service requires the following network connections:
 
 * TCP connection to load balancer(s) on port 443
 * TCP and UDP connection to Domain Name Servers on port 53
 * (Optional) TCP connection to your external identity provider on port 80 or 443
 
-To enable access to the Single Sign-On service, you must ensure your Application Security Group allows access to the load balancer(s) and domain name servers that provide access to Cloud Controller and UAA. Optionally, you can configure access to your external identity provider to receive SAML metadata. For more details on how to set up application security groups, see the [Application Security Groups](http://docs.pivotal.io/pivotalcf/1-7/adminguide/app-sec-groups.html) topic. 
+To enable access to the Single Sign-On service, you must ensure your Application Security Group allows access to the load balancer(s) and domain name servers that provide access to Cloud Controller and UAA. Optionally, you can configure access to your external identity provider to receive SAML metadata. For more details on how to set up application security groups, see the [Application Security Groups](http://docs.pivotal.io/pivotalcf/1-7/adminguide/app-sec-groups.html) topic.
