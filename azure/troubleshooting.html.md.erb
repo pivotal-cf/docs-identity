@@ -3,48 +3,35 @@ title: Troubleshooting
 owner: Identity Service
 ---
 
-This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between PingOne Cloud and Pivotal Single Sign-On (SSO).
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory and Pivotal Single Sign-On (SSO).
 
-##<a id='error'></a> Error
+##<a id='app_id'></a> App ID Not Found
 
 #### Symptom:
 
-<%= image_tag '../images/error_pingone.png' %>
+<%= image_tag '../images/azure_app_id.png' %>
 
 #### Explanations:
 
-- Single Sign-On is disabled on PingOne.
+- The App ID URI is misconfigured on Azure AD.
 
-- The service provider Entity ID is misconfigured on PingOne.
-
-- The identity provider Single Sign-On URL is misconfigured in the SSO plan settings.
-
-##<a id="uh-oh"></a> Something went amiss 
+##<a id="reply_url"></a> Reply URL Does Not Match
 
 #### Symptom:
 
-<%= image_tag '../images/something_went_amiss.png' %>
+<%= image_tag '../images/azure_reply_url.png' %>
 
 #### Explanation:
 
-- The service provider Assertion Consumer Service (ACS) is misconfigured on PingOne.
-
-##<a id="no-metadata"></a> Metadata Not Found
-
-#### Symptom:
-
-<%= image_tag '../images/pingone_error_metadata_not_found.png' %>
-
-#### Explanation:
-
-- The identity provider Entity ID is misconfigured in the SSO plan settings.
+- The Reply URL is misconfigured on Azure AD.
 
 ##<a id="missing-nameid"></a> Missing Name ID 
 
 #### Symptom:
 
-<%= image_tag '../images/pingone_missing_nameid.png' %>
+<%= image_tag '../images/azure_missing_nameid.png' %>
 
 #### Explanation:
 
-- The identity provider metadata is missing configurations for Name ID. See [Configure Identity Provider Metadata](config-sso.html#configure-metadata).
+- The identity provider metadata has the `RoleDescriptor` elements or is missing configurations for Name ID. See [Configure Identity Provider Metadata](config-sso.html#configure-metadata).
+
