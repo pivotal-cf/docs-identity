@@ -1,0 +1,37 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory and Pivotal Single Sign-On (SSO).
+
+##<a id='app_id'></a> App ID Not Found
+
+#### Symptom:
+
+<%= image_tag '../images/azure_app_id.png' %>
+
+#### Explanations:
+
+- The App ID URI is misconfigured on Azure AD.
+
+##<a id="reply_url"></a> Reply URL Does Not Match
+
+#### Symptom:
+
+<%= image_tag '../images/azure_reply_url.png' %>
+
+#### Explanation:
+
+- The Reply URL is misconfigured on Azure AD.
+
+##<a id="missing-nameid"></a> Missing Name ID 
+
+#### Symptom:
+
+<%= image_tag '../images/azure_missing_nameid.png' %>
+
+#### Explanation:
+
+- The identity provider metadata has the `RoleDescriptor` elements or is missing configurations for Name ID. See [Configure Identity Provider Metadata](config-sso.html#configure-metadata).
+
