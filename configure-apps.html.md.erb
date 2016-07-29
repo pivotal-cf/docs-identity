@@ -26,9 +26,79 @@ If your application authenticates end users, then your application type is `Web 
 
 ## <a id='optional'></a> Preconfigure an Application Hosted on PCF
 
+<<<<<<< bec3d978423ca639fa3e72ebf26aae96c7ede19a
 Follow the steps below to create environment variables that you can then set during a bind.
 
 ### Set Application Type:
+=======
+The following allows application developers to configure applications settings during bind.
+
+#### Set Application Type:
+
+- Option 1: Manually set the grant type environment variable by performing the following steps:
+	1. Log into Apps Manager at https://apps.YOUR-SYSTEM-DOMAIN.
+	2. Navigate to your application.
+	3. Click the **Env Variables** tab.
+	4. Click **Add an Env Variable**.
+	5. For **Variable Name**, enter `GRANT_TYPE`. 
+	6. For **Value**, enter the OAuth grant type for your application type. For example, if your application is a Single-Page JavaScript App, you would specify `implicit`.
+	7. Bind and restage your application.
+	
+- Option 2: Automatically set the grant type environment variable by including the following in your application manifest:
+
+<pre class="code">
+---
+applications:
+	- name: &ltApplication Name&gt
+   	  env:
+	      GRANT_TYPE: &ltOAuth Grant Type&gt
+</pre>
+
+<p class="note"><strong>Note</strong>: If you do not provide a `GRANT_TYPE`, the application type defaults to `Web App`.</p> 
+
+#### Set Identity Provider:
+	
+- Automatically set the identity providers by including the following in your application manifest:
+
+<pre class="code">
+---
+applications:
+	- name: &ltApplication Name&gt
+   	  env:
+		  SSO_IDENTITY_PROVIDERS: &ltComma separated list of identity providers&gt
+</pre>
+
+<p class="note"><strong>Note</strong>: If you do not provide any `SSO_IDENTITY_PROVIDERS`, the internal user store will be selected by default.</p> 
+
+## <a id='bind'></a> Bind an Application Hosted on PCF
+
+1. Log into Apps Manager as a Space Developer.
+2. Select the space where your application is located.
+3. Under **Applications**, click the name of your application.
+4. Click the **Services** tab.
+5. Click **Bind a Service**.
+6. Bind your application to a service to create an associated OAuth Client.
+	 1. Select an existing service instance.
+	 	1. Select your SSO service instance from the dropdown menu and click **Bind**.
+	 1. Create a new service instance.
+	 	2. Click **or add from Marketplace**.
+		3. Select the **Single Sign-On** service under Services Marketplace.
+		4. Select a Service Plan and click **Select this plan**.
+		5. Enter an **Instance Name**, select a space, select an app and click **Add**.
+7. Click **Manage** under the SSO service instance to launch the SSO dashboard.
+8. Click your application.
+9. Enter an **App Launch URL** that will be the address of your application.
+10. Upload an app icon for your application.
+11. Click **Show on homepage** to display the application on the UAA or Pivotal Account home page.
+	<p class="note"><strong>Note</strong>: If you would like application to be displayed on the home page, you must enter an **App Launch URL** or Upload an app icon.</p> 
+12. Select one or more **Identity Providers** for your application. Internal User Store is the default.
+<p class="note"><strong>Note</strong>: When registering an externally hosted application, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except the Service-to-Service App.</p>
+13. If your Application Type is `Web App` or `Single-Page Javascript App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
+14. Select **Scopes** or permissions that the application can request. This field defaults to `openid` for Web, Native Mobile and Single-Page Javascript Apps. This field defaults to `uaa.resource` for Service-to-Service Apps. Scopes are permissions that the application requests on the user’s behalf. If this application is purely for authentication purposes, then the `openid` scope is sufficient. If the application makes API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
+<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page Javascript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
+15. Select any **Auto-Approved Scopes** that the app is automatically approved to request on behalf of a user. Only scopes pertaining to company owned and managed applications should be selected. Do not select scopes that pertain to applications external to PCF.
+16. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
+>>>>>>> Refactored configure applications page.
 
 - **Option 1**: Set the grant type environment variable by performing the following steps:
 	1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN.`
@@ -41,6 +111,7 @@ Follow the steps below to create environment variables that you can then set dur
 	
 - **Option 2**: Set the grant type environment variable by including the following in your application manifest. If you choose this option, you do not have to configure environment variables after deploying your app.
 
+<<<<<<< bec3d978423ca639fa3e72ebf26aae96c7ede19a
 	<pre class="code">
 	---
 	applications:
@@ -62,11 +133,31 @@ applications:
    	  env:
 		  SSO_IDENTITY_PROVIDERS: COMMA SEPARATED LIST OF IDENTITY PROVIDERS
 </pre>
+=======
+1. Log into Apps Manager as a Space Developer.
+1. Select the space where your service instance is located.
+2. Under **Services**, click **Manage** next to your SSO service instance to launch the SSO dashboard.
+3. Click **New App**.
+4. Enter an **App Name**.
+5. Under **Select an Application Type**, select **Web App**, **Native Mobile App**, **Service-to-Service App**, or **Single-Page JavaScript App**.
+6. Enter an **App Launch URL** that will be the address of your application.
+7. Upload an app icon for your application.
+8. Click **Show on homepage** to display the application on the UAA or Pivotal Account home page.
+	<p class="note"><strong>Note</strong>: If you would like application to be displayed on the home page, you must enter an **App Launch URL** or Upload an app icon.</p> 
+9. Select one or more **Identity Providers** for your application. Internal User Store is the default.
+	<p class="note"><strong>Note</strong>: When registering an externally hosted application, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except the Service-to-Service App.</p>
+10. If your Application Type is `Web App` or `Single-Page Javascript App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
+11. Select **Scopes** or permissions that the application can request. This field defaults to `openid` for Web, Native Mobile and Single-Page Javascript Apps. This field defaults to `uaa.resource` for Service-to-Service Apps. Scopes are permissions that the application requests on the user’s behalf. If this application is purely for authentication purposes, then the `openid` scope is sufficient. If the application makes API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
+<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page Javascript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
+12. Select any **Auto-Approved Scopes** that the app is automatically approved to request on behalf of a user. Only scopes pertaining to company owned and managed applications should be selected. Do not select scopes that pertain to applications external to PCF.
+13. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
+>>>>>>> Refactored configure applications page.
 
 <p class="note"><strong>Note</strong>: If you do not provide any <code>SSO_IDENTITY_PROVIDERS</code>, the internal user store will be selected by default.</p> 
 
 ## <a id='bind'></a> Bind an Application Hosted on PCF
 
+<<<<<<< bec3d978423ca639fa3e72ebf26aae96c7ede19a
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your application runs.
 1. Under **Applications**, click the name of your application.
@@ -99,6 +190,9 @@ applications:
 <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user. Select only scopes pertaining to applications owned and managed by your company. Do not select scopes that pertain to applications external to PCF.
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Integrate SSO with Applications</a> section below for more details.
+=======
+If you are using Java, refer to the [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps). These are sample applications created using [Spring Boot](https://projects.spring.io/spring-boot/) for all four application types (`Web App`, `Native Mobile App`, `Single-Page Javascript App`, and `Service-to-Service App`). They use the SSO Service Connector, which auto-configures the application for OAuth. After binding the application to an SSO service instance, the user only has to restart the application for the new SSO configuration to take effect.
+>>>>>>> Refactored configure applications page.
 
 ## <a id='register'></a> Register an External Application
 
