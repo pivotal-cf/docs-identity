@@ -3,18 +3,18 @@ title: Configure Okta as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Okta as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry&reg; (PCF) and Okta. 
+This topic describes how to set up Okta as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry (PCF) and Okta.
 
 ## <a id='pcf'></a> Set up SAML in PCF
 
 1. Log into the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the dropdown menu.
 
-	<%= image_tag '../images/manage_id_providers.png' %>
+	<%= image_tag '../images/okta_manage_id_providers.png' %>
 
 1. Click **Configure SAML Service Provider**.
 
-	<%= image_tag '../images/config_saml_service_provider.png' %>
+	<%= image_tag '../images/okta_config_saml_service_provider.png' %>
 
 1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
 
@@ -40,7 +40,7 @@ This topic describes how to set up Okta as your identity provider by configuring
 
 2. Under SAML Settings, click the **Edit** button followed by the **Next** button to configure SAML.
 
-	<%= image_tag '../images/saml_config.png' %>
+	<%= image_tag '../images/okta_saml_config.png' %>
 
 3. In the **SAML Settings** section, perform the following steps:
 
@@ -53,11 +53,11 @@ This topic describes how to set up Okta as your identity provider by configuring
 	4. Select an **Application username**.
 
 4. (Optional) To configure single logout, perform the following steps:
-  
+
     1. Click **Show Advanced Settings**.
     2. For **Enable Single Logout**, select **Allow application** to initiate single logout.
     3. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into **Single Logout URL**.
-    4. Enter your Auth Domain URL into **SP Issuer**.
+    4. Enter your `Auth Domain URL` into **SP Issuer**.
     5. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service provider metadata.
 6. (Optional) Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map to users in the ID token.
 7. (Optional) Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you want to map to users in the ID token. This is a group that users are in within Okta.
