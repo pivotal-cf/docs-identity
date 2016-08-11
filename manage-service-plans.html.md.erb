@@ -3,9 +3,9 @@ title: Manage Service Plans
 owner: Identity Service
 ---
 
-This topic describes how Pivotal Cloud Foundry&reg; (PCF) Administrators create and delete Single Sign-On service plans.
+This topic describes how Pivotal Cloud Foundry&reg; (PCF) Administrators manage Single Sign-On service plans.
 
-Single Sign-On is a multi-tenant service, which enables a deployment to host multiple service plans. Each service plan corresponds to a tenant, which can represent multiple users. This lets enterprises segregate their tenants into separate plans. For example, the following tenants might require separate plans:
+Single Sign-On is a multi-tenant service, which enables a deployment to host multiple tenants as service plans. Each service plan can have its own administrators, applications and users. This lets enterprises segregate access by utilizing separate plans. For example, the following tenants might require separate plans:
 
 * Business units and geographical locations
 
@@ -17,7 +17,7 @@ Administrators can create new Single Sign-On service plans at any time from the 
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-You can use the SSO dashboard to create and configure service plans at any time. 
+You can use the SSO dashboard to create and configure service plans at any time.
 
 <p class="note"><strong>Note</strong>: You must create at least one plan for any service before your applications can use it.</p>
 
@@ -43,7 +43,7 @@ You can use the SSO dashboard to create and configure service plans at any time.
 
 ## <a id='delete-svc-plan'></a> Delete Service Plans
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+Log into the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
 2. Select the name of the plan you want to delete, and click **Edit Plan** in the dropdown menu.
 
@@ -52,3 +52,19 @@ You can use the SSO dashboard to create and configure service plans at any time.
 4. In the popup that appears, click **Delete Plan** to confirm that you want to delete the plan.
 
 <p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a Single Sign-On service plan removes from the SSO database all of the configurations, identity providers, users, application configurations and resources associated with the plan. It also deletes the associated service instances and service bindings. You must rebind any applications bound to the deleted service instances to new service instances.</p>
+
+## <a id='configure-token-policy'></a> Configure Token Policy
+
+Access tokens carry information about users and clients to servers that manage resources where it is decided whether the client is authorized or not. Access tokens typically have a short-lived expiration time. Refresh tokens carry information necessary to retrieve a new access token when an access token has expired. Refresh tokens typically have a longer expiration time than access tokens.
+
+The Single Sign-On service allows administrators to override the default expiry of access tokens (12 hours) and refresh tokens (30 days) by zone.
+
+1. Log into the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+
+2. Select the name of the plan you would like to configure token policy for, and click **Manage Token Policy** in the dropdown menu.
+
+3. Enter the number of seconds for **Access Token Expiration** or select **Use System Default**.
+
+4. Enter the number of seconds for **Refresh Token Expiration** or select **Use System Default**.
+
+5. Click **Save**.
