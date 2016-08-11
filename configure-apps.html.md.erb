@@ -90,6 +90,13 @@ applications:
 <p class="note"><strong>Note</strong>: When registering an externally hosted application, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except the Service-to-Service App.</p>
 13. If your Application Type is `Web App` or `Single-Page Javascript App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
 14. Select **Scopes** or permissions that the application can request. This field defaults to `openid` for Web, Native Mobile and Single-Page Javascript Apps. This field defaults to `uaa.resource` for Service-to-Service Apps. Scopes are permissions that the application requests on the user’s behalf. If this application is purely for authentication purposes, then the `openid` scope is sufficient. If the application makes API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
+
+	| Scope  | Description |
+	|-------------------|------------------------------|
+	| openid | Provides access to make OpenID Connect requests. |
+	| user_attributes | Provides access to custom attributes from an external identity provider. |
+	| roles | Provides access to external groups from an identity provider. |
+	| uaa.resource | Provides access to check_token endpoint for service-to-service flows. |
 <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page Javascript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 15. Select any **Auto-Approved Scopes** that the app is automatically approved to request on behalf of a user. Only scopes pertaining to company owned and managed applications should be selected. Do not select scopes that pertain to applications external to PCF.
 16. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
@@ -110,6 +117,13 @@ applications:
 	<p class="note"><strong>Note</strong>: When registering an externally hosted application, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except the Service-to-Service App.</p>
 10. If your Application Type is `Web App` or `Single-Page Javascript App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**. The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
 11. Select **Scopes** or permissions that the application can request. This field defaults to `openid` for Web, Native Mobile and Single-Page Javascript Apps. This field defaults to `uaa.resource` for Service-to-Service Apps. Scopes are permissions that the application requests on the user’s behalf. If this application is purely for authentication purposes, then the `openid` scope is sufficient. If the application makes API calls on behalf of the end user, you must specify both the scopes enforced by the API and the scopes to be requested by the application.
+
+	| Scope  | Description |
+	|-------------------|------------------------------|
+	| openid | Provides access to make OpenID Connect requests. |
+	| user_attributes | Provides access to custom attributes from an external identity provider. |
+	| roles | Provides access to external groups from an identity provider. |
+	| uaa.resource | Provides access to check_token endpoint for service-to-service flows. |
 <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page Javascript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 12. Select any **Auto-Approved Scopes** that the app is automatically approved to request on behalf of a user. Only scopes pertaining to company owned and managed applications should be selected. Do not select scopes that pertain to applications external to PCF.
 13. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Application Integration</a> section below for more details.
@@ -136,6 +150,34 @@ To validate the token, you must verify the following:
 3. The value of `iss` matches `https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token`.
 
 4. The expiry time of the token, `exp`, has not passed.
+
+## <a id='admin'></a> Create Admin Client
+
+An admin client can be created to perform administrative functions, such as management of identity providers, applications, users, groups and resources in a specific zone that the client is created in. 
+
+To create an admin client, complete the following steps:
+
+1. Log into Apps Manager.
+2. Select the space where your service instance is located for the zone you want to be the admin client to manage.
+3. Under **Services**, click the **Single Sign-On** service.
+4. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
+5. Click **New App**.
+6. Enter an **App Name**.
+7. Under **Select an Application Type**, select **Service-to-Service App**.
+8. Click **Select Scopes** and choose what actions the admin client can perform from the following **Admin Permissions**:
+
+	| Scope  | Description |
+	|-------------------|------------------------------|
+	| clients.admin | Provides superuser access to create, modify and delete clients. |
+	| clients.read | Provides access to read information about clients. |
+	| clients.write | Provides access to create and modify clients. |
+	| scim.create | Provides access to create users. |
+	| scim.read | Provides access to read information about users and group memberships. |
+	| scim.write | Provides access to create, modify, and delete users and group memberships. |
+	| idps.read | Provides access to read information about identity providers. |
+	| idps.write | Provides access to create, modify and delete identity providers. |
+
+9. Click **Create App**.
 
 ## <a id='delete'></a> Delete Application
 
