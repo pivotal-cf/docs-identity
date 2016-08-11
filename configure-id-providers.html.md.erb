@@ -44,10 +44,10 @@ The following steps describe how to use UAAC to add users to the Internal User S
 1. Target the auth domain of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
 1. Fetch the token for your Service Plan admin client created in Step 1.
-<pre class="terminal">$ uaac token client get <ADMIN_CLIENT_ID>
+<pre class="terminal">$ uaac token client get ADMIN-CLIENT-ID
 Client secret:
 </pre>
-1. When prompted with `Client secret`, enter the admin client secret.
+1. When prompted with `Client secret`, enter the admin client secret from Step 1.
 1. Add new users by providing the user's email address, username, and password.
 <pre class="terminal">$ uaac user add --emails YOUR-USER<span>@</span>EMAIL.COM
 User name:  YOUR-USER
