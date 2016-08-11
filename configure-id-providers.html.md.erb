@@ -25,54 +25,25 @@ For each plan, SSO provides an Internal User Store that manages users. As an alt
 
 You cannot add users to Service Plans from the SSO dashboard. In order to add users to the Internal User Store for a given Service Plan, you must use the UAA Command Line Interface (UAAC). If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
 
-The following steps describe how to use UAAC to add users to an Internal User Store.
+The following steps describe how to use UAAC to add users to the Internal User Store.
 
-### <a id="update-client"></a>Step 1: Client Registration
+### <a id="update-client"></a>Step 1: Admin Client Creation
 
-1. Target your system domain.
-<pre class="terminal">$ uaac target <span>https</span>://login.YOUR-SYSTEM-DOMAIN</pre>
-<p class="note"><strong>Note</strong>: If you do not have SSL configured, you can turn off SSL validation with <code>--skip-ssl-validation</code></p>
+1. Follow the steps to [create an admin client](configure-apps.html#admin) that can manage users in the Service Plan. Include the following scopes for the client:
+	- clients.admin
+	- scim.read
+	- scim.write
+2. Copy the **App ID** and **App Secret**. These will be used as your client ID and client secret.
 
-1. Fetch your admin client token.
-<pre class="terminal">$ uaac token client get admin
-Client secret:
-</pre>
-1. When prompted with `Client secret`, enter your **Admin Client Credentials** located in the **Credentials** tab of your **Pivotal Elastic Runtime** tile.
-1. Update client registrations for `identity` and add `password` as a supported authorization grant type.
-<pre class="terminal">$ uaac client update identity --authorized\_grant\_types "refresh\_token,password,client\_credentials,authorization\_code"
-</pre>
-
-### <a id="client-creation"></a>Step 2: Client Creation
-
-1. Target your system domain.
-<pre class="terminal">$ uaac target <span>https</span>://login.YOUR-SYSTEM-DOMAIN</pre>
-
-1. Use the identity client and the administrator user credentials to retrieve a token which allows client creation in a given identity zone.
-<pre class="terminal">$ uaac token owner get
-
-1. When prompted with `Client ID`, type `identity` and press enter.
-1. For `Client secret`, enter your **Identity Client Credentials**, located in the **Credentials** tab of your **Pivotal Elastic Runtime** tile.
-1. For `User name`, enter `Admin`.
-1. Enter your `Password`, which is located in the **Admin Credentials** under the **Credentials** tab of your **Pivotal Elastic Runtime** tile.
-</pre>
-
-1. Find the Identity Zone ID of your Service Plan by logging into the SSO dashboard, selecting **Edit Plan**, and copying the Identity Zone ID from the URL.
-<img src="images/sso_url.png">
-The highlighted text in the example URL above is the Identity Zone ID of the Service Plan.
-
-1. Execute the following command, replacing `YOUR-IDENTITY-ZONE-ID` with the Identity Zone ID of your Service Plan. You can also replace `service_plan_admin_client` with a different name for your client, and `secret` with a different client secret.
-<pre class="terminal">
-uaac curl -k -H"Accept:application/json" -H"Content-Type:application/json" -H"X-Identity-Zone-Id:YOUR-IDENTITY-ZONE-ID" -XPOST --data  '{"client\_id":"service\_plan\_admin\_client","client\_secret":"secret","authorized\_grant\_types":["client\_credentials"],"authorities":["scim.write","clients.admin","scim.read"]}' /oauth/clients</pre>
-
-### <a id="adding-users"></a>Step 3: User Creation
+### <a id="adding-users"></a>Step 2: User Creation
 
 1. Target the auth domain of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
-1. Fetch the token for your Service Plan admin client.
-<pre class="terminal">$ uaac token client get service\_plan\_admin\_client
+1. Fetch the token for your Service Plan admin client created in Step 1.
+<pre class="terminal">$ uaac token client get ADMIN-CLIENT-ID
 Client secret:
 </pre>
-1. When prompted with `Client secret`, enter the `secret` from the `uaac curl` command above.
+1. When prompted with `Client secret`, enter the admin client secret from Step 1.
 1. Add new users by providing the user's email address, username, and password.
 <pre class="terminal">$ uaac user add --emails YOUR-USER<span>@</span>EMAIL.COM
 User name:  YOUR-USER
