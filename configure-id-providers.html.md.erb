@@ -15,7 +15,11 @@ For each plan, SSO provides an Internal User Store that manages users. As an alt
 
 3. Click **Internal User Store**.
 
-4. Enter a **Description**.
+4. Under **Authentication Policy**, optionally select one of the following:
+	- **Disable Internal Authentication**: Select this option to prevent authentication against the internal user store. You must have at least one external identity provider configured.
+	<p class="note"><strong>Note</strong>: The login page does not include the <strong>Email</strong> and <strong>Password</strong> fields if you select this option.</p>
+	- **Disable User Management**: Select this option to prevent all users, including administrators, from performing actions on internal users.
+	<p class="note"><strong>Note</strong>: The login page does not include <strong>Create Account</strong> and <strong>Reset Password</strong> links if you select this option.</p>
 
 5. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**, or enter custom settings in the fields below.
 
@@ -25,15 +29,34 @@ For each plan, SSO provides an Internal User Store that manages users. As an alt
 
 Before completing the following steps, you must contact [Pivotal Support](https://support.pivotal.io/) to request a client for managing users, apps, and resources for your plan.
 
+<<<<<<< HEAD
 You cannot add users to Service Plans from the SSO dashboard. In order to add users to the Internal User Store for a given Service Plan, you must use the UAA Command Line Interface (UAAC). If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window. 
 
 1. Target the auth domain of your SSO service plan. You can find this URL by navigating to the service plan in the SSO dashboard and viewing the **Auth Domain** field.
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.run.pivotal.io</pre>
 1. Fetch the token for your Service Plan admin client.
 <pre class="terminal">$ uaac token client get service\_plan\_admin\_client
+=======
+The following steps describe how to use UAAC to add users to the Internal User Store.
+
+### <a id="update-client"></a>Step 1: Admin Client Creation
+
+1. Follow the steps to [create an admin client](configure-apps.html#admin) that can manage users in the Service Plan. Include the following scopes for the client:
+	- clients.admin
+	- scim.read
+	- scim.write
+2. Copy the **App ID** and **App Secret**. These will be used as your client ID and client secret.
+
+### <a id="adding-users"></a>Step 2: User Creation
+
+1. Target the auth domain of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
+<pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
+1. Fetch the token for your Service Plan admin client created in Step 1.
+<pre class="terminal">$ uaac token client get ADMIN-CLIENT-ID
+>>>>>>> 1.8
 Client secret:
 </pre>
-1. When prompted with `Client secret`, enter the `secret` from the `uaac curl` command above.
+1. When prompted with `Client secret`, enter the admin client secret from Step 1.
 1. Add new users by providing the user's email address, username, and password.
 <pre class="terminal">$ uaac user add --emails YOUR-USER<span>@</span>EMAIL.COM
 User name:  YOUR-USER
@@ -80,7 +103,7 @@ Administrators can define the password policy for SSO users that are stored in t
 
 ## <a id='config-sp-saml-settings'></a> Configure Service Provider SAML Settings
 
-For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider. 
+For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider.
 The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
 1. Log into the SSO dashboard at `https://p-identity.run.pivotal.io` using your administrator credentials.
@@ -113,13 +136,13 @@ The SSO service provides the ability to sign authentication requests and require
     * Option 1: Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
     * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include e-mail addresses, first or last names, or external groups. They will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service. 
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include e-mail addresses, first or last names, or external groups. They will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service.
 	* Select a **User Scheme Attribute** from the dropdown menu.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
 2. Configure any **Custom Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service.
 	* Enter a **Custom Attribute Name**.
-	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion. 
+	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
 3. Click **Create Identity Provider** to save the identity provider.
 

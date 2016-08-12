@@ -3,7 +3,7 @@ title: Configure PingFederate as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up PingFederate as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry&reg; (PCF) and PingFederate. 
+This topic describes how to set up PingFederate as your identity provider by configuring SAML integration in both Pivotal Web Services (PWS) and PingFederate.
 
 ## <a id='pcf'></a> Set up SAML in PCF
 
@@ -71,7 +71,7 @@ This topic describes how to set up PingFederate as your identity provider by con
 11. Select a **Subject Name Format** for the **SAML_SUBJECT** on the **Attribute Contract** tab and click **Next**.
 
 	<%= image_tag '../images/pingfederate_attribute_contract.png' %>
-	
+
 12. Click **Map New Adapter Instance** on the **Authentication Source Mapping** tab.
 
 13. Select an **Adapter Instance** and click **Next**. The adapter must include the user's email address.
@@ -85,7 +85,7 @@ This topic describes how to set up PingFederate as your identity provider by con
 15. Select your adapter instance as the **Source** and the email as the **Value** on the **Attribute Contract Fullfillment** tab and click **Next**.
 
 	<%= image_tag '../images/pingfederate_attribute_contract_fullfillment.png' %>
-	
+
 16. (Optional) Select any authorization conditions you would like on the **Issuance Criteria** tab and click **Next**.
 
 17. Click **Done** on the **Summary** tab.
@@ -123,7 +123,7 @@ This topic describes how to set up PingFederate as your identity provider by con
 29. Select the **Signing Certificate** to use with the Single Sign-On service and select **Include the certificate in the signature <keyinfo> element**. Click **Next**.
 
 	<%= image_tag '../images/pingfederate_digital_signature.png' %>
-	
+
 30. Click **Done** on the **Summary** tab.
 
 31. Click **Next** on the **Credentials** tab.
