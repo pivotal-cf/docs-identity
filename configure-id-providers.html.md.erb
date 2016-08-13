@@ -29,14 +29,8 @@ For each plan, SSO provides an Internal User Store that manages users. As an alt
 
 Before completing the following steps, you must contact [Pivotal Support](https://support.pivotal.io/) to request a client for managing users, apps, and resources for your plan.
 
-<<<<<<< HEAD
 You cannot add users to Service Plans from the SSO dashboard. In order to add users to the Internal User Store for a given Service Plan, you must use the UAA Command Line Interface (UAAC). If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window. 
 
-1. Target the auth domain of your SSO service plan. You can find this URL by navigating to the service plan in the SSO dashboard and viewing the **Auth Domain** field.
-<pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.run.pivotal.io</pre>
-1. Fetch the token for your Service Plan admin client.
-<pre class="terminal">$ uaac token client get service\_plan\_admin\_client
-=======
 The following steps describe how to use UAAC to add users to the Internal User Store.
 
 ### <a id="update-client"></a>Step 1: Admin Client Creation
@@ -53,7 +47,6 @@ The following steps describe how to use UAAC to add users to the Internal User S
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
 1. Fetch the token for your Service Plan admin client created in Step 1.
 <pre class="terminal">$ uaac token client get ADMIN-CLIENT-ID
->>>>>>> 1.8
 Client secret:
 </pre>
 1. When prompted with `Client secret`, enter the admin client secret from Step 1.
