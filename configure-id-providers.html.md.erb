@@ -31,7 +31,7 @@ You cannot add users to Service Plans from the SSO dashboard. In order to add us
 
 The following steps describe how to use UAAC to add users to the Internal User Store.
 
-### <a id="update-client"></a>Step 1: Admin Client Creation
+### <a id="update-client"></a>Step 1: Create an Admin Client
 
 1. Follow the steps to [create an admin client](configure-apps.html#admin) that can manage users in the Service Plan. Include the following scopes for the client:
 	- clients.admin
@@ -39,11 +39,11 @@ The following steps describe how to use UAAC to add users to the Internal User S
 	- scim.write
 2. Copy the **App ID** and **App Secret**. These will be used as your client ID and client secret.
 
-### <a id="adding-users"></a>Step 2: User Creation
+### <a id="adding-users"></a>Step 2: Create Users
 
 1. Target the auth domain of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
-1. Fetch the token for your Service Plan admin client created in Step 1.
+1. Fetch the token for the admin client created in Step 1.
 <pre class="terminal">$ uaac token client get ADMIN-CLIENT-ID
 Client secret:
 </pre>
