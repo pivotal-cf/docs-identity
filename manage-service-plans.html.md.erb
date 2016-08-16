@@ -3,9 +3,9 @@ title: Manage Service Plans
 owner: Identity Service
 ---
 
-This topic describes how Pivotal Cloud Foundry&reg; (PCF) Administrators manage Single Sign-On service plans.
+This topic describes how Pivotal Cloud Foundry (PCF) Administrators manage Single Sign-On service plans.
 
-Single Sign-On is a multi-tenant service, which enables a deployment to host multiple tenants as service plans. Each service plan can have its own administrators, applications and users. This lets enterprises segregate access by utilizing separate plans. For example, the following tenants might require separate plans:
+Single Sign-On is a multi-tenant service, which enables a deployment to host multiple tenants as service plans. Each service plan can have its own administrators, applications and users. This lets enterprises segregate access by using separate plans. For example, the following tenants might require separate plans:
 
 * Business units and geographical locations
 
@@ -43,7 +43,7 @@ You can use the SSO dashboard to create and configure service plans at any time.
 
 ## <a id='delete-svc-plan'></a> Delete Service Plans
 
-Log into the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
 2. Select the name of the plan you want to delete, and click **Edit Plan** in the dropdown menu.
 
@@ -55,11 +55,11 @@ Log into the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your U
 
 ## <a id='configure-token-policy'></a> Configure Token Policy
 
-Access tokens carry information about users and clients to servers that manage resources where it is decided whether the client is authorized or not. Access tokens typically have a short-lived expiration time. Refresh tokens carry information necessary to retrieve a new access token when an access token has expired. Refresh tokens typically have a longer expiration time than access tokens.
+_Access tokens_ carry information about users and clients to servers that manage resources. Servers use access tokens to determine whether the client is authorized or not. Access tokens typically have a short-lived expiration time. _Refresh tokens_ carry information necessary to retrieve a new access token after an existing access token expires. Refresh tokens typically have a longer expiration time than access tokens.
 
-The Single Sign-On service allows administrators to override the default expiry of access tokens (12 hours) and refresh tokens (30 days) by zone.
+<p class="note"><strong>Note</strong>: The Single Sign-On service allows administrators to override the default expiry of access tokens (12 hours) and refresh tokens (30 days) by zone.</p>
 
-1. Log into the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
 2. Select the name of the plan you would like to configure token policy for, and click **Manage Token Policy** in the dropdown menu.
 
