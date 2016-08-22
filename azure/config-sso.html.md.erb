@@ -18,6 +18,10 @@ Edit the Identity Provider Metadata file you downloaded, named `federationmetada
 
 2. The Single Sign-On service requires that the Name ID Format is specified. Replace the following text: `<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.microsoftonline.com/025c050a-9f19-4074-882f-4b522871e8c3/saml2" />` with: `<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.microsoftonline.com/025c050a-9f19-4074-882f-4b522871e8c3/saml2" />
       <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>`
+	  
+3. The Single Sign-On service does not support DOS file format imports. Convert the file in one of the following ways:
+	- Option 1: Execute `dos2unix` on the metadata file.
+	- Option 2: Create a unix file, and copy and paste the contents from the downloaded metadata file to the newly created file.
 
 ##<a id='set-up-saml'></a> Setting up SAML 
 
