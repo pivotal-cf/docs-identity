@@ -5,7 +5,7 @@ owner: Identity Service
 
 This topic describes how to set up CA Single Sign-On as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry (PCF) and CA Single Sign-On.
 
-## <a id='pcf'></a> Set up SAML in CA Single Sign-On
+## <a id='pcf'></a> Set up SAML in PCF
 
 1. Log into the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the dropdown menu.
@@ -26,36 +26,132 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 
 4. Click **Save**.
 
-## <a id='pingone'></a> Set up SAML in CA Single Sign-On
+## <a id='ca'></a> Set up SAML in CA Single Sign-On
 
 1. Sign in as a CA Single Sign-On administrator.
 
-2. Navigate to your application by clicking on the **Applications** tab.
+2. Click the **Federation** tab.
 
-3. Click the **Add Application** button and choose **New SAML Application**.
+3. Click on the **Entities** link.
+
+4. Click the **Create Entity** button and perform the following steps:
+	
+	1. Select **Local** for **Entity Location**.
+	
+	2. Select **SAML2 IDP** for **New Entity Type**.
+	
+	3. Click the **Next** button.
 
 	<%= image_tag '../images/saml_add_application.png' %>
 
-1. Enter the **Application Name**, **Application Description**, **Category** and any **Graphics**.
+5. In the **Entities** section, perform the following steps:
 
-2. Click the **Continue to Next Step** button to configure SAML.
+	1. Enter an **Entity ID**.
 
+	2. Enter an **Entity Name**.
+	
+	3. Enter a **Description**.
+	
+	4. Enter the fully-qualified domain name for your CA Single Sign-On as the **Base URL**.
+
+	5. Select or import a **Signing Private Key Alias**.
+
+	6. Select a **NameID format**.
+
+	7. Click the **Next** button.
+	
 	<%= image_tag '../images/pingone_saml_config.png' %>
 
-3. In the **Application Configuration** section, perform the following steps:
+6. Confirm the Entity Details and click the **Finish** button.
 
-	1. Select **I have the SAML configuration**.
+1. Click the **Federation** tab.
 
-	2. For **SAML Metadata**, click **Download** to download the identity provider metadata.
+2. Click on the **Entities** link.
 
-	3. For **Protocal Version**, select **SAML v 2.0**.
+3. Click the **Import Metadata** button and perform the following steps:
+	
+	1. Click **Browse** and select the downloaded metadata for **Metadata file**.
+	
+	2. Select **Removte Entity** for **Import As**.
+	
+	3. Select **Create New** for **Operation**.
+	
+	4. Click the **Next** button.
 
-	4. For **Upload Metadata**, click **Select File** and select the service provider metadata.
+	<%= image_tag '../images/saml_add_application.png' %>
 
-	5. Click the **Continue to Next Step** button.
+4. In the **Select Entity Defined in Metadata File** section, perform the following steps:
 
-4. (Optional) Under **SSO Attribute Mapping**, specify any application or group attributes that you want to map to users in the ID token.
+	1. Enter an **Entity Name**.
 
-	<%= image_tag '../images/pingone_attribute_mapping.png' %>
+	2. Click the **Next** button.
+	
+	<%= image_tag '../images/pingone_saml_config.png' %>
+	
+5. In the **Select Key Entries to Import** section, perform the following steps:
 
-5. Click the **Save \& Publish** button followed by the **Finish** button.
+	1. Enter an **Alias**.
+	
+	2. Click the **Next** button.
+
+6. Confirm the Entity Details and click the **Finish** button.
+
+1. Click on the **Federation** tab.
+
+2. Click **Create Partnership** and select **SAML2 IDP -> SP**.
+
+3. In the **Configure Partnership** section, perform the following steps:
+
+	1. Enter a **Partnership Name**.
+	
+	2. Enter a **Description**.
+	
+	3. Select a previously created local entity for **Local IDP**.
+	
+	4. Select a previously created remote entity for **Remote SP**.
+	
+	5. Enter a **Skew Time**.
+	
+	6. Add any **User Directories**.
+	
+	7. Click the **Next** button.
+	
+4. Configure **Fedaration Users** by adding the users you want to include in the partnership and click **Next**.
+
+5. In the **Assertion Configuration** section, perform the following steps:
+
+	1. Select a **Name ID Format**.
+	
+	2. Select **User Attribute** as the **Name ID Type**.
+	
+	3. Enter `mail` as the **Value**.
+	
+	4. (Optional) Under **Assertion Attributes**, specify any application or group attributes that you want to map to users in the ID token.
+
+		<%= image_tag '../images/pingone_attribute_mapping.png' %>
+		
+	5. Click the **Next** button.
+	
+6. In the **SSO and SLO** section, perform the following steps:
+
+	1. Enter the **Authentication URL**.
+	
+	2. Select **HTTP-Post** for **SSO Binding**.
+	
+	3. Select **Both IDP and SP initiated** for **Transactions Allowed**.
+	
+	4. Click the **Next** button.
+	
+7. In the **Signature and Encryption** section, perform the following steps:
+
+	1. Select your key alias for **Signing Private Key Alias**.
+	
+	2. Slelct your certificate alias for **Verification Certificate Alias**.
+	
+	3. Click the **Next** button.
+	
+8. Confirm the Partnership Details and click the **Finish** button.
+
+9. Click the **Action** button and click **Activate**.
+
+10. Click the **Action** button and click **Export Metadata**.
