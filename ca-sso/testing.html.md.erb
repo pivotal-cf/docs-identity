@@ -3,7 +3,7 @@ title: Testing
 owner: Identity Service
 ---
 
-This topic describes how an administrator can test the connection between SSO and PingOne Cloud. An administrator can test both service provider and identity provider connections.
+This topic describes how an administrator can test the connection between SSO and CA Single Sign-On. An administrator can test both service provider and identity provider connections.
 
 ## <a id="service-provider"></a>Test Your Service Provider Connection
 
@@ -13,15 +13,15 @@ This topic describes how an administrator can test the connection between SSO an
 
 	<%= image_tag '../images/click_service.png' %>
 	
-	<%= image_tag '../images/pingone_click_manage.png' %>
+	<%= image_tag '../images/ca_sso_click_manage.png' %>
 
 1. Under the **Apps** tab, click your application.
 
-	<%= image_tag '../images/pingone_select_authcode_app_tile.png' %>
+	<%= image_tag '../images/ca_sso_select_authcode_app_tile.png' %>
 
-1. Under **Identity Providers**, select the PingOne identity provider.
+1. Under **Identity Providers**, select the CA Single Sign-On identity provider.
 
-	<%= image_tag '../images/click_pingone_pcf.png' %>
+	<%= image_tag '../images/click_ca_sso_pcf.png' %>
 
 1. Return to Apps Manager and click on the URL below your application to be redirected to the identity provider to authenticate.
 
@@ -47,7 +47,7 @@ This topic describes how an administrator can test the connection between SSO an
 
 <p class="note"><strong>Note</strong>: SSO does not support identity provider-initiated flow into applications, but it does redirect the user to the User Account and Authentication (UAA) page to select applications assigned to the user.</p>
 
-1. Sign in to PingOne.
+1. Sign in to CA Single Sign-On.
 
 	<%= image_tag '../images/pingone_sign_in.png' %>
 
@@ -59,7 +59,7 @@ This topic describes how an administrator can test the connection between SSO an
 
 ## <a id="sso"></a>Test Your Single Sign-Off
 
-Test single sign-off to ensure that when users log out of the application, they are logged out of PingOne as well.
+Test single sign-off to ensure that when users log out of the application, they are logged out of CA Single Sign-On as well.
 
 1. Sign into the sample application. Information about the access and ID token displays, as well as the “What do you want to do?” section.
 1. Under "What do you want to do?", click **Log out**.
