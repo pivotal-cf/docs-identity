@@ -3,9 +3,9 @@ title: Configure Identity Providers
 owner: Identity Service
 ---
 
-This topic describes how administrators can use an Internal User Store or an external identity provider to manage user access to a Single Sign-On (SSO) service plan.
+This topic describes how administrators can use an internal user store or an external identity provider to manage user access to a Single Sign-On (SSO) service plan.
 
-For each plan, SSO provides an Internal User Store that manages users. As an alternative to the Internal User Store, administrators can use an external identity provider to allow users who are externally managed to access applications.
+For each plan, SSO provides an internal user store that manages users. As an alternative to an internal user store, administrators can use an external identity provider to allow users who are externally managed to access applications.
 
 ## <a id='config-int-store'></a> Configure Internal User Store
 
@@ -27,9 +27,9 @@ For each plan, SSO provides an Internal User Store that manages users. As an alt
 
 ## <a id='add-to-int'></a> Add Users to the Internal User Store
 
-You cannot add users to Service Plans from the SSO dashboard. In order to add users to the Internal User Store for a given Service Plan, you must use the UAA Command Line Interface (UAAC). If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
+You cannot add users to Service Plans from the SSO dashboard. In order to add users to the internal user store for a given Service Plan, you must use the UAA Command Line Interface (UAAC). If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
 
-The following steps describe how to use UAAC to add users to the Internal User Store.
+The following steps describe how to use UAAC to add users to the internal user store.
 
 ### <a id="update-client"></a>Step 1: Create an Admin Client
 
@@ -37,7 +37,7 @@ The following steps describe how to use UAAC to add users to the Internal User S
 	- clients.admin
 	- scim.read
 	- scim.write
-2. Copy the **App ID** and **App Secret**. These will be used as your client ID and client secret.
+2. Record the **App ID** and **App Secret**. These will be used as your client ID and client secret.
 
 ### <a id="adding-users"></a>Step 2: Create Users
 
@@ -70,7 +70,7 @@ To add a member to your new group, use the following command.
 
 ## <a id='passwd-policy'></a> Define Password Policy for the Internal User Store
 
-Administrators can define the password policy for SSO users that are stored in the Internal User Store. The Internal User Store password policy allows you to define and enforce password rules to manage the kind of passwords users can create.
+Administrators can define the password policy for SSO users that are stored in the internal user store. The internal user store password policy allows you to define and enforce password rules to manage the kind of passwords users can create.
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
