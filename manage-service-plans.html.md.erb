@@ -43,7 +43,7 @@ You can use the SSO dashboard to create and configure service plans at any time.
 
 ## <a id='delete-svc-plan'></a> Delete Service Plans
 
-1. Log in to the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
 2. Select the name of the plan you want to delete, and click **Edit Plan** in the dropdown menu.
 
@@ -53,15 +53,15 @@ You can use the SSO dashboard to create and configure service plans at any time.
 
 <p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a Single Sign-On service plan removes from the SSO database all of the configurations, identity providers, users, application configurations and resources associated with the plan. It also deletes the associated service instances and service bindings. You must rebind any applications bound to the deleted service instances to new service instances.</p>
 
-## <a id='configure-token-policy'></a> Configure Token Policy
+## <a id='configure-token-policy'></a> Configure a Token Policy
 
 _Access tokens_ carry information about users and clients to servers that manage resources. Servers use access tokens to determine whether the client is authorized or not. Access tokens typically have a short-lived expiration time. _Refresh tokens_ carry information necessary to retrieve a new access token after an existing access token expires. Refresh tokens typically have a longer expiration time than access tokens.
 
 <p class="note"><strong>Note</strong>: The Single Sign-On service allows administrators to override the default expiry of access tokens (12 hours) and refresh tokens (30 days) by zone.</p>
 
-1. Log in to the SSO dashboard at https://p-identity.YOUR-SYSTEM-DOMAIN using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
-2. Select the name of the plan you would like to configure token policy for, and click **Manage Token Policy** in the dropdown menu.
+2. Select the name of the plan you would like to configure a token policy for, and click **Manage Token Policy** in the dropdown menu.
 
 3. Enter the number of seconds for **Access Token Expiration** or select **Use System Default**.
 
