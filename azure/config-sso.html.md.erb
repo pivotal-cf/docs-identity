@@ -39,6 +39,12 @@ Edit the Identity Provider Metadata file you downloaded, named `federationmetada
 	1. Enter an identity provider name into **Identity Provider Name**.
 	2. (Optional) Enter a description into **Identity Provider Description**.
 	3. Click **SAML File Metadata (optional)** follwed by clicking the **Upload Identity Provider Metadata** button to upload your metadata XML.
+	<div class="note"><strong>Note</strong>: The Single Sign-On does not support DOS file format imports. Convert the file in one of the following ways:<br><br>
+		<ul>
+			<li>Option 1: Execute `dos2unix` on the metadata file.</li>
+			<li>Option 2: Create a Unix file, then copy and paste the contents from the downloaded metadata file to the newly created file.</li>
+		</ul>
+	</div>
 	4. (Optional) Under **Advanced SAML Settings**, click **Attribute Mappings** to enter the mappings.
 
 1. Click **Create Identity Provider**.
