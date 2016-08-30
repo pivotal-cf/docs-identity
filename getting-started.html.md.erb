@@ -15,7 +15,7 @@ This topic outlines the steps for accessing and configuring the Single Sign-On s
 
 1. [Configure an identity provider](./configure-id-providers.html). In addition to the [Internal User Store](./configure-id-providers.html#config-int-store), you can configure [external identity providers](./configure-id-providers.html#config-ext-prov) to provide single sign-on to applications. External identity providers must support SAML 2.0.
 
-1. [Configure your applications](./configure-apps.html). Single Sign-On supports both Pivotal Cloud Foundry-hosted applications as well as externally hosted applications. Your applications must be able to request an OAuth or OpenID Connect token.
+1. [Register your applications](./bind-apps.html). Single Sign-On supports both Pivotal Web Services-hosted applications as well as externally hosted applications. Your applications must be able to request an OAuth or OpenID Connect token.
 
 1. [Create resources for your applications](./manage-resources.html#create-resources). If your registered applications need to make external API calls, you can assign the API endpoints as resources permitted for the application. This will whitelist the endpoints for use by the application or client.
 
@@ -31,4 +31,3 @@ A user's role determines which parts of an SSO configuration it can manage. SSO 
   <tr><th>Applications</th><td>X</td><td>X</td><td>X</td></tr>
   <tr><th>Resources</th><td>X</td><td>X</td><td>X</td></tr>
 </table>
-
