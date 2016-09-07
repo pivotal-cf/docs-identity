@@ -123,6 +123,7 @@ applications:
 	| `user_attributes` | Provides access to custom attributes from an external identity provider |
 	| `roles` | Provides access to external groups from an identity provider |
 	| `uaa.resource` | Provides access to check_token endpoint for service-to-service flows |
+<p class="note"><strong>Note</strong>: Add the <code>user_attributes</code> scope to the client scopes to return user attributes from the ID token.</p>
 <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user. Select only scopes pertaining to applications owned and managed by your company. Do not select scopes that pertain to applications external to PCF.
 1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Integrate SSO with Applications</a> section below for more details.
