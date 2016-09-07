@@ -3,11 +3,40 @@ title: Single Sign-On Overview
 owner: Identity Service
 ---
 
-This documentation describes accessing and configuring the Single Sign-On service.
+This topic provides an overview of the [Single Sign-On](https://network.pivotal.io/products/p-identity) service for Pivotal Web Services (PWS).
 
-The Single Sign-On service enables Pivotal Web Services users to authenticate with an external identity provider rather than having to create a new account or re-enter credentials. Single Sign-On grants users centralized access to applications in various spaces.
+The Single Sign-On service is an all-in-one solution for securing access to applications and APIs on PWS. The Single Sign-On service provides support for native authentication, federated single sign-on, and authorization. Operators can configure native authentication and federated single sign-on, for example SAML,to verify the identities of application users. After authentication, the Single Sign-On service uses OAuth 2.0 to secure resources or APIs. 
 
-The Single Sign-On service also lets administrators use an external identity provider to manage all user access.
+### Single Sign-On
+
+The Single Sign-On service allows users to log in through a single sign-on service and access other applications that are hosted or protected by the service. This improves security and productivity since users do not have to log in to individual applications.
+
+Developers are responsible for selecting the authentication method for application users. They can select a native authentication provided by the UAA or an external identity provider.
+
+### OAuth 2.0 Concepts
+
+After authentication, the Single Sign-On service uses OAuth 2.0 for authorization of applications and resources. The following describes the roles in an OAuth 2.0 scenario:
+
+- **Resource Owner**: A person or system capable of granting access to a protected resource.
+- **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Applications access the server through APIs.
+- **Applications**: A client that makes protected requests using the authorization of the resource owner.
+- **Authorization Server**: The Single Sign-On server that issues access tokens to client applications after successfully authenticating the resource owner.
+
+### OAuth 2.0 Example Flow
+
+The flow below shows an example of an authenticated user who is attempting to access a to-do list application. This application is backed by a resource server and both are secured by the UAA authorization server.
+
+<%= image_tag 'images/oauth_auth_code.png' %>
+
+1. **Authorization Request**: The first time the user accesses the application, the application requests authorization to access the user's to-do items. 
+2. **User Authorizes Application**: The application requests access to the user's to-do items. The user clicks **Yes** to authorize the application to access their items.
+3. **Authorization Code Grant**: After the user authorizes the to-do list app, the authorization server sends an authorization code.
+4. **Access Token Request**: The application receives the authorization code and requests an access token from the authorization server. This gives the application access to the user's to-do items.
+5. **Issue Access Token**: The authorization server validates the authorization code and issues an access token.
+6. **Resource Request w/ Access Token**: The to-do list application requests the resource from the resource server through API and presents the access token.
+7. **Return Resource**: If the access token is valid, the resource server returns the to-do items that the user authorized the application to receive.
+
+The resource server runs in PWS under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Applications can then access these resources on behalf of users.
 
 <p class="note"><strong>Note</strong>: This service is only available to users of Pivotal Web Services with <a href="http://pivotal.io/support/offerings">Enterprise support</a>.</p>
 
