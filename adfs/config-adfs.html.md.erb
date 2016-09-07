@@ -108,6 +108,6 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 	1. Open **Windows Powershell** as an Administrator.
 	
-	2. Execute the following command: <pre class="terminal">> set-ADFSClaimsProviderTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
+	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
 
 4. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**.
