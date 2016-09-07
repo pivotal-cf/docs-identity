@@ -1,0 +1,113 @@
+---
+title: Configure Active Directory Federation Services as an Identity Provider
+owner: Identity Service
+---
+
+This topic describes how to set up Active Directory Federation Services (AD FS) as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry (PCF) and AD FS.
+
+## <a id='pcf'></a> Set up SAML in PCF
+
+1. Log in to the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
+1. Select your plan and click **Manage Identity Providers** on the dropdown menu.
+
+	<%= image_tag '../images/adfs_manage_id_providers.png' %>
+
+1. Click **Configure SAML Service Provider**.
+
+	<%= image_tag '../images/adfs_config_saml_service_provider.png' %>
+
+1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
+
+	<%= image_tag '../images/saml_auth_checkbox.png' %>
+
+2. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
+
+3. Click **Download Metadata** to download the service provider metadata.
+
+4. Click **Save**.
+
+## <a id='adfs'></a> Set up SAML in Active Directory Federation Services
+
+1. Open the **AD FS Management** console.
+
+2. Click **Add Relying Party Trust...** in the Actions pane.
+
+3. On the Welcome step, click **Start**.
+
+	<%= image_tag '../images/adfs_add_relying_party.png' %>
+
+2. Select **Import data about the relying party from a file**, enter the path to the downloaded service provider metadata, and click **Next**.
+
+	<%= image_tag '../images/adfs_import_metadata.png' %>
+
+3. Enter a name for **Display name** and click **Next**.
+
+	<%= image_tag '../images/adfs_display_name.png' %>
+
+4. Leave the default multi-factor authentication selection and click **Next**.
+
+	<%= image_tag '../images/adfs_mfa.png' %>
+
+5. Select **Permit all users to access this relying party** and click **Next**.
+
+	<%= image_tag '../images/adfs_permit_users.png' %>
+
+6. Review your settings and click **Next**.
+
+7. Click **Close** to finish the wizard.
+
+8. The claim rule editor should open by default. If it does not, select your Relying Party Trust and click **Edit Claim Rules...** in the Actions pane.
+
+9. Create two claim rules by following these steps:
+
+	1. Click **Add Rule**.
+
+	2. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
+	
+		<%= image_tag '../images/adfs_ldap_claims.png' %>
+
+	3. Enter a **Claim rule name**.
+	
+	4. Select **Active Directory** for **Attribute store**.
+	
+	5. Select **E-Mail-Addresses** for **LDAP Attribute** and select **E-mail Address** for **Outgoing Claim Type**.
+	
+	6. Click **Finish**.
+	
+		<%= image_tag '../images/adfs_ldap_claim_mappings.png' %>
+		
+	1. Click **Add Rule**.
+
+	2. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
+	
+		<%= image_tag '../images/adfs_transform_claims.png' %>
+
+	3. Enter a **Claim rule name**.
+	
+	4. Select **E-Mail Address** for **Incoming claim type**.
+	
+	5. Select **Name ID** for **Outgoing claim type**
+	
+	6. Select **Email** for **Outgoing name ID format**.
+	
+	6. Click **Finish**.
+	
+		<%= image_tag '../images/adfs_transform_claim_mappings.png' %>
+
+10. Double-click on the new Relying Party Trust to open the properties.
+
+11. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
+
+	<%= image_tag '../images/adfs_remove_cert.png' %>
+
+12. Select the **Advanced** tab and select **SHA-1** for the **Secure hash algorithm**.
+
+	<%= image_tag '../images/adfs_sha1.png' %>
+	
+13. (Optional) If you are using a self-signed certificate and want to disable CRL checks, follow these steps:
+
+	1. Open **Windows Powershell** as an Administrator.
+	
+	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
+
+4. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**.
