@@ -10,11 +10,11 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 1. Log into the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the dropdown menu.
 
-	<%= image_tag '../images/pingone_manage_id_providers.png' %>
+	<%= image_tag '../images/ca_sso_manage_id_providers.png' %>
 
 1. Click **Configure SAML Service Provider**.
 
-	<%= image_tag '../images/pingone_config_saml_service_provider.png' %>
+	<%= image_tag '../images/ca_sso_config_saml_service_provider.png' %>
 
 1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
 
@@ -42,8 +42,6 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	
 	3. Click the **Next** button.
 
-	<%= image_tag '../images/saml_add_application.png' %>
-
 5. In the **Entities** section, perform the following steps:
 
 	1. Enter an **Entity ID**.
@@ -59,10 +57,10 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	6. Select a **NameID format**.
 
 	7. Click the **Next** button.
-	
-	<%= image_tag '../images/pingone_saml_config.png' %>
 
 6. Confirm the Entity Details and click the **Finish** button.
+
+	<%= image_tag '../images/ca_sso_local_entity.png' %>
 
 1. Click the **Federation** tab.
 
@@ -72,21 +70,17 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	
 	1. Click **Browse** and select the downloaded metadata for **Metadata file**.
 	
-	2. Select **Removte Entity** for **Import As**.
+	2. Select **Remote Entity** for **Import As**.
 	
 	3. Select **Create New** for **Operation**.
 	
 	4. Click the **Next** button.
-
-	<%= image_tag '../images/saml_add_application.png' %>
 
 4. In the **Select Entity Defined in Metadata File** section, perform the following steps:
 
 	1. Enter an **Entity Name**.
 
 	2. Click the **Next** button.
-	
-	<%= image_tag '../images/pingone_saml_config.png' %>
 	
 5. In the **Select Key Entries to Import** section, perform the following steps:
 
@@ -95,6 +89,8 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	2. Click the **Next** button.
 
 6. Confirm the Entity Details and click the **Finish** button.
+
+	<%= image_tag '../images/ca_sso_remote_entity.png' %>
 
 1. Click on the **Federation** tab.
 
@@ -116,7 +112,11 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	
 	7. Click the **Next** button.
 	
+	<%= image_tag '../images/ca_sso_partnership.png' %>
+	
 4. Configure **Fedaration Users** by adding the users you want to include in the partnership and click **Next**.
+
+	<%= image_tag '../images/ca_sso_federation.png' %>
 
 5. In the **Assertion Configuration** section, perform the following steps:
 
@@ -127,10 +127,10 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	3. Enter `mail` as the **Value**.
 	
 	4. (Optional) Under **Assertion Attributes**, specify any application or group attributes that you want to map to users in the ID token.
-
-		<%= image_tag '../images/pingone_attribute_mapping.png' %>
 		
 	5. Click the **Next** button.
+	
+	<%= image_tag '../images/ca_sso_assertion.png' %>
 	
 6. In the **SSO and SLO** section, perform the following steps:
 
@@ -142,6 +142,8 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	
 	4. Click the **Next** button.
 	
+	<%= image_tag '../images/ca_sso_sso_slo.png' %>
+	
 7. In the **Signature and Encryption** section, perform the following steps:
 
 	1. Select your key alias for **Signing Private Key Alias**.
@@ -149,9 +151,13 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	2. Slelct your certificate alias for **Verification Certificate Alias**.
 	
 	3. Click the **Next** button.
+
+	<%= image_tag '../images/ca_sso_signature.png' %>
 	
 8. Confirm the Partnership Details and click the **Finish** button.
 
 9. Click the **Action** button and click **Activate**.
+
+	<%= image_tag '../images/ca_sso_activate.png' %>
 
 10. Click the **Action** button and click **Export Metadata**.
