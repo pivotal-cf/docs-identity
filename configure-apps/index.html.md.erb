@@ -3,11 +3,6 @@ title: Configure Applications
 owner: Identity Service
 ---
 
-* <a href="web-app.html" class="subnav">Web App</a>
-* <a href="native-mobile-app.html" class="subnav">Native Mobile App</a>
-* <a href="service-to-service-app.html" class="subnav">Service-to-Service App</a>
-* <a href="single-page-js-app.html" class="subnav">Single-Page Javascript App</a>
-
 This topic describes how Space Developers bind or register applications to their Single Sign-On (SSO) service instances.
 
 If your application is hosted on Pivotal Cloud Foundry (PCF), refer to the <a href="#bind">Bind an Application Hosted on PCF</a> section to bind the application to your SSO service instance from Apps Manager. If your application is externally hosted, refer to the <a href="#register">Register an External Application</a> section to register your application with your SSO service instance from the SSO dashboard.
@@ -22,10 +17,10 @@ If your application authenticates end users, then your application type is `Web 
 
 | Application Type  | SSO Application Type | OAuth Grant Type Equivalent |
 |-------------------|------------------------------|-------------------------------|
-| Web | `Web App` | `authorization code` |
-| Native Mobile, Desktop, or Command Line | `Native Mobile App` | `password` (the resource owner's password) |
-| Single-Page JavaScript | `Single-Page JavaScript App` | `implicit` |
-| Service-to-Service | `Service-to-Service App` | `client_credentials` |
+| <a href="./web-app.html">Web</a> | `Web App` | `authorization code` |
+| <a href="./native-mobile-app.html">Native Mobile, Desktop, or Command Line</a> | `Native Mobile App` | `password` (the resource owner's password) |
+| <a href="./service-to-service-app.html">Service-to-Service</a> | `Service-to-Service App` | `client_credentials` |
+| <a href="./single-page-js-app.html">Single-Page JavaScript</a> | `Single-Page JavaScript App` | `implicit` |
 
 <p class="note"><strong>Note</strong>: The Native Mobile App application type is intended only for highly trusted applications such as company owned and managed applications.</p>
 
