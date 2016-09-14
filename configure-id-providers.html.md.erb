@@ -155,7 +155,7 @@ The SSO service provides the ability to sign authentication requests and require
 
 ## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
-An administrator can configure groups from an external identity provider to be propagated in the ID token by including the group in the Group Whitelist. This will provide information to the application about the external identity groups that the user belongs to.
+An administrator can create groups from an external identity provider in Group Whitelist. By creating these groups, they will be propagated in the ID token when a user authenticates through an external identity provider. This will provide information to the application about the external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users. For more details on how to create resource permission mappings, see the <a href="./manage-resources.html#create-resource-perm">Create or Edit Resource Permissions</a> topic.
 
 <p class="note"><strong>Note</strong>: The <code>roles</code> scope must be requested by the application and the external group must be listed in the Group Whitelist.</p>
 
