@@ -1,0 +1,79 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between PingOne Cloud and Pivotal Single Sign-On (SSO).
+
+##<a id='inactive'></a> CA Single Sign-On Partnership is Inactive
+
+#### Symptom:
+
+<%= image_tag '../images/ca_sso_inactive.png' %>
+
+#### Explanations:
+
+- The CA Single Sign-On is inactive in CA Single Sign-On.
+
+##<a id="sp-entityid"></a> Service Provider Entity ID Misconfigured
+
+#### Symptom:
+
+<%= image_tag '../images/ca_sso_misconfigured_entity_id.png' %>
+
+#### Explanation:
+
+- The service provider Entity ID is misconfigured in CA Single Sign-On.
+
+##<a id="invalid-saml"></a> Incoming SAML message is invalid
+
+#### Symptom:
+
+<%= image_tag '../images/ca_sso_misconfigured_idp_entity_id.png' %>
+
+#### Explanation:
+
+- The identity provider Entity ID is misconfigured in CA Single Sign-On or in PCF Single Sign-On.
+
+- The Name ID Format was misconfigured in CA Single Sign-On
+
+##<a id="ACU"></a> Assertion Consumer Service URL Misconfigured 
+
+#### Symptom:
+
+<%= image_tag '../images/ca_sso_acu_misconfigured.png' %>
+
+#### Explanation:
+
+- The service provider Assertion Consumer Service (ACS) is misconfigured in CA Single Sign-On.
+
+
+##<a id="audience"></a> Audience Field Misconfigured 
+
+#### Symptom:
+
+<%= image_tag '../images/ca_sso_audience_misconfigured.png' %>
+
+#### Explanation:
+
+- The service provider Audience Field is misconfigured in CA Single Sign-On.
+
+##<a id="cert"></a> Expired Certificate
+
+#### Symptom:
+
+<%= image_tag '../images/ca_sso_expired_cert.png' %>
+
+#### Explanation:
+
+- The certificate has expired in CA Single Sign-On.
+
+##<a id="idp-url"></a> Identity Provider SSO URL Misconfigured
+
+#### Symptom:
+
+<%= image_tag '../images/ca_sso_idp_url_misconfigured.png' %>
+
+#### Explanation:
+
+- The identity provider SSO URL is misconfigured in PCF Single Sign-On.

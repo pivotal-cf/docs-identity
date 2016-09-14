@@ -5,24 +5,6 @@ owner: Identity Service
 
 This topic describes how to add an external identity provider to your Pivotal Single Sign-On (SSO) service plan.
 
-##<a id='configure-metadata'></a> Configure Identity Provider Metadata
-
-Edit the Identity Provider Metadata file you downloaded, named `federationmetadata.xml`.
-
-1. Find and remove the two `RoleDescriptor` elements from the metadata:
-	
-	1. `<RoleDescriptor xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fed:ApplicationServiceType" protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">`
-			
-	2. `<RoleDescriptor xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fed:SecurityTokenServiceType" protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">`
-	
-
-2. The Single Sign-On service requires that the Name ID Format is specified. Replace the following text: `<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.microsoftonline.com/025c050a-9f19-4074-882f-4b522871e8c3/saml2" />` with: `<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.microsoftonline.com/025c050a-9f19-4074-882f-4b522871e8c3/saml2" />
-      <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>`
-	  
-3. The Single Sign-On service does not support DOS file format imports. Convert the file in one of the following ways:
-	- Option 1: Execute `dos2unix` on the metadata file.
-	- Option 2: Create a unix file, and copy and paste the contents from the downloaded metadata file to the newly created file.
-
 ##<a id='set-up-saml'></a> Setting up SAML 
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
