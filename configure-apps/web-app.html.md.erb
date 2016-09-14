@@ -3,56 +3,26 @@ title: Web App
 owner: Identity Service
 ---
 
-This topic describes how to add an external identity provider to your Pivotal Single Sign-On (SSO) service plan.
+This topic describes the OAuth 2.0 Authorization Code grant type supported by Pivotal Single Sign-On (SSO). The authorization code grant type is the most commonly used grant type. It is used for server-side applications. 
 
-##<a id='configure-metadata'></a> Configure Identity Provider Metadata
+### OAuth 2.0 Actors
 
-Edit the Identity Provider Metadata file you downloaded, named `federationmetadata.xml`.
+- **Resource Owner**: A person or system capable of granting access to a protected resource.
+- **Application**: A client that makes protected requests using the authorization of the resource owner.
+- **Authorization Server**: The Single Sign-On server that issues access tokens to client applications after successfully authenticating the resource owner.
+- **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Applications access the server through APIs.
 
-1. Find and remove the two `RoleDescriptor` elements from the metadata:
-	
-	1. `<RoleDescriptor xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fed:ApplicationServiceType" protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">`
-			
-	2. `<RoleDescriptor xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fed:SecurityTokenServiceType" protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">`
-	
+### Authorization Code Flow
 
-2. The Single Sign-On service requires that the Name ID Format is specified. Replace the following text: `<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.microsoftonline.com/025c050a-9f19-4074-882f-4b522871e8c3/saml2" />` with: `<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.microsoftonline.com/025c050a-9f19-4074-882f-4b522871e8c3/saml2" />
-      <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>`
+<%= image_tag '../images/oauth_auth_code.png' %>
 
-##<a id='set-up-saml'></a> Setting up SAML 
+1. **Access Application**: The user accesses the application and triggers authentication and authorization.
+2. **Authentication and Request Authorization**: The application prompts the user to authentication. The first time the user goes through this flow for the application, an approval page will be shown to the user. The user can choose permissions to authorize to the application to access on behalf of the user.
+3. **Authentication and Grant Authorization**: The authentication and authorization grant is sent to the authorization server.
+4. **Send Authentication Code**: After the user authorizes the application, the authorization server sends an authorization code to the application.
+5. **Request Code Exchange for Token**: The application receives the authorization code and requests an access token from the authorization server. This gives the application access to the approved permissions.
+6. **Issue Access Token**: The authorization server validates the authorization code and issues an access token.
+7. **Request Resource w/ Access Token**: The application tries to access the resource from the resource server by presenting the access token.
+8. **Return Resource**: If the access token is valid, the resource server returns the resources that the user authorized the application to receive.
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
-
-2. Select your plan and click **Manage Identity Providers** on the dropdown menu.
-
-	<%= image_tag '../images/azure_manage_id_providers.png' %>
-
-3. Click **New Identity Provider** to create a new identity provider.
-
-	<%= image_tag '../images/new_id_provider.png' %>
-
-2. To create a new identity provider, perform the following steps:
-	1. Enter an identity provider name into **Identity Provider Name**.
-	2. (Optional) Enter a description into **Identity Provider Description**.
-	3. Click **SAML File Metadata (optional)** follwed by clicking the **Upload Identity Provider Metadata** button to upload your metadata XML.
-	4. (Optional) Under **Advanced SAML Settings**, click **Attribute Mappings** to enter the mappings.
-
-1. Click **Create Identity Provider**.
-
-##<a id='config-permissions'></a> Configure Group Permissions
-
-1. Add groups to be propagated from the external identity provider to the ID token by following these steps:
-	1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
-	2. Select your plan and click **Manage Identity Providers** on the dropdown menu.
-	3. Click **Group Whitelist** next to your identity provider.
-	4. Enter the group names.
-	5. Click **Save Group Whitelist**.
-
-2. Map the groups to resources defined in the SSO service by following these steps:
-	1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
-	2. Select your plan and click **Manage Identity Providers** on the dropdown menu.
-	3. Click **Resource Permissions**.
-	4. Click **New Permissions Mapping** and perform the following steps:
-    	1. Enter a **Group Name**.
-    	2. For **Select Permissions**, select the permissions that the members of the group from the external identity provider should have access to.
-		3. Click **Save Permissions Mapping**.
+The resource server runs in PCF under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Applications can then access these resources on behalf of users.
