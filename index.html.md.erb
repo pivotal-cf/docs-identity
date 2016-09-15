@@ -13,43 +13,24 @@ The Single Sign-On service allows users to log in through a single sign-on servi
 
 Developers are responsible for selecting the authentication method for application users. They can select native authentication provided by the UAA or external identity providers.
 
-### OAuth 2.0 Concepts
+### OAuth 2.0 Authorization
 
-After authentication, the Single Sign-On service uses OAuth 2.0 for authorization of applications and resources. The following describes the roles in an OAuth 2.0 scenario:
+After authentication, the Single Sign-On service uses OAuth 2.0 for authorization. OAuth 2.0 is an authorization framework that delegates access to applications to access resources on behalf of a resource owner.
 
-- **Resource Owner**: A person or system capable of granting access to a protected resource.
-- **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Applications access the server through APIs.
-- **Applications**: A client that makes protected requests using the authorization of the resource owner.
-- **Authorization Server**: The Single Sign-On server that issues access tokens to client applications after successfully authenticating the resource owner.
-
-### OAuth 2.0 Example Flow
-
-The flow below shows an example of an authenticated user who is attempting to access a to-do list application. This application is backed by a resource server and both are secured by the UAA authorization server.
-
-<%= image_tag 'images/oauth_auth_code.png' %>
-
-1. **Authorization Request**: The first time the user accesses the application, the application requests authorization to access the user's to-do items. 
-2. **User Authorizes Application**: The application requests access to the user's to-do items. The user clicks **Yes** to authorize the application to access their items.
-3. **Authorization Code Grant**: After the user authorizes the to-do list app, the authorization server sends an authorization code.
-4. **Access Token Request**: The application receives the authorization code and requests an access token from the authorization server. This gives the application access to the user's to-do items.
-5. **Issue Access Token**: The authorization server validates the authorization code and issues an access token.
-6. **Resource Request w/ Access Token**: The to-do list application requests the resource from the resource server through the API and presents the access token.
-7. **Return Resource**: If the access token is valid, the resource server returns the to-do items that the user authorized the application to receive.
-
-The resource server runs in PCF under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Applications can then access these resources on behalf of users. 
-
+Developers define resources required by an application bound to a Single Sign-On (SSO) service instance and administrators grant resource permissions. See the <a href="./configure-apps/index.html">Configure Applications</a> topic for more details.
+ 
 ## <a id='product-snapshot'></a> Product Snapshot
 
 Current [Single Sign-On](https://network.pivotal.io/products/p-identity) for Pivotal Cloud Foundry Details
 <div style="line-height: 1; padding-left: 3em">
 
 - **Version**: 1.2.0
-- **Release Date**: 2016-09-12
+- **Release Date**: 2016-09-14
 - **Compatible Ops Manager Version(s)**: 1.8 or later
 - **Compatible Elastic Runtime Version(s)**: 1.8 or later
-- **vSphere support?** Yes
 - **AWS support?** Yes
 - **OpenStack support?** Yes
+- **vSphere support?** Yes
 </div>
 
 ## <a id='upgrading'></a> Upgrading to the Latest Version
@@ -96,7 +77,11 @@ If you are upgrading from PCF 1.7 to PCF 1.8 and you are using SSO v1.1.x, you m
 * <a href="manage-service-plans.html">Manage Service Plans</a>
 * <a href="manage-service-instances.html">Manage Service Instances</a>
 * <a href="configure-id-providers.html">Configure Identity Providers</a>
-* <a href="configure-apps.html">Configure Applications</a>
+* <a href="./configure-apps/index.html">Configure Applications</a>
+  * [Authorization Code Grant Type](./configure-apps/web-app.html)
+  * [Implicit Grant Type](./configure-apps/native-mobile-app.html)
+  * [Client Credentials Grant Type](./configure-apps/service-to-service-app.html)
+  * [Resource Owner Password Credentials Grant Type](./configure-apps/single-page-js-app.html)
 * <a href="manage-resources.html">Manage Resources</a>
 
 ## <a id='adfs'></a>Active Directory Federation Services (AD FS) Integration Guide
