@@ -3,7 +3,8 @@ title: Service-to-Service App
 owner: Identity Service
 ---
 
-This topic describes the OAuth 2.0 client credentials grant type supported by Pivotal Single Sign-On (SSO). The client credentials grant type is used when an application can request an access token and access resources on its own. This is often the case when there are services that call APIs without users.
+For Service-to-Service applications, Pivotal Single Sign-On (SSO) supports the Client Credentials OAuth 2.0 grant type.
+The client credentials grant type is for applications that can request an access token and access resources on its own. This is often the case when there are services that call APIs without users.
 
 ### OAuth 2.0 Actors
 
@@ -15,9 +16,9 @@ This topic describes the OAuth 2.0 client credentials grant type supported by Pi
 
 <%= image_tag '../images/oauth_client_credentials.png' %>
 
-1. **Authenticate w/ Client ID and Secret**: The application authenticates with the authorization server using its Client ID and Client Secret.
-2. **Issue Access Token**: The authorization server validates the client credentials and issues an access token.
-3. **Request Resource w/ Access Token**: The application tries to access the resource from the resource server by presenting the access token.
-4. **Return Resource**: If the access token is valid, the resource server returns the resources to the application
+1. **Authenticate w/ Client ID and Secret**: The application authenticates with the authorization server using its client ID and client secret.
+2. **Issue Access Token**: The authorization server validates the client ID and client secret and issues an access token.
+3. **Request Resource w/ Access Token**: The application attempts to access the resource from the resource server by presenting the access token.
+4. **Return Resource**: If the access token is valid, the resource server returns the resources to the application.
 
 The resource server runs in PCF under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Administrators can create admin clients to perform automated management actions without a user. See <a href="./index.html#admin">Create Admin Client</a>.
