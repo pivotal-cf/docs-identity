@@ -127,11 +127,11 @@ The SSO service provides the ability to sign authentication requests and require
     * Option 1: Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
     * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include e-mail addresses, first or last names, or external groups. They will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service.
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include e-mail addresses, first or last names, or external groups. They will be sent to applications via OpenID tokens along with any other stored user information issued by the Single Sign-On service.
 	* Select a **User Scheme Attribute** from the dropdown menu.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
-2. Configure any **Custom Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID Connect tokens issued by the Single Sign-On service.
+2. Configure any **Custom Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID tokens issued by the Single Sign-On service.
 	* Enter a **Custom Attribute Name**.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
