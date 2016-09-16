@@ -11,46 +11,26 @@ The Single Sign-On service is an all-in-one solution for securing access to appl
 
 The Single Sign-On service allows users to log in through a single sign-on service and access other applications that are hosted or protected by the service. This improves security and productivity since users do not have to log in to individual applications.
 
-Developers are responsible for selecting the authentication method for application users. They can select a native authentication provided by the UAA or an external identity provider.
+Developers are responsible for selecting the authentication method for application users. They can select native authentication provided by the UAA or external identity providers.
 
-### OAuth 2.0 Concepts
+### OAuth 2.0 Authorization
 
-After authentication, the Single Sign-On service uses OAuth 2.0 for authorization of applications and resources. The following describes the roles in an OAuth 2.0 scenario:
+After authentication, the Single Sign-On service uses OAuth 2.0 for authorization. OAuth 2.0 is an authorization framework that delegates access to applications to access resources on behalf of a resource owner.
 
-- **Resource Owner**: A person or system capable of granting access to a protected resource.
-- **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Applications access the server through APIs.
-- **Applications**: A client that makes protected requests using the authorization of the resource owner.
-- **Authorization Server**: The Single Sign-On server that issues access tokens to client applications after successfully authenticating the resource owner.
-
-### OAuth 2.0 Example Flow
-
-The flow below shows an example of an authenticated user who is attempting to access a to-do list application. This application is backed by a resource server and both are secured by the UAA authorization server.
-
-<%= image_tag 'images/oauth_auth_code.png' %>
-
-1. **Authorization Request**: The first time the user accesses the application, the application requests authorization to access the user's to-do items. 
-2. **User Authorizes Application**: The application requests access to the user's to-do items. The user clicks **Yes** to authorize the application to access their items.
-3. **Authorization Code Grant**: After the user authorizes the to-do list app, the authorization server sends an authorization code.
-4. **Access Token Request**: The application receives the authorization code and requests an access token from the authorization server. This gives the application access to the user's to-do items.
-5. **Issue Access Token**: The authorization server validates the authorization code and issues an access token.
-6. **Resource Request w/ Access Token**: The to-do list application requests the resource from the resource server through the API and presents the access token.
-7. **Return Resource**: If the access token is valid, the resource server returns the to-do items that the user authorized the application to receive.
-
-The resource server runs in PCF under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Applications can then access these resources on behalf of users. 
-
+Developers define resources required by an application bound to a Single Sign-On (SSO) service instance and administrators grant resource permissions. See the <a href="./configure-apps/index.html">Configure Applications</a> topic for more details.
+ 
 ## <a id='product-snapshot'></a> Product Snapshot
 
 Current [Single Sign-On](https://network.pivotal.io/products/p-identity) for Pivotal Cloud Foundry Details
 <div style="line-height: 1; padding-left: 3em">
 
-- **Version**: 1.1.1
-- **Release Date**: 2016-05-05
-- **Software component versions**: Single Sign-On 1.1.1 Installer based on Elastic Runtime 1.7 or later
-- **Compatible Ops Manager Version(s)**: 1.7 or later
-- **Compatible Elastic Runtime Version(s)**: 1.7 or later
-- **vSphere support?** Yes
+- **Version**: 1.2.0
+- **Release Date**: 2016-09-14
+- **Compatible Ops Manager Version(s)**: 1.8 or later
+- **Compatible Elastic Runtime Version(s)**: 1.8 or later
 - **AWS support?** Yes
 - **OpenStack support?** Yes
+- **vSphere support?** Yes
 </div>
 
 ## <a id='upgrading'></a> Upgrading to the Latest Version
@@ -76,13 +56,19 @@ Consider the following compatibility information before upgrading Single Sign-On
 </tr><tr>
   <td>1.1.0</td>
 </tr>
+<tr>
+  <th rowspan="2">1.8.x</th>
+  <td>1.0.1-1.0.16</td>
+  <td rowspan="2">1.2.0</td>
+</tr><tr>
+  <td>1.1.0-1.1.1</td>
+</tr>
 </table>
 
-<div class="note"><strong>Note</strong>: <a href="http://docs.pivotal.io/p-identity/index.html">The Single Sign-On service tile</a> operates in lockstep with Pivotal Elastic Runtime.<br>
-    <ul>
-          <li> The SSO v1.0.x tiles are compatible with PCF v1.6.x </li>
-          <li> The SSO v1.1.x tiles are compatible with PCF v1.7.x </li></ul>
-If you are a customer upgrading from PCF 1.6 to PCF 1.7 and you are using SSO v1.0.x, you must update to a SSO v1.1.x service tile before proceeding with the upgrade.</div>
+<div class="note"><strong>Note</strong>: The Single Sign-On service tile operates in lockstep with Pivotal Elastic Runtime.
+    <ul><li> The SSO v1.1.x tiles are compatible with PCF v1.7.x </li>
+        <li> The SSO v1.2.x tiles are compatible with PCF v1.8.x </li></ul>
+If you are upgrading from PCF 1.7 to PCF 1.8 and you are using SSO v1.1.x, you must update to a SSO v1.2.x service tile before proceeding with the upgrade.</div>
 
 ## <a id='sso'></a>Single Sign-On for Pivotal Cloud Foundry
 
@@ -91,16 +77,20 @@ If you are a customer upgrading from PCF 1.6 to PCF 1.7 and you are using SSO v1
 * <a href="manage-service-plans.html">Manage Service Plans</a>
 * <a href="manage-service-instances.html">Manage Service Instances</a>
 * <a href="configure-id-providers.html">Configure Identity Providers</a>
-* <a href="bind-apps.html">Bind or Register Applications</a>
+* <a href="./configure-apps/index.html">Configure Applications</a>
+  * [Authorization Code Grant Type](./configure-apps/web-app.html)
+  * [Implicit Grant Type](./configure-apps/native-mobile-app.html)
+  * [Client Credentials Grant Type](./configure-apps/service-to-service-app.html)
+  * [Resource Owner Password Credentials Grant Type](./configure-apps/single-page-js-app.html)
 * <a href="manage-resources.html">Manage Resources</a>
 
 ## <a id='adfs'></a>Active Directory Federation Services (AD FS) Integration Guide
 
- * <a href="./adfs/index.html">Active Directory Federation Services Integration Guide</a>
-   * [Configure Active Directory Federation Services as an Identity Provider](./adfs/config-adfs.html)
-   * [Configure SSO Service](./adfs/config-sso.html)
-   * [Testing](./adfs/testing.html)
-   * [Troubleshooting](./adfs/troubleshooting.html)
+* <a href="./adfs/index.html">Active Directory Federation Services Integration Guide</a>
+  * [Configure Active Directory Federation Services as an Identity Provider](./adfs/config-adfs.html)
+  * [Configure SSO Service](./adfs/config-sso.html)
+  * [Testing](./adfs/testing.html)
+  * [Troubleshooting](./adfs/troubleshooting.html)
    
 ## <a id='azure'></a>Azure Active Directory Integration Guide
 
@@ -109,6 +99,14 @@ If you are a customer upgrading from PCF 1.6 to PCF 1.7 and you are using SSO v1
   * [Configure SSO Service](./azure/config-sso.html)
   * [Testing](./azure/testing.html)
   * [Troubleshooting](./azure/troubleshooting.html)
+  
+## <a id='ca-sso'></a>CA Single Sign-On Integration Guide
+
+* <a href="./ca-sso/index.html">CA Single Sign-On Integration Guide</a>
+  * [Configure CA Single Sign-On as an Identity Provider](./ca-sso/config-ca-sso.html)
+  * [Configure SSO Service](./ca-sso/config-sso.html)
+  * [Testing](./ca-sso/testing.html)
+  * [Troubleshooting](./ca-sso/troubleshooting.html)
 
 ## <a id='okta'></a>Okta Integration Guide
 

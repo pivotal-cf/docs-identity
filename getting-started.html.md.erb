@@ -15,7 +15,7 @@ This topic outlines the steps for installing and configuring the [Single Sign-On
 
 1. [Configure an identity provider](./configure-id-providers.html). In addition to the [Internal User Store](./configure-id-providers.html#config-int-store), you can configure [external identity providers](./configure-id-providers.html#config-ext-prov) to provide single sign-on to applications. External identity providers must support SAML 2.0.
 
-1. [Register your applications](./bind-apps.html). Single Sign-On supports both Pivotal Cloud Foundry-hosted applications as well as externally hosted applications. Your applications must be able to request an OAuth or OpenID Connect token.
+1. [Configure your applications](./configure-apps/index.html). Single Sign-On supports both Pivotal Cloud Foundry-hosted applications as well as externally hosted applications. Your applications must be able to request an OAuth or OpenID Connect token.
 
 1. [Create resources for your applications](./manage-resources.html#create-resources). If your registered applications need to make external API calls, you can assign the API endpoints as resources permitted for the application. This will whitelist the endpoints for use by the application or client.
 
@@ -36,6 +36,6 @@ A user's role determines which parts of an SSO configuration it can manage. SSO 
 
 In addition to applications, SSO supports single sign-on for components of Pivotal Cloud Foundry, including Ops Manager and Apps Manager. This allows users already managed in an external identity provider to sign into Pivotal services. Refer to the following pages for instructions on configuring SSO to enable users in an external identity store to access PCF components:
 
-* Ops Manager, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp), [vSphere](http://docs.pivotal.io/pivotalcf/customizing/vsphere-config.html#idp), [vCloud and vCloud Air](http://docs.pivotal.io/pivotalcf/customizing/vchs-vcloud-config.html#idp), or [OpenStack](http://docs.pivotal.io/pivotalcf/customizing/openstack-om-config.html#idp)
+* Ops Manager, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp), [vSphere](http://docs.pivotal.io/pivotalcf/customizing/vsphere-config.html#idp), or [OpenStack](http://docs.pivotal.io/pivotalcf/customizing/openstack-om-config.html#idp)
 
 * [Apps Manager](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html)
