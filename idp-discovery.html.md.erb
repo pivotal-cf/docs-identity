@@ -17,7 +17,7 @@ When a user logs in to an app, an account chooser autofills their email address 
 
 As an example, consider an app used by a company `@company.com` and its competing suppliers `@supplier-1.com` and `@supplier-2.com`. With IdP Discovery, users from all three companies can log in from the same page, and do not have to see or choose from a list of login options that covers all the domains. IdP Discovery ascertains each user's IdP from their email domain.
 
-## <a id="how-to"></a> How to Enable IdP Discovery 
+## <a id="how-to"></a> Enable IdP Discovery 
 
 IdP Discovery is associated with a service plan, and configured for the apps bound to instances of that plan. To enable IdP Discovery for a service plan and the apps that use it, you must be a PCF Administrator or a Plan Administrator.
 
@@ -25,11 +25,11 @@ IdP Discovery is associated with a service plan, and configured for the apps bou
 	1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 	1. Click the plan name and select **Configure** under the plan menu.
 	1. Select the checkbox under the **Identity Provider Discovery** section and click **Save**.
-
 ![Enable IdP Discovery](images/enable-idp-discovery.png)
 
-1. Click the plan name and select **Enable Identity Providers** under the plan menu.
+1. Click the plan name and select **Manage Identity Providers** under the plan menu.
 
-1. Enter the Email domains you want to include as a comma-separated list under the **Identity Provider Configuration**.
+1. Enter the Email domains you want to include as a comma-separated list under the configuration page for the identity provider plan.
+![IdP Discovery Domains](images/idp-discovery-domains.png)
 
 1. Launch the **SSO management** link for a given service instance and edit the app configuration to select the required Identity Providers.
