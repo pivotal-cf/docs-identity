@@ -8,6 +8,18 @@ owner: Identity Service
 
 **Release date: 29 March 2017**
 
+<p class="note warning">
+  <strong>Critical</strong>:
+  Pivotal Single Sign-On Service upgrade from 1.3.0 to 1.3.1 fails and causes failure of any further "Apply Changes" from Pivotal Operations Manager.
+</p>
+
+<p class="tip">
+ This notification applies only to customers who have installed Pivotal Single Sign-On Service 1.3.0 and are planning to upgrade to Pivotal Single Sign-On Service 1.3.1. Pivotal Single Sign-On Service 1.3.1 introduces a breaking change which affects customers trying to upgrade from 1.3.0 to 1.3.1 version of the tile. It also has the side effect of stopping any further "Apply Changes" in Pivotal Operations Manager with an error "Error 30014: release 'identity_service_broker/65' has already been uploaded with commit_hash as '6d038495' and uncommitted_changes as 'true'". Please contact Pivotal Support immediately to get assistance with a mitigation for this issue. We will be releasing Pivotal Single Sign-On Service 1.3.2 which contains a fix for this issue in the next few days.
+
+  <br> <br>
+  Please refrain from uploading Pivotal Single Sign-On Service Tile 1.3.1 to Pivotal Operations Manager until version 1.3.2 is available for download. Please note that a simple upload of the 1.3.1 tile to Ops Manager can trigger the issue with Apply Changes.
+  <br> <br>
+
 **What's New**
 
 * The Single Sign-On service tile now supports network with multiple subnets at installation time.
