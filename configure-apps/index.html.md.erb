@@ -24,40 +24,22 @@ If your application authenticates end users, then your application type is `Web 
 
 <p class="note"><strong>Note</strong>: The Native Mobile App application type is intended only for highly trusted applications such as company owned and managed applications.</p>
 
-## <a id='optional'></a> Preconfigure and Bootstrap an Application Hosted on PCF
+## <a id='optional'></a> Configure PCF Apps to Use SSO
 
-Follow the steps below to create environment variables that you can then set during a bind.
+Before PCF can bind an app to SSO service instances, it must have the following environment variables set:
 
-### <a id='bootstrap'></a> Bootstrap Application Client Configurations for the Pivotal Single Sign-On Service Instance
+* `GRANT_TYPE` - the type of authentication associated with the SSO Application Type in the table [above](#choose-type).
+* `SSO_IDENTITY_PROVIDER` - the internal or external identity provider(s) for the app to use.
 
-Beginning in SSO 1.4.0, you can use the following values your application's manifest to bootstrap client configurations for your applications automatically when binding or rebinding your application to the service instance. These values will be automatically populated to the client configurations for your application through CF environment variables.
+You can further configure how an app uses SSO with additional environment variables [described below](#properties).
 
-When you specify your own scopes and authorities, consider including openid for scopes on auth code, implicit, and password grant type applications, and uaa.resource for client credentials grant type applications, as these will not be provided if they are not specified.
+There are two ways to set these environment variables for an app:
 
-The table below provides a description and the default values. Further details and examples are provided in the sample application manifests.
+* Manually set them in Apps Manager or with the Cloud Foundry Command-Line Interface (cf CLI) after you deploy the app.
 
-| Property Name | Description | Default |
-| ------------- | ------------- | ------------- |
-| name | Name of the application | (N/A - Required Value) |
-| GRANT\_TYPE | Allowed grant type for the application through the SSO service - only one grant type per application is supported by SSO | (N/A - You must specify the value) |
-| SSO\_IDENTITY_PROVIDERS | Allowed identity providers for the application through the SSO service plan | Yes |
-| SSO\_REDIRECT\_URIS | Comma separated whitelist of redirection URIs allowed for the application - Each value must start with http:// or https:// |  (Will always include the application route) |
-| SSO\_SCOPES | Comma separated list of scopes that belong to the application and are registered as client scopes with the SSO service. This value is ignored for client credential grant type applications. |  openid |
-| SSO\_AUTO\_APPROVED\_SCOPES | Comma separated list of scopes that the application is automatically authorized when acting on behalf of users through SSO service | (Defaults to existing scopes/authorities) |
-| SSO\_AUTHORITIES | Comma separated list of authorities that belong to the application and are registered as client authorities with the SSO service - privileged identity zone/plan administrator scopes (e.g. scim.read, idps.write) cannot be bootstrapped and must be assigned by zone/plan administrators. This value is ignored for any grant type other than client credentials. | uaa.resource |
-| SSO\_REQUIRED\_USER\_GROUPS | Comma separated list of groups a user must have in order to authenticate successfully for the application | (No value) |
-| SSO\_ACCESS\_TOKEN\_LIFETIME | Lifetime in seconds for the access token issued to the application by the SSO service | 43200 |
-| SSO\_REFRESH\_TOKEN\_LIFETIME | Lifetime in seconds for the refresh token issued to the application by the SSO service | 2592000 (not used for client credentials) |
-| SSO\_RESOURCES |  Resources that the application will use as scopes/authorities for the SSO service to be created during bootstrapping if they do not already exist - The input format can be referenced in the provided sample manifest| (No value) |
-| SSO\_ICON |  Application icon that will be displayed next to the application name on the Pivotal Account dashboard if show on home page is enabled - do not exceed 64kb | (No value) |
-| SSO\_LAUNCH\_URL |  Application launch URL that will be used for the application on the Pivotal Account dashboard if show on home page is enabled | (Application route) |
-| SSO\_SHOW\_ON\_HOME\_PAGE |  If set to true, the application will appear on the Pivotal Account dashboard with the corresponding icon and launch URL| True |
+* Include them in the app manifest, so that PCF "bootstraps" the settings automatically when it launches the app.
 
-To remove any variables set through bootstrapping, you must use `cf unset-env APP_NAME PROPERTY_NAME` and rebind the application.
-
-Additional information and manifest examples are available on the [identity sample applications](https://github.com/pivotal-cf/identity-sample-apps). 
-
-### Set Application Type:
+### <a id='manual-config'></a> Manually Configure Apps for SSO
 
 - **Option 1**: Set the grant type environment variable by performing the following steps:
 	1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN.`
@@ -94,6 +76,37 @@ applications:
 
 <p class="note"><strong>Note</strong>: If you do not provide any <code>SSO_IDENTITY_PROVIDERS</code>, the internal user store will be selected by default.</p> 
 
+To remove any variables set through bootstrapping, you must use `cf unset-env APP_NAME PROPERTY_NAME` and rebind the application.
+
+### <a id='bootstrap'></a> Bootstrap Application Bootstrapping
+
+Beginning in SSO 1.4.0, you can use the following values your application's manifest to bootstrap client configurations for your applications automatically when binding or rebinding your application to the service instance. These values will be automatically populated to the client configurations for your application through CF environment variables.
+
+When you specify your own scopes and authorities, consider including openid for scopes on auth code, implicit, and password grant type applications, and uaa.resource for client credentials grant type applications, as these will not be provided if they are not specified.
+
+### <a id='properties'></a> SSO Configuration Properties
+
+The table below provides a description and the default values for the environment variables that an app can use to configure SSO. Further details and examples are provided in the sample application manifests.
+
+| Property Name | Description | Default |
+| ------------- | ------------- | ------------- |
+| name | Name of the application | (N/A - Required Value) |
+| GRANT\_TYPE | Allowed grant type for the application through the SSO service - only one grant type per application is supported by SSO | (N/A - You must specify the value) |
+| SSO\_IDENTITY_PROVIDERS | Allowed identity providers for the application through the SSO service plan | Yes |
+| SSO\_REDIRECT\_URIS | Comma separated whitelist of redirection URIs allowed for the application - Each value must start with http:// or https:// |  (Will always include the application route) |
+| SSO\_SCOPES | Comma separated list of scopes that belong to the application and are registered as client scopes with the SSO service. This value is ignored for client credential grant type applications. |  openid |
+| SSO\_AUTO\_APPROVED\_SCOPES | Comma separated list of scopes that the application is automatically authorized when acting on behalf of users through SSO service | (Defaults to existing scopes/authorities) |
+| SSO\_AUTHORITIES | Comma separated list of authorities that belong to the application and are registered as client authorities with the SSO service - privileged identity zone/plan administrator scopes (e.g. scim.read, idps.write) cannot be bootstrapped and must be assigned by zone/plan administrators. This value is ignored for any grant type other than client credentials. | uaa.resource |
+| SSO\_REQUIRED\_USER\_GROUPS | Comma separated list of groups a user must have in order to authenticate successfully for the application | (No value) |
+| SSO\_ACCESS\_TOKEN\_LIFETIME | Lifetime in seconds for the access token issued to the application by the SSO service | 43200 |
+| SSO\_REFRESH\_TOKEN\_LIFETIME | Lifetime in seconds for the refresh token issued to the application by the SSO service | 2592000 (not used for client credentials) |
+| SSO\_RESOURCES |  Resources that the application will use as scopes/authorities for the SSO service to be created during bootstrapping if they do not already exist - The input format can be referenced in the provided sample manifest| (No value) |
+| SSO\_ICON |  Application icon that will be displayed next to the application name on the Pivotal Account dashboard if show on home page is enabled - do not exceed 64kb | (No value) |
+| SSO\_LAUNCH\_URL |  Application launch URL that will be used for the application on the Pivotal Account dashboard if show on home page is enabled | (Application route) |
+| SSO\_SHOW\_ON\_HOME\_PAGE |  If set to true, the application will appear on the Pivotal Account dashboard with the corresponding icon and launch URL| True |
+
+Additional information and manifest examples are available on the [identity sample applications](https://github.com/pivotal-cf/identity-sample-apps). 
+
 ## <a id='bind'></a> Bind an Application Hosted on PCF
 
 1. Log in to Apps Manager as a Space Developer.
@@ -125,6 +138,7 @@ applications:
 	| `user_attributes` | Provides access to custom attributes from an external identity provider |
 	| `roles` | Provides access to external groups from an identity provider |
 	| `uaa.resource` | Provides access to the check_token endpoint for service-to-service flows |
+
 <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user. Select only scopes pertaining to applications owned and managed by your company. Do not select scopes that pertain to applications external to PCF.
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Integrate SSO with Applications</a> section below for more details.
