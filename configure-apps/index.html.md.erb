@@ -3,86 +3,83 @@ title: Configure Applications
 owner: Identity Service
 ---
 
-This topic describes how Space Developers bind internal applications or register external applications to their Single Sign-On (SSO) service instances.
+This topic explains how Pivotal Cloud Foundry (PCF) developers configure their apps to use the Single Sign-On (SSO) service, write SSO integration into their apps, and use the SSO Admin Client to manage connections between SSO identity providers, apps, users and other resources. 
 
-If your application is hosted on Pivotal Cloud Foundry (PCF), refer to the <a href="#bind">Bind an Application Hosted on PCF</a> section to bind the application to your SSO service instance from Apps Manager. If your application is externally hosted, refer to the <a href="#register">Register an External Application</a> section to register your application with your SSO service instance from the SSO dashboard.
+## <a id='choose-type'></a> Determine Your SSO Application Type
 
-When you bind or register an application with a SSO service instance, SSO creates an OAuth client. This OAuth client acts as an OAuth 2.0 authorization server and issues tokens.
+Before you bind or register an app, you must determine its SSO application type.
 
-## <a id='choose-type'></a> Determine Your Application Type
+If your app authenticates end users, its application type is `Web App`, `Native Mobile App`, or `Single-Page JavaScript App`. If the app does not authenticate end users, but rather accesses other services or APIs on its own behalf, then its type is `Service-to-Service App`.
 
-Before you bind or register an application, you must know your SSO application type. Refer to the table below to determine the application type best suited for your application.
-
-If your application authenticates end users, then your application type is `Web App`, `Native Mobile App`, or `Single-Page JavaScript App`. If your application does not authenticate end users, but rather accesses other services or APIs on its own behalf, then your application type is `Service-to-Service App`.
+Refer to the table below to determine your app's SSO Application Type and OAuth Grant Type:
 
 | Application Type  | SSO Application Type | OAuth Grant Type Equivalent |
 |-------------------|------------------------------|-------------------------------|
 | <a href="./web-app.html" class="subnav">Web</a> | `Web App` | `authorization code` |
 | <a href="./native-mobile-app.html" class="subnav">Native Mobile, Desktop, or Command Line</a> | `Native Mobile App` | `password` (the resource owner's password) |
-| <a href="./service-to-service-app.html" class="subnav">Service-to-Service</a> | `Service-to-Service App` | `client_credentials` |
 | <a href="./single-page-js-app.html" class="subnav">Single-Page JavaScript</a> | `Single-Page JavaScript App` | `implicit` |
+| <a href="./service-to-service-app.html" class="subnav">Service-to-Service</a> | `Service-to-Service App` | `client_credentials` |
 
-<p class="note"><strong>Note</strong>: The Native Mobile App application type is intended only for highly trusted applications such as company owned and managed applications.</p>
 
-## <a id='optional'></a> Configure PCF Apps to Use SSO
+<p class="note"><strong>Note</strong>: The <code>Native Mobile App</code> application type is intended only for highly-trusted apps such as company-owned and managed applications.</p>
 
-Before PCF can bind an app to SSO service instances, it must have the following environment variables set:
+## <a id='internal'></a> Set Up PCF Apps to Use SSO
+
+To configure SSO for an app running internally on PCF, you first need to [determine the SSO application type](#choose-type) of the app that will use the SSO service.
+
+Then you [configure](#configure) your SSO service for the app using environment variables and [bind the app](#bind) to an SSO service instance. These steps are described below.
+
+### <a id='configure'></a> Configure SSO Environment Variables
+
+For a PCF-hosted app to bind to an SSO service instance, it must have the following environment variables set:
 
 * `GRANT_TYPE` - the type of authentication associated with the SSO Application Type in the table [above](#choose-type).
 * `SSO_IDENTITY_PROVIDER` - the internal or external identity provider(s) for the app to use.
 
-You can further configure how an app uses SSO with additional environment variables [described below](#properties).
+By setting more environment variables, you can configure how an app uses SSO in additional ways, as [described below](#properties).
 
-There are two ways to set these environment variables for an app:
+You can set environment variables to configure SSO for an app in two ways, as described below: 
 
-* Manually set them in Apps Manager or with the Cloud Foundry Command-Line Interface (cf CLI) after you deploy the app.
+* Set the variables [manually](#manual-config), after you deploy the app, in Apps Manager or with the Cloud Foundry Command-Line Interface (cf CLI).
 
-* Include them in the app manifest, so that PCF "bootstraps" the settings automatically when it launches the app.
+* Include the config settings in the app manifest, so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
 
-### <a id='manual-config'></a> Manually Configure Apps for SSO
+#### <a id='manual-config'></a> Manually Configure Apps for SSO
 
-- **Option 1**: Set the grant type environment variable by performing the following steps:
-	1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN.`
-	2. Navigate to your application.
-	3. Click the **Env Variables** tab.
-	4. Click **Add an Env Variable**.
-	5. For **Variable Name**, enter `GRANT_TYPE`. 
-	6. For **Value**, enter the OAuth grant type for your application type. For example, if your application is a Single-Page JavaScript App, specify `implicit`.
-	7. Bind and restage your application.
+For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDER`, and other SSO configuration environment variables with the [`cf set-env`](http://cli.cloudfoundry.org/en-US/cf/set-env.html) command, or else in Apps Manager as follows:
+
+1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN`.
+
+1. Navigate to your application.
+
+1. Click the **Env Variables** tab.
+
+1. Click **Add an Env Variable**.
+
+1. For **Variable Name** enter the name of the [SSO configuration property](#properties) that you are setting, such as `GRANT_TYPE`.
+
+1. For **Value**, enter the property value. For example, to set the `GRANT_TYPE` property for a Single-Page JavaScript App, enter `implicit`, which is the OAuth Grant Type listed for your [SSO application type](#choose-type) above.
+
+1. Bind and restage your application.
 	
-- **Option 2**: Set the grant type environment variable by including the following in your application manifest. If you choose this option, you do not have to configure environment variables after deploying your app.
+### <a id='bootstrap'></a> Bootstrap SSO Configuration
 
-	<pre class="code">
-	---
-	applications:
-		- name: APPLICATION NAME
-	   	  env:
-		      GRANT_TYPE: OAUTH GRANT TYPE
-	</pre>
+Beginning in SSO 1.4.0, you can include SSO configuration values in your app manifest to bootstrap client configurations for your applications automatically when binding or rebinding your application to the service instance. These values will be automatically populated to the client configurations for your application through CF environment variables, and you will not have to configure environment variables after deploying your app.
 
-	<p class="note"><strong>Note</strong>: If you do not provide a <code>GRANT_TYPE</code>, the application type defaults to Web App.</p> 
+When you specify your own scopes and authorities, consider including openid for scopes on auth code, implicit, and password grant type applications, and uaa.resource for client credentials grant type applications, as these will not be provided if they are not specified.
 
-### Set Identity Provider:
-	
-Set the identity providers by including the following in your application manifest:
+This snippet below shows how to include `GRANT_TYPE` `SSO_IDENTITY_PROVIDERS` in your manifest. The [table below](#properties) lists all of the SSO properties you can set in your app manifest.
 
 <pre class="code">
 ---
 applications:
-	- name: APPLICATION NAME
-   	  env:
-		  SSO_IDENTITY_PROVIDERS: COMMA SEPARATED LIST OF IDENTITY PROVIDERS
-</pre>
+  - name: APPLICATION NAME
+    env:
+      GRANT_TYPE: OAUTH GRANT TYPE
+      SSO_IDENTITY_PROVIDERS: COMMA SEPARATED LIST OF IDENTITY PROVIDERS
+	</pre>
 
-<p class="note"><strong>Note</strong>: If you do not provide any <code>SSO_IDENTITY_PROVIDERS</code>, the internal user store will be selected by default.</p> 
-
-To remove any variables set through bootstrapping, you must use `cf unset-env APP_NAME PROPERTY_NAME` and rebind the application.
-
-### <a id='bootstrap'></a> Bootstrap SSO Configuration
-
-Beginning in SSO 1.4.0, you can use the following values your application's manifest to bootstrap client configurations for your applications automatically when binding or rebinding your application to the service instance. These values will be automatically populated to the client configurations for your application through CF environment variables.
-
-When you specify your own scopes and authorities, consider including openid for scopes on auth code, implicit, and password grant type applications, and uaa.resource for client credentials grant type applications, as these will not be provided if they are not specified.
+<p class="note"><strong>Note</strong>: If you do not provide a <code>GRANT_TYPE</code>, the application type defaults to Web App. If you do not provide any <code>SSO_IDENTITY_PROVIDERS</code>, the internal user store will be selected by default.</p> 
 
 ### <a id='properties'></a> SSO Configuration Properties
 
@@ -107,7 +104,15 @@ The table below provides a description and the default values for the environmen
 
 Additional information and manifest examples are available on the [identity sample applications](https://github.com/pivotal-cf/identity-sample-apps). 
 
-## <a id='bind'></a> Bind an Application Hosted on PCF
+#### Remove SSO Environment Variables
+
+You can remove any environment variables set through bootstrapping, `cf set-env`, or Apps Manager as follows:
+
+1. Run `cf unset-env APP_NAME PROPERTY_NAME`.
+
+1. Rebind the application.
+
+### <a id='bind'></a> Bind an Application Hosted on PCF
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your application runs.
@@ -144,6 +149,8 @@ Additional information and manifest examples are available on the [identity samp
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for application integration. Refer to the <a href="#app-integration">Integrate SSO with Applications</a> section below for more details.
 
 ## <a id='register'></a> Register an External Application
+
+1. [Determine the type](#choose-type) of the app that will use the SSO service.
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
