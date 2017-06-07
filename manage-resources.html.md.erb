@@ -9,7 +9,12 @@ Resources are the API endpoints that users and applications need access to retri
 
 ## <a id='create-resources'></a> Create or Edit Resources
 
-If an application requires access to specific resources such as API endpoints, the Space Developer must define permissions for those resources in the SSO dashboard.
+If an application requires access to specific resources such as API endpoints, permissions for those resources must be either bootstrapped from the application manifest or defined by the Space Developer in the SSO dashboard.
+
+To bootstrap resources from the manifest, follow the instructions in the <a href="https://github.com/pivotal-cf/identity-sample-apps
+">SSO Sample Applications repo</a>.</p>
+
+To create resources in the SSO Dashboard:
 
 1. Log into Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
@@ -26,9 +31,6 @@ If an application requires access to specific resources such as API endpoints, t
 7. Click **Save Resource**. The administrator must create resource permissions so that users can access the resource. See the [Create or Edit Resource Permissions](#create-resource-perm) section below for more details.
 
 <p class="note"><strong>Note</strong>: Space Developers create resources within a space. Space Developers only see the resources created in the spaces they have access to and can only assign those to the applications in those spaces.</p>
-
-<p class="note"><strong>Note</strong>: You can also bootstrap creation of resources. Follow the instructions in the <a href="https://github.com/pivotal-cf/identity-sample-apps
-">SSO Sample Applications repo</a> for application bootstrapping.</p>
 
 ## <a id='delete-resources'></a> Delete Resources
 
