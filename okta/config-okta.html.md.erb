@@ -7,7 +7,7 @@ This topic describes how to set up Okta as your identity provider by configuring
 
 ## <a id='pcf'></a> Set up SAML in PCF
 
-1. Log into the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
+1. Log in to the Single Sign-On (SSO) dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the dropdown menu.
 
 	<%= image_tag '../images/okta_manage_id_providers.png' %>
@@ -40,17 +40,17 @@ This topic describes how to set up Okta as your identity provider by configuring
 
 1. Click the **General** tab.
 
-1. Under SAML Settings, click the **Edit** button followed by the **Next** button to configure SAML.
+1. Under **SAML Settings**, click the **Edit** button followed by the **Next** button.
 
 	<%= image_tag '../images/okta_saml_config.png' %>
 
-1. In the **SAML Settings** section, perform the following steps:
+1. In the **SAML Settings** section:
 	1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into **Single sign on URL**. For example, `https://AUTH-DOMAIN/saml/SSO/alias/AUTH-DOMAIN`.
 	1. Enter your Auth Domain URL into **Audience URI (SP Entity ID)**. You can view the Auth Domain for a plan by logging into the SSO dashboard, clicking the name of your plan, and selecting **Edit Plan**. For example, `https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`. This value is also available in the downloaded service provider metadata as the entity ID.
 	1. Select a **Name ID format**.
 	1. Select an **Application username**.
 
-1. (Optional) To configure single logout, perform the following steps:
+1. (Optional) To configure single logout:
     1. Click **Show Advanced Settings**.
     1. For **Enable Single Logout**, select **Allow application** to initiate single logout.
     1. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into **Single Logout URL**.
@@ -59,7 +59,7 @@ This topic describes how to set up Okta as your identity provider by configuring
 
 1. (Optional) Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map to users in the ID token.
 
-1. (Optional) Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you want to map to users in the ID token. This is a group that users are in within Okta.
+1. (Optional) Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you want to map to users in the ID token. This is a group that users belong to within Okta.
 
 1. Click the **Next** button followed by the **Finish** button.
 

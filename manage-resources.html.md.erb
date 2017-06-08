@@ -3,20 +3,22 @@ title: Manage Resources
 owner: Identity Service
 ---
 
-This topic describes how a Space Developer defines resources required by an application bound to a Single Sign-On (SSO) service instance, as well as how an administrator grants resource permissions.
+This topic describes how a Space Developer defines resources required by an app bound to a Single Sign-On (SSO) service instance, and how an administrator grants resource permissions.
 
-Resources are the API endpoints that users and applications need access to retrieve information from the resource server. Since developers know what endpoints exist for their applications, they are responsible for creating resources. Afer resources are created, administrators will assign these resources to users and applications so that users can grant applications delegated access to the resources on their behalf.
+In this topic, _resources_ are the API endpoints that users and apps need to retrieve information from a resource server. After an administrator creates resources, they assign the resources to users and apps. Users can then grant apps access to the resources, for example to query API endpoints on their behalf.
+
+Since developers know what endpoints exist for their apps, they are responsible for creating resources.
 
 ## <a id='create-resources'></a> Create or Edit Resources
 
-If an application requires access to specific resources such as API endpoints, permissions for those resources must be either bootstrapped from the application manifest or defined by the Space Developer in the SSO dashboard.
+If an app requires access to specific resources such as API endpoints, permissions for those resources must be either bootstrapped from the application manifest or defined by the Space Developer in the SSO dashboard.
 
 To bootstrap resources from the manifest, follow the instructions in the <a href="https://github.com/pivotal-cf/identity-sample-apps
 ">SSO Sample Applications repo</a>.</p>
 
 To create resources in the SSO Dashboard:
 
-1. Log into Apps Manager as a Space Developer.
+1. Log in to Apps Manager as a Space Developer.
 
 1. Select the space where your service instance is located.
 
@@ -40,13 +42,13 @@ To create resources in the SSO Dashboard:
 
 ## <a id='delete-resources'></a> Delete Resources
 
-1. Log into Apps Manager as a Space Developer.
+1. Log in to Apps Manager as a Space Developer.
 
 1. Click the **Manage** link under the SSO service instance to launch the service dashboard.
 
 1. Click the **Resources** tab.
 
-1. Click your resource.
+1. Click the resource to delete.
 
 1. Click **Delete** at the bottom of the page. 
 
@@ -56,13 +58,13 @@ To create resources in the SSO Dashboard:
 
 ## <a id='create-resource-perm'></a> Create or Edit Resource Permissions
 
-After a Space Developer defines resources required by an application, an administrator must grant access to those resources. SSO allows administrators to map groups of users from the identity provider to the resource permissions defined by the Space Developer.
+After a Space Developer defines resources required by an app, an administrator must grant access to those resources. SSO allows administrators to map groups of users from the identity provider to the resource permissions defined by the Space Developer.
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
 
-1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the dropdown menu.
+1. Click the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the dropdown menu.
 
 1. Click **New Permissions Mapping**.
 
@@ -76,7 +78,7 @@ After a Space Developer defines resources required by an application, an adminis
 
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
 

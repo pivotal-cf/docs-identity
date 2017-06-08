@@ -3,66 +3,70 @@ title: Manage Users
 owner: Identity Service
 ---
 
-This topic describes how a Plan Administrator can manage users in the internal user store and external users from external identity providers for a a Single Sign-On (SSO) service plan.
-
-For each plan, SSO provides an internal user store that manages users. The SSO service also lets administrators grant access to PCF apps for user accounts stored in an external identity provider.
+This topic describes how a Pivotal Cloud Foundry (PCF) Plan Administrator uses the Single Sign-On (SSO) service to manage user access to PCF apps, for users with accounts in the internal user store or with external identity providers.
 
 ## <a id="internal"></a> Manage Users in an Internal User Store
 
-The SSO dashboard allows you to invite users, request users to reset password, update attributes/permissions for users, and delete users for the internal user store.
+The SSO service has an **Internal Users** admin pane that lets you manage user accounts in PCF's internal user store: invite and delete users, request users to reset their passwords, and update user attributes and permissions.
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+To open the **Internal Users** pane:
 
-1. Click the plan name and select **Manage Identity** Providers from the dropdown menu.
-
-1. Click **Internal User Store** and select **Internal Users** from the dropdown menu. This will bring you to the administrative screen.
-![SSO Admin](images/admin.png)
-
-1. You can invite users by clicking **Invite User**, entering their email address, and clicking **Send Invite**.
-![Invite User](images/invite_user.png)
-
-1. You can search existing users by entering a value into the search bar and clicking **Search**. Entering a blank value will return all users in the service plan’s internal user store.
-![Internal Users](images/internal_users.png)
-
-1. You can resend an invite to an unverified user by selecting the checkbox next to their username and clicking **Resend Invite**.
-
-1. You can notify a verified user to reset their password by selecting the checkbox next to their username and clicking **Reset Password**.
-
-1. You can delete a user by selecting the checkbox next to their username, clicking **Delete User**.
-
-1. You can view more information about a user by clicking their username.
-![User Profile - Unverified](images/user_profile_unverified.png)
-
-1. You can update the user’s **Email**, **First Name**, **Last Name**, and **Phone Number** by entering the updated values and clicking **Save User**.
-
-1. For an unverified user, the **Resend Invite** button will be available next to their username. For a verified user, the **Reset Password** button will be available next to their username.
-
-1. You can view a user’s permissions by clicking the **Permissions** tab.
-![Internal User Permissions](images/internal_user_permissions.png)
-
-1. You can update user’s permissions by selecting the corresponding permissions and clicking **Save User**.
-
-## <a id="external"></a> Manage Users for External Identity Provider
-
-The administration UI allows you to browse, delete, and update permissions for users from external identity providers.
-
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. Find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
 
-1. Click the external identity provider you wish to manage and select the **Users** choice for the provider from the dropdown menu. This brings you to the administrative screen.
+1. Click **Internal User Store** and select **Internal Users** from the dropdown menu. This brings you to the admin screen.
+![SSO Admin](images/admin.png)
+
+From the **Internal Users** pane, you can:
+
+* **Invite users** by clicking **Invite User**, entering their email address, and clicking **Send Invite**.
+![Invite User](images/invite_user.png)
+
+* **Search existing users** by entering a value into the search bar and clicking **Search**. Entering a blank value will return all users in the service plan’s internal user store.
+![Internal Users](images/internal_users.png)
+
+* **Resend an invite** to an unverified user by selecting the checkbox next to their username and clicking **Resend Invite**.
+
+* Ask a verified user to **reset their password** by selecting the checkbox next to their username and clicking **Reset Password**.
+
+* **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
+
+* **View information about a user** by clicking their username.
+![User Profile - Unverified](images/user_profile_unverified.png)
+
+* **Update a user profile** including their **Email**, **First Name**, **Last Name**, and **Phone Number** by entering the updated values and clicking **Save User**.
+
+* **View user permissions** by clicking the **Permissions** tab.
+![Internal User Permissions](images/internal_user_permissions.png)
+
+* **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
+
+## <a id="external"></a> Manage Users from an External Identity Provider
+
+For each external identity provider that the SSO service connects to, a users admin pane (example: **Okta SSO Users**) lets you browse, delete, and update PCF permissions for user accounts from external identity providers.
+
+To open the external identity provider users admin pane:
+
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+
+1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+
+1. Click the external identity provider you wish to manage and select the **Users** choice for the provider from the dropdown menu. This brings you to the users admin pane.
 ![Okta Users Search](images/okta_search.png)
 
-1. You can search existing users by entering a value into the search bar and clicking **Search**. Entering a blank value will return all users in the service plan’s internal user store.
+From the external identity provider users admin pane, you can:
+
+* **Search** existing users by entering a value into the search bar and clicking **Search**. Entering a blank value returns all users in the service plan’s internal user store.
 ![Okta Users Search Results](images/okta_results.png)
 
-1. You can delete a user by selecting the checkbox next to their username, clicking **Delete User**.
+* **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
 
-1. You can view more information about a user by clicking their username.
+* **View information about a user** by clicking their username.
 ![User Profile - Verified](images/user_profile_verified.png)
 
-1. You can view a user’s permissions by clicking the **Permissions** tab.
+* **View user permissions** by clicking the **Permissions** tab.
 ![External User Permissions](images/external_user_permissions.png)
 
-1. You can update user’s permissions by selecting the corresponding permissions and clicking **Save User**.
+* **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
 
