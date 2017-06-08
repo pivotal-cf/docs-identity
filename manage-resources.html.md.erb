@@ -17,18 +17,24 @@ To bootstrap resources from the manifest, follow the instructions in the <a href
 To create resources in the SSO Dashboard:
 
 1. Log into Apps Manager as a Space Developer.
+
 1. Select the space where your service instance is located.
-2. Under **Services**, click **Manage** next to your SSO service instance to launch the SSO dashboard.
-3. Click the **Resources** tab.
-4. Click **New Resource**.
-5. Enter a **Resource Name**.
-6. Create **Permissions** that the OAuth client for your application needs to access from the resource server.
+
+1. Under **Services**, click **Manage** next to your SSO service instance to launch the SSO dashboard.
+
+1. Click the **Resources** tab.
+
+1. Click **New Resource**.
+
+1. Enter a **Resource Name**.
+
+1. Create **Permissions** that the OAuth client for your application needs to access from the resource server.
     
     1. Enter one or more **Attributes** or **Actions** for each permission.
     
-    2. Enter a **Description** for each permission.
+    1. Enter a **Description** for each permission.
 
-7. Click **Save Resource**. The administrator must create resource permissions so that users can access the resource. See the [Create or Edit Resource Permissions](#create-resource-perm) section below for more details.
+1. Click **Save Resource**. The administrator must create resource permissions so that users can access the resource. See the [Create or Edit Resource Permissions](#create-resource-perm) section below for more details.
 
 <p class="note"><strong>Note</strong>: Space Developers create resources within a space. Space Developers only see the resources created in the spaces they have access to and can only assign those to the applications in those spaces.</p>
 
@@ -36,15 +42,15 @@ To create resources in the SSO Dashboard:
 
 1. Log into Apps Manager as a Space Developer.
 
-2. Click the **Manage** link under the SSO service instance to launch the service dashboard.
+1. Click the **Manage** link under the SSO service instance to launch the service dashboard.
 
-3. Click the **Resources** tab.
+1. Click the **Resources** tab.
 
-4. Click your resource.
+1. Click your resource.
 
-5. Click **Delete** at the bottom of the page. 
+1. Click **Delete** at the bottom of the page. 
 
-6. On the popup, click **Delete Resource** to delete the resource.
+1. On the popup, click **Delete Resource** to delete the resource.
 
 <p class="note"><strong>Note</strong>: Deleting a resource removes it from the permission mappings and from the application. You must reconfigure the updated permissions in both areas.</p> 
 
@@ -54,17 +60,17 @@ After a Space Developer defines resources required by an application, an adminis
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
-2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
 
-3. Click **Resource Permissions** for the identity provider that you want to define permissions for.
+1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the dropdown menu.
 
-4. Click **New Permissions Mapping**.
+1. Click **New Permissions Mapping**.
 
-5. Enter a **Group Name**.
+1. Enter a **Group Name**.
 
-6. Click **Select Permissions** to choose the permissions that users in the group should have access to.
+1. Click **Select Permissions** to choose the permissions that users in the group should have access to.
 
-7. Click **Save Permissions Mapping**.
+1. Click **Save Permissions Mapping**.
 
 <p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
 
@@ -72,15 +78,15 @@ After a Space Developer defines resources required by an application, an adminis
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
-2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
 
-3. Click **Resource Permissions** for the identity provider that you want to define permissions for.
+1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the dropdown menu.
 
-4. Click the group name of the resource permission you want to delete.
+1. Click the group name of the resource permission you want to delete.
 
-5. Click **Delete** at the bottom of the page.
+1. Click **Delete** at the bottom of the page.
 
-6. On the popup, click **Delete Permissions Mapping** to delete the resource.
+1. On the popup, click **Delete Permissions Mapping** to delete the resource.
 
 <p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
 

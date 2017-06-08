@@ -20,50 +20,51 @@ This topic describes how to set up Okta as your identity provider by configuring
 
 	<%= image_tag '../images/saml_auth_checkbox.png' %>
 
-2. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
+1. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
 
-3. Click **Download Metadata** to download the service provider metadata.
+1. Click **Download Metadata** to download the service provider metadata.
 
-4. Click **Save**.
+1. Click **Save**.
+
+1. Open the downloaded service provider metadata file. You will refer to this file in the [next step](#okta), when you fill in the SAML settings in Okta.
 
 ## <a id='okta'></a> Set up SAML in Okta
 
 1. Sign in as an Okta administrator.
 
-2. Navigate to your application, then click the **Sign On** tab.
+1. Navigate to your application, then click the **Sign On** tab.
 
-3. Under **Settings**, click **Edit**, and select **SAML 2.0**.
+1. Under **Settings**, click **Edit**, and select **SAML 2.0**.
 
 	<%= image_tag '../images/saml_radio_button.png' %>
 
 1. Click the **General** tab.
 
-2. Under SAML Settings, click the **Edit** button followed by the **Next** button to configure SAML.
+1. Under SAML Settings, click the **Edit** button followed by the **Next** button to configure SAML.
 
 	<%= image_tag '../images/okta_saml_config.png' %>
 
-3. In the **SAML Settings** section, perform the following steps:
-
+1. In the **SAML Settings** section, perform the following steps:
 	1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into **Single sign on URL**. For example, `https://AUTH-DOMAIN/saml/SSO/alias/AUTH-DOMAIN`.
+	1. Enter your Auth Domain URL into **Audience URI (SP Entity ID)**. You can view the Auth Domain for a plan by logging into the SSO dashboard, clicking the name of your plan, and selecting **Edit Plan**. For example, `https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`. This value is also available in the downloaded service provider metadata as the entity ID.
+	1. Select a **Name ID format**.
+	1. Select an **Application username**.
 
-	2. Enter your Auth Domain URL into **Audience URI (SP Entity ID)**. You can view the Auth Domain for a plan by logging into the SSO dashboard, clicking the name of your plan, and selecting **Edit Plan**. For example, `https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`.
-
-	3. Select a **Name ID format**.
-
-	4. Select an **Application username**.
-
-4. (Optional) To configure single logout, perform the following steps:
-
+1. (Optional) To configure single logout, perform the following steps:
     1. Click **Show Advanced Settings**.
-    2. For **Enable Single Logout**, select **Allow application** to initiate single logout.
-    3. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into **Single Logout URL**.
-    4. Enter your `Auth Domain URL` into **SP Issuer**.
-    5. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service provider metadata.
-6. (Optional) Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map to users in the ID token.
-7. (Optional) Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you want to map to users in the ID token. This is a group that users are in within Okta.
+    1. For **Enable Single Logout**, select **Allow application** to initiate single logout.
+    1. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into **Single Logout URL**.
+    1. Enter your `Auth Domain URL` into **SP Issuer**.
+    1. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service provider metadata.
+
+1. (Optional) Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map to users in the ID token.
+
+1. (Optional) Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you want to map to users in the ID token. This is a group that users are in within Okta.
 
 1. Click the **Next** button followed by the **Finish** button.
 
-2. Click **Identity Provider metadata** to download the metadata, or copy and save the link address of the **Identity Provider metadata**.
+1. Click **Identity Provider metadata** to download the metadata, or copy and save the link address of the **Identity Provider metadata**. You will need this Okta metadata for the next step, [Configure a Single Sign-On Service Provider](./config-sso.html).
 
 	<%= image_tag '../images/id_provider_metadata.png' %>
+
+
