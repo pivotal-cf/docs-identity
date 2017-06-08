@@ -143,7 +143,7 @@ Refer to the following sets of instructions for how to configure the SSO service
 	* Enter a **Custom Attribute Name**.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
-1. (Optional) Check **Persist Custom Attributes** if you wish to expose custom user attributes through the `/userinfo` endpoint.
+1. (Optional) Check **Persist Custom Attributes** if you wish to expose custom user attributes through the `/userinfo` endpoint. Your application must also have the `user_attributes` scope assigned in order for the custom attributes to appear.
 
 1. Click **Create Identity Provider** to save the identity provider.
 
@@ -177,7 +177,7 @@ Refer to the following sets of instructions for how to configure the SSO service
   - Enter a **Custom Attribute Name**.
   - Enter an **ID Token Attribute Name** with the corresponding attribute from the incoming OIDC ID token.
 
-1. (Optional) Check **Persist Custom Attributes** if you wish to expose custom user attributes through the /userinfo endpoint.
+1. (Optional) Check **Persist Custom Attributes** if you wish to expose custom user attributes through the `/userinfo` endpoint.  Your application must also have the `user_attributes` scope assigned in order for the custom attributes to appear.
 
 1. Click **Create Identity Provider** to save the identity provider.
 
@@ -214,7 +214,7 @@ When integrating with an external identity provider for LDAP, authentication bec
   - Enter a **Custom Attribute Name**.
   - Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
 
-1. (Optional) Check **Persist Custom Attributes** if you wish to expose custom user attributes through the /userinfo endpoint.
+1. (Optional) Check **Persist Custom Attributes** if you wish to expose custom user attributes through the `/userinfo` endpoint.  Your application must also have the `user_attributes` scope assigned in order for the custom attributes to appear.
 
 1. Click **Create Identity Provider** to save the identity provider.
 
