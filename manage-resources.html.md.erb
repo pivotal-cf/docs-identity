@@ -3,11 +3,14 @@ title: Manage Resources
 owner: Identity Service
 ---
 
-This topic describes how a Space Developer defines resources required by an app bound to a Single Sign-On (SSO) service instance, and how an administrator grants resource permissions.
+This topic describes how a Space Developer defines resources required by an app bound to a Single Sign-On (SSO) service instance
+and how an administrator grants resource permissions.
 
-In this topic, _resources_ are the API endpoints that users and apps need to retrieve information from a resource server. After an administrator creates resources, they assign the resources to users and apps. Users can then grant apps access to the resources, for example to query API endpoints on their behalf.
+In this topic, _resources_ are the API endpoints that users and apps need to retrieve information from a resource server.
+After an administrator creates resources, they assign the resources to users and apps.
+Users can then grant apps access to the resources, for example to query API endpoints on their behalf.
 
-Since developers know what endpoints exist for their apps, they are responsible for creating resources.
+Because developers know what endpoints exist for their apps, they are responsible for creating resources.
 
 ## <a id='create-resources'></a> Create or Edit Resources
 
@@ -30,15 +33,17 @@ To create resources in the SSO Dashboard:
 
 1. Enter a **Resource Name**.
 
-1. Create **Permissions** that the OAuth client for your application needs to access from the resource server.
+1. Create **Permissions** that the OAuth client for your app needs to access from the resource server.
     
     1. Enter one or more **Attributes** or **Actions** for each permission.
     
     1. Enter a **Description** for each permission.
 
-1. Click **Save Resource**. The administrator must create resource permissions so that users can access the resource. See the [Create or Edit Resource Permissions](#create-resource-perm) section below for more details.
+1. Click **Save Resource**. The administrator must create resource permissions so that users can access the resource.
+For more information, see [Create or Edit Resource Permissions](#create-resource-perm) below.
 
-<p class="note"><strong>Note</strong>: Space Developers create resources within a space. Space Developers only see the resources created in the spaces they have access to and can only assign those to the applications in those spaces.</p>
+<p class="note"><strong>Note</strong>: Space Developers create resources within a space.
+Space Developers only see the resources created in the spaces they have access to and can only assign those to the apps in those spaces.</p>
 
 ## <a id='delete-resources'></a> Delete Resources
 
@@ -54,17 +59,20 @@ To create resources in the SSO Dashboard:
 
 1. On the popup, click **Delete Resource** to delete the resource.
 
-<p class="note"><strong>Note</strong>: Deleting a resource removes it from the permission mappings and from the application. You must reconfigure the updated permissions in both areas.</p> 
+<p class="note"><strong>Note</strong>: Deleting a resource removes it from the permission mappings and from the app.
+You must reconfigure the updated permissions in both areas.</p> 
 
 ## <a id='create-resource-perm'></a> Create or Edit Resource Permissions
 
-After a Space Developer defines resources required by an app, an administrator must grant access to those resources. SSO allows administrators to map groups of users from the identity provider to the resource permissions defined by the Space Developer.
+After a Space Developer defines resources required by an app, an administrator must grant access to those resources.
+SSO allows administrators to map groups of users from the identity provider to the resource permissions defined by the Space Developer.
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
+You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-1. Click the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the dropdown menu.
+1. Click the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the drop-down menu.
 
 1. Click **New Permissions Mapping**.
 
@@ -78,11 +86,12 @@ After a Space Developer defines resources required by an app, an administrator m
 
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
+You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the dropdown menu.
+1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the drop-down menu.
 
 1. Click the group name of the resource permission you want to delete.
 
