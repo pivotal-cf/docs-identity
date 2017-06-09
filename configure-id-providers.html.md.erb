@@ -98,16 +98,16 @@ The password policy enforces rules that restrict the kinds of passwords users ca
 
 1. Click **Save Identity Provider**.
 
-## <a id='config-ext-settings'></a> Configure External Identity Provider Settings
+## <a id='config-ext-settings'></a> Configure Service Provider SAML Settings
 
-For plan that use external identity providers, the Single Sign-On service allows you to configure how the SSO service and external provider exchange authentication and authorization data.
-Specifically, the SSO service can sign authentication requests from the provider, and also require that the external identity provider return signed assertions.
+For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider. The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-1. Click on the name of your external identity provider and select **Edit Provider** from the drop-down menu.
+1. Click **Configure SAML Service Provider**.
 
 1. Configure the following settings:
 	* **Perform signed authentication requests**: The service provider signs requests sent to the external identity provider.

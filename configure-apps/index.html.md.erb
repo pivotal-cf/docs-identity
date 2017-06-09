@@ -90,8 +90,8 @@ applications:
 
 The `GRANT_TYPE` property defaults to `authorization_code`, for Web App application type. `SSO_IDENTITY_PROVIDERS` defaults to `uaa`, for the PCF internal user store. 
 
-If you specify your own scopes and authorities, consider including the following values in your `SSO_SCOPES` property list.
-These values are not provided by default:
+If you specify your own scopes and authorities, consider including the following values in your `SSO_SCOPES` or `SSO_AUTHORITIES` property list.
+These values are not added your user-provided list by default:
 
 * `openid` — for apps with `authorization code`, `password`, and `implicit` [grant type](#choose-type)
 * `uaa.resource` — for apps with `client_credentials` [grant type](#choose-type)
