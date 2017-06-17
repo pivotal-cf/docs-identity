@@ -1,0 +1,57 @@
+---
+title: Configure Google Cloud Platform OIDC as an Identity Provider
+owner: Identity Service
+---
+
+This topic describes how to set up Google Cloud Platform (GCP) as your identity provider by configuring OpenID Connect (OIDC) integration in both Pivotal Cloud Foundry (PCF) and GCP. 
+
+## <a id='gcp-rp'></a> Set Up Relying Party in Google Cloud Platform
+
+1. Log in to your Google Cloud Platform console and create OAuth Client ID credentials for your project.
+
+	<%= image_tag '../images/gcp-create-oauth.png' %>
+
+1. Select to create an OAuth client of type **Web application** with an authorized redirect URI of `https://{AUTH_DOMAIN}/login/callback/{ORIGIN_KEY}`.
+  - `AUTH_DOMAIN` comes from your service plan configurations.
+  - `ORIGIN_KEY` is generated from the name of your identity provider to be created in SSO. You may need to change this value later.
+
+	<%= image_tag '../images/gcp-config-oauth.png' %>
+
+1. Click **Create** and record the Client ID and Client Secret generated. These values will be your Relying Party OAuth Client ID and Relying Party OAuth Client Secret.
+
+	<%= image_tag '../images/gcp-oauth-keypair.png' %>
+
+## <a id='gcp-oidc-sso'></a> Set Up OIDC Identity Provider in SSO
+
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+
+1. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+
+1. Click **New Identity Provider**.
+
+1. Enter an **Identity Provider Name**. This value in all lowercase with dashes replacing spaces will become your **Origin Key**. For example, `Example Google Origin` would become `example-google-origin`. If you did not enter this for your OAuth Client’s authorized redirect URIs, you may go back and edit the value in Google Cloud Platform.
+
+1. Enter a **Description**. This is displayed to Space Developers when selecting an identity provider for their application.
+
+1. Select **OpenID Connect** as the **Identity Provider type**.
+
+	<%= image_tag '../images/gcp-new-idp.png' %>
+
+1. Make sure **Enable Discovery** is selected. Enter in  `https://accounts.google.com/.well-known/openid-configuration` as the **Discovery Endpoint URL** and click **Fetch Scopes**. Then enter in your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**.
+
+	<%= image_tag '../images/gcp-oidc-settings.png' %>
+
+1. Make sure that `openid` and `email` are selected as scopes. You may select additional scopes if you wish.
+
+	<%= image_tag '../images/gcp-scopes.png' %>
+
+1. (Optional) You may enable identity provider discovery if you wish.
+
+1. Under **Advanced Settings**, make sure to map `user_name` to `email`. This is required for SSO to identify the authenticated user.
+
+	<%= image_tag '../images/gcp-advanced-settings.png' %>
+
+1. (Optional) You may configure additional attribute mappings if you wish.
+
+1. Click **Create Identity Provider** to save your settings.
+

@@ -1,0 +1,44 @@
+---
+title: Testing
+owner: Identity Service
+---
+
+This topic describes how an administrator can test the connection between SSO and Google Cloud Platform.
+
+## <a id="test-sso"></a>Test Your Single Sign-On Connection
+
+1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN` and navigate to the org and space where your app is located.
+
+1. Under **Services**, locate the service instance of the Single Sign-On (SSO) plan bound to your application.
+
+	<%= image_tag '../images/gcp-appsman-sso.png' %>
+
+1. Click on the service instance and click **Manage**.
+
+	<%= image_tag '../images/gcp-appsman-manage.png' %>
+	
+1. Under the **Apps** tab, click your app.
+
+	<%= image_tag '../images/gcp-appsman-app.png' %>
+	
+1. Under **Identity Providers**, select the GCP identity provider and remove other identity providers.
+
+	<%= image_tag '../images/gcp-appsman-ips.png' %>
+	
+1. Return to Apps Manager and click on the URL below your application to be redirected to the identity provider to authenticate.
+
+	<%= image_tag '../images/gcp-appsman-route.png' %>
+	
+1. Navigate to your login.
+
+	<%= image_tag '../images/gcp-sample.png' %>
+	
+1. On the identity provider sign-in page, enter your credentials and sign in.
+
+	<%= image_tag '../images/gcp-sign-in.png' %>
+	
+1. The application may ask for authorization to the necessary scopes if required. If so, click Authorize.
+
+1. The user should be logged in to your application successfully.
+
+	<%= image_tag '../images/gcp-sample-confirm.png' %>
