@@ -39,7 +39,7 @@ This topic describes how to set up Google Cloud Platform (GCP) as an identity pr
 
 	<%= image_tag '../images/gcp-new-idp.png' %>
 
-1. Make sure the **Enable Discovery** checkbox is selected.
+1. Make sure the **Enable Discovery** checkbox is selected, to enable OIDC discovery.
 
 1. For **Discovery Endpoint URL**, enter `https://accounts.google.com/.well-known/openid-configuration`.
 
@@ -53,8 +53,6 @@ This topic describes how to set up Google Cloud Platform (GCP) as an identity pr
 
 	<%= image_tag '../images/gcp-scopes.png' %>
 
-1. (Optional) Select the **Enable Discovery** checkbox if you want to enable [identity provider discovery](../idp-discovery.html).
-
 1. Under **Advanced Settings** > **User Attributes**, map `user_name` to `email`. This enables SSO to identify the authenticated user.
 
 	<%= image_tag '../images/gcp-advanced-settings.png' %>
@@ -62,4 +60,6 @@ This topic describes how to set up Google Cloud Platform (GCP) as an identity pr
 1. (Optional) You may configure additional attribute mappings if you wish.
 
 1. Click **Create Identity Provider** to save your settings.
+
+1. (Optional) You can [enable identity provider discovery](../idp-discovery.html) for the service plan.
 
