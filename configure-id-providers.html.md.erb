@@ -3,58 +3,61 @@ title: Configure Identity Providers
 owner: Identity Service
 ---
 
-This topic describes how administrators can use an internal user store or an external identity provider to manage user access to a Single Sign-On (SSO) service plan.
-
-For each plan, SSO provides an internal user store that manages users. As an alternative to an internal user store, administrators can use an external identity provider to allow users who are externally managed to access applications.
+This topic describes how Pivotal Cloud Foundry (PCF) administrators configure a Single Sign-On (SSO) service plan to manage user access to PCF apps,
+for users with accounts in the internal user store or with external identity providers.
 
 ## <a id='config-int-store'></a> Configure Internal User Store
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
+Find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-3. Click **Internal User Store**.
+1. Click **Internal User Store** and select **Edit Provider** from the drop-down menu.
 
-4. Under **Authentication Policy**, optionally select one of the following:
-	- **Disable Internal Authentication**: Select this option to prevent authentication against the internal user store. You must have at least one external identity provider configured.
+1. (Optional) Under **Authentication Policy** select one of the following:
+	- **Disable Internal Authentication**: This option prevents authentication against the internal user store. You must have at least one external identity provider configured.
 	<p class="note"><strong>Note</strong>: The login page does not include the <strong>Email</strong> and <strong>Password</strong> fields if you select this option.</p>
-	- **Disable User Management**: Select this option to prevent all users, including administrators, from performing actions on internal users.
+	- **Disable User Management**: This option prevents all users, including administrators, from performing actions on internal users.
 	<p class="note"><strong>Note</strong>: The login page does not include <strong>Create Account</strong> and <strong>Reset Password</strong> links if you select this option.</p>
 
-5. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**, or enter custom settings in the fields below.
+1. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**, or enter custom settings in the fields below.
 
-6. Click **Save Identity Provider**.
+1. Click **Save Identity Provider**.
 
-## <a id='add-to-int'></a> Add Users to the Internal User Store
+## <a id='add-to-int'></a> Add Internal Users From the Command Line
 
-You cannot add users to Service Plans from the SSO dashboard. In order to add users to the internal user store for a given Service Plan, you must use the UAA Command Line Interface (UAAC). If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
+You can use the **Internal Users** [admin pane](./manage-users.html#internal) to send invitations to users, so that they can add themselves to the internal user store.
+But you cannot use the admin pane to add users directly.
 
-The following steps describe how to use UAAC to add users to the internal user store.
+To create new internal user accounts directly, supplying the user's name, email address and other info, use the UAA Command Line Interface (UAAC) as follows:
 
-### <a id="update-client"></a>Step 1: Create an Admin Client
+1. If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
 
 1. [Create an admin client](configure-apps/index.html#admin) that can manage users in the Service Plan. Include the following scopes for the client:
-	- clients.admin
-	- scim.read
-	- scim.write
+	- `clients.admin`
+	- `scim.read`
+	- `scim.write`
 
-2. Record the **App ID** and **App Secret**. These are used as your client ID and client secret.
-
-### <a id="adding-users"></a>Step 2: Create Users
+1. Record the **App ID** and **App Secret**. These are used as your client ID and client secret.
 
 1. Target the auth domain of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
-1. Fetch the token for the admin client created in Step 1.
+
+1. Fetch the **App ID** token for the admin client created above.
 <pre class="terminal">$ uaac token client get ADMIN-CLIENT-ID
 Client secret:
 </pre>
-1. When prompted with `Client secret`, enter the admin client secret from Step 1.
+
+1. When prompted with `Client secret`, enter the **App Secret** admin client secret recorded above.
+
 1. Add new users by providing the user's email address, username, and password.
 <pre class="terminal">$ uaac user add --emails YOUR-USER<span>@</span>EMAIL.COM
 User name:  YOUR-USER
 Password:  ****
 Verify password:  ****
 user account successfully added</pre>
+
 1. (Optional) You can also create groups and add users to them.
 <pre class="terminal">$ uaac group add
 Group name:  YOUR-GROUP
@@ -71,101 +74,183 @@ To add a member to your new group, use the following command.
 
 ## <a id='passwd-policy'></a> Define Password Policy for the Internal User Store
 
-Administrators can define the password policy for SSO users that are stored in the internal user store. The internal user store password policy allows you to define and enforce password rules to manage the kind of passwords users can create.
+Administrators can define the password policy for SSO users in the internal user store.
+The password policy enforces rules that restrict the kinds of passwords users can create.
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+   You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
-2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-3. Click **Internal User Store**.
+1. Click **Internal User Store** and select **Edit Provider** from the drop-down menu.
 
-4. Configure the following under the **Password Complexity** section:
+1. Configure the following under the **Password Complexity** section:
     * **Min Length**: Specify the minimum password length.
     * **Uppercase**: Specify the minimum number of uppercase characters required in a password.
     * **Lowercase**: Specify the minimum number of lowercase characters required in a password.
     * **Special Characters**: Specify the minimum number of special characters required in a password.
     * **Numerals**: Specify the minimum number of numeric characters required in a password.
 
-5. Configure the following under the **Lockout Policy** section:
+1. Configure the following under the **Lockout Policy** section:
     * **Failures Allowed**: Specify the number of failed login attempts allowed per hour before a user is locked out.
     * **Lockout Period**: Specify the number of seconds a user is locked out for after excessive failed login attempts.
     * **Password Expires**: Specify the number of months passwords are valid for before users needs to enter a new password.
 
-6. Click **Save Identity Provider**.
+1. Click **Save Identity Provider**.
 
-## <a id='config-sp-saml-settings'></a> Configure Service Provider SAML Settings
+## <a id='config-ext-settings'></a> Configure Service Provider SAML Settings
 
-For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider.
-The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
+For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider. The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-3. Click **Configure SAML Service Provider**.
+1. Click **Configure SAML Service Provider**.
 
-4. Configure the following settings:
+1. Configure the following settings:
 	* **Perform signed authentication requests**: The service provider signs requests sent to the external identity provider.
 	* **Require signed assertions**: The service provider requires that responses from the external identity provider are signed.
 
-5. Click **Save** to save the SAML configurations.
+1. Click **Save** to save the configurations.
 
-6. Click **Download Metadata**.
+1. Click **Download Metadata**.
 
 ## <a id='config-ext-prov'></a> Add an External Identity Provider
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+See the following sets of instructions for how to configure the SSO service to use external identity providers that support SAML 2.0, OpenID Connect (OIDC), and LDAP.
 
-2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+### <a id='config-saml-prov'></a> Add a SAML Provider
 
-3. Click **New Identity Provider**.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-4. Enter an **Identity Provider Name**.
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-5. Enter a **Description**. This is displayed to Space Developers when selecting an identity provider for their application.
+1. Click **New Identity Provider**.
 
-6. Enter the external identity provider metadata in one of the following ways:
+1. Enter an **Identity Provider Name**.
+
+1. Select `SAML 2.0` as the Identity Provider Type.
+
+1. Enter a **Description**. This is displayed to Space Developers when they select an identity provider for their app.
+
+1. Enter the external identity provider metadata in one of the following ways:
     * Option 1: Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
     * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
+<p class="note"><strong>Note</strong>: If you choose to upload the Identity Provider Metadata as an XML file, you will be unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include e-mail addresses, first or last names, or external groups. They are sent to applications via OpenID tokens along with any other stored user information issued by the Single Sign-On service.
-	* Select a **User Scheme Attribute** from the dropdown menu.
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+	* Select a **User Scheme Attribute** from the drop-down menu.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
-2. Configure any **Custom Attributes** that should be propagated from the identity provider to the service provider. These attributes will be sent to applications via OpenID tokens issued by the Single Sign-On service.
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
 	* Enter a **Custom Attribute Name**.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
-3. Click **Create Identity Provider** to save the identity provider.
+1. (Optional) Check **Persist Custom Attributes** if you want to expose custom user attributes through the `/userinfo` endpoint. Your app must also have the `user_attributes` scope assigned in order for the custom attributes to appear.
+
+1. Click **Create Identity Provider** to save the identity provider.
 
 <p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click on <strong>Configure SAML Service Provider</strong> on the Identity Providers page.</p>
 
+### <a id='config-ext-oidc'></a> Add an OIDC Provider
+
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+
+1. Click the plan name and select Manage Identity Providers from the drop-down menu.
+
+1. Click **New Identity Provider**.
+
+1. Enter an **Identity Provider Name**.
+
+1. Enter a **Description**. This is displayed to Space Developers when they select an identity provider for their app.
+
+1. Select `OpenID Connect` as the **Identity Provider Type**.
+
+1. Enter the external OpenID Connect (OIDC) identity provider metadata in one of the following ways:
+  - Option 1: Select the **Enable Discovery** checkbox, provide the **Discovery Endpoint URL**, **Relying Party OAuth Client ID**, and **Relying Party OAuth Client Secret** and click **Fetch Scopes**.
+  - Option 2: Clear the **Enable Discovery** checkbox and provide the **Authorization Endpoint URL**, **Token Endpoint URL**, **Token Key** (URL), **Relying Party OAuth Client ID**, and **Relying Party OAuth Client Secret**.
+
+1. Select the applicable **Scopes** for the OIDC identity provider.
+
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+  - Select a **User Scheme Attribute** from the drop-down menu.
+  - Enter an **ID Token Attribute Name** with the corresponding attribute from the incoming OIDC ID token.
+
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
+  - Enter a **Custom Attribute Name**.
+  - Enter an **ID Token Attribute Name** with the corresponding attribute from the incoming OIDC ID token.
+
+1. (Optional) Check **Persist Custom Attributes** if you want to expose custom user attributes through the `/userinfo` endpoint.  Your app must also have the `user_attributes` scope assigned in order for the custom attributes to appear.
+
+1. Click **Create Identity Provider** to save the identity provider.
+
+### <a id='config-ext-oidc'></a> Add an LDAP Identity Provider
+
+When integrating with an external identity provider for LDAP, authentication becomes chained. An authentication attempt with a user's credentials is first attempted against the internal user store before the external LDAP identity provider. To avoid username collision, do not bootstrap or create users in the UAA directly. You may only have one LDAP external identity provider per service plan.
+
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+
+1. Click **New Identity Provider**.
+
+1. Enter an **Identity Provider Name**.
+
+1. Enter a **Description**. This is displayed to Space Developers when they select an identity provider for their app.
+
+1. Select `LDAP` as the **Identity Provider Type**. You may only have one LDAP provider per Service Plan.
+
+1. Enter the external LDAP identity provider configurations:
+  1. Enter the **Hostname** and **Port**.
+  1. Select the applicable **Security protocol**.
+  1. Select the applicable **Referral**.
+  1. Enter the **User DN** and **Bind Password** for your LDAP service account.
+  1. (Optional) Enter the **Search Base** and **Search Filter**.
+
+1. Select the applicable **Scopes** for the OIDC identity provider.
+
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+  - Select a **User Scheme Attribute** from the drop-down menu.
+  - Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
+
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
+  - Enter a **Custom Attribute Name**.
+  - Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
+
+1. (Optional) Check **Persist Custom Attributes** if you want to expose custom user attributes through the `/userinfo` endpoint.  Your app must also have the `user_attributes` scope assigned in order for the custom attributes to appear.
+
+1. Click **Create Identity Provider** to save the identity provider.
+
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-3. Click on the name of your external identity provider.
+1. Click on the name of your external identity provider.
 
-4. Click **Delete** at the bottom of the page.
+1. Click **Delete** at the bottom of the page.
 
 1. In the popup that appears, click **Delete Identity Provider** to confirm that you want to delete the identity provider, along with all of its configurations.
 
-<p class="note"><strong>Note</strong>: Deleting an external identity provider deletes all of its configurations. Users will no longer be able to authenticate using the external identity provider. This action cannot be undone.</p>
+<p class="note warning"><strong>Note</strong>: Deleting an external identity provider deletes all of its configurations. Users will no longer be able to authenticate using the external identity provider. This action cannot be undone.</p>
 
 ## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
-An administrator can create groups from an external identity provider in Group Whitelist. By creating these groups, they are propagated in the ID token when a user authenticates through an external identity provider. This provides information to the application about the external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users. For more details on how to create resource permission mappings, see <a href="./manage-resources.html#create-resource-perm">Create or Edit Resource Permissions</a>.
+An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider. An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
 
-<p class="note"><strong>Note</strong>: The <code>roles</code> scope must be requested by the application and the external group must be listed in the Group Whitelist.</p>
+For more details on how to create resource permission mappings, see <a href="./manage-resources.html#create-resource-perm">Create or Edit Resource Permissions</a>.
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+<p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
 
-2. Click the plan name and select **Manage Identity Providers** from the dropdown menu.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
-3. Click **Group Whitelist**.
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
-4. Add a group name from your external identity provider.
+1. Click on the name of your external identity provider and select **Group Whitelist** from the drop-down menu.
 
-5. Click **Save Group Whitelist**.
+1. Add a group name from your external identity provider.
+
+1. Click **Save Group Whitelist**.

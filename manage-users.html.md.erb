@@ -1,0 +1,80 @@
+---
+title: Manage Users
+owner: Identity Service
+---
+
+This topic describes how a Pivotal Cloud Foundry (PCF) Plan Administrator uses the Single Sign-On (SSO) service to manage user access to PCF apps,
+for users with accounts in the internal user store or with external identity providers.
+
+## <a id="internal"></a> Manage Users in an Internal User Store
+
+The SSO service has an **Internal Users** admin pane that lets you manage user accounts in PCF's internal user store:
+invite and delete users, request users to reset their passwords, and update user attributes and permissions.
+
+To open the **Internal Users** pane:
+
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
+Find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+
+1. Click **Internal User Store** and select **Internal Users** from the drop-down menu. This brings you to the admin screen.
+![SSO Admin](images/admin.png)
+
+From the **Internal Users** pane, you can:
+
+* **Invite users** by clicking **Invite User**, entering their email address, and clicking **Send Invite**.
+![Invite User](images/invite_user.png)
+
+* **Search existing users** by entering a value into the search bar and clicking **Search**.
+Entering a blank value returns all users in the service plan’s internal user store.
+![Internal Users](images/internal_users.png)
+
+* **Resend an invite** to an unverified user by selecting the checkbox next to their username and clicking **Resend Invite**.
+
+* Ask a verified user to **reset their password** by selecting the checkbox next to their username and clicking **Reset Password**.
+
+* **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
+
+* **View information about a user** by clicking their username.
+![User Profile - Unverified](images/user_profile_unverified.png)
+
+* **Update a user profile** including their **Email**, **First Name**, **Last Name**, and **Phone Number** by entering the updated values and clicking **Save User**.
+
+* **View user permissions** by clicking the **Permissions** tab.
+![Internal User Permissions](images/internal_user_permissions.png)
+
+* **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
+
+## <a id="external"></a> Manage Users from an External Identity Provider
+
+For each external identity provider that the SSO service connects to, a users admin pane (example: **Okta SSO Users**)
+lets you browse, delete, and update PCF permissions for user accounts from external identity providers.
+
+To open the external identity provider users admin pane:
+
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
+You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+
+1. Click the external identity provider you want to manage and select the **Users** choice for the provider from the drop-down menu.
+This brings you to the users admin pane.
+![Okta Users Search](images/okta_search.png)
+
+From the external identity provider users admin pane, you can:
+
+* **Search** existing users by entering a value into the search bar and clicking **Search**.
+  Entering a blank value returns all users in the service plan’s internal user store.
+![Okta Users Search Results](images/okta_results.png)
+
+* **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
+
+* **View information about a user** by clicking their username.
+![User Profile - Verified](images/user_profile_verified.png)
+
+* **View user permissions** by clicking the **Permissions** tab.
+![External User Permissions](images/external_user_permissions.png)
+
+* **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
+
