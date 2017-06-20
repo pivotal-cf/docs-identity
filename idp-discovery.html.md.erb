@@ -1,0 +1,37 @@
+---
+title: Identity Provider Discovery
+owner: Identity
+---
+
+This topic describes Identity Provider (IdP) Discovery and how to configure it for your Pivotal Cloud Foundry (PCF) apps that use the Single Sign-On (SSO) service. 
+
+## <a id="definition"></a> What it Does
+
+If users with different email domains access the same PCF app, you can configure SSO to authenticate them through different identity providers.
+
+In this situation, IdP Discovery streamlines the login experience by automatically redirecting the user to their own IdP and shielding them from seeing the IdPs of other app users.
+
+When a user logs in to an app, an account chooser autofills their email address from any previous login, or presents a choice if they have logged in from more than one account. Users can add or remove accounts from the account chooser.
+
+### Example
+
+As an example, consider an app used by a company `@company.com` and its competing suppliers `@supplier-1.com` and `@supplier-2.com`. With IdP Discovery, users from all three companies can log in from the same page, and do not have to see or choose from a list of login options that covers all the domains. IdP Discovery ascertains each user's IdP from their email domain.
+
+## <a id="how-to"></a> Enable IdP Discovery 
+
+IdP Discovery is associated with a service plan, and configured for the apps bound to instances of that plan. To enable IdP Discovery for a service plan and the apps that use it, you must be a PCF Administrator or a Plan Administrator.
+
+1. Enable IdP Discovery for the SSO Service Plan instance that your app is bound to:
+	1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+	1. Click the plan name and select **Configure** under the plan menu.
+	1. Select the checkbox under the **Identity Provider Discovery** section and click **Save**.
+![Enable IdP Discovery](images/enable-idp-discovery.png)
+
+1. Click the plan name and select **Manage Identity Providers** under the plan menu.
+
+1. Enter the Email domains you want to include as a comma-separated list under the configuration page for the identity provider plan.
+![IdP Discovery Domains](images/idp-discovery-domains.png)
+
+1. In Apps Manager, navigate to your space, open the **Service** tab, and select your service instance.
+
+1. Click the **Manage** link under the service name, and edit the app configuration by selecting the required Identity Providers.

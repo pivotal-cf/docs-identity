@@ -1,0 +1,35 @@
+---
+title: Google Cloud Platform OIDC Integration Guide Overview
+owner: Identity Service
+---
+
+This documentation describes how to set up the Pivotal Cloud Foundry (PCF) Single Sign-On service to use Google Cloud Platform (GCP) as an OpenID Connect (OIDC) identity provider.
+
+PCF Single Sign-On (SSO) supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
+
+GCP lets you build and host applications and websites, store data, and analyze data on Google's scalable infrastructure.
+ 
+## <a id='prereqs'></a>Prerequisites
+
+To integrate Google Cloud Platform as a single sign-on identity provider for PCF apps, you need:
+
+* **Pivotal**
+  - PCF v1.11.0 or later
+  - SSO v1.4.1 or later installed on your PCF deployment
+  - An SSO service plan configured with plan administrators who manage it and orgs to use it. For help configuring plans, see [Manage Service Plans](../manage-service-plans.html).
+
+* **Google Cloud Platform**
+  - An active Google Cloud project
+  - A GCP user account with project editor or higher privileges
+
+## <a id='google'></a> Integrate Google Cloud Platform OIDC for SSO
+
+Complete the step below to set up GCP as an OIDC identity provider for the SSO service.
+
+1. <a href="config-gcp.html" class="subnav">Configure GCP as an OIDC Identity Provider</a>
+
+## Test and Troubleshoot
+
+* <a href="testing.html" class="subnav">Testing </a>
+* <a href="troubleshooting.html" class="subnav">Troubleshooting</a>
+

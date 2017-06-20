@@ -1,0 +1,56 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Google Cloud Platform (GCP) OpenID Connect (OIDC) and Pivotal Single Sign-On (SSO).
+
+##<a id='no-link'></a> No Link for OIDC
+
+#### Symptom:
+
+<%= image_tag '../images/gcp-no-link.png' %>
+
+#### Explanation:
+
+- Incorrect or unavailable discovery URL. No link will appear on the login page.
+
+##<a id="no-client"></a> No OAuth Client Found
+
+#### Symptom:
+
+<%= image_tag '../images/gcp-no-client.png' %>
+
+#### Explanation:
+
+- Incorrect OAuth Client ID configured.
+
+##<a id="unauthorized"></a> Unauthorized
+
+#### Symptom:
+
+<%= image_tag '../images/gcp-unauthorized.png' %>
+
+#### Explanation:
+
+- Incorrect OAuth client secret configured.
+
+##<a id="mismatch"></a> Redirect URI Mismatch
+
+#### Symptom:
+
+<%= image_tag '../images/gcp-mismatch.png' %>
+
+#### Explanation:
+
+- Incorrect authorization redirect URI on OAuth Client.
+
+##<a id="empty"></a> Empty Username
+
+#### Symptom:
+
+<%= image_tag '../images/gcp-empty.png' %>
+
+#### Explanation:
+
+- `user_name` attribute was not mapped to `email`.

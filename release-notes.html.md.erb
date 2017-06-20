@@ -3,9 +3,93 @@ title: Release Notes
 owner: Identity Service
 ---
 
-## <a id='12X'></a> 1.2.0
+## <a id='14X'></a> 1.4.1
 
-**Release date: 12 September 2016**
+**Release date: 15 June 2017**
+
+**What's New**
+
+* Application bootstrapping is available for app developers to automates and quickly onboard client and resource configurations to Single Sign-On. See the [Set Up PCF Apps to Use SSO](./configure-apps/index.html#internal) topic for more information.
+
+* Admin User Management interface enables plan administrators to browse and manage users across their identity providers through a simple user interface as opposed to through the UIs to help improve productivity. See the [Manage Users](./manage-users.html) topic for more information.
+
+* OpenID Connect and LDAP identity provider interfaces are now available. Plan administrators can now improve their productivity by utilizing a simple user interface to configure and maintain their identity providers. See the [Configure Identity Providers](./configure-id-providers.html) topic for more information.
+
+* You can allow custom attributes to be made available through the /userinfo endpoint for your external identity providers. This can streamline user attributes for your applications. Your application must have the `user_attributes` token once custom attributes mappings and `Persist Custom Attributes` are configured for your identity provider.
+
+* You can configure required user groups through bootstrapping. Require user groups are groups that users must have in order to authenticate to your application and obtain an access token.
+
+## <a id='13X'></a> 1.3.2
+
+**Release date: 10 April 2017**
+
+* This releases addresses the upgrade issues introduced in version 1.3.1 of the Single Sign-On Service tile.
+
+## 1.3.1
+
+**Release date: 29 March 2017**
+
+<p class="note warning">
+  <strong>Critical</strong>:
+  Pivotal Single Sign-On Service upgrade from 1.3.0 to 1.3.1 fails and causes failure of any further "Apply Changes" from Pivotal Operations Manager.
+</p>
+
+<p class="tip">
+ This notification applies only to customers who have installed Pivotal Single Sign-On Service 1.3.0 and are planning to upgrade to Pivotal Single Sign-On Service 1.3.1. Pivotal Single Sign-On Service 1.3.1 introduces a breaking change which affects customers trying to upgrade from 1.3.0 to 1.3.1 version of the tile. It also has the side effect of stopping any further "Apply Changes" in Pivotal Operations Manager with an error "Error 30014: release 'identity_service_broker/65' has already been uploaded with commit_hash as '6d038495' and uncommitted_changes as 'true'". Please contact Pivotal Support immediately to get assistance with a mitigation for this issue. We will be releasing Pivotal Single Sign-On Service 1.3.2 which contains a fix for this issue in the next few days.
+
+  <br> <br>
+  Please refrain from uploading Pivotal Single Sign-On Service Tile 1.3.1 to Pivotal Operations Manager until version 1.3.2 is available for download. Please note that a simple upload of the 1.3.1 tile to Ops Manager can trigger the issue with Apply Changes.
+  <br> <br>
+</p>
+
+**What's New**
+
+* The Single Sign-On service tile now supports network with multiple subnets at installation time.
+
+
+## 1.3.0
+
+**Release date: 20 December 2016**
+
+**What's New**
+
+* Default system service plan secures developer apps and automates access to the Cloud Foundry API and pipelines. See the [Using the System Plan](./system-plan.html) topic for more information.
+
+* Identity Provider Discovery streamlines the end user experience when multiple identity providers are enabled for a single app. See the [Identity Provider Discovery](./idp-discovery.html) topic for more information.
+
+* You can set access and refresh token lifetimes at the app level.
+
+
+## <a id='12X'></a> 1.2.4
+
+**Release date: 15 June 2017**
+
+* PCF updated stemcell to 3363 series.
+
+
+## 1.2.3
+
+**Release date: 9 January 2017**
+
+* Fixed an issue with display of scopes for Plan Administrators related to [Admin Clients](http://docs.pivotal.io/p-identity/1-9/configure-id-providers.html#add-to-int) feature
+
+
+## 1.2.2
+
+**Release date: 14 October 2016**
+
+* PCF updated stemcell to 3263.7. This release bumps the Ubuntu stemcell for [USN-3099-2](https://www.ubuntu.com/usn/usn-3099-2/): Linux kernel (Xenial HWE) vulnerabilities.
+
+
+## 1.2.1
+
+**Release date: 20 September 2016**
+
+* PCF updated stemcell to 3263. This is a security upgrade to patch CVE.
+
+## 1.2.0
+
+**Release date: 16 September 2016**
 
 **What’s New**
 
@@ -44,7 +128,26 @@ owner: Identity Service
 	
 	* Footer links
 
-## <a id='11X'></a> 1.1.1
+## <a id='11X'></a> 1.1.4
+
+**Release date: 15 June 2017**
+
+* PCF updated stemcell to 3363 series
+
+## 1.1.3
+
+**Release date: 9 January 2017**
+
+* PCF updated stemcell to 3263 series
+
+
+## 1.1.2
+
+**Release date: 14 October 2016**
+
+* PCF updated stemcell to 3233.2. This release bumps the Ubuntu stemcell for [USN-3099-2](https://www.ubuntu.com/usn/usn-3099-2/): Linux kernel (Xenial HWE) vulnerabilities.
+
+## 1.1.1
 
 **Release date: 5 May 2016**
 
@@ -121,9 +224,73 @@ If you are a customer upgrading from PCF 1.6 to PCF 1.7 and you are using SSO v1
 
 * SSO provides the ability for developers to create resources and permissions for clients.
 
-* SSO now supports SAML single logout flow which ends UAA and external identity provder sessions.
+* SSO now supports SAML single logout flow which ends UAA and external identity provider sessions.
 
-## <a id='10X'></a> 1.0.16
+## <a id='10X'></a> 1.0.26
+
+**Release date: 28 April 2017**
+
+* PCF updated stemcell to [3312.24](https://network.pivotal.io/products/stemcells#/releases/5201). 
+		
+## 1.0.25
+
+**Release date: 4 April 2017**
+
+* PCF updated stemcell to [3263.22](https://network.pivotal.io/products/stemcells/#/releases/4806). 
+	
+## 1.0.24
+
+**Release date: 10 March 2017**
+
+* PCF updated stemcell to [3263.21](https://network.pivotal.io/products/stemcells/#/releases/4588). 
+	
+## 1.0.23
+
+**Release date: 28 February 2017**
+
+* PCF updated stemcell to [3263.20](https://network.pivotal.io/products/stemcells/#/releases/4419). 
+	
+## 1.0.22
+
+**Release date: 30 January 2017**
+
+* PCF updated stemcell to [3263.17](https://network.pivotal.io/products/stemcells#/releases/3844). 
+		
+	
+## 1.0.21	
+
+**Release date: 15 December 2016**
+
+* PCF updated stemcell to 3233.8. This release bumps the Ubuntu stemcells for [USN-3156-1](https://lists.ubuntu.com/archives/ubuntu-security-announce/2016-December/003669.html): APT vulnerability
+	
+
+## 1.0.20
+          
+**Release date: 8 December 2016**
+
+* PCF updated stemcell to 3233.6. This release bumps the Ubuntu stemcell for [USN-3151-2](https://www.ubuntu.com/usn/usn-3151-2/): Linux kernel (Xenial HWE) vulnerability.
+
+## 1.0.19
+
+**Release date: 24 October 2016**
+
+* PCF updated stemcell to 3233.3. This release bumps the Ubuntu stemcell for [USN-3106-2](https://www.ubuntu.com/usn/usn-3106-2/): Linux kernel (Xenial HWE) vulnerability.
+	
+	
+## 1.0.18
+
+**Release date: 14 October 2016**
+
+* PCF updated stemcell to 3233.2. This release bumps the Ubuntu stemcell for [USN-3099-2](https://www.ubuntu.com/usn/usn-3099-2/): Linux kernel (Xenial HWE) vulnerabilities.
+
+
+## 1.0.17
+
+**Release date: 28 September 2016**
+* PCF updated stemcell to 3232.21. Bump Ubuntu stemcell for [USN-3087-2](https://www.ubuntu.com/usn/usn-3087-2/): OpenSSL regression.
+
+
+## 1.0.16
 
 **Release date: 23 August 2016**
 
