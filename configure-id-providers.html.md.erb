@@ -156,7 +156,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.run.pivotal.io` using your administrator credentials. 
 
 1. Click the plan name and select Manage Identity Providers from the drop-down menu.
 
@@ -190,7 +190,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 When integrating with an external identity provider for LDAP, authentication becomes chained. An authentication attempt with a user's credentials is first attempted against the internal user store before the external LDAP identity provider. To avoid username collision, do not bootstrap or create users in the UAA directly. You may only have one LDAP external identity provider per service plan.
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.run.pivotal.io` using your administrator credentials. 
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -244,8 +244,6 @@ An administrator can include groups from an external identity provider in a Grou
 For more details on how to create resource permission mappings, see <a href="./manage-resources.html#create-resource-perm">Create or Edit Resource Permissions</a>.
 
 1. Log into the SSO dashboard at `https://p-identity.run.pivotal.io` using your administrator credentials.
-
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 

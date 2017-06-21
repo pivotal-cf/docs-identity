@@ -3,11 +3,11 @@ title: Identity Provider Discovery
 owner: Identity
 ---
 
-This topic describes Identity Provider (IdP) Discovery and how to configure it for your Pivotal Cloud Foundry (PCF) apps that use the Single Sign-On (SSO) service. 
+This topic describes Identity Provider (IdP) Discovery and how to configure it for your Pivotal Web Services (PWS) apps that use the Single Sign-On (SSO) service. 
 
 ## <a id="definition"></a> What it Does
 
-If users with different email domains access the same PCF app, you can configure SSO to authenticate them through different identity providers.
+If users with different email domains access the same PWS app, you can configure SSO to authenticate them through different identity providers.
 
 In this situation, IdP Discovery streamlines the login experience by automatically redirecting the user to their own IdP and shielding them from seeing the IdPs of other app users.
 
@@ -19,10 +19,10 @@ As an example, consider an app used by a company `@company.com` and its competin
 
 ## <a id="how-to"></a> Enable IdP Discovery 
 
-IdP Discovery is associated with a service plan, and configured for the apps bound to instances of that plan. To enable IdP Discovery for a service plan and the apps that use it, you must be a PCF Administrator or a Plan Administrator.
+IdP Discovery is associated with a service plan, and configured for the apps bound to instances of that plan. To enable IdP Discovery for a service plan and the apps that use it, you must be a Plan Administrator.
 
 1. Enable IdP Discovery for the SSO Service Plan instance that your app is bound to:
-	1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+	1. Log into the SSO dashboard at `https://p-identity.run.pivotal.io` using your administrator credentials.
 	1. Click the plan name and select **Configure** under the plan menu.
 	1. Select the checkbox under the **Identity Provider Discovery** section and click **Save**.
 ![Enable IdP Discovery](images/enable-idp-discovery.png)
