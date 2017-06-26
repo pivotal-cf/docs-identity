@@ -17,7 +17,7 @@ by configuring OpenID Connect (OIDC) integration in both Pivotal Cloud Foundry (
 1. In the configuration pane that appears, select **Web application** under **Application type** and enter any **Name**.
    Under **Restrictions**, leave **Authorized JavaScript Origins** blank
    and for **Authorized redirect URIs** enter a redirect URI of the form `https://AUTH_DOMAIN/login/callback/ORIGIN_KEY`, where:
-  - `AUTH_DOMAIN` is the **Auth Domain** setting you entered
+  - `AUTH_DOMAIN` is the full URL generated based on the **Auth Domain** setting you entered
      when you [created the service plan](../manage-service-plans.html#create-svc-plan) that you are integrating with GCP.
   - `ORIGIN_KEY` is based on the **Identity Provider Name** you set in the SSO dashboard
      in [Set Up OIDC Identity Provider in SSO below](#gcp-oidc-sso).
