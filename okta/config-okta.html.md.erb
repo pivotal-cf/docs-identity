@@ -55,7 +55,7 @@ This topic describes how to set up Okta as your identity provider by configuring
     1. For **Enable Single Logout**, select **Allow application** to initiate single logout.
     1. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into **Single Logout URL**.
     1. Enter your `Auth Domain URL` into **SP Issuer**.
-    1. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service provider metadata.
+    1. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service provider metadata. You will need to copy the `X509Certificate` information from the downloaded service provider metadata, and reformat it into a valid certificate file to upload.
 
 1. (Optional) Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map to users in the ID token.
 
