@@ -110,8 +110,8 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 	
 	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
 
-14. (Optional) If you are using a self-signed certificate, add it to the ADFS trust store. Obtain the OpsManager certificate from "https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate" and add this CA certificate to the ADFS trust store, so ADFS can trust the "Service Provider Key Certificate" certificate signed by this OpsManager ROOT CA.
+14. (Optional) If you are using a self-signed certificate, add it to the ADFS trust store. Obtain the OpsManager certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the ADFS trust store, so ADFS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
 
-<p class="note"><strong>Note</strong>: Prior to PCF 1.10+, steps 13 and 14 are required as all PCF components (including SSO tile) chave ertificates are signed by an internal CA. In PCF 1.10+, customers can upload their own CA certificate to PCF. </p>
+<p class="note"><strong>Note</strong>: Prior to PCF 1.10+, steps 13 and 14 are required as all PCF components (including SSO tile) have certificates are signed by an internal CA. In PCF 1.10+, customers can upload their own CA certificate to PCF. </p>
 
 4. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**.
