@@ -45,12 +45,12 @@ This topic describes how to integrate Azure Active Directory (Azure AD) as an id
 
 	<%= image_tag '../images/azure-oidc-reply.png' %>
 
-1. Identify your Azure Tenant Name. One location you can use to help you identify this is the App ID URI which uses the format `https://{Tenant Name}/{Application ID}` (e.g. `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b1-a2zf-ro5cd03f9584`).
+1. Identify your Azure Tenant Name. One location you can use to help you identify this is the App ID URI which uses the format `https://TENANT-NAME/APPLICATION-ID`. For example, `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b1-a2zf-ro5cd03f9584`.
 
 	<%= image_tag '../images/azure-oidc-tenant-name.png' %>
 
 1. Construct the URL for the OpenID Connect metadata endpoint replacing your Azure Tenant Name in the following string:
-`https://login.microsoftonline.com/{Tenant Name}/.well-known/openid-configuration` (e.g. `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`). Keep these values for reference for configuring your OpenID Connect identity provider in SSO.
+`https://login.microsoftonline.com/TENANT-NAME/.well-known/openid-configuration`. For example: `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`. Record these values for the [next step](./config-sso.html), configuring your OpenID Connect identity provider in SSO.
 
 	<%= image_tag '../images/azure-oidc-connect-string.png' %>
 
