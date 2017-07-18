@@ -13,6 +13,8 @@ The Single Sign-On service allows users to log in through a single sign-on servi
 
 Developers are responsible for selecting the authentication method for application users. They can select native authentication provided by the UAA or external identity providers.
 
+SSO supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
+
 ### OAuth 2.0 Authorization
 
 After authentication, the Single Sign-On service uses OAuth 2.0 for authorization. OAuth 2.0 is an authorization framework that delegates access to applications to access resources on behalf of a resource owner.
