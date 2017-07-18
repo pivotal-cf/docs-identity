@@ -1,0 +1,56 @@
+---
+title: Configure Azure Active Directory as an OIDC Identity Provider
+owner: Identity Service
+---
+
+This topic describes how to integrate Azure Active Directory (Azure AD) as an identity provider for a Single Sign-On (SSO) service plan, by configuring OpenID Connect (OIDC) in both Pivotal Cloud Foundry&reg; (PCF) and Azure AD.
+
+## <a id='relying'></a> Set up Relying Party in Azure AD
+
+1. Log in to your Azure account and navigate to **Azure Active Directory** > **App registrations**.
+
+	<%= image_tag '../images/azure-oidc-app-registrations.png' %>
+
+1. Select **+** to create a **New application registration**. A configuration pane appears.
+
+	<%= image_tag '../images/azure-oidc-new-app-reg.png' %>
+
+1. Select **Web App/API** under Application type and enter any Name and any Sign-on URI. You can optionally enter the full **Auth Domain** URL generated based on the **Auth Domain** setting you entered when you created the service plan that you are integrating with Azure AD.
+
+	<%= image_tag '../images/azure-oidc-app-reg-create.png' %>
+
+1. Use the search bar to find your application registration, and click on its listing in the search results.
+
+	<%= image_tag '../images/azure-oidc-app-reg-searched.png' %>
+
+1. Record the **Application ID** displayed on the screen. This will be the Relying Party OAuth Client ID.
+
+	<%= image_tag '../images/azure-oidc-app-reg-id.png' %>
+
+1. Open the Keys tab to generate your Client Secret.
+
+	<%= image_tag '../images/azure-oidc-app-keys.png' %>
+
+1. Enter any name for the description of the key and select the appropriate duration according to your security requirements.
+
+	<%= image_tag '../images/azure-oidc-app-secret-set.png' %>
+
+1. Click Save to generate your key value and keep track of this value. This will be the Relying Party OAuth Client Secret.
+
+	<%= image_tag '../images/azure-oidc-app-secret-show.png' %>
+
+1. Under Reply URLs, configure and save the URI of the form `https://AUTH_DOMAIN/login/callback/ORIGIN_KEY` where:
+  - `AUTH_DOMAIN` is the Auth Domain setting you entered when you created the service plan that you are integrating with GCP.
+  - `ORIGIN_KEY` is based on the Identity Provider Name you set in the SSO dashboard in Set Up OIDC Identity Provider in SSO below. This value should have no spaces or uppercase letters. You might need to change this value later.
+
+	<%= image_tag '../images/azure-oidc-reply.png' %>
+
+1. Identify your Azure Tenant Name. One location you can use to help you identify this is the App ID URI which uses the format `https://{Tenant Name}/{Application ID}` (e.g. `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b1-a2zf-ro5cd03f9584`).
+
+	<%= image_tag '../images/azure-oidc-tenant-name.png' %>
+
+1. Construct the URL for the OpenID Connect metadata endpoint replacing your Azure Tenant Name in the following string:
+`https://login.microsoftonline.com/{Tenant Name}/.well-known/openid-configuration` (e.g. `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`). Keep these values for reference for configuring your OpenID Connect identity provider in SSO.
+
+	<%= image_tag '../images/azure-oidc-connect-string.png' %>
+

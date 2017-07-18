@@ -1,0 +1,44 @@
+---
+title: Azure Active Directory OIDC Integration Guide Overview
+owner: Identity Service
+---
+
+This documentation introduces how to set up Azure Active Directory (Azure AD) with Open ID Connect (OIDC) as the identity provider for the Single Sign-On service running on Pivotal Cloud Foundry (PCF).
+
+Azure Active Directory (Azure AD) is Microsoft’s multi-tenant cloud based directory and identity management service.
+
+For how to set up Azure AD with Security Assertion Markup Language (SAML) , see [Azure Active Directory SAML Integration Guide](../azure/index.html).
+
+## <a id='prereqs'></a>Prerequisites
+
+To integrate Azure AD with Pivotal Cloud Foundry&reg; (PCF), you need:
+
+<strong>Pivotal</strong> 
+
+- PCF, version 1.11.0 or later.
+
+- Single Sign-On, version 1.4.3 or later.
+
+<strong>Azure AD</strong>
+
+- An active Azure AD tenant.
+
+- A user with admin privileges. 
+
+<p class="note"><strong>Note</strong>: To configure OIDC, you must <%=vars.sso_plan_enabled%></p>
+
+## <a id='azure'></a> Azure AD Integration Guide
+
+### Configuring Azure AD with SSO
+
+Complete both steps below to integrate your deployment with Azure AD and SSO.
+
+1. <a href="config-azure.html" class="subnav">Configure Azure AD as a OIDC Identity Provider</a>
+
+1. <a href="config-sso.html" class="subnav">Configure a Single Sign-On Service Provider</a>
+
+### Testing and Troubleshooting
+
+* <a href="testing.html" class="subnav">Testing</a>
+
+* <a href="troubleshooting.html" class="subnav">Troubleshooting</a>
