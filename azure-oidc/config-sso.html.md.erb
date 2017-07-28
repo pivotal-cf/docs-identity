@@ -5,7 +5,7 @@ owner: Identity Service
 
 This topic describes how to add an OpenID Connect (OIDC) external identity provider to your Pivotal Single Sign-On (SSO) service plan, using Azure Active Directory (Azure AD) as an example.
 
-To set up an OIDC provider for the SSO service:
+Follow the steps below to set up an OIDC provider for the SSO service.
 
 1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
@@ -17,23 +17,23 @@ To set up an OIDC provider for the SSO service:
 
 1. Enter a **Description**. Space developers see this description when they select an identity provider for their app.
 
-1. Select **OpenID Connect** as the **Identity Provider type**.
+1. Under **Identity Provider type**, select **OpenID Connect** .
 
 	<%= image_tag '../images/azure-oidc-new-idp.png' %>
 
-1. Clear the **Enable Discovery** checkbox and enter in the following information from the **OpenID Connect metadata endpoint** you constructed at the end of the [previous section](./config-azure.html#relying).
+1. Clear the **Enable Discovery** checkbox and enter the following information from the **OpenID Connect metadata endpoint** you constructed at the end of the [previous section](./config-azure.html#relying).
   - For **Authorization Endpoint URL**, enter in the `authorization_endpoint` value from the metadata endpoint.
-  - For **Token Endpoint URL**, enter in the `token_endpoint` value from the metadata endpoint.
-  - For **Token Key**, enter in the `jwks_uri` value from the metadata endpoint.
-  - For **Issuer**, enter in the `issuer` value from the metadata endpoint.
-  - For **User Info Endpoint URL**, enter in the `userinfo_endpoint` value from the metadata endpoint.
+  - For **Token Endpoint URL**, enter the `token_endpoint` value from the metadata endpoint.
+  - For **Token Key**, enter the `jwks_uri` value from the metadata endpoint.
+  - For **Issuer**, enter the `issuer` value from the metadata endpoint.
+  - For **User Info Endpoint URL**, enter the `userinfo_endpoint` value from the metadata endpoint.
   - For **Response Type**, select `id_token`.
-  - For **Relying Party OAuth Client ID**, enter in the **Application ID** value recorded from the previous section.
-  - For **Relying Party OAuth Client Secret**, enter in the **Client Secret** value recorded in the previous section.
+  - For **Relying Party OAuth Client ID**, enter the **Application ID** value recorded from the previous section.
+  - For **Relying Party OAuth Client Secret**, enter the **Client Secret** value recorded in the previous section.
 
 	<%= image_tag '../images/azure-oidc-settings.png' %>
 
-1. Make sure that `openid` is selected as a scope. You can select additional scopes if you want.
+1. Select `openid` as a scope. You can select additional scopes.
 
 	<%= image_tag '../images/azure-oidc-scopes.png' %>
 
