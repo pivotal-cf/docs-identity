@@ -1,19 +1,19 @@
 ---
-title: Testing
+title: Testing Your Single Sign-On Connection
 owner: Identity Service
 ---
 
 This topic describes how a Pivotal Cloud Foundry (PCF) administrator can test the OpenID Connect (OIDC) connection between the Single Sign-On (SSO) service and Azure Active Directory (Azure AD).
 
-## <a id="test-sso"></a>Test Your Single Sign-On Connection
+Follow the steps below to test your Single Sign-On connection.
 
-1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN` and navigate to the organization and space where your application is located.
+1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN` and navigate to the org and space where your application is located.
 
-1. Under **Services**, locate the service instance of the Single Sign-On (SSO) plan bound to your app.
+1. Under **Services**, locate the service instance of the SSO plan bound to your app.
 
 	<%= image_tag '../images/azure-oidc-instance.png' %>
 
-1. Select the service instance and click Manage.
+1. Select the service instance and click **Manage**.
 
 	<%= image_tag '../images/azure-oidc-manage-instance.png' %>
 
@@ -25,7 +25,7 @@ This topic describes how a Pivotal Cloud Foundry (PCF) administrator can test th
 
 	<%= image_tag '../images/azure-oidc-app-idp.png' %>
 
-1. Return to Apps Manager and click the URL listed below your app to access your application.
+1. Return to Apps Manager and click the URL listed below your app to access your app.
 
 	<%= image_tag '../images/azure-oidc-app-url.png' %>
 
@@ -37,7 +37,7 @@ This topic describes how a Pivotal Cloud Foundry (PCF) administrator can test th
 
 	<%= image_tag '../images/azure-oidc-login.png' %>
 
-1. If the app prompts for authorization to the necessary scopes, click **Authorize**.
+1. If the app prompts for authorization to the necessary scopes, click **Accept**.
 
 	<%= image_tag '../images/azure-oidc-accept.png' %>
 
