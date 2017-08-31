@@ -1,11 +1,13 @@
 ---
-title: Azure Active Directory Integration Guide Overview
+title: Azure Active Directory SAML Integration Guide Overview
 owner: Identity Service
 ---
 
 Azure Active Directory (Azure AD) is Microsoft's multi-tenant cloud based directory and identity management service. This documentation describes how to configure a single sign-on partnership between Azure AD as the Identity Provider (IdP) and the Single Sign-On Service (SSO) for Pivotal Web Services (PWS) as the Service Provider (SP). 
 
-SSO supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
+Azure Active Directory (Azure AD) is Microsoft's multi-tenant cloud based directory and identity management service. 
+
+For how to set up Azure AD with Open ID Connect (OIDC) , see [Azure Active Directory OIDC Integration Guide](../azure-oidc/index.html).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -22,12 +24,12 @@ To integrate Azure AD with PWS, you need:
 ### Configuring Azure AD with SSO 
 Complete both steps below to integrate your deployment with Azure AD and SSO.
 
-1. [Configure Azure AD as an Identity Provider](config-azure.html)
+1. <a href="config-azure.html" class="subnav">Configure Azure AD as a SAML Identity Provider</a>
 
-1. [Configure a Single Sign-On Service Provider](config-sso.html)
+1. <a href="config-sso.html" class="subnav">Configure a Single Sign-On Service Provider</a>
 
 ### Testing and Troubleshooting
 
-- [Testing](testing.html)
+* <a href="testing.html" class="subnav">Testing</a>
 
-- [Troubleshooting](troubleshooting.html)
+* <a href="troubleshooting.html" class="subnav">Troubleshooting</a>

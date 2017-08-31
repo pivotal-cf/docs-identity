@@ -1,0 +1,88 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory (Azure AD), OpenID Connect (OIDC), and Pivotal Single Sign-On (SSO).
+
+##<a id='bad-request'></a> Bad Request
+
+### Symptom:
+
+<%= image_tag '../images/azure-oidc-bad-request.png' %>
+
+Explanations:
+
+* This is a generic error. Review UAA logs for detailed information.
+* This error can occur when the application type is created as **Native**. Ensure you created your client in Azure AD as **Web App/API**.
+* This error can occur when a response type other than `id_token` is used. Ensure you configure the response type to use `id_token`.
+
+##<a id='no-username'></a> Cannot determine username from credentials supplied
+
+### Symptom:
+
+<%= image_tag '../images/azure-oidc-no-username.png' %>
+
+### Explanation:
+
+* No value is mapped to the username used by PCF. Under the identity provider attributes, map the `unique_name` attribute to `username` 
+
+##<a id='address-error'></a> Azure Error for Reply Address
+
+### Symptom:
+
+<%= image_tag '../images/azure-oidc-address-error.png' %>
+
+### Explanation:
+
+* The reply URL is misconfigured. Ensure you entered your callback URL correctly as a reply URL in Azure AD.
+
+##<a id='login-404'></a> Login Page Cannot Be Found (404 Error)
+
+### Symptom:
+
+<%= image_tag '../images/azure-oidc-login-404.png' %>
+
+### Explanation:
+
+* The Authorization Endpoint URL may be incorrectly entered or not available. Ensure you correctly entered the authorization endpoint, and that the  authorization endpoint is available to the end user.
+
+##<a id='idp-404'></a> Error authenticating against external identity provider: 404 Not Found
+
+### Symptom:
+
+<%= image_tag '../images/azure-oidc-idp-404.png' %>
+
+### Explanation:
+
+* The Token Key URL may be incorrectly entered or not available. Ensure that you entered the token key setting correctly, and that the Token Key URL is available.
+
+##<a id='invalid-token'></a> Error authenticating against external identity provider: Invalid issuer for token did not match expected
+
+### Symptom:
+
+<%= image_tag '../images/azure-oidc-invalid-token.png' %>
+
+### Explanation:
+
+* The Token Key URL may be incorrectly entered. Ensure that you entered the issuer setting correctly.
+
+##<a id='post-error'></a> Request Method 'POST' not supported (405 Error)
+
+### Symptom:
+
+<%= image_tag '../images/azure-oidc-post-error.png' %>
+
+### Explanation:
+
+* This error can occur if you configure a response type that Azure AD does not support or has not been enabled for the application, such as `token` or `code id_token token`. Ensure that you configure the response type to `id_token`.
+
+##<a id='client-id-error'></a> Error authenticating against external identity provider: Some parties were not in the token audience
+
+### Symptom:
+
+<%= image_tag '../images/azure-oidc-client-id-error.png' %>
+
+### Explanation:
+
+* The Relying Party Client ID may be incorrectly entered. Ensure you have correctly entered the relying party client ID setting.

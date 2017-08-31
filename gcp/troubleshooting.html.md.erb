@@ -54,3 +54,14 @@ This topic describes how to resolve common errors that arise when configuring a 
 #### Explanation:
 
 - `user_name` attribute was not mapped to `email`.
+
+##<a id="cant-map"></a> Unable to map claim to a username
+
+#### Symptom:
+
+<%= image_tag '../images/gcp-empty.png' %>
+
+#### Explanation:
+
+- The scope for "email" was not configured. Select the "email" scope in your identity provider configurations.
+
