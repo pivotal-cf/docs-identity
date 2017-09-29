@@ -80,7 +80,7 @@ From the external identity provider users admin pane, you can:
 
 ## <a id="uaac"></a> Manage Users with the UAA CLI (UAAC)
 
-You may also use the UAA CLI (UAAC) to manage users for the SSO service. You can use this approach to programatically assign groups (scopes)  
+You may also use the UAA CLI (UAAC) to manage users for the SSO service. You can use this approach to programatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
 
 <p class="note"><strong>Note</strong>: Clients and Groups for SSO should be created directly through the SSO UI or through application manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by SSO.</p>
 
@@ -94,56 +94,27 @@ You may also use the UAA CLI (UAAC) to manage users for the SSO service. You can
     $ uaac target my-auth-domain.login.example.com
     </pre>
 
-1. Record the **uaa:admin:client_secret** from your admin client created using the steps [here](http://docs.pivotal.io/p-identity/configure-apps/index.html#admin).
+1. Record the **App ID** and **App Secret** from your admin client created using the steps [here](http://docs.pivotal.io/p-identity/configure-apps/index.html#admin). You will need to give your admin client `scim.read` to read user information. You can give your admin client either `scim.write` to create users and modify group (scope) memberships or `scim.create` to only create users.
 
-1. Run `uaac token client get admin -s ADMIN-CLIENT-PASSWORD` to authenticate and obtain an access token for the admin client for your service plan. Replace 
-`ADMIN-CLIENT-PASSWORD` with your admin password. UAAC stores the token in 
+1. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. Replace 
+`ADMIN-APP-ID` with your **App ID** and `ADMIN-APP-SECRET` with your **App Secret**. UAAC stores the token in 
 `~/.uaac.yml`.
     <pre class="terminal">
-    $ uaac token client get admin -s MyAdminPassword
+    $ uaac token client get MyAdminAppId -s MyAdminAppSecret
     </pre>
 
-1. Use the `uaac contexts` command to display the users and applications authorized by your service plan, and the permissions granted to each user and application.
+1. Use the `uaac contexts` command to display the users and applications authorized by your service plan, and the permissions granted to each user and application. Check that you have the sufficient `scim.write` or `scim.create` permissions under the `scope` section.
 
     <pre class="terminal">
     $ uaac contexts
 
     [1]*[admin]
-      client_id: admin
+      client_id: MyAdminAppId
         access_token: aBcdEfg0hIJKlm123.e
         token_type: bearer
         expires_in: 43200
-        scope: uaa.admin clients.secret scim.read
+        scope: scim.read scim.write 
         jti: 91b3-abcd1233
-    </pre>
-
-1. In the output from `uaac contexts`, search in the `scope` section of the
-`client_id: admin` user for **scim.write**.
-The value **scim.write** represents sufficient permissions to create accounts.
-
-1. If the admin user lacks permissions to create accounts, add the permissions by following these steps:
-    * Run `uaac client update admin --authorities "EXISTING-PERMISSIONS
-    scim.write"` to add the necessary permissions to the admin user account on
-    the UAA server. Replace EXISTING-PERMISSIONS with the current contents of
-    the `scope` section from `uaac contexts`.
-    * Run `uaac token delete` to delete the local token.
-    * Run `uaac token client get admin` to obtain an updated access token from
-    the UAA server.
-
-    <pre class="terminal">
-    $ uaac contexts
-
-    [1]*[admin]
-      client_id: admin
-      . . .
-      scope: uaa.admin clients.secret scim.read
-      . . .
-
-    $ uaac client update admin --authorities "`uaac client get admin | \
-      awk '/:/{e=0}/authorities:/{e=1;if(e==1){$1="";print}}'` scim.write"
-
-    $ uaac token delete
-    $ uaac token client get admin
     </pre>
 
 1. Run the following command to create a new internal user: `uaac user add NEW-USERNAME -p NEW-PASSWORD --emails NEW-EMAIL`
