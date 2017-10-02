@@ -76,3 +76,60 @@ From the external identity provider users admin pane, you can:
 
 * **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
 
+## <a id="uaac"></a> Manage Users with the UAA CLI (UAAC)
+
+You may also use the UAA CLI (UAAC) to manage users for the SSO service. You can use this approach to programatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
+
+<p class="note"><strong>Note</strong>: Clients and Groups for SSO should be created directly through the SSO UI or through application manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by SSO.</p>
+
+1. Install the UAA CLI, `uaac`.
+    <pre class="terminal">
+    $ gem install cf-uaac
+    </pre>
+
+1. Use the `uaac target AUTH-DOMAIN` command to target your service plan. Auth Domain setting you entered when you created the service plan.
+    <pre class="terminal">
+    $ uaac target my-auth-domain.login.example.com
+    </pre>
+
+1. Record the **App ID** and **App Secret** from your admin client created using the steps [here](http://docs.pivotal.io/p-identity/configure-apps/index.html#admin). You will need to give your admin client `scim.read` to read user information. You can give your admin client either `scim.write` to create users and modify group (scope) memberships or `scim.create` to only create users.
+
+1. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. Replace 
+`ADMIN-APP-ID` with your **App ID** and `ADMIN-APP-SECRET` with your **App Secret**. UAAC stores the token in 
+`~/.uaac.yml`.
+    <pre class="terminal">
+    $ uaac token client get MyAdminAppId -s MyAdminAppSecret
+    </pre>
+
+1. Use the `uaac contexts` command to display the users and applications authorized by your service plan, and the permissions granted to each user and application. Check that you have the sufficient `scim.write` or `scim.create` permissions under the `scope` section.
+
+    <pre class="terminal">
+    $ uaac contexts
+
+    [1]*[admin]
+      client_id: MyAdminAppId
+        access_token: aBcdEfg0hIJKlm123.e
+        token_type: bearer
+        expires_in: 43200
+        scope: scim.read scim.write 
+        jti: 91b3-abcd1233
+    </pre>
+
+1. Run the following command to create a new internal user: `uaac user add NEW-USERNAME -p NEW-PASSWORD --emails NEW-EMAIL`
+<br>
+Replace `NEW-USERNAME`, `NEW-PASSWORD`, and `NEW-EMAIL` with appropriate information.
+    <pre class="terminal">
+    $ uaac user add Adam -p newSecretPassword --emails adam<span>@</span>example.com
+    </pre>
+
+1. Run `uaac member add GROUP USERNAME` to add any
+group to any user (internal or external). Replace `GROUP` and `USERNAME` with appropriate information.
+    <pre class="terminal">
+    $ uaac member add my-app.my-scope Adam
+    </pre>
+
+1. Run `uaac member delete GROUP USERNAME` to delete any
+group from to any user (internal or external). Replace `GROUP` and `USERNAME` with appropriate information.
+    <pre class="terminal">
+    $ uaac member delete my-app.my-scope Adam
+    </pre>
