@@ -46,7 +46,7 @@ If you haven't completed these prerequisites, see [Create or Edit Service Plans]
 	<li>Enter a <strong>Description</strong>. This description will be visible to Space developers when they select an IDP for their application.</li>
 	<li>Select <strong>OpenID Connect</strong> as the <strong>Identity Provider type</strong>. The OpenID Connect Settings appear.<br/>
 	<img src="./images/idp-type-openid.png"></li>
-	<li>If you're using a self-signed certificate for PCF where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you're not using a self-signed certificate, you can leave this box unchecked.</li>
+	<li>If you're using a self-signed certificate where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you're not using a self-signed certificate, you can leave this box unchecked.</li>
 	<li>Select the <strong>Enable Discovery</strong> checkbox and type in the <strong>Discovery Endpoint URL</strong>. <br/>
 	This URL will be <code>ht<span>tps</span>://IDP_AUTH_DOMAIN/.well-known/openid-configuration</code>, where <code>IDP_AUTH_DOMAIN</code> is the Auth Domain setting you entered when you created the IDP service plan you are integrating with.</li>
 	<li>Fill in the <strong>Relying Party OAuth Client ID</strong> with the App Client ID from <a href="#idp">the previous section</a>.</li>
