@@ -3,7 +3,7 @@ title: Configure Applications
 owner: Identity Service
 ---
 
-This topic explains how Pivotal Cloud Foundry (PCF) developers configure their apps to use the Single Sign-On (SSO) service,
+This topic explains how Pivotal Web Services (PWS) developers configure their apps to use the Single Sign-On (SSO) service,
 write SSO integration into their apps, and use the SSO Admin Client to manage connections between SSO identity providers, apps, users and other resources. 
 
 ## <a id='choose-type'></a> Determine Your SSO Application Type
@@ -25,9 +25,9 @@ See the table below to determine your app's SSO Application Type and OAuth Grant
 
 <p class="note"><strong>Note</strong>: The Native Mobile App application type is intended only for highly-trusted apps such as company-owned and managed apps.</p>
 
-## <a id="internal"></a> Set Up PCF Apps to Use SSO
+## <a id="internal"></a> Set Up PWS Apps to Use SSO
 
-To configure SSO for an app running internally on PCF, you first need to [determine the SSO application type](#choose-type) of the app that will use the SSO service.
+To configure SSO for an app running internally on PWS, you first need to [determine the SSO application type](#choose-type) of the app that will use the SSO service.
 
 Then you [configure](#configure) your SSO service for the app using environment variables and [bind the app](#bind) to an SSO service instance.
 These steps are described below.
@@ -35,7 +35,7 @@ These steps are described below.
 ### <a id="configure"></a> Configure SSO Properties
 
 The SSO service reads its configuration properties from environment variables that are set in the apps that use it.
-To enable a PCF-hosted app to bind to an SSO service instance, you must set the following environment variables:
+To enable a PWS-hosted app to bind to an SSO service instance, you must set the following environment variables:
 
 * `GRANT_TYPE` — the type of OAuth authentication associated with the SSO Application Type in the [table above](#choose-type).
 * `SSO_IDENTITY_PROVIDER` — the internal or external identity provider(s) for the app to use.
@@ -47,14 +47,14 @@ There are two ways to set the SSO configuration properties for an app:
 
 * Set the environment variables [manually](#manual-config) after you deploy the app, in Apps Manager or with the Cloud Foundry Command-Line Interface (cf CLI).
 
-* Include the config settings in the application manifest, so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
+* Include the config settings in the application manifest, so that PWS [bootstraps](#bootstrap) them automatically when it deploys the app.
 
 #### <a id="manual-config"></a> Manually Configure Apps for SSO
 
-For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDER`,
+For apps already deployed to PWS, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDER`,
 and other SSO configuration environment variables with the [`cf set-env`](http://cli.cloudfoundry.org/en-US/cf/set-env.html) command, or in Apps Manager as follows:
 
-1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN`.
+1. Log in to Apps Manager at `https://console.run.pivotal.io`.
 
 1. Navigate to your app.
 
@@ -88,7 +88,7 @@ applications:
       SSO_IDENTITY_PROVIDERS: uaa, userstore.example.com
 	</pre>
 
-The `GRANT_TYPE` property defaults to `authorization_code`, for Web App application type. `SSO_IDENTITY_PROVIDERS` defaults to `uaa`, for the PCF internal user store. 
+The `GRANT_TYPE` property defaults to `authorization_code`, for Web App application type. `SSO_IDENTITY_PROVIDERS` defaults to `uaa`, for the PWS internal user store. 
 
 If you specify your own scopes and authorities, consider including the following values in your `SSO_SCOPES` or `SSO_AUTHORITIES` property list.
 These values are not added your user-provided list by default:
@@ -132,9 +132,9 @@ You can remove SSO configuration properties for an app, or any environment varia
 
 1. Rebind the app.
 
-### <a id="bind"></a> Bind a PCF App
+### <a id="bind"></a> Bind a PWS App
 
-After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO service instance as follows:
+After a PWS app is [configured](#configure) for SSO, you can bind it to an SSO service instance as follows:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your app runs.
@@ -155,7 +155,7 @@ After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO s
 1. Click **Show on homepage** to display the app on the UAA or Pivotal Account home page.
 	<p class="note"><strong>Note</strong>: If you would like app to display on the home page, you must enter an **App Launch URL** or upload an app icon.</p> 
 1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
-<p class="note"><strong>Note</strong>: When binding a PCF app, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except <code>Service-to-Service App</code>.</p>
+<p class="note"><strong>Note</strong>: When binding a PWS app, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except <code>Service-to-Service App</code>.</p>
 1. If your Application Type is `Web App` or `Single-Page JavaScript App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**.
    The redirect query parameter specified on the OAuth request must match the URIs specified in this list.
    Otherwise, SSO rejects the request.
@@ -174,7 +174,7 @@ After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO s
 
 <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user.
-   Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PCF.
+   Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PWS.
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for app integration.
    For more information, see <a href="#app-integration">Integrate SSO with Apps</a> below.
 
@@ -210,7 +210,7 @@ After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO s
 	| `uaa.resource` | Provides access to check_token endpoint for service-to-service flows |
 <p class="note"><strong>Note</strong>: Add the <code>user_attributes</code> scope to the client scopes to return user attributes from the ID token.</p>
 <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
-1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user. Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PCF.
+1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user. Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PWS.
 1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for app integration. For more information, see <a href="#app-integration">Integrate SSO with Applications</a> below.
 
 ## <a id="app-integration"></a>Integrate SSO with an App
@@ -241,7 +241,7 @@ To validate the token, you must verify the following:
 
 2. The value of `aud` in the token matches your **App ID**.
 
-3. The value of `iss` matches `https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token`.
+3. The value of `iss` matches `https://AUTH-DOMAIN.uaa.run.pivotal.io/oauth/token`.
 
 4. The expiry time of the token, `exp`, has not passed.
 
@@ -276,11 +276,11 @@ Create an admin client as follows:
 
 ## <a id="delete"></a> Delete App that Uses SSO
 
-Delete a [PCF app](#delete-pcf) or an [external app](#delete-external) that uses SSO as follows:
+Delete a [PWS app](#delete-pws) or an [external app](#delete-external) that uses SSO as follows:
 
-### <a id="delete-pcf"></a> Delete a PCF App
+### <a id="delete-pws"></a> Delete a PWS App
 
-To delete an app hosted on PCF:
+To delete an app hosted on PWS:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your app is located.
@@ -299,4 +299,4 @@ To delete an external app that uses SSO:
 4. Click **Delete** at the bottom of the page.
 5. On the popup, click **Delete App** to confirm that you want to delete the app and its configurations.
 
-	<p class="note"><strong>Note</strong>: Deleting an externally hosted app in PCF removes the app and its configurations from the SSO dashboard. However, it still exists on your hosted platform.</p>
+	<p class="note"><strong>Note</strong>: Deleting an externally hosted app in PWS removes the app and its configurations from the SSO dashboard. However, it still exists on your hosted platform.</p>

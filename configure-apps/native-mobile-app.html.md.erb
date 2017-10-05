@@ -26,4 +26,4 @@ The following diagram shows the authentication flow used by mobile apps. In this
 4. **Request Resource w/ Access Token**: The application attempts to access the resource from the resource server by presenting the access token.
 5. **Return Resource**: If the access token is valid, the resource server returns the resources that the user authorized the application to receive.
 
-The resource server runs in PCF under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Applications can then access these resources on behalf of users.
+The resource server runs in PWS under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Applications can then access these resources on behalf of users.
