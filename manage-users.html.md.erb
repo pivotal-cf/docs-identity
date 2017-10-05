@@ -92,7 +92,7 @@ You may also use the UAA CLI (UAAC) to manage users for the SSO service. You can
     $ uaac target my-auth-domain.login.example.com
     </pre>
 
-1. Record the **App ID** and **App Secret** from your admin client created using the steps [here](http://docs.pivotal.io/p-identity/configure-apps/index.html#admin). You will need to give your admin client `scim.read` to read user information. You can give your admin client either `scim.write` to create users and modify group (scope) memberships or `scim.create` to only create users.
+1. Record the **App ID** and **App Secret** from your admin client created using the steps [here](./configure-apps/index.html#admin). You will need to give your admin client `scim.read` to read user information. You can give your admin client either `scim.write` to create users and modify group (scope) memberships or `scim.create` to only create users.
 
 1. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. Replace 
 `ADMIN-APP-ID` with your **App ID** and `ADMIN-APP-SECRET` with your **App Secret**. UAAC stores the token in 
