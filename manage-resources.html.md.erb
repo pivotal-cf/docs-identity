@@ -67,6 +67,8 @@ You must reconfigure the updated permissions in both areas.</p>
 After a Space Developer defines resources required by an app, an administrator must grant access to those resources.
 SSO allows administrators to map groups of users from the identity provider to the resource permissions defined by the Space Developer.
 
+Once resource permissions mappings are configured, when a user authenticates and obtains a token, the user's group memberships will automatically be mapped into scopes that are directly included in the token.
+
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
 You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
