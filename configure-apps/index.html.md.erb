@@ -49,7 +49,7 @@ There are two ways to set the SSO configuration properties for an app:
 
 * Include the config settings in the application manifest, so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
 
-#### <a id="manual-config"></a> Manually Configure Apps for SSO
+### <a id="manual-config"></a> Manually Configure Apps for SSO
 
 For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDER`,
 and other SSO configuration environment variables with the [`cf set-env`](http://cli.cloudfoundry.org/en-US/cf/set-env.html) command, or in Apps Manager as follows:
@@ -69,13 +69,15 @@ and other SSO configuration environment variables with the [`cf set-env`](http:/
 
 1. [Bind](#bind) and restage your app.
 	
-#### <a id="bootstrap"></a> Bootstrap SSO Configuration
+### <a id="bootstrap"></a> Bootstrap SSO Configuration
 
 In SSO v1.4.0 and later, you can include SSO configuration properties in your application manifest,
 to automatically bootstrap the values when you bind or rebind the app to an SSO service instance.
 
 The values from the manifest automatically save to the environment variables that configure your app for SSO.
 Bootstrapping SSO configuration values from the manifest eliminates the need to set environment variables after you deploy your app.
+
+<p class="note"><strong>Note</strong>: These configurations are only applied at the initial service binding time. Subsequent cf push of the application will **NOT** update the configurations. You will either need to manually update the configurations via the SSO dashboard or unbind and rebind the service instance.</p>
 
 This snippet below shows how to include `GRANT_TYPE` `SSO_IDENTITY_PROVIDERS` in your manifest.
 
