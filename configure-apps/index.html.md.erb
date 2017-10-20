@@ -49,7 +49,7 @@ There are two ways to set the SSO configuration properties for an app:
 
 * Include the config settings in the application manifest, so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
 
-#### <a id="manual-config"></a> Manually Configure Apps for SSO
+### <a id="manual-config"></a> Manually Configure Apps for SSO
 
 For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDER`,
 and other SSO configuration environment variables with the [`cf set-env`](http://cli.cloudfoundry.org/en-US/cf/set-env.html) command, or in Apps Manager as follows:
@@ -69,13 +69,15 @@ and other SSO configuration environment variables with the [`cf set-env`](http:/
 
 1. [Bind](#bind) and restage your app.
 	
-#### <a id="bootstrap"></a> Bootstrap SSO Configuration
+### <a id="bootstrap"></a> Bootstrap SSO Configuration
 
 In SSO v1.4.0 and later, you can include SSO configuration properties in your application manifest,
 to automatically bootstrap the values when you bind or rebind the app to an SSO service instance.
 
 The values from the manifest automatically save to the environment variables that configure your app for SSO.
 Bootstrapping SSO configuration values from the manifest eliminates the need to set environment variables after you deploy your app.
+
+<p class="note"><strong>Note</strong>: These configurations are only applied at the initial service binding time. Subsequent cf push of the application will <strong>NOT</strong> update the configurations. You will either need to manually update the configurations via the SSO dashboard or unbind and rebind the service instance.</p>
 
 This snippet below shows how to include `GRANT_TYPE` `SSO_IDENTITY_PROVIDERS` in your manifest.
 
@@ -178,13 +180,21 @@ After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO s
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for app integration.
    For more information, see <a href="#app-integration">Integrate SSO with Apps</a> below.
 
+## <a id="sso-dashboard"></a> Manage App Configurations via SSO Dashboard
+
+The SSO dashboard allows application developers to view the app configurations and resources available within their space. To access the dashboard, first you must [create a service instance](../manage-service-instances.html#create-svc-instance) for your Space. Then you can follow the steps below to manage your application configurations via the SSO dashboard.
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your service instance is located.
+1. Under **Services**, click **Manage** next to the SSO service instance. This launches  the SSO dashboard.
+
 ## <a id="register"></a> Register an External App
 
 1. [Determine the type](#choose-type) of the app that will use the SSO service.
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
-1. Under **Services**, click **Manage** next to the SSO service instance. This launches  the SSO dashboard.
+1. Under **Services**, click **Manage** next to the SSO service instance. This launches the SSO dashboard.
 1. Click **New App**.
 1. Enter an **App Name**.
 1. Choose an app type under **Select an Application Type**.
@@ -217,14 +227,14 @@ After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO s
 
 Because SSO service is based on the OAuth protocol, any app that uses SSO must be OAuth-aware.
 
-### Java Apps 
+### <a id="app-integration-java"></a>Java Apps 
 
 If you are using Java, see [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps).
 These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/) for all four [application types](#choose-type).
 These apps use the SSO Service Connector, which auto-configures the app for OAuth. After binding the app to an SSO service instance,
 you must restart the app for the new SSO configuration to take effect.
 
-### Non-Java Apps
+### <a id="app-integration-nonjava"></a>Non-Java Apps
 
 To configure non-Java apps for OAuth, supply the following properties as environment variables to your app after the SSO service bind.
 You can view this information on the **Next Steps** page of the SSO dashboard.
