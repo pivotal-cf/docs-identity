@@ -19,6 +19,10 @@ See the docs-book-cloudfoundry repo for the complete list of open source documen
 
 **1.4** - branch for latest release documentation for v1.4 release. As of September 19, 2017, this is branch holds the most recent docs published at [https://docs.pivotal.io/p-identity/1-4](https://docs-pivotal.io/p-identity/1-4/index.html).
 
+**1.6** – Don't touch this branch. It is an old branch that was used for the PCF v1.6 release.
+          When SSO v1.6 is ready to document, we can build a new 1.6 from the 1.5 branch
+          and rename the original to keep as an archive.  
+
 ### Books that Use This Repository
 
 [docs-book-identity](https://github.com/pivotal-cf/docs-book-identity/blob/master/config.yml)
