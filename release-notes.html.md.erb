@@ -24,6 +24,7 @@ owner: Identity Service
 * Operators can now configure OpenID Connect integration with Azure OIDC and additional identity providers using newly exposed configuration options available for managing identity providers.
 * Token exchange client creation for JWT and SAML bearer grant types (<code>urn:ietf:params:oauth:grant-type:jwt-bearer</code> and <code>urn:ietf:params:oauth:grant-type:saml2-bearer</code>) is available through application bootstrapping.
 * Identity sample applications have been updated for Spring Boot 1.5, feature issuer check, and token keys support.
+* Fixed a bug where authorities for service to service applications (client credentials grant type) would not be assigned if they were being created as new resources 
 
 ## <a id='14X'></a> 1.4.6
 
