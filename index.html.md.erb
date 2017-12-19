@@ -54,9 +54,11 @@ The following table provides version and version-support information about [Sing
 
 Consider the following compatibility information before upgrading Single Sign-On for PCF.
 
+<p class="note breaking"><strong>Breaking Change: </strong>Before you upgrade the <strong>Pivotal Application Service</strong> tile to PCF 2.0, you must first upgrade the SSO tile to v1.5.3. To properly upgrade your SSO tile, see the <a href="https://discuss.pivotal.io/hc/en-us/articles/115015825568">SSO upgrade</a> knowledge base article.</p>
+
 <table border="1" class="nice">
 <tr>
-  <th rowspan="2">Elastic Runtime Version</th>
+  <th rowspan="2">Pivotal Application Service Version</th>
   <th colspan="2">Supported Upgrades from SSO Versions</th>
 </tr>
 <tr>
@@ -94,7 +96,11 @@ Consider the following compatibility information before upgrading Single Sign-On
   <td>1.4.1-1.4.x</td>
   <td rowspan="1">1.5.x</td>
 </tr>
-  
+<tr>
+  <th rowspan="1">1.2.x</th>
+  <td>1.5.3</td>
+  <td>1.5.3+</td>
+</tr>
 </table>
 
 <div class="note"><strong>Note</strong>: The Single Sign-On service tile operates in lockstep with Elastic Runtime.

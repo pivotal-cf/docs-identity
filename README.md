@@ -10,3 +10,19 @@ This doc repository is one of several doc repositories that go into a complete d
 The contents here are structured as a topic repository intended to be compiled into a larger document with Bookbinder.
 
 See the docs-book-cloudfoundry repo for the complete list of open source documentation repositories, as well as information about the publishing process.
+
+### Branch Management
+
+**master** - As of September 19, 2017. This branch is similar to the master-pws. What is its purpose?
+
+**1.5** - branch for documentation for upcoming v1.5 release. As of September 19, 2017, this is staged at [https://docs-pcf-staging.cfapps.io/p-identity/1-5/](https://docs-pcf-staging.cfapps.io/p-identity/1-5/index.html).
+
+**1.4** - branch for latest release documentation for v1.4 release. As of September 19, 2017, this is branch holds the most recent docs published at [https://docs.pivotal.io/p-identity/1-4](https://docs-pivotal.io/p-identity/1-4/index.html).
+
+**pcf1.6** – It is an old branch that was used for the PCF v1.6 release.
+
+### Books that Use This Repository
+
+[docs-book-identity](https://github.com/pivotal-cf/docs-book-identity/blob/master/config.yml)
+
+[docs-book-runpivotal](https://github.com/pivotal-cf/docs-book-runpivotal/blob/master/config.yml)
