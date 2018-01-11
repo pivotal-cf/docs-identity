@@ -129,9 +129,12 @@ See the following sets of instructions for how to configure the SSO service to u
 
 1. Click **New Identity Provider**.
 
-1. Enter an **Identity Provider Name**.
+1. Enter an **Identity Provider Name**. 
+Use only lowercase letters. If the name contains a period, replace it with a hyphen.
+For example, if the name of your identity provider is `EXAMPLE.COM`, enter `example-com.`
+  <p class="note"><strong>Note</strong>: If you enter a name that includes uppercase letters or hyphens, the SSO tile will convert any uppercase letters into lowercase letters and any hyphens into periods.</p>
 
-1. Select `SAML 2.0` as the Identity Provider Type.
+1. Select `SAML 2.0` as the **Identity Provider Type**.
 
 1. Enter a **Description**. This is displayed to Space Developers when they select an identity provider for their app.
 
