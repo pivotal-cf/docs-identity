@@ -161,15 +161,15 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 1. Click **OK** to finish making your changes and save the changes you made.
 
-## Create Attribute Mappings for Groups for SAML
+## <a id='attribute-mappings'></a> Create Attribute Mappings for SAML Groups
 
-Under User Attributes, map the User Schema Attribute of “external_groups” to the Attribute Name value of  “groups”. If you did not perform the steps to customize the SAML assertion value, use “http://schemas.xmlsoap.org/claims/Group” as the Attribute Name instead.
+Under **User Attributes**, map the User Schema Attribute of `“external_groups”` to the Attribute Name value of  `“groups”`. If you did not perform the steps to customize the SAML assertion value, use `“http://schemas.xmlsoap.org/claims/Group”` as the Attribute Name instead.
 
-Customized:
+An attribule mapping with a customized SAML assertion value looks like this:
 
     <%= image_tag '../images/customized.png' %>
 
-Non-customized:
+An attribule mapping with a non-customized SAML assertion value looks like this:
 
     <%= image_tag '../images/non-customized.png' %>
 
