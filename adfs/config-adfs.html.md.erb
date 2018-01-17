@@ -100,7 +100,7 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 	<%= image_tag '../images/adfs_remove_cert.png' %>
 
-1. Select the **Advanced** tab and select SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for PCF Elastic Runtime](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
+1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for PCF Elastic Runtime](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
 
 	<%= image_tag '../images/adfs_sha1.png' %>
 	
@@ -110,9 +110,9 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 	
 	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
 
-1. (Optional) If you are using a self-signed certificate, add it to the ADFS trust store. Obtain the OpsManager certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the ADFS trust store, so ADFS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
+1. (Optional) If you are using a self-signed certificate, add it to the ADFS trust store. Obtain the Ops Manager certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the ADFS trust store, so ADFS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
 
-    <p class="note"><strong>Note</strong>: Prior to PCF 1.10+, steps 13 and 14 are required as all PCF components (including SSO tile) have certificates are signed by an internal CA. In PCF 1.10+, customers can upload their own CA certificate to PCF. </p>
+    <p class="note"><strong>Note</strong>: Prior to PCF v1.10, steps 13 and 14 are required as all PCF components (including SSO tile) have certificates are signed by an internal CA. In PCF v1.10+, customers can upload their own CA certificate to PCF. </p>
 
 1. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**. For more information, see the next section.
 
@@ -147,7 +147,7 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 1. Click **View Rule Language**.
 
-1. Copy the text in the **Claim rule language** field to a notepad or other location. You will need this for the next steps.
+1. Copy the text in the **Claim rule language** field to a notepad or other location. You need this text for the next steps.
 
 1. Exit the **Edit Rule** menu. Select the rule you just added and click **Remove Rule**.
 
@@ -156,7 +156,7 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 1. Select **Send Claims Using a Custom Rule**.
     <%= image_tag '../images/send-claim-using-custom-rule.png' %>
 
-1. Paste in the text you previously copied from the removed rule. Edit the `Type` so that it only says `“groups”`.
+1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that it only says `“groups”`.
     <%= image_tag '../images/edit-type.png' %>
 
 1. Click **OK** to finish making your changes and save the changes you made.
@@ -165,10 +165,10 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 Under **User Attributes**, map the User Schema Attribute of `“external_groups”` to the Attribute Name value of  `“groups”`. If you did not perform the steps to customize the SAML assertion value, use `“http://schemas.xmlsoap.org/claims/Group”` as the Attribute Name instead.
 
-An attribule mapping with a customized SAML assertion value looks like this:
+An attribute mapping with a customized SAML assertion value looks like this:
     <%= image_tag '../images/customized.png' %>
 
-An attribule mapping with a non-customized SAML assertion value looks like this:
+An attribute mapping with a non-customized SAML assertion value looks like this:
     <%= image_tag '../images/non-customized.png' %>
 
-Groups will now show up from the SAML assertion as claims. You can pull these values from the user’s stored custom attributes using the `roles` scope on the ID token or through the userinfo endpoint, or map these to permissions using Resource Permissions mappings. For more information, see the _Create or Edit Resource Permissions_ section of [Manage Resources](https://docs.pivotal.io/p-identity/1-5/manage-resources.html#create-resource-perm).
+Groups now show up from the SAML assertion as claims. You can pull these values from the user’s stored custom attributes using the `roles` scope on the ID token or through the userinfo endpoint, or map these to permissions using Resource Permissions mappings. For more information, see the _Create or Edit Resource Permissions_ section of [Manage Resources](https://docs.pivotal.io/p-identity/1-5/manage-resources.html#create-resource-perm).
