@@ -160,15 +160,3 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
     <%= image_tag '../images/edit-type.png' %>
 
 1. Click **OK** to finish making your changes and save the changes you made.
-
-## <a id='attribute-mappings'></a> Create Attribute Mappings for SAML Groups
-
-Under **User Attributes**, map the User Schema Attribute of `“external_groups”` to the Attribute Name value of  `“groups”`. If you did not perform the steps to customize the SAML assertion value, use `“http://schemas.xmlsoap.org/claims/Group”` as the Attribute Name instead.
-
-An attribute mapping with a customized SAML assertion value looks like this:
-    <%= image_tag '../images/customized.png' %>
-
-An attribute mapping with a non-customized SAML assertion value looks like this:
-    <%= image_tag '../images/non-customized.png' %>
-
-Groups now show up from the SAML assertion as claims. You can pull these values from the user’s stored custom attributes using the `roles` scope on the ID token or through the userinfo endpoint, or map these to permissions using Resource Permissions mappings. For more information, see the _Create or Edit Resource Permissions_ section of [Manage Resources](https://docs.pivotal.io/p-identity/1-5/manage-resources.html#create-resource-perm).
