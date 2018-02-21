@@ -1,25 +1,25 @@
-# Guide to using Pivotal Single Sign-On
+# Single Sign-On (SSO) for PCF Docs
 
-This is a guide to the Pivotal Single Sign-On service, which enables Pivotal Cloud Foundry users to
+This repo contains the documentation for Single Sign-On for PCF, which enables Pivotal Cloud Foundry users to
 authenticate with an external identity provider rather than having to create a new account or re-enter credentials. Single Sign-On grants users centralized access to applications in various spaces, as well as to Ops Manager, Apps Manager, and other Cloud Foundry components.
-
-<strong>Note:</strong> The <code>master</code> branch of this repository publishes to <a href ="https://docs.pivotal.io">PCF</a>, and the <code>master-pws</code> branch publishes to <a href="https://docs.run.pivotal.io">PWS</a>.
-
-This doc repository is one of several doc repositories that go into a complete documentation set.
-
-The contents here are structured as a topic repository intended to be compiled into a larger document with Bookbinder.
-
-See the docs-book-cloudfoundry repo for the complete list of open source documentation repositories, as well as information about the publishing process.
 
 ### Branch Management
 
-**master** - As of September 19, 2017. This branch is similar to the master-pws. What is its purpose?
+**master** - This branch is unpublished. When the SSO Team is ready to develop documentation for v1.6, they will create a new branch from `master` called `1.6`. For now, keep `master` up to date with `1.5`.
 
-**1.5** - branch for documentation for upcoming v1.5 release. As of September 19, 2017, this is staged at [https://docs-pcf-staging.cfapps.io/p-identity/1-5/](https://docs-pcf-staging.cfapps.io/p-identity/1-5/index.html).
+**master-pws** - This branch contains PWS-specific SSO content, and publishes to <a href="https://docs.run.pivotal.io/sso/index.html">https://docs.run.pivotal.io/sso/</a>. 
 
-**1.4** - branch for latest release documentation for v1.4 release. As of September 19, 2017, this is branch holds the most recent docs published at [https://docs.pivotal.io/p-identity/1-4](https://docs-pivotal.io/p-identity/1-4/index.html).
+**1.5** - This branch contains the published documentation for the (current) v1.5 release of SSO. This branch publishes to <a href="https://docs.pivotal.io/p-identity/1-5/">https://docs.pivotal.io/p-identity/1-5/</a>.
 
-**pcf1.6** – It is an old branch that was used for the PCF v1.6 release.
+**1.4** - This branch contains the published documentation for the v1.4 release of SSO. This branch publishes to <a href="https://docs.pivotal.io/p-identity/1-4/index.html">https://docs.pivotal.io/p-identity/1-4/</a>.
+
+**1.3** - This branch contains the published documentation for the v1.3 release of SSO. This branch publishes to <a href="https://docs.pivotal.io/p-identity/1-3/index.html">https://docs.pivotal.io/p-identity/1-3/</a>.
+
+**1.2** - This branch contains the published documentation for the v1.2 release of SSO. This branch publishes to <a href="https://docs.pivotal.io/p-identity/1-2/index.html">https://docs.pivotal.io/p-identity/1-2/</a>.
+
+**1.1** - This branch contains the published documentation for the v1.1 release of SSO. This branch publishes to <a href="https://docs.pivotal.io/p-identity/1-1/index.html">https://docs.pivotal.io/p-identity/1-1/</a>.
+
+**1.0** - This branch is unpublished. **Do not update**. The branch contains the  documentation for the EOL'd v1.0.10 release of SSO.
 
 ### Books that Use This Repository
 
