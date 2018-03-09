@@ -10,34 +10,29 @@ owner: Identity Service
 ## <a id="view"></a> View Release Notes for Another Version
 To view the release notes for another product version, select the version from the drop-down list at the top of this page.
 
-## <a id="15x"></a> v1.5.x
+## <a id="16x"></a> v1.6.x
 
-### <a id="153"></a> v1.5.3
+### <a id="160"></a> v1.6.0
 
-**Release Date:** December 11, 2017
+**Release Date:** March 15, 2018
 
-* This release provides compatibility with manifest changes between Pivotal Elastic Runtime 1.12 and Pivotal Application Service 2.0 to allow for successful upgrades from 1.12 to 2.0 based upon the <a href="https://discuss.pivotal.io/hc/en-us/articles/115015825568">SSO upgrade</a> knowledge base article.</p>
+Features included in this release:
 
+* Feature one.
+* Feature two.
+* Feature three.
 
-### <a id="152"></a> v1.5.2
+Fixed issues in this release:
 
-**Release Date:** October 24, 2017
+* Fixed issue one.
+* Fixed issue two.
+* Fixed issue three.
 
-* This release addresses an issue with managing service instances when more than 50 Space Developers exist within a space.
+**When you have fixed issue, you should have a corresponding known issue in the release below.**
 
-### <a id="151"></a> v1.5.1
+Known issues in this release:
 
-**Release Date:** September 27,  2017
+* Issue one.
+* Issue two.
+* Issue three.
 
-* This release addresses the upgrade issues for the Single Sign-On Service tile when legal footer links are configured.
-* This release addresses a Java Buildpack issue that causes required memory to increase to 1GB.
-* PCF updated stemcell to 3445 series. This is a security upgrade to bump Ubuntu stemcells for USN-3420-2: Linux kernel (Xenial HWE) vulnerabilities.
-
-### <a id="150"></a> v1.5.0
-
-**Release Date:** September 19, 2017
-
-* Operators can now configure OpenID Connect integration with Azure OIDC and additional identity providers using newly exposed configuration options available for managing identity providers.
-* Token exchange client creation for JWT and SAML bearer grant types (<code>urn:ietf:params:oauth:grant-type:jwt-bearer</code> and <code>urn:ietf:params:oauth:grant-type:saml2-bearer</code>) is available through application bootstrapping.
-* Identity sample applications have been updated for Spring Boot 1.5, feature issuer check, and token keys support.
-* Fixed a bug where authorities for service to service applications (client credentials grant type) would not be assigned if they were being created as new resources 
