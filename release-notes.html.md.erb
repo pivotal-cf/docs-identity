@@ -3,12 +3,7 @@ title: Release Notes
 owner: Identity Service
 ---
 
-<p class="note warning"><strong>WARNING</strong>: PAS does not support SHA1 to sign outbound SAML requests. If you use SHA1 with PCF v1.12, PAS automatically migrates your SAML signature algorithm to SHA256. If you are using SAML in PCF v1.12 through the SSO tile and your Identity Provider validates the signature of the SAML authentication request, see <a href="https://discuss.pivotal.io/hc/en-us/articles/115004791554">SHA Signature Support for SAML requests in PAS tile in PCF 2.0</a> in the Pivotal Knowledge Base.</p>
-
-## <a id="view"></a> View Release Notes for Another Version
-To view the release notes for another product version, select the version from the drop-down list at the top of this page.
-
-## v1.6.0
+## <a id="160"></a> v1.6.0
 
 **Release Date: March 15, 2018**
 
@@ -16,13 +11,19 @@ Features included in this release:
 
 * **Expanded API Functionality**: Operators can now use the API to configure plan features that are not yet exposed through the SSO dashboard. 
 The SSO service honors values configured through the API so that these values are retained when using the SSO dashboard. 
+
 * **Multi-Factor Authentication**: Multi-factor authentication (MFA) is now available for preview through the API.
-You can enable MFA with Google Authenticator for all users logging in to your SSO service plan across your applications. 
+You can enable MFA with Google Authenticator for all users logging in to your SSO service plan across your app. 
 This feature is preview only in PCF v2.1 and should not be used for production environments.
+
 * **Plan Visibility for All Orgs**: Operators can now enable an SSO service plan to be visible to all orgs. 
 Operators may want to use this feature to provide a test plan to all developers as a default. 
 Operators can enable or disable this mode for any new or existing service plan.
+
 * **BOSH Backup and Restore Compatibility**: SSO now works with BOSH Backup and Restore (BBR).
+
 * **Availability of Performance Data**: Performance benchmarks, metrics, and scaling indicators are now available.  
 
+## <a id="view"></a> View Release Notes for Another Version
+To view the release notes for another product version, select the version from the drop-down list at the top of this page.
 
