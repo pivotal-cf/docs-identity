@@ -103,3 +103,17 @@ You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manag
 
 <p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
 
+## <a id='space-protection'></a> Space Protection for Resources
+
+OAuth 2.0 provides the concept of a _scope_ in order to limit the amount of access that is granted to an access token. A scope is the intersection of a user's groups and a client's scopes.
+
+In order for a user to gain access to a resource, they must meet the following conditions:
+
+* They must be assigned the resource as a group. 
+* They must access an app that has the resource assigned as a scope. 
+
+Application developers can assign scopes to any app that is _not_ a service-to-service app. But only administrators can assign scopes to users.
+
+When assigning a resource as a scope for a service-to-service app, application developers can only assign resources they have created within their own space. Only an administrator can assign a scope from another space to a service-to-service app.
+
+
