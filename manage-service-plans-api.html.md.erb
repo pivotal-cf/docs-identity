@@ -1,0 +1,336 @@
+---
+title: Manage Service Plans with API
+owner: Identity Service
+---
+
+This topic describes how Pivotal Cloud Foundry (PCF) Administrators manage Single Sign-On service plans.
+
+The Single Sign-On (SSO) service for Pivotal Cloud Foundry (PCF) manages configurations within the User Account and Authentication 
+(UAA) and the Cloud Controller (CC) components of the Pivotal Application Service (formerly Elastic Runtime). 
+Each SSO service plan ties together a CC plan and a UAA identity zone. 
+Beginning in SSO 1.6, you can directly utilize the UAA API to manage service plan configurations configured as part of UAA identity zones.
+
+## <a id="creating"></a> Creating a UAA Identity Zone Admin Client
+
+To use the UAA identity zone APIs for your SSO service plan, you must first create a special identity zone admin client using the instructions below.
+
+1. Install the UAA CLI, uaac.
+<pre class="terminal">
+$ gem install cf-uaac
+</pre>
+
+2. Use the uaac target AUTH-DOMAIN command to target your service plan. Auth Domain setting you entered when you created the service plan.
+<pre class="terminal">
+$ uaac target my-auth-domain.login.example.com
+</pre>
+
+3. Record the App ID and App Secret from your admin client created using the steps here. Give your client `clients.admin`. 
+You will use this client to create an identity zone admin client, after which you can delete this admin client.
+
+4. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. 
+Replace `ADMIN-APP-ID` with your App ID and `ADMIN-APP-SECRET` with your App Secret. UAAC stores the token in ~/.uaac.yml.
+<pre class="terminal">
+$ uaac token client get MyAdminAppId -s MyAdminAppSecret
+</pre>
+
+5. Use the `uaac context` command to display your and check that you have `clients.admin` under the scope section.
+<pre class="terminal">
+$ uaac context
+[1]*[MyAdminAppId]
+  client\_id: MyAdminAppId
+    access\_token: aBcdEfg0hIJKlm123.e
+    token\_type: bearer
+    expires\_in: 43200
+    scope: uaa.resource clients.admin
+    jti: 91b3-abcd1233
+</pre>
+
+6. Create an identity zone admin client via uaac with the `uaac client add` command. 
+Remember the value you provide for admin client ID and client secret. 
+Make sure to use a secure value for your client secret. You can delete the original 
+admin client created via the SSO UI once this client is created.
+<pre class="terminal">
+$ uaac client add ZONE-ADMIN-CLIENT-ID --authorized_grant_types client_credentials --authorities uaa.admin
+New client secret:  *****
+Verify new client secret:  *****
+</pre>
+
+7. Run `uaac token client get ZONE-ADMIN-CLIENT-ID -s ZONE-ADMIN-CLIENT-SECRET` to 
+authenticate and obtain an access token for the identity zone admin client for your service plan. 
+<pre class="terminal">
+$ uaac token client get ZONE-ADMIN-CLIENT-ID
+Client secret:  *****
+</pre>
+
+8. Use the `uaac context` command to display your and check that you have `uaa.admin` under the scope section. 
+You can now perform operator level API configurations for the SSO service plan.
+You will not have permissions for any other SSO service plan. 
+<pre class="terminal">
+$ uaac context
+[1]*[MyZoneAdminClientId]
+  client\_id: MyZoneAdminClientId
+    access\_token: asdioqwuelk12312.e21e
+    token\_type: bearer
+    expires\_in: 43200
+    scope: uaa.admin
+    jti: 123908dkl1-23298
+</pre>
+	
+## <a id="updating"></a> Updating UAA Identity Zone Configurations with the API 
+
+You can perform UAA identity zone API calls using the instructions below. 
+The UAA API documentation is available here, and the APIs used are the Identity Zone APIs.
+
+1. Login to your identity zone admin client that you set-up via the instructions here.
+
+2. Use uaac to retrieve the information for the identity zone you wish to change.
+	* If you know your identity zone ID, you can use `uaac curl -k /identity-zones/your-zone-id > filename.txt`
+	* Otherwise, you can use `uaac curl -k /identity-zones > filename.txt` and you will receive an array containing your identity zone.
+	* Delete the header info and array wrapper, and leave the JSON blob
+		* Your remaining JSON blob should look like the below.
+		* You can identify your identity zone ID within the JSON blob
+
+	```
+	 {
+    "id": "baf7814b-94ab-4011-a3df-6b34625167b8",
+    "subdomain": "demo",
+    "config": {
+      "clientSecretPolicy": {
+        "minLength": -1,
+        "maxLength": -1,
+        "requireUpperCaseCharacter": -1,
+        "requireLowerCaseCharacter": -1,
+        "requireDigit": -1,
+        "requireSpecialCharacter": -1
+      },
+      "tokenPolicy": {
+        "accessTokenValidity": -1,
+        "refreshTokenValidity": -1,
+        "jwtRevocable": false,
+        "refreshTokenUnique": false,
+        "refreshTokenFormat": "jwt",
+        "activeKeyId": null
+      },
+      "samlConfig": {
+        "assertionSigned": true,
+        "requestSigned": true,
+        "wantAssertionSigned": true,
+        "wantAuthnRequestSigned": false,
+        "assertionTimeToLiveSeconds": 600,
+        "keys": {
+        },
+        "disableInResponseToCheck": false
+      },
+      "corsPolicy": {
+        "xhrConfiguration": {
+          "allowedOrigins": [
+            ".*"
+          ],
+          "allowedOriginPatterns": [
+
+          ],
+          "allowedUris": [
+            ".*"
+          ],
+          "allowedUriPatterns": [
+
+          ],
+          "allowedHeaders": [
+            "Accept",
+            "Authorization",
+            "Content-Type"
+          ],
+          "allowedMethods": [
+            "GET"
+          ],
+          "allowedCredentials": false,
+          "maxAge": 1728000
+        },
+        "defaultConfiguration": {
+          "allowedOrigins": [
+            ".*"
+          ],
+          "allowedOriginPatterns": [
+
+          ],
+          "allowedUris": [
+            ".*"
+          ],
+          "allowedUriPatterns": [
+
+          ],
+          "allowedHeaders": [
+            "Accept",
+            "Authorization",
+            "Content-Type"
+          ],
+          "allowedMethods": [
+            "GET"
+          ],
+          "allowedCredentials": false,
+          "maxAge": 1728000
+        }
+      },
+      "links": {
+        "logout": {
+          "redirectUrl": "/login",
+          "redirectParameterName": "redirect",
+          "disableRedirectParameter": false,
+          "whitelist": null
+        },
+        "selfService": {
+          "selfServiceLinksEnabled": true,
+          "signup": null,
+          "passwd": null
+        }
+      },
+      "prompts": [
+        {
+          "name": "username",
+          "type": "text",
+          "text": "Email"
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "text": "Password"
+        },
+        {
+          "name": "passcode",
+          "type": "password",
+          "text": "One Time Code (Get on at /passcode)"
+        }
+      ],
+      "idpDiscoveryEnabled": false,
+      "accountChooserEnabled": false,
+      "userConfig": {
+        "defaultGroups": [
+          "openid",
+          "password.write",
+          "uaa.user",
+          "approvals.me",
+          "profile",
+          "roles",
+          "user_attributes",
+          "uaa.offline_token"
+        ]
+      },
+      "mfaConfig": {
+        "enabled": false
+      }
+    },
+    "name": "demo",
+    "version": 2,
+    "description": "{\"plan_display_name\":\"demo\",\"plan_description\":\"Demo Service Plan\"}",
+    "created": 1510116389000,
+    "last_modified": 1519859509000
+  }
+
+	```
+
+3. Submit a uaac curl request to update the identity zone with your updated configurations.
+	* `uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'`
+	* You can compact the JSON to avoid issues with line spacing when using a command line, 
+	or pass in the file like `uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d "$(cat filename.txt)"`
+
+## <a id="branding"></a> Enable Branding
+
+You can optionally update the branding of your login page by changing your company name, logos, legal text, and legal links.
+
+Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) to retrieve and update the current identity zone configurations for your SSO plan, update the branding policy section according to the UAA API docs. An example of the section is below. Note that all values are optional. You can also generate the base64 text of your PNG images using commands such as “base64 image.png”
+
+```
+"branding": {
+      "companyName": "Pivotal",
+      "productLogo": "(base64 of png image here, will show up as image on login page)",
+      "squareLogo": "(base64 of png image here, will show up as browser icon)",
+      "footerLegalText": "©2017 Pivotal Software, Inc. All Rights Reserved.",
+      "footerLinks": {
+        "Privacy Policy": "https://run.pivotal.io/policies/privacy-policy/",
+        "Terms of Service": "https://run.pivotal.io/policies/terms-of-service",
+        "Up to three links, label here": "https://link-here"
+      }
+    },
+```
+
+## <a id="default-groups"></a> Add Default Groups for Users
+
+You can optionally add additional default groups that users will obtain. 
+Users will now automatically have these scopes even though no scope is explicitly assigned to the user, 
+no longer requiring the use of manual group assignment or group mappings. 
+This should only be used for universal scopes that all users can have, such as a global read only resource.
+
+Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) to retrieve and update 
+the current identity zone configurations for your SSO plan, update the default groups section according to the UAA API docs. 
+An example of the section is below. You can add additional groups in the array list. 
+Users will now automatically have these scopes even though no scope is explicitly assigned to the user.
+
+```
+    "userConfig": {
+      "defaultGroups": [
+        "openid",
+        "password.write",
+        "uaa.user",
+        "approvals.me",
+        "profile",
+        "roles",
+        "user_attributes",
+        "uaa.offline_token",
+        "new.group.everyone.should.have",
+        "another.new.group.everyone.should.have"
+      ]
+    },
+```
+
+## <a id="rotate=keys"></a> Rotate JWT Signing Keys
+
+You can optionally update the branding of your login page by changing your company name, logos, legal text, and legal links.
+
+1. Generate your signing keys in a secure manner acceptable to your organization. 
+Refer to your security organization for acceptable key generation practices.
+For example, `ssh-keygen -t rsa` generates a private key that can be used for signing. 
+
+2. Take the value from your generated private key and insert it as a single 
+line of text (replace all newlines with `\n`) into the value to pass for update.
+
+	<br>For example:
+	
+	<code>1. -----BEGIN RSA PRIVATE KEY-----</code>
+	<code>2. MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO</code>
+	<code>3. 5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x</code>
+	<code>4. -----END RSA PRIVATE KEY-----</code>
+
+	<br>Becomes:
+
+	```
+	-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO\n5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n
+	```
+	
+	<br>One option to do this could be to use `:%s/\n/\\n` in vim text editor.
+
+3. Using the steps [Updating UAA Identity Zone Configurations with the API](#updating-uaa) to retrieve and update the current identity zone configurations for your SSO plan, 
+update the token policy section according to the UAA API docs. An example of the section is below.
+	<p class="note"><strong>Note</strong>: Once you begin to configure JWT signing keys within a service plan, 
+		you can no longer default to share the multi-tenant JWT signing key inherited from the default zone.
+			
+	<p class="note"><strong>Note</strong>: The first time you set a signing key for an identity zone, 
+	existing issued tokens will be invalidated for online validation immediately. 
+	You may need to restart applications performing offline validation for the new signing keys to take effect.</p>
+
+	```
+	 "tokenPolicy": {
+      "accessTokenValidity": -1,
+      "refreshTokenValidity": -1,
+      "jwtRevocable": false,
+      "refreshTokenUnique": false,
+      "refreshTokenFormat": "jwt",
+      "activeKeyId": "first-signing-key",
+      "keys" : {
+              "first-signing-key" : {
+                "signingKey" : "f1r5t.SigN1nG.k3y/t3XT"
+              }
+    },
+    ```
+
+
+
