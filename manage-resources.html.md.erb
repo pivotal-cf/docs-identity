@@ -108,15 +108,17 @@ You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manag
 OAuth 2.0 provides the concept of a _scope_ in order to limit the amount of access that is granted to an access token.
 A scope is the intersection of a user's groups and a client's scopes.
 
-For a user to gain access to a resource, they must meet the following conditions:
+For a user to gain access to a resource, they must meet the following conditions,
+which can only be set up by plan administrators:
 
 * The user must be assigned the resource as a group. 
+  For information on how to do this, see [Manage Users](manage-users.html).
 * The user must access an app that has the resource assigned as a scope. 
 
 App developers can assign scopes to any app that is _not_ a service-to-service app.
-But, only administrators can assign scopes to users.
+But, only plan administrators can assign scopes to users.
 
 When assigning a resource as a scope for a service-to-service app, app developers can only assign resources they have created within their own space.
-Only an administrator can assign a scope from another space to a service-to-service app.
+Only an plan administrator can assign a scope from another space to a service-to-service app.
 
 
