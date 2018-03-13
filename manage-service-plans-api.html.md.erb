@@ -1,5 +1,5 @@
 ---
-title: Manage Service Plans with API
+title: Manage Service Plans with UAA API
 owner: Identity Service
 ---
 
@@ -8,23 +8,26 @@ This topic describes how Pivotal Cloud Foundry (PCF) Administrators manage Singl
 The Single Sign-On (SSO) service for Pivotal Cloud Foundry (PCF) manages configurations within the User Account and Authentication 
 (UAA) and the Cloud Controller (CC) components of the Pivotal Application Service (formerly Elastic Runtime). 
 Each SSO service plan ties together a CC plan and a UAA identity zone. 
-Beginning in SSO 1.6, you can directly utilize the UAA API to manage service plan configurations configured as part of UAA identity zones.
+Beginning in SSO 1.6, you can use the UAA API to manage service plan configurations configured as part of UAA identity zones.
 
-## <a id="creating"></a> Creating a UAA Identity Zone Admin Client
+## <a id="creating"></a> Create a UAA Identity Zone Admin Client
 
-To use the UAA identity zone APIs for your SSO service plan, you must first create a special identity zone admin client using the instructions below.
+To use the UAA identity zone APIs for your SSO service plan, you must first create a special identity zone admin client.
+
+To create a UAA identity zone admin client, do the following:
 
 1. Install the UAA CLI, uaac.
 <pre class="terminal">
 $ gem install cf-uaac
 </pre>
 
-2. Use the uaac target AUTH-DOMAIN command to target your service plan. Auth Domain setting you entered when you created the service plan.
+2. Use the uaac to target your service plan. Use the Auth Domain you entered when you created the service plan.
 <pre class="terminal">
 $ uaac target my-auth-domain.login.example.com
 </pre>
 
-3. Record the App ID and App Secret from your admin client created using the steps here. Give your client `clients.admin`. 
+3. Record the App ID and App Secret from your admin client created using the steps [Create Admin Client](./configure-apps/index.html#admin). 
+Give your client `clients.admin` permission. 
 You will use this client to create an identity zone admin client, after which you can delete this admin client.
 
 4. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. 
@@ -76,7 +79,7 @@ $ uaac context
     jti: 123908dkl1-23298
 </pre>
 	
-## <a id="updating"></a> Updating UAA Identity Zone Configurations with the API 
+## <a id="updating"></a> Update UAA Identity Zone Configurations with the API 
 
 You can perform UAA identity zone API calls using the instructions below. 
 The UAA API documentation is available here, and the APIs used are the Identity Zone APIs.
