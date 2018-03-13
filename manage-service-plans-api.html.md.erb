@@ -237,7 +237,10 @@ The UAA API documentation is available here, and the APIs used are the Identity 
 
 You can optionally update the branding of your login page by changing your company name, logos, legal text, and legal links.
 
-Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) to retrieve and update the current identity zone configurations for your SSO plan, update the branding policy section according to the UAA API docs. An example of the section is below. Note that all values are optional. You can also generate the base64 text of your PNG images using commands such as “base64 image.png”
+Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) 
+to retrieve and update the current identity zone configurations for your SSO plan, 
+update the branding policy section according to the UAA API docs. An example of the section is below. 
+Note that all values are optional. You can also generate the base64 text of your PNG images using commands such as “base64 image.png”
 
 ```
 "branding": {
@@ -331,7 +334,8 @@ update the token policy section according to the UAA API docs. An example of the
               }
     },
     ```
-## <a id="enable-authentication"></a> Enable Multi-Factor Authentication (Preview)
+
+## <a id="enable-authentication"></a> Enable Multi-Factor Authentications (Preview)
 
 <p class="note"><strong>Note</strong>: Multifactor authentication is only available for preview with PCF 2.1.</p>
 
@@ -343,26 +347,26 @@ You can enable multifactor authentication via Google Authenticator (available on
 The issuer value will appear on people’s mobile Google Authenticator, so customize this value 
 based on your needs.
 
-```
-   uaac curl -k '/mfa-providers' -X POST \
-    -H 'Content-Type: application/json' \
-    -H 'Accept: application/json' \
-    -d '{
-  "name" : "GoogleProvider",
-  "config" : {
-    "issuer" : "MFA Login for Company SSO Plan"
-  },
-  "type" : "google-authenticator"
-}'
-```
+    ```
+    uaac curl -k '/mfa-providers' -X POST \
+      -H 'Content-Type: application/json' \
+      -H 'Accept: application/json' \
+      -d '{
+    "name" : "GoogleProvider",
+    "config" : {
+      "issuer" : "MFA Login for Company SSO Plan"
+    },
+    "type" : "google-authenticator"
+    }'
+    ```
 3. Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) to retrieve 
 and update the current identity zone configurations for your SSO plan, update the branding policy section 
 according to the [UAA API docs](http://docs.cloudfoundry.org/api/uaa/). An example of the section is below. 
 You must set the **enable** value to `true` and provide the MFA provider name. You can disable MFA 
 by changing **enable** to `false`.
 
-``` 
-"mfaConfig" : {
+    ``` 
+    "mfaConfig" : {
       "enabled" : true,
       "providerName" : "GoogleProvider"
     }
