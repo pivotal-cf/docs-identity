@@ -3,30 +3,34 @@ title: Managing Service Plans with UAA API
 owner: Identity Service
 ---
 
-This topic describes how Pivotal Cloud Foundry (PCF) Administrators manage Single Sign-On service plans.
+This topic describes how Pivotal Cloud Foundry (PCF) Administrators manage Single Sign-On (SSO) 
+service plans.
 
-The Single Sign-On (SSO) service for Pivotal Cloud Foundry (PCF) manages configurations within the User Account and Authentication 
-(UAA) and the Cloud Controller (CC) components of the Pivotal Application Service (formerly Elastic Runtime). 
+The Single Sign-On service for Pivotal Cloud Foundry manages configurations within 
+the User Account and Authentication (UAA) and the Cloud Controller (CC) components 
+of the Pivotal Application Service (formerly Elastic Runtime). 
 Each SSO service plan ties together a CC plan and a UAA identity zone. 
-Beginning in SSO 1.6, you can use the UAA API to manage service plan configurations configured as part of UAA identity zones.
+Beginning with SSO 1.6, you can use the UAA API to manage service plans 
+configured as part of UAA identity zones.
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
 
 To use the UAA identity zone APIs for your SSO service plan, you must first create a special identity zone admin client.
 
-To create a UAA identity zone admin client, do the following:
+To create a UAA identity zone admin client:
 
-1. Install the UAA CLI, uaac.
+1. Install [uaac](https://github.com/cloudfoundry/cf-uaac), the UAA CLI.
 <pre class="terminal">
 $ gem install cf-uaac
 </pre>
 
-2. Use the uaac to target your service plan. Use the Auth Domain you entered when you created the service plan.
+2. Use the uaac to target your service plan. Use the `auth domain` you entered 
+when you created the service plan.
 <pre class="terminal">
 $ uaac target my-auth-domain.login.example.com
 </pre>
 
-3. Record the App ID and App Secret from your admin client created using the steps [Create Admin Client](./configure-apps/index.html#admin). 
+3. Record the App ID and App Secret from your admin client created using the [Create Admin Client](./configure-apps/index.html#admin) steps. 
 Give your client `clients.admin` permission. 
 You will use this client to create an identity zone admin client, after which you can delete this admin client.
 
@@ -36,7 +40,8 @@ Replace `ADMIN-APP-ID` with your App ID and `ADMIN-APP-SECRET` with your App Sec
 $ uaac token client get MyAdminAppId -s MyAdminAppSecret
 </pre>
 
-5. Use the `uaac context` command to display your and check that you have `clients.admin` under the scope section.
+5. Use the `uaac context` command to display your client context and verify that you have `clients.admin` 
+under the scope section.
 <pre class="terminal">
 $ uaac context
 [1]*[MyAdminAppId]
@@ -65,8 +70,8 @@ $ uaac token client get ZONE-ADMIN-CLIENT-ID
 Client secret:  *****
 </pre>
 
-8. Use the `uaac context` command to display your and check that you have `uaa.admin` under the scope section. 
-You can now perform operator level API configurations for the SSO service plan.
+8. Use the `uaac context` command to display your client context and verify that you have `uaa.admin` 
+under the scope section.  You can now perform operator level API configurations for the SSO service plan.
 You will not have permissions for any other SSO service plan. 
 <pre class="terminal">
 $ uaac context
@@ -81,17 +86,19 @@ $ uaac context
 	
 ## <a id="updating"></a> Update UAA Identity Zone Configurations with the API 
 
-You can perform UAA identity zone API calls using the instructions below. 
-The UAA API documentation is available here, and the APIs used are the Identity Zone APIs.
+General UAA API documentation is available on the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
 
-1. Login to your identity zone admin client that you set-up via the instructions here.
+To perform UAA identity zone API calls: 
 
-2. Use uaac to retrieve the information for the identity zone you wish to change.
-	* If you know your identity zone ID, you can use `uaac curl -k /identity-zones/your-zone-id > filename.txt`
-	* Otherwise, you can use `uaac curl -k /identity-zones > filename.txt` and you will receive an array containing your identity zone.
-	* Delete the header info and array wrapper, and leave the JSON blob
-		* Your remaining JSON blob should look like the below.
-		* You can identify your identity zone ID within the JSON blob
+1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating) .
+
+2. Use `uaac` to retrieve the information for the identity zone you wish to change.
+	* If you know your identity zone ID, you can use `uaac curl -k /identity-zones/your-zone-id > filename.txt`.
+	* Otherwise, you can use `uaac curl -k /identity-zones > filename.txt`. 
+    You will receive an array containing your identity zone.
+	* Delete the header info and array wrapper, and leave the JSON blob.
+		* Your remaining JSON blob should look like the sample below. 
+      You can identify your identity zone ID within the JSON blob.
 
 	```
 	 {
@@ -232,8 +239,9 @@ The UAA API documentation is available here, and the APIs used are the Identity 
 	```
 
 3. Submit a uaac curl request to update the identity zone with your updated configurations.
-	* `uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'`
-	* You can compact the JSON to avoid issues with line spacing when using a command line, 
+	`uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'`
+	
+  You can compact the JSON to avoid issues with line spacing when using a command line, 
 	or pass in the file like `uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d "$(cat filename.txt)"`
 
 ## <a id="branding"></a> Enable Branding
