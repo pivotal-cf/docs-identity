@@ -253,7 +253,7 @@ You can identify your identity zone ID within the JSON blob.
 
 You can optionally update the branding of your login page by changing your company name, logos, legal text, and legal links.
 
-Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) 
+Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) 
 to retrieve the identity zone configurations for your SSO plan, 
 update the branding policy section according to the [UAA API documentation](https://docs.cloudfoundry.org/api/uaa). 
 An example section appears below. 
@@ -281,7 +281,7 @@ Users will now automatically have these scopes even though no scope is explicitl
 no longer requiring the use of manual group assignment or group mappings. 
 This should only be used for universal scopes that all users can have, such as a global read only resource.
 
-Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) to retrieve and update 
+Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) to retrieve and update 
 the current identity zone configurations for your SSO plan, update the default groups section according to the UAA API docs. 
 An example of the section is below. You can add additional groups in the array list. 
 Users will now automatically have these scopes even though no scope is explicitly assigned to the user.
@@ -329,7 +329,7 @@ line of text (replace all newlines with `\n`) into the value to pass for update.
 	
 	<br>One option to do this could be to use `:%s/\n/\\n` in vim text editor.
 
-3. Using the steps [Updating UAA Identity Zone Configurations with the API](#updating-uaa) to retrieve and update the current identity zone configurations for your SSO plan, 
+3. Using the steps [Update UAA Identity Zone Configurations with the API](#updating) to retrieve and update the current identity zone configurations for your SSO plan, 
 update the token policy section according to the UAA API docs. An example of the section is below.
 	<p class="note"><strong>Note</strong>: Once you begin to configure JWT signing keys within a service plan, 
 		you can no longer default to share the multi-tenant JWT signing key inherited from the default zone.
@@ -377,7 +377,7 @@ based on your needs.
     "type" : "google-authenticator"
     }'
     ```
-3. Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) to retrieve 
+3. Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) to retrieve 
 and update the current identity zone configurations for your SSO plan, update the branding policy section 
 according to the [UAA API docs](http://docs.cloudfoundry.org/api/uaa/). An example of the section is below. 
 You must set the **enable** value to `true` and provide the MFA provider name. You can disable MFA 
