@@ -97,13 +97,13 @@ To perform UAA identity zone API calls:
 
 1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating), above.
 
-2. Use `uaac` to retrieve the information for the identity zone you wish to change.
-	* If you know your identity zone ID, you can use `uaac curl -k /identity-zones/your-zone-id > filename.txt`.
-	* Otherwise, you can use `uaac curl -k /identity-zones > filename.txt`. 
-    You will receive an array containing your identity zone.
-	* Delete the header info and array wrapper, and leave the JSON blob.
-		* Your remaining JSON blob should look like the sample below. 
-      You can identify your identity zone ID within the JSON blob.
+2. Use `uaac` to retrieve the information for the identity zone you wish to change. 
+If you know your identity zone ID, you can use `uaac curl -k /identity-zones/your-zone-id > filename.txt`. 
+Otherwise, you can use `uaac curl -k /identity-zones > filename.txt`. 
+You will receive an array containing your identity zone. 
+
+3. Delete the header info and array wrapper, and leave the JSON blob. Your remaining JSON blob should look like the sample below. 
+You can identify your identity zone ID within the JSON blob.
 
 	```
 	 {
@@ -243,7 +243,7 @@ To perform UAA identity zone API calls:
 
 	```
 
-3. Submit a uaac curl request to update the identity zone with your updated configurations.
+4. Submit a uaac curl request to update the identity zone with your updated configurations.
 	`uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'`
 	
   You can compact the JSON to avoid issues with line spacing when using a command line, 
@@ -254,9 +254,11 @@ To perform UAA identity zone API calls:
 You can optionally update the branding of your login page by changing your company name, logos, legal text, and legal links.
 
 Using the steps in [Updating UAA Identity Zone Configurations with the API](#updating-uaa) 
-to retrieve and update the current identity zone configurations for your SSO plan, 
-update the branding policy section according to the UAA API docs. An example of the section is below. 
-Note that all values are optional. You can also generate the base64 text of your PNG images using commands such as “base64 image.png”
+to retrieve the identity zone configurations for your SSO plan, 
+update the branding policy section according to the [UAA API documentation](https://docs.cloudfoundry.org/api/uaa). 
+An example section appears below. 
+
+<p class="note"><strong>Note</strong>: All values are optional. You can also generate the base64 text of your PNG images using commands, such as "base64 image.png".</p>
 
 ```
 "branding": {
