@@ -15,7 +15,11 @@ configured as part of UAA identity zones.
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
 
-To use the UAA identity zone APIs for your SSO service plan, you must first create a special identity zone admin client.
+To use the UAA identity zone APIs for your SSO service plan, you need a special identity zone admin client.
+
+To create the identity zone admin client, you must first have created an admin client as described
+in [Create Admin Client](./configure-apps/index.html#admin). The App ID and App Secret provided when you create the 
+admin client are necessary for creating the identity zone admin client.
 
 To create a UAA identity zone admin client:
 
@@ -30,12 +34,13 @@ when you created the service plan.
 $ uaac target my-auth-domain.login.example.com
 </pre>
 
-3. Record the App ID and App Secret from your admin client created using the [Create Admin Client](./configure-apps/index.html#admin) steps. 
-Give your client `clients.admin` permission. 
-You will use this client to create an identity zone admin client, after which you can delete this admin client.
+3. Using the App ID and App Secret that were provided when you created your [admin client](./configure-apps/index.html#admin), 
+give your client the `clients.admin` permission. 
 
-4. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. 
-Replace `ADMIN-APP-ID` with your App ID and `ADMIN-APP-SECRET` with your App Secret. UAAC stores the token in ~/.uaac.yml.
+4. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain 
+an access token for the admin client for your service plan. 
+Replace `ADMIN-APP-ID` with your App ID and `ADMIN-APP-SECRET` with your App Secret. 
+UAAC stores the token in ~/.uaac.yml.
 <pre class="terminal">
 $ uaac token client get MyAdminAppId -s MyAdminAppSecret
 </pre>
@@ -54,9 +59,9 @@ $ uaac context
 </pre>
 
 6. Create an identity zone admin client via uaac with the `uaac client add` command. 
-Remember the value you provide for admin client ID and client secret. 
+Record the value you provide for admin client ID and client secret. 
 Make sure to use a secure value for your client secret. You can delete the original 
-admin client created via the SSO UI once this client is created.
+admin client created via the SSO UI after you create the identity zone client.
 <pre class="terminal">
 $ uaac client add ZONE-ADMIN-CLIENT-ID --authorized_grant_types client_credentials --authorities uaa.admin
 New client secret:  *****
@@ -71,7 +76,7 @@ Client secret:  *****
 </pre>
 
 8. Use the `uaac context` command to display your client context and verify that you have `uaa.admin` 
-under the scope section.  You can now perform operator level API configurations for the SSO service plan.
+under the scope section. You can now perform operator level API configurations for the SSO service plan.
 You will not have permissions for any other SSO service plan. 
 <pre class="terminal">
 $ uaac context
@@ -90,7 +95,7 @@ General UAA API documentation is available on the [CF UAA API documentation page
 
 To perform UAA identity zone API calls: 
 
-1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating) .
+1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating), above.
 
 2. Use `uaac` to retrieve the information for the identity zone you wish to change.
 	* If you know your identity zone ID, you can use `uaac curl -k /identity-zones/your-zone-id > filename.txt`.

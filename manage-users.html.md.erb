@@ -78,9 +78,9 @@ From the external identity provider users admin pane, you can:
 
 * **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
 
-## <a id="uaac"></a> Manage Users with the UAA CLI (UAAC)
+## <a id="uaac"></a> Manage Users with the UAA CLI
 
-You may also use the UAA CLI (UAAC) to manage users for the SSO service. You can use this approach to programatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
+You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users for the SSO service. You can use this approach to programatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
 
 <p class="note"><strong>Note</strong>: Clients and Groups for SSO should be created directly through the SSO UI or through application manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by SSO.</p>
 
@@ -103,10 +103,10 @@ You may also use the UAA CLI (UAAC) to manage users for the SSO service. You can
     $ uaac token client get MyAdminAppId -s MyAdminAppSecret
     </pre>
 
-1. Use the `uaac contexts` command to display the users and applications authorized by your service plan, and the permissions granted to each user and application. Check that you have the sufficient `scim.write` or `scim.create` permissions under the `scope` section.
+1. Use the `uaac context` command to display the client context. Verify that you have the sufficient `scim.write` or `scim.create` permissions under the `scope` section.
 
     <pre class="terminal">
-    $ uaac contexts
+    $ uaac context
 
     [1]*[admin]
       client_id: MyAdminAppId
