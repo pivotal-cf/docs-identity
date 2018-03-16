@@ -5,7 +5,7 @@ owner: Identity Service
 
 ## <a id="160"></a> v1.6.0
 
-**Release Date: March 15, 2018**
+**Release Date: March 20, 2018**
 
 Features included in this release:
 
@@ -48,12 +48,13 @@ For more information, see the following sections of [Manage Service Plans with U
 	</tr>
 	</table>
 
-* **Multi-Factor Authentication**: Multi-factor authentication (MFA) is now available as a beta feature through the API.
+* **Multi-Factor Authentication**: Multi-factor authentication is now available as a beta feature through the API.
   You can enable MFA with Google Authenticator for all users logging in to your SSO service plan across your app.
-  <p class="note"><strong>Note</strong>: 
-     This beta feature is only available in PCF v2.1 and should not be used for production environments.
+  <p class="note warning"><strong>WARNING</strong>: 
+     Multi-factor authentication is a beta feature and is only available in PCF v2.1.
+     Do not use multi-factor authentication in a PCF production environment.
   </p>
-  For more information, see [Enable Multi-Factor Authentications (Preview)](manage-service-plans-api.html#enable-authentication).
+  For more information, see [Enable Multi-Factor Authentications (Beta)](manage-service-plans-api.html#enable-authentication).
 * **Plan Visibility for All Orgs**: Operators can now enable an SSO service plan to be visible to all orgs. 
 Operators may want to use this feature to provide a test plan to all developers as a default. 
 Operators can enable or disable this mode for any new or existing service plan.
