@@ -1,0 +1,28 @@
+---
+title: Plan-to-Plan OIDC Integration Guide
+owner: SSO
+---
+
+This topic describes how to set up the Pivotal Cloud Foundry (PCF) Single Sign-On (SSO) to integrate a SSO Service Plan as an OpenID Connect (OIDC) identity provider. 
+
+Service plans are represented in User Access and Administration (UAA) as identity zones. UAA provides the ability to integrate any two UAAs with one acting as the relying party and the other acting as the identity provider. This includes identity zones within the same multi-tenant UAA, as well as separate UAA instances, such as the Bosh UAA, Ops Manager UAA, or a standalone UAA (provided they are on a version that has OIDC implemented). This topic explains how you can perform the integration from one SSO service plan to another through the SSO service tile.
+
+## <a id='prereqs'></a>Prerequisites
+To integrate Plan-to-Plan OIDC with PCF, you need: 
+
+* PCF, v1.12 or later
+* Single Sign-On, v1.5.0 or later
+* An active SSO Service Plan that will act as an identity provider
+* A second active SSO Service Plan that will act as the relying party
+* A user with admin privileges
+
+<p class="note"><strong>Note</strong>: To configure OIDC according to these steps, you must have the Single Sign-On service broker installed in your PCF deployment. You need to create a plan, add  any plan administrators, and specify any organizations for which this plan should be the authentication authority. For help configuring plans, see <a href="./manage-service-plans.html">Managing Service Plans</a>.</p>
+
+## <a id='ptp-oidc'></a>Integrating a Plan-to-Plan OIDC for SSO
+Complete this process to set up Plan-to-Plan OIDC integration for the SSO service. For more information, see <a href="./configure-plan-to-plan-oidc.html">Configuring Plan-to-Plan OIDC Integrations</a>.
+
+## Testing the OIDC Connection
+Once you've configured the Plan-to-Plan OIDC integration for SSO, you can test it to confirm it works. For more information, see <a href="./oidc-testing.html">Testing</a>.
+
+## Troubleshooting
+For information about common configuration problems and error states, see <a href="./oidc-troubleshooting.html">Troubleshooting</a>.

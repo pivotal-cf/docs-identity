@@ -1,0 +1,68 @@
+---
+title: Configuring Plan-to-Plan OIDC Integration
+owner: SSO
+---
+This topic describes how to set up the Plan-to-Plan OpenID Connect (OIDC) integration between two Single Sign-On service plans, one acting as an identity provider (“identity provider plan” or IDP) and one acting as a relying party (“relying party plan” or RP). 
+
+Doing this allows users from the identity provider plan to authenticate into the relying party plan through OIDC.
+
+## <a name="idp"></a>Setting Up Relying Party Configurations in the Identity Provider Plan
+
+### Prerequisites
+
+* Your IDP must be visible to your Org.
+* You must add the IDP as a service instance in a Space so you can access the app developer dashboard. 
+
+If you haven't completed these prerequisites, see [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+
+<ol>
+	<li>Navigate to Apps Manager.</li>
+	<li>Select the Space.</li>
+	<li>Click into the <strong>Service</strong> tab.</li>
+	<li>Click to select the service you wish to modify.</li>
+	<li>Click <strong>Manage</strong>.<br/>
+	<img src="../images/manage-button.png"></li>
+	<li>Click <strong>New App</strong>. The New App page appears.</li> 
+	<li>Type a name in the <strong>App Name</strong> field.</li>
+	<li>Choose <strong>Web App</strong> from the list of Application Types.</li>
+	<li>Type a temporary URL in the <strong>Auth Redirect URIs</strong> field. You'll replace this URL when you have configured an identity provider on the relying party plan.</li>
+	<li>In the <strong>Scopes</strong> field, type <code>openid</code>.<br/> 
+	Optionally, select <code>openid</code> from the list of <strong>Auto-Approved Scopes</strong>. By adding <code>openid</code> as an automatically approved scope, you will keep users from being prompted to authorize a login from the identity provider.</li>
+	<li>Click <strong>Create App</strong>. If the app is created successfully, you will be prompted to download your app credentials.
+	<img src="../images/dl-app-creds.png"><br/></li>
+	<li>Click <strong>Download App Credentials</strong> to save the credentials for your application.<br/>
+	<p class="note"><strong>Important:</strong> This is the last time you will be able to download your app credentials. Pivotal strongly recommends that you download the credentials and store them securely.</p></li>
+</ol>
+
+## <a name="rp"></a>Setting Up the OIDC Identity Provider Configuration in the Relying Party Plan
+
+<ol>
+	<li>Navigate to <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code>.</li>
+	<li>Log into the SSO dashboard using the credentials associated with your UAA administrator account. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager. For more information, see <a href="https://docs.pivotal.io/pivotalcf/1-11/customizing/console-login.html">Logging in to Apps Manager</a>.</li>
+	<li>Click the Relying Party plan name and choose <strong>Manage Identity Providers</strong> from the dropdown.<br/>
+	<img src="../images/manage-idp.png"></li>
+	<li>Click <strong>New Identity Provider</strong>. The New Identity Provider screen appears.</li>
+	<li>Enter an <strong>Identity Provider Name</strong>. This string, in lowercase with dashes replacing spaces, will become your Origin Key. For example, "My Test Provider" will become "my-test-provider."</li>
+	<li>Enter a <strong>Description</strong>. This description will be visible to Space developers when they select an IDP for their application.</li>
+	<li>Select <strong>OpenID Connect</strong> as the <strong>Identity Provider type</strong>. The OpenID Connect Settings appear.<br/>
+	<img src="../images/idp-type-openid.png"></li>
+	<li>If you're using a self-signed certificate for PCF where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you're not using a self-signed certificate, you can leave this box unchecked.</li>
+	<li>Select the <strong>Enable Discovery</strong> checkbox and type in the <strong>Discovery Endpoint URL</strong>. <br/>
+	This URL will be <code>ht<span>tps</span>://IDP_AUTH_DOMAIN/.well-known/openid-configuration</code>, where <code>IDP_AUTH_DOMAIN</code> is the Auth Domain setting you entered when you created the IDP service plan you are integrating with.</li>
+	<li>Fill in the <strong>Relying Party OAuth Client ID</strong> with the App Client ID from <a href="#idp">the previous section</a>.</li>
+	<li>Fill in the <strong>Relying Party OAuth Client Secret</strong> with the App Secret from <a href="#idp">the previous section</a>.</li>
+	<li>Confirm that <code>openid</code> is selected as a Scope by clicking <strong>All Selected</strong>.<br/>
+	<img src="../images/openid-dropdown.png"></li>
+</ol>
+
+## <a name="finalizing"></a>Finalizing Configuration
+
+Once you've created an app, you can return to the App page to finish configuration.
+
+<ol>
+<li>Return to the <a href="#idp">app you created</a>. 
+<li>Click <strong>Edit Config</strong>. The app configuration screen appears.<br/> 
+<img src="../images/edit-config.png"></li>
+<li>Add a <strong>Auth Redirect URL</strong>. The URL should read <code>https://RP_AUTH_DOMAIN/login/callback/ORIGIN_KEY</code>, where the <code>RP_AUTH_DOMAIN</code> is the Auth Domain setting you entered during RP configuration and the <code>ORIGIN_KEY</code> is based on the IDP name you set in the SSO dashboard.</li>
+<li>Click <strong>Save Config</strong>.</li>
+</ol>
