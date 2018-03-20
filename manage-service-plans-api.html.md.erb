@@ -247,10 +247,10 @@ You can identify your identity-zone ID within the JSON blob.
 	```
 
 4. Submit a UAAC curl request to update the identity zone with your updated configurations.
-	`uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'`
-	
-  You can compact the JSON to avoid issues with line spacing when using a command line
-	or pass in the file like `uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d "$(cat filename.txt)"`
+	`uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'`<br><br>
+  You can compact the JSON to avoid issues with line spacing when using a command line,
+	or pass in the file. For example:<br>
+  `uaac curl -k /identity-zones/your-zone-id -X PUT -H 'Content-Type: application/json' -d "$(cat filename.txt)"`
 
 ## <a id="branding"></a> Enable Branding
 
