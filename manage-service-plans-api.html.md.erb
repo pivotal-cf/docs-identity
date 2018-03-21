@@ -10,28 +10,17 @@ The SSO service for PCF manages configurations within
 the User Account and Authentication (UAA) and the Cloud Controller (CC) components 
 of the Pivotal Application Service (formerly Elastic Runtime). 
 Each SSO service plan ties together a CC plan and a UAA identity zone. 
-<<<<<<< HEAD
 
-Beginning with SSO v1.6, you can use the UAA API to manage service plans 
-configured as part of UAA identity zones.
-=======
 Beginning with SSO v1.6, you can use the UAA API to manage UAA identity zones
 configured as part of SSO service plans.
->>>>>>> 9a253db5ed31e7021facfe34593254e3e7d66d6b
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
 
 To use the UAA identity zone APIs for your SSO service plan, you need a special identity zone admin client.
 
-<<<<<<< HEAD
 To create the identity zone admin client, you must first create an admin client as described
 in <a href="./configure-apps/index.html#admin">Create Admin Client</a>. You need the App ID and App Secret provided when you create the 
 admin client to create the identity zone admin client.
-=======
-To create the identity-zone admin client, you must first have created an admin client as described
-in [Create Admin Client](./configure-apps/index.html#admin) with the `clients.admin` permission. The App ID and App Secret provided when you create the 
-admin client are necessary for creating the identity-zone admin client.
->>>>>>> 9a253db5ed31e7021facfe34593254e3e7d66d6b
 
 To create a UAA identity zone admin client:
 
@@ -400,7 +389,6 @@ update the token policy section to add your new generated private key. An exampl
      Do not use multi-factor authentication in a PCF production environment for PCF v2.1.
   </p>
 
-<<<<<<< HEAD
 You can enable multi-factor authentication (MFA) via Google Authenticator, available on the Apple Store or Android Play,
 for all users logging in to your service plan.
 
@@ -408,15 +396,6 @@ for all users logging in to your service plan.
 
 2. Create an MFA provider based on the [UAA API documentation](https://docs.cloudfoundry.org/api/uaa) using the command below. 
 The issuer value appears on users' mobile Google Authenticator, so customize this value 
-=======
-You can enable multi-factor authentication with [Google Authenticator](https://github.com/google/google-authenticator), available on the [Apple Store](https://itunes.apple.com/us/app/google-authenticator/id388497605) or [Android Play](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2),
-for all users logging in to your service plan.
-
-1. Log in to your identity-zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating), above.
-
-2. Create an MFA provider based upon the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa) using the `uaac curl` command below. 
-The issuer value appears on peoples' mobile Google Authenticator, so customize this value 
->>>>>>> 9a253db5ed31e7021facfe34593254e3e7d66d6b
 based on your needs.
 
     ```
@@ -431,19 +410,11 @@ based on your needs.
     "type" : "google-authenticator"
     }'
     ```
-<<<<<<< HEAD
 3. Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) above to retrieve 
 and update the current identity zone configurations for your SSO plan, update the `mfaConfig` section 
 according to the [UAA API documentation](http://docs.cloudfoundry.org/api/uaa/).<br><br> 
   An example of the section is below. 
   Set the `enable` value to `true` and provide the MFA provider name. 
-=======
-3. Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) to retrieve 
-and update the current identity-zone configurations for your SSO plan, update the MFA configuration section 
-according to the [UAA API docs](http://docs.cloudfoundry.org/api/uaa/). An example of the section is below. 
-You must set the **enabled** value to `true` and provide the MFA provider name. You can disable MFA 
-by changing **enabled** to `false`.
->>>>>>> 9a253db5ed31e7021facfe34593254e3e7d66d6b
 
     ``` 
     "mfaConfig" : {
