@@ -110,7 +110,7 @@ This section shows how to update UAA identity zone configurations using a `PUT` 
 
 For general information about UAA API, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
 
-<p class="note warning"><strong>Warning</strong>: This flow is for advanced users only.</p>
+<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only.</p>
 
 To do UAA identity zone API calls: 
 
@@ -263,12 +263,12 @@ Your identity zone ID is at the top in the `id` line.
 	```
 
 4. Update the configurations in the JSON blob as needed.
-  <p class="note warning"><strong>Warning</strong>: You must provide all configuration values, otherwise, 
+  <p class="note warning"><strong>WARNING</strong>: You must provide all configuration values, otherwise, 
     data may be lost when doing an API update as a <code>PUT</code> command.</p> 
     
 
 5. Submit a UAAC curl request to apply your updated configurations to the identity zone. Examples are shown below.
-    <p class="note warning"><strong>Warning</strong>: You must always run this command
+    <p class="note warning"><strong>WARNING</strong>: You must always run this command
       with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
 	`uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'`<br><br>
