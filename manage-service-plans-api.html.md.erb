@@ -18,11 +18,14 @@ configured as part of SSO service plans.
 
 To use the UAA identity zone APIs for your SSO service plan, you need a special identity zone admin client.
 
-To create the identity zone admin client, you must first create an admin client as described
-in <a href="./configure-apps/index.html#admin">Create Admin Client</a>. You need the App ID and App Secret provided when you create the 
-admin client to create the identity zone admin client.
+**Prerequisite**
 
-To create a UAA identity zone admin client:
+To create the identity zone admin client, you must first create an admin client as described
+in <a href="./configure-apps/index.html#admin">Create Admin Client</a>, and give this client `clients.admin` permission. 
+You need the App ID and App Secret provided when you create this 
+admin client to create the UAA identity zone admin client.
+
+To create a UAA identity zone admin client, do the following:
 
 1. Install the UAA CLI (UAAC) as follows:
 <pre class="terminal">
@@ -38,27 +41,26 @@ when you created the service plan.
 $ uaac target MY-AUTH-DOMAIN.login.example.com
 </pre>
 
-3. Using the App ID and App Secret provided when you created your <a href="./configure-apps/index.html#admin">Admin Client</a>, 
-give your client the `clients.admin` permission. 
-
 4. Run the command below to authenticate and obtain 
-an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.
+an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.<br><br>
+  Use the App ID and App Secret provided when you created the <a href="./configure-apps/index.html#admin">Admin Client</a> with 
+  `clients.admin` permission.
 
     <pre class="terminal">
     $ uaac token client get MY-APP-ID -s MY-APP-SECRET
     </pre>
 
     Where:<br>
-    * `MY-APP-ID` is your admin app ID
-    * `MY-APP-SECRET` is your app secret
+    * `MY-APP-ID` is your admin app ID.
+    * `MY-APP-SECRET` is your app secret.
 
 
 5. Run the following command to display your client context and verify that you have `clients.admin` 
 under the scope section.
 <pre class="terminal">
 $ uaac context
-[1]*[MyAdminAppId]
-  client\_id: MyAdminAppId
+[1]*[MY-APP-ID]
+  client\_id: MY-APP-ID
     access\_token: aBcdEfg0hIJKlm123.e
     token\_type: bearer
     expires\_in: 43200
@@ -71,13 +73,15 @@ Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`
   Make sure to use a secure value for your client secret. 
   <br>
   <pre class="terminal">
-  $ uaac client add ZONE-ADMIN-CLIENT-ID --authorized_grant_types client_credentials --authorities uaa.admin
+  $ uaac client add ZONE-ADMIN-CLIENT-ID --authorized\_grant\_types client\_credentials --authorities uaa.admin
   New client secret:  *****
   Verify new client secret:  *****
   </pre>
-  <br>
-  You can delete the original 
-  admin client created via the SSO UI after you create the identity zone client.
+  Where:<br>
+  * `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.
+  * `New client secret` is a secret to use for this zone admin client.
+
+    You can delete the original admin client created via the SSO UI after you create the identity zone client.
 
 7. Run the following command to 
 authenticate and obtain an access token for the identity zone admin client for your service plan. 
@@ -101,8 +105,8 @@ under the scope section.
       scope: uaa.admin
       jti: 123908dkl1-23298
   </pre>
-  You can now do operator level API configurations for the SSO service plan.
-  You will not have permissions for any other SSO service plan.
+      You can now do operator level API configurations for the SSO service plan.
+      You will not have permissions for any other SSO service plan.
 	
 ## <a id="updating"></a> Update UAA Identity Zone Configurations with the API 
 
@@ -116,12 +120,14 @@ To do UAA identity zone API calls:
 
 1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating) above.
 
-2. Use UAAC to retrieve the information for the identity zone you want to change. 
-  * If you know your identity zone ID, use `uaac curl -k /identity-zones/YOUR-ZONE-ID > FILENAME.txt`. 
+2. Use UAAC to retrieve the information for the identity zone you want to change. <br><br>
+  * If you know your identity zone ID, use `uaac curl -k /identity-zones/YOUR-ZONE-ID > FILENAME.txt`. <br><br>
   * If you do not know your identity zone ID, use `uaac curl -k /identity-zones > FILENAME.txt`. 
-  You will receive an array containing your identity zone. 
+  In most cases, this returns one identity zone, but if there are several, 
+  you can identify your identity zone by the `subdomain` name or `description` in the array returned.
 
-3. Delete the header information and array wrapper, and leave the JSON blob. Your remaining JSON blob looks similar to the sample below. 
+3. In the array returned from the previous command, delete the header information and array wrapper, 
+and leave the JSON blob. Your remaining JSON blob looks similar to the sample below. 
 Your identity zone ID is at the top in the `id` line.
 
 	```
@@ -282,7 +288,7 @@ You can optionally modify the branding of your login page by changing your compa
 
 Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) above 
 to retrieve the identity zone configurations for your SSO plan, 
-modify the branding section according to the [UAA API documentation](https://docs.cloudfoundry.org/api/uaa). 
+add or modify the branding section according to the [UAA API documentation](https://docs.cloudfoundry.org/api/uaa). 
 
 An example branding section is shown below. 
 
