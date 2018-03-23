@@ -110,11 +110,13 @@ under the scope section.
 	
 ## <a id="updating"></a> Update UAA Identity Zone Configurations with the API 
 
-This section shows how to update UAA identity zone configurations using a `PUT` command. 
+This section shows how to use the UAA API to update UAA identity zone configurations, using a `PUT` command. 
+
+<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only. You must always run the <code>PUT</code> command
+  with the latest data by doing a <code>GET</code> before a <code>PUT</code> command. 
+  You must also provide all configuration values, otherwise, data may be lost.</p>
 
 For general information about UAA API, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
-
-<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only.</p>
 
 To do UAA identity zone API calls: 
 
@@ -358,18 +360,19 @@ line of text, replacing all new lines with `\n`. For example:<br><br>
 	<br>Becomes:
 
 	```
-	-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO\n5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n
+	-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n
 	```
 	
 3. Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) above to 
 retrieve and update the identity zone configurations for your SSO plan, 
-update the token policy section to add your new generated private key. An example of this section is shown below.
+update the token policy section to add your new generated private key as the value for `signingKey`. <br><br>
+  An example of this section is shown below.
 	<p class="note"><strong>Note</strong>: After you begin to configure JWT signing keys within a service plan, 
 		you can no longer default to share the multi-tenant JWT signing key inherited from the default zone.
 			
 	<p class="note"><strong>Note</strong>: The first time you set a signing key for an identity zone, 
-	existing issued tokens are invalidated for online validation immediately. 
-	You might need to restart applications performing offline validation for the new signing keys to take effect.</p>
+	existing issued tokens are immediately invalidated for online validation. 
+	You may need to restart applications that do offline validation for the new signing keys to take effect.</p>
 
 	```
 	 "tokenPolicy": {
@@ -381,7 +384,7 @@ update the token policy section to add your new generated private key. An exampl
       "activeKeyId": "first-signing-key",
       "keys" : {
               "first-signing-key" : {
-                "signingKey" : "f1r5t.SigN1nG.k3y/t3XT"
+                "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
               }
     },
     ```
