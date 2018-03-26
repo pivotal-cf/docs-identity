@@ -22,7 +22,7 @@ To use the UAA identity zone APIs for your SSO service plan, you need a special 
 
 * Create an admin client as described
 in <a href="./configure-apps/index.html#admin">Create Admin Client</a>, and give this client `clients.admin` permission. 
-* Record the App ID and App Secret provided when you create the above 
+* Record the app ID and app secret provided when you create the above 
 admin client, to use when creating the UAA identity zone admin client.
 
 ### Create a UAA Identity Zone Admin Client
@@ -37,26 +37,21 @@ $ gem install cf-uaac
     For information about the UAAC,
     see [the UAAC Github Repository](https://github.com/cloudfoundry/cf-uaac).
 
-2. Use the UAAC to target your service plan. Use the `auth domain` you entered 
-when you created the service plan.
-<pre class="terminal">
-$ uaac target MY-AUTH-DOMAIN.login.example.com
-</pre>
+2. Use the UAAC to target your service plan: <br><br>
+`uaac target MY-AUTH-DOMAIN.login.example.com`<br><br>
+   Where:<br>
+  `MY-AUTH-DOMAIN` is the `auth domain` you entered when you created the service plan.
 
 4. Run the command below to authenticate and obtain 
 an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.<br><br>
-  Use the App ID and App Secret provided when you created the <a href="./configure-apps/index.html#admin">Admin Client</a> with 
-  `clients.admin` permission.
+Use the app ID and app secret provided when you created the 
+ <a href="./configure-apps/index.html#admin">Admin Client</a>  with `clients.admin` permission.<br><br>
+`uaac token client get MY-APP-ID -s MY-APP-SECRET`<br><br>
+Where:<br>
+ * `MY-APP-ID` is your admin app ID.
+ * `MY-APP-SECRET` is your app secret.<br>
 
-    <pre class="terminal">
-    $ uaac token client get MY-APP-ID -s MY-APP-SECRET
-    </pre>
-
-    Where:<br>
-    * `MY-APP-ID` is your admin app ID.
-    * `MY-APP-SECRET` is your app secret.
-
-
+ 
 5. Run the following command to display your client context and verify that you have `clients.admin` 
 under the scope section.
 <pre class="terminal">
