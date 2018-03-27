@@ -30,68 +30,111 @@ admin client, to use when creating the UAA identity zone admin client.
 To create a UAA identity zone admin client, do the following:
 
 1. Install the UAA CLI (UAAC) as follows:
-<pre class="terminal">
-$ gem install cf-uaac
-</pre>
+
+    ```
+    gem install cf-uaac
+    ``` 
 
     For information about the UAAC,
     see [the UAAC Github Repository](https://github.com/cloudfoundry/cf-uaac).
 
-2. Use the UAAC to target your service plan: <br><br>
-`uaac target MY-AUTH-DOMAIN.login.example.com`<br><br>
-   Where:<br>
-  `MY-AUTH-DOMAIN` is the `auth domain` you entered when you created the service plan.
+2. Use the UAAC to target your service plan:
 
-4. Run the command below to authenticate and obtain 
-an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.<br><br>
-Use the app ID and app secret provided when you created the 
- <a href="./configure-apps/index.html#admin">Admin Client</a>  with `clients.admin` permission.<br><br>
-`uaac token client get MY-APP-ID -s MY-APP-SECRET`<br><br>
-Where:<br>
- * `MY-APP-ID` is your admin app ID.
- * `MY-APP-SECRET` is your app secret.<br>
+    ```
+    uaac target MY-AUTH-DOMAIN.login.example.com
+    ```
+
+    Where:<br>
+    `MY-AUTH-DOMAIN` is the `auth domain` you entered when you created the service plan.
+
+3. Run the command below to authenticate and obtain 
+an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.
+
+
+    ```
+    uaac token client get MY-APP-ID -s MY-APP-SECRET
+    ```
+
+    Where:<br>
+    * `MY-APP-ID` is your admin app ID.
+    * `MY-APP-SECRET` is your app secret.<br>
+
+    Use the app ID and app secret provided when you created the 
+ <a href="./configure-apps/index.html#admin">Admin Client</a>  with `clients.admin` permission.
 
  
-5. Run the following command to display your client context and verify that you have `clients.admin` 
+4. Run the following command to display your client context and verify that you have `clients.admin` 
 under the scope section.
-<pre class="terminal">
-$ uaac context
-[1]*[MY-APP-ID]
-  client\_id: MY-APP-ID
-    access\_token: aBcdEfg0hIJKlm123.e
-    token\_type: bearer
-    expires\_in: 43200
-    scope: uaa.resource clients.admin
-    jti: 91b3-abcd1233
-</pre>
 
-6. Run the following command to create an identity zone admin client. 
-Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`. <br><br>
-  Make sure to use a secure value for your client secret. 
-  <br>
+    ``` 
+    uaac context 
+    ```
+
+    For example:
+    <pre class="terminal">
+    $ uaac context
+    [1]*[ExampleAppID]
+      client\_id: ExampleAppID
+        access\_token: aBcdEfg0hIJKlm123.e
+        token\_type: bearer
+        expires\_in: 43200
+        scope: uaa.resource clients.admin
+        jti: 91b3-abcd1233
+    </pre>
+
+5. Run the following command to create an identity zone admin client. <br><br>
+
+    When prompted for a `New client secret`, provide a client secret for this 
+    identity zone admin client.
+    Make sure to use a secure value for your client secret. <br><br>
+
+    Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`. 
+      
+
+    ```
+    uaac client add ZONE-ADMIN-CLIENT-ID --authorized\_grant\_types client\_credentials --authorities uaa.admin
+    ```
+
+    Where:<br>
+  * `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.
+
+    For example:
   <pre class="terminal">
-  $ uaac client add ZONE-ADMIN-CLIENT-ID --authorized\_grant\_types client\_credentials --authorities uaa.admin
+  $ uaac client add ExapmleZoneAdminClientID --authorized\_grant\_types client\_credentials --authorities uaa.admin
   New client secret:  *****
   Verify new client secret:  *****
   </pre>
-  Where:<br>
-  * `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.
-  * `New client secret` is a secret to use for this zone admin client.
+  
 
     You can delete the original admin client created via the SSO UI after you create the identity zone client.
 
-7. Run the following command to 
-authenticate and obtain an access token for the identity zone admin client for your service plan. 
-  <pre class="terminal">
-  $ uaac token client get ZONE-ADMIN-CLIENT-ID
-  Client secret:  *****
-  </pre>
-  Where:<br>
-  * `ZONE-ADMIN-CLIENT-ID` is zone admin client ID you provided in the previous step.
-  * `Client secret` is the client secret you provided in the previous step.
+6. Run the following command to authenticate and obtain an access token for the 
+identity zone admin client for your service plan. <br><br>
 
-8. Use the following command to display your client context and verify that you have `uaa.admin` 
-under the scope section.  
+    When prompted for a `Client secret`, use the client secret you provided in the previous step.
+
+    ```
+    uaac token client get ZONE-ADMIN-CLIENT-ID
+    ```
+
+    Where:<br>
+    * `ZONE-ADMIN-CLIENT-ID` is zone admin client ID you provided in the previous step.
+
+    For example:
+    <pre class="terminal">
+    $ uaac token client get ZONE-ADMIN-CLIENT-ID
+    Client secret:  *****
+    </pre>
+
+
+7. Use the following command to display your client context and verify that you have `uaa.admin` 
+under the scope section. 
+
+    ``` 
+    uaac context 
+    ```
+
+    For example: 
   <pre class="terminal">
   $ uaac context
   [1]*[MyZoneAdminClientId]
@@ -120,10 +163,19 @@ To do UAA identity zone API calls:
 1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating) above.
 
 2. Use UAAC to retrieve the information for the identity zone you want to change. <br><br>
-  * If you know your identity zone ID, use `uaac curl -k /identity-zones/YOUR-ZONE-ID > FILENAME.txt`. <br><br>
-  * If you do not know your identity zone ID, use `uaac curl -k /identity-zones > FILENAME.txt`. 
-  In most cases, this returns one identity zone, but if there are several, 
-  you can identify your identity zone by the `subdomain` name or `description` in the array returned.
+  * If you know your identity zone ID, use the following command:
+
+        ```
+        uaac curl -k /identity-zones/YOUR-ZONE-ID > FILENAME.txt
+        ```
+  * If you do not know your identity zone ID, use the following command:
+
+        ```
+        uaac curl -k /identity-zones > FILENAME.txt
+        ``` 
+
+        In most cases, this returns one identity zone, but if there are several, 
+        you can identify your identity zone by the `subdomain` name or `description` in the array returned.
 
 3. In the array returned from the previous command, delete the header information and array wrapper, 
 and leave the JSON blob. Your remaining JSON blob looks similar to the sample below. 
@@ -276,10 +328,16 @@ Your identity zone ID is at the top in the `id` line.
     <p class="note warning"><strong>WARNING</strong>: You must always run this command
       with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
-	`uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'`<br><br>
-  You can compact the JSON to avoid issues with line spacing when using a command line,
-	or pass in the file. For example:<br>
-  `uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d "$(cat FILENAME.txt)"`
+    ```
+    uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'
+    ```
+
+    You can compact the JSON to avoid issues with line spacing when using a command line,
+  	or pass in the file. For example:
+
+    ```
+    uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d "$(cat FILENAME.txt)"
+    ```
 
 ## <a id="branding"></a> Modify Branding
 
