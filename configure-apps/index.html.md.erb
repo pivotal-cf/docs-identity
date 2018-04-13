@@ -107,6 +107,74 @@ After an app deploys with bootstrapped SSO configuration values, it is ready to 
 
 The table below provides descriptions and default values for environment variables that apps use to configure SSO. See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-apps) for details, and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
 
+<table>
+	<tr>
+		<th>Property Name</th>
+		<th>Description</th>
+		<th>Default</th>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>Name of the app</td>
+		<td>(N/A - Required Value)</td>
+	</tr>
+	<tr>
+		<td>`GRANT_TYPE`</td>
+		<td>Allowed grant type for the app through the SSO service. Only one grant type per app is supported by SSO.</td>
+		<td> </td>
+	</tr>
+	<tr>
+		<td>`SSO_IDENTITY_PROVIDERS`</td>
+		<td>Allowed identity providers for the app through the SSO service plan. This is a comma-separated list of identity provider origin keys. The origin keys are derived from the identity provider name using the following rules: <ul><li> Uppercase letters are converted to lowercase letters.</li><li>Spaces are converted to hyphens.</li><li>Periods are converted to hyphens.</li></ul>For example, if your identity provider name is `example.com Provider`, the corresponding origin key is `example-com-provider`.</td>
+		<td>`uaa`</td>
+	</tr>
+	<tr>
+		<td>`SSO_REDIRECT_URIS`</td>
+		<td>Comma-separated whitelist of redirection URIs allowed for the app. Each value must start with `http://` or `https://`.</td>
+		<td>(Always includes the app route)</td>
+	</tr>
+	<tr>
+		<td>`SSO_SCOPES`</td>
+		<td>Comma-separated list of scopes that belong to the app and are registered as client scopes with the SSO service. This value is ignored for client credential grant type apps.</td>
+		<td>`openid`</td>
+	</tr>
+	<tr>
+		<td>`SSO_AUTO_APPROVED_SCOPES`</td>
+		<td>Comma-separated list of scopes that the app is automatically authorized when acting on behalf of users through SSO service.</td>
+		<td>(Defaults to existing scopes/authorities)</td>
+	</tr>
+	<tr>
+		<td>`SSO_AUTHORITIES`</td>
+		<td>Comma-separated list of authorities that belong to the app and are registered as client authorities with the SSO service. Privileged identity zone/plan administrator scopes, such as `scim.read`, `idps.write` cannot be bootstrapped and must be assigned by zone/plan administrators. This value is ignored for any grant type other than client credentials.</td>
+		<td>`uaa.resource`</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>description</td>
+		<td>default</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>Name of the app</td>
+		<td>(N/A - Required Value)</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>Name of the app</td>
+		<td>(N/A - Required Value)</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>Name of the app</td>
+		<td>(N/A - Required Value)</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>Name of the app</td>
+		<td>(N/A - Required Value)</td>
+	</tr>
+</table>
+
 | Property Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description | Default |
 | ------------- | ------------- | ------------- |
 | name | Name of the app | (N/A - Required Value) |
