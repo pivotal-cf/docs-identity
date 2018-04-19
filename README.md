@@ -6,14 +6,16 @@ authenticate with an external identity provider rather than having to create a n
 ### Branch Management
 
 **master** - This branch is on staging. 
-  This branch publishes to <a href="https://docs-pcf-staging.cfapps.io/p-identity/1-6/">https://docs-pcf-staging.cfapps.io/p-identity/1-6/</a>.
-  It was created by merging the 1.5 branch into the master branch. 
-  When v1.6 is ready to be released, a v1.6 branch will be made from master.
+  This branch publishes to <a href="https://docs-pcf-staging.cfapps.io/p-identity/1-7/">https://docs-pcf-staging.cfapps.io/p-identity/1-7/</a>.
+  When 1.6 was released, master and v1.6 were identical. Keep master up to date with any v1.6 fixes.
 
 **master-pws** - This branch contains PWS-specific SSO content,
   and publishes to <a href="https://docs.run.pivotal.io/sso/index.html">https://docs.run.pivotal.io/sso/</a>. 
 
-**1.5** - This branch contains the published documentation for the (current) v1.5 release of SSO.
+**1.6** - This branch contains the published documentation for the (current) v1.6 release of SSO.
+  This branch publishes to <a href="https://docs.pivotal.io/p-identity/1-6/">https://docs.pivotal.io/p-identity/1-6/</a>.
+
+**1.5** - This branch contains the published documentation for the v1.5 release of SSO.
   This branch publishes to <a href="https://docs.pivotal.io/p-identity/1-5/">https://docs.pivotal.io/p-identity/1-5/</a>.
 
 **1.4** - This branch contains the published documentation for the v1.4 release of SSO.
