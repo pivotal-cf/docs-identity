@@ -38,7 +38,7 @@ The SSO service reads its configuration properties from environment variables th
 To enable a PCF-hosted app to bind to an SSO service instance, you must set the following environment variables:
 
 * `GRANT_TYPE` — the type of OAuth authentication associated with the SSO Application Type in the [table above](#choose-type).
-* `SSO_IDENTITY_PROVIDER` — the internal or external identity provider(s) for the app to use.
+* `SSO_IDENTITY_PROVIDERS` — the internal or external identity provider(s) for the app to use.
 
 You can set additional environment variables to further configure how an app uses SSO, as [described below](#properties).
 Most of these environment variables are prefixed with `SSO_`.
@@ -51,7 +51,7 @@ There are two ways to set the SSO configuration properties for an app:
 
 ### <a id="manual-config"></a> Manually Configure Apps for SSO
 
-For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDER`,
+For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDERS`,
 and other SSO configuration environment variables with the [`cf set-env`](http://cli.cloudfoundry.org/en-US/cf/set-env.html) command, or in Apps Manager as follows:
 
 1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN`.
