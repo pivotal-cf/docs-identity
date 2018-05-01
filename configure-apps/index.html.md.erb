@@ -34,13 +34,7 @@ These steps are described below.
 
 ### <a id="configure"></a> Configure SSO Properties
 
-The SSO service reads its configuration properties from environment variables that are set in the apps that use it.
-To enable a PCF-hosted app to bind to an SSO service instance, you must set the following environment variables:
-
-* `GRANT_TYPE` — the type of OAuth authentication associated with the SSO Application Type in the [table above](#choose-type).
-* `SSO_IDENTITY_PROVIDERS` — the internal or external identity provider(s) for the app to use.
-
-You can set additional environment variables to further configure how an app uses SSO, as [described below](#properties).
+The SSO service reads its configuration properties from environment variables that are set in the apps that use it. 
 Most of these environment variables are prefixed with `SSO_`.
 
 There are two ways to set the SSO configuration properties for an app: 
@@ -48,6 +42,101 @@ There are two ways to set the SSO configuration properties for an app:
 * Set the environment variables [manually](#manual-config) after you deploy the app, in Apps Manager or with the Cloud Foundry Command-Line Interface (cf CLI).
 
 * Include the config settings in the application manifest, so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
+
+The table below provides descriptions and default values for environment variables that apps use to configure SSO. 
+See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-apps) for details, and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
+
+<table>
+	<col style="width:45%">
+    <col style="width:47%">
+    <col style="width:8%">
+	<tr>
+		<th>Property&nbsp;Name</th>
+		<th>Description</th>
+		<th>Default</th>
+	</tr>
+	<tr>
+		<td><b>Name</b></td>
+		<td><b>Name of the app</b></td>
+		<td><b>(N/A - Required Value)</b></td>
+	</tr>
+	<tr>
+		<td><code>GRANT_TYPE</code></td>
+		<td>Allowed grant type for the app through the SSO service. Only one grant type per app is supported by SSO.</td>
+		<td> </td>
+	</tr>
+	<tr>
+		<td><code>SSO_IDENTITY_PROVIDERS</td>
+		<td>Allowed identity providers for the app through the SSO service plan. This is a comma-separated list of identity provider origin keys. The origin keys are derived from the identity provider name using the following rules: <ul><li> Uppercase letters are converted to lowercase letters.</li><li>Spaces, periods, and underscores are converted to hyphens.</li><li>Multiple hyphens are combined into a single hyphen.</li></ul>For example, if your identity provider name is <code>example.com Provider</code>, the corresponding origin key is <code>example-com-provider</code>.</td>
+		<td><code>uaa</code></td>
+	</tr>
+	<tr>
+		<td><code>SSO_REDIRECT_URIS</td>
+		<td>Comma-separated whitelist of redirection URIs allowed for the app. Each value must start with <code>http://</code> or <code>https://</code>.</td>
+		<td>(Always includes the app route)</td>
+	</tr>
+	<tr>
+		<td><code>SSO_SCOPES</td>
+		<td>Comma-separated list of scopes that belong to the app and are registered as client scopes with the SSO service. This value is ignored for client credential grant type apps.</td>
+		<td>openid</td>
+	</tr>
+	<tr>
+		<td><code>SSO_AUTO_APPROVED_SCOPES</td>
+		<td>Comma-separated list of scopes that the app is automatically authorized when acting on behalf of users through SSO service.</td>
+		<td>(Defaults to existing scopes/authorities)</td>
+	</tr>
+	<tr>
+		<td><code>SSO_AUTHORITIES</code></td>
+		<td>Comma-separated list of authorities that belong to the app and are registered as client authorities with the SSO service. Privileged identity zone/plan administrator scopes, such as <code>scim.read</code>, <code>idps.write</code> cannot be bootstrapped and must be assigned by zone/plan administrators. This value is ignored for any grant type other than client credentials.</td>
+		<td><code>uaa.resource</code></td>
+	</tr>
+	<tr>
+		<td><code>SSO_REQUIRED_USER_GROUPS</code></td>
+		<td>Comma-separated list of groups a user must have in order to authenticate successfully for the app.</td>
+		<td>(No value)</td>
+	</tr>
+	<tr>
+		<td><code>SSO_ACCESS_TOKEN_LIFETIME</code></td>
+		<td>Lifetime in seconds for the access token issued to the app by the SSO service.</td>
+		<td>43200</td>
+	</tr>
+	<tr>
+		<td><code>SSO_REFRESH_TOKEN_LIFETIME</code></td>
+		<td>Lifetime in seconds for the refresh token issued to the app by the SSO service.</td>
+		<td>2592000 (not used for client credentials)</td>
+	</tr>
+	<tr>
+		<td><code>SSO_RESOURCES</code></td>
+		<td>Resources that the app will use as scopes/authorities for the SSO service to be created during bootstrapping if they do not already exist. The input format can be referenced in the provided sample manifest. Note that currently all permissions within the same top level permission, such as <code>todo.read</code> and <code>todo.write</code>, must be specified in the same application manifest. Currently you cannot specify additional permissions in the same top level permission, such as <code>todo.admin</code>, in additional application manifests.</td>
+		<td>(No value)</td>
+	</tr>
+	<tr>
+		<td><code>SSO_ICON</code></td>
+		<td>App icon that will be displayed next to the app name on the Pivotal Account dashboard if show on home page is enabled. Do not exceed 64kb.</td>
+		<td>(No value)</td>
+	</tr>
+	<tr>
+		<td><code>SSO_LAUNCH_URL</code></td>
+		<td>App launch URL that will be used for the app on the Pivotal Account dashboard if show on home page is enabled.</td>
+		<td>(Application route)</td>
+	</tr>
+	<tr>
+		<td><code>SSO_SHOW_ON_HOME_PAGE</code></td>
+		<td>If set to true, the app will appear on the Pivotal Account dashboard with the corresponding icon and launch URL.</td>
+		<td>True</td>
+	</tr>
+</table>
+
+Additional information and manifest examples are available in the [identity sample apps](https://github.com/pivotal-cf/identity-sample-apps) repository. 
+
+#### Remove SSO Configuration Properties
+
+You can remove SSO configuration properties for an app, or any environment variables set through `cf set-env`, Apps Manager, or [bootstrapping](#bootstrap) as follows:
+
+1. Run `cf unset-env APP_NAME PROPERTY_NAME`.
+
+1. Rebind the app.
+
 
 ### <a id="manual-config"></a> Manually Configure Apps for SSO
 
@@ -62,7 +151,7 @@ and other SSO configuration environment variables with the [`cf set-env`](http:/
 
 1. Click **Add an Env Variable**.
 
-1. For **Variable Name** enter the name of the [SSO configuration property](#properties) that you are setting, such as `GRANT_TYPE`.
+1. For **Variable Name** enter the name of the [SSO configuration property](#configure) that you are setting, such as `GRANT_TYPE`.
 
 1. For **Value**, enter the property value. For example, to set the `GRANT_TYPE` property for a Single-Page JavaScript App, 
    enter `implicit`, which is the OAuth Grant Type listed for your [SSO application type](#choose-type) above.
@@ -98,41 +187,10 @@ These values are not added your user-provided list by default:
 * `openid` — for apps with `authorization code`, `password`, and `implicit` [grant type](#choose-type)
 * `uaa.resource` — for apps with `client_credentials` [grant type](#choose-type)
 
-The [table below](#properties) lists all SSO properties that you can set in your application manifest
+The [table below](#configure) lists all SSO properties that you can set in your application manifest
 to bootstrap the values into your app's SSO client configuration.
 
 After an app deploys with bootstrapped SSO configuration values, it is ready to [bind](#bind) to an SSO service instance.
-
-### <a id="properties"></a> SSO Configuration Properties
-
-The table below provides descriptions and default values for environment variables that apps use to configure SSO. See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-apps) for details, and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
-
-| Property Name | Description | Default |
-| ------------- | ------------- | ------------- |
-| name | Name of the app | (N/A - Required Value) |
-| `GRANT_TYPE` | Allowed grant type for the app through the SSO service. Only one grant type per app is supported by SSO. | `authorization_code` |
-| `SSO_IDENTITY_PROVIDERS` | Allowed identity providers for the app through the SSO service plan. This is a comma-separated list of identity provider origin keys. The origin keys are derived from the identity provider name using the following rules: <ul><li> Uppercase letters are converted to lowercase letters.</li><li>Spaces are converted to hyphens.</li><li>Periods are converted to hyphens.</li></ul>For example, if your identity provider name is `example.com Provider`, the corresponding origin key is `example-com-provider`. | `uaa` |
-| `SSO_REDIRECT_URIS` | Comma-separated whitelist of redirection URIs allowed for the app. Each value must start with `http://` or `https://`. |  (Always includes the app route) |
-| `SSO_SCOPES` | Comma-separated list of scopes that belong to the app and are registered as client scopes with the SSO service. This value is ignored for client credential grant type apps. |  `openid` |
-| `SSO_AUTO_APPROVED_SCOPES` | Comma-separated list of scopes that the app is automatically authorized when acting on behalf of users through SSO service. | (Defaults to existing scopes/authorities) |
-| `SSO_AUTHORITIES` | Comma-separated list of authorities that belong to the app and are registered as client authorities with the SSO service. Privileged identity zone/plan administrator scopes, such as `scim.read`, `idps.write` cannot be bootstrapped and must be assigned by zone/plan administrators. This value is ignored for any grant type other than client credentials. | `uaa.resource` |
-| `SSO_REQUIRED_USER_GROUPS` | Comma-separated list of groups a user must have in order to authenticate successfully for the app. | (No value) |
-| `SSO_ACCESS_TOKEN_LIFETIME` | Lifetime in seconds for the access token issued to the app by the SSO service. | 43200 |
-| `SSO_REFRESH_TOKEN_LIFETIME` | Lifetime in seconds for the refresh token issued to the app by the SSO service. | 2592000 (not used for client credentials) |
-| `SSO_RESOURCES` |  Resources that the app will use as scopes/authorities for the SSO service to be created during bootstrapping if they do not already exist. The input format can be referenced in the provided sample manifest. Note that currently all permissions within the same top level permission, such as `todo.read` and `todo.write`, must be specified in the same application manifest. Currently you cannot specify additional permissions in the same top level permission, such as `todo.admin`, in additional application manifests.| (No value) |
-| `SSO_ICON` |  App icon that will be displayed next to the app name on the Pivotal Account dashboard if show on home page is enabled. Do not exceed 64kb. | (No value) |
-| `SSO_LAUNCH_URL` |  App launch URL that will be used for the app on the Pivotal Account dashboard if show on home page is enabled. | (Application route) |
-| `SSO_SHOW_ON_HOME_PAGE` |  If set to true, the app will appear on the Pivotal Account dashboard with the corresponding icon and launch URL. | True |
-
-Additional information and manifest examples are available on the [identity sample apps](https://github.com/pivotal-cf/identity-sample-apps). 
-
-#### Remove SSO Configuration Properties
-
-You can remove SSO configuration properties for an app, or any environment variables set through `cf set-env`, Apps Manager, or [bootstrapping](#bootstrap) as follows:
-
-1. Run `cf unset-env APP_NAME PROPERTY_NAME`.
-
-1. Rebind the app.
 
 ### <a id="bind"></a> Bind a PCF App
 
