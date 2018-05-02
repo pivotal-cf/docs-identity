@@ -3,8 +3,16 @@ title: Common Architecture Patterns
 owner: Identity Service
 ---
 
-## <a id='external'></a> External App Calling In To PCF APIs
+This topic describes common authentication sequences for external apps calling into Pivotal Cloud Foundry (PCF) APIs. 
+The three authentication models included here show the different ways external apps, secured by SAML or OIDC providers, 
+interact with Pivotal SSO to gain access to PCF services.
+
+## <a id='overview'></a> Overview of External Apps Calling into PCF APIs
+
+The following diagram is a conceptual view of an external app protected by a SAML or OIDC enterprise identity provider.
 
 ## <a id='saml-exchange'></a> SAML Bearer Token Exchange Sequence
 
-## <a id='jwt-exchange'></a> With JWT Exchange
+## <a id="code-grant"></a> UAA Authorization Code Grant
+
+## <a id='jwt-exchange'></a> JWT Exchange
