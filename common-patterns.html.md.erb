@@ -9,10 +9,89 @@ interact with Pivotal SSO to gain access to PCF services.
 
 ## <a id='overview'></a> Overview of External Apps Calling into PCF APIs
 
-The following diagram is a conceptual view of an external app protected by a SAML or OIDC enterprise identity provider.
+The following diagram is a conceptual view of an external app protected by a SAML or OIDC enterprise identity provider (IDP).
 
-## <a id='saml-exchange'></a> SAML Bearer Token Exchange Sequence
+![external-app](ext-app-calling-pcf.png)
+
+In this diagram:
+
+* The customer has an external app running outside PCF.
+* The external app is secured by an enterprise SAML or OIDC identity provider, that is, users authenticate via the SAML or OIDC provider into the external app.
+* The external app needs to invoke API-1 and API-2, which are spring boot micro-services running on PCF.
+* API-1 and API-2 are protected by the SSO service using OAuth.
+
+The following sections describe three authentication models that can be used for external apps using SAML or OIDC IDPs to call into PCF APIs:
+
+[SAML Bearer Token Exchange](#saml-exchange)
+
+[UAA Authorization Code Grant](#code-grant)
+
+[JWT Exchange](#jwt-exchange)
+
+## <a id='saml-exchange'></a> SAML Bearer Token Exchange
+
+The following sequence diagram illustrates the SAML bearer token exchange model.
+
+![token-exchange](token-exchange.png)
+
+In this model:
+
+* The user has already authenticated against the IDP via SAML 
+through interactions with the existing integration with the IDP upstream.
+
+* The authenticated session against the IDP empowers the user to get a SAML assertion intended for the Pivotal SSO (also known as UAA) audience. 
+In the SAML assertion, the recipient and audience must match UAA. See the [Example SAML Assertion](#saml-assertion) below.
+
+* The UAA allows for a token exchange permitting the upstream caller to get a UAA JSON web token (JWT), which authorizes access to PCF hosted microservices, 
+leveraging the SAML assertion mentioned above.
+
+### <a id="saml-assertion"></a> Example SAML Assertion
+
+In the SAML assertion used in the SAML bearer token exchange, the `Recipient` and `Audience` must match UAA. For example:
+
+**Recipient**
+`Recipient="https://demo.login.uaa-acceptance.cf-app.com/oauth/token/alias/demo.login.uaa-acceptance.cf-app.com"/>` 
+
+**Audience**
+`<saml2:AudienceRestriction><saml2:Audience>demo.login.uaa-acceptance.cf-app.com</saml2:Audience></saml2:AudienceRestriction>`
+
+The above two properties are located near the bottom of the example SAML assertion below.
+
+**Example SAML Assertion**
+
+```
+<?xml version="1.0" encoding="UTF-8"?><saml2:Assertion xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" ID="id41261893195735352003413868" IssueInstant="2018-01-24T19:23:15.522Z" Version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"><saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">http://www.okta.com/exk9sgb2ayyAikL150h7</saml2:Issuer><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><ds:Reference URI="#id41261893195735352003413868"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"><ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="xs"/></ds:Transform></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>oTsVYrWJ4Yah1eM3p0e4DCLP3NlsgFoAZ6R/KIIonL8=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>BYg9pYj2MwO4OvQvtuH2WOWemcEew7R6dIyxEaUC9sAtTyMBB0dumMhDZMtOXu7G6+Uoba7B1XqAS8YM5/llQsW/oGZAH9NuhYhNW1eWw8eSrTQjpfKn61Vei2EmihWwTRptBZUucu4ZSblvqPnUYt0SF/hMfHqYRbILeicZTgT/TlllOIMoPcET7JHC1ZkMYGJfKjXue1t34FER55ce1CnQQIxBN435R0WWLhx0UNd9XGWPlB3ddtaMJlehO9EZDECe1ORGP1niVplLSsx0QE1inVTr7Qn7+x3tGlX/9MVgEDevZaGdZzwdbkwwfDssFWppjLpqpcBLZLK8USSN1Q==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIDpDCCAoygAwIBAgIGAVmywjWWMA0GCSqGSIb3DQEBBQUAMIGSMQswCQYDVQQGEwJVUzETMBEG
+A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU
+MBIGA1UECwwLU1NPUHJvdmlkZXIxEzARBgNVBAMMCmRldi0yODEzNzYxHDAaBgkqhkiG9w0BCQEW
+DWluZm9Ab2t0YS5jb20wHhcNMTcwMTE4MTgwNTI5WhcNMjcwMTE4MTgwNjI5WjCBkjELMAkGA1UE
+BhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xDTALBgNV
+BAoMBE9rdGExFDASBgNVBAsMC1NTT1Byb3ZpZGVyMRMwEQYDVQQDDApkZXYtMjgxMzc2MRwwGgYJ
+KoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+0okZSvNaxO/QzpT92pxALWevO1j3F0DyFRjWz1x4u8AbPjJDizbr42pnm/dOxw5bij2CecwIvI3b
+G/LNMh0NMB1uuMwRppIpNkU0mu/8b3u1szmgMSULRiAtCQFIKAd8VXApbmnLlsfzN5CnJzeDEZ29
+3E/RGVr0WvSUKWYZaij57BfH2r2A44TZfRNpfUgtsvsVVQvtwDgKBo+rNqZIkQoMi0hdpX2Z522Z
+l6vpbDGu56kWR0fqyfoshKHPnHNvk/c0HkwkCIAm1l7DW95PnrTxjx7QQuLZibUFPD1sQE2S4Vxe
+W6kxXhT8ttmML0OjirEqtD+98BcbqCc9SgYtzwIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQDKqs49
+VBGpRTAWvGm+giBHT2uJd5JCefE6ap/OPp+ajfslXXH3yUOq6CiyK1iVgS9j15MOVBDTou8vTtsK
+w0TmdG1NHKCJqpTe2h/+3uvCG2yv9D6rfDiQcO4KgeG+5hXnS2fGcFTuCmODX7ivEYB9eeAqXkJG
+4LFwxVhse8j0rwkdPESkdL7KdTbzK5rsM3tWihSsuccm4a6Zp6faFZzWhvd6ujBGIlLtaVHP9jUG
+eMHVqMYK6C91CalL4/kGUJYGsKhbuF4CdjwlK9PB4PvNLn+ijWk9dYkVlQYMH93Lg9T/2OYVBux7
+MQsY0xtKYytwky+LiE1SjODZPQvYXaS3</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature><saml2:Subject xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><saml2:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">stummidi@pivotal.io</saml2:NameID><saml2:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"><saml2:SubjectConfirmationData NotOnOrAfter="2018-01-24T19:28:15.522Z" 
+Recipient="https://demo.login.uaa-acceptance.cf-app.com/oauth/token/alias/demo.login.uaa-acceptance.cf-app.com"/>
+</saml2:SubjectConfirmation></saml2:Subject><saml2:Conditions NotBefore="2018-01-24T19:18:15.522Z" NotOnOrAfter="2018-01-24T19:28:15.522Z" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
+<saml2:AudienceRestriction><saml2:Audience>demo.login.uaa-acceptance.cf-app.com</saml2:Audience></saml2:AudienceRestriction>
+</saml2:Conditions><saml2:AuthnStatement AuthnInstant="2018-01-24T19:23:15.522Z" SessionIndex="id1516821795522.1919419636" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><saml2:AuthnContext><saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml2:AuthnContextClassRef></saml2:AuthnContext></saml2:AuthnStatement><saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><saml2:Attribute Name="mail" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">stummidi@pivotal.io</saml2:AttributeValue></saml2:Attribute><saml2:Attribute Name="fn" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Sree</saml2:AttributeValue></saml2:Attribute><saml2:Attribute Name="ln" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Tummidi</saml2:AttributeValue></saml2:Attribute><saml2:Attribute Name="roles" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Everyone</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Writer-Admin</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Reader</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Writer</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Writer-a-Admin</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Reader-Admin</saml2:AttributeValue></saml2:Attribute></saml2:AttributeStatement></saml2:Assertion>
+```
+
 
 ## <a id="code-grant"></a> UAA Authorization Code Grant
 
+The following sequence diagram illustrates the UAA authorization code grant model.
+
+![code-grant](code-grant.png)
+
 ## <a id='jwt-exchange'></a> JWT Exchange
+
+The following sequence diagram illustrates the JWT exchange model.
+
+![jwt-exchange](jwt-exchange.png)
