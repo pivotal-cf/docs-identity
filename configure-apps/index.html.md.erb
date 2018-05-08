@@ -49,6 +49,12 @@ There are two ways to set the SSO configuration properties for an app:
 
 * Include the config settings in the application manifest, so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
 
+<p class="note"><strong>Note</strong>: These configurations are only applied when 
+	initially binding to the service instance. 
+	A subsequent <code>cf push</code> of the app does not update the configurations. 
+	To update these configurations, manually update them using the SSO 
+	dashboard, or unbind and rebind the service instance.</p>
+
 ### <a id="manual-config"></a> Manually Configure Apps for SSO
 
 For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDERS`,
