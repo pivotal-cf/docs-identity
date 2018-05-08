@@ -46,6 +46,8 @@ There are two ways to set the SSO configuration properties for an app:
 The table below provides descriptions and default values for environment variables that apps use to configure SSO. 
 See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-apps) for details, and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
 
+<p class="note"><strong>Note</strong>: These configurations are only applied at the initial service binding time. Subsequent `cf push` of the application will **NOT** update the configurations. You will either need to manually update the configurations via the SSO dashboard or unbind and rebind the service instance.</p>
+
 <table>
 	<col style="width:45%">
     <col style="width:47%">
