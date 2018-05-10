@@ -1,15 +1,18 @@
 ---
-title: Common Architecture Patterns
+title: Common App Architecture Patterns
 owner: Identity Service
 ---
 
-This topic describes common authentication sequences for external apps calling into Pivotal Cloud Foundry (PCF) APIs. 
-The three authentication models included here show the different ways external apps, secured by SAML or OIDC providers, 
+This topic describes common app architecture patterns for enterprise developers.  
+
+
+## <a id='overview'></a> External Apps Calling into PCF APIs
+
+This section describes common architecture patterns for authenticating external apps calling into Pivotal Cloud Foundry (PCF) APIs.
+In this pattern, external apps secured by SAML or OIDC providers 
 interact with Pivotal SSO to gain access to PCF services.
 
-## <a id='overview'></a> Overview of External Apps Calling into PCF APIs
-
-The following diagram is a conceptual view of an external app protected by a SAML or OIDC enterprise identity provider (IDP).
+<a id="concept-diagram"></a>The following diagram is a conceptual view of an external app protected by a SAML or OIDC enterprise identity provider (IDP).
 
 ![external-app](ext-app-calling-pcf.png)
 
@@ -20,7 +23,7 @@ In this diagram:
 * The external app needs to invoke API-1 and API-2, which are spring boot micro-services running on PCF.
 * API-1 and API-2 are protected by the SSO service using OAuth.
 
-The following sections describe three authentication models that can be used for external apps using SAML or OIDC IDPs to call into PCF APIs:
+The following sections describe three authentication models that can be used for external apps using SAML or OIDC enterprise IDPs to call into PCF APIs:
 
 [SAML Bearer Token Exchange](#saml-exchange)
 
@@ -28,7 +31,33 @@ The following sections describe three authentication models that can be used for
 
 [JWT Exchange](#jwt-exchange)
 
-## <a id='saml-exchange'></a> SAML Bearer Token Exchange
+### <a id="code-grant"></a> UAA Authorization Code Grant - Browser
+
+The following sequence diagram illustrates the UAA authorization code grant model. 
+This diagram shows a SAML flow, but the interactions between the application, enterprise IDP, and UAA can also use an OIDC enterprise IDP. 
+In that case, JWT ID tokens replace SAML and SAML assertions.
+
+
+![code-grant](code-grant.png)
+
+In this model:
+
+* The authenticated user’s session against the enterprise IDP is leveraged, 
+which makes direct user authentication against the UAA transparent to the user.
+
+* The user/browser calling a PCF microservice is redirected to UAA and then to the IDP. 
+Since this user session with the IDP is already authenticated, the redirect back to UAA 
+and then back to the PCF microservice is transparent to the user.
+
+* Your enterprise IDP applies any security policies defined by your corporate policy, 
+for example, multi-factor authentication (MFA), Kerberos, or PKI certificates.
+
+* Behind the scenes the UAA authenticates the user via SAML, since the user has a logged in session with the IDP.
+
+* UAA then generates a JWT for the authenticated user.
+
+
+### <a id='saml-exchange'></a> SAML Bearer Token Exchange - Back End
 
 The following sequence diagram illustrates the SAML bearer token exchange model.
 
@@ -36,7 +65,7 @@ The following sequence diagram illustrates the SAML bearer token exchange model.
 
 In this model:
 
-* The user has already authenticated against the IDP via SAML 
+* The user has already authenticated against the enterprise IDP via SAML 
 through interactions with the existing integration with the IDP upstream.
 
 * The authenticated session against the IDP empowers the user to get a SAML assertion intended for the Pivotal SSO (also known as UAA) audience. 
@@ -45,19 +74,27 @@ In the SAML assertion, the recipient and audience must match UAA. See the [Examp
 * The UAA allows for a token exchange permitting the upstream caller to get a UAA JSON web token (JWT), which authorizes access to PCF hosted microservices, 
 leveraging the SAML assertion mentioned above.
 
-### <a id="saml-assertion"></a> Example SAML Assertion
+#### <a id="saml-assertion"></a> Example SAML Assertion
 
 In the SAML assertion used in the SAML bearer token exchange, the `Recipient` and `Audience` must match UAA. For example:
 
 **Recipient**
-`Recipient="https://demo.login.uaa-acceptance.cf-app.com/oauth/token/alias/demo.login.uaa-acceptance.cf-app.com"/>` 
+
+The `Recipient` must match the UAA entity ID.
+
+`Recipient="https://demo.login.uaa-example.com/oauth/token/alias/demo.login.uaa-example.com"/>` 
 
 **Audience**
-`<saml2:AudienceRestriction><saml2:Audience>demo.login.uaa-acceptance.cf-app.com</saml2:Audience></saml2:AudienceRestriction>`
 
-The above two properties are located near the bottom of the example SAML assertion below.
+The `Audience` must match the UAA assertion consumer service URL.
+
+`<saml2:AudienceRestriction><saml2:Audience>demo.login.uaa-example.com</saml2:Audience></saml2:AudienceRestriction>`
+
 
 **Example SAML Assertion**
+
+The `Recipient` and `Audience` properties are located near the bottom of the example SAML assertion below.
+
 
 ```
 <?xml version="1.0" encoding="UTF-8"?><saml2:Assertion xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" ID="id41261893195735352003413868" IssueInstant="2018-01-24T19:23:15.522Z" Version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"><saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">http://www.okta.com/exk9sgb2ayyAikL150h7</saml2:Issuer><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><ds:Reference URI="#id41261893195735352003413868"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"><ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="xs"/></ds:Transform></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>oTsVYrWJ4Yah1eM3p0e4DCLP3NlsgFoAZ6R/KIIonL8=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>BYg9pYj2MwO4OvQvtuH2WOWemcEew7R6dIyxEaUC9sAtTyMBB0dumMhDZMtOXu7G6+Uoba7B1XqAS8YM5/llQsW/oGZAH9NuhYhNW1eWw8eSrTQjpfKn61Vei2EmihWwTRptBZUucu4ZSblvqPnUYt0SF/hMfHqYRbILeicZTgT/TlllOIMoPcET7JHC1ZkMYGJfKjXue1t34FER55ce1CnQQIxBN435R0WWLhx0UNd9XGWPlB3ddtaMJlehO9EZDECe1ORGP1niVplLSsx0QE1inVTr7Qn7+x3tGlX/9MVgEDevZaGdZzwdbkwwfDssFWppjLpqpcBLZLK8USSN1Q==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIDpDCCAoygAwIBAgIGAVmywjWWMA0GCSqGSIb3DQEBBQUAMIGSMQswCQYDVQQGEwJVUzETMBEG
@@ -77,50 +114,29 @@ w0TmdG1NHKCJqpTe2h/+3uvCG2yv9D6rfDiQcO4KgeG+5hXnS2fGcFTuCmODX7ivEYB9eeAqXkJG
 4LFwxVhse8j0rwkdPESkdL7KdTbzK5rsM3tWihSsuccm4a6Zp6faFZzWhvd6ujBGIlLtaVHP9jUG
 eMHVqMYK6C91CalL4/kGUJYGsKhbuF4CdjwlK9PB4PvNLn+ijWk9dYkVlQYMH93Lg9T/2OYVBux7
 MQsY0xtKYytwky+LiE1SjODZPQvYXaS3</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature><saml2:Subject xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><saml2:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">stummidi@pivotal.io</saml2:NameID><saml2:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"><saml2:SubjectConfirmationData NotOnOrAfter="2018-01-24T19:28:15.522Z" 
-Recipient="https://demo.login.uaa-acceptance.cf-app.com/oauth/token/alias/demo.login.uaa-acceptance.cf-app.com"/>
+Recipient="https://demo.login.uaa-example.com/oauth/token/alias/demo.login.uaa-example.com"/>
 </saml2:SubjectConfirmation></saml2:Subject><saml2:Conditions NotBefore="2018-01-24T19:18:15.522Z" NotOnOrAfter="2018-01-24T19:28:15.522Z" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
-<saml2:AudienceRestriction><saml2:Audience>demo.login.uaa-acceptance.cf-app.com</saml2:Audience></saml2:AudienceRestriction>
+<saml2:AudienceRestriction><saml2:Audience>demo.login.uaa-example.com</saml2:Audience></saml2:AudienceRestriction>
 </saml2:Conditions><saml2:AuthnStatement AuthnInstant="2018-01-24T19:23:15.522Z" SessionIndex="id1516821795522.1919419636" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><saml2:AuthnContext><saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml2:AuthnContextClassRef></saml2:AuthnContext></saml2:AuthnStatement><saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><saml2:Attribute Name="mail" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">stummidi@pivotal.io</saml2:AttributeValue></saml2:Attribute><saml2:Attribute Name="fn" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Sree</saml2:AttributeValue></saml2:Attribute><saml2:Attribute Name="ln" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Tummidi</saml2:AttributeValue></saml2:Attribute><saml2:Attribute Name="roles" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Everyone</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Writer-Admin</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Reader</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Writer</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Writer-a-Admin</saml2:AttributeValue><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Reader-Admin</saml2:AttributeValue></saml2:Attribute></saml2:AttributeStatement></saml2:Assertion>
 ```
 
 
-## <a id="code-grant"></a> UAA Authorization Code Grant
+### <a id='jwt-exchange'></a> JWT Bearer Token Exchange
 
-The following sequence diagram illustrates the UAA authorization code grant model. 
-This diagram shows a SAML flow, but the interactions between the application, enterprise IDP, and UAA can also use an OIDC IDP. 
-In that case, JWT ID tokens replace SAML and SAML assertions.
-
-
-![code-grant](code-grant.png)
-
-In this model:
-
-* The authenticated user’s session against the enterprise IDP is leveraged to make direct user authentication against the UAA transparent.
-
-* The user/browser calling a PCF microservice is redirected to UAA and then to the Enterprise IDP. 
-Since this user session with the enterprise IDP is already authenticated, the redirect back to UAA 
-and then back to the PCF microservice is fully automated / transparent.
-
-* Behind the scenes the UAA will be authenticated via SAML since the user has a logged in session with the enterprise IDP.
-
-* UAA then generates a JWT for the authenticated user.
-
-Force user to select the certificate before continuing - only NGINX working 
-today but don’t want to have that cluster in front of the apps
-NGINX asking for certificates means you need to let TLS through to NGINX to terminate TLS
-
-
-## <a id='jwt-exchange'></a> JWT Exchange
-
-The following sequence diagram illustrates the JWT exchange model.
+The following sequence diagram illustrates the JWT bearer token exchange model. This flow is for external apps using OIDC.
 
 ![jwt-exchange](jwt-exchange.png)
 
-Similar to the SAML bearer token exchange flow, the upstream application can contact UAA and request a PCF native JWT, providing an Enterprise IDP generated JWT as evidence the user has been authenticated.
+This model is similar to the SAML bearer token exchange flow:
 
-The returned PCF native JWT can then be used to invoke on protected microservices hosted within PCF.
+* The upstream app contacts UAA and requests a PCF-native JWT. 
+The app provides a JWT generated by the enterprise IDP as evidence that the user has been authenticated.
 
-The difference between this flow and the SAML exchange one is that we do not need to go through having to get a specific SAML assertion for the UAA audience.
+* The returned PCF-native JWT can then be used to invoke protected microservices hosted within PCF.
+
+The difference between this flow and the SAML exchange one is that there is no need to get a specific SAML assertion for the UAA audience.
+
+#### Example JWT Token Content
 
 ```
 {
@@ -140,33 +156,62 @@ The difference between this flow and the SAML exchange one is that we do not nee
 
 ```
 
-Note that in the above model, you can abstract away the token exchange from the application. Instead, the call can be intercepted via a gateway such as Apigee or Mulesoft and the token exchange can be handled transparently, as shown in the diagram below.
+#### Handling the JWT Token Exchange Using a Gateway
+
+In the sequence illustrated above, the token exchange is handled by the app. However, you can abstract away the token exchange from the app. 
+Instead, a gateway such as Apigee or Mulesoft intercepts the call and handles the token exchange transparently, as shown in the diagram below.
 
 ![jwt-exchange-gateway](jwt-exchange-gateway.png)
 
-## <a id='setup'></a>Setup for SAML2 or JWT Bearer Token Exchange
+### <a id='setup'></a>Setup for SAML or JWT Bearer Token Exchange
 
-1. Register API-1 as a resource in SSO service and create the relevant permissions. For example `api1.read` and `api1.write`.
-1. Register API-2 as a resource in SSO service and create the relevant permissions. For example `api2.read` and `api2.write`.
-1. Create an [Admin Client](https://docs.pivotal.io/p-identity/1-5/configure-apps/index.html#admin) with the ability to create more OAuth Client under the SSO Service plan. The scope needed is clients.admin
-1. Use uaac to target the SSO Service Plan and log in using the Admin Client create in previous step. Refer to step 4 here (https://docs.pivotal.io/p-identity/1-5/manage-users.html#uaac)
-1. Execute the following commands to register a client for the external app:
-	1. uaac client add -i <br><br>
-	1. Specify the client id and secret<br><br>
-	1. Specify the Grant Type as :
-		* SAML: urn:ietf:params:oauth:grant-type:saml2-bearer
-		* JWT: urn:ietf:params:oauth:grant-type:jwt-bearer
-	1. Specify the scopes as : api1.read api1.write api2.read api2.write <br><br>
-	1. You can leave the redirect uri and other options empty
-1. The following operations need to be performed under the SSO Plan Dashboard:
-	1. On-board the Enterprise SAML or OIDC (for JWT) Provider. <br><br>
-	1. Set up external group mappings for api1.read and other scopes<br><br>
-	1. Add the corresponding scopes to the users that require this access to make the scopes as default authorities (http://docs.pivotal.io/p-identity/1-6/manage-service-plans-api.html#default-groups), so that users do not need to be assigned the groups individually
-1. The following API call needs to be made by the external app
-	1. Invoke the /oauth/token endpoint of the SSO plan with the parameters laid out here (https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#jwt-bearer-token-grant).
-		* You will need to pass in the client id and client secret registered for the external app
-		* You will need to pass in the SAML Assertion from the external app
-		* The response will be a token that you need to add in the authorization header when making a call to API-1 or API-2
+The following setup procedure uses the example shown in the [conceptual diagram](#concept-diagram) above.
+
+1. Create API-1 and API-2 as resources in the SSO service, and give them the relevant permissions, 
+for example, `api1.read`, `api1.write` and `api2.read`, `api2.write`.<br><br>
+	Follow these procedures to create resources and permissions: <br>
+	* [Create or Edit Resources](./manage-resources.html#create-resource-perm) 
+	* [Create or Edit Resource Permissions](./manage-resources.html#create-resource-perm).
+
+1. Create an Admin Client with the ability to create more OAuth Clients under the SSO Service plan. 
+Therefore, use the scope `clients.admin`.<br><br>
+	Follow the steps in [Create Admin Client](./configure-apps/index.html#admin).
+
+1. Use UAAC to target the SSO Service Plan and log in using the Admin Client created in the previous step. <br><br>
+Refer to Step 4 in [Manage Users with the UAA CLI (UAAC)](./manage-users.html#uaac).
+
+1. For each client of the external app, run the following command to register the client:<br><br>
+	`uaac client add -i`<br><br>
+
+	In this example, there are two clients: API-1 and API-2.
+
+1. When prompted:
+	1. Specify a client ID and secret, and record them for future use in the API call.<br><br>
+	1. Specify the Grant Type as either of the following:
+		* For SAML: `urn:ietf:params:oauth:grant-type:saml2-bearer`
+		* For JWT: `urn:ietf:params:oauth:grant-type:jwt-bearer`
+	1. Specify the scopes. In this example, they are either: `api1.read` and `api1.write`, or `api2.read` and `api2.write`. <br><br>
+	1. You can leave the redirect uri and other options empty.
+
+1. A plan admin must do the following in the SSO Plan Administrator Dashboard:
+	1. Add the enterprise SAML, or OIDC (for JWT), provider. <br><br>
+		For instructions, see [Add an External Identity Provider](./configure-id-providers.html#config-ext-prov).<br><br>
+	1. Set up external group mappings for `api1.read` and other scopes.<br><br>
+	1. Add the corresponding scopes to the users that require this access to make the scopes as default authorities 
+	so that users do not need to be assigned the groups individually.<br><br>
+
+		For instructions, see [Add Default Groups for Users](./manage-service-plans-api.html#default-groups). 
+
+1. The external app must make the following API call: 
+	
+	1. Invoke the `/oauth/token` endpoint of the SSO plan with the parameters laid out in this documentation:
+		* For SAML: [SAML2 Bearer Grant](https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#saml2-bearer-grant)
+		* For JWT: [JWT Bearer Token Grant](https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#jwt-bearer-token-grant)
+	2. Pass in the following:
+		* Client id and client secret registered for the external app
+		* The SAML assertion or JWT token from the external app
+		
+	The response is a token that you must add in the authorization header when making a call to API-1 or API-2.
 
 
 
