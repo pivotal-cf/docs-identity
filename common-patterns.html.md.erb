@@ -9,8 +9,8 @@ This topic describes common app architecture patterns for enterprise developers.
 ## <a id='overview'></a> External Apps Calling into PCF APIs
 
 This section describes common architecture patterns for authenticating external apps calling into Pivotal Cloud Foundry (PCF) APIs.
-In this pattern, external apps secured by SAML or OIDC providers 
-interact with Pivotal SSO to gain access to PCF services.
+In these patterns, external apps secured either by Security Assertion Markup Language (SAML), or by OpenID Connect (OIDC) 
+providers using JSON Web Tokens (JWTs), interact with Pivotal SSO to gain access to PCF services.
 
 <a id="concept-diagram"></a>The following diagram is a conceptual view of an external app protected by a SAML or OIDC enterprise identity provider (IDP).
 
@@ -170,7 +170,7 @@ The following setup procedure uses the example shown in the [conceptual diagram]
 
 1. Create API-1 and API-2 as resources in the SSO service, 
 for example, `api1.read`, `api1.write` and `api2.read`, `api2.write`.<br><br>
-	For instructions, see [Create or Edit Resources](./manage-resources.html#create-resource-perm).
+	For instructions, see [Create or Edit Resources](./manage-resources.html#create-resources).
 	
 
 1. Create an Admin Client with the ability to create more OAuth Clients under the SSO Service plan. 
