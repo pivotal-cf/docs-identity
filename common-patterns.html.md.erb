@@ -164,7 +164,7 @@ Instead, a gateway such as Apigee or Mulesoft intercepts the call and handles th
 
 ![jwt-exchange-gateway](jwt-exchange-gateway.png)
 
-### <a id='setup'></a>Set up for SAML or JWT Bearer Token Exchange
+### <a id='setup'></a>Set Up for SAML or JWT Bearer Token Exchange
 
 The following setup procedure uses the example shown in the [conceptual diagram](#concept-diagram) above.
 
@@ -191,7 +191,7 @@ For instructions, see Step 4 in [Manage Users with the UAA CLI (UAAC)](./manage-
 		* For SAML: `urn:ietf:params:oauth:grant-type:saml2-bearer`
 		* For JWT: `urn:ietf:params:oauth:grant-type:jwt-bearer`
 	1. Specify the scopes. In this example, they are either: `api1.read` and `api1.write`, or `api2.read` and `api2.write`. <br><br>
-	1. You can leave the redirect uri and other options empty.
+	1. You can leave the redirect URI and other options empty.
 
 1. A plan admin must do the following in the SSO Plan Administrator Dashboard:
 	1. Add the enterprise SAML or OIDC (for JWT) provider. <br><br>
@@ -212,7 +212,7 @@ For instructions, see Step 4 in [Manage Users with the UAA CLI (UAAC)](./manage-
 		* For SAML: [SAML2 Bearer Grant](https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#saml2-bearer-grant)
 		* For JWT: [JWT Bearer Token Grant](https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#jwt-bearer-token-grant)
 	2. Pass in the following:
-		* Client id and client secret registered for the external app
+		* Client ID and client secret registered for the external app
 		* The SAML assertion or JWT token from the external app
 		
 	The response is a token that you must add in the authorization header when making a call to API-1 or API-2.
