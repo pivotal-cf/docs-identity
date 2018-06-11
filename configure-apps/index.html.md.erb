@@ -1,29 +1,10 @@
 ---
-title: Overview of Configuring Applications
+title: Configuring Apps
 owner: Identity Service
 ---
 
 This topic explains how Pivotal Cloud Foundry (PCF) developers configure their apps to use the Single Sign-On (SSO) service,
 write SSO integration into their apps, and use the SSO Admin Client to manage connections between SSO identity providers, apps, users and other resources. 
-
-## <a id='choose-type'></a> Determine Your SSO Application Type
-
-Before you bind or register an app, you must determine its SSO application type and the corresponding OAuth grant type.
-
-If your app authenticates end users, its application type is Web App, Native Mobile App, or Single-Page JavaScript App.
-If the app does not authenticate end users, but rather accesses other services or APIs on its own behalf, then its type is Service-to-Service App.
-
-See the table below to determine your app's SSO Application Type and OAuth Grant Type:
-
-| Application Type  | SSO Application Type | OAuth Grant Type |
-|-------------------|------------------------------|-------------------------------|
-| <a href="./web-app.html">Web</a> | Web App | `authorization code` |
-| <a href="./native-mobile-app.html">Native Mobile, Desktop, or Command Line</a> | Native Mobile App | `password` (the resource owner's password) |
-| <a href="./single-page-js-app.html">Single-Page JavaScript</a> | Single-Page JavaScript App | `implicit` |
-| <a href="./service-to-service-app.html">Service-to-Service</a> | Service-to-Service App | `client_credentials` |
-
-
-<p class="note"><strong>Note</strong>: The Native Mobile App application type is intended only for highly-trusted apps such as company-owned and managed apps.</p>
 
 ## <a id="internal"></a> Set Up PCF Apps to Use SSO
 
@@ -47,13 +28,10 @@ The table below provides descriptions and default values for environment variabl
 See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-apps) for details, and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
 
 <p class="note"><strong>Note</strong>: These configurations are only applied when 
-	binding to the service instance. 
-	A <code>cf push</code> of the app does not update the configurations.<br>
+	initially binding to the service instance. 
+	A subsequent <code>cf push</code> of the app does not update the configurations. 
 	To update these configurations, manually update them using the SSO 
-	dashboard or unbind and rebind the service instance.<br>
-        In the <a href="https://github.com/pivotal-cf/identity-sample-apps">SSO sample applications</a>,
-        the manifest binds the app to a service instance on the initial push
-        using the manifest value <code>services: - sample-instance</code>.</p>
+	dashboard, or unbind and rebind the service instance.</p>
 
 <table>
 	<col style="width:45%">
@@ -175,14 +153,7 @@ to automatically bootstrap the values when you bind or rebind the app to an SSO 
 The values from the manifest automatically save to the environment variables that configure your app for SSO.
 Bootstrapping SSO configuration values from the manifest eliminates the need to set environment variables after you deploy your app.
 
-<p class="note"><strong>Note</strong>: These configurations are only applied when 
-	binding to the service instance. 
-	A <code>cf push</code> of the app does not update the configurations.<br>
-	To update these configurations, manually update them using the SSO 
-	dashboard or unbind and rebind the service instance.<br>
-        In the <a href="https://github.com/pivotal-cf/identity-sample-apps">SSO sample applications</a>,
-        the manifest binds the app to a service instance on the initial push
-        using the manifest value <code>services: - sample-instance</code>.</p>
+<p class="note"><strong>Note</strong>: These configurations are only applied at the initial service binding time. Subsequent cf push of the application will <strong>NOT</strong> update the configurations. You will either need to manually update the configurations via the SSO dashboard or unbind and rebind the service instance.</p>
 
 This snippet below shows how to include `GRANT_TYPE` `SSO_IDENTITY_PROVIDERS` in your manifest.
 

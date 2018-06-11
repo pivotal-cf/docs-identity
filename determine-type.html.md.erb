@@ -1,0 +1,25 @@
+---
+title: Determining SSO Application Type
+owner: Identity Service
+---
+
+This topic explains how to determine your SSO Application type. 
+
+## <a id='choose-type'></a> Determine Your SSO Application Type
+
+Before you bind or register an app, you must determine its SSO application type and the corresponding OAuth grant type.
+
+If your app authenticates end users, its application type is Web App, Native Mobile App, or Single-Page JavaScript App.
+If the app does not authenticate end users, but rather accesses other services or APIs on its own behalf, then its type is Service-to-Service App.
+
+See the table below to determine your app's SSO Application Type and OAuth Grant Type:
+
+| Application Type  | SSO Application Type | OAuth Grant Type |
+|-------------------|------------------------------|-------------------------------|
+| <a href="./configure-apps/web-app.html">Web</a> | Web App | `authorization code` |
+| <a href="./configure-apps/native-mobile-app.html">Native Mobile, Desktop, or Command Line</a> | Native Mobile App | `password` (the resource owner's password) |
+| <a href="./configure-apps/single-page-js-app.html">Single-Page JavaScript</a> | Single-Page JavaScript App | `implicit` |
+| <a href="./configure-apps/service-to-service-app.html">Service-to-Service</a> | Service-to-Service App | `client_credentials` |
+
+
+<p class="note"><strong>Note</strong>: The Native Mobile App application type is intended only for highly-trusted apps such as company-owned and managed apps.</p>
