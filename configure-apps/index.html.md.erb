@@ -53,22 +53,22 @@ See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-
 		<td> </td>
 	</tr>
 	<tr>
-		<td><code>SSO_IDENTITY_PROVIDERS</td>
+		<td><code>SSO_IDENTITY_PROVIDERS</code></td>
 		<td>Allowed identity providers for the app through the SSO service plan. This is a comma-separated list of identity provider origin keys. The origin keys are derived from the identity provider name using the following rules: <ul><li> Uppercase letters are converted to lowercase letters.</li><li>Spaces, periods, and underscores are converted to hyphens.</li><li>Multiple hyphens are combined into a single hyphen.</li></ul>For example, if your identity provider name is <code>example.com Provider</code>, the corresponding origin key is <code>example-com-provider</code>.</td>
 		<td><code>uaa</code></td>
 	</tr>
 	<tr>
-		<td><code>SSO_REDIRECT_URIS</td>
+		<td><code>SSO_REDIRECT_URIS</code></td>
 		<td>Comma-separated whitelist of redirection URIs allowed for the app. Each value must start with <code>http://</code> or <code>https://</code>.</td>
 		<td>(Always includes the app route)</td>
 	</tr>
 	<tr>
-		<td><code>SSO_SCOPES</td>
+		<td><code>SSO_SCOPES</code></td>
 		<td>Comma-separated list of scopes that belong to the app and are registered as client scopes with the SSO service. This value is ignored for client credential grant type apps.</td>
 		<td>openid</td>
 	</tr>
 	<tr>
-		<td><code>SSO_AUTO_APPROVED_SCOPES</td>
+		<td><code>SSO_AUTO_APPROVED_SCOPES</code></td>
 		<td>Comma-separated list of scopes that the app is automatically authorized when acting on behalf of users through SSO service.</td>
 		<td>(Defaults to existing scopes/authorities)</td>
 	</tr>
