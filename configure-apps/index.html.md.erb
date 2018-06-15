@@ -11,8 +11,7 @@ To configure SSO for an app running internally on PCF, you first need to [determ
 Then you [configure](#configure_bind_params) your SSO service for the app by binding to an SSO service instance with appropriate bind parameters.
 
 ## <a id="configure_bind_params"></a> Configure SSO Properties with Bind Parameters
-
-The SSO service can be bound with configuration options with <code>-c</code> flag in CF CLI.
+The SSO service can be bound via CF CLI's `bind-service` command with <code>-c</code> flag followed by a JSON string containing a set of bind parameters.
 For example:
 
 <pre class="terminal">
