@@ -329,11 +329,25 @@ The SSO dashboard allows application developers to view the app configurations a
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for app integration.
    For more information, see <a href="#app-integration">Integrate SSO with Apps</a> below.
 
+## <a id="register"></a> Register an External App using Service Keys
+For an app external to PCF, the previously mentioned <code>bind-service</code> command would not work since it only works with a CF app. Instead, an app developer can register the external app via CF CLI's <code>create-service-key</code> command with <code>-c</code> flag followed by a JSON string containing a set of config parameters as follows:
 
-## <a id="register"></a> Register an External App
+<p class="note"><strong>Note</strong>: The <code>create-service-key</code> command accepts all <a href="#configure_bind_params">bind-service config options</a> previously mentioned, with an additional required <code>name</code> parameter, which is a user-defined value used by SSO Developer Dashboard as the external app's name. And <code>SERVICE_KEY_NAME</code> is a user-defined value used by CloudController to manage service keys.</p>
 
-1. [Determine the type](#choose-type) of the app that will use the SSO service.
+<pre class="terminal">$ cf create-service-key SERVICE_INSTANCE SERVICE_KEY_NAME \
+    -c '{"name": "some_name", "grant_types": ["authorization_code"], "scopes": ["openid", "todo.read", "todo.write"], "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], "redirect_uris": ["https://google.com","http://bing.com"], "auto_approved_scopes": ["openid", "todo.read"], "identity_providers": ["uaa","ldap","saml"], "required_user_groups": ["openid","todo.read"], "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, "access_token_lifetime": 12345, "refresh_token_lifetime": 987654321, "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", "launch_url": "http://google.com", "show_on_home_page": false }'</pre>
 
+Once the service key is created for your external app, you can run the following command to retrieve the service key's credentials:
+
+<pre class="terminal">$ cf service-key SERVICE_INSTANCE SERVICE_KEY_NAME</pre>
+
+To proceed, read about how to use these values to <a href="#app-integration">integrate SSO with applications</a>.
+
+
+## <a id="register"></a> Register an External App via SSO Dashboard
+An app developer can also register an app external to PCF via SSO Developer Dashboard as follows:
+
+1. [Determine the type](#choose-type) of the app that will use the SSO service.bind
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance. This launches the SSO dashboard.
