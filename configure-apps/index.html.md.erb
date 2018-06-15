@@ -16,7 +16,7 @@ For example:
 
 <pre class="terminal">
 $ cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE \
-    -c '{"grant_types": ["authorization_code"], "scopes": ["openid", "todo.read", "todo.write"], "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], "redirect_uris": ["https://google.com","http://bing.com"], "auto_approved_scopes": ["openid", "todo.read"], "identity_providers": ["uaa","ldap","saml"], "required_user_groups": ["openid","todo.read"], "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, "access_token_lifetime": 12345, "refresh_token_lifetime": 987654321, "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", "launch_url": "http://google.com", "show_on_home_page": false }'
+    -c '{"grant_types": ["authorization_code"], "scopes": ["openid", "todo.read", "todo.write"], "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"], "auto_approved_scopes": ["openid", "todo.read"], "identity_providers": ["uaa","ldap","my-saml-provider"], "required_user_groups": ["openid","todo.read"], "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, "access_token_lifetime": 12345, "refresh_token_lifetime": 987654321, "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", "launch_url": "http://my-app.example.com", "show_on_home_page": true }'
 </pre>
 
 Additional information and bind parameters example are available in the [identity sample apps](https://github.com/pivotal-cf/identity-sample-apps/tree/master) repository.
@@ -106,7 +106,7 @@ The table below provides descriptions and default values for bind parameters.
 Alternatively, instead of using bind parameters, you can also manually configure your SSO service for the app using environment variables and [bind the app](#bind) to an SSO service instance.
 These steps are described below.
 
-<p class="note"><strong>Note</strong>: This step is not necessary and will not work if you have already configured SSO properties with your app using <a href="#configure_bind_params">bind parameters</a>.</p>
+<p class="note"><strong>Note</strong>: This step is not necessary if you have already configured SSO properties with your app using <a href="#configure_bind_params">bind parameters</a>. You can only use either bind parameters or environment variables. Applications that have environment variables set will not work with bind parameters and will instead see an error.</p>
 
 The SSO service reads its configuration properties from environment variables that are set in the apps that use it.
 Most of these environment variables are prefixed with `SSO_`.
@@ -136,9 +136,9 @@ See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-
 		<th>Default</th>
 	</tr>
 	<tr>
-		<td><b>Name</b></td>
-		<td><b>Name of the app</b></td>
-		<td><b>(N/A - Required Value)</b></td>
+		<td><code>name</code></td>
+		<td>Name of the app</td>
+		<td>(N/A - Required Value)</td>
 	</tr>
 	<tr>
 		<td><code>GRANT_TYPE</code></td>
