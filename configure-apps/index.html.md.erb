@@ -20,7 +20,19 @@ Enter the following command:
 
 ```
 cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE \
-    -c '{"grant_types": ["authorization_code"], "scopes": ["openid", "todo.read", "todo.write"], "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"], "auto_approved_scopes": ["openid", "todo.read"], "identity_providers": ["uaa","ldap","my-saml-provider"], "required_user_groups": ["openid","todo.read"], "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, "access_token_lifetime": 12345, "refresh_token_lifetime": 987654321, "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", "launch_url": "http://my-app.example.com", "show_on_home_page": true }'
+    -c '{"grant_types": ["authorization_code"], \
+    "scopes": ["openid", "todo.read", "todo.write"], \
+    "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], \
+    "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"], \
+    "auto_approved_scopes": ["openid", "todo.read"], \
+    "identity_providers": ["uaa","ldap","my-saml-provider"], \
+    "required_user_groups": ["openid","todo.read"], \
+    "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, \
+    "access_token_lifetime": 12345, \
+    "refresh_token_lifetime": 987654321, \
+    "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", \
+    "launch_url": "http://my-app.example.com", \
+    "show_on_home_page": true }'
 ```
 
 Additional information and bind parameters examples are available in the [identity sample apps](https://github.com/pivotal-cf/identity-sample-apps/tree/master) repository.
