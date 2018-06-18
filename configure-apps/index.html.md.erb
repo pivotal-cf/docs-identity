@@ -376,10 +376,11 @@ cf create-service-key SERVICE_INSTANCE SERVICE_KEY_NAME \
 ```
 
 Where:<br>
-- `SERVICE_INSTANCE` is the SSO service instance and corresponing SSO service plan that the service key will be created for . 
-- `SERVICE_KEY_NAME` is a user-defined value used by CloudController to manage service keys. 
-- `APP_NAME_HERE` is a user-defined name that you would like to associate with the application. 
+* `SERVICE_INSTANCE` is the SSO service instance and corresponing SSO service plan that the service key will be created for . 
+* `SERVICE_KEY_NAME` is a user-defined value used by CloudController to manage service keys. 
+* `APP_NAME_HERE` is a user-defined name that you would like to associate with the application. 
 
+For a full list of bind parameters accepted, refer to the [bind parameters section](#configure_bind_params). The only additional value which is required for service keys is the `name` parameter that should include the user-defined name of the app.
 
 After you create the service key for your external app, run the following command to retrieve the service key's credentials:
 
