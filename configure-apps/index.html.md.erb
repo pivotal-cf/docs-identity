@@ -28,8 +28,8 @@ cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE \
     "identity_providers": ["uaa","ldap","my-saml-provider"], \
     "required_user_groups": ["openid","todo.read"], \
     "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, \
-    "access_token_lifetime": 12345, \
-    "refresh_token_lifetime": 987654321, \
+    "access_token_lifetime": 300, \
+    "refresh_token_lifetime": 86400, \
     "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", \
     "launch_url": "http://my-app.example.com", \
     "show_on_home_page": true }'
@@ -361,22 +361,25 @@ Enter the following command:
 
 ```
 cf create-service-key SERVICE_INSTANCE SERVICE_KEY_NAME \
-    -c '{"name": "some_name", "grant_types": ["authorization_code"], \
+    -c '{"name": "APP_NAME_HERE", "grant_types": ["authorization_code"], \
     "scopes": ["openid", "todo.read", "todo.write"], \
     "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], \
-    "redirect_uris": ["https://google.com","http://bing.com"], \
+    "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"], \
     "auto_approved_scopes": ["openid", "todo.read"], \
     "identity_providers": ["uaa","ldap","saml"], \
     "required_user_groups": ["openid","todo.read"], \
     "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, \
-    "access_token_lifetime": 12345, \
-    "refresh_token_lifetime": 987654321, \
+    "access_token_lifetime": 300, \
+    "refresh_token_lifetime": 86400, \
     "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", \
-    "launch_url": "http://google.com", "show_on_home_page": false }'
+    "launch_url": "http://my-app.example.com", "show_on_home_page": true }'
 ```
 
 Where:<br>
-`SERVICE_KEY_NAME` is a user-defined value used by CloudController to manage service keys. 
+- `SERVICE_INSTANCE` is the SSO service instance and corresponing SSO service plan that the service key will be created for . 
+- `SERVICE_KEY_NAME` is a user-defined value used by CloudController to manage service keys. 
+- `APP_NAME_HERE` is a user-defined name that you would like to associate with the application. 
+
 
 After you create the service key for your external app, run the following command to retrieve the service key's credentials:
 
@@ -384,7 +387,7 @@ After you create the service key for your external app, run the following comman
 cf service-key SERVICE_INSTANCE SERVICE_KEY_NAME
 ```
 
-For more information about how to use these values, see [Integrate SSO with an App](#app-integration).
+For more information about how to use these values, see [Integrate SSO with an App](#app-integration). Please also note that for `client_credentials` grant types, administrative scopes and scopes in other spaces will not be available and must be manually added by a plan administrator or system operator via the dashboard or UAA CLI.
 
 
 ## <a id="register-dashboard"></a> Register an External App Using the SSO Dashboard
