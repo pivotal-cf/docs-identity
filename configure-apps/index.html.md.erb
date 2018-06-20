@@ -6,7 +6,8 @@ owner: Identity Service
 This topic explains how Pivotal Cloud Foundry (PCF) developers configure their apps to use the Single Sign-On (SSO) service,
 write SSO integration into their apps, and use the SSO Admin Client to manage connections between SSO identity providers, apps, users and other resources.
 
-To configure SSO for an app running internally on PCF, you first need to [determine the SSO application type](../determine-type.html) of the app that will use the SSO service.
+To configure SSO for an app running internally on PCF,
+you first need to [determine the SSO app type](../determine-type.html) of the app that will use the SSO service.
 
 Then you [configure](#configure_bind_params) your SSO service for the app by binding to an SSO service instance with appropriate bind parameters.
 
@@ -62,7 +63,9 @@ The table below provides descriptions and default values for bind parameters.
 	</tr>
 	<tr>
 		<td><code>redirect_uris</code></td>
-		<td>Comma separated whitelist of redirection URIs allowed for the application. Each value must be a valid URI. Custom URIs are supported for mobile applications.</td>
+		<td>Comma-separated whitelist of redirection URIs allowed for the app.
+                    Each value must be a valid URI.
+                    Custom URIs are supported for mobile apps.</td>
 		<td>(Always includes the app route)</td>
 	</tr>
 	<tr>
@@ -122,7 +125,7 @@ The table below provides descriptions and default values for bind parameters.
 Alternatively, instead of using bind parameters, you can also manually configure your SSO service for the app using environment variables and [bind the app](#bind) to an SSO service instance.
 These steps are described below.
 
-<p class="note"><strong>Note</strong>: This step is not necessary if you have already configured SSO properties with your app using <a href="#configure_bind_params">bind parameters</a>. You can only use either bind parameters or environment variables. Applications that have environment variables set will not work with bind parameters and will instead see an error.</p>
+<p class="note"><strong>Note</strong>: This step is not necessary if you have already configured SSO properties with your app using <a href="#configure_bind_params">bind parameters</a>. You can only use either bind parameters or environment variables. Apps that have environment variables set will not work with bind parameters and will instead see an error.</p>
 
 The SSO service reads its configuration properties from environment variables that are set in the apps that use it.
 Most of these environment variables are prefixed with `SSO_`.
@@ -134,7 +137,7 @@ There are two ways to set the SSO configuration properties for an app:
 * Include the config settings in the application manifest, so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
 
 The table below provides descriptions and default values for environment variables that apps use to configure SSO. 
-See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-apps) for details, and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
+See the [SSO sample apps](https://github.com/pivotal-cf/identity-sample-apps) for details, and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
 
 <p class="note"><strong>Note</strong>: These configurations are only applied when 
 	initially binding to the service instance. 
@@ -168,7 +171,9 @@ See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-
 	</tr>
 	<tr>
 		<td><code>SSO_REDIRECT_URIS</code></td>
-		<td>Comma separated whitelist of redirection URIs allowed for the application. Each value must be a valid URI. Custom URIs are supported for mobile applications.</td>
+		<td>Comma separated whitelist of redirection URIs allowed for the app.
+                    Each value must be a valid URI.
+                    Custom URIs are supported for mobile apps.</td>
 		<td>(Always includes the app route)</td>
 	</tr>
 	<tr>
@@ -203,7 +208,13 @@ See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-
 	</tr>
 	<tr>
 		<td><code>SSO_RESOURCES</code></td>
-		<td>Resources that the app will use as scopes/authorities for the SSO service to be created during bootstrapping if they do not already exist. The input format can be referenced in the provided sample manifest. Note that currently all permissions within the same top level permission, such as <code>todo.read</code> and <code>todo.write</code>, must be specified in the same application manifest. Currently you cannot specify additional permissions in the same top level permission, such as <code>todo.admin</code>, in additional application manifests.</td>
+		<td>Resources that the app will use as scopes/authorities
+                    for the SSO service to be created during bootstrapping if they do not already exist.
+                    The input format can be referenced in the provided sample manifest.
+                    Note that currently all permissions within the same top level permission,
+                    such as <code>todo.read</code> and <code>todo.write</code>, must be specified in the same application manifest.
+                    Currently you cannot specify additional permissions in the same top level permission,
+                    such as <code>todo.admin</code>, in additional application manifests.</td>
 		<td>(No value)</td>
 	</tr>
 	<tr>
@@ -339,7 +350,7 @@ The SSO dashboard allows application developers to view the app configurations a
 	| `roles` | Provides access to external groups from an identity provider |
 	| `uaa.resource` | Provides access to the check_token endpoint for service-to-service flows |
 
-	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
+	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the app type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user.
    Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PCF.
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for app integration.
@@ -379,7 +390,7 @@ Where:<br>
 
 * `SERVICE_INSTANCE` is the SSO service instance and corresponing SSO service plan that the service key will be created for . 
 * `SERVICE_KEY_NAME` is a user-defined value used by CloudController to manage service keys. 
-* `APP_NAME_HERE` is a user-defined name that you would like to associate with the application. 
+* `APP_NAME_HERE` is a user-defined name that you would like to associate with the app. 
 
 For a full list of bind parameters accepted, refer to the [bind parameters section](#configure_bind_params). The only additional value which is required for service keys is the `name` parameter that should include the user-defined name of the app.
 
@@ -409,7 +420,7 @@ For more information, see [Determining SSO Application Type](../determine-type.h
 1. Click **Show on homepage** to display the app on the UAA or Pivotal Account home page.
 	<p class="note"><strong>Note</strong>: To display the app on the home page, you must enter an **App Launch URL** or Upload an app icon.</p> 
 1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
-	<p class="note"><strong>Note</strong>: When registering an externally-hosted app, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except <code>Service-to-Service App</code>.</p>
+	<p class="note"><strong>Note</strong>: When registering an externally-hosted app, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all app types except <code>Service-to-Service App</code>.</p>
 1. If your Application Type is `Web App` or `Single-Page JavaScript App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**.
    The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
 1. For the **Scopes** field, specify the permissions that the app can request on the user’s behalf.
@@ -425,7 +436,7 @@ For more information, see [Determining SSO Application Type](../determine-type.h
 	| `roles` | Provides access to external groups from an identity provider |
 	| `uaa.resource` | Provides access to check_token endpoint for service-to-service flows |
 <p class="note"><strong>Note</strong>: Add the <code>user_attributes</code> scope to the client scopes to return user attributes from the ID token.</p>
-<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the application type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the application type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
+<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the app type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user. Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PCF.
 1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for app integration. For more information, see <a href="#app-integration">Integrate SSO with Applications</a> below.
 
@@ -436,7 +447,7 @@ Because SSO service is based on the OAuth protocol, any app that uses SSO must b
 ### <a id="app-integration-java"></a>Java Apps 
 
 If you are using Java, see [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps).
-These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/) for all four [application types](../determine-type.html).
+These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/) for all four [app types](../determine-type.html).
 These apps use the SSO Service Connector, which auto-configures the app for OAuth. After binding the app to an SSO service instance,
 you must restart the app for the new SSO configuration to take effect.
 
