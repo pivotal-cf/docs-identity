@@ -6,21 +6,30 @@ owner: Identity Service
 This topic explains how Pivotal Cloud Foundry (PCF) developers configure their apps to use the Single Sign-On (SSO) service,
 write SSO integration into their apps, and use the SSO Admin Client to manage connections between SSO identity providers, apps, users and other resources.
 
-To configure SSO for an app running internally on PCF,
-you first need to [determine the SSO app type](../determine-type.html) of the app that will use the SSO service.
+## <a id="internal"></a> Set Up PCF Apps to Use SSO
 
-Then you [configure](#configure_bind_params) your SSO service for the app by binding to an SSO service instance with appropriate bind parameters.
 
-## <a id="configure_bind_params"></a> Configure SSO Properties with Bind Parameters
-Bind the SSO service using the `cf bind-service` command. 
-The `-c` flag followed by a JSON string contains a set of bind parameters. 
-For more information, see [bind-service](https://cli.cloudfoundry.org/en-US/cf/bind-service.html)
-in the Cloud Foundry CLI Reference Guide.
+To configure SSO for an app running internally on PCF, do the following:
 
-Enter the following command:
+1. [Determine the SSO application type](../determine-type.html) of the app to use the SSO service. 
 
-```
-cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE \
+1.  Configure your SSO service for the app using one of the following methods:
+	- [Option 1: Configure SSO Properties with Bind Parameters](#configure_bind_params)
+	- [Option 2: Configure SSO Properties with Environment Variables](#configure)
+
+	<p class="note"><strong>Note</strong>: Use either bind parameters or environment variables to configure SSO properties. 
+	Apps that have environment variables set do not work with bind parameters and an error is shown.</p>
+
+### <a id="configure_bind_params"></a> Option 1: Configure SSO Properties with Bind Parameters
+
+You can use a JSON string containing bind parameters to configure SSO properties.
+To do this, bind the SSO service using the `cf bind-service` command, and include the `-c` flag followed by the JSON string.
+For more information about bind parameters, see [Bind Parameter Options](#bind_params) below.
+
+For example:
+
+<pre class="terminal">
+$ cf bind-service my-app my-instance \
     -c '{"grant_types": ["authorization_code"], \
     "scopes": ["openid", "todo.read", "todo.write"], \
     "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], \
@@ -34,13 +43,14 @@ cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE \
     "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", \
     "launch_url": "http://my-app.example.com", \
     "show_on_home_page": true }'
-```
+</pre>
 
-Additional information and bind parameters examples are available in the [identity sample apps](https://github.com/pivotal-cf/identity-sample-apps/tree/master) repository.
+For more information about this command, see [bind-service](https://cli.cloudfoundry.org/en-US/cf/bind-service.html) 
+in the Cloud Foundry CLI Reference Guide.
 
-### Bind Parameter Options
+#### <a id="bind_params"></a>Bind Parameter Options
 
-The table below provides descriptions and default values for bind parameters.
+The table below provides descriptions and default values for bind parameters:
 
 <table>
 	<col style="width:45%">
@@ -58,7 +68,15 @@ The table below provides descriptions and default values for bind parameters.
 	</tr>
 	<tr>
 		<td><code>identity_providers</code></td>
-		<td>Allowed identity providers for the app through the SSO service plan. This is a comma-separated list of identity provider origin keys. The origin keys are derived from the identity provider name using the following rules: <ul><li> Uppercase letters are converted to lowercase letters.</li><li>Spaces, periods, and underscores are converted to hyphens.</li><li>Multiple hyphens are combined into a single hyphen.</li></ul>For example, if your identity provider name is <code>example.com Provider</code>, the corresponding origin key is <code>example-com-provider</code>.</td>
+		<td>Allowed identity providers for the app through the SSO service plan. 
+			This is a comma-separated list of identity provider origin keys. <br><br>
+			The origin keys are derived from the identity provider name using the following rules: 
+			<ul><li>Uppercase letters are converted to lowercase letters.</li>
+				<li>Spaces, periods, and underscores are converted to hyphens.</li>
+				<li>Multiple hyphens are combined into a single hyphen.</li>
+			</ul>
+			For example, if your identity provider name is <code>example.com Provider</code>, 
+			the corresponding origin key is <code>example-com-provider</code>.</td>
 		<td><code>uaa</code></td>
 	</tr>
 	<tr>
@@ -66,17 +84,17 @@ The table below provides descriptions and default values for bind parameters.
 		<td>Comma-separated whitelist of redirection URIs allowed for the app.
                     Each value must be a valid URI.
                     Custom URIs are supported for mobile apps.</td>
-		<td>(Always includes the app route)</td>
+		<td>Always includes the app route</td>
 	</tr>
 	<tr>
 		<td><code>scopes</code></td>
 		<td>Comma-separated list of scopes that belong to the app and are registered as client scopes with the SSO service. This value is ignored for client credential grant type apps.</td>
-		<td>openid</td>
+		<td><code>openid</code></td>
 	</tr>
 	<tr>
 		<td><code>auto_approved_scopes</code></td>
 		<td>Comma-separated list of scopes that the app is automatically authorized when acting on behalf of users through SSO service.</td>
-		<td>(Defaults to existing scopes/authorities)</code></td>
+		<td>Defaults to existing scopes/authorities</code></td>
 	</tr>
 	<tr>
 		<td><code>authorities</code></td>
@@ -85,47 +103,61 @@ The table below provides descriptions and default values for bind parameters.
 	</tr>
 	<tr>
 		<td><code>required_user_groups</code></td>
-		<td>Comma-separated list of groups a user must have in order to authenticate successfully for the app.</td>
-		<td>(No value)</td>
+		<td>Comma-separated list of groups a user must have in order to log in to the app.</td>
+		<td>No value</td>
 	</tr>
 	<tr>
 		<td><code>access_token_lifetime</code></td>
 		<td>Lifetime in seconds for the access token issued to the app by the SSO service.</td>
-		<td>43200</td>
+		<td><code>43200</code></td>
 	</tr>
 	<tr>
 		<td><code>refresh_token_lifetime</code></td>
 		<td>Lifetime in seconds for the refresh token issued to the app by the SSO service.</td>
-		<td>2592000 (not used for client credentials)</td>
+		<td><code>2592000</code> (not used for client credentials)</td>
 	</tr>
 	<tr>
 		<td><code>resources</code></td>
-		<td>Resources that the app will use as scopes/authorities for the SSO service to be created during bootstrapping if they do not already exist. The input format can be referenced in the provided sample manifest. Note that currently all permissions within the same top level permission, such as <code>todo.read</code> and <code>todo.write</code>, must be specified in the same application manifest. Currently you cannot specify additional permissions in the same top level permission, such as <code>todo.admin</code>, in additional application manifests.</td>
-		<td>(No value)</td>
+		<td>Resources for the app to use as scopes/authorities for the SSO service created during bind, 
+			if they do not already exist. 
+		 All permissions within the same top level permission, 
+		 such as <code>todo.read</code> and <code>todo.write</code>, must be specified in the same bind command. 
+		 You cannot specify additional permissions in the same top level permission, 
+		 such as <code>todo.admin</code>, in additional binds.</td>
+		<td>No value</td>
 	</tr>
 	<tr>
 		<td><code>icon</code></td>
-		<td>App icon that will be displayed next to the app name on the Pivotal Account dashboard if show on home page is enabled. Do not exceed 64kb.</td>
-		<td>(No value)</td>
+		<td>App icon displayed next to the app name on the Pivotal Account dashboard. 
+			It is displayed if <code>show_on_home_page</code> is set to <code>true</code>. 
+			Do not exceed 64kb.</td>
+		<td>No value</td>
 	</tr>
 	<tr>
 		<td><code>launch_url</code></td>
-		<td>App launch URL that will be used for the app on the Pivotal Account dashboard if show on home page is enabled.</td>
-		<td>(Application route)</td>
+		<td>App launch URL used for the app on the Pivotal Account dashboard 
+			if <code>show_on_home_page</code> is set to <code>true</code>.</td>
+		<td>The application route</td>
 	</tr>
 	<tr>
 		<td><code>show_on_home_page</code></td>
-		<td>If set to true, the app will appear on the Pivotal Account dashboard with the corresponding icon and launch URL.</td>
-		<td>true</td>
+		<td>If set to <code>true</code>, the app appears on the Pivotal Account 
+			dashboard with the corresponding icon and launch URL.</td>
+		<td><code>true</code></td>
 	</tr>
 </table>
 
-## <a id="configure"></a> Alternative: Configure SSO Properties Using Environment Variables
+For more information and bind parameter examples, see the [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps/tree/master) 
+GitHub repository.
 
-Alternatively, instead of using bind parameters, you can also manually configure your SSO service for the app using environment variables and [bind the app](#bind) to an SSO service instance.
-These steps are described below.
+### <a id="configure"></a> Option 2: Configure SSO Properties with Environment Variables
 
-<p class="note"><strong>Note</strong>: This step is not necessary if you have already configured SSO properties with your app using <a href="#configure_bind_params">bind parameters</a>. You can only use either bind parameters or environment variables. Apps that have environment variables set will not work with bind parameters and will instead see an error.</p>
+Instead of using bind parameters, you can manually configure your SSO service for 
+the app using environment variables, then [bind the app](#bind) to an SSO service instance.
+
+<p class="note"><strong>Note</strong>: This step is not necessary if you have already 
+	configured SSO properties with your app using <a href="#configure_bind_params">bind parameters</a>. 
+	Apps that have environment variables set do not work with bind parameters and an error is shown.</p>
 
 The SSO service reads its configuration properties from environment variables that are set in the apps that use it.
 Most of these environment variables are prefixed with `SSO_`.
@@ -234,9 +266,10 @@ See the [SSO sample apps](https://github.com/pivotal-cf/identity-sample-apps) fo
 	</tr>
 </table>
 
-Additional information and manifest examples are available in the [identity sample apps](https://github.com/pivotal-cf/identity-sample-apps) repository. 
+For more information and manifest examples, see the [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps/tree/master) 
+GitHub repository. 
 
-### Remove SSO Configuration Properties
+#### Remove SSO Configuration Properties
 
 You can remove SSO configuration properties for an app, or any environment variables set through `cf set-env`, Apps Manager, or [bootstrapping](#bootstrap) as follows:
 
@@ -245,7 +278,7 @@ You can remove SSO configuration properties for an app, or any environment varia
 1. Rebind the app.
 
 
-### <a id="manual-config"></a> Manually Configure Apps for SSO
+#### <a id="manual-config"></a> Manually Configure Apps for SSO
 
 For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDERS`,
 and other SSO configuration environment variables with the [`cf set-env`](http://cli.cloudfoundry.org/en-US/cf/set-env.html) command, or in Apps Manager as follows:
@@ -265,7 +298,7 @@ and other SSO configuration environment variables with the [`cf set-env`](http:/
 
 1. [Bind](#bind) and restage your app.
 	
-### <a id="bootstrap"></a> Bootstrap SSO Configuration
+#### <a id="bootstrap"></a> Bootstrap SSO Configuration
 
 In SSO v1.4.0 and later, you can include SSO configuration properties in your application manifest,
 to automatically bootstrap the values when you bind or rebind the app to an SSO service instance.
@@ -299,9 +332,9 @@ to bootstrap the values into your app's SSO client configuration.
 
 After an app deploys with bootstrapped SSO configuration values, it is ready to [bind](#bind) to an SSO service instance.
 
-### <a id="bind"></a> Bind a PCF App
+#### <a id="bind"></a> Bind a PCF App
 
-After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO service instance via Apps Manager as follows:
+After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO service instance using Apps Manager as follows:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your app runs.
@@ -316,11 +349,13 @@ After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO s
 		4. Select a Service Plan, then click **Select this plan**.
 		5. Enter an **Instance Name**, select a space, select an app, then click **Add**.
 
-Alternatively, you can also bind the PCF app to an SSO service instance via CF CLI as follows:
+Alternatively, you can bind the PCF app to an SSO service instance using cf CLI as follows:
 
-<pre class="terminal">$ cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE</pre>
+```
+ cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE
+```
 
-## <a id="sso-dashboard"></a> Manage App Configurations via SSO Dashboard
+## <a id="sso-dashboard"></a> Manage App Configurations Using the SSO Dashboard
 
 The SSO dashboard allows application developers to view the app configurations and resources available within their space. To access the dashboard, first you must [create a service instance](../manage-service-instances.html#create-svc-instance) for your Space. Then you can follow the steps below to manage your application configurations via the SSO dashboard.
 
@@ -357,6 +392,7 @@ The SSO dashboard allows application developers to view the app configurations a
    For more information, see <a href="#app-integration">Integrate SSO with Apps</a> below.
 
 ## <a id="register-service-keys"></a> Register an External App Using Service Keys
+
 To register an external app using service keys, use the `create-service-key`
 command with `-c` flag followed by a JSON string containing a set of 
 config parameters.
@@ -368,11 +404,12 @@ For more information, see [create-service-key](https://cli.cloudfoundry.org/en-U
 in the Cloud Foundry CLI Reference Guide.
 
 
-Enter the following command:
+For example:
 
 ```
-cf create-service-key SERVICE_INSTANCE SERVICE_KEY_NAME \
-    -c '{"name": "APP_NAME_HERE", "grant_types": ["authorization_code"], \
+$ cf create-service-key my-instance my-service-key \
+    -c '{"name": "my-app", \
+    "grant_types": ["authorization_code"], \
     "scopes": ["openid", "todo.read", "todo.write"], \
     "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], \
     "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"], \
@@ -383,14 +420,9 @@ cf create-service-key SERVICE_INSTANCE SERVICE_KEY_NAME \
     "access_token_lifetime": 300, \
     "refresh_token_lifetime": 86400, \
     "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", \
-    "launch_url": "http://my-app.example.com", "show_on_home_page": true }'
-```
-
-Where:<br>
-
-* `SERVICE_INSTANCE` is the SSO service instance and corresponing SSO service plan that the service key will be created for . 
-* `SERVICE_KEY_NAME` is a user-defined value used by CloudController to manage service keys. 
-* `APP_NAME_HERE` is a user-defined name that you would like to associate with the app. 
+    "launch_url": "http://google.com", \
+    "show_on_home_page": false }'
+``` 
 
 For a full list of bind parameters accepted, refer to the [bind parameters section](#configure_bind_params). The only additional value which is required for service keys is the `name` parameter that should include the user-defined name of the app.
 
