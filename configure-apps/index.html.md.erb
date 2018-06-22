@@ -8,7 +8,7 @@ write SSO integration into their apps, and use the SSO Admin Client to manage co
 
 ## <a id="internal"></a> Set Up PCF Apps to Use SSO
 
-To configure SSO for an app running internally on PCF, you first need to [determine the SSO application type](#choose-type) of the app that will use the SSO service.
+To configure SSO for an app running internally on PCF, you first need to [determine the SSO application type](../determine-type.html) of the app that will use the SSO service.
 
 Then you [configure](#configure) your SSO service for the app using environment variables and [bind the app](#bind) to an SSO service instance.
 These steps are described below.
@@ -141,7 +141,7 @@ and other SSO configuration environment variables with the [`cf set-env`](http:/
 1. For **Variable Name** enter the name of the [SSO configuration property](#configure) that you are setting, such as `GRANT_TYPE`.
 
 1. For **Value**, enter the property value. For example, to set the `GRANT_TYPE` property for a Single-Page JavaScript App, 
-   enter `implicit`, which is the OAuth Grant Type listed for your [SSO application type](#choose-type) above.
+   enter `implicit`, which is the OAuth Grant Type listed for your [SSO application type](../determine-type.html) above.
 
 1. [Bind](#bind) and restage your app.
 	
@@ -171,8 +171,8 @@ The `GRANT_TYPE` property defaults to `authorization_code`, for Web App applicat
 If you specify your own scopes and authorities, consider including the following values in your `SSO_SCOPES` or `SSO_AUTHORITIES` property list.
 These values are not added your user-provided list by default:
 
-* `openid` — for apps with `authorization code`, `password`, and `implicit` [grant type](#choose-type)
-* `uaa.resource` — for apps with `client_credentials` [grant type](#choose-type)
+* `openid` — for apps with `authorization code`, `password`, and `implicit` [grant type](../determine-type.html)
+* `uaa.resource` — for apps with `client_credentials` [grant type](../determine-type.html)
 
 The [table below](#configure) lists all SSO properties that you can set in your application manifest
 to bootstrap the values into your app's SSO client configuration.
@@ -235,7 +235,7 @@ The SSO dashboard allows application developers to view the app configurations a
 
 ## <a id="register"></a> Register an External App
 
-1. [Determine the type](#choose-type) of the app that will use the SSO service.
+1. [Determine the type](../determine-type.html) of the app that will use the SSO service.
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
@@ -275,7 +275,7 @@ Because SSO service is based on the OAuth protocol, any app that uses SSO must b
 ### <a id="app-integration-java"></a>Java Apps 
 
 If you are using Java, see [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps).
-These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/) for all four [application types](#choose-type).
+These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/) for all four [application types](../determine-type.html).
 These apps use the SSO Service Connector, which auto-configures the app for OAuth. After binding the app to an SSO service instance,
 you must restart the app for the new SSO configuration to take effect.
 
