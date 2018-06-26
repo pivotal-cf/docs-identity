@@ -8,21 +8,20 @@ write SSO integration into their apps, and use the SSO Admin Client to manage co
 
 ## <a id="internal"></a> Set Up PCF Apps to Use SSO
 
-
 To configure SSO for an app running internally on PCF, do the following:
 
 1. [Determine the SSO application type](../determine-type.html) of the app to use the SSO service. 
 
-1.  Configure your SSO service for the app using one of the following methods:
+1. Configure the SSO service for the app using one of the following methods:
 	- [Option 1: Configure SSO Properties with Bind Parameters](#configure_bind_params)
 	- [Option 2: Configure SSO Properties with Environment Variables](#configure)
 
 	<p class="note"><strong>Note</strong>: Use either bind parameters or environment variables to configure SSO properties. 
-	Apps that have environment variables set do not work with bind parameters and an error is shown.</p>
+	Apps that have environment variables set do not work with bind parameters.</p>
 
 ### <a id="configure_bind_params"></a> Option 1: Configure SSO Properties with Bind Parameters
 
-You can use a JSON string containing bind parameters to configure SSO properties.
+Use a JSON string containing bind parameters to configure SSO properties.
 To do this, bind the SSO service using the `cf bind-service` command, and include the `-c` flag followed by the JSON string.
 For more information about bind parameters, see [Bind Parameter Options](#bind_params) below.
 
