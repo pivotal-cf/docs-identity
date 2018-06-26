@@ -4,13 +4,15 @@ owner: Identity Service
 ---
 
 This topic explains how Pivotal Cloud Foundry (PCF) developers configure their apps to use the Single Sign-On (SSO) service,
-write SSO integration into their apps, and use the SSO Admin Client to manage connections between SSO identity providers, apps, users and other resources.
+write SSO integration into their apps, and use the SSO Admin Client to manage connections
+between SSO identity providers, apps, users, and other resources.
 
 ## <a id="internal"></a> Set Up PCF Apps to Use SSO
 
 To configure SSO for an app running internally on PCF, do the following:
 
-1. [Determine the SSO application type](../determine-type.html) of the app to use the SSO service. 
+1. Determine the SSO application type of the app to use the SSO service. 
+   For information, see [Determining SSO Application Type](../determine-type.html).
 
 1. Configure the SSO service for the app using one of the following methods:
 	- [Option 1: Configure SSO Properties with Bind Parameters](#configure_bind_params)
@@ -22,7 +24,7 @@ To configure SSO for an app running internally on PCF, do the following:
 ### <a id="configure_bind_params"></a> Option 1: Configure SSO Properties with Bind Parameters
 
 Use a JSON string containing bind parameters to configure SSO properties.
-To do this, bind the SSO service using the `cf bind-service` command, and include the `-c` flag followed by the JSON string.
+To do this, bind the SSO service using the `cf bind-service` command and include the `-c` flag followed by the JSON string.
 For more information about bind parameters, see [Bind Parameter Options](#bind_params) below.
 
 For example:
@@ -163,12 +165,15 @@ Most of these environment variables are prefixed with `SSO_`.
 
 There are two ways to set the SSO configuration properties for an app: 
 
-* Set the environment variables [manually](#manual-config) after you deploy the app, in Apps Manager or with the Cloud Foundry Command-Line Interface (cf CLI).
+* Set the environment variables [manually](#manual-config) after you deploy the app,
+  in Apps Manager or with the Cloud Foundry Command-Line Interface (cf CLI).
 
-* Include the config settings in the application manifest, so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
+* Include the config settings in the application manifest,
+  so that PCF [bootstraps](#bootstrap) them automatically when it deploys the app.
 
 The table below provides descriptions and default values for environment variables that apps use to configure SSO. 
-See the [SSO sample apps](https://github.com/pivotal-cf/identity-sample-apps) for details, and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
+See the [SSO sample apps](https://github.com/pivotal-cf/identity-sample-apps) for details
+and the `manifest.yml` files in the same repository for examples of [bootstrapping](#bootstrap) these values.
 
 <p class="note"><strong>Note</strong>: These configurations are only applied when 
 	initially binding to the service instance. 
