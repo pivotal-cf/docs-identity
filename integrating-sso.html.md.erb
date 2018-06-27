@@ -1,0 +1,45 @@
+---
+title: Integrating SSO with your App
+owner: Identity Service
+---
+
+This topic describes how to integrate SSO with Java and non-Java apps.
+
+## <a id="app-integration"></a>Integrate SSO with an App
+
+Because SSO service is based on the OAuth protocol, any app that uses SSO must be OAuth-aware.
+
+### <a id="app-integration-java"></a>Java Apps 
+
+If you are using Java, see [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps).
+These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/) 
+for all four [app types](../determine-type.html).
+These apps use the SSO Service Connector, which auto-configures the app for OAuth. 
+For more information about the SSO Service Connector, see
+[spring-cloud-sso-connector](https://github.com/pivotal-cf/spring-cloud-sso-connector)
+on GitHub.
+
+After binding the app to an SSO service instance,
+you must restart the app for the new SSO configuration to take effect.
+
+### <a id="app-integration-nonjava"></a>Non-Java Apps
+
+To configure non-Java apps for OAuth, supply the following properties as environment 
+variables to your app after the SSO service bind.
+You can view this information on the **Next Steps** page of the SSO dashboard.
+
+* **App ID**, also known as OAuth Client ID
+* **App Secret**, also known as OAuth Client Secret
+* **OAuth Authorization URL**, the endpoint for client authorization
+* **OAuth Token URL**, the endpoint for token retrieval
+
+To validate the token, you must verify the following:
+
+1. The token is a properly signed JSON Web Token with an appropriate public key.
+   The key can be downloaded from the **Token Verification Key** endpoint specified on the **Next Steps** page.
+
+2. The value of `aud` in the token matches your **App ID**.
+
+3. The value of `iss` matches `https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token`.
+
+4. The expiry time of the token, `exp`, has not passed.
