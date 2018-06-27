@@ -393,7 +393,7 @@ The SSO dashboard allows application developers to view the app configurations a
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user.
    Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PCF.
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for app integration.
-   For more information, see <a href="../integrating-sso.html#app-integration">Integrate SSO with your App</a>.
+   For more information, see <a href="../integrating-sso.html">Integrate SSO with your App</a>.
 
 
 ## <a id="register-service-keys"></a> Register an External App Using Service Keys
@@ -437,7 +437,7 @@ After you create the service key for your external app, run the following comman
 cf service-key SERVICE_INSTANCE SERVICE_KEY_NAME
 ```
 
-For more information about how to use these values, see [Integrate SSO with your App](../integrating-sso.html#app-integration).
+For more information about how to use these values, see [Integrate SSO with your App](../integrating-sso.html).
 Also notice that for `client_credentials` grant types,
 administrative scopes and scopes in other spaces are not available and must be manually added
 by a plan administrator or system operator via the dashboard or UAA CLI.
@@ -478,7 +478,7 @@ For more information, see [Determining SSO Application Type](../determine-type.h
 <p class="note"><strong>Note</strong>: Add the <code>user_attributes</code> scope to the client scopes to return user attributes from the ID token.</p>
 <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the app type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user. Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PCF.
-1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for app integration. For more information, see <a href="../integrating-sso.html#app-integration">Integrate SSO with your App</a>.
+1. Click **Create App**. The **Next Steps** page appears, describing the endpoints required for app integration. For more information, see <a href="../integrating-sso.html">Integrate SSO with your App</a>.
 
 ## <a id="admin"></a> Create Admin Client
 
