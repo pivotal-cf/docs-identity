@@ -314,14 +314,14 @@ Bootstrapping SSO configuration values from the manifest eliminates the need to 
 
 This snippet below shows how to include `GRANT_TYPE` `SSO_IDENTITY_PROVIDERS` in your manifest.
 
-<pre class="code">
+```
 ---
 applications:
   - name: APPLICATION NAME
     env:
       GRANT_TYPE: password
       SSO_IDENTITY_PROVIDERS: uaa, sample-identity-provider
-	</pre>
+```
 
 The `GRANT_TYPE` property defaults to `authorization_code`, for Web App application type. `SSO_IDENTITY_PROVIDERS` defaults to `uaa`, for the PCF internal user store. 
 
@@ -395,6 +395,7 @@ The SSO dashboard allows application developers to view the app configurations a
 1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for app integration.
    For more information, see <a href="#app-integration">Integrate SSO with Apps</a> below.
 
+
 ## <a id="register-service-keys"></a> Register an External App Using Service Keys
 
 To register an external app using service keys, use the `create-service-key`
@@ -410,7 +411,7 @@ in the Cloud Foundry CLI Reference Guide.
 
 For example:
 
-```
+<pre class="terminal">
 $ cf create-service-key my-instance my-service-key \
     -c '{"name": "my-app", \
     "grant_types": ["authorization_code"], \
@@ -426,7 +427,7 @@ $ cf create-service-key my-instance my-service-key \
     "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", \
     "launch_url": "http://google.com", \
     "show_on_home_page": false }'
-``` 
+</pre>
 
 For a full list of bind parameters accepted, refer to the [bind parameters section](#configure_bind_params). The only additional value which is required for service keys is the `name` parameter that should include the user-defined name of the app.
 
