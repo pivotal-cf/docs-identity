@@ -1,0 +1,111 @@
+---
+title: Managing Clients with UAA API
+owner: Identity Service
+---
+
+This topic describes how plan administrators can use UAA CLI to manually update clients created via Single Sign-On (SSO).
+
+When application developers [configure their apps](./configure-apps/index.html) to use the Single Sign-On (SSO) service, each app corresponds to a client for a SSO service plan.
+Currently, application developers face some limitations when configuring their apps, such as not being able to configure multiple grant types.
+As a workaround, for these use cases not yet supported by SSO, plan administrators can use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to programatically update existing clients.
+These operations require administrative access through an admin client that must be configured by an administrator for the SSO service plan.
+
+
+<p class="note"><strong>Note</strong>: Clients and Groups for SSO should be created directly through the SSO UI or through application manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by SSO.</p>
+
+
+## <a id="creating"></a> Create a UAA Identity Zone Admin Client
+
+To update clients in your SSO service plan, you need a corresponding UAA identity zone admin client.
+
+To create a UAA identity zone admin client, do the following:
+
+* Target your Cloudfoundry using `cf`
+* Target an org and space that your Service Plan is visible in
+* <a href="./manage-service-instances.html#create-svc-instance">Create a Service Instance</a>
+* Log into Service Instance dashboard as an administrator. The dashboard URL can be found using Apps Manager or `cf service SERVICE-INSTANCE-NAME`.
+* Click **New App**.
+* Enter an **App Name**.
+* Under **Select an Application Type**, select **Service-to-Service App**.
+* Click **Select Scopes**, select **Admin Permissions**. Provide the following scopes: `clients.admin`
+* Save the **App ID** and **App Secret** for later.
+
+## <a id="updating"></a> Updating Clients with UAA API
+
+For example, plan administrators can add `client credentials` grant type and the corresponding client credentials `authorities` to an existing web-app configured via SSO by performing the following steps:
+
+1. Install the UAA CLI, `uaac`.
+    <pre class="terminal">
+    $ gem install cf-uaac
+    </pre>
+
+1. Use the `uaac target AUTH-DOMAIN` command to target your service plan.
+    <pre class="terminal">
+    $ uaac target my-auth-domain.login.example.com
+    </pre>
+
+1. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. Replace
+`ADMIN-APP-ID` with your **App ID** and `ADMIN-APP-SECRET` with your **App Secret** of your admin client created using the [steps above](#creating). UAAC stores the token in
+`~/.uaac.yml`.
+    <pre class="terminal">
+    $ uaac token client get MyAdminAppId -s MyAdminAppSecret
+    </pre>
+
+1. Use the `uaac context` command to display the client context. Verify that you have the sufficient `clients.admin` permissions under the `scope` section.
+    <pre class="terminal">
+    $ uaac context
+
+    [1]*[admin]
+        client\_id: MyAdminAppId
+        access\_token: aBcdEfg0hIJKlm123.e
+        token\_type: bearer
+        expires\_in: 43200
+        scope: clients.admin
+        jti: 91b3-abcd1233
+    </pre>
+
+1. Obtain the existing configurations of the client you wish to add multiple grant types to by running `uaac client get MY-WEB-APP-ID`.
+Replace `MY-WEB-APP-ID` with your web app's **App ID**, which you can obtain on SSO Developer Dashboard. See that output matches the example below and that `client_id` matches `MY-WEB-APP-ID`.
+    <pre class="terminal">
+     $ uaac client get MyWebAppId
+
+     scope: openid
+     client\_id: MyWebAppId
+     resource\_ids: none
+     authorized\_grant\_types: authorization\_code refresh\_token
+     redirect\_uri: https://example.com
+     access\_token\_validity: 43200
+     refresh\_token\_validity: 2592000
+     authorities: uaa.resource
+     name: test-update
+     allowedproviders: uaa google
+     type: WEB
+     space\_guid: ebd0b512-d94c-49c3-87da-2766e3397a44
+     lastmodified: 1529517126000
+     created\_by: e10c59d4-8fa4-4905-9ce5-d27e5163f455
+    </pre>
+
+1. Update the existing client configurations by selectively passing in flags to `uaac client update MY-WEB-APP-ID`.
+In this case, add the grant types it should have (e.g. both `authorization_code` for web app) along with the existing grant type(s) (in our example, `client_credentials` and `refresh_token`).
+And do the same for the `authorities` an application should be able to use when it logs in via client credentials grant flow (in this example, we give the client the additional ability to access `todo.read` and `todo.write` when acting on its own behalf.)
+    <pre class="terminal">
+     $ uaac client update MyWebAppId --authorized\_grant\_types authorization\_code,refresh\_token,client\_credentials --authorities todo.read,todo.write
+
+     scope: openid
+     client\_id: MyWebAppId
+     resource\_ids: none
+     authorized\_grant\_types: client\_credentials authorization\_code refresh\_token
+     redirect\_uri: https://google.com
+     access\_token\_validity: 43200
+     refresh\_token\_validity: 2592000
+     authorities: todo.read todo.write
+     name: test-update
+     allowedproviders: uaa google
+     type: WEB
+     space\_guid: ebd0b512-d94c-49c3-87da-2766e3397a44
+     required\_user\_groups:
+     lastmodified: 1529518941000
+     created\_by: e10c59d4-8fa4-4905-9ce5-d27e5163f455
+    </pre>
+In the UAAC response, you can see that your client now has the additional grant types and authorities.
+
