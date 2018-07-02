@@ -7,8 +7,11 @@ owner: Identity Service
 
 To use the UAA identity provider APIs for your SSO service plan, you need a special identity zone admin client.
 
-To create a UAA identity zone admin client as described in <a href="manage-clients-api.html">Create Admin Client</a>,
-and give this client `idps.read` and `idps.write`.
+1. Create a UAA identity zone admin client.
+
+    For information, see [Create a UAA Identity Zone Admin Client](./manage-clients-api.html#creating).
+
+2. Give this client the `idps.read` and `idps.write` scopes.
 
 ## <a id="updating"></a> Update UAA Identity Provider Configurations with the API
 
