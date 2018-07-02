@@ -3,13 +3,15 @@ title: Managing Clients with UAA API
 owner: Identity Service
 ---
 
-This topic describes how plan administrators can use UAA CLI to manually update clients created via Single Sign-On (SSO).
+This topic describes helps plan administrators create the administrative clients necessary to configure UAA resources
+using the UAA CLI.
 
 When application developers [configure their apps](./configure-apps/index.html) to use the Single Sign-On (SSO) service, each app corresponds to a client for a SSO service plan.
-Currently, application developers face some limitations when configuring their apps, such as not being able to configure multiple grant types.
+Currently, application developers and operators face some limitations when configuring UAA resources not supported by
+SSO dashboards (such as configuring multiple grant types).
+
 As a workaround, for these use cases not yet supported by SSO, plan administrators can use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to programatically update existing clients.
 These operations require administrative access through an admin client that must be configured by an administrator for the SSO service plan.
-
 
 <p class="note"><strong>Note</strong>: Clients and Groups for SSO should be created directly through the SSO UI or through application manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by SSO.</p>
 
@@ -27,7 +29,7 @@ To create a UAA identity zone admin client, do the following:
 * Click **New App**.
 * Enter an **App Name**.
 * Under **Select an Application Type**, select **Service-to-Service App**.
-* Click **Select Scopes**, select **Admin Permissions**. Provide the following scopes: `clients.admin`
+* Click **Select Scopes**, select **Admin Permissions**. Select the scopes necessary for configuring the UAA resource. (For example `clients.admin` when updating UAA clients)
 * Save the **App ID** and **App Secret** for later.
 
 ## <a id="updating"></a> Updating Clients with UAA API

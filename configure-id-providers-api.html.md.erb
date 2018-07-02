@@ -7,17 +7,8 @@ owner: Identity Service
 
 To use the UAA identity provider APIs for your SSO service plan, you need a special identity zone admin client.
 
-To create a UAA identity zone admin client, do the following:
-
-* Target your Cloudfoundry using `cf`
-* Target an org and space that your Service Plan is visible in
-* <a href="./manage-service-instances.html#create-svc-instance">Create a Service Instance</a>
-* Log into Service Instance dashboard as an administrator. The dashboard URL can be found using Apps Manager or `cf service`
-* Click **New App**.
-* Enter an **App Name**.
-* Under **Select an Application Type**, select **Service-to-Service App**.
-* Click **Select Scopes**, select **Admin Permissions**. Provide the following scopes: `idps.read` and `idps.write`
-* Save the client ID (ZONE-ADMIN-CLIENT-ID) and client secret for later.
+To create a UAA identity zone admin client as described in <a href="manage-clients-api.html">Create Admin Client</a>,
+and give this client `idps.read` and `idps.write`.
 
 ## <a id="updating"></a> Update UAA Identity Provider Configurations with the API
 
