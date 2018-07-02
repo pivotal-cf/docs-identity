@@ -1,0 +1,136 @@
+---
+title: Configuring Identity Providers with UAA API
+owner: Identity Service
+---
+
+## <a id="creating"></a> Create a UAA Identity Zone Admin Client
+
+To use the UAA identity provider APIs for your SSO service plan, you need a special identity zone admin client.
+
+To create a UAA identity zone admin client, do the following:
+
+* Target your Cloudfoundry using `cf`
+* Target an org and space that your Service Plan is visible in
+* <a href="./manage-service-instances.html#create-svc-instance">Create a Service Instance</a>
+* Log into Service Instance dashboard as an administrator. The dashboard URL can be found using Apps Manager or `cf service`
+* Click **New App**.
+* Enter an **App Name**.
+* Under **Select an Application Type**, select **Service-to-Service App**.
+* Click **Select Scopes**, select **Admin Permissions**. Provide the following scopes: `idps.read` and `idps.write`
+* Save the client ID (ZONE-ADMIN-CLIENT-ID) and client secret for later.
+
+## <a id="updating"></a> Update UAA Identity Provider Configurations with the API
+
+This section shows how to use the UAA API to update UAA identity provider configurations, using a `PUT` command.
+
+<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only. You must always run the <code>PUT</code> command
+  with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.
+  You must also provide all configuration values, otherwise, data may be lost.</p>
+
+For general information about UAA API, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
+
+To perform UAA identity provider API calls:
+
+1. Fetch a token using the identity zone admin client created above
+  * Targeting the authdomain specified in your Service Plan.
+
+        ```
+        uaac target MY-AUTH-DOMAIN.login.example.com
+        ```
+  * Obtain an access token using the client ID as `ZONE-ADMIN-CLIENT-ID` from above. You will then be prompted for the client secret.
+
+        ```
+        uaac token client get ZONE-ADMIN-CLIENT-ID
+        ```
+
+2. Use UAAC to retrieve the information for the identity provider you want to change. <br><br>
+  * If you know your identity provider ID, use the following command:
+
+        ```
+        uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID > FILENAME.txt
+        ```
+  * If you do not know your identity provider ID, use the following command:
+
+        ```
+        uaac curl -k /identity-providers > FILENAME.txt
+        ```
+
+        Scan the output to determine your identity provider ID
+
+3. Retrieving your identity provider using `/identity-providers/YOUR-IDENTITY-PROVIDER-ID` should yield output similar
+to whats below. Confirm the id in the response matches `YOUR-IDENTITY-PROVIDER-ID`.
+
+	```
+	{
+      "type": "uaa",
+      "config": "{\"emailDomain\":null,\"additionalConfiguration\":null,\"providerDescription\":null,\"passwordPolicy\":null,\"lockoutPolicy\":null,\"disableInternalUserManagement\":false}",
+      "id": "YOUR-IDENTITY-PROVIDER-ID",
+      "originKey": "uaa",
+      "name": "uaa",
+      "version": 0,
+      "created": 1530220213000,
+      "last_modified": 1530220213000,
+      "active": true,
+      "identityZoneId": "234b8106-acc5-41e9-8c7d-9cdc68c8f123"
+    }
+	```
+
+4. Update the configurations in the JSON blob as needed.
+  <p class="note warning"><strong>WARNING</strong>: You must provide all configuration values, otherwise,
+    data may be lost when doing an API update as a <code>PUT</code> command.</p>
+
+5. Submit a UAAC curl request to apply your updated configurations to the identity provider. Examples are shown below.
+    <p class="note warning"><strong>WARNING</strong>: You must always run this command
+      with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
+
+    ```
+    uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT -H 'Content-Type: application/json' -d "$(cat FILENAME.txt)"
+    ```
+
+   An minimal example command would look similar to:
+
+   <pre class="terminal">$ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID \
+       -X PUT \
+       -H 'Content-Type: application/json' \
+       -d '{
+           "type": "uaa",
+           "config": {
+               "emailDomain": null,
+               "providerDescription": null,
+               "passwordPolicy": null,
+               "lockoutPolicy": {
+                   "lockoutPeriodSeconds": 8,
+                   "lockoutAfterFailures": 8,
+                   "countFailuresWithin": 8
+               },
+               "disableInternalUserManagement": false
+           },
+           "originKey": "uaa",
+           "name": "uaa",
+           "version": 3,
+           "active": true
+           }'
+   </pre>
+
+   For a full list of UAA API update parameters, see the [Identity Providers Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#update)
+
+### <a id="enable-client-auth"></a> Enable Client Auth for OIDC
+
+A common use case for OIDC providers is the need to send client secret via POST instead of via basic
+authentication, such as when the OIDC provider only supports client secrets via POST.
+
+Client Auth can be configured using `config.clientAuthInBody` in the request body. For documentation
+around this field can be found on the [UAA docs](http://docs.cloudfoundry.org/api/uaa/version/4.14.0/#oauth-oidc)
+
+<p class="note"><strong>Note</strong>: Azure AD integration using response type of code only works with client auth in body.</p>
+
+### <a id="skip-ssl-saml"></a> Skip SSL validation for SAML
+
+<p class="note"><strong>Note</strong>: This assumes you have created the SAML Identity Provider, most likely created
+by providing the SAML metadata directly.</p>
+
+For cases where the SAML provider is configured using a valid SAML URL, it may be necessary to skip ssl validation on a self-signed certificate.
+
+Skipping SSL for SAML Identity Providers can be configured using `config.skipSslValidation` in the
+request body. For documentation around this field can be found on the
+[UAA docs]( http://docs.cloudfoundry.org/api/uaa/version/4.14.0/#saml).
