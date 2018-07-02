@@ -113,3 +113,24 @@ to whats below. Confirm the id in the response matches `YOUR-IDENTITY-PROVIDER-I
    </pre>
 
    For a full list of UAA API update parameters, see the [Identity Providers Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#update)
+
+### <a id="enable-client-auth"></a> Enable Client Auth for OIDC
+
+A common use case for OIDC providers is the need to send client secret via POST instead of via basic
+authentication, such as when the OIDC provider only supports client secrets via POST.
+
+Client Auth can be configured using `config.clientAuthInBody` in the request body. For documentation
+around this field can be found on the [UAA docs](http://docs.cloudfoundry.org/api/uaa/version/4.14.0/#oauth-oidc)
+
+<p class="note"><strong>Note</strong>: Azure AD integration using response type of code only works with client auth in body.</p>
+
+### <a id="skip-ssl-saml"></a> Skip SSL validation for SAML
+
+<p class="note"><strong>Note</strong>: This assumes you have created the SAML Identity Provider, most likely created
+by providing the SAML metadata directly.</p>
+
+For cases where the SAML provider is configured using a valid SAML URL, it may be necessary to skip ssl validation on a self-signed certificate.
+
+Skipping SSL for SAML Identity Providers can be configured using `config.skipSslValidation` in the
+request body. For documentation around this field can be found on the
+[UAA docs]( http://docs.cloudfoundry.org/api/uaa/version/4.14.0/#saml).
