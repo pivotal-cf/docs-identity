@@ -5,10 +5,6 @@ owner: Identity Service
 
 These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity) service for Pivotal Cloud Foundry (PCF).
 
-## <a id="viewing"></a> Viewing Release Notes for Another Version
-
-To view the release notes for another product version,
-select the version from the drop-down list at the top of this page.
 
 ## <a id="170"></a> v1.7.0
 
@@ -16,51 +12,60 @@ select the version from the drop-down list at the top of this page.
 
 ### <a id="features"></a> Features
 
-New features included in this release:
+New features and changes in this release:
 
 * **Expanded API Functionality for Identity Providers**: Operators can now use the API to configure additional features
-on identity providers that are not yet exposed through the SSO dashboard. SSO will honor values configured through the
+on identity providers that are not yet exposed through the SSO dashboard. SSO honors values configured through the
 API so that they are retained when using the SSO dashboard.
 
-For more information, see the following sections of [Configuring Identity Providers with UAA API](configure-id-providers-api.html):
+    For more information, see the following sections of [Configuring Identity Providers with UAA API](configure-id-providers-api.html):
 
-<table>
-    <tr>
-        <th>To learn more about...</th>
-        <th>See...</th>
-    </tr>
-    <tr>
-        <td>Enabling Client Auth for OIDC</td>
-        <td>
-            <a href="configure-id-providers-api.html#enable-client-auth">Enable Client Auth for OIDC</a>
-        </td>
-    </tr>
-    <tr>
-        <td>Skipping SSL validation for SAML</td>
-        <td>
-            <a href="configure-id-providers-api.html#skip-ssl-saml">Skip SSL validation for SAML</a>
-        </td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <th>To learn more about...</th>
+            <th>See...</th>
+        </tr>
+        <tr>
+            <td>Enabling Client Auth for OIDC</td>
+            <td>
+                <a href="configure-id-providers-api.html#enable-client-auth">Enable Client Auth for OIDC</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Skipping SSL validation for SAML</td>
+            <td>
+                <a href="configure-id-providers-api.html#skip-ssl-saml">Skip SSL validation for SAML</a>
+            </td>
+        </tr>
+    </table>
 
 <br />
 
-* **Expanded API Functionality for Clients & Users**: Operators can now use the API to configure additional features on
+* **Expanded API Functionality for Clients and Users**: Operators can now use the API to configure additional features on
 [Clients](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#clients) and [Users](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#users)
 
 * **External Service Keys**: SSO service broker now supports `cf create-service-key`. For more information, see
-[Service key documentation](https://docs.cloudfoundry.org/devguide/services/service-keys.html) and [Configuring apps using Service Keys](configure-apps/index.html#register-service-keys).
+  [Service key documentation](https://docs.cloudfoundry.org/devguide/services/service-keys.html)
+  and [Configuring apps using Service Keys](configure-apps/index.html#register-service-keys).
 
-* **JSON Bind Parameters for Client Configuration**: SSO service broker now supports passing client configuring on the
-command line for `cf bind-service`. For more information see: [Configuring apps using command line bind parameters](configure-apps/index.html#configure_bind_params).
-This is now the recommended approach for configuring clients bound to Cloudfoundry applications.
+* **JSON Bind Parameters for Client Configuration**:
+  SSO service broker now supports passing client configuring on the
+  command line for `cf bind-service`.
+  For more information, see [Configuring apps using command line bind parameters](configure-apps/index.html#configure_bind_params).
+  This is now the recommended approach for configuring clients bound to Cloudfoundry applications.
 
 * **Client redirect URI now supports custom schemes**: When configuring a client's redirect URIs, we now support custom
-URI schemes. A common use case this enables is deep-linking for mobile applications. For more information see: [Configuring apps](configure-apps/index.html).
+  URI schemes. A common use case this enables is deep-linking for mobile applications.
+  For more information, see [Configuring apps](configure-apps/index.html).
 
 * **Single logout for all SSO dashboards with PAS**: Session state for logouts on SSO dashboards are now synchronized
 with your UAA session. This is done using [uaa-singular](https://github.com/cloudfoundry/uaa-singular)
 
 ### <a id="known"></a> Known Issues
-No new issues known for this release.
+There are no known issues for this release.
 
+
+## <a id="viewing"></a> Viewing Release Notes for Another Version
+
+To view the release notes for another product version,
+select the version from the drop-down list at the top of this page.
