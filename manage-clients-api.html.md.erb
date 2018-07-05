@@ -1,10 +1,10 @@
 ---
-title: Managing Clients with UAA API
+title: Managing Clients with UAAC
 owner: Identity Service
 ---
 
-This topic explains how plan administrators use the User Account and Authentication
-(UAA) CLI to create the administrative clients needed to configure UAA resources.  
+This topic explains how plan administrators use the User Account and Authentication Command Line Interface (UAAC)
+to create the administrative clients needed to configure UAA resources.  
 
 When app developers configure their apps to use the Single Sign-On (SSO) service,
 each app corresponds to a client for a SSO service plan.
@@ -13,7 +13,7 @@ Currently, app developers and operators face some limitations when configuring U
 SSO dashboards. 
 For example, multiple grant types cannot be configured using the SSO dashboards.
 
-As a workaround, plan administrators can use the UAA CLI or [UAAC](https://github.com/cloudfoundry/cf-uaac)
+As a workaround, plan administrators can use the UAAC
 to programatically update existing clients.
 These operations require administrative access through an admin client that must be configured by an administrator for the SSO service plan.
 
@@ -42,11 +42,11 @@ To create a UAA identity zone admin client, do the following:
    For example, select `clients.admin` when updating UAA clients.
 1. Record the **App ID** and **App Secret**.
 
-## <a id="updating"></a> Update Clients with UAA API
+## <a id="updating"></a> Update Clients with UAAC
 
 For example, plan administrators can add `client credentials` grant type and the corresponding client credentials `authorities` to an existing web-app configured via SSO by performing the following steps:
 
-1. Install the UAA CLI, `uaac`.
+1. Install the UAAC, `uaac`.
     <pre class="terminal">
     $ gem install cf-uaac
     </pre>

@@ -1,9 +1,10 @@
 ---
-title: Updating Identity Providers with UAA API
+title: Updating Identity Providers with UAAC
 owner: Identity Service
 ---
 
-This topic describes how to update the configuration of identity providers using the User Account and Authentication (UAA) API. 
+This topic describes how to update the configuration of identity providers 
+using the User Account and Authentication Command Line Interface (UAAC). 
 For instructions on configuring identity providers, see [Configuring Identity Providers](./configure-id-providers.html).
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
@@ -21,13 +22,13 @@ To use the UAA identity provider API for your SSO service plan, you need a speci
 
 ## <a id="updating"></a> Update UAA Identity Provider Configurations with the API
 
-This section shows how to use the UAA API to update UAA identity provider configurations, using a `PUT` command.
+This section shows how to use the UAAC to update UAA identity provider configurations, using a `PUT` command.
 
 <p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only. You must always run the <code>PUT</code> command
   with the latest data by doing a <code>GET</code> before the <code>PUT</code> command.
   You must also provide all configuration values, otherwise, data may be lost.</p>
 
-For general information about UAA API, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
+For general information about UAAC, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
 
 To make UAA identity provider API calls:
 

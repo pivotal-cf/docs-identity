@@ -1,5 +1,5 @@
 ---
-title: Updating Service Plans with UAA API
+title: Updating Service Plans with UAAC
 owner: Identity Service
 ---
 
@@ -11,8 +11,8 @@ the UAA and the Cloud Controller (CC) components
 of the Pivotal Application Service (formerly Elastic Runtime). 
 Each SSO service plan ties together a CC plan and a UAA identity zone. 
 
-Beginning with SSO v1.6, you can use the UAA API to manage UAA identity zones
-configured as part of SSO service plans.
+Beginning with SSO v1.6, you can use the User Account and Authentication Command Line Interface (UAAC)
+to manage UAA identity zones configured as part of SSO service plans.
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
 
@@ -30,7 +30,7 @@ admin client, to use when creating the UAA identity zone admin client.
 
 To create a UAA identity zone admin client, do the following:
 
-1. Install the UAA CLI (UAAC) as follows:
+1. Install the UAAC as follows:
 
     ```
     gem install cf-uaac
@@ -151,7 +151,7 @@ under the scope section.
 	
 ## <a id="updating"></a> Update UAA Identity Zone Configurations with the API 
 
-This section shows how to use the UAA API to update UAA identity zone configurations, using a `PUT` command. 
+This section shows how to use the UAAC to update UAA identity zone configurations, using a `PUT` command. 
 
 <p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only. You must always run the <code>PUT</code> command
   with the latest data by doing a <code>GET</code> before a <code>PUT</code> command. 
