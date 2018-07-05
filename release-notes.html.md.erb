@@ -14,7 +14,7 @@ These are release notes for the [Single Sign-On](https://network.pivotal.io/prod
 
 New features and changes in this release:
 
-* **Expanded API Functionality for Identity Providers**: Operators can now use the API to configure additional features
+* **Expanded API functionality for identity providers**: Operators can now use the API to configure additional features
 on identity providers that are not yet exposed through the SSO dashboard. SSO honors values configured through the
 API so that they are retained when using the SSO dashboard. 
 For more information, see the following sections of [Configuring Identity Providers with UAA API](configure-id-providers-api.html):
@@ -39,25 +39,27 @@ For more information, see the following sections of [Configuring Identity Provid
     </table>
 
 
-* **Expanded API Functionality for Clients and Users**: Operators can now use the API to configure additional features on
-[Clients](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#clients) and [Users](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#users)
+* **Expanded API functionality for clients and users**: Operators can now use the API to configure additional features on
+[Clients](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#clients)
+and [Users](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#users).
 
-* **External Service Keys**: SSO service broker now supports `cf create-service-key`. For more information, see
+* **External service keys**: The SSO service broker now supports `cf create-service-key`. For more information, see
   [Managing Service Keys](https://docs.cloudfoundry.org/devguide/services/service-keys.html)
   and [Register an External App Using Service Keys](configure-apps/index.html#register-service-keys).
 
-* **JSON Bind Parameters for Client Configuration**:
-  SSO service broker now supports passing client configuring on the
+* **JSON bind parameters for client configuration**:
+  The SSO service broker now supports passing client configuration on the
   command line for `cf bind-service`.
   For more information, see [Configure SSO Properties with Bind Parameters](configure-apps/index.html#configure_bind_params).
-  This is now the recommended approach for configuring clients bound to Cloudfoundry applications.
+  This is the recommended approach for configuring clients bound to Cloud Foundry apps.
 
 * **Client redirect URI now supports custom schemes**: When configuring a client's redirect URIs, SSO now supports custom
-  URI schemes. A common use case this enables is deep-linking for mobile applications.
+  URI schemes. A common use case is deep-linking for mobile apps.
   For more information, see [Configuring apps](configure-apps/index.html).
 
-* **Single logout for all SSO dashboards with PAS**: Session state for logouts on SSO dashboards are now synchronized
-with your UAA session. This is done using [uaa-singular](https://github.com/cloudfoundry/uaa-singular)
+* **Single logout for all SSO dashboards with Pivotal Application Service (PAS)**:
+  Session state for logouts on SSO dashboards are now synchronized with your UAA session.
+  This is done using [uaa-singular](https://github.com/cloudfoundry/uaa-singular).
 
 ### <a id="known"></a> Known Issues
 There are no known issues for this release.
