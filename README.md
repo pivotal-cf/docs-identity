@@ -23,3 +23,13 @@ authenticate with an external identity provider rather than having to create a n
 [docs-book-identity](https://github.com/pivotal-cf/docs-book-identity/blob/master/config.yml)
 
 [docs-book-runpivotal](https://github.com/pivotal-cf/docs-book-runpivotal/blob/master/config.yml)
+
+### Terminology
+
+SSO has a lot of difficult and inconsistent terminology.
+
+| Term | Variations on Term | Notes |
+|------|--------------------|-------|
+| SSO Developer Dashboard | | Use this for the product name, put it in initial caps. |
+| SSO developer dashboard | dashboard, developer dashboard, SSO dashboard | This is a dashboard with a UI that you log in to. |
+| UAA Identity Zone client | | There are two kinds of UAA Identity Zone client: admin client and non-admin clients.|
