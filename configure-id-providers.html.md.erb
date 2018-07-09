@@ -216,7 +216,11 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
   1. Under the **Users** section, enter the **Search Base**.
   1. Under the **Users** section, you may also enter in **Search Filter** (Optional).
   1. Under the **Users** section, you may select **Just in Time Provisioning**. If this option is enabled, users will be created at login time. If this option is not enabled, users must be created prior to being able to login.
-  1. Under the **Groups** section, you may enter in enter the **Search Base** (optional) and **Search Filter** (optional) in order to associate LDAP groups with your user. If you wish to use the `memberOf` attribute on user objects, you can enter in the value `memberOf` as the Search Base instead of an LDAP path for a group OU, and the Search Filter value will be ignored.
+  1. Under the **Groups** section, you may enter the **Search Base** (optional) and **Search Filter** (optional)
+     to associate LDAP groups with your user.
+     If you want to use the `memberOf` attribute on user objects,
+     you can enter in the value `memberOf` as the Search Base instead of an LDAP path for a group OU,
+     and the Search Filter value will be ignored.
 
 1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
   - Select a **User Scheme Attribute** from the drop-down menu.
