@@ -26,10 +26,13 @@ authenticate with an external identity provider rather than having to create a n
 
 ### Terminology
 
-SSO has a lot of difficult and inconsistent terminology.
+SSO has a lot of difficult and inconsistent terminology. Jane learned the following, working with Peter Chen in early July 2018.
 
 | Term | Variations on Term | Notes |
 |------|--------------------|-------|
 | SSO Developer Dashboard | | Use this for the product name, put it in initial caps. |
-| SSO developer dashboard | dashboard, developer dashboard, SSO dashboard | This is a dashboard with a UI that you log in to. |
-| UAA Identity Zone client | | There are two kinds of UAA Identity Zone client: admin client and non-admin clients.|
+| SSO developer dashboard | dashboard, developer dashboard, SSO dashboard | This is a dashboard with a UI that you log in to. There is a 1:1 between service instances and SSO developer dashboards. There is a many:1 between SSO developer dashboards and UAA identity zones|
+| UAA identity zone | | Not sure of capitalization for this term. A subset of UAA. There is a 1:1 between plan and UAA Identity Zone. |
+| UAA identity zone client | _many_ | There are two kinds of UAA Identity Zone client: admin client and non-admin clients.|
+| UAAC vs UAAC CLI | User Account and Authentication Command Line Interface (UAAC) spell out first use | The UAAC is released, production quality that we discuss in the docs |
+| UAA CLI | UAA-CLI  | The UAAC CLI is an experimental CLI ("incubating"). It is different from the UAAC, which is released. Don't discuss UAA CLI in the docs. |
