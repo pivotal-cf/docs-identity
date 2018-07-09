@@ -24,6 +24,14 @@ authenticate with an external identity provider rather than having to create a n
 
 [docs-book-runpivotal](https://github.com/pivotal-cf/docs-book-runpivotal/blob/master/config.yml)
 
+### Local Development
+1. Clone https://github.com/pivotal-cf/docs-layout-repo
+2. Clone https://github.com/pivotal-cf/docs-book-identity. Check out branch `edge` of this repo, verify that this branch has a config.yml that contains the newest SSO version properties. Create feature branch out of `edge` of to hold changes in sidebar structure and texts. 
+3. Clone https://github.com/pivotal-cf/docs-identity. Read the `README` of this repo to decide which branch to check out. Create feature branch out of the appropriate branch to hold changes in the actual documentation text content. 
+4. Get ruby 2.3.0 and follow steps on https://github.com/pivotal-cf/bookbinder
+5. `cd docs-book-identity && bundle install`
+6. To render the documentation with hotload changes: `cd docs-book-identity && bundle exec bookbinder watch` (Browse to localhost url in the output).
+
 ### Terminology
 
 SSO has a lot of difficult and inconsistent terminology. Jane learned the following, working with Peter Chen in early July 2018.
