@@ -8,13 +8,13 @@ to manage existing UAA Identity Zone clients.
 
 ##<a id="about"></a> About Managing Clients with UAAC
 
-This section provides explains when and why you use the UAAC to update UAA Identity Zone clients.
+This section explains when and why you use the UAAC to update UAA Identity Zone clients.
 
 All clients mentioned on this page are UAA Identity Zone clients.
 However, there are two kinds of UAA Identity Zone clients:
 
 + **Non-Admin clients**—When app developers configure their apps to use the Single Sign-On (SSO) service,
-    each app corresponds to a non-admin client for a SSO service plan.
+    each app corresponds to a non-admin client for an SSO service plan.
 + **Admin clients**—These can modify other clients and are created
   by completing the procedure below.
   See [Create an Admin Client](#creating).
@@ -55,7 +55,7 @@ For information, see <a href="./manage-service-plans-api.html">Updating Service 
    For how to create an instance, see [Create a Service Instance](./manage-service-instances.html#create-svc-instance).
    The service instance exposes the SSO developer dashboard.
 1. Log in to the SSO developer dashboard as an administrator.
-   The dashboard URL can be found using Apps Manager or `cf service SERVICE-INSTANCE-NAME`.
+   You can find the dashboard URL by using Apps Manager or `cf service SERVICE-INSTANCE-NAME`.
 1. Click **New App**.
 1. Enter an **App Name**.
 1. Under **Select an Application Type**, select **Service-to-Service App**.
@@ -97,7 +97,7 @@ The example shown here adds the `client credentials` grant type
 and the corresponding client credentials `authorities` to an existing web-app
 configured via SSO developers dashboard.
 
-1. Install the UAAC, `uaac`.
+1. Install the UAAC.
     <pre class="terminal">
     $ gem install cf-uaac
     </pre>
@@ -156,7 +156,7 @@ run the following command:
         jti: 91b3-abcd1233
     </pre>
 
-1. Verify that you have the `clients.admin` permissions under the `scope` section.
+1. Verify that you have the `clients.admin` permissions in the `scope` section.
 
 1. To obtain the existing configurations of the client, run the following command:
 
@@ -165,7 +165,7 @@ run the following command:
     uaac client get MY-WEB-APP-ID
     ```
 
-    Where `MY-WEB-APP-ID` is your web app App ID which you can obtain on SSO developer dashboard.<br><br>
+    Where `MY-WEB-APP-ID` is your web app's App ID. You can obtain this in the SSO developer dashboard.<br><br>
 
     For example: 
     <pre class="terminal">
@@ -194,11 +194,11 @@ run the following command:
 1. To update the client configuration, pass in flags with the following command:
 
     ```
-    uaac client update MY-WEB-APP-ID --PROPERTY-1 VALUE-1,VALUE-2 --PROPERTY-2 VALUE-N 
+    uaac client update MY-WEB-APP-ID --PROPERTY-1 VALUE-1,VALUE-2 --PROPERTY-N VALUE-N 
     ```
 
     Where:
-    * `PROPERTY-N`'s are from the list in step 6 above.  
+    * `PROPERTY-N`'s are from the list returned in step 6 above, for example, `redirect_uri`.  
     * `VALUE-N`'s are the configurations you want the client to have. 
 
     For example:
@@ -210,7 +210,7 @@ run the following command:
        --authorities todo.read,todo.write
     </pre>
    
-    The example specifies grant types of `authorization_code` for web app and respecifies
+    The example specifies grant types of `authorization_code` for the web app and respecifies
    the existing grant types.
     The example also replaces the `uaa.resource` authority with `todo.read` and `todo.write`.
     The client now has the ability to access `todo.read` and `todo.write` when acting on its own behalf.
