@@ -50,13 +50,13 @@ The following table provides version and version-support information about [Sing
     </tr>
 </table>
 
-## <a id='upgrading'></a> Upgrading to the Latest Version
+## <a id='upgrading'></a> Upgrade Path to the Latest Version
 
 When upgrading PAS and SSO at the same time, follow the steps below in order:
 
-1. If your SSO tile is not on the current PAS's Recommended SSO Version (see table below), upgrade now.
-1. Upgrade PAS to the desired version.
-1. If your SSO tile is not on the desired PAS version’s Supported SSO Versions, upgrade now.
+1. If your SSO tile is not on your current PAS's recommended SSO version (see table below), upgrade it.
+1. Upgrade PAS to the newer version.
+1. If your SSO tile is not on the recommended version for the newer PAS version, upgrade the SSO tile.
 
 <table border="1" class="nice">
 <tr>
@@ -100,12 +100,12 @@ When upgrading PAS and SSO at the same time, follow the steps below in order:
    see [Upgrading Pivotal Cloud Foundry](/pivotalcf/2-0/customizing/upgrading-pcf.html).
 
 ### <a id='upgrading-example'></a> Upgrade Example
-If you are using SSO v1.6.0 and PAS v2.1.0 and wish to upgrade to SSO v1.7.0 and PAS v2.2.x,
-you can follow the steps below in order:
+If you are using SSO v1.6.0 and PAS v2.1.0 and want to upgrade to SSO v1.7.0 and PAS v2.2.x,
+you do the following:
 
-1. Upgrade to SSO v1.7.x on PAS v2.1.0 (Recommended SSO Version for PAS v2.1.0).
-1. Upgrade PAS to v2.2.x (desired PAS version).
-1. No action needed since SSO is already at v1.7.x (PAS v2.2.x’s Supported SSO Versions).
+1. Upgrade to SSO v1.7.x on PAS v2.1.0, which is the recommended SSO version for PAS v2.1.0.
+1. Upgrade PAS to v2.2.x (newer PAS version).
+1. No further updgrade is needed because SSO is already at v1.7.x, which is the PAS v2.2.x supported SSO version.
 
 
 ## <a id='sso'></a> Useful Links
