@@ -50,17 +50,13 @@ The following table provides version and version-support information about [Sing
     </tr>
 </table>
 
-## <a id='upgrading'></a> Upgrade Path to the Latest Version
+## <a id='support-matrix'></a> Support Matrix for SSO v1.4.x to v1.7.x
 
-When upgrading PAS and SSO at the same time, follow the steps below in order:
-
-1. If your SSO tile is not on your current PAS's recommended SSO version (see table below), upgrade it.
-1. Upgrade PAS to the newer version.
-1. If your SSO tile is not on the recommended version for the newer PAS version, upgrade the SSO tile.
+This table lists the supported versions of PCF and SSO. 
 
 <table border="1" class="nice">
 <tr>
-  <th rowspan="2">PAS or Elastic Runtime Version<sup>*</sup></th>
+  <th rowspan="2">PCF</sup></th>
   <th colspan="2">Supported SSO Versions</th>
 </tr>
 <tr>
@@ -69,44 +65,47 @@ When upgrading PAS and SSO at the same time, follow the steps below in order:
 </tr>
   <tr>
     <th rowspan="1">2.2.x</th>
-    <td>1.7.x</td>
-    <td>1.7.x</td>
+    <td>1.7.0</td>
+    <td>1.7.0</td>
   </tr>
   <tr>
     <th rowspan="1">2.1.x</th>
-    <td>1.7.x</td>
-    <td>1.6.x</td>
+    <td>1.7.0</td>
+    <td>1.6.0</td>
   </tr>
   <tr>
     <th rowspan="1">2.0.x</th>
-    <td>1.6.x</td>
-    <td>1.5.3**</td>
+    <td>1.6.0</td>
+    <td>1.5.3*</td>
   </tr>
   <tr>
     <th rowspan="1">1.12.x</th>
     <td>1.5.3</td>
-    <td>1.5.x</td>
+    <td>1.5.0</td>
   </tr>
   <tr>
     <th rowspan="1">1.11.x</th>
-    <td>1.4.x</td>
-    <td>1.4.x</td>
+    <td>1.4.6</td>
+    <td>1.4.0</td>
   </tr>
 </table>
 
-\* As of PCF v2.0, _Elastic Runtime_ is renamed _Pivotal Application Service (PAS)_.
 
-\** When you upgrade SSO from v1.5 to v1.6, you must first [upgrade to PAS v2.0 using SSO v1.5.3](https://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/breaking-changes.html#sso-upgrade). For information about upgrading to PCF v2.0,
-   see [Upgrading Pivotal Cloud Foundry](http://docs.pivotal.io/pivotalcf/2-0/customizing/upgrading-pcf.html).
+\* If you are upgrading from PCF v1.12 to v2.0, see the knowledge base article
+[Upgrade SSO Service Tile Between PCF 1.12 and PCF 2.0](https://community.pivotal.io/s/article/Upgrade-SSO-Service-Tile-Between-PCF-112-and-PCF-20).
 
-### <a id='upgrading-example'></a> Upgrade Example
-If you are using SSO v1.6.0 and PAS v2.1.0 and want to upgrade to SSO v1.7.0 and PAS v2.2.x,
-you do the following:
+### <a id='upgrading-example'></a> Upgrade Path to SSO v1.7
 
-1. Upgrade to SSO v1.7.x on PAS v2.1.0, which is the recommended SSO version for PAS v2.1.0.
-1. Upgrade PAS to v2.2.x (newer PAS version).
-1. No further updgrade is needed because SSO is already at v1.7.x, which is the PAS v2.2.x supported SSO version.
+If you are using SSO v1.6.0 and PCF v2.1.0 and want to upgrade to SSO v1.7.0 and PCF v2.2.x,
+do the following:
 
+1. Upgrade to SSO v1.7.0 on PCF v2.1.x.
+1. Upgrade PCF to v2.2.x.
+
+    For how to upgrade PCF,
+    see [Upgrading Pivotal Cloud Foundry](https://docs.pivotal.io/pivotalcf/2-2/customizing/upgrading-pcf.html)
+
+[//]: # (Reveal this comment when SSO v1.6.1 releases <p class="note"><strong>Note:</strong>  In general, Pivotal recommends that you upgrade to the latest version of your current minor line, then upgrade to the latest available version of the new minor line.  For example, if you use v1.6.0, upgrade to v1.6.1 before upgrading to v1.7.0 version.  </p>)
 
 ## <a id='sso'></a> Useful Links
 
