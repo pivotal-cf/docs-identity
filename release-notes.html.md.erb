@@ -65,7 +65,9 @@ Operators can enable or disable this mode for any new or existing service plan.
 
 * **BOSH Backup and Restore Compatibility**: SSO now works with BOSH Backup and Restore (BBR).
   For more information, see [Backing Up and Restoring](backup-and-restore.html).
-
+  <p class="note warning"><strong>WARNING</strong>: 
+     BBR will introduce about a minute of downtime for application login during a backup operation on PCF 2.0. Starting with PCF v2.1 and later, there is no application downtime when performing a BBR backup.
+  </p>
 * **Availability of Performance Data**: Performance benchmarks, 
 metrics, and scaling indicators are now available.
   For more information, see [About Performance](performance.html). 
