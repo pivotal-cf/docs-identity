@@ -6,60 +6,24 @@ owner: Identity Service
 These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity) service for Pivotal Cloud Foundry (PCF).
 
 
-## <a id="170"></a> v1.7.0
+## <a id="170"></a> v1.8.0
 
-**Release Date: August 14, 2018**
+**Release Date: MONTH XX, 2018**
 
 ### <a id="features"></a> Features
 
 New features and changes in this release:
 
-* **Expanded API functionality for identity providers**: Operators can now use the API to configure additional features
-on identity providers that are not yet exposed through the SSO dashboard. SSO honors values configured through the
-API so that they are retained when using the SSO dashboard. 
-For more information, see the following sections of [Configuring Identity Providers with UAAC](configure-id-providers-api.html):
+* FIRST NEW FEATURE
 
-    <table>
-        <tr>
-            <th>To learn more about...</th>
-            <th>See...</th>
-        </tr>
-        <tr>
-            <td>Enabling Client Auth for OIDC</td>
-            <td>
-                <a href="configure-id-providers-api.html#enable-client-auth">Enable Client Auth for OIDC</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Skipping SSL validation for SAML</td>
-            <td>
-                <a href="configure-id-providers-api.html#skip-ssl-saml">Skip SSL validation for SAML</a>
-            </td>
-        </tr>
-    </table>
+* SECOND NEW FEATURE 
 
+### Security Fixes
 
-* **Expanded API functionality for clients and users**: Operators can now use the API to configure additional features on
-[Clients](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#clients)
-and [Users](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#users).
+This release includes the following security fixes:
 
-* **External service keys**: The SSO service broker now supports `cf create-service-key`. For more information, see
-  [Managing Service Keys](https://docs.cloudfoundry.org/devguide/services/service-keys.html)
-  and [Register an External App Using Service Keys](configure-apps/index.html#register-service-keys).
+* Critical [CVE-2018-XXXX: TITLE OF CVE](https://pivotal.io/security/cve-2018-XXXX)
 
-* **JSON bind parameters for client configuration**:
-  The SSO service broker now supports passing client configuration on the
-  command line for `cf bind-service`.
-  For more information, see [Configure SSO Properties with Bind Parameters](configure-apps/index.html#configure_bind_params).
-  This is the recommended approach for configuring clients bound to Cloud Foundry apps.
-
-* **Client redirect URI now supports custom schemes**: When configuring a client's redirect URIs, SSO now supports custom
-  URI schemes. A common use case is deep-linking for mobile apps.
-  For more information, see [Configuring apps](configure-apps/index.html).
-
-* **Single logout for all SSO dashboards with Pivotal Application Service (PAS)**:
-  Session state for logouts on SSO dashboards are now synchronized with your UAA session.
-  This is done using [uaa-singular](https://github.com/cloudfoundry/uaa-singular).
 
 ### <a id="known"></a> Known Issues
 There are no known issues for this release.
