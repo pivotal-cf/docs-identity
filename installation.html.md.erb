@@ -5,9 +5,10 @@ owner: Identity Service
 
 This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundry.
 
+
 ## <a id='pre-reqs'></a> Prerequisites
 
-* [Ops Manager](https://network.pivotal.io/products/ops-manager) v2.1, v2.2, or later
+* [Ops Manager](https://network.pivotal.io/products/ops-manager) v2.1 or later
 
 * [Pivotal Application Service](https://network.pivotal.io/products/elastic-runtime) v2.1 or v2.2
 
@@ -15,23 +16,23 @@ This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 * Application Security Groups
 
-## <a id='install'></a>Install SSO via Ops Manager
+
+## <a id='install'></a> Install SSO via Ops Manager
 
 1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select a **Single Sign-On** tile version and download the product release file.
 
-2. From the Ops Manager Installation Dashboard, select the **Import a Product** button to upload the product file.
+1. From the Ops Manager Installation Dashboard, select the **Import a Product** button to upload the product file.
 
-3. Click the plus sign icon next to the uploaded product to add this product to your staging area.
+1. Click the **+** icon next to the uploaded product to add this product to your staging area.
 
-4. Click on the **Single Sign-On** tile to enter any configurations.
+1. Click on the **Single Sign-On** tile to enter any configurations.
+	<p class="note"><strong>Note:</strong> The Single Sign-On service tile requires a network with only one subnet until v1.3.0. Starting with v1.3.1, multiple subnets are supported.</p>
+	<p class="note"><strong>Note:</strong> The SSO Identity Service Broker is deployed as a PCF application from a BOSH errand, and has no associated BOSH VMs that require selecting a corresponding network. If you are forced to select a network during installation, select the <strong>Deployment</strong> network, also known as the PAS or ERT network.</p>
 
-	<p class="note"><strong>Note</strong>: The Single Sign-On service tile requires a network with only one subnet until version 1.3.0. Starting with 1.3.1 multiple subnets are supported.</p>
+1. Click **Review Pending Changes**, then **Apply Changes** to install the product.
 
-	<p class="note"><strong>Note</strong>: The SSO Identity Service Broker is deployed as a PCF application from a BOSH errand, and has no associated BOSH VMs that require selecting a corresponding network. If you are forced to select a network during installation, select the <strong>Deployment</strong> network, also known as the PAS or ERT network.</p>
 
-5. Click **Apply Changes** to install the product.
-
-## <a id='update'></a>Update SSL and Load Balancer
+## <a id='update'></a> Update SSL and Load Balancer
 
 You must update the SSL certificate for the domains listed below for each plan you create. Depending on your infrastructure and load balancer, you must also update your load balancer configuration for the following domains:
 
@@ -43,7 +44,8 @@ You must update the SSL certificate for the domains listed below for each plan y
 
 * `*.uaa.SYSTEM-DOMAIN`
 
-## <a id='configure'></a>Configure Application Security Groups
+
+## <a id='configure'></a> Configure Application Security Groups
 
 The Single Sign-On service requires the following network connections:
 
