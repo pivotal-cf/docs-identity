@@ -6,17 +6,26 @@ owner: Identity Service
 These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity) service for Pivotal Cloud Foundry (PCF).
 
 
-## <a id="170"></a> v1.8.0
+## <a id="180"></a> v1.8.0
 
 **Release Date: MONTH XX, 2018**
 
 ### <a id="features"></a> Features
 
+<p class="note breaking"><strong>Breaking Change:</strong> The Single Sign-On v1.7.1 and later requires the Ubuntu Xenial stemcell due to end-of-support for the Ubuntu Trusty series.
+You must manually download and import Ubuntu 16.04 LTS (Xenial) stemcell into the Ops Manager Stemcell Library before deploying Single Sign-On v1.7.1
+This might break automation you have set up to update SSO deployments that used Trusty stemcells.
+To download the Xenial stemcell from Pivotal Network,
+go to <a href="https://network.pivotal.io/products/stemcells-ubuntu-xenial"> Stemcells for PCF (Ubuntu Xenial)</a>.</p>
+
 New features and changes in this release:
 
 * FIRST NEW FEATURE
 
-* SECOND NEW FEATURE 
+* SECOND NEW FEATURE
+
+* Updated PCF stemcell to 97.XX series (Ubuntu 16.04 Xenial). See the Breaking Change above.
+
 
 ### Security Fixes
 
@@ -25,8 +34,58 @@ This release includes the following security fixes:
 * Critical [CVE-2018-XXXX: TITLE OF CVE](https://pivotal.io/security/cve-2018-XXXX)
 
 
-### <a id="known"></a> Known Issues
-There are no known issues for this release.
+### <a id="180-known"></a> Known Issues
+
+Before you update or upgrade to SSO v1.8, if you are using BOSH add-on's for PCF,
+you must update the add-on definitions to include the Ubuntu Xenial 16.04 stemcell. For instructions, see [Update Add-ons to Run with Xenial Stemcell](./installation.html#update-addons).
+
+
+* **Expanded API functionality for identity providers**: Operators can now use the API to configure additional features
+on identity providers that are not yet exposed through the SSO dashboard. SSO honors values configured through the
+API so that they are retained when using the SSO dashboard.
+For more information, see the following sections of [Configuring Identity Providers with UAAC](configure-id-providers-api.html):
+
+    <table>
+        <tr>
+            <th>To learn more about...</th>
+            <th>See...</th>
+        </tr>
+        <tr>
+            <td>Enabling Client Auth for OIDC</td>
+            <td>
+                <a href="configure-id-providers-api.html#enable-client-auth">Enable Client Auth for OIDC</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Skipping SSL validation for SAML</td>
+            <td>
+                <a href="configure-id-providers-api.html#skip-ssl-saml">Skip SSL validation for SAML</a>
+            </td>
+        </tr>
+    </table>
+
+
+* **Expanded API functionality for clients and users**: Operators can now use the API to configure additional features on
+[Clients](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#clients)
+and [Users](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#users).
+
+* **External service keys**: The SSO service broker now supports `cf create-service-key`. For more information, see
+  [Managing Service Keys](https://docs.cloudfoundry.org/devguide/services/service-keys.html)
+  and [Register an External App Using Service Keys](configure-apps/index.html#register-service-keys).
+
+* **JSON bind parameters for client configuration**:
+  The SSO service broker now supports passing client configuration on the
+  command line for `cf bind-service`.
+  For more information, see [Configure SSO Properties with Bind Parameters](configure-apps/index.html#configure_bind_params).
+  This is the recommended approach for configuring clients bound to Cloud Foundry apps.
+
+* **Client redirect URI now supports custom schemes**: When configuring a client's redirect URIs, SSO now supports custom
+  URI schemes. A common use case is deep-linking for mobile apps.
+  For more information, see [Configuring apps](configure-apps/index.html).
+
+* **Single logout for all SSO dashboards with Pivotal Application Service (PAS)**:
+  Session state for logouts on SSO dashboards are now synchronized with your UAA session.
+  This is done using [uaa-singular](https://github.com/cloudfoundry/uaa-singular).
 
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version

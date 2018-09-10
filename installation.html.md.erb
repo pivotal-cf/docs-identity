@@ -19,6 +19,11 @@ This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 ## <a id='install'></a> Install SSO via Ops Manager
 
+<p class="note"><strong>Note:</strong> If you are upgrading to this version of SSO, you must update the definitions of any BOSH Add-On's for PCF you are using to include the Xenial stemcell.
+	See <a href="#update-addons">Update Add-ons to Run with Xenial Stemcell</a> below.</p>
+
+1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select a **Single Sign-On** tile version and download the product release file.
+
 1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select a **Single Sign-On** tile version and download the product release file.
 
 1. From the Ops Manager Installation Dashboard, select the **Import a Product** button to upload the product file.
@@ -32,7 +37,18 @@ This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundr
 1. Click **Review Pending Changes**, then **Apply Changes** to install the product.
 
 
-## <a id='update'></a> Update SSL and Load Balancer
+## <a id="stemcell"></a>Update Stemcell
+
+If required, do the following to update the stemcell for Redis for PCF:
+
+1. Download the stemcell from [Pivotal Network](https://network.pivotal.io/).
+1. In the Ops Manager, click **Stemcell Library**.
+1. Click **Import Stemcell**, and then select the stemcell you downloaded from Pivotal Network.
+
+    <br>![Stemcell Library](stemcell-library.png)
+1. Click **Save**.
+
+## <a id='update'></a>Update SSL and Load Balancer
 
 You must update the SSL certificate for the domains listed below for each plan you create. Depending on your infrastructure and load balancer, you must also update your load balancer configuration for the following domains:
 
@@ -54,3 +70,19 @@ The Single Sign-On service requires the following network connections:
 * (Optional) TCP connection to your external identity provider on port 80 or 443
 
 To enable access to the Single Sign-On service, you must ensure your Application Security Group allows access to the load balancer(s) and domain name servers that provide access to Cloud Controller and UAA. Optionally, you can configure access to your external identity provider to receive SAML metadata. For more details on how to set up application security groups, see [Understanding Application Security Groups](http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html).
+
+## <a id="update-addons"></a>Update Add-ons to Run with Xenial Stemcell
+
+SSO v1.7.1 and later requires a Xenial stemcell.
+If you are using any of the following BOSH add-ons with your PCF deployment,
+you must update the add-on definition to include the Xenial stemcell before you deploy SSO v1.7.1:
+
++ File Integrity Monitoring for PCF Add-on.
+  For update instructions,
+  see [Updating FIM Add-on for PCF to Run with Xenial Stemcells](https://docs.pivotal.io/addon-fim/updating-for-xenial.html).
++ ClamAV for PCF Add-on.
+  For update instructions,
+  see [Updating ClamAV Add-on for PCF to Run with Xenial Stemcells](https://docs.pivotal.io/addon-antivirus/updating-for-xenial.html).
++ IPsec for PCF Add-on.
+  For update instructions,
+  see [Updating IPsec Add-on for PCF to Run with Xenial Stemcells](https://docs.pivotal.io/addon-ipsec/updating-for-xenial.html).
