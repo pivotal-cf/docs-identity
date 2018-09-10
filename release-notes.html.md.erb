@@ -9,36 +9,37 @@ These are release notes for the [Single Sign-On](https://network.pivotal.io/prod
 
 **Release Date: September 6, 2018**
 
-#### <a id="171-features"></a> Features
+### <a id="171-features"></a> Features
+
+<p class="note breaking"><strong>Breaking Change:</strong> The Single Sign-On v1.7.1 and later requires the Ubuntu Xenial stemcell due to end-of-support for the Ubuntu Trusty series.
+You must manually download and import Ubuntu 16.04 LTS (Xenial) stemcell into the Ops Manager Stemcell Library before deploying Single Sign-On v1.7.1
+This might break automation you have set up to update SSO deployments that used Trusty stemcells.
+To download the Xenial stemcell from Pivotal Network,
+go to <a href="https://network.pivotal.io/products/stemcells-ubuntu-xenial"> Stemcells for PCF (Ubuntu Xenial)</a>.</p>
 
 New features and changes in this release:
 
-* Updated PCF stemcell to 97.XX series (Ubuntu 16.04 Xenial)
+* Updated PCF stemcell to 97.XX series (Ubuntu 16.04 Xenial). See the Breaking Change above.
 
 * Added compatibility for cflinuxfs3
 
-#### <a id="171-known"></a> Known Issues
-Due to end-of-support for Ubuntu 14.04 LTS (Trusty) stemcells in April 2019, Pivotal is releasing a breaking change to the SSO version 1.7.1 patch version release of this tile. With this patch update, the product tile requires the Ubuntu 16.04 LTS (Xenial) stemcell. Using supported stemcells is necessary to avoid exposure to security vulnerabilities. 
+### <a id="171-known"></a> Known Issues
 
-IMPORTANT: Before you update or upgrade this tile to version 1.7.1, if you are using any of the following PCF add-ons, you must update the add-on and its configuration to include the Ubuntu Xenial 16.04 stemcell. The following add-on versions support the Xenial stemcell:
-
-* ClamAV Add-on for PCF v1.2.22 and later. For information on how to update this add-on, see https://docs.pivotal.io/addon-antivirus/updating-for-xenial.html.
-* File Integrity Monitoring (FIM) Add-on for PCF v1.4.28 and later. For information on how to update this add-on, see https://docs.pivotal.io/addon-fim/updating-for-xenial.html.
-* IPSec Add-on for PCF v1.9.9 and later. For information on how to update this add-on, see https://docs.pivotal.io/addon-ipsec/updating-for-xenial.html.
-
+Before you update or upgrade to SSO v1.7.1, if you are using BOSH add-on's for PCF,
+you must update the add-on definitions to include the Ubuntu Xenial 16.04 stemcell. For instructions, see [Update Add-ons to Run with Xenial Stemcell](./installation.html#update-addons).
 
 
 ## <a id="170"></a> v1.7.0
 
 **Release Date: August 14, 2018**
 
-#### <a id="170-features"></a> Features
+### <a id="170-features"></a> Features
 
 New features and changes in this release:
 
 * **Expanded API functionality for identity providers**: Operators can now use the API to configure additional features
 on identity providers that are not yet exposed through the SSO dashboard. SSO honors values configured through the
-API so that they are retained when using the SSO dashboard. 
+API so that they are retained when using the SSO dashboard.
 For more information, see the following sections of [Configuring Identity Providers with UAAC](configure-id-providers-api.html):
 
     <table>
@@ -83,7 +84,7 @@ and [Users](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#users
   Session state for logouts on SSO dashboards are now synchronized with your UAA session.
   This is done using [uaa-singular](https://github.com/cloudfoundry/uaa-singular).
 
-#### <a id="170-known"></a> Known Issues
+### <a id="170-known"></a> Known Issues
 There are no known issues for this release.
 
 
