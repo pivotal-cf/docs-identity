@@ -3,7 +3,7 @@ title: Installing Single Sign-On
 owner: Identity Service
 ---
 
-This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundry.
+This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundry (PCF).
 
 ## <a id='pre-reqs'></a> Prerequisites
 
@@ -28,15 +28,17 @@ This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 4. Click on the **Single Sign-On** tile to enter any configurations.
 
-	<p class="note"><strong>Note</strong>: The Single Sign-On service tile requires a network with only one subnet until version 1.3.0. Starting with 1.3.1 multiple subnets are supported.</p>
-
-	<p class="note"><strong>Note</strong>: The SSO Identity Service Broker is deployed as a PCF application from a BOSH errand, and has no associated BOSH VMs that require selecting a corresponding network. If you are forced to select a network during installation, select the <strong>Deployment</strong> network, also known as the PAS or ERT network.</p>
+    <p class="note"><strong>Note</strong>: The SSO Identity Service Broker
+    is deployed as a PCF application from a BOSH errand, and has no associated BOSH
+    VMs that require selecting a corresponding network. If you are forced to select
+    a network during installation, select the <strong>Deployment</strong> network,
+    also known as the PAS network.</p>
 
 5. Click **Apply Changes** to install the product.
 
 ## <a id="stemcell"></a>Update Stemcell
 
-If required, do the following to update the stemcell for Redis for PCF:
+If required, do the following to update the stemcell for SSO:
 
 1. Download the stemcell from [Pivotal Network](https://network.pivotal.io/).
 1. In the Ops Manager, click **Stemcell Library**.
@@ -65,7 +67,13 @@ The Single Sign-On service requires the following network connections:
 * TCP and UDP connection to Domain Name Servers on port 53
 * (Optional) TCP connection to your external identity provider on port 80 or 443
 
-To enable access to the Single Sign-On service, you must ensure your Application Security Group allows access to the load balancer(s) and domain name servers that provide access to Cloud Controller and UAA. Optionally, you can configure access to your external identity provider to receive SAML metadata. For more details on how to set up application security groups, see [Understanding Application Security Groups](http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html).
+To enable access to the Single Sign-On service, you must ensure your
+Application Security Group allows access to the load balancer(s) and domain
+name servers that provide access to Cloud Controller and UAA. Optionally, you
+can configure access to your external identity provider to receive SAML
+metadata. For how to set up application security groups, see [Understanding
+Application Security
+Groups](http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html).
 
 ## <a id="update-addons"></a>Update Add-ons to Run with Xenial Stemcell
 
