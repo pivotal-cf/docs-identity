@@ -38,11 +38,11 @@ The following table provides version and version-support information about [Sing
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
-        <td>v2.1 and v2.2</td>
+        <td>v2.2 and v2.3</td>
     </tr>
     <tr>
         <td>Compatible Pivotal Application Service (PAS) version(s)</td>
-        <td>v2.1 and v2.2</td>
+        <td>v2.2 and v2.3</td>
     </tr>
     <tr>
         <td>IaaS support</td>
@@ -64,19 +64,24 @@ This table lists the supported versions of SSO on PCF.
   <th>Minimum SSO Version</th>
 </tr>
   <tr>
-    <th rowspan="1">2.2.x</th>
+    <th rowspan="1">2.3.x</th>
+    <td>1.7.1</td>
     <td>1.7.0</td>
+  </tr>
+  <tr>
+    <th rowspan="1">2.2.x</th>
+    <td>1.7.1</td>
     <td>1.7.0</td>
   </tr>
   <tr>
     <th rowspan="1">2.1.x</th>
-    <td>1.7.0</td>
+    <td>1.7.0*></td>
     <td>1.6.0</td>
   </tr>
   <tr>
     <th rowspan="1">2.0.x</th>
     <td>1.6.0</td>
-    <td>1.5.3*</td>
+    <td>1.5.3**</td>
   </tr>
   <tr>
     <th rowspan="1">1.12.x</th>
@@ -90,8 +95,9 @@ This table lists the supported versions of SSO on PCF.
   </tr>
 </table>
 
+\* Currently 1.7.1+ is not supported on PCF 2.1.
 
-\* If you are upgrading from PCF v1.12 to v2.0, see the knowledge base article
+\** If you are upgrading from PCF v1.12 to v2.0, see the knowledge base article
 [Upgrade SSO Service Tile Between PCF 1.12 and PCF 2.0](https://community.pivotal.io/s/article/Upgrade-SSO-Service-Tile-Between-PCF-112-and-PCF-20).
 
 ### <a id='upgrading-example'></a> Upgrade Path to SSO v1.7
