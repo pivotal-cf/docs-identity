@@ -153,15 +153,54 @@ under the scope section.
 
 This section shows how to use the UAAC to update UAA identity zone configurations, using a `PUT` command. 
 
-<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only. You must always run the <code>PUT</code> command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command. You must also provide all configuration values, otherwise, data may be lost.</p>
+<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only. You must 
+  always run the <code>PUT</code> command with the latest data by doing a <code>GET</code> before 
+  a <code>PUT</code> command. You must also provide all configuration values, otherwise, 
+  data may be lost.</p>
 
 For general information about UAA API, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
 
-To do UAA identity zone API calls: 
+To make UAA identity provider API calls:
 
-1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating) above.
+1. Fetch a token using the identity zone admin client created above.
 
-2. Use UAAC to retrieve the information for the identity zone you want to change. <br><br>
+  1. Target the authdomain specified in your Service Plan. For example:
+
+        <pre class="terminal">
+        $ uaac target my-auth-doman.login.example.com
+        </pre>
+  1. Obtain an access token using this command: 
+
+        ```
+        uaac token client get ZONE-ADMIN-CLIENT-ID
+        ```
+        Where:
+        * `ZONE-ADMIN-CLIENT-ID` is **App ID** you recorded in the procedure above. <!--Make sure you record -->
+
+1. When prompted for the client secret, provide the **App Secret** you recorded in the procedure above.
+
+<!-- 1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating) above. -->
+
+1. Retrieve the information for the identity zone you want to change, using one of the commands below: <br>
+  * If you know your identity zone ID, use it in the following command, directing the output to a text file.
+    For example:
+
+        <pre class="terminal">
+        $ uaac curl -k /identity-zones/YOUR-ZONE-ID > file.txt
+        </pre>
+  * If you do not know your identity zone ID, use the following command, directing the output to a text file.
+    For example:
+
+        <pre class="terminal">
+        $ uaac curl -k /identity-zones > file.txt
+        </pre>
+
+        Scan `file.txt` to determine your identity zone ID.
+        
+        In most cases, this command returns one identity zone, but if there are several, 
+        you can identify your identity zone by the `subdomain` name or `description` in the array returned.
+
+<!-- 2. Use UAAC to retrieve the information for the identity zone you want to change. <br><br>
   * If you know your identity zone ID, use the following command:
 
         ```
@@ -171,12 +210,156 @@ To do UAA identity zone API calls:
 
         ```
         uaac curl -k /identity-zones > FILENAME.txt
-        ``` 
+        ```  
 
         In most cases, this returns one identity zone, but if there are several, 
-        you can identify your identity zone by the `subdomain` name or `description` in the array returned.
+        you can identify your identity zone by the `subdomain` name or `description` in the array returned. -->
 
-3. In the array returned from the previous command, delete the header information and array wrapper, 
+<!-- Q: Is the example below a value add. V long. Does the output change depending on if you include
+ YOUR-ZONE-ID or not? -->
+3. In the array returned from the above command, delete the header information and array wrapper, 
+and leave the JSON blob. Your remaining JSON blob looks similar to the sample below. 
+Your identity zone ID is at the top in the `id` line.
+
+```
+ {
+  "id": "baf7814b-94ab-4011-a3df-6b34625167b8",
+  "subdomain": "demo",
+  "config": {
+    "clientSecretPolicy": {
+      "minLength": -1,
+      "maxLength": -1,
+      "requireUpperCaseCharacter": -1,
+      "requireLowerCaseCharacter": -1,
+      "requireDigit": -1,
+      "requireSpecialCharacter": -1
+    },
+    "tokenPolicy": {
+      "accessTokenValidity": -1,
+      "refreshTokenValidity": -1,
+      "jwtRevocable": false,
+      "refreshTokenUnique": false,
+      "refreshTokenFormat": "jwt",
+      "activeKeyId": null
+    },
+    "samlConfig": {
+      "assertionSigned": true,
+      "requestSigned": true,
+      "wantAssertionSigned": true,
+      "wantAuthnRequestSigned": false,
+      "assertionTimeToLiveSeconds": 600,
+      "keys": {
+      },
+      "disableInResponseToCheck": false
+    },
+    "corsPolicy": {
+      "xhrConfiguration": {
+        "allowedOrigins": [
+          ".*"
+        ],
+        "allowedOriginPatterns": [
+
+        ],
+        "allowedUris": [
+          ".*"
+        ],
+        "allowedUriPatterns": [
+
+        ],
+        "allowedHeaders": [
+          "Accept",
+          "Authorization",
+          "Content-Type"
+        ],
+        "allowedMethods": [
+          "GET"
+        ],
+        "allowedCredentials": false,
+        "maxAge": 1728000
+      },
+      "defaultConfiguration": {
+        "allowedOrigins": [
+          ".*"
+        ],
+        "allowedOriginPatterns": [
+
+        ],
+        "allowedUris": [
+          ".*"
+        ],
+        "allowedUriPatterns": [
+
+        ],
+        "allowedHeaders": [
+          "Accept",
+          "Authorization",
+          "Content-Type"
+        ],
+        "allowedMethods": [
+          "GET"
+        ],
+        "allowedCredentials": false,
+        "maxAge": 1728000
+      }
+    },
+    "links": {
+      "logout": {
+        "redirectUrl": "/login",
+        "redirectParameterName": "redirect",
+        "disableRedirectParameter": false,
+        "whitelist": null
+      },
+      "selfService": {
+        "selfServiceLinksEnabled": true,
+        "signup": null,
+        "passwd": null
+      }
+    },
+    "prompts": [
+      {
+        "name": "username",
+        "type": "text",
+        "text": "Email"
+      },
+      {
+        "name": "password",
+        "type": "password",
+        "text": "Password"
+      },
+      {
+        "name": "passcode",
+        "type": "password",
+        "text": "One Time Code (Get on at /passcode)"
+      }
+    ],
+    "idpDiscoveryEnabled": false,
+    "accountChooserEnabled": false,
+    "userConfig": {
+      "defaultGroups": [
+        "openid",
+        "password.write",
+        "uaa.user",
+        "approvals.me",
+        "profile",
+        "roles",
+        "user_attributes",
+        "uaa.offline_token"
+      ]
+    },
+    "mfaConfig": {
+      "enabled": false
+    }
+  },
+  "name": "demo",
+  "version": 2,
+  "description": "{\"plan_display_name\":\"demo\",\"plan_description\":\"Demo Service Plan\"}",
+  "created": 1510116389000,
+  "last_modified": 1519859509000
+}
+
+```
+
+<!-- 3. In the array returned from the previous command, delete the header information and array wrapper, 
 and leave the JSON blob. Your remaining JSON blob looks similar to the sample below. 
 Your identity zone ID is at the top in the `id` line.
 
@@ -316,14 +499,55 @@ Your identity zone ID is at the top in the `id` line.
     "last_modified": 1519859509000
   }
 
-	```
+	``` -->
 
-4. Update the configurations in the JSON blob as needed.
+4. In your `file.txt`, update the configurations in the JSON blob as needed, and then save the file.
+  <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values, otherwise,
+    data can be lost when doing an API update as a <code>PUT</code> command.</p>
+
+<!-- 4. Update the configurations in the JSON blob as needed.
   <p class="note warning"><strong>WARNING</strong>: You must provide all configuration values, otherwise, 
-    data may be lost when doing an API update as a <code>PUT</code> command.</p> 
-    
+    data may be lost when doing an API update as a <code>PUT</code> command.</p>  -->
+
 
 5. Submit a UAAC curl request to apply your updated configurations to the identity zone. Examples are shown below.
+    <p class="note warning"><strong>WARNING</strong>: You must always run this command
+      with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
+
+    <pre class="terminal">
+    $ uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d "$(cat file.txt)"
+    </pre>
+
+    <!-- Q: Does the below example apply?-->
+     A minimal example command would look similar to the following:
+
+     <pre class="terminal">$ uaac curl -k identity-zones/YOUR-ZONE-ID \
+         -X PUT \
+         -H 'Content-Type: application/json' \
+         -d '{
+             "type": "uaa",
+             "config": {
+                 "emailDomain": null,
+                 "providerDescription": null,
+                 "passwordPolicy": null,
+                 "lockoutPolicy": {
+                     "lockoutPeriodSeconds": 8,
+                     "lockoutAfterFailures": 8,
+                     "countFailuresWithin": 8
+                 },
+                 "disableInternalUserManagement": false
+             },
+             "originKey": "uaa",
+             "name": "uaa",
+             "version": 3,
+             "active": true
+             }'
+     </pre>
+
+   For a full list of UAA API update parameters,
+   see the [Identity Providers Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#update).    
+
+<!-- 5. Submit a UAAC curl request to apply your updated configurations to the identity zone. Examples are shown below.
     <p class="note warning"><strong>WARNING</strong>: You must always run this command
       with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
@@ -336,7 +560,8 @@ Your identity zone ID is at the top in the `id` line.
 
     ```
     uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d "$(cat FILENAME.txt)"
-    ```
+    ``` -->
+
 
 ## <a id="branding"></a> Modify Branding
 
@@ -485,5 +710,3 @@ according to the [UAA API documentation](http://docs.cloudfoundry.org/api/uaa/).
     }
     ```
   <br>To disable MFA set `enable` to `false`.
-
-
