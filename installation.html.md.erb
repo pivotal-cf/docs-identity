@@ -15,18 +15,24 @@ This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 * Application Security Groups
 
-## <a id='install'></a>Install SSO via Ops Manager
+
+## <a id='install'></a> Install SSO via Ops Manager
 
 <p class="note"><strong>Note:</strong> If you are upgrading to this version of SSO, you must update the definitions of any BOSH Add-On's for PCF you are using to include the Xenial stemcell.
 	See <a href="#update-addons">Update Add-ons to Run with Xenial Stemcell</a> below.</p>
 
 1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select a **Single Sign-On** tile version and download the product release file.
 
-2. From the Ops Manager Installation Dashboard, select the **Import a Product** button to upload the product file.
+<p class="note"><strong>Note:</strong> If you are upgrading to this version of SSO, you must update the definitions of any BOSH Add-On's for PCF you are using to include the Xenial stemcell.
+	See <a href="#update-addons">Update Add-ons to Run with Xenial Stemcell</a> below.</p>
 
-3. Click the plus sign icon next to the uploaded product to add this product to your staging area.
+1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select a **Single Sign-On** tile version and download the product release file.
 
-4. Click on the **Single Sign-On** tile to enter any configurations.
+1. From the Ops Manager Installation Dashboard, select the **Import a Product** button to upload the product file.
+
+1. Click the **+** icon next to the uploaded product to add this product to your staging area.
+
+1. Click on the **Single Sign-On** tile to enter any configurations.
 
     <p class="note"><strong>Note</strong>: The SSO Identity Service Broker
     is deployed as a PCF application from a BOSH errand, and has no associated BOSH
@@ -64,7 +70,8 @@ You must update the SSL certificate for the domains listed below for each plan y
 
 * `*.uaa.SYSTEM-DOMAIN`
 
-## <a id='configure'></a>Configure Application Security Groups
+
+## <a id='configure'></a> Configure Application Security Groups
 
 The Single Sign-On service requires the following network connections:
 

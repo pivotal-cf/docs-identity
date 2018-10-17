@@ -33,72 +33,82 @@ For general information about UAAC, see the [CF UAA API documentation page](http
 
 To make UAA identity provider API calls:
 
-1. Fetch a token using the identity zone admin client created above.
+1. Fetch a token using the identity zone admin client created from [Create a UAA Identity Zone Admin Client](#creating) above.
 
-  1. Target the authdomain specified in your Service Plan. For example:
+1. Target the authdomain specified in your Service Plan.   
+    For example:
 
-        <pre class="terminal">
-        $ uaac target my-auth-doman.login.example.com
-        </pre>
-  1. Obtain an access token using this command: 
+    ```
+    uaac target my-auth-doman.login.example.com
+    ```
+1. Obtain an access token using this command: 
 
-        ```
-        uaac token client get ZONE-ADMIN-CLIENT-ID
-        ```
-        Where:
-        * `ZONE-ADMIN-CLIENT-ID` is **App ID** you recorded in the procedure above.
+    ```
+    uaac token client get ZONE-ADMIN-CLIENT-ID
+    ```
+    Where:
+      * `ZONE-ADMIN-CLIENT-ID` is the `MY-APP-ID` you recorded in the procedure above.
 
 1. When prompted for the client secret, provide the **App Secret** you recorded in the procedure above.
 
-2. Retrieve the information for the identity provider you want to change, using one of the commands below: <br>
-  * If you know your identity provider ID, use it in the following command, directing the output to a text file.
-    For example:
+2. (Optional) If you do not know your identity provider ID, to retrieve it, use the command below: <br>
 
-        <pre class="terminal">
-        $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID > file.txt
-        </pre>
-  * If you do not know your identity provider ID, use the following command, directing the output to a text file.
-    For example:
+    ```
+    uaac curl -k /identity-providers > file.txt
+    ```
+    Your identity provider ID is the value of `id`. In most cases, this command returns one 
+    identity provider. If there are several, you can identify your identity provider by the `name`.
+        
+1. Run the following command, directing the output to a text file:
 
-        <pre class="terminal">
-        $ uaac curl -k /identity-providers > file.txt
-        </pre>
+    ```
+    uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID > TEXT-FILE.txt
+    ```
+    
+    Where:
+      * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
+      * `TEXT-FILE.txt` is the name of your text file.
 
-        Scan `file.txt` to determine your identity provider ID.
-
-3. The step above outputs a JSON blob similar
+3. The command above outputs a JSON blob similar
 to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-PROVIDER-ID`.
 
-	```
+	<pre>
 	{
       "type": "uaa",
-      "config": "{\"emailDomain\":null,\"additionalConfiguration\":null,\"providerDescription\":null,\"passwordPolicy\":null,\"lockoutPolicy\":null,\"disableInternalUserManagement\":false}",
-      "id": "YOUR-IDENTITY-PROVIDER-ID",
+      "config": "{"emailDomain\":null,
+      \"additionalConfiguration\":null,
+      \"providerDescription\":null,
+      \"passwordPolicy\":null,
+      \"lockoutPolicy\":null,
+      \"disableInternalUserManagement\":false}",
+      "id": "b38dfbbc-f187-4eeb-a3f3-21a3c72c6975",
       "originKey": "uaa",
       "name": "uaa",
       "version": 0,
       "created": 1530220213000,
       "last_modified": 1530220213000,
       "active": true,
-      "identityZoneId": "234b8106-acc5-41e9-8c7d-9cdc68c8f123"
+      "identityZoneId": "uaa"
     }
-	```
+	</pre>
 
-4. In your `file.txt`, update the configurations in the JSON blob as needed, and then save the file.
+4. In your `TEXT-FILE.txt`, update the configurations in the JSON blob as needed, and then save the file.
   <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values, otherwise,
     data can be lost when doing an API update as a <code>PUT</code> command.</p>
 
-5. Submit a UAAC curl request to apply your updated configurations to the identity provider. Examples are shown below.
-    <p class="note warning"><strong>WARNING</strong>: You must always run this command
-      with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
+5. Submit a UAAC curl request to apply your updated configurations to the identity provider, as shown below.
+    <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
-    <pre class="terminal">
-    $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT -H 'Content-Type: application/json' -d "$(cat file.txt)"
-    </pre>
-
+    ```
+    $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT 
+    \-H 'Content-Type: application/json' -d "$(cat file.txt)"
+    ```
+    Where:
+    * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
+    
      A minimal example command would look similar to the following:
 
-     <pre class="terminal">$ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID \
+     <pre class="terminal">$ uaac curl -k /identity-providers/b38dfbbc-f187-4eeb-a3f3-21a3c72c6975\
          -X PUT \
          -H 'Content-Type: application/json' \
          -d '{
@@ -116,7 +126,7 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
              },
              "originKey": "uaa",
              "name": "uaa",
-             "version": 3,
+             "version": 0,
              "active": true
              }'
      </pre>
