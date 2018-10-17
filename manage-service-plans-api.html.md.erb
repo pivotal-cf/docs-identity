@@ -1,18 +1,18 @@
 ---
-title: Managing Service Plans with UAA API
+title: Updating Service Plans with UAAC
 owner: Identity Service
 ---
 
 This topic describes how Pivotal Cloud Foundry (PCF) administrators manage Single Sign-On (SSO) 
-service plans.
+service plans using the User Account and Authentication Command Line Interface (UAAC)
 
 The SSO service for PCF manages configurations within 
-the User Account and Authentication (UAA) and the Cloud Controller (CC) components 
+the UAA and the Cloud Controller (CC) components 
 of the Pivotal Application Service (formerly Elastic Runtime). 
 Each SSO service plan ties together a CC plan and a UAA identity zone. 
 
-Beginning with SSO v1.6, you can use the UAA API to manage UAA identity zones
-configured as part of SSO service plans.
+Beginning with SSO v1.6, you can use the UAAC
+to manage UAA identity zones configured as part of SSO service plans.
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
 
@@ -21,7 +21,8 @@ To use the UAA identity zone APIs for your SSO service plan, you need a special 
 ### Prerequisites
 
 * Create an admin client as described
-in <a href="./configure-apps/index.html#admin">Create Admin Client</a>, and give this client `clients.admin` permission. 
+in [Create a UAA Identity Zone Admin Client](./manage-clients-api.html#creating), 
+and give this client `clients.admin` permission.
 * Record the app ID and app secret provided when you create the above 
 admin client, to use when creating the UAA identity zone admin client.
 
@@ -29,7 +30,7 @@ admin client, to use when creating the UAA identity zone admin client.
 
 To create a UAA identity zone admin client, do the following:
 
-1. Install the UAA CLI (UAAC) as follows:
+1. Install the UAAC as follows:
 
     ```
     gem install cf-uaac
@@ -38,7 +39,7 @@ To create a UAA identity zone admin client, do the following:
     For information about the UAAC,
     see [the UAAC Github Repository](https://github.com/cloudfoundry/cf-uaac).
 
-2. Use the UAAC to target your service plan:
+1. Use the UAAC to target your service plan:
 
     ```
     uaac target MY-AUTH-DOMAIN.login.example.com
@@ -47,7 +48,7 @@ To create a UAA identity zone admin client, do the following:
     Where:<br>
     `MY-AUTH-DOMAIN` is the **Auth Domain** you entered when you created the <a href="./manage-service-plans.html#create-svc-plan">Service Plan</a>.
 
-3. Run the command below to authenticate and obtain 
+1. Run the command below to authenticate and obtain 
 an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.
 
 
@@ -63,7 +64,7 @@ an access token for the admin client for your service plan. UAAC stores the toke
  <a href="./configure-apps/index.html#admin">Admin Client</a>  with `clients.admin` permission.
 
  
-4. Run the following command to display your client context and verify that you have `clients.admin` 
+1. Run the following command to display your client context and verify that you have `clients.admin` 
 under the scope section.
 
     ``` 
@@ -82,7 +83,7 @@ under the scope section.
         jti: 91b3-abcd1233
     </pre>
 
-5. Run the following command to create an identity zone admin client. <br><br>
+1. Run the following command to create an identity zone admin client. <br><br>
 
     When prompted for a `New client secret`, provide a client secret for this 
     identity zone admin client.
@@ -108,7 +109,7 @@ under the scope section.
 
     You can delete the original admin client created via the SSO UI after you create the identity zone client.
 
-6. Run the following command to authenticate and obtain an access token for the 
+1. Run the following command to authenticate and obtain an access token for the 
 identity zone admin client for your service plan. <br><br>
 
     When prompted for a `Client secret`, use the client secret you provided in the previous step.
@@ -127,7 +128,7 @@ identity zone admin client for your service plan. <br><br>
     </pre>
 
 
-7. Use the following command to display your client context and verify that you have `uaa.admin` 
+1. Use the following command to display your client context and verify that you have `uaa.admin` 
 under the scope section. 
 
     ``` 
@@ -150,194 +151,126 @@ under the scope section.
 	
 ## <a id="updating"></a> Update UAA Identity Zone Configurations with the API 
 
-This section shows how to use the UAA API to update UAA identity zone configurations, using a `PUT` command. 
-
-<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only. You must always run the <code>PUT</code> command
+This section shows how to use the UAAC to update UAA identity zone configurations, using a `PUT` command. 
+<p class="note warning"><strong>WARNING:</strong> This flow is for advanced users only. 
+  You must always run the <code>PUT</code> command 
   with the latest data by doing a <code>GET</code> before a <code>PUT</code> command. 
-  You must also provide all configuration values, otherwise, data may be lost.</p>
+  You must also provide all configuration values, otherwise, data may be lost.</p> 
 
-For general information about UAA API, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
+For general information about UAA API, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).      
 
-To do UAA identity zone API calls: 
+To make UAA identity zone API calls:
 
-1. Log in to the identity zone admin client that you set up in [Create a UAA Identity Zone Admin Client](#creating) above.
+1. Fetch a token using the identity zone admin client from [Create a UAA Identity Zone Admin Client](#creating) above.
 
-2. Use UAAC to retrieve the information for the identity zone you want to change. <br><br>
-  * If you know your identity zone ID, use the following command:
+1. Target the auth domain specified in your Service Plan.   
+    For example:
 
-        ```
-        uaac curl -k /identity-zones/YOUR-ZONE-ID > FILENAME.txt
-        ```
-  * If you do not know your identity zone ID, use the following command:
+    ```
+    uaac target my-auth-doman.login.example.com
+    ```
+    
+1. Obtain an access token using this command: 
 
-        ```
-        uaac curl -k /identity-zones > FILENAME.txt
-        ``` 
+    ```
+    uaac token client get ZONE-ADMIN-CLIENT-ID
+    ```
+    Where:
+      * `ZONE-ADMIN-CLIENT-ID` is the `MY-APP-ID` you recorded in the procedure above. 
 
-        In most cases, this returns one identity zone, but if there are several, 
-        you can identify your identity zone by the `subdomain` name or `description` in the array returned.
+1. When prompted for the client secret, provide the `MY-APP-SECRET` you recorded in the procedure above.
 
-3. In the array returned from the previous command, delete the header information and array wrapper, 
-and leave the JSON blob. Your remaining JSON blob looks similar to the sample below. 
-Your identity zone ID is at the top in the `id` line.
+1. (Optional) If you do not know your identity zone ID to retrieve it, use the command below:  
+  
+    ```
+    uaac curl -k /identity-zones > file.txt
+    ```  
+    Your identity zone ID is the value of `id`. In most cases, this command returns one 
+    identity zone. If there are several, you can determine your identity zone by the 
+    `subdomain` and `description`.
+      
+1. Run the following command, directing the output to a text file: 
+    
+    ```
+    uaac curl -k /identity-zones/YOUR-ZONE-ID > TEXT-FILE.txt
+    ```
+    
+    Where: 
+      * `YOUR-ZONE-ID` is your identity zone ID.
+      * `TEXT-FILE.txt` is the name of your text file.
 
-	```
-	 {
-    "id": "baf7814b-94ab-4011-a3df-6b34625167b8",
-    "subdomain": "demo",
-    "config": {
-      "clientSecretPolicy": {
+1. In the array returned from the above command, delete the header information and array wrapper, 
+leaving just the JSON blob. Confirm that the ID in this output matches `YOUR-ZONE-ID`.<br><br>
+
+    Your remaining JSON blob looks similar to the truncated sample below:
+
+    <pre>
+      {
+      "id": "baf7814b-94ab-4011-a3df-6b34625167b8",
+      "subdomain": "demo",
+      "config": {
+        "clientSecretPolicy": {
         "minLength": -1,
         "maxLength": -1,
         "requireUpperCaseCharacter": -1,
         "requireLowerCaseCharacter": -1,
         "requireDigit": -1,
         "requireSpecialCharacter": -1
-      },
-      "tokenPolicy": {
-        "accessTokenValidity": -1,
-        "refreshTokenValidity": -1,
-        "jwtRevocable": false,
-        "refreshTokenUnique": false,
-        "refreshTokenFormat": "jwt",
-        "activeKeyId": null
-      },
-      "samlConfig": {
-        "assertionSigned": true,
-        "requestSigned": true,
-        "wantAssertionSigned": true,
-        "wantAuthnRequestSigned": false,
-        "assertionTimeToLiveSeconds": 600,
-        "keys": {
         },
-        "disableInResponseToCheck": false
+        ...
       },
-      "corsPolicy": {
-        "xhrConfiguration": {
-          "allowedOrigins": [
-            ".*"
-          ],
-          "allowedOriginPatterns": [
-
-          ],
-          "allowedUris": [
-            ".*"
-          ],
-          "allowedUriPatterns": [
-
-          ],
-          "allowedHeaders": [
-            "Accept",
-            "Authorization",
-            "Content-Type"
-          ],
-          "allowedMethods": [
-            "GET"
-          ],
-          "allowedCredentials": false,
-          "maxAge": 1728000
-        },
-        "defaultConfiguration": {
-          "allowedOrigins": [
-            ".*"
-          ],
-          "allowedOriginPatterns": [
-
-          ],
-          "allowedUris": [
-            ".*"
-          ],
-          "allowedUriPatterns": [
-
-          ],
-          "allowedHeaders": [
-            "Accept",
-            "Authorization",
-            "Content-Type"
-          ],
-          "allowedMethods": [
-            "GET"
-          ],
-          "allowedCredentials": false,
-          "maxAge": 1728000
-        }
-      },
-      "links": {
-        "logout": {
-          "redirectUrl": "/login",
-          "redirectParameterName": "redirect",
-          "disableRedirectParameter": false,
-          "whitelist": null
-        },
-        "selfService": {
-          "selfServiceLinksEnabled": true,
-          "signup": null,
-          "passwd": null
-        }
-      },
-      "prompts": [
-        {
-          "name": "username",
-          "type": "text",
-          "text": "Email"
-        },
-        {
-          "name": "password",
-          "type": "password",
-          "text": "Password"
-        },
-        {
-          "name": "passcode",
-          "type": "password",
-          "text": "One Time Code (Get on at /passcode)"
-        }
-      ],
-      "idpDiscoveryEnabled": false,
-      "accountChooserEnabled": false,
-      "userConfig": {
-        "defaultGroups": [
-          "openid",
-          "password.write",
-          "uaa.user",
-          "approvals.me",
-          "profile",
-          "roles",
-          "user_attributes",
-          "uaa.offline_token"
-        ]
-      },
-      "mfaConfig": {
-        "enabled": false
+      "name": "demo",
+      "version": 2,
+      "description": "{\"plan_display_name\":\"demo\",
+      \"plan_description\":\"Demo Service Plan\"}",
+      "created": 1510116389000,
+      "last_modified": 1519859509000
       }
-    },
-    "name": "demo",
-    "version": 2,
-    "description": "{\"plan_display_name\":\"demo\",\"plan_description\":\"Demo Service Plan\"}",
-    "created": 1510116389000,
-    "last_modified": 1519859509000
-  }
+    </pre>
 
-	```
+1. In your `TEXT-FILE.txt`, update the configurations in the JSON blob as needed, and then save the file.
+  <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values, 
+    otherwise, data can be lost when doing an API update as a <code>PUT</code> command.</p>
 
-4. Update the configurations in the JSON blob as needed.
-  <p class="note warning"><strong>WARNING</strong>: You must provide all configuration values, otherwise, 
-    data may be lost when doing an API update as a <code>PUT</code> command.</p> 
-    
-
-5. Submit a UAAC curl request to apply your updated configurations to the identity zone. Examples are shown below.
-    <p class="note warning"><strong>WARNING</strong>: You must always run this command
-      with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
+1. Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
+    <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
     ```
-    uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d '{JSON HERE}'
+    uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT 
+    \-H 'Content-Type: application/json' -d "$(cat file.txt)"
     ```
+    Where: 
+      * `YOUR-ZONE-ID` is your identity zone ID.
 
-    You can compact the JSON to avoid issues with line spacing when using a command line,
-  	or pass in the file. For example:
+     A truncated example command would look similar to the following:
 
-    ```
-    uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT -H 'Content-Type: application/json' -d "$(cat FILENAME.txt)"
-    ```
+     <pre class="terminal">$ uaac curl -k identity-zones/baf7814b-94ab-4011-a3df-6b34625167b8 \
+         -X PUT \
+         -H 'Content-Type: application/json' \
+         -d '{
+              "subdomain": "demo",
+              "config": {
+                "clientSecretPolicy": {
+                  "minLength": 0,
+                  "maxLength": 255,
+                  "requireUpperCaseCharacter": 0,
+                  "requireLowerCaseCharacter": 0,
+                  "requireDigit": 0,
+                  "requireSpecialCharacter": 0
+               },
+               ...
+             },
+             "name": "demo",
+             "version": 0,
+             "description": "{\"plan\_display\_name\":\"demo\",
+             \"plan\_description\":\"Demo Service Plan\"}",
+             "created" : 1529690485998,
+             "last_modified" : 1529690485998
+           }
+     </pre>
+
+   For a full list of UAA API update parameters,
+   see the [Identity Zones Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone).    
 
 ## <a id="branding"></a> Modify Branding
 
@@ -349,8 +282,7 @@ add or modify the branding section according to the [UAA API documentation](http
 
 An example branding section is shown below. 
 
-<p class="note"><strong>Note</strong>: All values are optional.
-   You can also generate the base64 text of your PNG images using commands, such as <code>base64 image.png</code>.</p>
+<p class="note"><strong>Note</strong>: All values are optional. You can also generate the base64 text of your PNG images using commands, such as <code>base64 image.png</code>.</p>
 
 ```
 "branding": {
@@ -448,10 +380,10 @@ update the token policy section to add your new generated private key as the val
 
 ## <a id="enable-authentication"></a> Enable Multi-Factor Authentications (Beta)
 
-  <p class="note warning"><strong>WARNING</strong>:
-     Multi-factor authentication is a beta feature for PCF v2.1.
-     Do not use multi-factor authentication in a PCF production environment for PCF v2.1.
-  </p>
+<p class="note warning"><strong>WARNING:</strong>
+    Multi-factor authentication is a beta feature for PCF v2.2.
+    Do not use multi-factor authentication in a production environment for PCF v2.2.
+</p>
 
 You can enable multi-factor authentication (MFA) via Google Authenticator, available on the Apple Store or Android Play,
 for all users logging in to your service plan.
@@ -487,5 +419,3 @@ according to the [UAA API documentation](http://docs.cloudfoundry.org/api/uaa/).
     }
     ```
   <br>To disable MFA set `enable` to `false`.
-
-
