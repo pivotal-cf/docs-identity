@@ -8,17 +8,7 @@ using the User Account and Authentication Command Line Interface (UAAC).
 For instructions on configuring identity providers, see [Configuring Identity Providers](./configure-id-providers.html).
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
-
-To use the UAA identity provider API for your SSO service plan, you need a special identity zone admin client.
-
-1. Create a UAA identity zone admin client.
-
-    <br>For instructions, see [Create a UAA Identity Zone Admin Client](./manage-clients-api.html#creating).
-
-2. Using the instructions above, give this client the `idps.read` and `idps.write` scopes.
-
-3. Record the **App ID** and **App Secret**. You need these for the procedure below.
-
+<%= partial 'create_zone_admin' %>
 
 ## <a id="updating"></a> Update UAA Identity Provider Configurations with the API
 
@@ -31,44 +21,49 @@ This section shows how to use the UAAC to update UAA identity provider configura
 
 For general information about UAAC, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
 
-To make UAA identity provider API calls:
+To make UAA identity provider API calls, do the following:
 
-1. Fetch a token using the identity zone admin client created from [Create a UAA Identity Zone Admin Client](#creating) above.
+1. Create an identity zone admin client following [Create a UAA Identity Zone Admin Client](#creating) above.
 
-1. Target the authdomain specified in your Service Plan.   
-    For example:
-
-    ```
-    uaac target my-auth-doman.login.example.com
-    ```
-1. Obtain an access token using this command: 
+1. To retrieve your identity provider id, run the following command: <br>
 
     ```
-    uaac token client get ZONE-ADMIN-CLIENT-ID
+    uaac curl -k /identity-providers > ID-TEXT.txt
     ```
     Where:
-      * `ZONE-ADMIN-CLIENT-ID` is the `MY-APP-ID` you recorded in the procedure above.
+      * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
+      * `ID-TEXT.txt` is the name of your text file.
+      
+    The command above outputs a JSON blob similar to the example below.
 
-1. When prompted for the client secret, provide the **App Secret** you recorded in the procedure above.
+    <pre>
+      {
+        "type" : "uaa",
+        "config" : "null",
+        "id" : "4be9d903-b6ce-4a57-9c56-94e731b58628",
+        "originKey" : "uaa",
+        "name" : "uaa",
+        "version" : 3,
+        "created" : 946684800000,
+        "last_modified" : 1538589026045,
+        "active" : true,
+        "identityZoneId" : "uaa"
+      } 
+    </pre>
+      
+Your identity provider ID is the value of `id`. In most cases, this command returns one 
+identity provider. If there are several, you can identify your identity provider by the `name`.
 
-2. (Optional) If you do not know your identity provider ID, to retrieve it, use the command below: <br>
-
-    ```
-    uaac curl -k /identity-providers > file.txt
-    ```
-    Your identity provider ID is the value of `id`. In most cases, this command returns one 
-    identity provider. If there are several, you can identify your identity provider by the `name`.
-        
 1. Run the following command, directing the output to a text file:
 
     ```
-    uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID > TEXT-FILE.txt
+    uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID > JSON-BLOB.txt
     ```
     
     Where:
-      * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
-      * `TEXT-FILE.txt` is the name of your text file.
-
+      * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
+      * `JSON-BLOB.txt` is the name of your text file.
+      
 3. The command above outputs a JSON blob similar
 to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-PROVIDER-ID`.
 
@@ -92,19 +87,19 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
     }
 	</pre>
 
-4. In your `TEXT-FILE.txt`, update the configurations in the JSON blob as needed, and then save the file.
+4. In your `JSON-BLOB.txt`, update the configurations in the JSON blob as needed, and then save the file.
   <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values, otherwise,
     data can be lost when doing an API update as a <code>PUT</code> command.</p>
 
 5. Submit a UAAC curl request to apply your updated configurations to the identity provider, as shown below.
-    <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
+    <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before the below <code>PUT</code> command.</p>
 
     ```
     $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT 
     \-H 'Content-Type: application/json' -d "$(cat file.txt)"
     ```
     Where:
-    * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
+    * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
     
      A minimal example command would look similar to the following:
 

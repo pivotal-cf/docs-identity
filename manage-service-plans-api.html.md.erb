@@ -14,237 +14,81 @@ Each SSO service plan ties together a CC plan and a UAA identity zone.
 Beginning with SSO v1.6, you can use the UAAC
 to manage UAA identity zones configured as part of SSO service plans.
 
-## <a id="creating"></a> Create a UAA Identity Zone Admin Client
+## <a id="creating"></a> Create a UAA Identity Zone Admin Client </h2>
+<%= partial 'create_zone_admin' %>  
+   
+<h2><a id="updating"></a> Update UAA Identity Zone Configurations with the API </h2>
 
-To use the UAA identity zone APIs for your SSO service plan, you need a special identity zone admin client.
-
-### Prerequisites
-
-* Create an admin client as described
-in [Create a UAA Identity Zone Admin Client](./manage-clients-api.html#creating), 
-and give this client `clients.admin` permission.
-* Record the app ID and app secret provided when you create the above 
-admin client, to use when creating the UAA identity zone admin client.
-
-### Create a UAA Identity Zone Admin Client
-
-To create a UAA identity zone admin client, do the following:
-
-1. Install the UAAC as follows:
-
-    ```
-    gem install cf-uaac
-    ``` 
-
-    For information about the UAAC,
-    see [the UAAC Github Repository](https://github.com/cloudfoundry/cf-uaac).
-
-1. Use the UAAC to target your service plan:
-
-    ```
-    uaac target MY-AUTH-DOMAIN.login.example.com
-    ```
-
-    Where:<br>
-    `MY-AUTH-DOMAIN` is the **Auth Domain** you entered when you created the <a href="./manage-service-plans.html#create-svc-plan">Service Plan</a>.
-
-1. Run the command below to authenticate and obtain 
-an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.
-
-
-    ```
-    uaac token client get MY-APP-ID -s MY-APP-SECRET
-    ```
-
-    Where:<br>
-    * `MY-APP-ID` is your admin app ID.
-    * `MY-APP-SECRET` is your app secret.<br>
-
-    Use the app ID and app secret provided when you created the 
- <a href="./configure-apps/index.html#admin">Admin Client</a>  with `clients.admin` permission.
-
+This section shows how to use the UAAC to update UAA identity zone configurations, using a 
+<code>PUT</code> command.
  
-1. Run the following command to display your client context and verify that you have `clients.admin` 
-under the scope section.
-
-    ``` 
-    uaac context 
-    ```
-
-    For example:
-    <pre class="terminal">
-    $ uaac context
-    [1]*[ExampleAppID]
-      client\_id: ExampleAppID
-        access\_token: aBcdEfg0hIJKlm123.e
-        token\_type: bearer
-        expires\_in: 43200
-        scope: uaa.resource clients.admin
-        jti: 91b3-abcd1233
-    </pre>
-
-1. Run the following command to create an identity zone admin client. <br><br>
-
-    When prompted for a `New client secret`, provide a client secret for this 
-    identity zone admin client.
-    Make sure to use a secure value for your client secret. <br><br>
-
-    Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`. 
-      
-
-    ```
-    uaac client add ZONE-ADMIN-CLIENT-ID --authorized_grant_types client_credentials --authorities uaa.admin
-    ```
-
-    Where:<br>
-  * `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.
-
-    For example:
-  <pre class="terminal">
-  $ uaac client add ExampleZoneAdminClientID --authorized\_grant\_types client\_credentials --authorities uaa.admin
-  New client secret:  *****
-  Verify new client secret:  *****
-  </pre>
-  
-
-    You can delete the original admin client created via the SSO UI after you create the identity zone client.
-
-1. Run the following command to authenticate and obtain an access token for the 
-identity zone admin client for your service plan. <br><br>
-
-    When prompted for a `Client secret`, use the client secret you provided in the previous step.
-
-    ```
-    uaac token client get ZONE-ADMIN-CLIENT-ID
-    ```
-
-    Where:<br>
-    * `ZONE-ADMIN-CLIENT-ID` is zone admin client ID you provided in the previous step.
-
-    For example:
-    <pre class="terminal">
-    $ uaac token client get ExampleZoneAdminClientID
-    Client secret:  *****
-    </pre>
-
-
-1. Use the following command to display your client context and verify that you have `uaa.admin` 
-under the scope section. 
-
-    ``` 
-    uaac context 
-    ```
-
-    For example: 
-  <pre class="terminal">
-  $ uaac context
-  [1]*[ExampleZoneAdminClientID]
-    client\_id: ExampleZoneAdminClientID
-      access\_token: asdioqwuelk12312.e21e
-      token\_type: bearer
-      expires\_in: 43200
-      scope: uaa.admin
-      jti: 123908dkl1-23298
-  </pre>
-      You can now do operator level API configurations for the SSO service plan.
-      You will not have permissions for any other SSO service plan.
-	
-## <a id="updating"></a> Update UAA Identity Zone Configurations with the API 
-
-This section shows how to use the UAAC to update UAA identity zone configurations, using a `PUT` command. 
 <p class="note warning"><strong>WARNING:</strong> This flow is for advanced users only. 
   You must always run the <code>PUT</code> command 
   with the latest data by doing a <code>GET</code> before a <code>PUT</code> command. 
-  You must also provide all configuration values, otherwise, data may be lost.</p> 
+  You must also provide all configuration values, otherwise, data may be lost.</p>
 
-For general information about UAA API, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).      
+For general information about UAA API, see the <a href="https://docs.cloudfoundry.org/api/uaa">CF UAA API documentation page </a>.<br><br>      
 
-To make UAA identity zone API calls:
+To make UAA identity zone API calls, do the following:<br><br>
 
-1. Fetch a token using the identity zone admin client from [Create a UAA Identity Zone Admin Client](#creating) above.
-
-1. Target the auth domain specified in your Service Plan.   
-    For example:
-
-    ```
-    uaac target my-auth-doman.login.example.com
-    ```
-    
-1. Obtain an access token using this command: 
-
-    ```
-    uaac token client get ZONE-ADMIN-CLIENT-ID
-    ```
-    Where:
-      * `ZONE-ADMIN-CLIENT-ID` is the `MY-APP-ID` you recorded in the procedure above. 
-
-1. When prompted for the client secret, provide the `MY-APP-SECRET` you recorded in the procedure above.
-
-1. (Optional) If you do not know your identity zone ID to retrieve it, use the command below:  
-  
-    ```
-    uaac curl -k /identity-zones > file.txt
-    ```  
-    Your identity zone ID is the value of `id`. In most cases, this command returns one 
-    identity zone. If there are several, you can determine your identity zone by the 
-    `subdomain` and `description`.
+<ol>
+<li> Create an identity zone admin client following <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
       
-1. Run the following command, directing the output to a text file: 
+<li> Run the following command, directing the output to a text file: <br>
     
-    ```
-    uaac curl -k /identity-zones/YOUR-ZONE-ID > TEXT-FILE.txt
-    ```
+    <pre>uaac curl -k /identity-zones/ZONE-ADMIN-CLIENT-ID > JSON-BLOB.txt</pre>
     
-    Where: 
-      * `YOUR-ZONE-ID` is your identity zone ID.
-      * `TEXT-FILE.txt` is the name of your text file.
-
-1. In the array returned from the above command, delete the header information and array wrapper, 
-leaving just the JSON blob. Confirm that the ID in this output matches `YOUR-ZONE-ID`.<br><br>
+    Where:
+    <ul> 
+      <li> <code>ZONE-ADMIN-CLIENT-ID</code> is your identity zone admin client ID created in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
+      <li> <code>JSON-BLOB.txt</code> is the name of your text file.</li>
+    </ul>
+</li>
+<li> In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper, 
+leaving just the JSON blob. Confirm that the ID in this output matches <code>ZONE-ADMIN-CLIENT-ID</code>.<br><br>
 
     Your remaining JSON blob looks similar to the truncated sample below:
 
     <pre>
-      {
-      "id": "baf7814b-94ab-4011-a3df-6b34625167b8",
-      "subdomain": "demo",
-      "config": {
-        "clientSecretPolicy": {
-        "minLength": -1,
-        "maxLength": -1,
-        "requireUpperCaseCharacter": -1,
-        "requireLowerCaseCharacter": -1,
-        "requireDigit": -1,
-        "requireSpecialCharacter": -1
-        },
-        ...
-      },
-      "name": "demo",
-      "version": 2,
-      "description": "{\"plan_display_name\":\"demo\",
-      \"plan_description\":\"Demo Service Plan\"}",
-      "created": 1510116389000,
-      "last_modified": 1519859509000
-      }
-    </pre>
-
-1. In your `TEXT-FILE.txt`, update the configurations in the JSON blob as needed, and then save the file.
+{
+  "id": "demo",
+  "subdomain": "demo",
+  "config": {
+    "clientSecretPolicy": {
+    "minLength": -1,
+    "maxLength": -1,
+    "requireUpperCaseCharacter": -1,
+    "requireLowerCaseCharacter": -1,
+    "requireDigit": -1,
+    "requireSpecialCharacter": -1
+    },
+    ...
+  },
+  "name": "demo",
+  "version": 2,
+  "description": "{\"plan_display_name\":\"demo\",
+  \"plan_description\":\"Demo Service Plan\"}",
+  "created": 1510116389000,
+  "last_modified": 1519859509000
+}
+</pre>
+</li>
+<li> In your <code>JSON-BLOB.txt</code> update the configurations in the JSON blob as needed, and then save the file.
   <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values, 
-    otherwise, data can be lost when doing an API update as a <code>PUT</code> command.</p>
+    otherwise, data can be lost when doing an API update as a <code>PUT</code> command.</p></li>
 
-1. Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
+<li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
     <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
-    ```
-    uaac curl -k /identity-zones/YOUR-ZONE-ID -X PUT 
-    \-H 'Content-Type: application/json' -d "$(cat file.txt)"
-    ```
-    Where: 
-      * `YOUR-ZONE-ID` is your identity zone ID.
+    <pre>uaac curl -k /identity-zones/ZONE-ADMIN-CLIENT-ID -X PUT 
+\-H 'Content-Type: application/json' -d "$(cat file.txt)"</pre>
+    Where:
+    <ul> 
+      <li> <code>ZONE-ADMIN-CLIENT-ID</code> is your identity zone admin client ID created in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li></ul>
 
-     A truncated example command would look similar to the following:
+  A truncated example command would look similar to the following:
 
-     <pre class="terminal">$ uaac curl -k identity-zones/baf7814b-94ab-4011-a3df-6b34625167b8 \
+     <pre class="terminal">$ uaac curl -k identity-zones/demo\
          -X PUT \
          -H 'Content-Type: application/json' \
          -d '{
@@ -268,24 +112,23 @@ leaving just the JSON blob. Confirm that the ID in this output matches `YOUR-ZON
              "last_modified" : 1529690485998
            }
      </pre>
-
+   </li>
+</ol>
    For a full list of UAA API update parameters,
-   see the [Identity Zones Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone).    
+   see the <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.    
+<h2> <a id="branding"></a> Modify Branding</h2>
 
-## <a id="branding"></a> Modify Branding
+You can optionally modify the branding of your login page by changing your company name, logos, legal text, and legal links. <br><br>
 
-You can optionally modify the branding of your login page by changing your company name, logos, legal text, and legal links.
-
-Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) above 
+Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> above 
 to retrieve the identity zone configurations for your SSO plan, 
-add or modify the branding section according to the [UAA API documentation](https://docs.cloudfoundry.org/api/uaa). 
+add or modify the branding section according to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>. <br> <br>
 
-An example branding section is shown below. 
+An example branding section is shown below.<br>
 
 <p class="note"><strong>Note</strong>: All values are optional. You can also generate the base64 text of your PNG images using commands, such as <code>base64 image.png</code>.</p>
 
-```
-"branding": {
+<pre>"branding": {
       "companyName": "Pivotal",
       "productLogo": "(base64 of png image here, will show up as image on login page)",
       "squareLogo": "(base64 of png image here, will show up as browser icon)",
@@ -296,23 +139,22 @@ An example branding section is shown below.
         "Up to three links, label here": "https://link-here"
       }
     },
-```
+</pre>
 
-## <a id="default-groups"></a> Add Default Groups for Users
+<h2><a id="default-groups"></a> Add Default Groups for Users</h2>
 
 Optionally, you can add additional default groups for all users. 
 You do not need to 
 do manual group assignment or group mappings for these groups. 
-Use default groups only for universal scopes that all users can have, such as for a global read-only resource.
+Use default groups only for universal scopes that all users can have, such as for a global read-only resource.<br><br>
 
-Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) to retrieve and update 
-the current identity zone configurations for your SSO plan, update the default groups section according to the [UAA API documentation](https://docs.cloudfoundry.org/api/uaa). 
+Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> to retrieve and update 
+the current identity zone configurations for your SSO plan, update the default groups section according to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.<br><br>
 
 An example of the default groups section is shown below. You can add more groups in the array list. 
-Users will automatically have these scopes though they are not explicitly assigned to users.
+Users will automatically have these scopes though they are not explicitly assigned to users.<br>
 
-```
-    "userConfig": {
+<pre>"userConfig": {
       "defaultGroups": [
         "openid",
         "password.write",
@@ -326,96 +168,98 @@ Users will automatically have these scopes though they are not explicitly assign
         "another.new.group.everyone.should.have"
       ]
     },
-```
+</pre>
 
-## <a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
+<h2><a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys</h2>
 
-To rotate JWT signing keys, do the following:
+To rotate JWT signing keys, do the following:<br><br>
 
-1. Generate a private key that can be used for signing. For example, run `ssh-keygen -t rsa`.<br><br>
-  Generate your signing keys in a secure manner. 
-  Refer to your security organization for acceptable key generation practices.
+<ol>
+<li><p>Generate a private key that can be used for signing. For example, run <code>ssh-keygen -t rsa</code>.<br><br>
+Generate your signing keys in a secure manner. 
+Refer to your security organization for acceptable key generation practices.</p></li>
 
-2. Take the value of the generated private key and make it a single 
-line of text, replacing all new lines with `\n`. For example:<br><br>
-	
-	<code>-----BEGIN RSA PRIVATE KEY-----</code>
-	<code>MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO</code>
-	<code>5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x</code>
-	<code>-----END RSA PRIVATE KEY-----</code>
+<li><p>Take the value of the generated private key and make it a single 
+line of text, replacing all new lines with <code>\n</code>. For example:<br><br></p>
 
-	<br>Becomes:
+<p><code>-----BEGIN RSA PRIVATE KEY-----</code>
+<code>MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO</code>
+<code>5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x</code>
+<code>-----END RSA PRIVATE KEY-----</code></p>
 
-	```
-	-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n
-	```
-	
-3. Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) above to 
+<p><br>Becomes:</p>
+
+<pre><code>-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n
+</code></pre></li>
+
+<li><p>Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> above to 
 retrieve and update the identity zone configurations for your SSO plan, 
-update the token policy section to add your new generated private key as the value for `signingKey`. <br><br>
-  An example of this section is shown below.
-	<p class="note"><strong>Note</strong>: After you begin to configure JWT signing keys within a service plan, 
-		you can no longer default to share the multi-tenant JWT signing key inherited from the default zone.
-			
-	<p class="note"><strong>Note</strong>: The first time you set a signing key for an identity zone, 
-	existing issued tokens are immediately invalidated for online validation. 
-	You may need to restart applications that do offline validation for the new signing keys to take effect.</p>
+update the token policy section to add your new generated private key as the value for <code>signingKey</code>. <br><br>
+An example of this section is shown below.
+<p class="note"><strong>Note</strong>: After you begin to configure JWT signing keys within a service plan, 
+    you can no longer default to share the multi-tenant JWT signing key inherited from the default zone.</p>
 
-	```
-	 "tokenPolicy": {
-      "accessTokenValidity": -1,
-      "refreshTokenValidity": -1,
-      "jwtRevocable": false,
-      "refreshTokenUnique": false,
-      "refreshTokenFormat": "jwt",
-      "activeKeyId": "first-signing-key",
-      "keys" : {
-              "first-signing-key" : {
-                "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
-              }
-    },
-    ```
+<p class="note"><strong>Note</strong>: The first time you set a signing key for an identity zone, 
+existing issued tokens are immediately invalidated for online validation. 
+You may need to restart applications that do offline validation for the new signing keys to take effect.</p>
 
-    For more information, see [UAA API documentation](https://docs.cloudfoundry.org/api/uaa).
+<pre><code> "tokenPolicy": {
+  "accessTokenValidity": -1,
+  "refreshTokenValidity": -1,
+  "jwtRevocable": false,
+  "refreshTokenUnique": false,
+  "refreshTokenFormat": "jwt",
+  "activeKeyId": "first-signing-key",
+  "keys" : {
+          "first-signing-key" : {
+            "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
+          }
+},
+</code></pre>
 
-## <a id="enable-authentication"></a> Enable Multi-Factor Authentications (Beta)
+<p>For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.</p></li>
+</ul>
+
+<h2><a id="enable-authentication"></a> Enable Multi-Factor Authentications (Beta)</h2>
 
 <p class="note warning"><strong>WARNING:</strong>
     Multi-factor authentication is a beta feature for PCF v2.2.
     Do not use multi-factor authentication in a production environment for PCF v2.2.
 </p>
 
-You can enable multi-factor authentication (MFA) via Google Authenticator, available on the Apple Store or Android Play,
-for all users logging in to your service plan.
+<p>You can enable multi-factor authentication (MFA) via Google Authenticator, available on the Apple Store or Android Play,
+for all users logging in to your service plan.</p>
 
-1. Log in to your identity zone admin client you have already based upon the steps here.
+<ol>
+<li><p>Log in to your identity zone admin client you have already based upon the steps here.</p></li>
 
-2. Create an MFA provider based on the [UAA API documentation](https://docs.cloudfoundry.org/api/uaa) using the command below. 
+<li><p>Create an MFA provider based on the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a> using the command below. 
 The issuer value appears on users' mobile Google Authenticator, so customize this value 
-based on your needs.
+based on your needs.</p>
 
-    ```
-    uaac curl -k '/mfa-providers' -X POST \
-      -H 'Content-Type: application/json' \
-      -H 'Accept: application/json' \
-      -d '{
-    "name" : "GoogleProvider",
-    "config" : {
-      "issuer" : "MFA Login for Company SSO Plan"
-    },
-    "type" : "google-authenticator"
-    }'
-    ```
-3. Using the steps in [Update UAA Identity Zone Configurations with the API](#updating) above to retrieve 
-and update the current identity zone configurations for your SSO plan, update the `mfaConfig` section 
-according to the [UAA API documentation](http://docs.cloudfoundry.org/api/uaa/).<br><br> 
-  An example of the section is below. 
-  Set the `enable` value to `true` and provide the MFA provider name. 
+<pre><code>uaac curl -k '/mfa-providers' -X POST \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d '{
+"name" : "GoogleProvider",
+"config" : {
+  "issuer" : "MFA Login for Company SSO Plan"
+},
+"type" : "google-authenticator"
+}'
+</code></pre></li>
 
-    ``` 
-    "mfaConfig" : {
-      "enabled" : true,
-      "providerName" : "GoogleProvider"
-    }
-    ```
-  <br>To disable MFA set `enable` to `false`.
+<li><p>Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> above to retrieve 
+and update the current identity zone configurations for your SSO plan, update the <code>mfaConfig</code> section 
+according to the <a href="http://docs.cloudfoundry.org/api/uaa/">UAA API documentation</a>.<br><br> 
+An example of the section is below. 
+Set the <code>enable</code> value to <code>true</code> and provide the MFA provider name. </p>
+
+<pre><code class="  language- ">"mfaConfig" : {
+  "enabled" : true,
+  "providerName" : "GoogleProvider"
+}
+</code></pre>
+
+<p><br>To disable MFA set <code>enable</code> to <code>false</code>.</p></li>
+</ol>
