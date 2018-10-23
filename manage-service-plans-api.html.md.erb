@@ -14,61 +14,10 @@ Each SSO service plan ties together a CC plan and a UAA identity zone.
 Beginning with SSO v1.6, you can use the UAAC
 to manage UAA identity zones configured as part of SSO service plans.
 
-<<<<<<< HEAD
-## <a id="creating"></a> Create a UAA Identity Zone Admin Client
-
-To use the UAA identity zone APIs for your SSO service plan, you need a special identity zone admin client.
-
-### Prerequisites
-
-* Create an admin client as described
-in <a href="./configure-apps/index.html#admin">Create Admin Client</a>, 
-and give this client `clients.admin` permission.
-* Record the app ID and app secret provided when you create the above 
-admin client, to use when creating the UAA identity zone admin client.
-
-### Create a UAA Identity Zone Admin Client
-
-To create a UAA identity zone admin client, do the following:
-
-1. Install the UAAC as follows:
-
-    ```
-    gem install cf-uaac
-    ``` 
-
-    For information about the UAAC,
-    see [the UAAC Github Repository](https://github.com/cloudfoundry/cf-uaac).
-
-1. Use the UAAC to target your service plan:
-
-    ```
-    uaac target MY-AUTH-DOMAIN.login.example.com
-    ```
-
-    Where:<br>
-    `MY-AUTH-DOMAIN` is the **Auth Domain** you entered when you created the <a href="./manage-service-plans.html#create-svc-plan">Service Plan</a>.
-
-1. Run the command below to authenticate and obtain 
-an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.
-
-
-    ```
-    uaac token client get MY-APP-ID -s MY-APP-SECRET
-    ```
-
-    Where:<br>
-    * `MY-APP-ID` is your admin app ID.
-    * `MY-APP-SECRET` is your app secret.<br>
-
-    Use the app ID and app secret provided when you created the 
- <a href="./configure-apps/index.html#admin">Admin Client</a>  with `clients.admin` permission.
-=======
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client </h2>
 <%= partial 'create_zone_admin' %>  
    
 <h2><a id="updating"></a> Update UAA Identity Zone Configurations with the API </h2>
->>>>>>> 75fe77b... add partial and copy edit[#158886135]
 
 This section shows how to use the UAAC to update UAA identity zone configurations, using a 
 <code>PUT</code> command.
