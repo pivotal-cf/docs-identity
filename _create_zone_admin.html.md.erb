@@ -1,7 +1,7 @@
 <!-- This partial is for the Updating Service Plans with UAAC (manage-service-plans-api.html) 
 and Updating Identity Providers with UAAC (configure-id-providers-api.html) topics. Before editing 
-make the partial makes sense in both contexts.  
-The if statements in this partial change the scopes needed depending on the topic title. 
+make sure the partial makes sense in both contexts.  
+The if statements in this partial change the scopes and links needed depending on the topic title. 
 -->
 
 To use the UAAC with your SSO service plan, you need an identity zone admin client. To create
@@ -11,7 +11,6 @@ service plan.
 ### Create an Admin Client
 To create an UAA admin client, do the following: 
 
-<% if current_page.data.version == 1.7 %>
 1. Follow the procudure in [Create an Admin Client](./manage-clients-api.html#creating).
 
 <% if current_page.data.title == "Updating Identity Providers with UAAC" %>
@@ -21,12 +20,6 @@ To create an UAA admin client, do the following:
 
 <% if current_page.data.title == "Updating Service Plans with UAAC" %>
 2. Using the instructions above, give this client the `clients.admin` scope.
-<%end%>
-
-<% end %>
-
-<% if current_page.data.version == 1.6 %>
-1. Follow the procudure in [Create an Admin Client](./configure-apps/#admin).
 <%end%>
 
 3. Record the **App ID** and **App Secret**. You need these for the procedure below.
