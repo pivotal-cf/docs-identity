@@ -11,7 +11,7 @@ service plan.
 ### Create an Admin Client
 To create an UAA admin client, do the following: 
 
-<% if vars.local_product_version == 1.7 %>
+<% if current_page.data.version == 1.7 %>
 1. Follow the procudure in [Create an Admin Client](./manage-clients-api.html#creating).
 
 <% if current_page.data.title == "Updating Identity Providers with UAAC" %>
@@ -21,10 +21,13 @@ To create an UAA admin client, do the following:
 <% if current_page.data.title == "Updating Service Plans with UAAC" %>
 2. Using the instructions above, give this client the `clients.admin` scope.
 <%end%>
+
 <% end %>
 
-<% if vars.local_product_version == 1.6 %>
+<% if current_page.data.version == 1.6 %>
 1. Follow the procudure in [Create an Admin Client](./configure-apps/#admin).
+
+2. Using the instructions above, give this client the `clients.admin` scope.
 <%end%>
 
 3. Record the **App ID** and **App Secret**. You need these for the procedure below.
