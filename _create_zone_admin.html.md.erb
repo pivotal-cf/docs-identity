@@ -5,13 +5,13 @@ The if statements in this partial change the scopes needed depending on the topi
 -->
 
 To use the UAAC with your SSO service plan, you need an identity zone admin client. To create
-the identity zone admin client, you need to create an admin client that correpsonds to your SSO 
+the identity zone admin client, you need to create an admin client that corresponds to your SSO 
 service plan.
 
 ### Create an Admin Client
 To create an UAA admin client, do the following: 
 
-1. Follow the procudure in [Create an Admin Client](./manage-clients-api.html#creating).
+1. Follow the procedure in [Create an Admin Client](./manage-clients-api.html#creating).
 
 <% if current_page.data.title == "Updating Identity Providers with UAAC" %>
 2. Using the instructions above, give this client the `idps.read` and `idps.write` scopes.
@@ -103,7 +103,7 @@ under the scope section.
 <% end %>
 
 
-1. Run the following command to create an identity zone admin client. <br><br>
+1. Run the following command to create an identity zone admin client. <br>
 
     ```
     uaac client add ZONE-ADMIN-CLIENT-ID --authorized_grant_types client_credentials --authorities uaa.admin
@@ -127,7 +127,7 @@ under the scope section.
     You can delete the original admin client created via the SSO UI after you create the identity zone client.
 
 1. Run the following command to authenticate and obtain an access token for the 
-identity zone admin client for your service plan. <br><br>
+identity zone admin client for your service plan.
 
     ```
     uaac token client get ZONE-ADMIN-CLIENT-ID
@@ -164,4 +164,4 @@ under the scope section.
       jti: 123908dkl1-23298
   </pre>
       You can now do operator level API configurations for the SSO service plan.
-      You will not have permissions for any other SSO service plan.
+      You do not have permissions for any other SSO service plan.
