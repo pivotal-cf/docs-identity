@@ -145,8 +145,8 @@ about this field, see the [UAA documentation](http://docs.cloudfoundry.org/api/u
 by providing the SAML metadata directly.
 For more information, see <a href="./configure-id-providers.html#config-saml-prov"> Add a SAML Provider</a>. </p>
 
-For cases where the SAML provider is configured using a valid SAML URL,
-you might need to skip SSL validation on a self-signed certificate.
+For cases where the SAML provider is configured using a valid SAML URL and using a self-signed certificate,
+you might need to skip SSL validation.
 
 You can configure skipping SSL for SAML Identity Providers using `config.skipSslValidation` in the
 request body. For documentation about this field, see the
