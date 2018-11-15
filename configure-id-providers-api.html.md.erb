@@ -3,8 +3,8 @@ title: Updating Identity Providers with UAAC
 owner: Identity Service
 ---
 
-This topic describes how to update the configuration of identity providers 
-using the User Account and Authentication Command Line Interface (UAAC). 
+This topic describes how to update the configuration of identity providers
+using the User Account and Authentication Command Line Interface (UAAC).
 For instructions on configuring identity providers, see [Configuring Identity Providers](./configure-id-providers.html).
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
@@ -33,7 +33,7 @@ To make UAA identity provider API calls, do the following:
     Where:
       * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
       * `ID-TEXT.txt` is the name of your text file.
-      
+
     The command above outputs a JSON blob similar to the example below.
 
     <pre>
@@ -48,9 +48,8 @@ To make UAA identity provider API calls, do the following:
         "last_modified" : 1538589026045,
         "active" : true,
         "identityZoneId" : "uaa"
-      } 
-    </pre> 
-    Your identity provider ID is the value of `id`. In most cases, this command returns one 
+    </pre>
+    Your identity provider ID is the value of `id`. In most cases, this command returns one
     identity provider. If there are several, you can identify your identity provider by the `name`.
 
 1. Run the following command, directing the output to a text file:
@@ -58,11 +57,11 @@ To make UAA identity provider API calls, do the following:
     ```
     uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID > JSON-BLOB.txt
     ```
-    
+
     Where:
       * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
       * `JSON-BLOB.txt` is the name of your text file.
-      
+
 3. The command above outputs a JSON blob similar
 to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-PROVIDER-ID`.
 
@@ -94,12 +93,12 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
     <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before the below <code>PUT</code> command.</p>
 
     ```
-    $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT 
+    $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT
     \-H 'Content-Type: application/json' -d "$(cat file.txt)"
     ```
     Where:
     * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
-    
+
      A minimal example command would look similar to the following:
 
      <pre class="terminal">$ uaac curl -k /identity-providers/b38dfbbc-f187-4eeb-a3f3-21a3c72c6975\
@@ -144,8 +143,8 @@ about this field, see the [UAA documentation](http://docs.cloudfoundry.org/api/u
 by providing the SAML metadata directly.
 For more information, see <a href="./configure-id-providers.html#config-saml-prov"> Add a SAML Provider</a>. </p>
 
-For cases where the SAML provider is configured using a valid SAML URL,
-you might need to skip SSL validation on a self-signed certificate.
+For cases where the SAML provider is configured using a valid SAML URL and a self-signed certificate,
+you might need to skip SSL validation.
 
 You can configure skipping SSL for SAML Identity Providers using `config.skipSslValidation` in the
 request body. For documentation about this field, see the
