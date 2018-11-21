@@ -3,25 +3,46 @@ title: Getting Started with Single Sign-On
 owner: Identity Service
 ---
 
-This topic outlines the steps for installing and configuring the [Single Sign-On](https://network.pivotal.io/products/p-identity) service.
+This topic outlines the steps for installing and configuring the
+[Single Sign-On](https://network.pivotal.io/products/p-identity) service.
 
 ## <a id='install'></a> Install and Set Up SSO for Applications
 
 1. [Install Single Sign-On](./installation.html) via Ops Manager.
 
-1. [Create a service plan](./manage-service-plans.html#create-svc-plan). The Single Sign-On service is a multi-tenant service, and a service plan corresponds to a tenant. This allows an enterprise to segregate users or environments using plans. Each service plan is accessible at a tenant-specific URL in the format `https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`.
+1. [Create a service plan](./manage-service-plans.html#create-svc-plan).
+The Single Sign-On service is a multi-tenant service, and a service plan
+corresponds to a tenant.
+This allows an enterprise to segregate users or environments using plans.
+Each service plan is accessible at a tenant-specific URL in the format
+`https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`.
 
-1. [Create a service instance](./manage-service-instances.html#create-svc-instance). Single Sign-On service plans can provide single sign-on capabilities for applications in various spaces. A service instance lets you bind an application to a service plan.
+1. [Create a service instance](./manage-service-instances.html#create-svc-instance).
+Single Sign-On service plans can provide single sign-on capabilities for
+applications in various spaces.
+A service instance lets you bind an application to a service plan.
 
-1. [Configure an identity provider](./configure-id-providers.html). In addition to the [Internal User Store](./configure-id-providers.html#config-int-store), you can configure [external identity providers](./configure-id-providers.html#config-ext-prov) to provide single sign-on to applications.
+1. [Configure an identity provider](./configure-id-providers.html).
+In addition to the [Internal User Store](./configure-id-providers.html#config-int-store),
+you can configure [external identity providers](./configure-id-providers.html#config-ext-prov)
+to provide single sign-on to applications.
 
-1. [Configure your applications](./configure-apps/index.html). Single Sign-On supports both Pivotal Cloud Foundry-hosted applications as well as externally hosted applications. Your applications must be able to request an OAuth or OpenID Connect token.
+1. [Configure your applications](./configure-apps/index.html).
+Single Sign-On supports both Pivotal Cloud Foundry-hosted applications as well
+as externally hosted applications.
+Your applications must be able to request an OAuth or OpenID Connect token.
 
-1. [Create resources for your applications](./manage-resources.html#create-resources). If your registered applications need to make external API calls, you can assign the API endpoints as resources permitted for the application. This will whitelist the endpoints for use by the application or client.
+1. [Create resources for your applications](./manage-resources.html#create-resources).
+If your registered applications need to make external API calls, you can assign
+the API endpoints as resources permitted for the application.
+This will whitelist the endpoints for use by the application or client.
 
 ## <a id='roles'></a> SSO User Roles
 
-A user's role determines which parts of an SSO configuration it can manage. SSO uses the existing user roles PCF Administrator and Space Developer, as well as a SSO-specific Plan Administrator role. This chart shows the management permissions for each role.
+A user's role determines which parts of an SSO configuration it can manage.
+SSO uses the existing user roles PCF Administrator and Space Developer, as well
+as a SSO-specific Plan Administrator role.
+This chart shows the management permissions for each role.
 
 <table border="1" class="nice">
   <tr><th>Management access by role</th><th>PCF Administrator</th><th>Plan Administrator</th><th>Space Developer</th></tr>
@@ -34,8 +55,15 @@ A user's role determines which parts of an SSO configuration it can manage. SSO 
 
 ## <a id='other'></a> Using SSO for Pivotal Cloud Foundry Components
 
-In addition to applications, SSO supports single sign-on for components of Pivotal Cloud Foundry, including Ops Manager and Apps Manager. This allows users already managed in an external identity provider to sign into Pivotal services. Refer to the following pages for instructions on configuring SSO to enable users in an external identity store to access PCF components:
+In addition to applications, SSO supports single sign-on for components of Pivotal
+Cloud Foundry, including Ops Manager and Apps Manager.
+This allows users already managed in an external identity provider to sign into
+Pivotal services.
+Refer to the following pages for instructions on configuring SSO to enable users
+in an external identity store to access PCF components:
 
-* Ops Manager, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp), [vSphere](http://docs.pivotal.io/pivotalcf/customizing/vsphere-config.html#idp), or [OpenStack](http://docs.pivotal.io/pivotalcf/customizing/openstack-om-config.html#idp)
+* Ops Manager, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp),
+[vSphere](http://docs.pivotal.io/pivotalcf/customizing/vsphere-config.html#idp),
+or [OpenStack](http://docs.pivotal.io/pivotalcf/customizing/openstack-om-config.html#idp)
 
 * [Apps Manager](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html)
