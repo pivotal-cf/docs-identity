@@ -10,7 +10,8 @@ This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 * [Ops Manager](https://network.pivotal.io/products/ops-manager) v2.1 or later
 
-* [Pivotal Application Service](https://network.pivotal.io/products/elastic-runtime) v2.1 or v2.2
+* [Pivotal Application Service](https://network.pivotal.io/products/elastic-runtime)
+v2.1 or v2.2
 
 * SSL certificates
 
@@ -19,16 +20,22 @@ This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 ## <a id='install'></a> Install SSO via Ops Manager
 
-<p class="note"><strong>Note:</strong> If you are upgrading to this version of SSO, you must update the definitions of any BOSH Add-On's for PCF you are using to include the Xenial stemcell.
+<p class="note"><strong>Note:</strong> If you are upgrading to this version of SSO,
+  you must update the definitions of any BOSH Add-On's for PCF you are using to
+  include the Xenial stemcell.
 	See <a href="#update-addons">Update Add-ons to Run with Xenial Stemcell</a> below.</p>
 
-1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select a **Single Sign-On** tile version and download the product release file.
+1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select
+a **Single Sign-On** tile version and download the product release file.
 
-1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select a **Single Sign-On** tile version and download the product release file.
+1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select
+a **Single Sign-On** tile version and download the product release file.
 
-1. From the Ops Manager Installation Dashboard, select the **Import a Product** button to upload the product file.
+1. From the Ops Manager Installation Dashboard, select the **Import a Product**
+button to upload the product file.
 
-1. Click the **+** icon next to the uploaded product to add this product to your staging area.
+1. Click the **+** icon next to the uploaded product to add this product to your
+staging area.
 
 1. Click on the **Single Sign-On** tile to enter any configurations.
 
@@ -51,14 +58,17 @@ If required, do the following to update the stemcell for SSO:
 
 1. Download the stemcell from [Pivotal Network](https://network.pivotal.io/).
 1. In the Ops Manager, click **Stemcell Library**.
-1. Click **Import Stemcell**, and then select the stemcell you downloaded from Pivotal Network.
+1. Click **Import Stemcell**, and then select the stemcell you downloaded from
+Pivotal Network.
 
     <br>![Stemcell Library](stemcell-library-xenial.png)
 1. Click **Save**.
 
 ## <a id='update'></a>Update SSL and Load Balancer
 
-You must update the SSL certificate for the domains listed below for each plan you create. Depending on your infrastructure and load balancer, you must also update your load balancer configuration for the following domains:
+You must update the SSL certificate for the domains listed below for each plan you create.
+Depending on your infrastructure and load balancer, you must also update your
+load balancer configuration for the following domains:
 
 * `*.SYSTEM-DOMAIN`
 
@@ -89,7 +99,8 @@ Groups](http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html).
 
 SSO v1.7.1 and later requires a Xenial stemcell.
 If you are using any of the following BOSH add-ons with your PCF deployment,
-you must update the add-on definition to include the Xenial stemcell before you deploy SSO v1.7.1:
+you must update the add-on definition to include the Xenial stemcell before you
+deploy SSO v1.7.1:
 
 + File Integrity Monitoring for PCF Add-on.
   For update instructions,
