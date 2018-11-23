@@ -45,3 +45,5 @@ SSO has a lot of difficult and inconsistent terminology. Jane learned the follow
 | UAA identity zone client | _many_ | There are two kinds of UAA Identity Zone client: admin client and non-admin clients.|
 | UAAC vs UAAC CLI | User Account and Authentication Command Line Interface (UAAC) spell out first use | The UAAC is released, production quality that we discuss in the docs |
 | UAA CLI | UAA-CLI  | The UAAC CLI is an experimental CLI ("incubating"). It is different from the UAAC, which is released. Don't discuss UAA CLI in the docs. |
+| PCF app | | Use this for apps that are hosted on PCF. |
+| externally hosted app | | Use this for apps that are hosted externally. |

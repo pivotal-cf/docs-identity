@@ -9,7 +9,7 @@ between SSO identity providers, apps, users, and other resources.
 
 ## <a id="internal"></a> Set Up PCF Apps to Use SSO
 
-To configure SSO for an app running internally on PCF, do the following:
+To configure SSO for a PCF app, do the following:
 
 1. Determine the SSO application type of the app to use the SSO service.
    For information, see [Determining SSO Application Type](../determine-type.html).
@@ -169,8 +169,9 @@ GitHub repository.
 
 ### <a id="configure"></a> Option 2: Configure SSO Properties with Environment Variables
 
-Instead of using bind parameters, you can manually configure your SSO service for 
-the app using environment variables, then [bind the app](#bind) to an SSO service instance.
+Instead of using bind parameters, you can manually configure your SSO service for
+the app using environment variables, then bind the app to an SSO service instance.
+For how to bind the app, see [Bind a PCF App](#bind) below.
 
 <p class="note"><strong>Note</strong>: This step is not necessary if you have already
 	configured SSO properties with your app using <a href="#configure_bind_params">bind parameters</a>.
@@ -393,7 +394,9 @@ These values are not added your user-provided list by default:
 The [table below](#configure) lists all SSO properties that you can set in your
 application manifest to bootstrap the values into your app's SSO client configuration.
 
-After an app deploys with bootstrapped SSO configuration values, it is ready to [bind](#bind) to an SSO service instance.
+After an app deploys with bootstrapped SSO configuration values, it is ready to
+bind to an SSO service instance.
+For how to bind an app, see [Bind a PCF App](#bind) below.
 
 #### <a id="bind"></a> Bind a PCF App
 
@@ -464,23 +467,32 @@ the SSO dashboard.
 	| `roles` | Provides access to external groups from an identity provider |
 	| `uaa.resource` | Provides access to the check_token endpoint for service-to-service flows |
 
-	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can select resources defined in any space if the app type is a <code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>, you can only select resources defined within the space.</p>
-1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically approves when the app makes a request on behalf of a user.
-   Select only scopes pertaining to apps owned and managed by your company. Do not select scopes that pertain to apps external to PCF.
-1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints required for app integration.
+	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>,
+		you can select resources defined in any space if the app type is a
+		<code>Web App</code>, <code>Native Mobile App</code>, or <code>Single-Page
+		JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>,
+		you can only select resources defined within the space.</p>
+
+1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically
+   approves when the app makes a request on behalf of a user.
+   Select only scopes pertaining to apps owned and managed by your company.
+   Do not select scopes that pertain to externally hosted apps.
+
+1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints
+   required for app integration.
    For more information, see <a href="../integrating-sso.html">Integrate SSO with Your App</a>.
 
 
-## <a id="register-service-keys"></a> Register an External App Using Service Keys
+## <a id="register-service-keys"></a> Register an Externally Hosted App to PCF Using Service Keys
 
-To register an external app using service keys, use the `create-service-key`
-command with `-c` flag followed by a JSON string containing a set of 
+To register an externally hosted app using service keys, use the `create-service-key`
+command with `-c` flag followed by a JSON string containing a set of
 config parameters.
 
-The `create-service-key` command accepts all bind-service config options. 
-Use the `name` parameter to define the external app's name. 
+The `create-service-key` command accepts all bind-service config options.
+Use the `name` parameter to define the externally hosted app's name.
 
-For more information, see [create-service-key](https://cli.cloudfoundry.org/en-US/cf/create-service-key.html) 
+For more information, see [create-service-key](https://cli.cloudfoundry.org/en-US/cf/create-service-key.html)
 in the Cloud Foundry CLI Reference Guide.
 
 
@@ -523,9 +535,9 @@ scopes in other spaces are not available and must be manually added by a plan
 administrator or system operator via the dashboard or UAA CLI.
 
 
-## <a id="register-dashboard"></a> Register an App External to PCF Using the SSO Dashboard
+## <a id="register-dashboard"></a> Register an Externally Hosted App Using the SSO Dashboard
 
-To register an app external to PCF using the SSO Developer Dashboard, see the following steps:
+To register an externally hosted app using the SSO Developer Dashboard, see the following steps:
 
 1. Determine the type of app for the SSO `service.bind`.
 For more information, see [Determining SSO Application Type](../determine-type.html).
@@ -542,7 +554,7 @@ This launches the SSO dashboard.
 	<p class="note"><strong>Note</strong>: To display the app on the home page,
 		you must enter an **App Launch URL** or Upload an app icon.</p>
 1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
-	<p class="note"><strong>Note</strong>: When registering an app external to PCF,
+	<p class="note"><strong>Note</strong>: When registering an externally hosted app,
 		a Space Developer can choose from internal and external identity providers.
 		If the Space Developer selects multiple identity providers, users must
 		select which provider to use when they sign in.
@@ -575,7 +587,7 @@ This launches the SSO dashboard.
 1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically
 approves when the app makes a request on behalf of a user.
 Select only scopes pertaining to apps owned and managed by your company.
-Do not select scopes that pertain to apps external to PCF.
+Do not select scopes that pertain to externally hosted apps.
 1. Click **Create App**. The **Next Steps** page appears, describing the endpoints
 required for app integration.
 For more information, see <a href="../integrating-sso.html">Integrate SSO with Your App</a>.
@@ -618,11 +630,12 @@ Download or make note of this information for use with other SSO procedures.
 
 ## <a id="delete"></a> Delete App that Uses SSO
 
-Delete a [PCF app](#delete-pcf) or an [external app](#delete-external) that uses SSO as follows:
+Delete a [Delete a PCF App](#delete-pcf) or an [Delete an Externally Hosted App](#delete-external)
+that uses SSO as follows:
 
 ### <a id="delete-pcf"></a> Delete a PCF App
 
-To delete an app hosted on PCF:
+To delete a PCF app:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your app is located.
@@ -631,9 +644,9 @@ To delete an app hosted on PCF:
 1. On the popup, click **Delete** to confirm that you want to delete the app
    and its configurations from Apps Manager and the service dashboard.
 
-### <a id="delete-external"></a> Delete an External App
+### <a id="delete-external"></a> Delete an Externally Hosted App
 
-To delete an external app that uses SSO:
+To delete an externally hosted app that uses SSO:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
@@ -644,4 +657,7 @@ To delete an external app that uses SSO:
 5. On the popup, click **Delete App** to confirm that you want to delete the app
    and its configurations.
 
-	<p class="note"><strong>Note</strong>: Deleting an externally hosted app in PCF removes the app and its configurations from the SSO dashboard. However, it still exists on your hosted platform.</p>
+	<p class="note"><strong>Note</strong>:
+		Deleting an externally hosted app removes the app and its
+		configurations from the SSO dashboard.
+		However, it still exists on your hosted platform.</p>

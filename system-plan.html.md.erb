@@ -56,10 +56,13 @@ Follow the steps below to create and use the `system` service plan with your dev
 1. Follow the steps to [Create a Service Instance](./manage-service-instances.html#create-svc-instance) of SSO.
     ![Create Service Instance](images/create-service-instance.png)
 
-1. If your app runs on PCF, bind the application with the service instance you created. For more information, see [Bind a PCF App](./configure-apps/index.html#bind).
+1. If you have a PCF app, bind the application with the service instance you created.
+For more information, see [Bind a PCF App](./configure-apps/index.html#bind).
 
-1. If your app is a pipeline or a script that runs external to PCF but calls PCF APIs, do the following:
-	1. Follow the instructions to [Register an External App Using the SSO Dashboard](./configure-apps/index.html#register-dashboard) and use the guidelines below:
+1. If your app is a pipeline or a script that runs external to PCF but calls PCF APIs,
+   do the following:
+	1. Follow the instructions to [Register an Externally Hosted App Using the SSO Dashboard](./configure-apps/index.html#register-dashboard)
+	   and use the guidelines below:
 		* Choose **Native App** for your application type.
 		* In the app configuration, set a value for the **Refresh token lifetime**
 		based on your use case for automated access.
@@ -78,9 +81,9 @@ Follow the steps below to create and use the `system` service plan with your dev
 		   refresh token flow as described in the
 		   [UAA API documentation](http://docs.cloudfoundry.org/api/uaa/#refresh-token).
 
-## <a id="revoke"></a>Developers: Revoke System Plan Access for an External App
+## <a id="revoke"></a>Developers: Revoke System Plan Access for an Externally Hosted App
 
-To revoke system plan access from an app external to PCF that is registered
+To revoke system plan access from an externally hosted app that is registered
 with the system plan to access PCF components, do one of the following:
 
 * Regenerate the App Secret
