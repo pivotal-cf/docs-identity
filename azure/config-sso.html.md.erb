@@ -17,21 +17,18 @@ This topic describes how to add an external identity provider to your Pivotal Si
 
 	<%= image_tag '../images/new_id_provider.png' %>
 
-2. To create a new identity provider, perform the following steps:
-	1. Enter an identity provider name into **Identity Provider Name**.
-	2. (Optional) Enter a description into **Identity Provider Description**.
-	3. Click **SAML File Metadata (optional)** follwed by clicking the **Upload Identity Provider Metadata** button to upload your metadata XML.
-	<div class="note"><strong>Note</strong>: The Single Sign-On does not support DOS file format imports. Convert the file in one of the following ways:<br><br>
-		<ul>
-			<li>Option 1: Execute `dos2unix` on the metadata file.</li>
-			<li>Option 2: Create a Unix file, then copy and paste the contents from the downloaded metadata file to the newly created file.</li>
-		</ul>
-	</div>
-	4. (Optional) Under **Advanced SAML Settings**, click **Attribute Mappings** to enter the mappings.
+2. To create a new identity provider, do the following:
+	1. Enter an **Identity Provider Name**.
+	2. (Optional) Enter an **Identity Provider Description**.
+	3. Enter the **App Federation Metadata Url** you obtained from step 7 in [Step 2: Set up SAML in Azure Active Directory (AD)](./config-azure#azure) and click **Fetch Metadata**.
+	4. (Optional) Enter mappings under **Advanced SAML Settings** > **Attribute Mappings**.
 
 1. Click **Create Identity Provider**.
 
 ##<a id='config-permissions'></a> Configure Group Permissions
+
+<p class="note"><strong>Note:</strong>  Azure AD will pass the Object ID of the groups recorded in 
+	step 5 of <a href=".azure/config-azure.html#claims">Step 3: Set up Claims Mapping</a> to the SSO plan.</p>
 
 1. Add groups to be propagated from the external identity provider to the ID token by following these steps:
 	1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
