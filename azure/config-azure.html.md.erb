@@ -31,8 +31,7 @@ This topic describes how to set up Azure Active Directory (AD) as your identity 
 
 1. Log in to Azure AD as a Global Administrator at https://portal.azure.com/. 
 
-2. Navigate to **Azure Active Directory** tab and select 
- **Enterprise application** under the **Create** header.
+2. Navigate to **Azure Active Directory** tab > **Enterprise application**.
  
  	<%= image_tag '../images/azure-create-ent-app.png' %>
 
@@ -40,8 +39,7 @@ This topic describes how to set up Azure Active Directory (AD) as your identity 
 
 	<%= image_tag '../images/azure-nongallery-app.png' %>
 
-1. Navigate to **Azure Active Directory** tab and select **Enterprise applications** 
-under the **Manage** header.
+1. Navigate to **Azure Active Directory** > **Enterprise applications**.
 
 	<%= image_tag('../images/azure-manage-ent-app.png',:width => 300) %>
 
@@ -69,8 +67,7 @@ users that should be able to login to the SSO plan.
 	
 ## <a id='claims'></a> Step 3: Set up Claims Mapping
 
-1. Navigate to **Azure Active Directory** and click **App registration** under the **Manage** header. 
-Click your application.
+1. Navigate to **Azure Active Directory** > **App registration**. Click your application.
 	
 	<%= image_tag '../images/azure-app-registration.png' %>
 	
@@ -97,3 +94,10 @@ Click your application.
 	[How to: Customize claims issued in the SAML token for enterprise applications](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
 	
 	<%= image_tag '../images/azure-edit-manifest.png' %>
+	
+1. Navigate to **Azure Active Directory** > **Groups**. 
+
+1. For each group that is used by the SSO plan, record the **Object ID**. You need the **Object ID**
+for configuring Group Permissions in SSO. For more infomation, see [Configure Group Permissions](./config-sso.html#config-permissions).
+
+	<%= image_tag '../images/azure-object-id.png' %>
