@@ -3,7 +3,25 @@ title: Troubleshooting
 owner: Identity Service
 ---
 
-This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory and Pivotal Single Sign-On (SSO).
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory (AD) and Pivotal Single Sign-On (SSO).
+
+##<a id='login'></a> Failed Login
+
+#### Symptom:
+You cannot log in to your SSO plan.
+
+#### Solutions:
+
++ Pivotal recommends using a different browser or deleting your browser cache and history before 
+you log in to your SSO plan. You SSO plan can fail if you are already logged in to Azure AD as the 
+Global Administrator account that was used to setup all the configurations. 
+
++ If you failed to log in more than 5 times, your account will be locked by Azure for 30 minutes. 
+There is currently no way to unlock an account in Azure AD, so wait for the lockout period.
+
++ Pivotal recommends testing your SSO plan from Azure AD to see the contents of the SAML assertion.
+For more information, see [Test Your Configurations in Azure AD](./testing.html#ad).
+
 
 ##<a id='app_id'></a> App ID Not Found
 
@@ -34,4 +52,3 @@ This topic describes how to resolve common errors that arise when configuring a 
 #### Explanation:
 
 - The identity provider metadata has the `RoleDescriptor` elements or is missing configurations for Name ID. See [Configure Identity Provider Metadata](config-sso.html#configure-metadata).
-
