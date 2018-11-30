@@ -3,7 +3,22 @@ title: Testing
 owner: Identity Service
 ---
 
-This topic describes how an administrator can test the connection between SSO and Azure Active Directory. An administrator can test both service provider and identity provider connections.
+This topic describes how an administrator can test the connection between SSO and Azure Active Directory (AD). An administrator can test both service provider and identity provider connections.
+
+## <a id="ad"></a>Test Your Configurations in Azure AD
+
+1. Log in to Azure AD at https://portal.azure.com/. 
+
+1. Navigate to **Azure Active Directory** > **Enterprise Applications**.
+
+1. Select your application and navigate to **Single Sign-on** > **Test SAML settings**.
+
+1. Select the user that you want to log in as. <br><br>
+
+	If you have setup all configuration correctly, you should see something like the images below. Otherwise, you should see some meaningful error message. <br><br>
+
+	<%= image_tag '../images/azure-test-saml-settings.png' %>
+	<%= image_tag '../images/azure-token-claims.png' %>
 
 ## <a id="service-provider"></a>Test Your Service Provider Connection
 
@@ -69,4 +84,3 @@ Test single sign-off to ensure that when users log out of the application, they 
 1. You are logged out and redirected to the Azure AD login page.
 
 	<%= image_tag '../images/azure_sign_in.png' %>
-
