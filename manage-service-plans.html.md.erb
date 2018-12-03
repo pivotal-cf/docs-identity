@@ -128,7 +128,7 @@ curl -X POST "https://sso-api.$SYSTEM_DOMAIN/v1/plans" \
   }'
 ```
 
-1. Record the Plan's `id` field from the response for further actions:
+1. Record the Plan's `id` field from the response for further actions. The example below uses `jq`.
 ```
 PLAN_ID=$(curl -X POST "https://sso-api.$SYSTEM_DOMAIN/v1/plans" ... | jq -r '.id')
 ```
