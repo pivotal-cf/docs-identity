@@ -96,9 +96,10 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 
 ## <a id='plan-automation'></a> Plan Automation
 
-<!-- Do we need to cross-ref the API docs? -->
+System operators can create new SSO service plans using the SSO API. 
+                     This allows system operators to automate creating, updating, and deleting SSO plans. Below are instructions on how to automate plan creation.
 
-Administrators can create new SSO service plans using the SSO API.
+<!-- Do we need to cross-ref the API docs? -->
 
 1. To login with UAAC as a `admin`, run the following command:
 
@@ -158,15 +159,17 @@ Administrators can create new SSO service plans using the SSO API.
 
 	Where `YOUR-SYSTEM-DOMAIN` is 
 	
-1. To save the plan id in an environment variable for later use, run the following command:
+1. To save the plan id in an environment variable for later use, run the following command. The example below uses `jq`.
 
 	```
 	PLAN_ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" ... | jq -r '.id')
 	```
 	Where `YOUR-SYSTEM-DOMAIN` is 
 
-Optionally, you can manage plan administrators and PCF orgs for SSO plans using the SSO API. 
+To add plan administrators who can manage the plan and its identity providers, see [Manage Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans).
 
-For more infomation about managing plan administrators, see [Manage Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans).
 
-For more infomation about managing PCF orgs, see [Managed CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans).
+To make the SSO plan available to developers in their org's CF Marketplace to add the corresponding Orgs for the plan, 
+see [Managed CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans).
+ 
+For more information on how you can manage SSO plans via API, refer to the [SSO API documentation](https://pivotal.github.io/sso-api-docs).
