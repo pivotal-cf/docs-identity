@@ -96,43 +96,77 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 
 ## <a id='plan-automation'></a> Plan Automation
 
+<!-- Do we need to cross-ref the API docs? -->
+
 Administrators can create new SSO service plans using the SSO API.
 
-1. Login with UAAC as `admin`:
-```
-uaac target login.$SYSTEM_DOMAIN
-uaac token client get admin -s $ADMIN_CLIENT_SECRET
-```
+1. To login with UAAC as a `admin`, run the following command:
 
-1. [Create an Automation Client](https://pivotal.github.io/sso-api-docs/#creating-a-automation-client) with UAAC:
-```
-uaac client add $CLIENT_ID --secret $CLIENT_SECRET --authorities "cloud_controller.admin,zones.read,zones.write,scim.read,scim.write"
-```
+	```
+	uaac target login.YOUR-SYSTEM-DOMAIN
+	```
+	
+	Where `YOUR-SYSTEM-DOMAIN` is 
 
-1. [Obtain an access token](https://pivotal.github.io/sso-api-docs/#acquiring-an-access-token)
-```
-uaac token client get $CLIENT_ID -s $CLIENT_SECRET
-uaac context  # returns the access token
-```
+1. Run the following command: 
 
-1. Use the [Create a Plan](https://pivotal.github.io/sso-api-docs/#create-a-plan) endpoint to create a new SSO Plan:
-```
-curl -X POST "https://sso-api.$SYSTEM_DOMAIN/v1/plans" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "some-plan-name",
-    "description": "some-description",
-    "auth_domain": "some-auth-domain",
-    "instance_name": "some-instance-name"
-  }'
-```
+	```
+	uaac token client get admin -s ADMIN-CLIENT-SECRET
+	```
+	
+	Where `ADMIN-CLIENT-SECRET` is 
 
-1. Record the Plan's `id` field from the response for further actions:
-```
-PLAN_ID=$(curl -X POST "https://sso-api.$SYSTEM_DOMAIN/v1/plans" ... | jq -r '.id')
-```
+1. To create an automation client with UAAC, run the following command:  
 
-1. (Optional) [Manage Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans)
+	```
+	uaac client add CLIENT-ID --secret CLIENT-SECRET --authorities "cloud_controller.admin,zones.read,zones.write,scim.read,scim.write"
+	```
 
-1. (Optional) [Managed CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans)
+	Where: 
+	+ `CLIENT-ID` 
+	+ `CLIENT-SECRET`
+
+1. To obtain an acesss token, run the following command 
+
+	```
+	uaac token client get CLIENT_ID -s CLIENT_SECRET
+	```
+	
+	Where: 
+	+ `CLIENT-ID` 
+	+ `CLIENT-SECRET
+	
+1. Run the following command:
+
+	```
+	uaac context  # returns the access token
+	```
+
+1. To create a new SSO plan, run the following command:
+
+	```
+	curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
+	  -H "Authorization: Bearer $TOKEN" \
+	  -H "Content-Type: application/json" \
+	  -d '{
+	    "name": "some-plan-name",
+	    "description": "some-description",
+	    "auth_domain": "some-auth-domain",
+	    "instance_name": "some-instance-name"
+	  }'
+	```
+
+	Where `YOUR-SYSTEM-DOMAIN` is 
+	
+1. To save the plan id in an environment variable for later use, run the following command:
+
+	```
+	PLAN_ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" ... | jq -r '.id')
+	```
+	Where `YOUR-SYSTEM-DOMAIN` is 
+
+Optionally, you can manage plan administrators and PCF orgs for SSO plans using the SSO API. 
+
+For more infomation about managing plan administrators, see [Manage Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans).
+
+For more infomation about managing PCF orgs, see [Managed CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans).
