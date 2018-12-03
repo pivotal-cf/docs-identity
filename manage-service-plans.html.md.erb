@@ -106,7 +106,7 @@ uaac token client get admin -s $ADMIN_CLIENT_SECRET
 
 1. [Create an Automation Client](https://pivotal.github.io/sso-api-docs/#creating-a-automation-client) with UAAC:
 ```
-uaac client add $CLIENT_ID --secret $CLIENT_SECRET --authorities "cloud_controller.admin,zones.read,zones.write,scim.read,scim.write"
+uaac client add $CLIENT_ID --secret $CLIENT_SECRET --authorities "cloud_controller.admin,zones.write"
 ```
 
 1. [Obtain an access token](https://pivotal.github.io/sso-api-docs/#acquiring-an-access-token)
