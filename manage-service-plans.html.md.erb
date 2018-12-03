@@ -96,7 +96,7 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 
 ## <a id='plan-automation'></a> Plan Automation
 
-Administrators can create new SSO service plans using the SSO API.
+System operators can create new SSO service plans using the SSO API. This allows system operators to automate creating, updating, and deleting SSO plans. Below are instructions on how to automate plan creation.
 
 1. Login with UAAC as `admin`:
 ```
@@ -133,6 +133,8 @@ curl -X POST "https://sso-api.$SYSTEM_DOMAIN/v1/plans" \
 PLAN_ID=$(curl -X POST "https://sso-api.$SYSTEM_DOMAIN/v1/plans" ... | jq -r '.id')
 ```
 
-1. (Optional) [Manage Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans)
+1. (Optional) To add plan administrators who can manage the plan and its identity providers, refer to [Manage Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans).
 
-1. (Optional) [Managed CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans)
+1. (Optional) To make the SSO plan available to developers in their Organizations' CF Marketplace, refer to [Managed CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans) to add the corresponding Orgs for the plan.
+
+For more information on how you can manage SSO plans via API, refer to the [SSO API documentation](https://pivotal.github.io/sso-api-docs).
