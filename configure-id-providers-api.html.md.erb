@@ -125,34 +125,74 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
      </pre>
 
    For a full list of UAA API update parameters,
-   see the [Identity Providers Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#update).
+   see the [Identity Providers Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#update).
 
 ### <a id="enable-client-auth"></a> Enable Client Auth for OpenID Connect (OIDC)
 
 Some OIDC providers only support client secrets via POST instead of via basic authentication.
 
-In these cases, Client Auth can be configured using `config.clientAuthInBody` in the request body. For information
-about this field, see the [UAA documentation](http://docs.cloudfoundry.org/api/uaa/version/4.14.0/#oauth-oidc).
-
 <p class="note"><strong>Note</strong>: Azure Active Directory integrations using
    the response type of code only work with clientAuthInBody.</p>
 
+To enable client authentication via POST, do the following:
+
+1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
+
+1. In step 5, add the following line to the config section in the JSON blob: 
+
+    ```
+    "clientAuthInBody": true
+    ```
+
+1. Complete the procudure by following step 6. 
+
+For more information about client authentication,
+see [OAuth/OIDC](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#oauth-oidc)
+in the UAA API documentation.
+
+
+
 ### <a id="enable-client-auth"></a> Enable Password Grant for OpenID Connect (OIDC)
 
-On PCF 2.2 and higher, OIDC password grant can be enabled so that native and mobile apps using password grant type against UAA can forward credentials on to the enterprise IDP. This allows native and mobile applications to use credentials stored in the enterprise IDP.
+On PCF v2.2 and later, OIDC password grant can be enabled.
+This allows native apps, such as mobile apps, to forward credentials to the enterprise IDP for authentication. 
 
-Password Grant can be enabled by configuring `config.passwordGrantEnabled` in the request body to `true`. For information
-about this field, see the [UAA documentation](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#oauth-oidc).
+To enable OIDC password grant, do the following:
+
+1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
+
+1. In step 5, add the following line to the config section in the JSON blob: 
+
+    ```
+    "passwordGrantEnabled": true
+    ```
+
+1. Complete the procudure by following step 6. 
+
+For more information about OIDC password grant,
+see [OAuth/OIDC](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#oauth-oidc)
+in the UAA API documentation.
 
 ### <a id="skip-ssl-saml"></a> Skip SSL Validation for SAML
+
+For cases where the SAML provider is configured using a valid SAML URL and a self-signed certificate,
+you might need to skip SSL validation.
 
 <p class="note"><strong>Note</strong>: This section assumes you have created the SAML identity provider, most likely
 by providing the SAML metadata directly.
 For more information, see <a href="./configure-id-providers.html#config-saml-prov"> Add a SAML Provider</a>. </p>
 
-For cases where the SAML provider is configured using a valid SAML URL and a self-signed certificate,
-you might need to skip SSL validation.
+To enable skipping SSL validation, do the following:
 
-You can configure skipping SSL for SAML identity providers using `config.skipSslValidation` in the
-request body. For documentation about this field, see the
-[UAA documentation]( http://docs.cloudfoundry.org/api/uaa/version/4.14.0/#saml).
+1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
+
+1. In step 5, add the following line to the config section in the JSON blob: 
+
+    ```
+    "skipSslValidation": true
+    ```
+
+1. Complete the procudure by following step 6. 
+ 
+For more information about skipping SSL validation, see 
+[SAML](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/#saml) in the UAA API documentation.
