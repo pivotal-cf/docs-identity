@@ -38,11 +38,11 @@ The following table provides version and version-support information about [Sing
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
-        <td>v2.3 and v2.2</td>
+        <td>v2.4, v2.3, and v2.2</td>
     </tr>
     <tr>
         <td>Compatible Pivotal Application Service (PAS) version(s)</td>
-        <td>v2.3 and v2.2</td>
+        <td>v2.4, v2.3, and v2.2</td>
     </tr>
     <tr>
         <td>IaaS support</td>
@@ -50,7 +50,7 @@ The following table provides version and version-support information about [Sing
     </tr>
 </table>
 
-## <a id='support-matrix'></a> Support Matrix for SSO v1.4.x to v1.7.x
+## <a id='support-matrix'></a> Support Matrix for SSO v1.5.x to v1.8.x
 
 This table lists the supported versions of SSO on PCF. 
 
@@ -64,13 +64,18 @@ This table lists the supported versions of SSO on PCF.
   <th>Minimum SSO Version</th>
 </tr>
   <tr>
+    <th rowspan="1">2.4.x</th>
+    <td>1.8.0</td>
+    <td>1.8.0</td>
+  </tr>
+  <tr>
     <th rowspan="1">2.3.x</th>
-    <td>1.7.1</td>
+    <td>1.8.0</td>
     <td>1.7.0</td>
   </tr>
   <tr>
     <th rowspan="1">2.2.x</th>
-    <td>1.7.0</td>
+    <td>1.8.0</td>
     <td>1.7.0</td>
   </tr>
   <tr>
@@ -78,42 +83,23 @@ This table lists the supported versions of SSO on PCF.
     <td>1.7.0*</td>
     <td>1.6.0</td>
   </tr>
-  <tr>
-    <th rowspan="1">2.0.x</th>
-    <td>1.6.0</td>
-    <td>1.5.3*</td>
-  </tr>
-  <tr>
-    <th rowspan="1">1.12.x</th>
-    <td>1.5.3</td>
-    <td>1.5.0</td>
-  </tr>
-  <tr>
-    <th rowspan="1">1.11.x</th>
-    <td>1.4.6</td>
-    <td>1.4.0</td>
-  </tr>
 </table>
 
 \* SSO v1.7.1 is not supported on PCF v2.1 because of an issue with Xenial stemcells.
 
-\** If you are upgrading from PCF v1.12 to v2.0, see 
-[Upgrade SSO Service Tile Between PCF 1.12 and PCF 2.0](https://community.pivotal.io/s/article/Upgrade-SSO-Service-Tile-Between-PCF-112-and-PCF-20)
-in the Pivotal Support knowledge base.
+### <a id='upgrading-example'></a> Upgrade Path to SSO v1.8
 
-### <a id='upgrading-example'></a> Upgrade Path to SSO v1.7
+If you are using SSO v1.7.0 and PCF v2.2.0 and want to upgrade to the
+recommended version of SSO and PCF v2.3.x, do the following:
 
-If you are using SSO v1.6.0 and PCF v2.1.0 and want to upgrade to the
-recommended version of SSO and PCF v2.2.x, do the following:
+1. Upgrade to SSO v1.8.0 on PCF v2.2.x.
 
-1. Upgrade to SSO v1.7.0 on PCF v2.1.x.
-
-1. Upgrade PCF to v2.2.x.
+1. Upgrade PCF to v2.3.x.
 
     For how to upgrade PCF,
-    see [Upgrading Pivotal Cloud Foundry](https://docs.pivotal.io/pivotalcf/2-2/customizing/upgrading-pcf.html).
+    see [Upgrading Pivotal Cloud Foundry](https://docs.pivotal.io/pivotalcf/2-3/customizing/upgrading-pcf.html).
 
-3. Upgrade to the recommended version of SSO v1.7.
+3. Upgrade to the recommended version of SSO v1.8 that corresponds to PCF v2.3.x, if not at that version already.
 
 ## <a id='guides'></a> Integration Guides
 
