@@ -120,7 +120,7 @@ System operators can create new SSO service plans using the SSO API.
 1. To create an automation client with UAAC, run the following command:  
 
 	```
-	uaac client add CLIENT-ID --secret CLIENT-SECRET --authorities "cloud_controller.admin,zones.write"
+	uaac client add CLIENT-ID --secret CLIENT-SECRET --authorities "cloud_controller.admin,zones.write,scim.write,scim.read"
 	```
 
 	Where: 
