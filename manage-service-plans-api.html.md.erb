@@ -15,6 +15,7 @@ owner: Identity Service
         <li><a href="#default-groups">Add Default Groups for Users</a></li>
         <li><a href="#rotate-keys">Rotate JSON Web Token (JWT) Signing Keys</a></li>
         <li><a href="#enable-default-idp">Enable Default Identity Provider (IDP)</a></li>
+        <li><a href="#disable-sso-plans">Disable SSO Plans</a></li>
     </ul>
 </div>
 
@@ -285,3 +286,10 @@ For PAS 2.4 or higher, a default IDP can be enabled so that end users are automa
 
 Default IDP can be configured using `defaultIdentityProvider` in the request body. For information
 about this field, see the [UAA documentation](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone).
+
+<h2><a id="disable-sso-plans"></a> Disable SSO Plans</h2>
+
+For PAS 2.4 or higher, SSO Plans that are no longer in use can be disabled. Disabled Plans can be re-enabled later when they need to be used again.
+
+Whether or not a plan is active can be configured using `active` in the request body. For information
+about this field, see the [UAA documentation](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone).
