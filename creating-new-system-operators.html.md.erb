@@ -3,22 +3,49 @@ title: Creating New System Operators
 owner: Identity Service
 ---
 
+<!-- This topic is very short. I think there might be a place in our docs currently where we can 
+put this? -->
+
 This topic describes how to create new system operators who can use the UI or set up plan automation
 using the User Account and Authentication Command Line Interface (UAAC).
 
 ## <a id="creating"></a> Creating New System Operators
 
-1. Create a new user using UAAC:
+1. To create a new user using UAAC, run the following command:
 
     ```
-    uaac user add NEW-ADMIN-USERNAME -p NEW-ADMIN-PASSWORD --emails NEW-ADMIN-EMAIL
+    uaac user add ADMIN-USERNAME -p ADMIN-PASSWORD --emails ADMIN-EMAIL
     ```
-Replace `NEW-ADMIN-USERNAME`, `NEW-ADMIN-PASSWORD`, and `NEW-ADMIN-EMAIL` with appropriate information.
+    
+    Where: 
+    + `ADMIN-USERNAME` is the new admin username. 
+    + `ADMIN-PASSWORD` is the new admin password.
+    + `ADMIN-EMAIL` is the new admin email.
 
-1. Run `uaac member add GROUP NEW-ADMIN-USERNAME` to add the new system operator to the appropriate groups:
+1. To add the new system operator to the appropriate groups, run the following commands:
+  + To add the new system operator to `UAA Admin` group, run the following command: 
+    
+        ```
+        uaac member add uaa.admin NEW-ADMIN-USERNAME`
+        ```
+      
+        Where `ADMIN-USERNAME` is the new admin username. <br><br>
+  + To add the new system operator to `Zones UAA Admin` group, run the following command: 
+    
+        ```
+        uaac member add zones.uaa.admin ADMIN-USERNAME`
+        ```
+        
+        Where `ADMIN-USERNAME` is the new admin username. <br><br>    
+  + To add base scopes for new system operator, run the following commands: 
+    
+        ```
+        uaac member add clients.read ADMIN-USERNAME
+        ```
+        
+        ```
+        uaac member add clients.write ADMIN-USERNAME
+        ```
+        Where `ADMIN-USERNAME` is the new admin username. 
 
-    Scenario             | Commands
-    -------------------- | -----
-    **UAA Admin**        | `uaac member add uaa.admin NEW-ADMIN-USERNAME`
-    **Zones UAA Admin**  | `uaac member add zones.uaa.admin NEW-ADMIN-USERNAME`
-    **Base scopes**      | `uaac member add clients.read NEW-ADMIN-USERNAME` <br> `uaac member add clients.write NEW-ADMIN-USERNAME`
+<!-- I feel like the above can be shortened into one command -->
