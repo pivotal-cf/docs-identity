@@ -1,0 +1,24 @@
+---
+title: Creating New System Operators
+owner: Identity Service
+---
+
+This topic describes how to create new system operators who can use the UI or set up plan automation
+using the User Account and Authentication Command Line Interface (UAAC).
+
+## <a id="creating"></a> Creating New System Operators
+
+1. Create a new user using UAAC:
+
+    ```
+    uaac user add NEW-ADMIN-USERNAME -p NEW-ADMIN-PASSWORD --emails NEW-ADMIN-EMAIL
+    ```
+Replace `NEW-ADMIN-USERNAME`, `NEW-ADMIN-PASSWORD`, and `NEW-ADMIN-EMAIL` with appropriate information.
+
+1. Run `uaac member add GROUP NEW-ADMIN-USERNAME` to add the new system operator to the appropriate groups:
+
+    Scenario             | Commands
+    -------------------- | -----
+    **UAA Admin**        | `uaac member add uaa.admin NEW-ADMIN-USERNAME`
+    **Zones UAA Admin**  | `uaac member add zones.uaa.admin NEW-ADMIN-USERNAME`
+    **Base scopes**      | `uaac member add clients.read NEW-ADMIN-USERNAME` <br> `uaac member add clients.write NEW-ADMIN-USERNAME`
