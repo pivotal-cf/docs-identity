@@ -130,7 +130,7 @@ run the following command:
 1. To create an automation client with UAAC, run the following command:  
 
 	```
-	uaac client add CLIENT-ID --secret CLIENT-SECRET --authorities "cloud_controller.admin,zones.write,scim.write,scim.read"
+        uaac client add CLIENT-ID --secret CLIENT-SECRET --authorized_grant_type client_credentials --authorities "cloud_controller.admin,zones.write,scim.write,scim.read"
 	```
 
 	Where: 
@@ -141,14 +141,14 @@ run the following command:
 1. To obtain an acesss token as your automation client, run the following command:
 
 	```
-	uaac token client get CLIENT_ID -s CLIENT_SECRET
+	uaac token client get CLIENT-ID -s CLIENT-SECRET
 	```
 	
 	Where: 
 	+ `CLIENT-ID` is the name you provided in the previous step.
 	+ `CLIENT-SECRET` is the secret you provided in the previous step.
 	
-1. To confirm you are logged in as your automation client, run the following command:
+1. To confirm you are logged in as your automation client, run the following command and record the value returned under `access_token`:
 
 	```
 	uaac context  # returns the access token
@@ -168,22 +168,51 @@ run the following command:
 	  }'
 	```
 
-	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
+	Where: 
+	+ `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
+	+ `$TOKEN` is replaced with the access token from the previous step.
+	+ The `name` field contains the name of the plan.
+	+ The `description` field contains text that appears as a plan feature in the Services Marketplace.
+	+ The `auth_domain` field contains the subdomain of the URL where users authenticate to access applications covered by the service plan under the `login.YOUR-SYSTEM-DOMAIN` URL.
+	+ The `instance_name` field contains text that appears on the login page and in other user-facing content, such as email communications.
+	+ Note that we use `curl` instead of `uaac curl` in our example to facilitate parsing the response for ID in the next step.
 	
-1. To save the plan ID in an environment variable for later use, run the following command. The example below uses `jq`.
+1. To save the plan ID in an environment variable for later use, you can parse the response from the previous command. The example below wraps the previous command and parses the response uses `jq`.
 
 	```
-	PLAN_ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" ... | jq -r '.id')
+	PLAN-ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" ... | jq -r '.id')
 	```
-	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
+	Where:
+	+ `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
+	+ `PLAN-ID` is the ID of the SSO plan created.
 
-1. To add plan administrators who can manage the plan and its identity providers, see [Managing Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans).
+1. To add plan administrators who can manage the plan and its identity providers, see [Managing Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans). You should already be authenticated to the UAA CLI as your automation client based on the previous steps. You can add individual plan administrators by running the following example command for each plan administrator:
+
+	```
+	uaac member add zones.PLAN-ID.admin USER-NAME  # run once for each user you wish to add as a plan admin
+	```
+	Where: 
+	+ `PLAN-ID` is replaced with the ID returned in the previous step.
+	+ `USER-NAME` is replaced with the username of the person you wish to add as a plan administrator.
+	+ If `zones.PLAN-ID.admin` does not exist, you can create the group by calling `uaac group add zones.PLAN-ID.admin`.
 
 1. To make the SSO plan available to developers in their org's CF Marketplace to add the corresponding Orgs for the plan, see
-[Managing CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans).
+[Managing CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans). You can authenticate as your automation client and add per the example below:
+
+	```
+	cf api api.YOUR-SYSTEM-DOMAIN
+	cf auth CLIENT-ID CLIENT-SECRET --client-credentials
+	cf enable-service-access p-identity -p PLAN-AUTH-DOMAIN -o ORG-NAME # run once for each org you wish the SSO plan to be available for via the Services Marketplace
+	```
+	Where: 
+	+ `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
+	+ `CLIENT-ID` is the name you provided in the previous steps.
+	+ `CLIENT-SECRET` is the secret you provided in the previous steps.
+	+ `PLAN-AUTH-DOMAIN` is the `auth_domain` value you provided when creating the SSO plan in the previous steps.
+	+ `ORG-NAME` is the name of the Org you wish to make the SSO plan visibility. If you wish to enable the SSO plan across all orgs, refer to the API docs for more details.
  
- <!-- The Managing Plan Administrators for SSO Plans link might be the same as Creating New System Operators topic
- The Managing CloudFoundry Organizations link is not a procedure -->
+ <!-- The Managing Plan Administrators for SSO Plans link is not the same as Creating New System Operators topic (one is CLI which is automable, other is UI only which cannot be automated)
+ The Managing CloudFoundry Organizations link is not a procedure, clarified procedure above -->
  
  
 For more information on how you can manage SSO plans via API, see [SSO API](https://pivotal.github.io/sso-api-docs) documentation.
