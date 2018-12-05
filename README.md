@@ -48,3 +48,4 @@ SSO has a lot of difficult and inconsistent terminology. Jane learned the follow
 | UAA CLI | UAA-CLI  | The UAAC CLI is an experimental CLI ("incubating"). It is different from the UAAC, which is released. Don't discuss UAA CLI in the docs. |
 | PCF app | | Use this for apps that are hosted on PCF. |
 | externally hosted app | | Use this for apps that are hosted externally. |
+| native apps |  | Native apps are mobile, desktop, or commandline apps. This is a different categorization from "PCF app vs externally hosted app". The most common native app is the mobile app. We wrote "native apps, such as mobile apps". Info from Tian, 2018.12.04 |
