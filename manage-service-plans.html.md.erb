@@ -94,9 +94,9 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 
 5. Click **Save**.
 
-## <a id='plan-automation'></a> Plan Automation
+## <a id='plan-automation'></a> Automate Service Plan Creation and Deletion
 
-PCF Administrators (System Operators) can create new SSO service plans using the SSO API. This 
+PCF administrators can create new SSO service plans using the SSO API. This 
 allows them to automate creating, updating, and deleting SSO plans. Below are instructions on how to automate plan creation.
 
 In order to use the following steps, you will need to have the same credentials used for [Creating and Managing Users with the UAA CLI (UAAC) for PCF](https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html). We recommend creating a dedicated client for SSO plan automation.
@@ -170,17 +170,20 @@ run the following command:
 
 	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
 	
-1. To save the plan id in an environment variable for later use, run the following command. The example below uses `jq`.
+1. To save the plan ID in an environment variable for later use, run the following command. The example below uses `jq`.
 
 	```
 	PLAN_ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" ... | jq -r '.id')
 	```
 	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
 
-1. To add plan administrators who can manage the plan and its identity providers, see [Manage Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans).
+1. To add plan administrators who can manage the plan and its identity providers, see [Managing Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans).
 
-
-1. To make the SSO plan available to developers in their org's CF Marketplace to add the corresponding Orgs for the plan, 
-see [Managed CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans).
+1. To make the SSO plan available to developers in their org's CF Marketplace to add the corresponding Orgs for the plan, see
+[Managing CloudFoundry Organizations](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans).
+ 
+ <!-- The Managing Plan Administrators for SSO Plans link might be the same as Creating New System Operators topic
+ The Managing CloudFoundry Organizations link is not a procedure -->
+ 
  
 For more information on how you can manage SSO plans via API, see [SSO API](https://pivotal.github.io/sso-api-docs) documentation.
