@@ -12,78 +12,45 @@ These are release notes for the [Single Sign-On](https://network.pivotal.io/prod
 
 ### <a id="features"></a> Features
 
-<p class="note breaking"><strong>Breaking Change:</strong> The Single Sign-On v1.7.1 and later requires the Ubuntu Xenial stemcell due to end-of-support for the Ubuntu Trusty series.
-This might break automation you have set up to update SSO deployments that used Trusty stemcells.</p>
+<p class="note breaking"><strong>Breaking Change:</strong> Starting from SSO v1.8.0, when users try to create resources already in use in a separate space via cf CLI,
+SSO now returns an explicit error instead of failing silently. Please configure distinct recource names when dealing with cross-space scopes. See the below feature details for more information.</p>
 
 New features and changes in this release:
 
-* FIRST NEW FEATURE
+* **SSO Plan API**:
+  SSO now provides an API for creating, retrieving, listing, updating, and deleting SSO Plans.
+  SSO Plan API is intended to provide an easy way for developers to perform automation, continuous deployment/integration for SSO Plans.
+  For more information & documentation, see [SSO Plan API Docs](https://pivotal.github.io/sso-api-docs) and [Managing Service Plans](./manage-service-plans.html).
+  As part of the SSO Plan API, we also provided instructions on how to automate the following common steps in the SSO workflow:
+  - [Managing CloudFoundry Organizations for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans)
+  - [Managing Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans)
+  - [Creating New System Operators](./creating-new-system-operators.html).
 
-* SECOND NEW FEATURE
+  For automating identity provider and application configurations, please refer to the existing documentations:
+  - [Configuring Apps](./configure-apps)
+  - [Updating Identity Providers with UAAC](./configure-id-providers-api.html)
 
-* Updated PCF stemcell to 97.XX series (Ubuntu 16.04 Xenial). See the Breaking Change above.
+* **Expanded API functionality for configuring SSO Plans and identity providers**:
+  - **Disabling and re-enabling SSO Plans (PCF 2.4+ only)**:
+  For PCF 2.4 and higher, SSO plans that are no longer in use can be disabled. Disabled plans can be re-enabled later when they need to be used again.
+  For more information, see [Disable SSO Plans](./manage-service-plans-api.html#disable-sso-plans).
+  - **Enabling default identity providers (PCF 2.4+ only)**:
+  For PCF 2.4 and higher, a default IDP can be enabled so that end users are automatically redirected to an appropriate enterprise IDP.
+  For more information, see [Enable Default Identity Provider](./manage-service-plans-api.html#enable-default-idp).
+  - **Password Grant for OpenID Connect (PCF 2.2+ only)**:
+  On PCF 2.2 and higher, OIDC password grant can be enabled so that native apps, such as mobile apps, can forward credentials on to the enterprise IDP for authentication.
+  This allows native and mobile applications to use credentials stored in the enterprise IDP.
+  For more information, see [Enable Password Grant for OpenID Connect](./configure-id-providers-api.html#enable-client-auth).
 
+* **Login Hints functionality in Authorization Request API (PCF 2.2+ only)**:
+  For PCF v2.2 and later, when making an authorization code, password, or implicit grant request, a login hint can be provided so that the end user is automatically redirected to the appropriate IDP.
+  For more information, see [Using Login Hints](./integrating-sso.html#using-login-hint).
 
-### Security Fixes
+* **Improved access error handling**:
+  Improved error message and instruction in the presence of access errors on the SSO UI.
 
-This release includes the following security fixes:
-
-* Critical [CVE-2018-XXXX: TITLE OF CVE](https://pivotal.io/security/cve-2018-XXXX)
-
-
-### <a id="180-known"></a> Known Issues
-
-* **Update BOSH Add-On's**: Before you update or upgrade to SSO v1.8, if you are using BOSH add-on's for PCF,
-you must update the add-on definitions to include the Ubuntu Xenial 16.04 stemcell. For instructions, see [Update Add-ons to Run with Xenial Stemcell](./installation.html#update-addons).
-
-
-* **Expanded API functionality for identity providers**: Operators can now use the API to configure additional features
-on identity providers that are not yet exposed through the SSO dashboard. SSO honors values configured through the
-API so that they are retained when using the SSO dashboard.
-For more information, see the following sections of [Configuring Identity Providers with UAAC](configure-id-providers-api.html):
-
-    <table>
-        <tr>
-            <th>To learn more about...</th>
-            <th>See...</th>
-        </tr>
-        <tr>
-            <td>Enabling Client Auth for OIDC</td>
-            <td>
-                <a href="configure-id-providers-api.html#enable-client-auth">Enable Client Auth for OIDC</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Skipping SSL validation for SAML</td>
-            <td>
-                <a href="configure-id-providers-api.html#skip-ssl-saml">Skip SSL validation for SAML</a>
-            </td>
-        </tr>
-    </table>
-
-
-* **Expanded API functionality for clients and users**: Operators can now use the API to configure additional features on
-[Clients](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#clients)
-and [Users](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#users).
-
-* **External service keys**: The SSO service broker now supports `cf create-service-key`. For more information, see
-  [Managing Service Keys](https://docs.cloudfoundry.org/devguide/services/service-keys.html)
-  and [Register an Externally Hosted App Using Service Keys](configure-apps/index.html#register-service-keys).
-
-* **JSON bind parameters for client configuration**:
-  The SSO service broker now supports passing client configuration on the
-  command line for `cf bind-service`.
-  For more information, see [Configure SSO Properties with Bind Parameters](configure-apps/index.html#configure_bind_params).
-  This is the recommended approach for configuring clients bound to Cloud Foundry apps.
-
-* **Client redirect URI now supports custom schemes**: When configuring a client's redirect URIs, SSO now supports custom
-  URI schemes. A common use case is deep-linking for mobile apps.
-  For more information, see [Configuring apps](configure-apps/index.html).
-
-* **Single logout for all SSO dashboards with Pivotal Application Service (PAS)**:
-  Session state for logouts on SSO dashboards are now synchronized with your UAA session.
-  This is done using [uaa-singular](https://github.com/cloudfoundry/uaa-singular).
-
+* **Improved error message for duplicate resources**:
+  When users try to create resources already in use in a separate space (via cf CLI or SSO UI), SSO now returns a consistent error message.
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
