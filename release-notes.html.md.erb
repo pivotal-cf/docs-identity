@@ -25,10 +25,9 @@ New features and changes in this release:
   - [Managing CloudFoundry Organizations for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans)
   - [Managing Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans)
   - [Creating New System Operators](./creating-new-system-operators.html).
-
-  For automating identity provider and application configurations, please refer to the existing documentations:
-  - [Configuring Apps](./configure-apps)
-  - [Updating Identity Providers with UAAC](./configure-id-providers-api.html)
+  - For automating identity provider and application configurations, please refer to the existing documentations:
+    - [Configuring Apps](./configure-apps)
+    - [Updating Identity Providers with UAAC](./configure-id-providers-api.html)
 
 * **Expanded API functionality for configuring SSO Plans and identity providers**:
   - **Disabling and re-enabling SSO Plans (PCF 2.4+ only)**:
@@ -49,8 +48,8 @@ New features and changes in this release:
 * **Improved access error handling**:
   Improved error message and instruction in the presence of access errors on the SSO UI.
 
-* **Improved error message for duplicate resources**:
-  When users try to create resources already in use in a separate space (via cf CLI or SSO UI), SSO now returns a consistent error message.
+* **Improved error message for space-protected resources**:
+  When users try to create resources already in use in a separate space (via cf CLI or SSO UI), SSO now returns a consistent error message. For more information on space protection, see [About Space Protection for Resources](./manage-resources.html#space-protection).
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
