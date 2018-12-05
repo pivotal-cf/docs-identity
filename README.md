@@ -32,7 +32,7 @@ authenticate with an external identity provider rather than having to create a n
 3. Clone https://github.com/pivotal-cf/docs-identity. Read the `README` of this repo to decide which branch to check out. Create feature branch out of the appropriate branch to hold changes in the actual documentation text content.
 4. Get ruby 2.3.0 and follow steps on https://github.com/pivotal-cf/bookbinder
 5. `cd docs-book-identity && bundle install`
-6. To render the documentation with hotload changes: `cd docs-book-identity && bundle exec bookbinder watch` (Browse to localhost url in the output).
+6. To render the documentation with hotload changes: `cd docs-book-identity && bundle exec bookbinder watch` (Browse to localhost url in the output, for example, `localhost:4567/p-identity/1-7`).
 
 ### Terminology
 
