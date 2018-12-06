@@ -99,7 +99,8 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 PCF administrators can create new SSO service plans using the SSO API. This 
 allows them to automate creating, updating, and deleting SSO plans. Below are instructions on how to automate plan creation.
 
-In order to use the following steps, you will need to have the same credentials used for [Creating and Managing Users with the UAA CLI (UAAC) for PCF](https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html). We recommend creating a dedicated client for SSO plan automation.
+To use the following steps, you will need to have the same credentials used for [Creating and Managing Users with the UAA CLI (UAAC) for PCF](https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html). 
+Pivotal recommends creating a dedicated client for SSO plan automation.
 
 1. To install the UAA CLI, run the following command:
     
@@ -134,8 +135,8 @@ run the following command:
 	```
 
 	Where: 
-	+ `CLIENT-ID` is the name of the client you wish to use for SSO plan automation.
-	+ `CLIENT-SECRET` is the secret used to authenticate the client you wish to use for SSO plan 
+	+ `CLIENT-ID` is the name of the client you want to use for SSO plan automation.
+	+ `CLIENT-SECRET` is the secret used to authenticate the client you want to use for SSO plan 
 	automation.
 
 1. To obtain an acesss token as your automation client, run the following command:
@@ -180,10 +181,12 @@ run the following command:
 1. To add plan administrators who can manage the plan and its identity providers, see [Managing Plan Administrators for SSO Plans](https://docs.pivotal.io/p-identity/sso-api/#managing-plan-administrators-for-sso-plans).
 
 1. To make the SSO plan available to developers in their org's CF Marketplace to add the corresponding Orgs for the plan, see
+
 [Managing CloudFoundry Organizations](https://docs.pivotal.io/p-identity/sso-api/#managing-cloudfoundry-organizations-for-sso-plans).
- 
- <!-- The Managing Plan Administrators for SSO Plans link might be the same as Creating New System Operators topic
- The Managing CloudFoundry Organizations link is not a procedure -->
- 
- 
-For more information on how you can manage SSO plans via API, see [SSO API](https://docs.pivotal.io/p-identity/sso-api) documentation.
+
+
+For more information on how you can manage SSO plans via API, see [SSO API](https://docs.pivotal.io/p-identity/sso-api)).
+
+
+<!-- The Managing Plan Administrators for SSO Plans link might be the same as Creating New System Operators topic
+The Managing CloudFoundry Organizations link is not a procedure -->
