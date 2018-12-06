@@ -28,18 +28,25 @@ New features and changes in this release:
 <!-- Why all these links? How are they related to the API? Can they be put elsewhere in the docs -->
 
 * **SSO Plan API**:
-  SSO includes an API for managing SSO plans.
-  The SSO Plan API provides an easy way for developers to do continuous deployment and 
-  continuous integration for SSO plans.
-  For more information about automating SSO Plans, see [Managing Service Plans](./manage-service-plans.html) and [Creating New System Operators](./creating-new-system-operators.html).
+  SSO now provides an API for creating, retrieving, listing, updating, and deleting SSO Plans.
+  SSO Plan API is intended to provide an easy way for developers to perform automation, continuous deployment/integration for SSO Plans.
+  For more information & documentation, see [SSO Plan API Docs](https://docs.pivotal.io/p-identity/sso-api) and [Managing Service Plans](./manage-service-plans.html).
+  As part of the SSO Plan API, we also provided instructions on how to automate the following common steps in the SSO workflow:
+  - [Managing CloudFoundry Organizations for SSO Plans](https://docs.pivotal.io/p-identity/sso-api/#managing-cloudfoundry-organizations-for-sso-plans)
+  - [Managing Plan Administrators for SSO Plans](https://docs.pivotal.io/p-identity/sso-api/#managing-plan-administrators-for-sso-plans)
+  - [Creating New System Operators](./creating-new-system-operators.html).
 
-<!-- For automating identity provider and application configurations, please refer to the existing documentations:
-- [Configuring Apps](./configure-apps)
-- [Updating Identity Providers with UAAC](./configure-id-providers-api.html) -->
+  For automating identity provider and application configurations, please refer to the existing documentations:
+  - [Configuring Apps](./configure-apps)
+  - [Updating Identity Providers with UAAC](./configure-id-providers-api.html)
 
-* **Expanded API functionality for configuring SSO plans and identity providers (IDP)**:
-  - **Enabling default identity providers:**
-  For PCF 2.4 and later, you can enable a default IDP so that users are automatically redirected to an appropriate enterprise IDP.
+* **Expanded API functionality for configuring SSO Plans and identity providers**:
+  - **Disabling and re-enabling SSO Plans (PCF 2.4+ only)**:
+  For PCF 2.4 and higher, SSO plans that are no longer in use can be disabled. Disabled plans can be re-enabled later when they need to be used again.
+  For more information, see [Disable SSO Plans](./manage-service-plans-api.html#disable-sso-plans).
+  - **Enabling default identity providers (PCF 2.4+ only)**:
+  For PCF 2.4 and higher, a default IDP can be enabled so that end users are automatically redirected to an appropriate enterprise IDP.
+
   For more information, see [Enable Default Identity Provider](./manage-service-plans-api.html#enable-default-idp).
   - **Disabling and re-enabling SSO plans:**
   For PCF v2.4 and later, you can disable SSO plans that are no longer in use. You can re-enable disabled plans when they need to be used again.
