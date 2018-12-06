@@ -3,45 +3,53 @@ title: Release Notes
 owner: Identity Service
 ---
 
-These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity) service for Pivotal Cloud Foundry (PCF).
+These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity) 
+service for Pivotal Cloud Foundry (PCF).
 
 
 ## <a id="180"></a> v1.8.0
 
 **Release Date: December XX, 2018**
 
-### <a id="features"></a> Features
+<!-- Is this really a breaking change? -->
 
-<p class="note breaking"><strong>Breaking Change:</strong> Starting from SSO v1.8.0, when users try to create resources already in use in a separate space via cf CLI,
-SSO now returns an explicit error instead of failing silently. Please configure distinct recource names when dealing with cross-space scopes. See the below feature details for more information.</p>
+<p class="note breaking"><strong>Breaking Change:</strong> For SSO v1.8.0 and later, configure distinct resource 
+names when dealing with cross-space scopes. For more information, see Improved error message for duplicate resources
+in <a href="#features">Features</a> below.</p>
+
+<!-- when users try 
+to create resources already in use in a separate space using Cloud Foundry Command Line Interace 
+(cf CLI), SSO now returns an explicit error instead of failing silently.  See the below feature details for more information -->
+
+### <a id="features"></a> Features
 
 New features and changes in this release:
 
-* **SSO Plan API**:
-  SSO now provides an API for creating, retrieving, listing, updating, and deleting SSO Plans.
-  SSO Plan API is intended to provide an easy way for developers to perform automation, continuous deployment/integration for SSO Plans.
-  For more information & documentation, see [SSO Plan API Docs](https://pivotal.github.io/sso-api-docs) and [Managing Service Plans](./manage-service-plans.html).
-  As part of the SSO Plan API, we also provided instructions on how to automate the following common steps in the SSO workflow:
-  - [Managing CloudFoundry Organizations for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-cloudfoundry-organizations-for-sso-plans)
-  - [Managing Plan Administrators for SSO Plans](https://pivotal.github.io/sso-api-docs/#managing-plan-administrators-for-sso-plans)
-  - [Creating New System Operators](./creating-new-system-operators.html)
-  - For automating identity provider and application configurations, please refer to the existing documentations:
-    - [Configuring Apps](./configure-apps)
-    - [Updating Identity Providers with UAAC](./configure-id-providers-api.html)
+<!-- Why all these links? How are they related to the API? Can they be put elsewhere in the docs -->
 
-* **Expanded API functionality for configuring SSO Plans and identity providers**:
-  - **Disabling and re-enabling SSO Plans (PCF 2.4+ only)**:
-  For PCF 2.4 and higher, SSO plans that are no longer in use can be disabled. Disabled plans can be re-enabled later when they need to be used again.
-  For more information, see [Disable SSO Plans](./manage-service-plans-api.html#disable-sso-plans).
-  - **Enabling default identity providers (PCF 2.4+ only)**:
-  For PCF 2.4 and higher, a default IDP can be enabled so that end users are automatically redirected to an appropriate enterprise IDP.
+* **SSO Plan API**:
+  SSO includes an API for managing SSO plans.
+  The SSO Plan API provides an easy way for developers to do continuous deployment and 
+  continuous integration for SSO plans.
+  For more information about automating SSO Plans, see [Managing Service Plans](./manage-service-plans.html) and [Creating New System Operators](./creating-new-system-operators.html).
+
+<!-- For automating identity provider and application configurations, please refer to the existing documentations:
+- [Configuring Apps](./configure-apps)
+- [Updating Identity Providers with UAAC](./configure-id-providers-api.html) -->
+
+* **Expanded API functionality for configuring SSO plans and identity providers (IDP)**:
+  - **Enabling default identity providers:**
+  For PCF 2.4 and later, you can enable a default IDP so that users are automatically redirected to an appropriate enterprise IDP.
   For more information, see [Enable Default Identity Provider](./manage-service-plans-api.html#enable-default-idp).
-  - **Password Grant for OpenID Connect (PCF 2.2+ only)**:
-  On PCF 2.2 and higher, OIDC password grant can be enabled so that native apps, such as mobile apps, can forward credentials on to the enterprise IDP for authentication.
-  This allows native and mobile applications to use credentials stored in the enterprise IDP.
+  - **Disabling and re-enabling SSO plans:**
+  For PCF v2.4 and later, you can disable SSO plans that are no longer in use. You can re-enable disabled plans when they need to be used again.
+  For more information, see [Disable SSO Plans](./manage-service-plans-api.html#disable-sso-plans).
+  - **Password Grant for OpenID Connect (OIDC):**
+  On PCF v2.2 and later, you can enable the OIDC password grant so that native apps, such as mobile apps, can forward credentials to the enterprise IDP for authentication.
+  This allows native apps to use credentials stored in the enterprise IDP.
   For more information, see [Enable Password Grant for OpenID Connect](./configure-id-providers-api.html#enable-client-auth).
 
-* **Login Hints functionality in Authorization Request API (PCF 2.2+ only)**:
+* **Login Hints functionality in Authorization Request API:**
   For PCF v2.2 and later, when making an authorization code, password, or implicit grant request, a login hint can be provided so that the end user is automatically redirected to the appropriate IDP.
   For more information, see [Using Login Hints](./integrating-sso.html#using-login-hint).
 
@@ -50,6 +58,17 @@ New features and changes in this release:
 
 * **Improved error message for space-protected resources**:
   When users try to create resources already in use in a separate space (via cf CLI or SSO UI), SSO now returns a consistent error message. For more information on space protection, see [About Space Protection for Resources](./manage-resources.html#space-protection).
+
+## <a id="deprecation"></a> Deprecation Notice
+In future releases of SSO, we may plan to deprecate the following features:
+
+* **[User management interface](./manage-users.html)**: We plan to move from the user management UI to direct UAA CLI usage for any administrator user management capabilities.
+* **[Password policies for the internal user store](./configure-id-providers.html#passwd-policy): UAA plans to focus on enterprise identity providers as the core provider of users for applications in production in the future.
+* **[Native MFA](./manage-service-plans-api.html#enable-authentication): UAA plans to focus on enterprise identity providers and MFA provided from the enterprise identity provider as the core provider of users for applications in the future.
+
+In addition, we may no longer recommend usage of the internal user store in production based upon the above items. 
+
+If you have any feedback or concerns around these future features, please let us know via [this survey](https://docs.google.com/forms/d/e/1FAIpQLSdPHaId-qk4QGzGL0GE3cXhH1XUgKFQOpNL2j4SqgjoCkn3Hg/viewform?usp=sf_link).
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
