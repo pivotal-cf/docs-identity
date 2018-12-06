@@ -119,7 +119,7 @@ Pivotal recommends creating a dedicated client for SSO plan automation.
 	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
 1. To record your admin credentials, do one of the following:
 	+ Obtain **Admin Client Credentials** from OpsManager
-	+ Obtain **uaa:admin:client_secret** from your deployment manifest. UAAC stores the token in `~/.uaac.yml`.
+	+ Obtain **uaa:admin:client_secret** from your deployment manifest.
 					
 1. To authenticate and obtain an access token for the admin client from the UAA server, 
 run the following command: 
@@ -128,7 +128,9 @@ run the following command:
 	uaac token client get admin -s ADMIN-CLIENT-SECRET
 	```
 	
-	Where `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in the previous step. 
+	Where:
+	+ `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in the previous step. 
+	+ UAAC stores the token in `~/.uaac.yml`.
 
 1. To create an automation client with UAAC, run the following command:  
 
@@ -150,6 +152,7 @@ run the following command:
 	Where: 
 	+ `CLIENT-ID` is the name you provided in the previous step.
 	+ `CLIENT-SECRET` is the secret you provided in the previous step.
+	+ UAAC stores the token in `~/.uaac.yml`.
 		
 1. To confirm you are logged in as your automation client, run the following command:
 
@@ -187,7 +190,7 @@ run the following command:
 	 
 	<!-- `auth_domain` and  `description` needs work -->
 	 
-1. To save the plan ID in an environment variable for later use, run the following command. The example below uses `jq`.
+1. To save the plan ID in an environment variable for later use, you can parse the response from the previous command. The example below uses `jq`.
 
 	<!-- Is PLAN_ID a env variable you are saving or a placeholder for a value? -->
 
@@ -208,8 +211,7 @@ command for each plan administrator:
 	Where: 
 	+ `PLAN-ID` is the ID recorded in the previous step.
 	+ `USER-NAME` is the username of the plan administrator you are added.
-	
-	<!-- When would this happen: If `zones.PLAN-ID.admin` does not exist, you can create the group by calling `uaac group add zones.PLAN-ID.admin`. -->
+	+ If `zones.PLAN-ID.admin` does not exist, you can create the group by calling `uaac group add zones.PLAN-ID.admin`.
 
 1. To authenticate as your automation client, run the following commannds: 
 
@@ -239,7 +241,7 @@ command for each plan administrator:
 	
 	<!-- The above needs a link. This step needs work -->
 
-For more information on how you can manage SSO plans via API, see the [SSO API](https://pivotal.github.io/sso-api-docs) documentation.
+For more information on how you can manage SSO plans via API, see the [SSO API](https://docs.pivotal.io/p-identity/sso-api) documentation.
 
 
 <!-- The Managing Plan Administrators for SSO Plans link might be the same as Creating New System Operators topic -->
