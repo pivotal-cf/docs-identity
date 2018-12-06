@@ -59,6 +59,17 @@ New features and changes in this release:
 * **Improved error message for duplicate resources**:
   When users try to create resources already in use in a separate space (via cf CLI or SSO UI), SSO now returns a consistent error message.
 
+## <a id="deprecation"></a> Deprecation Notice
+In future releases of SSO, we may plan to deprecate the following features:
+
+* **[User management interface](./manage-users.html)**: We plan to move from the user management UI to direct UAA CLI usage for any administrator user management capabilities.
+* **[Password policies for the internal user store](./configure-id-providers.html#passwd-policy): UAA plans to focus on enterprise identity providers as the core provider of users for applications in production in the future.
+* **[Native MFA](./manage-service-plans-api.html#enable-authentication): UAA plans to focus on enterprise identity providers and MFA provided from the enterprise identity provider as the core provider of users for applications in the future.
+
+In addition, we may no longer recommend usage of the internal user store in production based upon the above items. 
+
+If you have any feedback or concerns around these future features, please let us know via [this survey](https://docs.google.com/forms/d/e/1FAIpQLSdPHaId-qk4QGzGL0GE3cXhH1XUgKFQOpNL2j4SqgjoCkn3Hg/viewform?usp=sf_link).
+
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
 To view the release notes for another product version,
