@@ -3,9 +3,8 @@ title: Release Notes
 owner: Identity Service
 ---
 
-These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity) 
+These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity)
 service for Pivotal Cloud Foundry (PCF).
-
 
 ## <a id="180"></a> v1.8.0
 
@@ -13,13 +12,11 @@ service for Pivotal Cloud Foundry (PCF).
 
 <!-- Is this really a breaking change? -->
 
-<p class="note breaking"><strong>Breaking Change:</strong> For SSO v1.8.0 and later, configure distinct resource 
-names when dealing with cross-space scopes. For more information, see Improved error message for duplicate resources
-in <a href="#features">Features</a> below.</p>
-
-<!-- when users try 
-to create resources already in use in a separate space using Cloud Foundry Command Line Interace 
-(cf CLI), SSO now returns an explicit error instead of failing silently.  See the below feature details for more information -->
+<p class="note breaking"><strong>Breaking Change:</strong>
+  For SSO v1.8.0 and later, configure distinct resource names when dealing with
+  cross-space scopes.
+  For more information, see Improved error message for duplicate resources
+  in <a href="#features">Features</a> below.</p>
 
 ### <a id="features"></a> Features
 
@@ -28,43 +25,46 @@ New features and changes in this release:
 <!-- Why all these links? How are they related to the API? Can they be put elsewhere in the docs -->
 
 * **SSO Plan API**:
-  SSO now provides an API for creating, retrieving, listing, updating, and deleting SSO Plans.
-  SSO Plan API is intended to provide an easy way for developers to perform automation, continuous deployment/integration for SSO Plans.
-  For more information & documentation, see [SSO Plan API Docs](https://docs.pivotal.io/p-identity/sso-api) and [Managing Service Plans](./manage-service-plans.html).
-  As part of the SSO Plan API, we also provided instructions on how to automate the following common steps in the SSO workflow:
+  SSO includes an API for managing SSO plans.
+  The SSO Plan API provides an easy way for developers to do continuous deployment and
+  continuous integration for SSO plans.
+  For more information, see the [SSO Plan API](https://docs.pivotal.io/p-identity/sso-api)
+  documentation and [Managing Service Plans](./manage-service-plans.html).<br><br>
+  The SSO Plan API documentation includes instructions on how to automate the following common steps in the SSO workflow:
   - [Managing CloudFoundry Organizations for SSO Plans](https://docs.pivotal.io/p-identity/sso-api/#managing-cloudfoundry-organizations-for-sso-plans)
   - [Managing Plan Administrators for SSO Plans](https://docs.pivotal.io/p-identity/sso-api/#managing-plan-administrators-for-sso-plans)
   - [Creating New System Operators](./creating-new-system-operators.html).
 
-  For automating identity provider and application configurations, please refer to the existing documentations:
-  - [Configuring Apps](./configure-apps)
-  - [Updating Identity Providers with UAAC](./configure-id-providers-api.html)
-
 * **Expanded API functionality for configuring SSO Plans and identity providers**:
-  - **Disabling and re-enabling SSO Plans (PCF 2.4+ only)**:
-  For PCF 2.4 and higher, SSO plans that are no longer in use can be disabled. Disabled plans can be re-enabled later when they need to be used again.
-  For more information, see [Disable SSO Plans](./manage-service-plans-api.html#disable-sso-plans).
-  - **Enabling default identity providers (PCF 2.4+ only)**:
-  For PCF 2.4 and higher, a default IDP can be enabled so that end users are automatically redirected to an appropriate enterprise IDP.
-
-  For more information, see [Enable Default Identity Provider](./manage-service-plans-api.html#enable-default-idp).
+  - **Enabling default identity providers**:
+  For PCF 2.4 and later, you can enable a default IDP so that users are automatically
+  redirected to an appropriate enterprise IDP.
+  For more information, see
+  [Enable Default Identity Provider](./manage-service-plans-api.html#enable-default-idp).
   - **Disabling and re-enabling SSO plans:**
-  For PCF v2.4 and later, you can disable SSO plans that are no longer in use. You can re-enable disabled plans when they need to be used again.
+  For PCF v2.4 and later, you can disable SSO plans that are no longer in use.
+  You can re-enable disabled plans when they need to be used again.
   For more information, see [Disable SSO Plans](./manage-service-plans-api.html#disable-sso-plans).
   - **Password Grant for OpenID Connect (OIDC):**
-  On PCF v2.2 and later, you can enable the OIDC password grant so that native apps, such as mobile apps, can forward credentials to the enterprise IDP for authentication.
+  For PCF v2.2 and later, you can enable the OIDC password grant so that native apps,
+  such as mobile apps, can forward credentials to the enterprise IDP for authentication.
   This allows native apps to use credentials stored in the enterprise IDP.
   For more information, see [Enable Password Grant for OpenID Connect](./configure-id-providers-api.html#enable-client-auth).
 
 * **Login Hints functionality in Authorization Request API:**
-  For PCF v2.2 and later, when making an authorization code, password, or implicit grant request, a login hint can be provided so that the end user is automatically redirected to the appropriate IDP.
+  For PCF v2.2 and later, when making an authorization code, password, or implicit
+  grant request, you can provide a login hint so that the end user is automatically
+  redirected to the appropriate IDP.
   For more information, see [Using Login Hints](./integrating-sso.html#using-login-hint).
 
 * **Improved access error handling**:
-  Improved error message and instruction in the presence of access errors on the SSO UI.
+  Improved error messages and instructions for access errors on the SSO UI.
 
 * **Improved error message for space-protected resources**:
-  When users try to create resources already in use in a separate space (via cf CLI or SSO UI), SSO now returns a consistent error message. For more information on space protection, see [About Space Protection for Resources](./manage-resources.html#space-protection).
+  If users try to create resources already in use in a separate space using the cf CLI or SSO UI,
+  SSO returns a consistent error message.
+  For more information on space protection, see
+  [About Space Protection for Resources](./manage-resources.html#space-protection).
 
 ## <a id="deprecation"></a> Deprecation Notice
 In future releases of SSO, we may plan to deprecate the following features:
