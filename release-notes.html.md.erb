@@ -15,8 +15,8 @@ service for Pivotal Cloud Foundry (PCF).
 <p class="note breaking"><strong>Breaking Change:</strong>
   For SSO v1.8.0 and later, configure distinct resource names when dealing with
   cross-space scopes.
-  For more information, see Improved error message for duplicate resources
-  in <a href="#features">Features</a> below.</p>
+  For more information, see <a href="#space-protected-resources">Improved error
+    message for duplicate resources</a> in <em>Features</em> below.</p>
 
 ### <a id="180-features"></a> Features
 
@@ -49,7 +49,7 @@ New features and changes in this release:
   This allows native apps to use credentials stored in the enterprise IDP.
   For more information, see [Enable Password Grant for OpenID Connect](./configure-id-providers-api.html#enable-client-auth).
 
-* **Login Hints functionality in Authorization Request API:**
+* **Login hints functionality in Authorization Request API:**
   For PCF v2.2 and later, when making an authorization code, password, or implicit
   grant request, you can provide a login hint so that the end user is automatically
   redirected to the appropriate IDP.
@@ -58,7 +58,7 @@ New features and changes in this release:
 * **Improved access error handling**:
   Improved error messages and instructions for access errors on the SSO UI.
 
-* **Improved error message for space-protected resources**:
+* <a name='space-protected-resources'></a>**Improved error message for space-protected resources**:
   If users try to create resources already in use in a separate space using the cf CLI or SSO UI,
   SSO returns a consistent error message.
   For more information about space protection, see
