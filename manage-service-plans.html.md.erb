@@ -1,4 +1,4 @@
-specific---
+---
 title: Managing Service Plans
 owner: Identity Service
 ---
@@ -97,12 +97,10 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 <!-- Should the following be in manaage-service-plans-api.html.md.erb or manage-users.html.md.erb
 The procedure seems to be for setting up automation but not doing the automation itself?-->
 
-## <a id='plan-automation'></a> Automate Service Plan Creation and Deletion
+## <a id='plan-automation'></a> Automate Service Plan Creation Using SSO API
 
 Administrators can create new SSO service plans using the SSO API. This 
 allows them to automate creating and deleting SSO plans. Pivotal recommends creating a dedicated client for SSO plan automation.
-
-<!-- How do you create a dedicated client? -->
 
 To automate service plan creation and deletion, do the following:
 
@@ -122,7 +120,7 @@ To automate service plan creation and deletion, do the following:
 	
 1. To record your admin credentials, do one of the following:
 	+ Obtain **Admin Client Credentials** from OpsManager.
-	+ Obtain **uaa:admin:client_secret** from your deployment manifest. UAAC stores the token in `~/.uaac.yml`.
+	+ Obtain **uaa:admin:client_secret** from your deployment manifest.
 					
 1. To authenticate and obtain an access token for the admin client from the UAA server, 
 run the following command: 
@@ -131,9 +129,9 @@ run the following command:
 	uaac token client get admin -s ADMIN-CLIENT-SECRET
 	```
 	
-	Where `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in step 3. 
+	Where `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in step 3.
 	
-	<!-- Where is the access token? Why do you need the access token? -->
+	UAAC stores the token in `~/.uaac.yml`. 
 
 1. To create an automation client with UAAC, run the following command:  
 
@@ -157,19 +155,27 @@ run the following command:
 	+ `AUTO-CLIENT-ID` is the name you provided in step 5. 
 	+ `AUTO-CLIENT-SECRET` is the secret you provided in step 5.
 	
-	<!-- provided vs obtained for client secret, auto vs admin client and secrets-->
+	<!-- provided vs obtained for client secret, -->
 		
 1. To obtain your automation access token, run the following command:
 
 	```
 	uaac context  
+	
+	[1]*[AUTO-CLIENT-ID]
+  client_id: AUTO-CLIENT-ID
+    access_token: aBcdEfg0hIJKlm123.e
+    token_type: bearer
+    expires_in: 43200
+    scope: cloud_controller.admin zones.write scim.write scim.read
+    jti: 91b3-abcd1233
 	```
 	
 1. Record the value returned under `access_token`.
 
 	<!-- We need a code sample for the above and rework this -->
 
-1. To create a new SSO plan, run the following command:
+1. To create a new SSO plan and record the plan ID, run the following command:
 
 	```
 	curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
@@ -191,17 +197,14 @@ run the following command:
 	+ `YOUR-AUTH-DOMAIN` is the URL where users authenticate to access applications covered by the service plan.
 	+ `YOUR-INSTANCE-NAME` is the name of the instance. This text appears in user-facing content, such as email communications.
 	
-	 <p class="note"><strong>Note:</strong> We use <code>curl</code> instead of <code>uaac curl</code> in our example to facilitate parsing the response for ID in the next step.</p> 
+	 <p class="note"><strong>Note:</strong> We use <code>curl</code> instead of <code>uaac curl</code> in our example to facilitate parsing the response for ID below.</p> 
 	 
-	<!-- `auth_domain` and  `description` needs work. Why do we need the above note. need code example -->
+	 To save the plan ID, you can run the following example to parse the response from the previous command:
 	 
-1. To save the plan ID in an environment variable for later use, run the following command: 
-
-	<!-- Is PLAN_ID a env variable you are saving or a placeholder for a value? -->
-
 	```
-	PLAN_ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" ... | jq -r '.id')
+	$PLAN-ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" ... | jq -r '.id')
 	```
+	
 	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
 	
 	<!-- you can parse the response from the previous command. The example below wraps the previous command and parses the response uses `jq`. The example below uses `jq`. Why tell `jq`?-->
@@ -217,7 +220,7 @@ command for each plan administrator:
 	+ `PLAN-ID` is the ID recorded in the previous step.
 	+ `USER-NAME` is the username of the plan administrator you are added.
 	
-	<!-- When would this happen: If `zones.PLAN-ID.admin` does not exist, you can create the group by calling `uaac group add zones.PLAN-ID.admin`. -->
+	<!-- Warning: If `zones.PLAN-ID.admin` does not exist, you can create the group by calling `uaac group add zones.PLAN-ID.admin`. -->
 
 1. To authenticate as your automation client, run the following commands: 
 
@@ -251,4 +254,4 @@ command for each plan administrator:
 		
 		Pivotal recommends only giving access to all orgs for test plans to allow developers to experiment with the SSO service.
 
-For more information on how you can manage SSO plans using the SSO API, see the [SSO API](https://pivotal.github.io/sso-api-docs) documentation.
+For more information on how you can manage SSO plans using the SSO API, see the [SSO API](https://docs.pivotal.io/p-identity/sso-api) documentation.
