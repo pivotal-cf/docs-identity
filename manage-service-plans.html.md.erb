@@ -20,7 +20,7 @@ For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/i
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-Administrators can create new SSO service plans at any time from the SSO dashboard.
+PCF administrators can create new SSO service plans at any time from the SSO dashboard.
 You can use the SSO dashboard to create and configure service plans at any time.
 
 <p class="note"><strong>Note</strong>: You must create at least one plan for any service before your applications can use it.</p>
@@ -70,60 +70,12 @@ Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
 4. In the popup that appears, click **Delete Plan** to confirm that you want to delete the plan.
 
-## <a id="creating"></a> Creating New PCF Administrator for SSO
-
-To create a new PCF administrator that can manage SSO plans, you must provide them additional permissions.
-
-<p class="note warning"><strong>Warning:</strong> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, it will directly assign permissions to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a></p>
-
-
-To create a new PCF administrator, do the following: 
-
-1. To install the UAA CLI, run the following command:
-    
-	```
-  gem install cf-uaac
-  ```
-		
-1. To target your PCF UAA server, run the following command: 
-
-    ```
-    $ uaac target uaa.YOUR-SYSTEM-DOMAIN
-    ```
-		
-	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
-	
-1. To record your admin credentials, do one of the following:
-	+ Obtain **Admin Client Credentials** from OpsManager.
-	+ Obtain **uaa:admin:client_secret** from your deployment manifest. UAAC stores the token in `~/.uaac.yml`.
-					
-1. To authenticate and obtain an access token for the admin client from the UAA server, 
-run the following command: 
-
-	```
-	uaac token client get admin -s ADMIN-CLIENT-SECRET
-	```
-	
-	Where `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in step 3. 
-
-1. To allow a new PCF administrator to manage SSO, give them `cloud_controller.admin, scim.read, zones.read, zones.write` scopes at a minimum:
-  + To add the above mentioned scopes to a user, run the following command: 
-    
-        ```
-        uaac member add cloud_controller.admin ADMIN-USERNAME`
-        uaac member add scim.read ADMIN-USERNAME`
-        uaac member add zones.read ADMIN-USERNAME`
-        uaac member add zones.write ADMIN-USERNAME`
-        ```
-        
-        Where `ADMIN-USERNAME` is the username of the user you want to make an administrator. <br><br>   
-				
 ## <a id='plan-automation'></a> Automate Service Plan Creation Using SSO API
 
-Administrators can create new SSO service plans using the SSO API. This 
+PCF administrators can create new SSO service plans using the SSO API. This 
 allows them to automate creating and deleting SSO plans. Pivotal recommends creating a dedicated client for SSO plan automation.
 
-To automate service plan creation and deletion, do the following:
+To automate service plan creation, do the following:
 
 1. To install the UAA CLI, run the following command:
     
@@ -180,17 +132,22 @@ run the following command:
 
 	```
 	uaac context  
-	
-	[1]*[AUTO-CLIENT-ID]
-  client_id: AUTO-CLIENT-ID
-    access_token: aBcdEfg0hIJKlm123.e
-    token_type: bearer
-    expires_in: 43200
-    scope: cloud_controller.admin zones.write scim.write scim.read
-    jti: 91b3-abcd1233
 	```
 	
-1. Record the value returned under `access_token`.
+	For example:
+	 
+	<pre class="terminal">$ uaac context 	
+		
+	[1]*[my-auto-client]
+  client\_id: my-client-id
+	    access\_token: aBcdEfg0hIJKlm123.e
+	    token\_type: bearer
+	    expires\_in: 43200
+	    scope: cloud\_controller.admin zones.write scim.write scim.read
+	    jti: 91b3-abcd1233
+	</pre>
+	
+1. Record the `access_token` value from the output of the previous step.
 
 1. To create a new SSO plan and record the plan ID, run the following command:
 
@@ -212,12 +169,37 @@ run the following command:
 	+ `YOUR-PLAN-NAME` is the name of your plan.
 	+ `YOUR-DESCRIPTION` is the text you want to appear as a plan feature in the Services Marketplace.
 	+ `YOUR-AUTH-DOMAIN` is the subdomain of the `login.YOUR-SYSTEM-DOMAIN` URL where users authenticate to access applications covered by the service plan.
-	+ `YOUR-INSTANCE-NAME` is the name of the instance. This text appears in user-facing content, such as email communications.
+	+ `YOUR-INSTANCE-NAME` is the name of your instance. This text appears in user-facing content, such as email communications.
 	
-	 To save the plan ID, you can run the following example to parse the response from the previous command:
+	The above command returns output similar to the following:
+		
+	<pre class="terminal">
+	HTTP/1.1 201 Created
+	Content-Type: application/json
+
+	{
+	  "id": "1",
+	  "name": "some-plan-name",
+	  "description": "some-description",
+	  "auth\_domain": "some-auth-domain",
+	  "instance\_name": "some-instance-name"
+	}
+	</pre>
+	
+1. Record the `id` value from the output of the previous step. <br><br>
+Alternatively, you can save the plan ID, by parsing the output from the previous step. For example, 
+you can run the following command:
 	 
 	```
-	$PLAN-ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" ... | jq -r '.id')
+	$PLAN-ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans"  \
+	  -H "Authorization: Bearer YOUR-TOKEN" \
+	  -H "Content-Type: application/json" \
+	  -d '{
+	    "name": "YOUR-PLAN-NAME",
+	    "description": "YOUR-DESCRIPTION",
+	    "auth_domain": "YOUR-AUTH-DOMAIN",
+	    "instance_name": "YOUR-INSTANCE-NAME"
+	  }' | jq -r '.id')
 	```
 	
 	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
@@ -232,8 +214,8 @@ command for each plan administrator:
 	```
 	
 	Where: 
-	+ `PLAN-ID` is the ID recorded in the previous step.
-	+ `USER-NAME` is the username of the plan administrator you are added.
+	+ `PLAN-ID` is the `id` recorded in the previous step.
+	+ `USER-NAME` is the username of the plan administrator you are adding.
 
 1. To authenticate as your automation client, run the following commands: 
 
@@ -257,13 +239,62 @@ command for each plan administrator:
 		Where:
 		+ `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9.
 		+ `ORG-NAME` is the name of the org you want to have access to your SSO plan. 
-	+ To give all orgs access to your SSO plan, run the following command: <br>
-	 Pivotal recommends this only for test plans to allow developers to experiment with the SSO service
+	+ To give all orgs access to your SSO plan, run the following command: 
 	 
 		```
 		cf enable-service-access p-identity -p PLAN_AUTH_DOMAIN
 		```
 
 		Where `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9. 
-
+		
+		<p class="note"> Pivotal recommends only giving all orgs acess to your SSO plans for test plans to allow developers to experiment with the SSO service</p>
+		
 For more information on how you can manage SSO plans using the SSO API, see the [SSO API](https://docs.pivotal.io/p-identity/sso-api) documentation.
+
+## <a id="create"></a> Create New PCF Administrator for SSO
+
+PCF administrators can grant users additional permissions to allow them to manage SSO plans. These
+permissions let users act as PCF administrators.
+
+<p class="note warning"><strong>Warning:</strong> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assign to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
+
+To create a new PCF administrator, do the following: 
+
+1. To install the UAA CLI, run the following command:
+    
+	```
+  gem install cf-uaac
+  ```
+		
+1. To target your PCF UAA server, run the following command: 
+
+    ```
+    $ uaac target uaa.YOUR-SYSTEM-DOMAIN
+    ```
+		
+	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
+	
+1. To record your admin credentials, do one of the following:
+	+ Obtain **Admin Client Credentials** from OpsManager.
+	+ Obtain **uaa:admin:client_secret** from your deployment manifest. UAAC stores the token in `~/.uaac.yml`.
+					
+1. To authenticate and obtain an access token for the admin client from the UAA server, 
+run the following command: 
+
+	```
+	uaac token client get admin -s ADMIN-CLIENT-SECRET
+	```
+	
+	Where `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in step 3. 
+
+1. To allow users to manage SSO plans, run the following commands: 
+    
+    ```
+    uaac member add cloud_controller.admin ADMIN-USERNAME
+    uaac member add scim.read ADMIN-USERNAME
+    uaac member add zones.read ADMIN-USERNAME
+    uaac member add zones.write ADMIN-USERNAME
+    ```
+    
+    Where `ADMIN-USERNAME` is the username of the user you want to make an administrator. <br><br>   
+				
