@@ -1,10 +1,11 @@
 ---
-title: Updating Service Plans with UAAC
+title: Managing Service Plan Configurations
 owner: Identity Service
 ---
 
 <div class="quick-links">
     <ul>
+      <li><a href="#configure-token-policy">Configure a Token Policy</a></li>
         <li><a href="#creating">Create a UAA Identity Zone Admin Client</a></li>
           <ul>
             <li><a href="#admin">Create an Admin Client</a></li>
@@ -19,8 +20,8 @@ owner: Identity Service
     </ul>
 </div>
 
-This topic describes how Pivotal Cloud Foundry (PCF) administrators manage Single Sign-On (SSO) 
-service plans using the User Account and Authentication Command Line Interface (UAAC)
+This topic describes how Pivotal Cloud Foundry (PCF) administrators or plan administrators can manage Single Sign-On (SSO) 
+service plan configurations using the SSO dashboard or API using the User Account and Authentication Command Line Interface (UAAC)
 
 The SSO service for PCF manages configurations within 
 the UAA and the Cloud Controller (CC) components 
@@ -29,6 +30,29 @@ Each SSO service plan ties together a CC plan and a UAA identity zone.
 
 Beginning with SSO v1.6, you can use the UAAC
 to manage UAA identity zones configured as part of SSO service plans.
+
+<h2> <a id='configure-token-policy'></a> Configure a Token Policy</h2>
+
+The Single Sign-On service allows PCF administrators and plan administrators to override the 
+default expiry of access tokens (12 hours) and refresh tokens (30 days) by zone.
+
+* **Access tokens** carry information about users and clients to servers that manage resources. 
+Servers use access tokens to determine whether the client is authorized or not. Access tokens typically have a short-lived expiration time. 
+* **Refresh tokens** carry information necessary to retrieve a new access token after an existing access token expires. 
+Refresh tokens typically have a longer expiration time than access tokens.
+
+To configure the token policy, do the following:
+
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. 
+You can find these credentials in your Pivotal Application Service (PAS) tile in Ops Manager in the **Credentials** tab.
+
+2. Select the name of the plan you want to configure a token policy for, and click **Configure** from the drop-down menu.
+
+3. Enter the number of seconds for **Access Token Expiration** or select **Use System Default**.
+
+4. Enter the number of seconds for **Refresh Token Expiration** or select **Use System Default**.
+
+5. Click **Save**.
 
 <h2> <a id="creating"></a> Create a UAA Identity Zone Admin Client </h2>
 <%= partial 'create_zone_admin' %>  
@@ -239,8 +263,8 @@ You may need to restart applications that do offline validation for the new sign
 <h2><a id="enable-authentication"></a> Enable Multi-Factor Authentications (Beta)</h2>
 
 <p class="note warning"><strong>WARNING:</strong>
-    Multi-factor authentication is a beta feature for PCF v2.2.
-    Do not use multi-factor authentication in a production environment for PCF v2.2.
+    Multi-factor authentication is a beta feature for PCF v2.2 and later.
+    Do not use multi-factor authentication in a production environment.
 </p>
 
 <p>You can enable multi-factor authentication (MFA) via Google Authenticator, available on the Apple Store or Android Play,
