@@ -204,7 +204,7 @@ you can run the following command:
 	
 	Where `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
 	
-	 <p class="note"><strong>Note:</strong> We use <code>curl</code> instead of <code>uaac curl</code> in our example to facilitate parsing the response for ID below.</p> 
+	 <p class="note"><strong>Note:</strong> Using <code>curl</code> instead of <code>uaac curl</code> in the example to facilitates parsing the response for ID below.</p> 
 
 1. To add plan administrators, who can view the plan and manage identity providers, run the following
 command for each plan administrator:
@@ -251,12 +251,12 @@ command for each plan administrator:
 		
 For more information on how you can manage SSO plans using the SSO API, see the [SSO API](https://docs.pivotal.io/p-identity/sso-api) documentation.
 
-## <a id="create"></a> Create New PCF Administrator for SSO
+## <a id="create"></a> Create a New PCF Administrator for SSO
 
 PCF administrators can grant users additional permissions to allow them to manage SSO plans. These
 permissions let users act as PCF administrators.
 
-<p class="note warning"><strong>Warning:</strong> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assign to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
+<p class="note warning"><strong>WARNING:</strong> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assigned to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
 
 To create a new PCF administrator, do the following: 
 
