@@ -10,13 +10,16 @@ owner: Identity Service
           <ul>
             <li><a href="#admin">Create an Admin Client</a></li>
             <li><a href="#zone-admin">Create a UAA Identity Zone Admin Client</a></li>
+            <ul>
+              <li><a href="#enable-default-idp">Enable Default Identity Provider (IDP)</a></li>
+              <li><a href="#disable-sso-plans">Disable SSO Plans</a></li>
+            </ul>
           </ul>
         <li><a href="#updating">Update UAA Identity Zone Configurations with the API</a></li>
         <li><a href="#branding">Modify Branding</a></li>
         <li><a href="#default-groups">Add Default Groups for Users</a></li>
         <li><a href="#rotate-keys">Rotate JSON Web Token (JWT) Signing Keys</a></li>
-        <li><a href="#enable-default-idp">Enable Default Identity Provider (IDP)</a></li>
-        <li><a href="#disable-sso-plans">Disable SSO Plans</a></li>
+      
     </ul>
 </div>
 
@@ -156,6 +159,45 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>ZON
 </ol>
    For a full list of UAA API update parameters,
    see the <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.    
+   
+ <h3> <a id="enable-default-idp"></a> Set Default Identity Provider (IDP)</h3>
+
+ For PCF v2.4 or later, a default IDP can be set so that end users are automatically redirected to an appropriate enterprise IDP.
+
+ To set a default IDP, do the following:
+ 
+ 1. Follow the steps 1-3 in [Update UAA Identity Provider Configurations with the API](#updating) above.
+
+ 1. In step 4, add the following line to the config section in the JSON blob: 
+
+     ```
+     "defaultIdentityProvider": "YOUR-IDP"
+     ```
+
+     Where `YOUR-IDP` is the IDP you want to set as the default.
+     
+ 1. Complete the procudure by following steps 5-6. 
+ 
+ For information about <code>defaultIdentityProvider</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a> in the UAA documentation.
+
+ <h3> <a id="disable-sso-plans"></a> Disable SSO Plans</h3>
+
+ For PCF v2.4 and later, SSO plans that are no longer in use can be disabled. Disabled plans can be re-enabled later when they need to be used again.
+ 
+ To set a disable SSO plans, do the following:
+ 
+ 1. Follow the steps 1-3 in [Update UAA Identity Provider Configurations with the API](#updating) above.
+
+ 1. In step 4, add the following line to the config section in the JSON blob: 
+
+     ```
+     "active": false
+     ```
+     
+ 1. Complete the procudure by following steps 5-6. 
+
+ For information about <code>active</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a> in the UAA documentation.
+
 <h2> <a id="branding"></a> Modify Branding</h2>
 
 You can optionally modify the branding of your login page by changing your company name, logos, legal text, and legal links. <br><br>
@@ -303,21 +345,3 @@ Set the <code>enable</code> value to <code>true</code> and provide the MFA provi
 
 <p><br>To disable MFA set <code>enable</code> to <code>false</code>.</p></li>
 </ol>
-
-<!-- This should probs be in a release note -->
-
-<h2><a id="enable-default-idp"></a> Enable Default Identity Provider (IDP)</h2>
-
-For PAS 2.4 or later, a default IDP can be enabled so that end users are automatically redirected to an appropriate enterprise IDP.
-
-Default IDP can be configured using `defaultIdentityProvider` in the request body. For information
-about this field, see the [UAA documentation](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone).
-
-<!-- This should probs be in a release note -->
-
-<h2><a id="disable-sso-plans"></a> Disable SSO Plans</h2>
-
-For PAS v2.4 and later, SSO plans that are no longer in use can be disabled. Disabled plans can be re-enabled later when they need to be used again.
-
-Whether or not a plan is active can be configured using `active` in the request body. For information
-about this field, see the [UAA documentation](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone).
