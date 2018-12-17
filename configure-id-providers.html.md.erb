@@ -12,9 +12,9 @@ Users may have accounts in the internal user store or in external identity provi
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
 Find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
-1. Click **Internal User Store** and select **Edit Provider** from the drop-down menu.
+1. Click **Internal User Store** and select **Edit Provider** from the dropdown.
 
 1. (Optional) Under **Authentication Policy** select one of the following:
 	- **Disable Internal Authentication**: This option prevents authentication against the internal user store. You must have at least one external identity provider configured.
@@ -81,9 +81,9 @@ The password policy enforces rules that restrict the kinds of passwords users ca
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
    You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
-1. Click **Internal User Store** and select **Edit Provider** from the drop-down menu.
+1. Click **Internal User Store** and select **Edit Provider** from the dropdown.
 
 1. Configure the following under the **Password Complexity** section:
     * **Min Length**: Specify the minimum password length.
@@ -106,7 +106,7 @@ For each plan, the Single Sign-On service allows you to configure SAML settings 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
 You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click **Configure SAML Service Provider**.
 
@@ -126,7 +126,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click **New Identity Provider**.
 
@@ -134,7 +134,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 1. Select `SAML 2.0` as the Identity Provider Type.
 
-1. Enter a **Description**. This is displayed to Space Developers when they select an identity provider for their app.
+1. Enter a **Description**. This is displayed to space developers when they select an identity provider for their app.
 
 1. Enter the external identity provider metadata in one of the following ways:
     * Option 1: Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
@@ -142,7 +142,7 @@ See the following sets of instructions for how to configure the SSO service to u
 <p class="note"><strong>Note</strong>: If you choose to upload the Identity Provider Metadata as an XML file, you will be unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
 
 1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
-	* Select a **User Scheme Attribute** from the drop-down menu.
+	* Select a **User Scheme Attribute** from the dropdown.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
 1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
@@ -159,13 +159,13 @@ See the following sets of instructions for how to configure the SSO service to u
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select Manage Identity Providers from the drop-down menu.
+1. Click the plan name and select Manage Identity Providers from the dropdown.
 
 1. Click **New Identity Provider**.
 
 1. Enter an **Identity Provider Name**.
 
-1. Enter a **Description**. This is displayed to Space Developers when they select an identity provider for their app.
+1. Enter a **Description**. This is displayed to space developers when they select an identity provider for their app.
 
 1. Select `OpenID Connect` as the **Identity Provider Type**.
 
@@ -176,7 +176,7 @@ See the following sets of instructions for how to configure the SSO service to u
 1. Select the applicable **Scopes** for the OIDC identity provider.
 
 1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
-  - Select a **User Scheme Attribute** from the drop-down menu.
+  - Select a **User Scheme Attribute** from the dropdown.
   - Enter an **ID Token Attribute Name** with the corresponding attribute from the incoming OIDC ID token.
 
 1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
@@ -199,13 +199,13 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click **New Identity Provider**.
 
 1. Enter an **Identity Provider Name**.
 
-1. Enter a **Description**. This is displayed to Space Developers when they select an identity provider for their app.
+1. Enter a **Description**. This is displayed to space developers when they select an identity provider for their app.
 
 1. Select `LDAP` as the **Identity Provider Type**. You may only have one LDAP provider per Service Plan.
 
@@ -220,7 +220,7 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
   1. Under the **Groups** section, you may enter in enter the **Search Base** (optional) and **Search Filter** (optional) in order to associate LDAP groups with your user. If you wish to use the `memberOf` attribute on user objects, you can enter in the value `memberOf` as the Search Base instead of an LDAP path for a group OU, and the Search Filter value will be ignored.
 
 1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
-  - Select a **User Scheme Attribute** from the drop-down menu.
+  - Select a **User Scheme Attribute** from the dropdown.
   - Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
 
 1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
@@ -235,7 +235,7 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click on the name of your external identity provider.
 
@@ -253,11 +253,12 @@ For more details on how to create resource permission mappings, see <a href="./m
 
 <p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+   You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
-1. Click on the name of your external identity provider and select **Group Whitelist** from the drop-down menu.
+1. Click on the name of your external identity provider and select **Group Whitelist** from the dropdown.
 
 1. Add a group name from your external identity provider.
 
@@ -265,16 +266,17 @@ For more details on how to create resource permission mappings, see <a href="./m
 
 ## <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
 
-After a Space Developer defines resources required by an app, an administrator may map existing groups to those resources.
+After a space developer defines resources required by an app, an administrator may map existing groups to those resources.
 
-Once resource permissions mappings are configured and a user authenticates, the user's group memberships will be mapped to scopes in the resulting token.
+After resource permissions mappings are configured and a user authenticates,
+the user's group memberships is mapped to scopes in the resulting token.
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your Pivotal Application Service (PAS) tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
-1. Click the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the drop-down menu.
+1. Click the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the dropdown.
 
 1. Click **New Permissions Mapping**.
 
@@ -292,9 +294,9 @@ You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manag
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
 You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
-1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the drop-down menu.
+1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the dropdown.
 
 1. Click the group name of the resource permission you want to delete.
 
