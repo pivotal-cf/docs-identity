@@ -39,8 +39,8 @@ To create resources in the SSO Dashboard:
     
     1. Enter a **Description** for each permission.
 
-1. Click **Save Resource**. The administrator must create resource permissions so that users can access the resource.
-For more information, see [Create or Edit Resource Permissions](#create-resource-perm) below.
+1. Click **Save Resource**.
+1. An administrator may map existing groups to the created resource. For more information, see [Create or Edit Resource Permissions](configure-id-providers.html#create-resource-perm).
 
 <p class="note"><strong>Note</strong>: Space Developers create resources within a space.
 Space Developers only see the resources created in the spaces they have access to and can only assign those to the apps in those spaces.</p>
@@ -61,47 +61,6 @@ Space Developers only see the resources created in the spaces they have access t
 
 <p class="note"><strong>Note</strong>: Deleting a resource removes it from the permission mappings and from the app.
 You must reconfigure the updated permissions in both areas.</p> 
-
-## <a id='create-resource-perm'></a> Create or Edit Resource Permissions
-
-After a Space Developer defines resources required by an app, an administrator must grant access to those resources.
-SSO allows administrators to map groups of users from the identity provider to the resource permissions defined by the Space Developer.
-
-Once resource permissions mappings are configured, when a user authenticates and obtains a token, the user's group memberships will automatically be mapped into scopes that are directly included in the token.
-
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
-You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
-
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
-
-1. Click the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the drop-down menu.
-
-1. Click **New Permissions Mapping**.
-
-1. Enter a **Group Name**.
-
-1. Click **Select Permissions** to choose the permissions that users in the group should have access to.
-
-1. Click **Save Permissions Mapping**.
-
-<p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
-
-## <a id='delete-resource-perm'></a> Delete Resource Permissions
-
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
-You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
-
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
-
-1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the drop-down menu.
-
-1. Click the group name of the resource permission you want to delete.
-
-1. Click **Delete** at the bottom of the page.
-
-1. On the popup, click **Delete Permissions Mapping** to delete the resource.
-
-<p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
 
 ## <a id='space-protection'></a> About Space Protection for Resources
 

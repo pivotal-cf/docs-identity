@@ -262,3 +262,45 @@ For more details on how to create resource permission mappings, see <a href="./m
 1. Add a group name from your external identity provider.
 
 1. Click **Save Group Whitelist**.
+
+## <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
+
+After a Space Developer defines resources required by an app, an administrator may map existing groups to those resources.
+
+Once resource permissions mappings are configured and a user authenticates, the user's group memberships will be mapped to scopes in the resulting token.
+
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+
+1. Click the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the drop-down menu.
+
+1. Click **New Permissions Mapping**.
+
+1. Enter a **Group Name**.
+
+1. Click **Select Permissions** to choose the permissions that users in the group should have access to.
+
+1. Click **Save Permissions Mapping**.
+
+<p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
+<p class="note"><strong>Note</strong>: For automation purposes with uaac, this activity may also be performed using "uaac group mappings" & "uaac group map"</p>
+
+## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
+
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+
+1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+
+1. Click on the name of the external identity provider you want to define permissions for and select **Resource Permissions** from the drop-down menu.
+
+1. Click the group name of the resource permission you want to delete.
+
+1. Click **Delete** at the bottom of the page.
+
+1. On the popup, click **Delete Permissions Mapping** to delete the resource.
+
+<p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
+<p class="note"><strong>Note</strong>: For automation purposes with uaac, this activity may also be performed using "uaac group mappings" & "uaac group unmap"</p>
