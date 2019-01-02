@@ -266,7 +266,7 @@ For more details on how to create resource permission mappings, see <a href="./c
 
 ## <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
 
-After a [space developer defines resources required by an app](./configure-id-providers.html#create-resource-perm), an administrator may map existing groups to those resources.
+After a space developer defines resources required by an app using steps from [Create or Edit Resources](./manage-resources.html#create-resources), an administrator may map existing groups to those resources.
 
 After resource permissions mappings are configured and a user authenticates,
 the user's group memberships is mapped to scopes in the resulting token.
@@ -287,7 +287,7 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 1. Click **Save Permissions Mapping**.
 
 <p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
-<p class="note"><strong>Note</strong>: For automation purposes with uaac, this [activity](https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group) may also be performed using <code>uaac group mappings</code> and <code>uaac group map</code> using an [identity zone admin client](./configure-id-providers-api.html#creating).</p>
+<p class="note"><strong>Note</strong>: For automation purposes with uaac, this activity may also be performed using the [steps for UAA](https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group) with <code>uaac group mappings</code> and <code>uaac group map</code> using an [identity zone admin client](./configure-id-providers-api.html#creating).</p>
 
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
@@ -305,4 +305,4 @@ You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manag
 1. On the popup, click **Delete Permissions Mapping** to delete the resource.
 
 <p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
-<p class="note"><strong>Note</strong>: For automation purposes with uaac, this activity may also be performed using <code>uaac group mappings</code> and <code>uaac group map</code>.</p>
+<p class="note"><strong>Note</strong>: For automation purposes with uaac, this activity may also be performed using the UAA API to unmap a group mapping (for example, [refer to this versioned API document](https://docs.cloudfoundry.org/api/uaa/version/4.26.0/index.html#unmap)) using an [identity zone admin client](./configure-id-providers-api.html#creating).</p>
