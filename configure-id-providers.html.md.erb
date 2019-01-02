@@ -249,7 +249,7 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider. An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
 
-For more details on how to create resource permission mappings, see <a href="./manage-resources.html#create-resource-perm">Create or Edit Resource Permissions</a>.
+For more details on how to create resource permission mappings, see <a href="./configure-id-providers.html#create-resource-perm">Create or Edit Resource Permissions Mapping</a>.
 
 <p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
 
@@ -266,7 +266,7 @@ For more details on how to create resource permission mappings, see <a href="./m
 
 ## <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
 
-After a space developer defines resources required by an app, an administrator may map existing groups to those resources.
+After a [space developer defines resources required by an app](./configure-id-providers.html#create-resource-perm), an administrator may map existing groups to those resources.
 
 After resource permissions mappings are configured and a user authenticates,
 the user's group memberships is mapped to scopes in the resulting token.
