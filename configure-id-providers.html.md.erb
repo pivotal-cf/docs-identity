@@ -249,7 +249,8 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider. An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
 
-For more details on how to create resource permission mappings, see <a href="./configure-id-providers.html#create-resource-perm">Create or Edit Resource Permissions Mapping</a>.
+For information about how to create resource permission mappings,
+see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> below.
 
 <p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
 
@@ -266,7 +267,10 @@ For more details on how to create resource permission mappings, see <a href="./c
 
 ## <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
 
-After a space developer defines resources required by an app using steps from [Create or Edit Resources](./manage-resources.html#create-resources), an administrator may map existing groups to those resources.
+After a space developer defines resources required by an app,
+an administrator can map existing groups to those resources.
+For information about how the space developer defines resources,
+see [Create or Edit Resources](./manage-resources.html#create-resources).
 
 After resource permissions mappings are configured and a user authenticates,
 the user's group memberships is mapped to scopes in the resulting token.
@@ -286,8 +290,15 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 
 1. Click **Save Permissions Mapping**.
 
-<p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
-<p class="note"><strong>Note</strong>: For automation purposes with uaac, this activity may also be performed using the [steps for UAA](https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group) with <code>uaac group mappings</code> and <code>uaac group map</code> using an [identity zone admin client](./configure-id-providers-api.html#creating).</p>
+<p class="note"><strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.</p>
+
+<p class="note"><strong>Note:</strong> If you want to automate the above procedure, creating or editing resource permissions,
+you can use the UAA API. For information about using <code>uaac group mappings</code> and <code>uaac group map</code>,
+see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
+Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
+To do this automation, you need an identity zone admin client; for information,
+see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.</p>
+ 
 
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
@@ -305,4 +316,10 @@ You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manag
 1. On the popup, click **Delete Permissions Mapping** to delete the resource.
 
 <p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
-<p class="note"><strong>Note</strong>: For automation purposes with uaac, this activity may also be performed using the UAA API to unmap a group mapping (for example, [refer to this versioned API document](https://docs.cloudfoundry.org/api/uaa/version/4.26.0/index.html#unmap)) using an [identity zone admin client](./configure-id-providers-api.html#creating).</p>
+
+<p class="note"><strong>Note:</strong> If you want to automate the above procedure,
+deleting resource permissions mappings, you can use the UAA API to unmap a group mapping. 
+See Unmap in the Cloud Foundry UAA API documentation. For example,
+for v4.26.0 of the API, see <a href="https://docs.cloudfoundry.org/api/uaa/version/4.26.0/index.html#unmap">Unmap</a>.
+To do this automation, you need an identity zone admin client; for information,
+see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.</p>
