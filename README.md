@@ -5,20 +5,20 @@ authenticate with an external identity provider rather than having to create a n
 
 ### Branch Management
 
-| Branch name | Use for… | Publishes to… | Protected? |
-|-------------| ------|--------|--------|
-|**master** | This branch is on staging. ADD ALL NEW 1.8 CONTENT to this branch. DO NOT USE 1.8 UNTIL AFTER 1.8 RELEASES. When 1.7 was released, master and v1.7 were identical. | <a href="https://docs-pcf-staging.cfapps.io/p-identity/1-n/">https://docs-pcf-staging.cfapps.io/p-identity/1-n/</a> | yes |
-|**master-pws** | This branch contains PWS-specific SSO content. | <a href="https://docs.run.pivotal.io/sso/index.html">https://docs.run.pivotal.io/sso/</a>| yes |
-|**1.8** | DO NOT USE. THIS BRANCH WILL BE DELETED. | not published |  NA |
-|**1.7** | This branch contains the published documentation for the (current) v1.7 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-7/">https://docs.pivotal.io/p-identity/1-7/</a>|  yes |
-|**1.6** | This branch contains the published documentation for the (current) v1.6 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-6/">https://docs.pivotal.io/p-identity/1-6/</a>|  yes |
-|**1.5** | This branch contains the published documentation for the v1.5 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-5/">https://docs.pivotal.io/p-identity/1-5/</a>| yes |
-|**1.4** | This branch contains the published documentation for the v1.4 release of SSO. |  <a href="https://docs.pivotal.io/p-identity/1-4/index.html">https://docs.pivotal.io/p-identity/1-4/</a>| yes |
-|**1.3** | This branch contains the published documentation for the v1.3 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-3/index.html">https://docs.pivotal.io/p-identity/1-3/</a>| yes |
-|**1.2** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.2.pdf">https://docs.pivotal.io/archives/docs-identity-1.2.pdf</a>| no |
-|**1.1** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.1.pdf">https://docs.pivotal.io/archives/docs-identity-1.1.pdf</a>| no |
-|**1.0** | **Do not update**. This branch is unpublished. The branch contains the  documentation for the EOL'd v1.0.10 release of SSO.| _N/A_ | no |
-| **master-on-April27** | A temporary snapshot of master to keep while we make large changes to the master branch. Please keep in sync with v1.6. | _N/A_ | no |
+| Branch name | Use for… | Publishes to… |
+|-------------| ------|--------|
+|**master** | This branch is on staging. ADD ALL NEW 1.8 CONTENT to this branch. DO NOT USE 1.8 UNTIL AFTER 1.8 RELEASES. When 1.7 was released, master and v1.7 were identical. | <a href="https://docs-pcf-staging.cfapps.io/p-identity/1-n/">https://docs-pcf-staging.cfapps.io/p-identity/1-n/</a> |
+|**master-pws** | This branch contains PWS-specific SSO content. | <a href="https://docs.run.pivotal.io/sso/index.html">https://docs.run.pivotal.io/sso/</a>|
+|**1.8** | This branch contains the published documentation for the (current) v1.8 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-8/">https://docs.pivotal.io/p-identity/1-8/</a> |
+|**1.7** | This branch contains the published documentation for the (current) v1.7 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-7/">https://docs.pivotal.io/p-identity/1-7/</a>|
+|**1.6** | This branch contains the published documentation for the (current) v1.6 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-6/">https://docs.pivotal.io/p-identity/1-6/</a>|
+|**1.5** | This branch contains the published documentation for the v1.5 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-5/">https://docs.pivotal.io/p-identity/1-5/</a>|
+|**1.4** | This branch contains the published documentation for the v1.4 release of SSO. |  <a href="https://docs.pivotal.io/p-identity/1-4/index.html">https://docs.pivotal.io/p-identity/1-4/</a>|
+|**1.3** | This branch contains the published documentation for the v1.3 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-3/index.html">https://docs.pivotal.io/p-identity/1-3/</a>|
+|**1.2** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.2.pdf">https://docs.pivotal.io/archives/docs-identity-1.2.pdf</a>|
+|**1.1** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.1.pdf">https://docs.pivotal.io/archives/docs-identity-1.1.pdf</a>|
+|**1.0** | **Do not update**. This branch is unpublished. The branch contains the  documentation for the EOL'd v1.0.10 release of SSO.|
+| **master-on-April27** | A temporary snapshot of master to keep while we make large changes to the master branch. Please keep in sync with v1.6. |
 
 ### Books that Use This Repository
 
