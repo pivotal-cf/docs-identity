@@ -6,72 +6,39 @@ owner: Identity Service
 These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity)
 service for Pivotal Cloud Foundry (PCF).
 
-## <a id="180"></a> v1.8.0
+## <a id="180"></a> v1.9.0
 
-**Release Date: December XX, 2018**
+**Release Date: MMM XX, 2019**
 
-<p class="note breaking"><strong>Breaking Change:</strong>
-  For SSO v1.8.0 and later, configure distinct resource names when dealing with
-  cross-space scopes.
-  For more information, see <a href="#space-protected-resources">Improved error message for space-protected resources</a>
-  in <em>Features</em> below.</p>
-
-### <a id="180-features"></a> Features
+### Features
 
 New features and changes in this release:
 
-* **SSO Plan API**:
-  SSO includes an API for managing SSO plans.
-  The SSO Plan API provides an easy way for developers to do continuous deployment and
-  continuous integration for SSO plans.<br><br>
-  For more information about automating SSO Plans, see [Automate Service Plan Creation](./manage-service-plans.html#plan-automation). <br>
-  For more information about the SSO API,
-  see the [SSO API](https://docs.pivotal.io/p-identity/sso-api) documentation.
-* **Expanded API functionality for configuring SSO Plans and identity providers (IDPs)**:
-  - **Enabling default IDPs**:
-  For PCF 2.4 and later, you can enable a default IDP so that users are automatically
-  redirected to an appropriate enterprise IDP.
-  For more information, see
-  [Enable Default Identity Provider](./manage-service-plans-api.html#enable-default-idp).
-  - **Disabling and re-enabling SSO plans:**
-  For PCF v2.4 and later, you can disable SSO plans that are no longer in use.
-  You can re-enable disabled plans when they need to be used again.
-  For more information, see [Disable SSO Plans](./manage-service-plans-api.html#disable-sso-plans).
-  - **Password Grant for OpenID Connect (OIDC):**
-  For PCF v2.2 and later, you can enable the OIDC password grant so that native apps,
-  such as mobile apps, can forward credentials to the enterprise IDP for authentication.
-  For more information, see [Enable Password Grant for OpenID Connect](./configure-id-providers-api.html#enable-client-auth).
+*
 
-* **Login hints functionality in Authorization Request API:**
-  For PCF v2.2 and later, when making an authorization code, password, or implicit
-  grant request, you can provide a login hint so that the end user is automatically
-  redirected to the appropriate IDP.
-  For more information, see [Using Login Hints](./integrating-sso.html#login-hint).
+* 
+[//]: # (if there are no new features - only fixes - omit features section?)
 
-* **Improved access error handling**:
-  Improved error messages and instructions for access errors on the SSO UI.
+### Security Fixes
 
-* <a name='space-protected-resources'></a>**Improved error message for space-protected resources**:
-  If users try to create resources already in use in a separate space using the cf CLI or SSO UI,
-  SSO returns a consistent error message.
-  For more information about space protection, see
-  [About Space Protection for Resources](./manage-resources.html#space-protection).
+This release includes the following security fixes:
 
-### <a id="180-known-issues"></a> Known Issues
+* 
+* 
+* 
 
+### Fixed Issues
+
+This release fixes the following issue:
+
+* 
+
+[//]: # (fixes Known Issue in v1.8.n)
+
+### Known Issues
+
+[//]: # (all known issues were fixed so we can say...)
 There are no known issues for this release.
-
-## <a id="deprecation"></a> Request for Feedback on Feature Deprecation
-In future releases of SSO, Pivotal plans to deprecate the following features: 
-
-* **User management interface**: We plan to shift admin user management from using a user management UI to the UAA CLI. For more information about user management, see [Managing Users](./manage-users.html).
-* **Password policies configuration**: We plan to deprecrate the **Password Complexity** and **Lockout Policy** sections in **Internal User Store**  > **Edit Provider**. This is because UAA plans to focus on enterprise IDPs as the core provider of users for production apps. For more information about configuring password policies, see [Define Password Policy for the Internal User Store](./configure-id-providers.html#passwd-policy).
-* **Native multi-factor authentication (MFA)**: We do not plan to make native MFA production ready. 
-This is because UAA plans to focus on enterprise IDPs, which already provide MFA. For more information about enabling MFA, see [Enable Multi-Factor Authentications (Beta)](./manage-service-plans-api.html#enable-authentication).
-
-We plan to no longer recommend using the internal user store in production based upon the deprecation of these features.
-
-If you have any feedback or concerns about the deprecation of the above features, let us know. Send us feedback using this [SSO 1.8 Deprecation Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSdPHaId-qk4QGzGL0GE3cXhH1XUgKFQOpNL2j4SqgjoCkn3Hg/viewform?usp=sf_link).
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
