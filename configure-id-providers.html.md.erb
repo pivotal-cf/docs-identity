@@ -9,7 +9,7 @@ for users with accounts in the internal user store or with external identity pro
 ## <a id='config-int-store'></a> Configure Internal User Store
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
-Find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+Find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -78,7 +78,7 @@ Administrators can define the password policy for SSO users in the internal user
 The password policy enforces rules that restrict the kinds of passwords users can create.
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-   You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+   You can find these credentials in your Pivotal Application Service tile in Ops Manager under the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -103,7 +103,7 @@ The password policy enforces rules that restrict the kinds of passwords users ca
 For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider. The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -123,7 +123,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -156,7 +156,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select Manage Identity Providers from the drop-down menu.
 
@@ -191,12 +191,12 @@ See the following sets of instructions for how to configure the SSO service to u
 When integrating with an external identity provider for LDAP, authentication becomes chained. An authentication attempt with a user's credentials is first attempted against the internal user store before the external LDAP identity provider. To avoid username collision, do not bootstrap or create users in the UAA directly. You may only have one LDAP external identity provider per service plan.
 
 <p class="note warning">
-<strong>WARNING: </strong> Pivotal recommends against reusing LDAP service accounts across environments. 
-LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users utilizing the same account. 
+<strong>WARNING: </strong> Pivotal recommends against reusing LDAP service accounts across environments.
+LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users utilizing the same account.
 Also, LDAP service accounts should not be subject to automated deletions, since disruption to these service accounts could prevent user logins.
 </p>
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -236,7 +236,7 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -256,7 +256,7 @@ For more details on how to create resource permission mappings, see <a href="./m
 
 <p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
