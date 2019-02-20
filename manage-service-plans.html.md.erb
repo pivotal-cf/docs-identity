@@ -5,8 +5,8 @@ owner: Identity Service
 
 This topic describes how Pivotal Cloud Foundry (PCF) Administrators manage Single Sign-On service plans.
 
-Single Sign-On (SSO) is a multi-tenant service, which enables a deployment to host multiple tenants as service plans. 
-Each service plan can have its own administrators, applications and users. 
+Single Sign-On (SSO) is a multi-tenant service, which enables a deployment to host multiple tenants as service plans.
+Each service plan can have its own administrators, applications and users.
 This lets enterprises segregate access by using separate plans. For example, the following tenants might require separate plans:
 
 * Business units and geographical locations
@@ -15,7 +15,7 @@ This lets enterprises segregate access by using separate plans. For example, the
 
 * Development, staging, and production instances
 
-You may also want to configure an SSO Service Plan as an OpenID Connect (OIDC) identity provider. 
+You may also want to configure an SSO Service Plan as an OpenID Connect (OIDC) identity provider.
 For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/index.html).
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
@@ -25,8 +25,8 @@ You can use the SSO dashboard to create and configure service plans at any time.
 
 <p class="note"><strong>Note</strong>: You must create at least one plan for any service before your applications can use it.</p>
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` 
-using your User Account and Authentication (UAA) administrator credentials. 
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+using your User Account and Authentication (UAA) administrator credentials.
 You can find these credentials in the Pivotal Application Service (PAS) tile in Ops Manager in the **Credentials** tab.
 
 1. Click **New Plan** on the SSO dashboard to create a new SSO service plan.
@@ -43,26 +43,26 @@ You can find these credentials in the Pivotal Application Service (PAS) tile in 
 
 1. Add **Plan Administrators**. These users can view the plan and manage identity providers.
 
-1. Under **Organizations**, select specific organizations in your PCF deployment 
+1. Under **Organizations**, select specific organizations in your PCF deployment
 that can access your Single Sign-On service plan, or select **Enable for all Orgs**. <br><br>
-	* If you select **Enable for all Orgs** the plan is available for use and displayed in the Services Marketplace for all developers in any organization. 
+	* If you select **Enable for all Orgs** the plan is available for use and displayed in the Services Marketplace for all developers in any organization.
 	This is only recommended for test plans to allow developers to experiment with the SSO service.<br><br>
 	* If you do not select any organizations, the plan is not available for use and it is not displayed in the Services Marketplace.
 
-1. Click **Create Plan**. Your new plan appears in the Services Marketplace in the organizations you selected. 
+1. Click **Create Plan**. Your new plan appears in the Services Marketplace in the organizations you selected.
 Users in those organizations view the plan either in Apps Manager or through the CF CLI by entering `cf marketplace` in a terminal window.
 
 ## <a id='delete-svc-plan'></a> Delete Service Plans
 
-<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a Single Sign-On service plan 
-removes from the SSO database all of the configurations, identity providers, users, 
-application configurations and resources associated with the plan. 
-It also deletes the associated service instances and service bindings. 
+<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a Single Sign-On service plan
+removes from the SSO database all of the configurations, identity providers, users,
+application configurations and resources associated with the plan.
+It also deletes the associated service instances and service bindings.
 You must rebind any applications bound to the deleted service instances to new service instances.</p>
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` 
-using your UAA administrator credentials. You can find these credentials in your 
-Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+using your UAA administrator credentials. You can find these credentials in your
+Pivotal Application Service tile in Ops Manager under the Credentials tab.
 
 2. Select the name of the plan you want to delete, and click **Edit Plan** in the drop-down menu.
 
@@ -73,17 +73,17 @@ Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
 ## <a id='configure-token-policy'></a> Configure a Token Policy
 
-The Single Sign-On service allows administrators to override the 
+The Single Sign-On service allows administrators to override the
 default expiry of access tokens (12 hours) and refresh tokens (30 days) by zone.
 
-* **Access tokens** carry information about users and clients to servers that manage resources. 
-Servers use access tokens to determine whether the client is authorized or not. Access tokens typically have a short-lived expiration time. 
-* **Refresh tokens** carry information necessary to retrieve a new access token after an existing access token expires. 
+* **Access tokens** carry information about users and clients to servers that manage resources.
+Servers use access tokens to determine whether the client is authorized or not. Access tokens typically have a short-lived expiration time.
+* **Refresh tokens** carry information necessary to retrieve a new access token after an existing access token expires.
 Refresh tokens typically have a longer expiration time than access tokens.
 
 To configure the token policy, do the following:
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. 
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
 You can find these credentials in your Pivotal Application Service (PAS) tile in Ops Manager in the **Credentials** tab.
 
 2. Select the name of the plan you want to configure a token policy for, and click **Configure** from the drop-down menu.
