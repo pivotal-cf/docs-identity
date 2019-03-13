@@ -3,34 +3,54 @@ title: Single Sign-On Overview
 owner: Identity Service
 ---
 
-This topic provides an overview of the [Single Sign-On](https://network.pivotal.io/products/p-identity) service for Pivotal Cloud Foundry (PCF).
+This topic provides an overview of the
+[Single Sign-On](https://network.pivotal.io/products/p-identity) service for
+Pivotal Cloud Foundry (PCF).
 
-The Single Sign-On service is an all-in-one solution for securing access to applications and APIs on PCF. The Single Sign-On service provides support for native authentication, federated single sign-on, and authorization. Operators can configure native authentication and federated single sign-on, for example SAML, to verify the identities of application users. After authentication, the Single Sign-On service uses OAuth 2.0 to secure resources or APIs.
+The Single Sign-On service is an all-in-one solution for securing access to
+applications and APIs on PCF. The Single Sign-On service provides support for
+native authentication, federated single sign-on, and authorization. Operators
+can configure native authentication and federated single sign-on, for example SAML,
+to verify the identities of application users. After authentication,
+the Single Sign-On service uses OAuth 2.0 to secure resources or APIs.
 
 ## <a id="sso-overview"></a> Single Sign-On
 
-The Single Sign-On service allows users to log in through a single sign-on service and access other applications that are hosted or protected by the service. This improves security and productivity since users do not have to log in to individual applications.
+The Single Sign-On service allows users to log in through a single sign-on service
+and access other applications that are hosted or protected by the service.
+This improves security and productivity since users do not have to log in to
+individual applications.
 
-Developers are responsible for selecting the authentication method for application users. They can select native authentication provided by the User Account and Authentication (UAA) or external identity providers. UAA is an open source identity server project under the Cloud Foundry (CF) foundation that provides identity based security for applications and APIs.
+Developers are responsible for selecting the authentication method for application users.
+They can select native authentication provided by the User Account and Authentication (UAA)
+or external identity providers. UAA is an open source identity server project under
+the Cloud Foundry (CF) foundation that provides identity based security for applications and APIs.
 
-SSO supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
+SSO supports service provider-initiated authentication flow and single logout.
+It does not support identity provider-initiated authentication flow.
+All SSO communication takes place over SSL.
 
 ## <a id="oauth2"></a> OAuth 2.0 Authorization
 
-After authentication, the Single Sign-On service uses OAuth 2.0 for authorization. OAuth 2.0 is an authorization framework that delegates access to applications to access resources on behalf of a resource owner.
+After authentication, the Single Sign-On service uses OAuth 2.0 for authorization.
+OAuth 2.0 is an authorization framework that delegates access to applications
+to access resources on behalf of a resource owner.
 
-Developers define resources required by an application bound to a Single Sign-On (SSO) service instance and administrators grant resource permissions. See the <a href="./configure-apps/index.html">Configure Applications</a> topic for more details.
+Developers define resources required by an application bound to a Single Sign-On (SSO)
+service instance and administrators grant resource permissions.
+See the <a href="./configure-apps/index.html">Configure Applications</a> topic for more details.
 
 ## <a id='product-snapshot'></a> Product Snapshot
 
-The following table provides version and version-support information about [Single Sign-On](https://network.pivotal.io/products/p-identity) for PCF:
+The following table provides version and version-support information about
+[Single Sign-On](https://network.pivotal.io/products/p-identity) for PCF:
 
 <table class="nice">
     <th>Element</th>
     <th>Details</th>
     <tr>
         <td>Version</td>
-        <td>v1.9.0</td>
+        <td>1.9.0</td>
     </tr>
     <tr>
         <td>Release date</td>
@@ -38,11 +58,11 @@ The following table provides version and version-support information about [Sing
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
-        <td>v2.5, v2.4, and v2.3</td>
+        <td>2.5, 2.4, and 2.3</td>
     </tr>
     <tr>
         <td>Compatible Pivotal Application Service (PAS) version(s)</td>
-        <td>v2.5, v2.4, and v2.3</td>
+        <td>2.5, 2.4, and 2.3</td>
     </tr>
     <tr>
         <td>IaaS support</td>
@@ -50,49 +70,49 @@ The following table provides version and version-support information about [Sing
     </tr>
 </table>
 
-## <a id='support-matrix'></a> Support Matrix for SSO v1.7.x to v1.9.x
+## <a id='support-matrix'></a> Support Matrix for SSO v1.7 to v1.9
 
 This table lists the supported versions of SSO on PCF.
 
 <table border="1" class="nice">
 <tr>
-  <th rowspan="2">PCF</sup></th>
-  <th colspan="2">Supported SSO Versions</th>
+  <th rowspan="2">PCF</th>
+  <th align="center" colspan="2" >Supported SSO Versions</th>
 </tr>
 <tr>
   <th>Recommended SSO Version</th>
-  <th>Minimum SSO Version</th>
+  <th>Recommended Minimum SSO Version</th>
 </tr>
   <tr>
-    <th rowspan="1">2.5.x</th>
+    <th rowspan="1">2.5</th>
     <td>1.9.0</td>
     <td>1.9.0</td>
   </tr>
   <tr>
-    <th rowspan="1">2.4.x</th>
+    <th rowspan="1">2.4</th>
     <td>1.9.0</td>
-    <td>1.8.0</td>
-  </tr>
-  <tr>
-    <th rowspan="1">2.3.x</th>
-    <td>1.9.0</td>
-    <td>1.7.0</td>
-  </tr>
-  <tr>
-    <th rowspan="1">2.2.x</th>
     <td>1.8.1</td>
-    <td>1.7.0</td>
+  </tr>
+  <tr>
+    <th rowspan="1">2.3</th>
+    <td>1.9.0</td>
+    <td>1.7.3</td>
+  </tr>
+  <tr>
+    <th rowspan="1">2.2</th>
+    <td>1.8.1</td>
+    <td>1.7.3</td>
   </tr>
 </table>
 
 ### <a id='upgrading-example'></a> Upgrade Path to SSO v1.9
 
-If you are using SSO v1.8.X and PCF v2.4.X and want to upgrade to the
-recommended version of SSO and PCF v2.5.x, do the following:
+If you are using SSO v1.8 and PCF v2.4 and want to upgrade to the
+recommended version of SSO and PCF v2.5, do the following:
 
-1. Upgrade to SSO v1.9.0 on PCF v2.4.x.
+1. Upgrade to SSO v1.9.0 on PCF v2.4.
 
-1. Upgrade PCF to v2.5.x.
+1. Upgrade PCF to v2.5.
 
     For how to upgrade PCF,
     see [Upgrading Pivotal Cloud Foundry](https://docs.pivotal.io/pivotalcf/2-3/customizing/upgrading-pcf.html).
