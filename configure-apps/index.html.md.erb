@@ -437,11 +437,6 @@ the SSO dashboard.
 	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
-1. Specify a value in the **App Launch URL** field that you want to set as the address of your app.
-1. Upload an app icon for your app.
-1. Click **Show on homepage** to display the app on the UAA or Pivotal Account home page.
-	<p class="note"><strong>Note</strong>: If you would like app to display on
-		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
 1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
 	<p class="note"><strong>Note</strong>: When binding a PCF app, a Space Developer
 		can choose from internal and external identity providers.
@@ -454,7 +449,7 @@ the SSO dashboard.
    The redirect query parameter specified on the OAuth request must match the
    URIs specified in this list.
    Otherwise, SSO rejects the request.
-1. For the **Scopes** field, specify the permissions that the app can request
+1. Under **Authorization**, select the permissions that the app can request
    on the user’s behalf.
    This field defaults to `openid` for Web, Native, and Single-Page JavaScript Apps.
    This field defaults to `uaa.resource` for Service-to-Service Apps.
@@ -480,9 +475,13 @@ the SSO dashboard.
    Select only scopes pertaining to apps owned and managed by your company.
    Do not select scopes that pertain to externally hosted apps.
 
-1. Click **Save Config**. The **Next Steps** page appears, describing the endpoints
-   required for app integration.
-   For more information, see <a href="../integrating-sso.html">Integrate SSO with Your App</a>.
+1. If your Application Type is `Web App` or `Single-Page JavaScript App`, you can optionally click **Show on homepage** to display the app on the UAA or Pivotal Account home page.
+	<p class="note"><strong>Note</strong>: If you would like app to display on
+		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
+1. Specify a value in the **App Launch URL** field that you want to set as the address of your app.
+1. Upload an app icon for your app.
+
+1. Click **Update App**.
 
 
 ## <a id="register-service-keys"></a> Register an Externally Hosted App to PCF Using Service Keys
@@ -549,14 +548,9 @@ For more information, see [Determining SSO Application Type](../determine-type.h
 This launches the SSO dashboard.
 	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
-1. Click **New App**.
-1. Enter an **App Name**.
+1. Click **Register App**.
+1. Enter an **Application Name**.
 1. Choose an app type under **Select an Application Type**.
-1. Enter an **App Launch URL** that specifies the address of your app.
-1. Upload an app icon for your app.
-1. Click **Show on homepage** to display the app on the UAA or Pivotal Account home page.
-	<p class="note"><strong>Note</strong>: To display the app on the home page,
-		you must enter an **App Launch URL** or Upload an app icon.</p>
 1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
 	<p class="note"><strong>Note</strong>: When registering an externally hosted app,
 		a Space Developer can choose from internal and external identity providers.
@@ -568,7 +562,7 @@ This launches the SSO dashboard.
    a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, SSO rejects the request.
-1. For the **Scopes** field, specify the permissions that the app can request on the user’s behalf.
+1. Under **Authorization**, specify the permissions that the app can request on the user’s behalf.
    This field defaults to `openid` for Web, Native, and Single-Page JavaScript Apps.
    This field defaults to `uaa.resource` for Service-to-Service Apps.
    If this app is purely for authentication purposes, then the `openid` scope is sufficient.
@@ -592,9 +586,14 @@ This launches the SSO dashboard.
 approves when the app makes a request on behalf of a user.
 Select only scopes pertaining to apps owned and managed by your company.
 Do not select scopes that pertain to externally hosted apps.
-1. Click **Register App**. The **Next Steps** page appears, describing the endpoints
-required for app integration.
-For more information, see <a href="../integrating-sso.html">Integrate SSO with Your App</a>.
+1. If your Application Type is `Web App` or `Single-Page JavaScript App`, you can optionally click **Show on homepage** to display the app on the UAA or Pivotal Account home page.
+	<p class="note"><strong>Note</strong>: To display the app on the home page,
+		you must enter an **App Launch URL** or Upload an app icon.</p>
+1. Enter an **App Launch URL** that specifies the address of your app.
+1. Upload an app icon for your app.
+1. Click **Register App**. You are given the option to view and download the
+**App ID** and **App Secret**.
+Download or make note of this information for use with other SSO procedures.
 
 ## <a id="admin"></a> Create Admin Client
 
@@ -611,10 +610,10 @@ To create an admin client:
    This specifies the zone you manage as an admin client.
 3. Under **Services**, click the **Single Sign-On** service.
 4. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
-5. Click **New App**.
-6. Enter an **App Name**.
+5. Click **Register App**.
+6. Enter an **Application Name**.
 7. Under **Select an Application Type**, select **Service-to-Service App**.
-8. Click **Select Scopes** and choose what actions the admin client can perform
+8. Under **Authorization**, select what actions the admin client can perform
    from the following **Admin Permissions**:
 
 	| Scope  | Description |
@@ -685,7 +684,7 @@ To delete a PCF app:
 1. Select the space where your app is located.
 1. Under **Applications**, click the name of your app.
 1. On the Application page, click **Delete App**.
-1. On the popup, click **Delete** to confirm that you want to delete the app
+1. On the popup, click **Delete App** to confirm that you want to delete the app
    and its configurations from Apps Manager and the service dashboard.
 
 ### <a id="delete-external"></a> Delete an Externally Hosted App
@@ -697,7 +696,7 @@ To delete an externally hosted app that uses SSO:
 2. Under **Services**, click **Manage** next to your SSO service instance to
    launch the SSO dashboard.
 3. Click your app.
-4. Click **Delete** at the bottom of the page.
+4. Click **Delete App** at the bottom of the page.
 5. On the popup, click **Delete App** to confirm that you want to delete the app
    and its configurations.
 
