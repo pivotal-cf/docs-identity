@@ -104,7 +104,7 @@ The table below provides descriptions and default values for bind parameters:
 		<td><code>auto_approved_scopes</code></td>
 		<td>Comma-separated list of scopes that the app is automatically authorized
 			when acting on behalf of users through SSO service.</td>
-		<td>Defaults to existing scopes/authorities</code></td>
+		<td>Defaults to existing <code>scopes/authorities</code></td>
 	</tr>
 	<tr>
 		<td><code>authorities</code></td>
@@ -434,6 +434,8 @@ the SSO dashboard.
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance to launch the SSO dashboard.
+	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
+  <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
 1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
 	<p class="note"><strong>Note</strong>: When binding a PCF app, a Space Developer
@@ -544,6 +546,8 @@ For more information, see [Determining SSO Application Type](../determine-type.h
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance.
 This launches the SSO dashboard.
+	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
+  <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
 1. Enter an **Application Name**.
 1. Choose an app type under **Select an Application Type**.
@@ -626,6 +630,46 @@ To create an admin client:
 9. Click **Register App**. You are given the option to view and download the
 **App ID** and **App Secret**.
 Download or make note of this information for use with other SSO procedures.
+
+## <a id="view-credentials"></a> View Credentials of Existing App Configurations
+
+You can view the credentials and endpoints required for app integration for an existing app on the
+**View Credentials** page.
+
+To view credentials of an existing app:
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your service instance is located.
+1. Under **Services**, click the **Single Sign-On** service.
+1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
+1. Under **Applications**, click the **View Credentials** button near the name of your app.
+	<p class="note"><strong>Note</strong>:
+		You may only view the <strong>App Secret</strong> when an app is first registered or
+		the secret is regenerated.</p>
+	<%= image_tag '../images/view_credentials_page.png' %>
+
+### <a id="regenerate-app-secret"></a> Regenerate an App Secret
+
+<p class="note"><strong>Note</strong>:
+	You should not regenerate an app secret for <strong>PCF bound apps</strong>,
+	as <code>VCAP_SERVICES</code> will not update with the new <code>client_secret</code>.
+	In order to regenerate a client for a PCF bound app, you will need to delete and re-create the
+	service binding from your app to SSO.</p>
+
+To regenerate an app secret of an existing app:
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your service instance is located.
+1. Under **Services**, click the **Single Sign-On** service.
+1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
+1. Under **Applications**, click the **View Credentials** button near the name of your app.
+1. Click **Regenerate App secret** under the **App Secret** field
+1. On the popup, click **Regenerate App Secret** to confirm that you want to regenerate an
+   app's secret value
+
+	<p class="note"><strong>Note</strong>:
+		Regenerating an <strong>App Secret</strong> will require you to update the
+		secret at the client.</p>
 
 ## <a id="delete"></a> Delete App that Uses SSO
 
