@@ -630,6 +630,42 @@ To create an admin client:
 **App ID** and **App Secret**.
 Download or make note of this information for use with other SSO procedures.
 
+## <a id="view-credentials"></a> View Credentials of Existing App Configurations
+
+You can view the credentials and endpoints required for app integration of an existing app on the
+**View Credentials** page.
+
+To view credentials of an existing app:
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your app is located.
+1. Under **Applications**, click the **View Credentials** button near the name of your app.
+	<p class="note"><strong>Note</strong>:
+		You may only view the <strong>App Secret</strong> when an application is created or
+		the secret is regenerated.</p>
+
+### <a id="regenerate-app-secret"></a> Regenerate an App Secret
+
+<p class="note"><strong>Note</strong>:
+	You should not regenerate an app secret for <strong>PCF bound apps</strong>,
+	as <code>VCAP_SERVICES</code> will not update with the new <code>client_secret</code>.
+	In order to regenerate a client for a PCF bound app, you will need to delete and re-create the
+	service binding from your app to SSO.</p>
+
+To regenerate an app secret of an existing app:
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your app is located.
+1. Under **Applications**, click the **View Credentials** button near the name of your app.
+	<%= image_tag '../images/view_credentials_page.png' %>
+1. Click **Regenerate app secret**
+1. On the popup, click **Regenerate App Secret** to confirm that you want to regenerate an
+   apps secret value
+
+	<p class="note"><strong>Note</strong>:
+		Regenerating an <strong>App Secret</strong> will require you to update the
+		secret at the client.</p>
+
 ## <a id="delete"></a> Delete App that Uses SSO
 
 Delete a [Delete a PCF App](#delete-pcf) or an [Delete an Externally Hosted App](#delete-external)
