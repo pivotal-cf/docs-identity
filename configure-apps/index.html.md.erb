@@ -632,17 +632,20 @@ Download or make note of this information for use with other SSO procedures.
 
 ## <a id="view-credentials"></a> View Credentials of Existing App Configurations
 
-You can view the credentials and endpoints required for app integration of an existing app on the
+You can view the credentials and endpoints required for app integration for an existing app on the
 **View Credentials** page.
 
 To view credentials of an existing app:
 
 1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your app is located.
+1. Select the space where your service instance is located.
+1. Under **Services**, click the **Single Sign-On** service.
+1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
 1. Under **Applications**, click the **View Credentials** button near the name of your app.
 	<p class="note"><strong>Note</strong>:
-		You may only view the <strong>App Secret</strong> when an application is created or
+		You may only view the <strong>App Secret</strong> when an app is first registered or
 		the secret is regenerated.</p>
+	<%= image_tag '../images/view_credentials_page.png' %>
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
 
@@ -655,12 +658,13 @@ To view credentials of an existing app:
 To regenerate an app secret of an existing app:
 
 1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your app is located.
+1. Select the space where your service instance is located.
+1. Under **Services**, click the **Single Sign-On** service.
+1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
 1. Under **Applications**, click the **View Credentials** button near the name of your app.
-	<%= image_tag '../images/view_credentials_page.png' %>
-1. Click **Regenerate app secret**
+1. Click **Regenerate App secret** under the **App Secret** field
 1. On the popup, click **Regenerate App Secret** to confirm that you want to regenerate an
-   apps secret value
+   app's secret value
 
 	<p class="note"><strong>Note</strong>:
 		Regenerating an <strong>App Secret</strong> will require you to update the
