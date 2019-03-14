@@ -34,6 +34,13 @@ authenticate with an external identity provider rather than having to create a n
 5. `cd docs-book-identity && bundle install`
 6. To render the documentation with hotload changes: `cd docs-book-identity && bundle exec bookbinder watch` (Browse to localhost url in the output, for example, `localhost:4567/p-identity/1-n`).
 
+### Development Workflow for APP SSO Team (for "docs-identity" & for a not-yet released SSO tile)
+1. Check out `master` branch.
+2. Create a feature branch with a branch name reflecting the purpose of the edit. E.g.: `git checkout -b update-product-version`
+3. Commit onto the feature branch, and push the feature branch.
+4. Create PR to request that the feature branch be merged into `master`, and include any appropriate contexts in the PR.
+5. Docs team will review the PR and delete the feature branch once it is merged.
+
 ### Terminology
 
 SSO has a lot of difficult and inconsistent terminology. Jane learned the following, working with Peter Chen in early July 2018.
