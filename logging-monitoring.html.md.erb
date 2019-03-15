@@ -1,0 +1,56 @@
+---
+title: Logging and Monitoring
+owner: Identity Service
+---
+
+This topic lists resources where you can learn about logging and monitoring of the Single Sign-On (SSO) service for Pivotal Cloud Foundry (PCF).
+
+## Auditing an SSO Service Plan
+All SSO Service Plans are given a unique **Identity Zone Id**. You can audit all events using a particular plan by
+filtering UAA generated logs by the plan's identity zone id.
+
+A list of plans and their coresponding identity zone id's can be obtained from the `id` field of the
+[SSO Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) response or
+the plan URL from the SSO Operatator Dashboard.
+
+## Auditing App Events
+All PCF Bound Apps using SSO or Externally Registered Apps though the SSO Dashboard have a unique **Client Id**.
+You can audit all app/uaa client events using the client id.
+
+An app's client id can be found on the SSO Developer Dashboard as the **App ID**
+
+## Auditing an SSO Service Instance
+<p class="note"><strong>Note:</strong>
+    Enabling SSO Service Instance logging requires additional setup with
+    <a target="_blank" href="https://docs.pivotal.io/pivotalcf/2-4/devguide/deploy-apps/streaming-logs.html">log forwarding and log drain configuration</a>.
+    See additional resources.
+</p>
+
+All SSO Service Instances are given a unique **Service Instance Id**.
+It is possible to audit both UAA and PCF Logs by using a combination of the service instance id and the client ids
+which belong to that service instance.
+
+To retreive a service instance's id, run the following cf CLI command:
+
+```
+$ cf service SERVICE-INSTANCE-NAME --guid
+```
+
+## Additional Resources
+
+The following table contains links to topics that further describe how to audit and monitor your apps using the Single Sign-On (SSO) service.
+
+<table>
+    <tr>
+        <th>For more information about...</th>
+        <th>See...</th>
+    </tr>
+    <tr>
+        <td>PCF logging/monitoring</td>
+        <td><a href="https://docs.pivotal.io/pivotalcf/2-4/loggregator/index.html">Logging and Metrics</a></td>
+    </tr>
+    <tr>
+        <td>UAA audit events</td>
+        <td><a href="https://docs.cloudfoundry.org/loggregator/cc-uaa-logging.html#uaa">UAA Logging</a></td>
+    </tr>
+</table>
