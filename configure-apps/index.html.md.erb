@@ -218,7 +218,7 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 		<td><code>GRANT_TYPE</code></td>
 		<td>Allowed grant type for the app through the SSO service.
 			Only one grant type per app is supported by SSO.
-			If you wish<%# "want" is preferred. %> to set more than one grant types per app, you can resort
+			If you want to set more than one grant types per app, you can resort
 			to <a href="../manage-clients-api.html">this workaround</a>.</td>
 		<td> </td>
 	</tr>
@@ -324,7 +324,7 @@ GitHub repository.
 You can remove SSO configuration properties for an app, or any environment variables
 set through `cf set-env`, Apps Manager, or bootstrapping as follows:
 
-1. Run `cf unset-env<%# "environment" is preferred %> APP_NAME PROPERTY_NAME`.
+1. Run `cf unset-env APP_NAME PROPERTY_NAME`.
 
 1. Rebind the app.
 
@@ -438,49 +438,71 @@ the SSO dashboard.
 	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
-1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
+1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
 	<p class="note"><strong>Note</strong>: When binding a PCF app, a Space Developer
 		can choose from internal and external identity providers.
 		If the Space Developer selects multiple identity providers, users must select
 		which provider to use when they sign in.
 		This option is available for all application types except
 		<code>Service-to-Service App</code>.</p>
-1. If your Application Type is `Web App` or `Single-Page JavaScript App`, enter
-   an allow list of **Auth Redirect URIs** beneath **Redirect URIs**.
+    <%= image_tag '../images/sso_dev_select_idp.png' %>
+1. If your Application Type is `Web App` or `Single-Page JavaScript App`, under **Application Settings** 
+   enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the
-   URIs specified in this list.
-   Otherwise, SSO rejects the request.
-1. Under **Authorization**, select the permissions that the app can request
-   on the user’s behalf.
-   This field defaults to `openid` for Web, Native, and Single-Page JavaScript Apps.
-   This field defaults to `uaa.resource` for Service-to-Service Apps.
-   If this app is purely for authentication purposes, then the `openid` scope is sufficient.
-   If the app makes API calls on behalf of the end user, specify both the scopes
-   enforced by the API and the scopes to be requested by the app.
+   URIs specified in this list. Otherwise, SSO rejects the request.
+   <%= image_tag '../images/sso_dev_redirect_uri.png' %>
+1. Under **Authorization**, select the **System Permissions** that the app can request 
+    on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope 
+    is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes 
+    enforced by the API and the scopes to be requested by the app.
+     <table class="nice">
+       <tr>
+         <th>Scope</th>
+         <th>Description</th>
+       </tr>
+       
+       <tr>
+         <td><code>open</code></td>
+         <td>Provides access to make OpenID Connect request. The default for Web, Native, and Single-Page JavaScript Apps</td>
+      </tr>
+      
+      <tr>
+        <td><code>user_attributes</code></td>
+        <td>Provides access to custom attributes from an external identity provider</td>
+      </tr>
+      
+      <tr>
+        <td><code>roles</code></td>
+        <td>Provides access to external groups from an identity provider</td>
+      </tr>
+      
+      <tr>
+        <td><code>uaa.resource</code></td>
+        <td>Provides access to the <code>check_token</code> endpoint for service-to-service flows. 
+          The default for Service-to-Service Apps.
+          </td>
+      </tr>
+      
+    </table>
+     
+  <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>,
+  	you can select resources defined in any space if the app type is a
+  	<code>Web App</code>, <code>Native App</code>, or <code>Single-Page
+  	JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>,
+  	you can only select resources defined within the space.</p>
 
-	| Scope  | Description |
-	|-------------------|------------------------------|
-	| `openid` | Provides access to make OpenID Connect requests |
-	| `user_attributes` | Provides access to custom attributes from an external identity provider |
-	| `roles` | Provides access to external groups from an identity provider |
-	| `uaa.resource` | Provides access to the check_token endpoint for service-to-service flows |
-
-	<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>,
-		you can select resources defined in any space if the app type is a
-		<code>Web App</code>, <code>Native App</code>, or <code>Single-Page
-		JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>,
-		you can only select resources defined within the space.</p>
-
-1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically
+1. (Optional) Under **Auto-Approved Scopes**, select any scopes that the SSO service automatically
    approves when the app makes a request on behalf of a user.
    Select only scopes pertaining to apps owned and managed by your company.
    Do not select scopes that pertain to externally hosted apps.
 
-1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can click **Show on homepage** to display the app on the UAA or Pivotal Account home page.
+1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can enable 
+**Show on homepage** to display the app on the UAA or Pivotal Account home page.
 	<p class="note"><strong>Note</strong>: If you want an app to display on
 		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
-1. In **App Launch URL**, enter the address you want for your app.
-1. Upload an app icon for your app.
+    1. In **App Launch URL**, enter the address you want for your app.
+    1. Upload an app icon for your app.
+    <%= image_tag '../images/sso_dev_show_homepage.png' %>
 
 1. Click **Update App**.
 
@@ -552,46 +574,71 @@ This launches the SSO dashboard.
 1. Click **Register App**.
 1. Enter an **Application Name**.
 1. Choose an app type under **Select an Application Type**.
-1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
+1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store 
+  is the default.
 	<p class="note"><strong>Note</strong>: When registering an externally hosted app,
 		a Space Developer can choose from internal and external identity providers.
 		If the Space Developer selects multiple identity providers, users must
 		select which provider to use when they sign in.
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
-1. If your Application Type is a `Web App` or `Single-Page JavaScript App`, enter
-   an allow list of **Auth Redirect URIs** beneath **Redirect URIs**.
+    <%= image_tag '../images/sso_dev_select_idp.png' %>
+1. If your Application Type is `Web App` or `Single-Page JavaScript App`, 
+   under **Application Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, SSO rejects the request.
-1. Under **Authorization**, specify the permissions that the app can request on the user’s behalf.
-   This field defaults to `openid` for Web, Native, and Single-Page JavaScript Apps.
-   This field defaults to `uaa.resource` for Service-to-Service Apps.
-   If this app is purely for authentication purposes, then the `openid` scope is sufficient.
-   If the app makes API calls on behalf of the end user, you must specify both
-   the scopes enforced by the API and the scopes to be requested by the app.
-
-	| Scope  | Description |
-	|-------------------|------------------------------|
-	| `openid` | Provides access to make OpenID Connect requests |
-	| `user_attributes` | Provides access to custom attributes from an external identity provider |
-	| `roles` | Provides access to external groups from an identity provider |
-	| `uaa.resource` | Provides access to check_token endpoint for service-to-service flows |
-<p class="note"><strong>Note</strong>: Add the <code>user_attributes</code> scope
-	to the client scopes to return user attributes from the ID token.</p>
-<p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can
-	select resources defined in any space if the app type is a <code>Web App</code>,
-	<code>Native App</code>, or <code>Single-Page JavaScript App</code>.
-	If the app type is a <code>Service-to-Service App</code>, you can only select
-	resources defined within the space.</p>
-1. For **Auto-Approved Scopes**, select any scopes that the SSO service automatically
-approves when the app makes a request on behalf of a user.
-Select only scopes pertaining to apps owned and managed by your company.
-Do not select scopes that pertain to externally hosted apps.
-1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can click **Show on homepage** to display the app on the UAA or Pivotal Account home page.
-	<p class="note"><strong>Note</strong>: If you want an app to display on
-		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
-1. In **App Launch URL**, enter the address you want for your app.
-1. Upload an app icon for your app.
+   <%= image_tag '../images/sso_dev_redirect_uri.png' %>
+1. Under **Authorization**, select the **System Permissions** that the app can request 
+    on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope 
+    is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes 
+    enforced by the API and the scopes to be requested by the app.
+     <table class="nice">
+       <tr>
+         <th>Scope</th>
+         <th>Description</th>
+       </tr>
+       
+       <tr>
+         <td><code>open</code></td>
+         <td>Provides access to make OpenID Connect request. The default for Web, Native, and Single-Page JavaScript Apps</td>
+      </tr>
+      
+      <tr>
+        <td><code>user_attributes</code></td>
+        <td>Provides access to custom attributes from an external identity provider</td>
+      </tr>
+      
+      <tr>
+        <td><code>roles</code></td>
+        <td>Provides access to external groups from an identity provider</td>
+      </tr>
+      
+      <tr>
+        <td><code>uaa.resource</code></td>
+        <td>Provides access to the <code>check\_token</code> endpoint for service-to-service flows. 
+          The default for Service-to-Service Apps.
+          </td>
+      </tr>
+      
+    </table>
+    
+    <p class="note"><strong>Note</strong>: Add the <code>user_attributes</code> scope
+	  to the client scopes to return user attributes from the ID token.</p>
+    <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can
+	  select resources defined in any space if the app type is a <code>Web App</code>,
+	  <code>Native App</code>, or <code>Single-Page JavaScript App</code>.
+	  If the app type is a <code>Service-to-Service App</code>, you can only select
+	  resources defined within the space.</p>
+    
+1. (Optional) Under **Auto-Approved Scopes**, select any scopes that the SSO service 
+   automatically approves when the app makes a request on behalf of a user.
+   Select only scopes pertaining to apps owned and managed by your company.
+   Do not select scopes that pertain to externally hosted apps.
+1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can enable 
+    **Show on homepage** to display the app on the UAA or Pivotal Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
+      1. In **App Launch URL**, enter the address you want for your app.
+      1. Upload an app icon for your app.
+      <%= image_tag '../images/sso_dev_show_homepage.png' %>
 1. Click **Register App**. 
 1. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other SSO procedures.
@@ -653,8 +700,8 @@ To view credentials of an existing app, do the following:
 	<p class="note"><strong>Note</strong>:
 		You can only view the <strong>App Secret</strong> when an app is first registered or
 		the secret is regenerated.</p>
-	<%= image_tag '../images/view_credentials_page.png' %>
-  <a href="../images/view_credentials_page.png" target="_blank">View a larger version of this image.</a>
+	<%= image_tag '../images/sso_dev_creds.png' %>
+  <a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
 
