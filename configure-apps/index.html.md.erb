@@ -707,8 +707,8 @@ To view credentials of an existing app, do the following:
 
 <p class="note"><strong>Note</strong>:
 	You must not regenerate an app secret for PCF bound apps,
-	as <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
-	In order to regenerate a client for a PCF bound app, you need to delete and re-create the
+	because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
+	To regenerate a client for a PCF bound app, you need to delete and re-create the
 	service binding from your app to SSO.</p>
 
 To regenerate an app secret of an existing app, do the following:
@@ -718,9 +718,9 @@ To regenerate an app secret of an existing app, do the following:
 1. Under **Services**, click the **Single Sign-On** service.
 1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
 1. Under **Applications**, click the **View Credentials** near the name of your app.
-1. Click **Regenerate App secret** under the **App Secret** field
+1. Click **Regenerate App secret** under the **App Secret** field.
 1. On the pop-up, click **Regenerate App Secret** to confirm that you want to regenerate an
-   app's secret value
+   app's secret value.
 
 	<p class="note"><strong>Note</strong>:
 		Regenerating an <strong>App Secret</strong> requires you to update the
