@@ -1,0 +1,41 @@
+---
+title: Logging and Monitoring
+owner: Identity Service
+---
+
+This topic lists resources where you can learn about logging and monitoring of the Single Sign-On (SSO) service for Pivotal Cloud Foundry (PCF).
+
+The underlying UAA service, used by SSO, will log Security Events through the Loggregator. The UAA Security Events may be filtered to their desired destination through a log drain.
+
+## Auditing an SSO Service Plan
+All SSO Service Plans are given a unique **Identity Zone Id**. You can audit all events using a particular plan by
+filtering UAA generated logs by the plan's identity zone id.
+
+A list of plans and their coresponding identity zone id's can be obtained from the `id` field of the
+[SSO Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) response or
+the plan URL from the SSO Operatator Dashboard.
+
+## Auditing App Events
+All PCF Bound Apps using SSO or Externally Registered Apps though the SSO Dashboard have a unique **Client Id**.
+You can audit all app/uaa client events using the client id.
+
+An app's client id can be found on the SSO Developer Dashboard as the **App ID**.
+
+## Resources
+
+The following table contains links to topics that further describe how to audit and monitor your apps using the Single Sign-On (SSO) service.
+
+<table>
+    <tr>
+        <th>For more information about...</th>
+        <th>See...</th>
+    </tr>
+    <tr>
+        <td>PCF logging/monitoring</td>
+        <td><a href="https://docs.pivotal.io/pivotalcf/2-4/loggregator/index.html">Logging and Metrics</a></td>
+    </tr>
+    <tr>
+        <td>UAA audit events</td>
+        <td><a href="https://docs.cloudfoundry.org/loggregator/cc-uaa-logging.html#uaa">UAA Logging</a></td>
+    </tr>
+</table>
