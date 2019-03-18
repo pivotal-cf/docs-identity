@@ -6,39 +6,40 @@ owner: Identity Service
 These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity)
 service for Pivotal Cloud Foundry (PCF).
 
-## <a id="180"></a> v1.9.0
+## <a id="190"></a> v1.9.0
 
-**Release Date: MMM XX, 2019**
+**Release Date: March XX, 2019**
 
-### Features
+### <a id="190-features"></a> Features
 
 New features and changes in this release:
 
-*
+* **Developer Dashboard Redesign**:
+    The developer dashboard has undergone a complete redesign from previous SSO Service versions. Along
+    with a new look and feel, the Developer Dashboard now displays more information about your apps at
+    a glance and has additional and improved help texts/tooltips.
+* **Quick Documentation Access**:
+    Both Operator and Developer Dashboards now contain a "Help" item in the navigation bar
+    for quick access to the Dashboards' documentation.
+* **Logging and Monitoring documentation**: Documentation has been released to help operators
+    understand monitoring and logging for the SSO Service. See
+    [Logging and Monitoring Documentation](logging-monitoring.html) for more details.
+* **Stemcell Update**: The PCF stemcell is updated to 170.XX series (Ubuntu 16.04 Xenial).
 
-* 
-[//]: # (if there are no new features - only fixes - omit features section?)
-
-### Security Fixes
-
-This release includes the following security fixes:
-
-* 
-* 
-* 
-
-### Fixed Issues
+### <a id="190-fixed-issues"></a> Fixed Issues
 
 This release fixes the following issue:
 
-* 
+* **Operator Dashboard**: Custom logos and favicons did not appear on the Operator Dashboard page.
+* **Plans API**: The `GET /v1/plans` endpoint returned a 500 status error when UAA contains
+    identity zones that are not managed by the SSO Service.
 
-[//]: # (fixes Known Issue in v1.8.n)
+###  <a id="190-known-issues"></a>  Known Issues
 
-### Known Issues
+This release has the following issue:
 
-[//]: # (all known issues were fixed so we can say...)
-There are no known issues for this release.
+* **64kb Maximum Branding Size**: When uploading custom branding, logos or favicons cannot be larger than
+    64kb.
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
