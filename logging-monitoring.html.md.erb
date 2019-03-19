@@ -1,41 +1,73 @@
 ---
-title: Logging and Monitoring
+title: Monitoring Service Plans and Apps
 owner: Identity Service
 ---
 
-This topic lists resources where you can learn about logging and monitoring of the Single Sign-On (SSO) service for Pivotal Cloud Foundry (PCF).
+[THIS IS BOTH A DEV AND OP TOPIC? WE DO NOT MENTION HOW TO USE THE IDS WITH LOGGREGATOR.
+THE PREREQUISITES SECTION NEEDS TO BE REWORKED]
 
-The underlying UAA service, used by SSO, will log Security Events through the Loggregator. The UAA Security Events may be filtered to their desired destination through a log drain.
+This topic explains how to monitor Single Sign-On (SSO) 
+for Pivotal Cloud Foundry (PCF) service plans and apps.
 
-## Auditing an SSO Service Plan
-All SSO Service Plans are given a unique **Identity Zone Id**. You can audit all events using a particular plan by
-filtering UAA generated logs by the plan's identity zone id.
+SSO uses the User Account and Authentication (UAA) service to log security events through Loggregator. 
+UAA security events can be filtered to destinations through a syslog drain.
 
-A list of plans and their coresponding identity zone id's can be obtained from the `id` field of the
-[SSO Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) response or
-the plan URL from the SSO Operatator Dashboard.
+For information about configuring logging in Pivotal Application Services (PAS), see [Configuring Logging in PAS](https://docs.pivotal.io/pivotalcf/opsguide/logging-config-opsman.html).
 
-## Auditing App Events
-All PCF Bound Apps using SSO or Externally Registered Apps though the SSO Dashboard have a unique **Client Id**.
-You can audit all app/uaa client events using the client id.
+For information about UAA security events, see [UAA Logging](https://docs.pivotal.io/pivotalcf/loggregator/cc-uaa-logging.html#uaa).
 
-An app's client id can be found on the SSO Developer Dashboard as the **App ID**.
+## <a id=""></a>Monitor SSO Plan Events
+All SSO service plans are given a unique identity zone ID. You can monitor all events for a plan by filtering UAA generated logs using the plan's identity zone ID.
 
-## Resources
+You can obtain a list of plans and their corresponding identity zone IDs by doing one of the following:
 
-The following table contains links to topics that further describe how to audit and monitor your apps using the Single Sign-On (SSO) service.
++ Using the operator SSO Dashboard. See [Use the SSO Dashboard](#dashboard).
++ Making a call to the SSO API. See [Use the SSO API](#api).
+    
+###<a id="dashboard"></a>Use the SSO Dashboard
+  
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+1. Click the plan you want to obtain the identity zone ID for and select **Edit Plan**
+1. Record the identity zone ID for your plan from the SSO Dashboard URL. The SSO Dashboard URL looks similar to the following:
 
-<table>
-    <tr>
-        <th>For more information about...</th>
-        <th>See...</th>
-    </tr>
-    <tr>
-        <td>PCF logging/monitoring</td>
-        <td><a href="https://docs.pivotal.io/pivotalcf/2-4/loggregator/index.html">Logging and Metrics</a></td>
-    </tr>
-    <tr>
-        <td>UAA audit events</td>
-        <td><a href="https://docs.cloudfoundry.org/loggregator/cc-uaa-logging.html#uaa">UAA Logging</a></td>
-    </tr>
-</table>
+    ```
+    https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/IDENTITY-ZONE-ID
+    ```
+    Where `IDENTITY-ZONE-ID` is your plan's identity zone ID.
+
+###<a id="api-preq"></a> Prerequisites
+
+Before you use the SSO API to monitor plan events, you must have done the following:
+
+1. Create an admin client. See [Create an Admin Client](./manage-clients-api.html#creating).
+2. Create a UAA identity zone admin client. See [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
+
+###<a id="api"></a>Use the SSO API
+
+To use the SSO API to obtain plan identity zone IDs, run the following command:
+
+```
+curl -X GET "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
+-H "Authorization: Bearer YOUR-TOKEN"
+```
+Where:
+
++ `YOUR-SYSTEM-DOMAIN` is your PCF system domain URL.
++ `YOUR-TOKEN` is the access token you obtained in [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
+
+For more information, [SSO Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) in the SSO API documentation.
+
+## <a id="app"></a>Monitor App Events
+All apps that use SSO have a unique client ID. You can monitor app and UAA client events using the client id.
+
+To find your app's client id, do the following:
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your service instance is located.
+1. Under **Services**, click the **Single Sign-On** service.
+1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
+1. Under **Applications**, click **View Credentials** near the name of your app.
+1. Record the value of **App ID**.
+
+<%= image_tag '../images/sso_dev_creds.png' %>
+<a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
