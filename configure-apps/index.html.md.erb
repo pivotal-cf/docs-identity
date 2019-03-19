@@ -24,30 +24,34 @@ To configure SSO for a PCF app, do the following:
 
 ### <a id="configure_bind_params"></a> Option 1: Configure SSO Properties with JSON Bind Parameters
 
-In SSO v1.7.0 and later, you can use a JSON string containing bind parameters to
+In SSO v1.7.0 and later, you can use a JSON file containing bind parameters to
 configure SSO properties.
 To do this, bind the SSO service using the `cf bind-service` command and include
-the `-c` flag followed by the JSON string.
+the `-c` flag followed by path to JSON file.
 For more information about bind parameters, see [Bind Parameter Options](#bind_params) below.
 
 For example:
 
 <pre class="terminal">
-$ cf bind-service my-app my-instance \
-    -c '{"grant_types": ["authorization_code"], \
-    "scopes": ["openid", "todo.read", "todo.write"], \
-    "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], \
-    "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"], \
-    "auto_approved_scopes": ["openid", "todo.read"], \
-    "identity_providers": ["uaa","ldap","my-saml-provider"], \
-    "required_user_groups": ["openid","todo.read"], \
-    "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, \
-    "access_token_lifetime": 300, \
-    "refresh_token_lifetime": 86400, \
-    "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", \
-    "launch_url": "http://my-app.example.com", \
-    "show_on_home_page": true }'
+$ cf bind-service my-app my-instance -c example.json
+$ cat example.json
+{
+    "grant_types": ["authorization_code"],
+    "scopes": ["openid", "todo.read", "todo.write"],
+    "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"],
+    "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"],
+    "auto_approved_scopes": ["openid", "todo.read"],
+    "identity_providers": ["uaa","ldap","my-saml-provider"],
+    "required_user_groups": ["openid","todo.read"],
+    "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"},
+    "access_token_lifetime": 300,
+    "refresh_token_lifetime": 86400,
+    "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "launch_url": "http://my-app.example.com",
+    "show_on_home_page": true
+}
 </pre>
+
 
 For more information about this command, 
 see [bind-service](https://cli.cloudfoundry.org/en-US/cf/bind-service.html)
@@ -510,7 +514,7 @@ the SSO dashboard.
 ## <a id="register-service-keys"></a> Register an Externally Hosted App to PCF Using Service Keys
 
 To register an externally hosted app using service keys, use the `create-service-key`
-command with `-c` flag followed by a JSON string containing a set of
+command with `-c` flag followed by a path to a JSON file containing a set of
 config parameters.
 
 The `create-service-key` command accepts all bind-service config options.
@@ -523,21 +527,24 @@ in the Cloud Foundry CLI Reference Guide.
 For example:
 
 <pre class="terminal">
-$ cf create-service-key my-instance my-service-key \
-    -c '{"name": "my-app", \
-    "grant_types": ["authorization_code"], \
-    "scopes": ["openid", "todo.read", "todo.write"], \
-    "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"], \
-    "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"], \
-    "auto_approved_scopes": ["openid", "todo.read"], \
-    "identity_providers": ["uaa","ldap","saml"], \
-    "required_user_groups": ["openid","todo.read"], \
-    "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"}, \
-    "access_token_lifetime": 300, \
-    "refresh_token_lifetime": 86400, \
-    "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", \
-    "launch_url": "http://google.com", \
-    "show_on_home_page": false }'
+$ cf create-service-key my-instance my-service-key -c example.json
+$ cat example.json
+{
+    "name": "my-app",
+    "grant_types": ["authorization_code"],
+    "scopes": ["openid", "todo.read", "todo.write"],
+    "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"],
+    "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"],
+    "auto_approved_scopes": ["openid", "todo.read"],
+    "identity_providers": ["uaa","ldap","saml"],
+    "required_user_groups": ["openid","todo.read"],
+    "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"},
+    "access_token_lifetime": 300,
+    "refresh_token_lifetime": 86400,
+    "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "launch_url": "http://google.com",
+    "show_on_home_page": false
+}
 </pre>
 
 For a full list of bind parameters accepted, see
