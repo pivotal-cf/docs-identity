@@ -3,8 +3,7 @@ title: Release Notes
 owner: Identity Service
 ---
 
-These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity)
-service for Pivotal Cloud Foundry (PCF).
+These are release notes for the [Single Sign-On (SSO) for Pivotal Cloud Foundry (PCF)](https://network.pivotal.io/products/p-identity).
 
 ## <a id="190"></a> v1.9.0
 
@@ -14,32 +13,28 @@ service for Pivotal Cloud Foundry (PCF).
 
 New features and changes in this release:
 
-* **Developer Dashboard Redesign**:
-    The developer dashboard has undergone a complete redesign from previous SSO Service versions. Along
-    with a new look and feel, the Developer Dashboard now displays more information about your apps at
-    a glance and has additional and improved help texts/tooltips.
-* **Quick Documentation Access**:
-    Both Operator and Developer Dashboards now contain a "Help" item in the navigation bar
-    for quick access to the Dashboards' documentation.
-* **Logging and Monitoring documentation**: Documentation has been released to help operators
-    understand monitoring and logging for the SSO Service. See
-    [Logging and Monitoring Documentation](logging-monitoring.html) for more details.
-* **Stemcell Update**: The PCF stemcell is updated to 170.XX series (Ubuntu 16.04 Xenial).
+* **Single Sign-On Developer Dashboard Redesign:**
+    The Single Sign-On Developer Dashboard has undergone a redesign. 
+    Along with UI changes, the dashboard now displays more information 
+    about your apps and has improved help text and tooltips.
+* **Quick Documentation Access:**
+    Both the Single Sign-On Operator and Developer Dashboards now contain a **Help** link in the navigation bar to the SSO for PCF documentation.
+* **Logging and Monitoring documentation:** There is new monitoring and logging documentation for 
+operators. See [Logging and Monitoring](./logging-monitoring.html).
+* **Stemcell Update:** The major stemcell line is now the 170 series for Ubuntu Xenial.
 
 ### <a id="190-fixed-issues"></a> Fixed Issues
 
-This release fixes the following issue:
+This release fixes the following issues:
 
-* **Operator Dashboard**: Custom logos and favicons did not appear on the Operator Dashboard page.
-* **Plans API**: The `GET /v1/plans` endpoint returned a 500 status error when UAA contains
-    identity zones that are not managed by the SSO Service.
+* **Single Sign-On Operator Dashboard:** Custom logos and favicons did not appear in the Single Sign-On Operator Dashboard.
+* **Plans API Endpoint:** When User Account and Authentication (UAA) contained identity zones that are not managed by SSO for PCF, the `GET /v1/plans` endpoint returned a 500 status error.
 
 ###  <a id="190-known-issues"></a>  Known Issues
 
 This release has the following issue:
 
-* **64kb Maximum Branding Size**: When uploading custom branding, logos or favicons cannot be larger than
-    64kb.
+* **Maximum Branding Size:** Logos and favicons cannot be larger than 64kb.
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
