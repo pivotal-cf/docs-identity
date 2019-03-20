@@ -24,10 +24,10 @@ To configure SSO for a PCF app, do the following:
 
 ### <a id="configure_bind_params"></a> Option 1: Configure SSO Properties with JSON Bind Parameters
 
-In SSO v1.7.0 and later, you can use a JSON file containing bind parameters to
+In SSO v1.7.0 and later, you can use a JSON file or JSON string containing bind parameters to
 configure SSO properties.
 To do this, bind the SSO service using the `cf bind-service` command and include
-the `-c` flag followed by path to JSON file.
+the `-c` flag followed by path to JSON file or the full JSON string.
 For more information about bind parameters, see [Bind Parameter Options](#bind_params) below.
 
 For example:
@@ -514,7 +514,7 @@ the SSO dashboard.
 ## <a id="register-service-keys"></a> Register an Externally Hosted App to PCF Using Service Keys
 
 To register an externally hosted app using service keys, use the `create-service-key`
-command with `-c` flag followed by a path to a JSON file containing a set of
+command with `-c` flag followed by a path to a JSON file or a full JSON string containing a set of
 config parameters.
 
 The `create-service-key` command accepts all bind-service config options.
