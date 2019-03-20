@@ -3,45 +3,36 @@ title: Monitoring Service Plans and Apps
 owner: Identity Service
 ---
 
-<!-- [THIS IS BOTH A DEV AND OP TOPIC? WE DO NOT MENTION HOW TO USE THE IDS WITH LOGGREGATOR.
-THE PREREQUISITES SECTION NEEDS TO BE REWORKED] -->
+This topic explains how to monitor Single Sign-On (SSO) for Pivotal Cloud Foundry (PCF) service plans and apps.
 
-This topic explains how to monitor Single Sign-On (SSO) 
-for Pivotal Cloud Foundry (PCF) service plans and apps.
+## <a id="overview"></a>Overview
 
 SSO uses the User Account and Authentication (UAA) service to log security events through Loggregator. 
-UAA security events can be filtered to destinations through a syslog drain.
+UAA security events can be filtered to destinations through a syslog drain. To configure logs to monitor SSO plan events, app, and UAA client events you need to obtain the IDs for the corresponding plan or app. 
+
+To obtain the identity zone ID for SSO plans, do one of the procedures in [Monitor SSO Plan Events](#plan).
+
+To obtain the client ID for an app or UAA client, do the procedure in [Monitor App Events](#app).
 
 For information about configuring logging in Pivotal Application Services (PAS), see [Configuring Logging in PAS](https://docs.pivotal.io/pivotalcf/opsguide/logging-config-opsman.html).
 
 For information about UAA security events, see [UAA Logging](https://docs.pivotal.io/pivotalcf/loggregator/cc-uaa-logging.html#uaa).
 
-## <a id=""></a>Monitor SSO Plan Events
+## <a id="plan"></a>Monitor SSO Plan Events
 All SSO service plans are given a unique identity zone ID. You can monitor all events for a plan by filtering UAA generated logs using the plan's identity zone ID.
 
 You can obtain a list of plans and their corresponding identity zone IDs by doing one of the following:
 
-+ Using the operator SSO Dashboard. See [Use the SSO Dashboard](#dashboard).
++ Using the SSO Operator Dashboard. See [Use the SSO Operator Dashboard](#dashboard).
 + Making a call to the SSO API. See [Use the SSO API](#api).
-    
-###<a id="dashboard"></a>Use the SSO Dashboard
-  
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
-1. Click the plan you want to obtain the identity zone ID for and select **Edit Plan**
-1. Record the identity zone ID for your plan from the SSO Dashboard URL. The SSO Dashboard URL looks similar to the following:
 
-    ```
-    https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/IDENTITY-ZONE-ID
-    ```
-    Where `IDENTITY-ZONE-ID` is your plan's identity zone ID.
+###<a id="api-preq"></a> Prerequisite
 
-###<a id="api-preq"></a> Prerequisites
-
-Before you use the SSO API to monitor plan events, you must have done the following:
+Before you can use the SSO API to monitor plan events, you must have done the following:
 
 1. Create an admin client. See [Create an Admin Client](./manage-clients-api.html#creating).
 2. Create a UAA identity zone admin client. See [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
-
+    
 ###<a id="api"></a>Use the SSO API
 
 To use the SSO API to obtain plan identity zone IDs, run the following command:
@@ -57,6 +48,19 @@ Where:
 
 For more information, [SSO Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) in the SSO API documentation.
 
+###<a id="dashboard"></a>Use the SSO Operator Dashboard
+
+To use the SSO Operator Dashboard to obtain plan identity zone IDs, run the following command:
+  
+1. Log into the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard`
+1. Click the plan you want to obtain the identity zone ID for and select **Edit Plan**
+1. Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The SSO Dashboard URL looks similar to the following:
+
+    ```
+    https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/IDENTITY-ZONE-ID
+    ```
+    Where `IDENTITY-ZONE-ID` is your plan's identity zone ID.
+
 ## <a id="app"></a>Monitor App Events
 All apps that use SSO have a unique client ID. You can monitor app and UAA client events using the client id.
 
@@ -65,7 +69,7 @@ To find your app's client id, do the following:
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click the **Single Sign-On** service.
-1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
+1. Click **Manage** next to your SSO service instance to launch the SSO Developer Dashboard.
 1. Under **Applications**, click **View Credentials** near the name of your app.
 1. Record the value of **App ID**.
 
