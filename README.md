@@ -47,6 +47,7 @@ SSO has a lot of difficult and inconsistent terminology. Jane learned the follow
 
 | Term | Variations on Term | Notes |
 |------|--------------------|-------|
+| SSO Operator Dashboard | | Use this for the product name, put it in initial caps. |
 | SSO Developer Dashboard | | Use this for the product name, put it in initial caps. |
 | SSO developer dashboard | dashboard, developer dashboard, SSO dashboard, SSO UI | This is a dashboard with a UI that you log in to. There is a 1:1 between service instances and SSO developer dashboards. There is a many:1 between SSO developer dashboards and UAA identity zones|
 | UAA identity zone | | Not sure of capitalization for this term. A subset of UAA. There is a 1:1 between plan and UAA Identity Zone. |
