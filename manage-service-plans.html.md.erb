@@ -44,8 +44,8 @@ You can find these credentials in the Pivotal Application Service (PAS) tile in 
 1. Add **Plan Administrators**. These users can view the plan and manage identity providers.
 
 	<p class="note">
-		<strong>Note</strong>: As a System Operator, you will already have Plan Administrator
-		abilities and do not need to add yourself.
+		<strong>Note</strong>: System operators will not appear in this list. System operators will already have Plan Administrator
+		abilities and do not need to be added.
 	</p>
 
 1. Under **Organizations**, select specific organizations in your PCF deployment
@@ -293,11 +293,6 @@ run the following command:
 	Where `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in step 3.
 
 1. To allow users to manage SSO plans, run the following commands:
-
-	<p class="note">
-		<strong>Note</strong>: As a System Operator, you will already have Plan Administrator
-		abilities and do not need to add yourself.
-	</p>
 
     ```
     uaac member add cloud_controller.admin ADMIN-USERNAME
