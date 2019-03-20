@@ -43,6 +43,11 @@ You can find these credentials in the Pivotal Application Service (PAS) tile in 
 
 1. Add **Plan Administrators**. These users can view the plan and manage identity providers.
 
+	<p class="note">
+		<strong>Note</strong>: You cannot add system operators to this list. System operators do not appear in this list because they already have Plan Administrator
+		privileges.
+	</p>
+
 1. Under **Organizations**, select specific organizations in your PCF deployment
 that can access your Single Sign-On service plan, or select **Enable for all Orgs**. <br><br>
 	* If you select **Enable for all Orgs** the plan is available for use and displayed in the Services Marketplace for all developers in any organization.
