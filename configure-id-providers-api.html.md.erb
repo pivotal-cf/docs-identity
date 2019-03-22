@@ -14,7 +14,7 @@ For instructions on configuring identity providers, see [Configuring Identity Pr
 
 This section shows how to use the UAAC to update UAA identity provider configurations, using a `PUT` command.
 
-<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only.
+<p class="note warning"><strong>Warning:</strong> This flow is for advanced users only.
   You must always run the <code>PUT</code> command
   with the latest data by doing a <code>GET</code> before the <code>PUT</code> command.
   You must also provide all configuration values, otherwise, data can be lost.</p>
@@ -59,7 +59,7 @@ To make UAA identity provider API calls, do the following:
     ```
 
     Where:
-      * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
+      * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrieved in the above step.
       * `JSON-BLOB.txt` is the name of your text file.
 
 3. The command above outputs a JSON blob similar
@@ -86,7 +86,7 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
 	</pre>
 
 4. In your `JSON-BLOB.txt`, update the configurations in the JSON blob as needed, and then save the file.
-  <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values, otherwise,
+  <p class="note warning"><strong>Warning:</strong> You must provide all <code>config</code> values, otherwise,
     data can be lost when doing an API update as a <code>PUT</code> command.</p>
 
 5. Submit a UAAC curl request to apply your updated configurations to the identity provider, as shown below.
@@ -97,7 +97,7 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
     \-H 'Content-Type: application/json' -d "$(cat file.txt)"
     ```
     Where:
-    * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
+    * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrieved in the above step.
 
      A minimal example command would look similar to the following:
 
@@ -131,7 +131,7 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
 
 Some OIDC providers only support client secrets via POST instead of via basic authentication.
 
-<p class="note"><strong>Note</strong>: Azure Active Directory integrations using
+<p class="note"><strong>Note:</strong> Azure Active Directory integrations using
    the response type of code only work with <code>clientAuthInBody</code>.</p>
 
 To enable client authentication via POST, do the following:
@@ -144,7 +144,7 @@ To enable client authentication via POST, do the following:
     "clientAuthInBody": true
     ```
 
-1. Complete the procudure by following step 6. 
+1. Complete the procedure by following step 6. 
 
 For more information about client authentication,
 see [OAuth/OIDC](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#oauth-oidc)
@@ -165,7 +165,7 @@ To enable OIDC password grant, do the following:
     "passwordGrantEnabled": true
     ```
 
-1. Complete the procudure by following step 6. 
+1. Complete the procedure by following step 6. 
 
 For more information about OIDC password grant,
 see [OAuth/OIDC](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#oauth-oidc)
@@ -176,7 +176,7 @@ in the UAA API documentation.
 For cases where the SAML provider is configured using a valid SAML URL and a self-signed certificate,
 you might need to skip SSL validation.
 
-<p class="note"><strong>Note</strong>: This section assumes you have created the SAML identity provider, most likely
+<p class="note"><strong>Note:</strong> This section assumes you have created the SAML identity provider, most likely
 by providing the SAML metadata directly.
 For more information, see <a href="./configure-id-providers.html#config-saml-prov"> Add a SAML Provider</a>. </p>
 
@@ -190,7 +190,7 @@ To enable skipping SSL validation, do the following:
     "skipSslValidation": true
     ```
 
-1. Complete the procudure by following step 6. 
+1. Complete the procedure by following step 6. 
  
 For more information about skipping SSL validation, see 
 [SAML](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/#saml) in the UAA API documentation.
