@@ -759,30 +759,46 @@ Record these credentials to use in other SSO procedures.
   You can only view the <strong>App Secret</strong> when an app is first registered or
   the secret is regenerated.</p>
 
-## <a id="delete"></a> Delete App that Uses SSO
+## <a id="unregister"></a> Unregister App from SSO
 
-Delete a [Delete a PCF App](#delete-pcf) or an [Delete an Externally Hosted App](#delete-external)
-that uses SSO as follows:
+### <a id="unregister-pcf"></a> Unregister a PCF App
 
-### <a id="delete-pcf"></a> Delete a PCF App
+To unregister a PCF App from SSO, run the following command:
 
-To delete a PCF app, do the following:
+```
+cf unbind-service APP-NAME INSTANCE-NAME
+```
 
-1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your app is located.
-1. Under **Applications**, click the name of your app.
-1. On the Application page, click **Delete App**.
-1. On the pop-up, click **Delete App** to confirm that you want to delete the app
-   and its configurations from Apps Manager and the service dashboard.
+Where:
 
-### <a id="delete-external"></a> Delete an Externally Hosted App
++ `APP-NAME` is the name of your app.
++ `INSTANCE-NAME` is the name of the service instance you are binding.
 
-To delete an externally hosted app that uses SSO, do the following:
+For more information about the `cf unbind-service` command,
+see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
+in the Cloud Foundry CLI Reference Guide.
 
-1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your service instance is located.
-2. Under **Services**, click **Manage** next to your SSO service instance to
-   launch the SSO dashboard.
+Additionally, deleting a PCF app will also automatically unregister the app from SSO.
+
+### <a id="unregister-service-keys"></a> Unregister an Externally Hosted App to PCF Using Service Keys
+
+If you [registered an externally hosted app using service keys](#register-service-keys), you can unregister the app by running the following command:
+
+```
+cf delete-service-key INSTANCE-NAME SERVICE-KEY
+```
+Where:
+
++ `INSTANCE-NAME` is the name of your service instance.
++ `SERVICE-KEY` is the name you want for your service key.
+
+For more information about the `cf delete-service-key` command, see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html) in the Cloud Foundry CLI Reference Guide.
+
+### <a id="unregister-dashboard"></a> Unregister an Externally Hosted App Using the SSO Dashboard
+
+If you [registered an externally hosted app using the SSO Dashboard](#register-dashboard), you can unregister the app by doing the following:
+
+1. Visit the [SSO Developer Dashboard](/p-identity/1-n/manage-service-instances.html#access-svc-instance-developer-dashboard).
 3. Click your app.
 4. Click **Delete App** at the bottom of the page.
 5. On the pop-up, click **Delete App** to confirm that you want to delete the app
