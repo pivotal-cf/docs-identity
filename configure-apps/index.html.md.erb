@@ -439,90 +439,6 @@ Alternatively, you can bind the PCF app to an SSO service instance using cf CLI 
  cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE
 ```
 
-## <a id="sso-dashboard"></a> Manage App Configurations Using the SSO Dashboard
-
-The SSO dashboard allows app developers to view the app configurations and
-resources available within their space. To access the dashboard, first you must
-[create a service instance](../manage-service-instances.html#create-svc-instance)
-for your Space
-Then you can follow the steps below to manage your application configurations through
-the SSO dashboard.
-
-1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your service instance is located.
-1. Under **Services**, click **Manage** next to the SSO service instance to launch the SSO dashboard.
-	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
-  <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
-1. Click your app.
-1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
-	<p class="note"><strong>Note</strong>: When binding a PCF app, a Space Developer
-		can choose from internal and external identity providers.
-		If the Space Developer selects multiple identity providers, users must select
-		which provider to use when they sign in.
-		This option is available for all application types except
-		<code>Service-to-Service App</code>.</p>
-    <%= image_tag '../images/sso_dev_select_idp.png' %>
-1. If your Application Type is `Web App` or `Single-Page JavaScript App`, under **Application Settings** 
-   enter an allow list of URIs beneath **Redirect URIs Whitelist**.
-   The redirect query parameter specified on the OAuth request must match the
-   URIs specified in this list. Otherwise, SSO rejects the request.
-   <%= image_tag '../images/sso_dev_redirect_uri.png' %>
-1. Under **Authorization**, select the **System Permissions** that the app can request 
-    on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope 
-    is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes 
-    enforced by the API and the scopes to be requested by the app.
-     <table class="nice">
-       <tr>
-         <th>Scope</th>
-         <th>Description</th>
-       </tr>
-       
-       <tr>
-         <td><code>open</code></td>
-         <td>Provides access to make OpenID Connect request. The default for Web, Native, and Single-Page JavaScript Apps</td>
-      </tr>
-      
-      <tr>
-        <td><code>user_attributes</code></td>
-        <td>Provides access to custom attributes from an external identity provider</td>
-      </tr>
-      
-      <tr>
-        <td><code>roles</code></td>
-        <td>Provides access to external groups from an identity provider</td>
-      </tr>
-      
-      <tr>
-        <td><code>uaa.resource</code></td>
-        <td>Provides access to the <code>check_token</code> endpoint for service-to-service flows. 
-          The default for Service-to-Service Apps.
-          </td>
-      </tr>
-      
-    </table>
-     
-    <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>,
-  	you can select resources defined in any space if the app type is a
-  	<code>Web App</code>, <code>Native App</code>, or <code>Single-Page
-  	JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>,
-  	you can only select resources defined within the space.</p>
-
-1. (Optional) Under **Auto-Approved Scopes**, select any scopes that the SSO service automatically
-   approves when the app makes a request on behalf of a user.
-   Select only scopes pertaining to apps owned and managed by your company.
-   Do not select scopes that pertain to externally hosted apps.
-
-1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can enable 
-**Show on Homepage** to display the app on the UAA or Pivotal Account home page.
-	<p class="note"><strong>Note</strong>: If you want an app to display on
-		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
-    1. In **App Launch URL**, enter the address you want for your app.
-    1. Upload an app icon for your app.
-    <%= image_tag '../images/sso_dev_show_homepage.png' %>
-
-1. Click **Update App**.
-
-
 ## <a id="register-service-keys"></a> Register an Externally Hosted App to PCF Using Service Keys
 
 You can use a JSON file or string containing bind parameters to register an 
@@ -678,6 +594,131 @@ Record these credentials to use in other SSO procedures.
   You can only view the <strong>App Secret</strong> when an app is first registered or
   the secret is regenerated.</p>
 
+## <a id="sso-dashboard"></a> Manage App Configurations Using the SSO Dashboard
+
+The SSO dashboard allows app developers to view the app configurations and
+resources available within their space. To access the dashboard, first you must
+[create a service instance](../manage-service-instances.html#create-svc-instance)
+for your Space
+Then you can follow the steps below to manage your application configurations through
+the SSO dashboard.
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your service instance is located.
+1. Under **Services**, click **Manage** next to the SSO service instance to launch the SSO dashboard.
+	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
+  <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
+1. Click your app.
+1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
+	<p class="note"><strong>Note</strong>: When binding a PCF app, a Space Developer
+		can choose from internal and external identity providers.
+		If the Space Developer selects multiple identity providers, users must select
+		which provider to use when they sign in.
+		This option is available for all application types except
+		<code>Service-to-Service App</code>.</p>
+    <%= image_tag '../images/sso_dev_select_idp.png' %>
+1. If your Application Type is `Web App` or `Single-Page JavaScript App`, under **Application Settings**
+   enter an allow list of URIs beneath **Redirect URIs Whitelist**.
+   The redirect query parameter specified on the OAuth request must match the
+   URIs specified in this list. Otherwise, SSO rejects the request.
+   <%= image_tag '../images/sso_dev_redirect_uri.png' %>
+1. Under **Authorization**, select the **System Permissions** that the app can request
+    on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
+    is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
+    enforced by the API and the scopes to be requested by the app.
+     <table class="nice">
+       <tr>
+         <th>Scope</th>
+         <th>Description</th>
+       </tr>
+
+       <tr>
+         <td><code>open</code></td>
+         <td>Provides access to make OpenID Connect request. The default for Web, Native, and Single-Page JavaScript Apps</td>
+      </tr>
+
+      <tr>
+        <td><code>user_attributes</code></td>
+        <td>Provides access to custom attributes from an external identity provider</td>
+      </tr>
+
+      <tr>
+        <td><code>roles</code></td>
+        <td>Provides access to external groups from an identity provider</td>
+      </tr>
+
+      <tr>
+        <td><code>uaa.resource</code></td>
+        <td>Provides access to the <code>check_token</code> endpoint for service-to-service flows.
+          The default for Service-to-Service Apps.
+          </td>
+      </tr>
+
+    </table>
+
+    <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>,
+      you can select resources defined in any space if the app type is a
+      <code>Web App</code>, <code>Native App</code>, or <code>Single-Page
+      JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>,
+      you can only select resources defined within the space.</p>
+
+1. (Optional) Under **Auto-Approved Scopes**, select any scopes that the SSO service automatically
+   approves when the app makes a request on behalf of a user.
+   Select only scopes pertaining to apps owned and managed by your company.
+   Do not select scopes that pertain to externally hosted apps.
+
+1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can enable
+**Show on Homepage** to display the app on the UAA or Pivotal Account home page.
+	<p class="note"><strong>Note</strong>: If you want an app to display on
+		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
+    1. In **App Launch URL**, enter the address you want for your app.
+    1. Upload an app icon for your app.
+    <%= image_tag '../images/sso_dev_show_homepage.png' %>
+
+1. Click **Update App**.
+
+## <a id="view-credentials"></a> View Credentials of Existing App Configurations
+
+You can view the credentials and endpoints required for app integration for an existing app on the
+**View Credentials** page.
+
+To view credentials of an existing app, do the following:
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your service instance is located.
+1. Under **Services**, click the **Single Sign-On** service.
+1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
+1. Under **Applications**, click **View Credentials** near the name of your app.
+	<p class="note"><strong>Note:</strong>
+		You can only view the <strong>App Secret</strong> when an app is first registered or
+		the secret is regenerated.</p>
+	<%= image_tag '../images/sso_dev_creds.png' %>
+  <a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
+
+### <a id="regenerate-app-secret"></a> Regenerate an App Secret
+
+<p class="note"><strong>Note</strong>:
+	You must not regenerate an app secret for PCF bound apps,
+	because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
+	To regenerate a client for a PCF bound app, you need to delete and re-create the
+	service binding from your app to SSO.</p>
+
+To regenerate an app secret of an existing app, do the following:
+
+1. Log in to Apps Manager as a Space Developer.
+1. Select the space where your service instance is located.
+1. Under **Services**, click the **Single Sign-On** service.
+1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
+1. Under **Applications**, click the **View Credentials** near the name of your app.
+1. Click **Regenerate App secret** under the **App Secret** field.
+1. On the pop-up, click **Regenerate App Secret** to confirm that you want to regenerate an
+   app's secret value.
+1. View and download the **App ID** and regenerated **App Secret**. Record these credentials to use in other SSO procedures.
+
+	<p class="note"><strong>Note</strong>:
+		Regenerating an <strong>App Secret</strong> requires you to update the
+		secret at the client.</p>
+
 ## <a id="admin"></a> Create Admin Client
 
 You can create an admin client to perform administrative functions,
@@ -717,71 +758,46 @@ Record these credentials to use in other SSO procedures.
   You can only view the <strong>App Secret</strong> when an app is first registered or
   the secret is regenerated.</p>
 
-## <a id="view-credentials"></a> View Credentials of Existing App Configurations
+## <a id="unregister"></a> Unregister App from SSO
 
-You can view the credentials and endpoints required for app integration for an existing app on the
-**View Credentials** page.
+### <a id="unregister-pcf"></a> Unregister a PCF App
 
-To view credentials of an existing app, do the following:
+To unregister a PCF App from SSO, run the following command:
 
-1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your service instance is located.
-1. Under **Services**, click the **Single Sign-On** service.
-1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
-1. Under **Applications**, click **View Credentials** near the name of your app.
-	<p class="note"><strong>Note:</strong>
-		You can only view the <strong>App Secret</strong> when an app is first registered or
-		the secret is regenerated.</p>
-	<%= image_tag '../images/sso_dev_creds.png' %>
-  <a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
+```
+cf unbind-service APP-NAME INSTANCE-NAME
+```
 
-### <a id="regenerate-app-secret"></a> Regenerate an App Secret
+Where:
 
-<p class="note"><strong>Note</strong>:
-	You must not regenerate an app secret for PCF bound apps,
-	because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
-	To regenerate a client for a PCF bound app, you need to delete and re-create the
-	service binding from your app to SSO.</p>
++ `APP-NAME` is the name of your app.
++ `INSTANCE-NAME` is the name of the service instance you are binding.
 
-To regenerate an app secret of an existing app, do the following:
+For more information about the `cf unbind-service` command,
+see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
+in the Cloud Foundry CLI Reference Guide.
 
-1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your service instance is located.
-1. Under **Services**, click the **Single Sign-On** service.
-1. Click **Manage** next to your SSO service instance to launch the SSO dashboard.
-1. Under **Applications**, click the **View Credentials** near the name of your app.
-1. Click **Regenerate App secret** under the **App Secret** field.
-1. On the pop-up, click **Regenerate App Secret** to confirm that you want to regenerate an
-   app's secret value.
+Additionally, deleting a PCF app will also automatically unregister the app from SSO.
 
-	<p class="note"><strong>Note</strong>:
-		Regenerating an <strong>App Secret</strong> requires you to update the
-		secret at the client.</p>
+### <a id="unregister-service-keys"></a> Unregister an Externally Hosted App to PCF Using Service Keys
 
-## <a id="delete"></a> Delete App that Uses SSO
+If you [registered an externally hosted app using service keys](#register-service-keys), you can unregister the app by running the following command:
 
-Delete a [Delete a PCF App](#delete-pcf) or an [Delete an Externally Hosted App](#delete-external)
-that uses SSO as follows:
+```
+cf delete-service-key INSTANCE-NAME SERVICE-KEY
+```
+Where:
 
-### <a id="delete-pcf"></a> Delete a PCF App
++ `INSTANCE-NAME` is the name of your service instance.
++ `SERVICE-KEY` is the name you want for your service key.
 
-To delete a PCF app, do the following:
+For more information about the `cf delete-service-key` command, see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html) in the Cloud Foundry CLI Reference Guide.
 
-1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your app is located.
-1. Under **Applications**, click the name of your app.
-1. On the Application page, click **Delete App**.
-1. On the pop-up, click **Delete App** to confirm that you want to delete the app
-   and its configurations from Apps Manager and the service dashboard.
+### <a id="unregister-dashboard"></a> Unregister an Externally Hosted App Using the SSO Dashboard
 
-### <a id="delete-external"></a> Delete an Externally Hosted App
+If you [registered an externally hosted app using the SSO Dashboard](#register-dashboard), you can unregister the app by doing the following:
 
-To delete an externally hosted app that uses SSO, do the following:
-
-1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your service instance is located.
-2. Under **Services**, click **Manage** next to your SSO service instance to
-   launch the SSO dashboard.
+1. Visit the [SSO Developer Dashboard](/p-identity/1-n/manage-service-instances.html#access-svc-instance-developer-dashboard).
 3. Click your app.
 4. Click **Delete App** at the bottom of the page.
 5. On the pop-up, click **Delete App** to confirm that you want to delete the app
