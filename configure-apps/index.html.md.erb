@@ -597,11 +597,14 @@ Record these credentials to use in other SSO procedures.
 ## <a id="sso-dashboard"></a> Manage App Configurations Using the SSO Dashboard
 
 The SSO dashboard allows app developers to view the app configurations and
-resources available within their space. To access the dashboard, first you must
-[create a service instance](../manage-service-instances.html#create-svc-instance)
-for your Space
-Then you can follow the steps below to manage your application configurations through
-the SSO dashboard.
+resources available within their space. 
+
+### <a id="manage-prereq"></a> Prerequisite
+
+Before you access the dashboard, you must
+create a service instance for your space. See [Create Service Instances](../manage-service-instances.html#create-svc-instance).
+ 
+To manage your application configurations through the SSO dashboard, do the following:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
@@ -760,9 +763,18 @@ Record these credentials to use in other SSO procedures.
 
 ## <a id="unregister"></a> Unregister App from SSO
 
+To unregister an app from SSO, do one of the following:
+
++ If you configured a PCF app, see [Unregister a PCF App](#unregister-pcf) below.<br> 
+You configured your PCF app in [Set Up PCF Apps to Use SSO](#internal) above. 
++ If you registered an externally hosted app using service keys, see [Unregister an Externally Hosted App to PCF Using Service Keys](#unregister-service-keys) below. <br>
+You registered your externally hosted app using service keys in [Register an Externally Hosted App to PCF Using Service Keys](#register-service-keys) above.
++ If you registered an externally hosted app using the SSO Developer Dashboard, see [Unregister an Externally Hosted App Using the SSO Developer Dashboard](#unregister-dashboard) below. <br>
+You registered your externally hosted app using the SSO Developer Dashboard in [Register an Externally Hosted App Using the SSO Developer Dashboard](#register-dashboard) above. 
+
 ### <a id="unregister-pcf"></a> Unregister a PCF App
 
-To unregister a PCF App from SSO, run the following command:
+To unregister a PCF app, run the following command:
 
 ```
 cf unbind-service APP-NAME INSTANCE-NAME
@@ -777,11 +789,11 @@ For more information about the `cf unbind-service` command,
 see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
 in the Cloud Foundry CLI Reference Guide.
 
-Additionally, deleting a PCF app will also automatically unregister the app from SSO.
+<p class="note"><strong>Note:</strong> If you delete a PCF app, the app is automatically unregistered from SSO.</p>
 
 ### <a id="unregister-service-keys"></a> Unregister an Externally Hosted App to PCF Using Service Keys
 
-If you [registered an externally hosted app using service keys](#register-service-keys), you can unregister the app by running the following command:
+To unregister an externally hosted app using service keys, run the following command:
 
 ```
 cf delete-service-key INSTANCE-NAME SERVICE-KEY
@@ -793,17 +805,17 @@ Where:
 
 For more information about the `cf delete-service-key` command, see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html) in the Cloud Foundry CLI Reference Guide.
 
-### <a id="unregister-dashboard"></a> Unregister an Externally Hosted App Using the SSO Dashboard
+### <a id="unregister-dashboard"></a> Unregister an Externally Hosted App Using the SSO Developer Dashboard
 
-If you [registered an externally hosted app using the SSO Dashboard](#register-dashboard), you can unregister the app by doing the following:
+To unregister an externally hosted app using the SSO Developer Dashboard, do the following:
 
-1. Visit the [SSO Developer Dashboard](/p-identity/1-n/manage-service-instances.html#access-svc-instance-developer-dashboard).
+1. To navigate to the Service Instance Developer Dashboard, do the procedure in [Access Service Instance Developer Dashboard](../manage-service-instances.html#access-svc-instance-developer-dashboard).
 3. Click your app.
 4. Click **Delete App** at the bottom of the page.
-5. On the pop-up, click **Delete App** to confirm that you want to delete the app
+5. When prompted, click **Delete App** to confirm that you want to delete the app
    and its configurations.
 
-	<p class="note"><strong>Note</strong>:
+	<p class="note"><strong>Note:</strong>
 		Deleting an externally hosted app removes the app and its
 		configurations from the SSO dashboard.
 		However, it still exists on your hosted platform.</p>
