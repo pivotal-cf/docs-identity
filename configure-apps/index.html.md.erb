@@ -355,31 +355,6 @@ set through `cf set-env`, Apps Manager, or bootstrapping as follows:
 
 1. Rebind the app.
 
-
-#### <a id="manual-config"></a> Manually Configure Apps for SSO
-
-For apps already deployed to PCF, you can set their `GRANT_TYPE`, `SSO_IDENTITY_PROVIDERS`,
-and other SSO configuration environment variables with the [`cf set-env`](http://cli.cloudfoundry.org/en-US/cf/set-env.html)
-command, or in Apps Manager as follows:
-
-1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN`.
-
-1. Navigate to your app.
-
-1. Click the **Env Variables** tab.
-
-1. Click **Add an Env Variable**.
-
-1. For **Variable Name** enter the name of the [SSO configuration property](#configure)
-   that you are setting, such as `GRANT_TYPE`.
-
-1. For **Value**, enter the property value. For example, to set the `GRANT_TYPE`
-   property for a Single-Page JavaScript App,
-   enter `implicit`, which is the OAuth Grant Type listed for your
-   [SSO application type](../determine-type.html) above.
-
-1. [Bind](#bind) and restage your app.
-
 #### <a id="bind"></a> Bind a PCF App
 
 After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO
