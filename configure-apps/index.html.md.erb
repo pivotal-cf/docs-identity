@@ -29,9 +29,8 @@ To configure SSO for a PCF app, use one of the following methods:
 * [Option 1: Service Bind](#configure_bind_params)
 * [Option 2: App Manifest](#configure)
 
-	<p class="note"><strong>Note</strong>: Use either bind parameters or environment
-		variables to configure SSO properties.
-		Apps that have environment variables set do not work with bind parameters.</p>
+	<p class="note"><strong>Note</strong>: Use either bind parameters or app manifest to register your application.
+		Apps that have environment variables set via app manifest do not work with service bind.</p>
 
 ### <a id="configure_bind_params"></a> Option 1: Service Bind with JSON Bind Parameters
 
@@ -197,35 +196,33 @@ GitHub repository.
 
 ### <a id="configure"></a> Option 2: App Manifest
 
-Instead of using bind parameters, you can manually configure your SSO service for
-the app using environment variables, then bind the app to an SSO service instance.
-For how to bind the app, see [Bind a PCF App](#bind) below.
-
-<p class="note"><strong>Note</strong>: You do not need to manually configure your SSO service with environment variables if you have already configured SSO properties with your app in <a href="#configure_bind_params">Option 1: Configure SSO Properties with JSON Bind Parameters</a> above.
-	Apps that have environment variables set do not work with bind parameters and causes errors.</p>
-
+To register your application, you can specify the SSO service instance you want to bind your application to along with the SSO
+configuration properties in your application manifest. This approach eliminates the need to manually bind your application to the service instance after you deploy your app.
 The SSO service reads its configuration properties from environment variables
 that are set in the apps that use it.
-Most of these environment variables are prefixed with `SSO_`.
 
-There are two ways to set the SSO configuration properties for an app:
+<p class="note"><strong>Note</strong>: These configurations are only applied at
+	the initial service binding time. Subsequent <code>cf push</code> of the app does
+	<strong>NOT</strong> update the configurations.
+	You can update the configurations through the SSO Developer Dashboard.</p>
 
-* Set the environment variables manually after you deploy the app in Apps Manager or with the 
-Cloud Foundry Command-Line Interface (cf CLI). See [Manually Configure Apps for SSO](#manual-config) below. 
+This snippet below shows how to register your application with the SSO service instance `my-sso-sample-instance`
+and how to specify `GRANT_TYPE` `SSO_IDENTITY_PROVIDERS` in your manifest.
 
-* Include the config settings in the application manifest,
-  so that PCF bootstraps them automatically when it deploys the app. 
-  See [Bootstrap SSO Configuration](#bootstrap) below.
+```
+---
+applications:
+  - name: my-example-app
+    services:
+    - my-sso-sample-instance
+    env:
+      GRANT_TYPE: implicit
+      SSO_IDENTITY_PROVIDERS: uaa, sample-identity-provider
+```
 
-The table below provides descriptions and default values for environment variables that apps use to configure SSO.
+The table below provides descriptions and default values for SSO properties to include in the app manifest.
 For details, see the [SSO sample apps](https://github.com/pivotal-cf/identity-sample-apps) 
 and the `manifest.yml` files in the same GitHub repository for examples of bootstrapping these values.
-
-<p class="note"><strong>Note</strong>: These configurations are only applied when
-	initially binding to the service instance.
-	A subsequent <code>cf push</code> of the app does not update the configurations.
-	To update these configurations, manually update them using the SSO
-	dashboard, or unbind and rebind the service instance.</p>
 
 <table>
 	<col style="width:45%">
@@ -247,7 +244,7 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 			Only one grant type per app is supported by SSO.
 			If you want to set more than one grant types per app, you can resort
 			to <a href="../manage-clients-api.html">this workaround</a>.</td>
-		<td> </td>
+		<td><code>authorization_code</code>(Web application type)</td>
 	</tr>
 	<tr>
 		<td><code>SSO_IDENTITY_PROVIDERS</code></td>
@@ -262,7 +259,7 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 			</ul>
 			For example, if your identity provider name is <code>example.com Provider</code>,
 			the corresponding origin key is <code>example-com-provider</code>.</td>
-		<td><code>uaa</code></td>
+		<td><code>uaa</code>(PCF internal user store)</td>
 	</tr>
 	<tr>
 		<td><code>SSO_REDIRECT_URIS</code></td>
@@ -274,9 +271,10 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 	<tr>
 		<td><code>SSO_SCOPES</code></td>
 		<td>Comma-separated list of scopes that belong to the app and are registered
-			as client scopes with the SSO service.
-			This value is ignored for client credential grant type apps.</td>
-		<td>openid</td>
+			as client scopes with the SSO service. This value is ignored for client credential grant type apps.
+			<p class="note"><strong>Note</strong>: Consider including <code>openid</code>, which
+      is not added your user-provided list by default.</p>
+		<td><code>openid</code></td>
 	</tr>
 	<tr>
 		<td><code>SSO_AUTO_APPROVED_SCOPES</code></td>
@@ -291,7 +289,12 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 			Privileged identity zone/plan admin scopes, such as <code>scim.read</code>,
 			<code>idps.write</code> cannot be bootstrapped and must be assigned
 			by zone/plan administrators.
-			This value is ignored for any grant type other than client credentials.</td>
+			This value is ignored for any grant type other than client credentials.
+
+			<p class="note"><strong>Note</strong>: Consider including <code>uaa.resource</code>, which
+      is not added your user-provided list by default.</p>
+
+			</td>
 		<td><code>uaa.resource</code></td>
 	</tr>
 	<tr>
@@ -303,12 +306,12 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 	<tr>
 		<td><code>SSO_ACCESS_TOKEN_LIFETIME</code></td>
 		<td>Lifetime in seconds for the access token issued to the app by the SSO service.</td>
-		<td>43200</td>
+		<td><code>43200</code></td>
 	</tr>
 	<tr>
 		<td><code>SSO_REFRESH_TOKEN_LIFETIME</code></td>
 		<td>Lifetime in seconds for the refresh token issued to the app by the SSO service.</td>
-		<td>2592000 (not used for client credentials)</td>
+		<td><code>2592000</code> (not used for client credentials)</td>
 	</tr>
 	<tr>
 		<td><code>SSO_RESOURCES</code></td>
@@ -336,15 +339,12 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 	</tr>
 	<tr>
 		<td><code>SSO_SHOW_ON_HOME_PAGE</code></td>
-		<td>If set to true, the app appears on the Pivotal Account dashboard
+		<td>If set to <code>true</code>, the app appears on the Pivotal Account dashboard
 			with the corresponding icon and launch URL.</td>
-		<td>True</td>
+		<td><code>true</code></td>
 	</tr>
 </table>
 
-For more information and manifest examples, see the
-[identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps/tree/master)
-GitHub repository.
 
 #### Remove SSO Configuration Properties
 
@@ -379,52 +379,6 @@ command, or in Apps Manager as follows:
    [SSO application type](../determine-type.html) above.
 
 1. [Bind](#bind) and restage your app.
-
-#### <a id="bootstrap"></a> Bootstrap SSO Configuration
-
-In SSO v1.4.0 and later, you can include SSO configuration properties in your application manifest,
-to automatically bootstrap the values when you bind or rebind the app to an SSO service instance.
-
-The values from the manifest automatically save to the environment variables that
-configure your app for SSO.
-Bootstrapping SSO configuration values from the manifest eliminates the need to
-set environment variables after you deploy your app.
-
-<p class="note"><strong>Note</strong>: These configurations are only applied at
-	the initial service binding time. Subsequent cf push of the app does
-	<strong>NOT</strong> update the configurations.
-	You either need to manually update the configurations through the SSO Developer Dashboard
-	or unbind and rebind the service instance.</p>
-
-This snippet below shows how to include `GRANT_TYPE` `SSO_IDENTITY_PROVIDERS` in your manifest.
-
-```
----
-applications:
-  - name: APPLICATION NAME
-    env:
-      GRANT_TYPE: password
-      SSO_IDENTITY_PROVIDERS: uaa, sample-identity-provider
-```
-
-The `GRANT_TYPE` property defaults to `authorization_code`, for Web App application type.
-`SSO_IDENTITY_PROVIDERS` defaults to `uaa`, for the PCF internal user store.
-
-If you specify your own scopes and authorities, consider including the following
-values in your `SSO_SCOPES` or `SSO_AUTHORITIES` property list.
-These values are not added your user-provided list by default:
-
-* `openid` — for apps with `authorization code`, `password`, and `implicit`
-[grant type](../determine-type.html)
-
-* `uaa.resource` — for apps with `client_credentials` [grant type](../determine-type.html)
-
-The [table below](#configure) lists all SSO properties that you can set in your
-application manifest to bootstrap the values into your app's SSO client configuration.
-
-After an app deploys with bootstrapped SSO configuration values, it is ready to
-bind to an SSO service instance.
-For how to bind an app, see [Bind a PCF App](#bind) below.
 
 #### <a id="bind"></a> Bind a PCF App
 
