@@ -29,8 +29,10 @@ To configure SSO for a PCF app, use one of the following methods:
 * [Option 1: Service Bind](#configure_bind_params)
 * [Option 2: App Manifest](#configure)
 
-	<p class="note"><strong>Note</strong>: Use either bind parameters or app manifest to register your application.
-		Apps that have environment variables set via app manifest do not work with service bind.</p>
+	<p class="note"><strong>Note</strong>:
+		Apps that have environment variables set via app manifest do not work with service bind. Hence, if you have left-over
+		environment variables previously set via app manifest, you need to remove them via
+		<code>cf unset-env APP_NAME PROPERTY_NAME</code> before you perform service bind.</p>
 
 ### <a id="configure_bind_params"></a> Option 1: Service Bind with JSON Bind Parameters
 
@@ -77,7 +79,8 @@ $ cat example.json
 
 For more information about the `cf bind-service` command, 
 see [bind-service](https://cli.cloudfoundry.org/en-US/cf/bind-service.html)
-in the Cloud Foundry CLI Reference Guide.
+in the Cloud Foundry CLI Reference Guide. Alternatively, you can perform
+[service bind using Apps Manager](https://docs.pivotal.io/pivotalcf/appsman-services/adding-services-marketplace.html#bind-instance).
 
 #### <a id="bind_params"></a>Bind Parameters
 
@@ -344,40 +347,6 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 		<td><code>true</code></td>
 	</tr>
 </table>
-
-
-#### Remove SSO Configuration Properties
-
-You can remove SSO configuration properties for an app, or any environment variables
-set through `cf set-env`, Apps Manager, or bootstrapping as follows:
-
-1. Run `cf unset-env APP_NAME PROPERTY_NAME`.
-
-1. Rebind the app.
-
-#### <a id="bind"></a> Bind a PCF App
-
-After a PCF app is [configured](#configure) for SSO, you can bind it to an SSO
-service instance using Apps Manager as follows:
-
-1. Log in to Apps Manager as a Space Developer.
-1. Select the space where your app runs.
-1. Under **Applications**, click the name of your app.
-1. Click the **Services** tab.
-1. Click **Bind a Service**.
-1. Bind your app to a service to create an associated OAuth Client.
-	 1. Select an existing SSO service instance from the dropdown and click **Bind**.
-	 1. Create a new service instance:
-	 	2. Click **or add from Marketplace**.
-		3. Select the **Single Sign-On** service under Services Marketplace.
-		4. Select a Service Plan, then click **Select this plan**.
-		5. Enter an **Instance Name**, select a space, select an app, then click **Add**.
-
-Alternatively, you can bind the PCF app to an SSO service instance using cf CLI as follows:
-
-```
- cf bind-service APP-NAME SAMPLE-PLAN-SERVICE-INSTANCE
-```
 
 ## <a id="external"></a> Register an Externally Hosted App
 
