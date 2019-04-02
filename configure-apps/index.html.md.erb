@@ -9,32 +9,30 @@ between SSO identity providers, apps, users, and other resources.
 
 ## <a id="set-up"></a> Set Up Apps for SSO
 
-After [creating an SSO Service Instance](../manage-service-instances.html#create-svc-instance), follow these steps to
-register your applications with the SSO service:
+1. Create a Service Instance <%# Only capitalize "service instance" when it is part of a title %>by following the steps in [Create Service Instances](../manage-service-instances.html#create-svc-instance).
 
-1. Determine the SSO application type of the app to use the SSO service. This informs what OAuth Grant Type you should use for your app.
-   For information, see [Determining SSO Application Type](../determine-type.html).
+1. Determine your app's SSO application type to inform which OAuth Grant Type you should use for your app.
+   For more information, see [Determining SSO Application Type](../determine-type.html).
 
-   	<p class="note"><strong>Note</strong>: If your application is a resource server (server that hosts protected resources and accepts and responds to protected resource requests using access tokens, e.g.: an API), you do not need to
-   	register the application since it only consumes tokens and does not handle any token acquisition flow itself. </p>
+   	<p class="note"><strong>Note</strong>: If your app is a resource server, you do not need to register the app because it only consumes tokens and does not handle any token acquisition flow itself.
+    A resource server hosts protected resources and accepts and responds to protected resource requests using access tokens, such as an API.</p>
 
-2. Select a method to register your application with the SSO Service:
- - If your application is a PCF app, use one of the options in [Register a PCF App](#internal).
- - If your application is an externally hosted app (non-PCF app), use one of the options in [Register an Externally Hosted App](#external).
+2. Select a method to register your app with the SSO service:
+ - If your app is a PCF app, use one of the options in [Register a PCF App](#internal) below.
+ - If your application is an externally hosted app (non-PCF app), use one of the options in [Register an Externally Hosted App](#external) below.
 
 ## <a id="internal"></a> Register a PCF App
 
 To configure SSO for a PCF app, use one of the following methods:
 
-* [Option 1: Service Bind](#configure_bind_params)
-* [Option 2: App Manifest](#configure)
+* [Configure SSO Properties with JSON Bind Parameters](#configure_bind_params)
+* [App Manifest](#configure)
 
-	<p class="note"><strong>Note</strong>:
-		Apps that have environment variables set via app manifest do not work with service bind. Hence, if you have left-over
-		environment variables previously set via app manifest, you need to remove them via
-		<code>cf unset-env APP_NAME PROPERTY_NAME</code> before you perform service bind.</p>
+	<p class="note"><strong>Note:</strong>
+		Apps that have environment variables set using the app manifest do not work with service bind. If you have left-over environment variables previously set using the app manifest, you need to remove them with
+    <code>cf unset-env APP_NAME PROPERTY_NAME</code> before you perform a service bind.</p>
 
-### <a id="configure_bind_params"></a> Option 1: Service Bind with JSON Bind Parameters
+### <a id="configure_bind_params"></a> Configure SSO Properties with JSON Bind Parameters
 
 In SSO v1.7.0 and later, you can use a JSON file or string containing bind parameters to
 configure SSO properties.
@@ -77,12 +75,12 @@ $ cat example.json
 }
 </pre>
 
-For more information about the `cf bind-service` command, 
+For more information about the `cf bind-service` command,
 see [bind-service](https://cli.cloudfoundry.org/en-US/cf/bind-service.html)
-in the Cloud Foundry CLI Reference Guide. Alternatively, you can perform
-[service bind using Apps Manager](https://docs.pivotal.io/pivotalcf/appsman-services/adding-services-marketplace.html#bind-instance).
+in the Cloud Foundry CLI Reference Guide. For more information about service binds using Apps Manager, see
+[Bind a Service Instance to an Application](https://docs.pivotal.io/pivotalcf/appsman-services/adding-services-marketplace.html#bind-instance).
 
-#### <a id="bind_params"></a>Bind Parameters
+#### <a id="bind_params"></a>Bind Parameter Options
 
 The table below provides descriptions and default values for bind parameters:
 
@@ -197,20 +195,18 @@ For more information and bind parameter examples, see the
 [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps/tree/master)
 GitHub repository.
 
-### <a id="configure"></a> Option 2: App Manifest
+### <a id="configure"></a> Configure SSO Properties with App Manifest
 
-To register your application, you can specify the SSO service instance you want to bind your application to along with the SSO
-configuration properties in your application manifest. This approach eliminates the need to manually bind your application to the service instance after you deploy your app.
-The SSO service reads its configuration properties from environment variables
+To register your app, you can configure the SSO service instance you want to bind your app to and configure the SSO configuration properties in your app manifest.
+With this method you do not need to manually bind your app to the service instance after you deploy your app. The SSO service reads its configuration properties from environment variables
 that are set in the apps that use it.
 
-<p class="note"><strong>Note</strong>: These configurations are only applied at
-	the initial service binding time. Subsequent <code>cf push</code> of the app does
-	<strong>NOT</strong> update the configurations.
-	You can update the configurations through the SSO Developer Dashboard.</p>
+<p class="note"><strong>Note:</strong> These configurations are only applied at
+	the initial service binding time. If you run <code>cf push</code> again, the app does
+	not update the configurations. You can update the configurations through the SSO Developer Dashboard.</p>
 
-This snippet below shows how to register your application with the SSO service instance `my-sso-sample-instance`
-and how to specify `GRANT_TYPE` `SSO_IDENTITY_PROVIDERS` in your manifest.
+The snippet below shows how to register your app with your SSO service instance
+and how to specify the `GRANT_TYPE` and `SSO_IDENTITY_PROVIDERS` SSO properties in your manifest.
 
 ```
 ---
@@ -224,8 +220,7 @@ applications:
 ```
 
 The table below provides descriptions and default values for SSO properties to include in the app manifest.
-For details, see the [SSO sample apps](https://github.com/pivotal-cf/identity-sample-apps) 
-and the `manifest.yml` files in the same GitHub repository for examples of bootstrapping these values.
+For examples of bootstrapping these values, see the [SSO sample apps](https://github.com/pivotal-cf/identity-sample-apps) and the `manifest.yml` files in GitHub.
 
 <table>
 	<col style="width:45%">
@@ -266,7 +261,7 @@ and the `manifest.yml` files in the same GitHub repository for examples of boots
 	</tr>
 	<tr>
 		<td><code>SSO_REDIRECT_URIS</code></td>
-		<td>Comma separated allow list of redirection URIs allowed for the app.
+		<td>Comma separated allow <%# Avoid using weak verbs such as allow. %>list of redirection URIs allowed for the app.
                     Each value must be a valid URI.
                     Custom URIs are supported for mobile apps.</td>
 		<td>(Always includes the app route)</td>
@@ -357,7 +352,7 @@ To configure the SSO service for a non-PCF app, use one of the following methods
 
 ### <a id="register-service-keys"></a> Option 1: Service Keys
 
-You can use a JSON file or string containing bind parameters to register an 
+You can use a JSON file or string containing bind parameters to register an
 externally hosted app using service keys.
 For more information about bind parameters, see [Bind Parameter Options](#bind_params) above.
 
@@ -372,8 +367,8 @@ To register an externally hosted app using service keys, do the following:
     + `INSTANCE-NAME` is the name of your service instance.
     + `SERVICE-KEY` is the name you want for your service key.
     + `JSON` is the path to the JSON file or the full JSON string containing bind parameters.
-    
-    You must include the `name` parameter in your JSON file or string. The value of `name` is the user-defined 
+
+    You must include the `name` parameter in your JSON file or string. The value of `name` is the user-defined
     name of your externally hosted app. <br><br>
 
     For example:
@@ -411,25 +406,25 @@ To register an externally hosted app using service keys, do the following:
     ```
     cf service-key INSTANCE-NAME SERVICE-KEY
     ```
-    
+
     Where:
     + `INSTANCE-NAME` is the name of your service instance.
     + `SERVICE-KEY` is the name of the service key you created in step 1.
 
     For more information about how to use these values, see
     [Integrate SSO with Your App](../integrating-sso.html).
-    
+
     <p class="note"><strong>Note:</strong> <code>client_credentials</code> grant types, administrative scopes, and
     scopes in other spaces are not available. These must be manually added by a Plan
     Administrator or system operator through the SSO Operator Dashboard or UAA CLI. </p>
-  
+
 ### <a id="register-dashboard"></a> Option 2: SSO Developer Dashboard
 
 To register an externally hosted app using the SSO Developer Dashboard, do the following:
 
 1. Determine the type of app for the SSO `service.bind`.
 For more information, see [Determining SSO Application Type](../determine-type.html).
-1. Log in to Apps Manager as a Space Developer.
+1. Log in to Apps Manager as a Space <%# Only capitalize "space" when it is part of a title %>Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance.
 This launches the SSO Developer Dashboard.
@@ -438,54 +433,54 @@ This launches the SSO Developer Dashboard.
 1. Click **Register App**.
 1. Enter an **Application Name**.
 1. Choose an app type under **Select an Application Type**.
-1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store 
+1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store
   is the default.
 	<p class="note"><strong>Note</strong>: When registering an externally hosted app,
-		a Space Developer can choose from internal and external identity providers.
-		If the Space Developer selects multiple identity providers, users must
+		a Space <%# Only capitalize "space" when it is part of a title %>Developer can choose from internal and external identity providers.
+		If the Space <%# Only capitalize "space" when it is part of a title %>Developer selects multiple identity providers, users must
 		select which provider to use when they sign in.
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
     <%= image_tag '../images/sso_dev_select_idp.png' %>
-1. If your Application Type is `Web App` or `Single-Page JavaScript App`, 
-   under **Application Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
+1. If your Application Type is `Web App` or `Single-Page JavaScript App`,
+   under **Application Settings** enter an allow <%# Avoid using weak verbs such as allow. %>list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, SSO rejects the request.
    <%= image_tag '../images/sso_dev_redirect_uri.png' %>
-1. Under **Authorization**, select the **System Permissions** that the app can request 
-    on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope 
-    is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes 
+1. Under **Authorization**, select the **System Permissions** that the app can request
+    on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
+    is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
     enforced by the API and the scopes to be requested by the app.
      <table class="nice">
        <tr>
          <th>Scope</th>
          <th>Description</th>
        </tr>
-       
+
        <tr>
          <td><code>open</code></td>
          <td>Provides access to make OpenID Connect request. The default for Web, Native, and Single-Page JavaScript Apps</td>
       </tr>
-      
+
       <tr>
         <td><code>user_attributes</code></td>
         <td>Provides access to custom attributes from an external identity provider</td>
       </tr>
-      
+
       <tr>
         <td><code>roles</code></td>
         <td>Provides access to external groups from an identity provider</td>
       </tr>
-      
+
       <tr>
         <td><code>uaa.resource</code></td>
-        <td>Provides access to the <code>check\_token</code> endpoint for service-to-service flows. 
+        <td>Provides access to the <code>check\_token</code> endpoint for service-to-service flows.
           The default for Service-to-Service Apps.
           </td>
       </tr>
-      
+
     </table>
-    
+
     <p class="note"><strong>Note</strong>: Add the <code>user_attributes</code> scope
 	  to the client scopes to return user attributes from the ID token.</p>
     <p class="note"><strong>Note</strong>: Under <strong>Scopes</strong>, you can
@@ -493,54 +488,54 @@ This launches the SSO Developer Dashboard.
 	  <code>Native App</code>, or <code>Single-Page JavaScript App</code>.
 	  If the app type is a <code>Service-to-Service App</code>, you can only select
 	  resources defined within the space.</p>
-    
-1. (Optional) Under **Auto-Approved Scopes**, select any scopes that the SSO service 
+
+1. (Optional) Under **Auto-Approved Scopes**, select any scopes that the SSO service
    automatically approves when the app makes a request on behalf of a user.
    Select only scopes pertaining to apps owned and managed by your company.
    Do not select scopes that pertain to externally hosted apps.
-1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can enable 
+1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can enable
     **Show on Homepage** to display the app on the UAA or Pivotal Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
       1. In **App Launch URL**, enter the address you want for your app.
       1. Upload an app icon for your app.
       <%= image_tag '../images/sso_dev_show_homepage.png' %>
-1. Click **Register App**. 
+1. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other SSO procedures.
 <p class="note"><strong>Note</strong>:
   You can only view the <strong>App Secret</strong> when an app is first registered or
   the secret is regenerated.</p>
 1. For examples of how to integrate the SSO Service into your Spring Boot Applications, click
-	the **Download Sample Apps** button.
+	the **Download Sample Apps** button.<%# Do not include the word button. Write "click Save", not "Click the Save button". %>
 		<%= image_tag '../images/download_sample_apps.png' %>
 
 ## <a id="sso-dashboard"></a> Manage App Configurations
 
 The SSO Developer Dashboard allows app developers to view the app configurations and
-resources available within their space. 
+resources available within their space.
 
 ### Prerequisite
 
 Before you access the dashboard, you must
 create a service instance for your space. See [Create Service Instances](../manage-service-instances.html#create-svc-instance).
- 
+
 To manage your application configurations through the SSO Developer Dashboard, do the following:
 
-1. Log in to Apps Manager as a Space Developer.
+1. Log in to Apps Manager as a Space <%# Only capitalize "space" when it is part of a title %>Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance to launch the SSO Developer Dashboard.
 	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
-	<p class="note"><strong>Note</strong>: When binding a PCF app, a Space Developer
+	<p class="note"><strong>Note</strong>: When binding a PCF app, a Space <%# Only capitalize "space" when it is part of a title %>Developer
 		can choose from internal and external identity providers.
-		If the Space Developer selects multiple identity providers, users must select
+		If the Space <%# Only capitalize "space" when it is part of a title %>Developer selects multiple identity providers, users must select
 		which provider to use when they sign in.
 		This option is available for all application types except
 		<code>Service-to-Service App</code>.</p>
     <%= image_tag '../images/sso_dev_select_idp.png' %>
 1. If your Application Type is `Web App` or `Single-Page JavaScript App`, under **Application Settings**
-   enter an allow list of URIs beneath **Redirect URIs Whitelist**.
+   enter an allow <%# Avoid using weak verbs such as allow. %>list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the
    URIs specified in this list. Otherwise, SSO rejects the request.
    <%= image_tag '../images/sso_dev_redirect_uri.png' %>
@@ -606,7 +601,7 @@ You can view the credentials and endpoints required for app integration for an e
 
 To view credentials of an existing app, do the following:
 
-1. Log in to Apps Manager as a Space Developer.
+1. Log in to Apps Manager as a Space <%# Only capitalize "space" when it is part of a title %>Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click the **Single Sign-On** service.
 1. Click **Manage** next to your SSO service instance to launch the SSO Developer Dashboard.
@@ -627,7 +622,7 @@ To view credentials of an existing app, do the following:
 
 To regenerate an app secret of an existing app, do the following:
 
-1. Log in to Apps Manager as a Space Developer.
+1. Log in to Apps Manager as a Space <%# Only capitalize "space" when it is part of a title %>Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click the **Single Sign-On** service.
 1. Click **Manage** next to your SSO service instance to launch the SSO Developer Dashboard.
@@ -673,7 +668,7 @@ To create an admin client, do the following:
 	| `idps.read` | Provides access to read information about identity providers |
 	| `idps.write` | Provides access to create, modify, and delete identity providers |
 
-9. Click **Register App**. 
+9. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other SSO procedures.
 <p class="note"><strong>Note</strong>:
@@ -684,15 +679,15 @@ Record these credentials to use in other SSO procedures.
 
 To unregister an app from SSO, do one of the following:
 
-+ If you configured a PCF app in [Set Up Apps to Use SSO](#set-up) above, 
++ If you configured a PCF app in [Set Up Apps to Use SSO](#set-up) above,
 see [Unregister a PCF App](#unregister-pcf) below.
 
-+ If you registered an externally hosted app using service keys in 
++ If you registered an externally hosted app using service keys in
 [Register an Externally Hosted App Using Service Keys](#register-service-keys) above,
 see [Unregister an Externally Hosted App Using Service Keys](#unregister-service-keys) below.
-+ If you registered an externally hosted app using the SSO Developer Dashboard in 
-[Register an Externally Hosted App Using the SSO Developer Dashboard](#register-dashboard) above, 
-see [Unregister an Externally Hosted App Using the SSO Developer Dashboard](#unregister-dashboard) below. 
++ If you registered an externally hosted app using the SSO Developer Dashboard in
+[Register an Externally Hosted App Using the SSO Developer Dashboard](#register-dashboard) above,
+see [Unregister an Externally Hosted App Using the SSO Developer Dashboard](#unregister-dashboard) below.
 
 ### <a id="unregister-pcf"></a> Unregister a PCF App
 
@@ -731,7 +726,7 @@ For more information about the `cf delete-service-key` command, see [delete-serv
 
 To unregister an externally hosted app using the SSO Developer Dashboard, do the following:
 
-1. To navigate to the Service Instance Developer Dashboard, do the procedure in [Access Service Instance Developer Dashboard](../manage-service-instances.html#access-svc-instance-developer-dashboard).
+1. To navigate to the Service Instance <%# Only capitalize "service instance" when it is part of a title %>Developer Dashboard, do the procedure in [Access Service Instance Developer Dashboard](../manage-service-instances.html#access-svc-instance-developer-dashboard).
 3. Click your app.
 4. Click **Delete App** at the bottom of the page.
 5. When prompted, click **Delete App** to confirm that you want to delete the app
