@@ -360,7 +360,7 @@ To configure the SSO service for an externally hosted app, a non-PCF app, use on
 ### <a id="register-service-keys"></a> Register an Externally Hosted App Using Service Keys
 
 You can use a JSON file or string containing bind parameters to register an
-externally hosted app using service keys.
+externally hosted app using service keys. Service keys allow you to register applications as part of automation, such as scripts or pipelines.
 For more information about bind parameters, see [Bind Parameters](#bind-params) above.
 
 To register an externally hosted app using service keys, do the following:
@@ -620,7 +620,7 @@ To view credentials of an existing app, do the following:
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
 
-<p class="note"><strong>Note:</strong>
+<p class="note warning"><strong>WARNING:</strong>
 	You must not regenerate an app secret for PCF bound apps,
 	because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
 	To regenerate a client for a PCF bound app, you need to delete and re-create the
