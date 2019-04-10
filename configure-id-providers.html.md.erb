@@ -10,7 +10,7 @@ Users may have accounts in the internal user store or in external identity provi
 ## <a id='config-int-store'></a> Configure Internal User Store
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
-Find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+Find these credentials in your Pivotal Application Service (PAS) tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -79,7 +79,7 @@ Administrators can define the password policy for SSO users in the internal user
 The password policy enforces rules that restrict the kinds of passwords users can create.
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-   You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
+   You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -104,7 +104,7 @@ The password policy enforces rules that restrict the kinds of passwords users ca
 For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider. The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -124,7 +124,8 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -157,7 +158,8 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select Manage Identity Providers from the dropdown.
 
@@ -197,7 +199,8 @@ LDAP service accounts should not be subject to manual lockouts, such as lockouts
 Also, LDAP service accounts should not be subject to automated deletions, since disruption to these service accounts could prevent user logins.
 </p>
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -233,7 +236,7 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -276,7 +279,7 @@ After resource permissions mappings are configured and a user authenticates,
 the user's group memberships is mapped to scopes in the resulting token.
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your Pivotal Application Service (PAS) tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -298,12 +301,12 @@ see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external
 Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
 To do this automation, you need an identity zone admin client; for information,
 see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.</p>
- 
+
 
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -318,7 +321,7 @@ You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manag
 <p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
 
 <p class="note"><strong>Note:</strong> If you want to automate the above procedure,
-deleting resource permissions mappings, you can use the UAA API to unmap a group mapping. 
-See Unmap in the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry UAA API</a> documentation. 
+deleting resource permissions mappings, you can use the UAA API to unmap a group mapping.
+See Unmap in the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry UAA API</a> documentation.
 To do this automation, you need an identity zone admin client; for information,
 see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.</p>

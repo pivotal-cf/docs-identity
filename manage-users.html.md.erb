@@ -14,7 +14,7 @@ invite and delete users, request users to reset their passwords, and update user
 To open the **Internal Users** pane:
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
-Find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+Find these credentials in your Pivotal Application Service (PAS) tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -54,7 +54,7 @@ lets you browse, delete, and update PCF permissions for user accounts from exter
 To open the external identity provider users admin pane:
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
-You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
@@ -96,8 +96,8 @@ You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac)
 
 1. Record the **App ID** and **App Secret** from your admin client created using the steps [here](./configure-apps/index.html#admin). You will need to give your admin client `scim.read` to read user information. You can give your admin client either `scim.write` to create users and modify group (scope) memberships or `scim.create` to only create users.
 
-1. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. Replace 
-`ADMIN-APP-ID` with your **App ID** and `ADMIN-APP-SECRET` with your **App Secret**. UAAC stores the token in 
+1. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. Replace
+`ADMIN-APP-ID` with your **App ID** and `ADMIN-APP-SECRET` with your **App Secret**. UAAC stores the token in
 `~/.uaac.yml`.
     <pre class="terminal">
     $ uaac token client get MyAdminAppId -s MyAdminAppSecret
@@ -113,7 +113,7 @@ You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac)
         access_token: aBcdEfg0hIJKlm123.e
         token_type: bearer
         expires_in: 43200
-        scope: scim.read scim.write 
+        scope: scim.read scim.write
         jti: 91b3-abcd1233
     </pre>
 
