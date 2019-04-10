@@ -63,35 +63,35 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 	1. Click **Add Rule**.
 
 	2. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
-	
+
 		<%= image_tag '../images/adfs_ldap_claims.png' %>
 
 	3. Enter a **Claim rule name**.
-	
+
 	4. Select **Active Directory** for **Attribute store**.
-	
+
 	5. Select **E-Mail-Addresses** for **LDAP Attribute** and select **E-mail Address** for **Outgoing Claim Type**.
-	
+
 	6. Click **Finish**.
-	
+
 		<%= image_tag '../images/adfs_ldap_claim_mappings.png' %>
-		
+
 	1. Click **Add Rule**.
 
 	2. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
-	
+
 		<%= image_tag '../images/adfs_transform_claims.png' %>
 
 	3. Enter a **Claim rule name**.
-	
+
 	4. Select **E-Mail Address** for **Incoming claim type**.
-	
+
 	5. Select **Name ID** for **Outgoing claim type**
-	
+
 	6. Select **Email** for **Outgoing name ID format**.
-	
+
 	6. Click **Finish**.
-	
+
 		<%= image_tag '../images/adfs_transform_claim_mappings.png' %>
 
 1. Double-click on the new Relying Party Trust to open the properties.
@@ -100,14 +100,16 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 	<%= image_tag '../images/adfs_remove_cert.png' %>
 
-1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for PCF Elastic Runtime](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
+1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm**
+that matches the
+[SHA Algorithm configured for Application Service](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
 
 	<%= image_tag '../images/adfs_sha1.png' %>
-	
+
 1. (Optional) If you are using a self-signed certificate, disable CRL checks by following these steps:
 
 	1. Open **Windows Powershell** as an Administrator.
-	
+
 	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
 
 1. (Optional) If you are using a self-signed certificate, add it to the ADFS trust store. Obtain the Ops Manager certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the ADFS trust store, so ADFS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
@@ -129,11 +131,11 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 1. Enter the **Claim rule name**.
 
-1. Click **Browse** to select your **User’s group**. 
+1. Click **Browse** to select your **User’s group**.
 
 1. Select **Group** as your **Outgoing claim type**.
 
-1. Set your **Outgoing claim value** to match your group’s name. 
+1. Set your **Outgoing claim value** to match your group’s name.
 
 1. Click **Finish**.
     <%= image_tag '../images/claim-rule-name-type.png' %>
