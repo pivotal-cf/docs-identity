@@ -7,7 +7,10 @@ This topic explains how Pivotal Cloud Foundry (PCF) developers configure their
 apps to use the Single Sign-On (SSO) service and use the SSO Admin Client to manage connections
 between SSO identity providers, apps, users, and other resources.
 
-## <a id="set-up"></a> Set Up Apps for SSO
+## <a id="prereq"></a> Prerequisites for Registering Apps
+
+Before you can register your app for SSO, you must create a service instance
+and choose your SSO application type as follows:
 
 1. Create a service instance by doing the procedure in [Create Service Instances](../manage-service-instances.html#create-svc-instance).
 
@@ -17,7 +20,7 @@ between SSO identity providers, apps, users, and other resources.
    	<p class="note"><strong>Note:</strong> If your app is a resource server, you do not need to register the app because it only consumes tokens and does not handle any token acquisition flow itself.
     A resource server hosts protected resources and accepts and responds to protected resource requests using access tokens, such as an API.</p>
 
-2. Select a method to register your app with the SSO service:
+2. Choose a method to register your app with the SSO service:
  - If your app is a PCF app, follow one of the procedures in [Register a PCF App](#internal) below.
  - If your app is an externally hosted app, a non-PCF app, follow one of the procedures in [Register an Externally Hosted App](#external) below.
 
@@ -25,12 +28,12 @@ between SSO identity providers, apps, users, and other resources.
 
 To configure SSO for a PCF app, use one of the following methods:
 
-* [Configure SSO Properties with JSON Bind Parameters](#configure-bind-params)
-* [Configure SSO Properties with the App Manifest](#configure-app-manifest)
+* [Configure SSO Properties with JSON Bind Parameters](#configure-bind-params), below
+* [Configure SSO Properties with the App Manifest](#configure-app-manifest), below
 
 	<p class="note"><strong>Note:</strong>
 		Apps that have environment variables set using the app manifest do not work with
-    <code>cf bind-service</code>. If you have left-over environment variables previously set using the app manifest, you need to remove them with
+    <code>cf bind-service</code>. If you have leftover environment variables previously set using the app manifest, you need to remove them with
     <code>cf unset-env APP_NAME PROPERTY_NAME</code> before you perform a service bind.</p>
 
 ### <a id="configure-bind-params"></a> Configure SSO Properties with JSON Bind Parameters
@@ -200,11 +203,18 @@ GitHub repository.
 
 ### <a id="configure-app-manifest"></a> Configure SSO Properties with the App Manifest
 
-To register your app, you can configure the SSO service instance you want to bind your app to
-and configure the SSO configuration properties in your app manifest.
-With this method you do not need to manually bind your app to the service instance after you deploy your app.
+With this method you do not need to manually bind your app to the service instance
+after you deploy your app.
 The SSO service reads its configuration properties from environment variables
 that are set in the apps that use it.
+
+To register your app with the app manifest, do the following in your app manifest:
+
+1. Specify the SSO service instance you want to bind your app.
+  For an example, see the `services` section in the YAML sample below.
+1. Configure the SSO configuration properties in your app manifest. For an example,
+    see the properties in the `env` section in the YAML sample below.
+
 
 <p class="note"><strong>Note:</strong> These configurations are only applied at
 	the time of the initial service bind. If you run <code>cf push</code> again, the app does
