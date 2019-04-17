@@ -203,10 +203,14 @@ GitHub repository.
 
 ### <a id="configure-app-manifest"></a> Configure SSO Properties with the App Manifest
 
-With this method you do not need to manually bind your app to the service instance
-after you deploy your app.
+If you configure SSO properties with the app manifest, you do not need to manually bind
+your app to the service instance after you deploy your app.
 The SSO service reads its configuration properties from environment variables
 that are set in the apps that use it.
+
+<p class="note"><strong>Note:</strong> These configurations are only applied at
+	the time of the initial service bind. If you run <code>cf push</code> again, the app does
+	not update the configurations. You can update the configurations through the SSO Developer Dashboard.</p>
 
 To register your app with the app manifest, do the following in your app manifest:
 
@@ -214,11 +218,6 @@ To register your app with the app manifest, do the following in your app manifes
   For an example, see the `services` section in the YAML sample below.
 1. Configure the SSO configuration properties in your app manifest. For an example,
     see the properties in the `env` section in the YAML sample below.
-
-
-<p class="note"><strong>Note:</strong> These configurations are only applied at
-	the time of the initial service bind. If you run <code>cf push</code> again, the app does
-	not update the configurations. You can update the configurations through the SSO Developer Dashboard.</p>
 
 The snippet below shows how to register your app with a SSO service instance
 and how to configure the `GRANT_TYPE` and `SSO_IDENTITY_PROVIDERS` SSO properties in your manifest.
@@ -234,7 +233,7 @@ applications:
       SSO_IDENTITY_PROVIDERS: uaa, sample-identity-provider
 ```
 
-For examples of bootstrapping SSO properties, see the `manifest.yml` files in the
+For examples of configuring SSO properties in an app manifest, see the `manifest.yml` files in the
 [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps) GitHub repository.
 
 The table below provides descriptions and default values for SSO properties to include in the app manifest:
@@ -333,7 +332,7 @@ The table below provides descriptions and default values for SSO properties to i
 		<td>Resources that the app uses as scopes and authorities
             for the SSO service to be created during bootstrapping if they do not already exist.
             The input format can be referenced in the provided sample manifest.
-            Currently all permissions within the same top level permission,
+            Currently, all permissions within the same top-level permission,
             such as <code>todo.read</code> and <code>todo.write</code>, must be
             specified in the same application manifest.
             Currently you cannot specify additional permissions in the same top level permission,
@@ -364,8 +363,8 @@ The table below provides descriptions and default values for SSO properties to i
 
 To configure the SSO service for an externally hosted app, a non-PCF app, use one of the following methods:
 
-* [Register an Externally Hosted App Using Service Keys](#register-service-keys)
-* [Register an Externally Hosted App Using the SSO Developer Dashboard](#register-dashboard)
+* [Register an Externally Hosted App Using Service Keys](#register-service-keys), below
+* [Register an Externally Hosted App Using the SSO Developer Dashboard](#register-dashboard), below
 
 ### <a id="register-service-keys"></a> Register an Externally Hosted App Using Service Keys
 
@@ -447,6 +446,7 @@ For more information, see [Determining SSO Application Type](../determine-type.h
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance.
 This launches the SSO Developer Dashboard.
+
 	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
@@ -460,6 +460,7 @@ This launches the SSO Developer Dashboard.
 		select which provider to use when they sign in.
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
+
     <%= image_tag '../images/sso_dev_select_idp.png' %>
 1. If your Application Type is `Web App` or `Single-Page JavaScript App`,
    under **Application Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
@@ -535,12 +536,14 @@ resources available within their space.
 
 Before you access the dashboard, you must
 create a service instance for your space. See [Create Service Instances](../manage-service-instances.html#create-svc-instance).
-<br><br><br>
+
+### Procedure
 To manage your application configurations through the SSO Developer Dashboard, do the following:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance to launch the SSO Developer Dashboard.
+
 	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
@@ -551,6 +554,7 @@ To manage your application configurations through the SSO Developer Dashboard, d
 		which provider to use when they sign in.
 		This option is available for all application types except
 		<code>Service-to-Service App</code>.</p>
+
     <%= image_tag '../images/sso_dev_select_idp.png' %>
 1. If your Application Type is `Web App` or `Single-Page JavaScript App`, under **Application Settings**
    enter an allow list of URIs beneath **Redirect URIs Whitelist**.
