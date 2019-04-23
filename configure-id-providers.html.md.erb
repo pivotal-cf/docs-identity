@@ -7,7 +7,11 @@ This topic describes how Pivotal Cloud Foundry (PCF) administrators configure a
 Single Sign-On (SSO) service plan to manage user access to PCF apps.
 Users may have accounts in the internal user store or in external identity providers.
 
-## <a id='config-int-store'></a> Configure Internal User Store
+## <a id='config-int-prov'></a> Manage Internal User Store
+
+By default, each SSO service plan comes with an internal user store, which stores user accounts natively in User Account and Authentication (UAA).
+
+### <a id='config-int-store'></a> Configure Internal User Store
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
 Find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
@@ -26,7 +30,7 @@ Find these credentials in your Pivotal Application Service tile in Ops Manager u
 
 1. Click **Save Identity Provider**.
 
-## <a id='add-to-int'></a> Add Internal Users From the Command Line
+### <a id='add-to-int'></a> Add Internal Users From the Command Line
 
 You can use the **Internal Users** [admin pane](./manage-users.html#internal) to send invitations to users, so that they can add themselves to the internal user store.
 But you cannot use the admin pane to add users directly.
@@ -73,7 +77,7 @@ Group name:  YOUR-GROUP
 To add a member to your new group, use the following command.
 <pre class="terminal">$ uaac member add YOUR-GROUP YOUR-USER</pre>
 
-## <a id='passwd-policy'></a> Define Password Policy for the Internal User Store
+### <a id='passwd-policy'></a> Define Password Policy for the Internal User Store
 
 Administrators can define the password policy for SSO users in the internal user store.
 The password policy enforces rules that restrict the kinds of passwords users can create.
@@ -153,7 +157,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 1. Click **Create Identity Provider** to save the identity provider.
 
-<p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click on <strong>Configure SAML Service Provider</strong> on the Identity Providers page.</p>
+<p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click on <strong>Configure SAML Service Provider</strong> on the Identity Providers page. Please see <a href="#config-ext-settings">Configure Service Provider SAML Settings</a> above for more information.</p>
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
