@@ -77,24 +77,35 @@ To make UAA identity zone API calls, do the following:<br><br>
 <ol>
 <li> Create an identity zone admin client following <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
 
+<li> Find the UAA identity zone id by doing the following:</li>
+
+1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+using your User Account and Authentication (UAA) administrator credentials.
+You can find these credentials in the Pivotal Application Service (PAS) tile in Ops Manager in the **Credentials** tab.
+
+1. Click the name of the SSO service plan you want to configure on the SSO dashboard and select **Edit Plan** from the dropdown.
+
+1. The UAA identity zone id associated with the plan can by found in the url:
+<code>https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</code>. Record the value <code>YOUR-IDENTITY-ZONE-ID</code>.
+
 <li> Run the following command, directing the output to a text file: <br>
 
-    <pre>uaac curl -k /identity-zones/ZONE-ADMIN-CLIENT-ID > JSON-BLOB.txt</pre>
+    <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID > JSON-BLOB.txt</pre>
 
     Where:
     <ul>
-      <li> <code>ZONE-ADMIN-CLIENT-ID</code> is your identity zone admin client ID created in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
+      <li> <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone id you obtained in the previous step.</li>
       <li> <code>JSON-BLOB.txt</code> is the name of your text file.</li>
     </ul>
 </li>
 <li> In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper,
-leaving just the JSON blob. Confirm that the ID in this output matches <code>ZONE-ADMIN-CLIENT-ID</code>.<br><br>
+leaving just the JSON blob. Confirm that the <code>id</code> in this output matches <code>YOUR-IDENTITY-ZONE-ID</code>.<br><br>
 
     Your remaining JSON blob looks similar to the truncated sample below:
 
     <pre>
 {
-  "id": "demo",
+  "id": "d324e405-4976-49a4-a142-cf33e19d4715",
   "subdomain": "demo",
   "config": {
     "clientSecretPolicy": {
@@ -123,15 +134,16 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>ZON
 <li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
     <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
-    <pre>uaac curl -k /identity-zones/ZONE-ADMIN-CLIENT-ID -X PUT
+    <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT
 \-H 'Content-Type: application/json' -d "$(cat file.txt)"</pre>
     Where:
     <ul>
-      <li> <code>ZONE-ADMIN-CLIENT-ID</code> is your identity zone admin client ID created in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li></ul>
+      <li> <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone id you obtained in the previous step.</li>
+    </ul>
 
   A truncated example command would look similar to the following:
 
-     <pre class="terminal">$ uaac curl -k identity-zones/demo\
+     <pre class="terminal">$ uaac curl -k identity-zones/YOUR-IDENTITY-ZONE-ID\
          -X PUT \
          -H 'Content-Type: application/json' \
          -d '{
