@@ -65,25 +65,41 @@ You can find these credentials in your Pivotal Application Service (PAS) tile in
 This section shows how to use the UAAC to update UAA identity zone configurations, using a
 <code>PUT</code> command.
 
-<p class="note warning"><strong>WARNING:</strong> This flow is for advanced users only.
+<p class="note warning"><strong>Warning:</strong> This flow is for advanced users only.
   You must always run the <code>PUT</code> command
   with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.
   You must also provide all configuration values, otherwise, data may be lost.</p>
 
-For general information about UAA API, see the <a href="https://docs.cloudfoundry.org/api/uaa">CF UAA API documentation page </a>.<br><br>
+For general information about UAA API, see the <a href="https://docs.cloudfoundry.org/api/uaa">CF UAA API documentation page </a>.<br>
 
-To make UAA identity zone API calls, do the following:<br><br>
+To make UAA identity zone API calls, do the following:
 
 <ol>
-<li> Create an identity zone admin client following <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
+<li> Create an identity zone admin client by following the procedure in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
 
+<li> Find the UAA identity zone ID by doing the following:</li>
+    <ol type="a">
+        <li>
+          Log in to the SSO dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
+        </li>
+        
+        <li>
+        Click the name of the SSO service plan you want to configure on the SSO dashboard and select 
+        <strong>Edit Plan</strong> from the dropdown.
+        </li>
+        
+        <li> Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The URL looks similar to the following:
+          <pre>https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/IDENTITY-ZONE-ID</pre>
+          Where <code>IDENTITY-ZONE-ID</code> is your plan’s identity zone ID. 
+        </li>
+    </ol>
 <li> Run the following command, directing the output to a text file: <br>
 
     <pre>uaac curl -k /identity-zones/ZONE-ADMIN-CLIENT-ID > JSON-BLOB.txt</pre>
 
     Where:
     <ul>
-      <li> <code>ZONE-ADMIN-CLIENT-ID</code> is your identity zone admin client ID created in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
+      <li> <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone ID you obtained in step 2c.</li>
       <li> <code>JSON-BLOB.txt</code> is the name of your text file.</li>
     </ul>
 </li>
@@ -117,17 +133,18 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>ZON
 </pre>
 </li>
 <li> In your <code>JSON-BLOB.txt</code> update the configurations in the JSON blob as needed, and then save the file.
-  <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values,
+  <p class="note warning"><strong>Warning:</strong> You must provide all <code>config</code> values,
     otherwise, data can be lost when doing an API update as a <code>PUT</code> command.</p></li>
 
 <li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
-    <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
+    <p class="note warning"><strong>Warning:</strong> You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
     <pre>uaac curl -k /identity-zones/ZONE-ADMIN-CLIENT-ID -X PUT
 \-H 'Content-Type: application/json' -d "$(cat file.txt)"</pre>
     Where:
     <ul>
-      <li> <code>ZONE-ADMIN-CLIENT-ID</code> is your identity zone admin client ID created in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li></ul>
+      <li> <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone id you obtained in step step 2c.</li>
+    </ul>
 
   A truncated example command would look similar to the following:
 
@@ -301,4 +318,4 @@ You may need to restart applications that do offline validation for the new sign
 </code></pre>
 
 <p>For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.</p></li>
-</ul>
+</ol>
