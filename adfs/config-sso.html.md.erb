@@ -3,46 +3,47 @@ title: Configuring a Single Sign-On Service Provider
 owner: Identity Service
 ---
 
-This topic describes how to add an external identity provider to your Pivotal Single Sign-On (SSO) service plan.
+This topic describes how to add an Active Directory Federation Services (ADFS) external SAML identity provider to your Pivotal Single Sign-On (SSO) service plan.
+For information about how to add a SAML provider in general, please refer to [Add a SAML Provider](../configure-id-providers.html#config-saml-prov).
 
 ##<a id='download-metadata'></a> Download Identity Provider Metadata
 
-1. Download the metadata from your Active Directory Federation Services server at the following URL: `https://YOUR-ADFS-HOSTNAME/federationmetadata/2007-06/federationmetadata.xml`
+1. Download the metadata from your Active Directory Federation Services (ADFS) server at the following URL: `https://YOUR-ADFS-HOSTNAME/federationmetadata/2007-06/federationmetadata.xml`
 
 ##<a id='set-up-saml'></a> Setting up SAML 
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
 
-2. Select your plan and click **Manage Identity Providers** on the drop-down menu.
+1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
 	<%= image_tag '../images/adfs_manage_id_providers.png' %>
 
-3. Click **New Identity Provider** to create a new identity provider.
+1. Click **New Identity Provider** to create a new identity provider.
 
 	<%= image_tag '../images/new_id_provider.png' %>
 
-2. To create a new identity provider, perform the following steps:
+1. To create a new identity provider, perform the following steps:
 	1. Enter an identity provider name in **Identity Provider Name**.
-	2. (Optional) Enter a description in **Identity Provider Description**.
-	3. Click **SAML File Metadata (optional)**, then click **Upload Identity Provider Metadata** to upload your metadata XML.
-	4. (Optional) Under **Advanced SAML Settings**, click **Attribute Mappings** to enter the mappings.
+	2. Select `SAML 2.0` as the Identity Provider Type.
+	3. (Optional) Enter a description in **Identity Provider Description**. This is displayed to space developers when they select an identity provider for their app.
+	4. Click **SAML File Metadata (optional)**, then click **Upload Identity Provider Metadata** to upload the XML metadata that you downloaded from your ADFS server.
+	5. Under **Advanced Settings**, click **Attribute Mappings** to enter the mappings. These mappings determine how **User Attributes** are propagated from the identity provider (ADFS) to the service provider (SSO).
+	In particular, you might want to propagate ADFS's SAML groups to SSO's `“external_groups”` (see <a href="#attribute-mappings">Create Attribute Mappings for SAML Groups</a> below for more information).
+	6. Click **Create Identity Provider**.
 
-1. Click **Create Identity Provider**.
+1. Navigate to the identity provider list, click on the name of the ADFS identity provider, and click **Group Whitelist**
+and follow the instructions in [Configure Group Whitelist for an External Identity Provider](../configure-id-providers.html#config-whitelist)
+to enter the ADFS SAML group names that should be propagated in the SSO-generated ID token.
+After this step, these SAML groups will be included in the user’s ID token's `roles` claim.
 
-1. Click **Resource Permissions**.
-
-2. Click **New Permissions Mapping** and perform the following steps:
-    1. Enter a **Group Name**.
-    2. For **Select Permissions**, select the permissions to grant to the members of the group from the external identity provider.
-
-3. Navigate to the identity provider list.
-
-4. Click **Group Whitelist** and enter the group names from the external identity provider that should be propagated in the ID token.
+1. Navigate to the identity provider list, click on the name of the ADFS identity provider, and click **Resource Permissions**
+and follow the instructions in [Create or Edit Resource Permissions Mapping](../configure-id-providers.html#create-resource-perm) to map the user’s ADFS group memberships to the user's access token's scopes.
+After this step, the resource permissions that the SAML groups were mapped to will be included in the user's access token's `scopes` claim.
 
 ## <a id='attribute-mappings'></a> Create Attribute Mappings for SAML Groups
 
-Under **User Attributes**, map the User Schema Attribute of `“external_groups”` 
-to the Attribute Name value of  `“groups”`. 
+Under **User Attributes**, map the **User Schema Attribute** of `“external_groups”`
+to the **Attribute Name** value of  `“groups”`.
 If you did not perform the steps to customize the SAML assertion value, 
 use `“http://schemas.xmlsoap.org/claims/Group”` as the Attribute Name instead.
 
@@ -52,8 +53,4 @@ An attribute mapping with a customized SAML assertion value looks like this:
 An attribute mapping with a non-customized SAML assertion value looks like this:
     <%= image_tag '../images/non-customized.png' %>
 
-Groups now show up from the SAML assertion as claims. 
-You can pull these values from the user’s stored custom attributes using the 
-`roles` scope on the ID token or through the userinfo endpoint, 
-or map these to permissions using Resource Permissions mappings. 
-For more information, see [Create or Edit Resource Permissions](../manage-resources.html#create-resource-perm).
+Groups now show up from the SAML assertion as claims.
