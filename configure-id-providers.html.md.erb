@@ -145,7 +145,7 @@ See the following sets of instructions for how to configure the SSO service to u
     * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
 <p class="note"><strong>Note</strong>: If you choose to upload the Identity Provider Metadata as an XML file, you will be unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+1. Under **Advanced Settings**, and then under **Attribute Mappings**, configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
 	* Select a **User Scheme Attribute** from the dropdown.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
@@ -251,12 +251,14 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 ## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
-An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider. An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
+An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider.
+An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
 
 For information about how to create resource permission mappings,
 see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> below.
 
-<p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
+<p class="note"><strong>Note</strong>: For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups,
+the app must request the <code>roles</code> claim, and the Group Whitelist must include the external groups.</p>
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
    You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
@@ -265,7 +267,7 @@ see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping<
 
 1. Click on the name of your external identity provider and select **Group Whitelist** from the dropdown.
 
-1. Add a group name from your external identity provider.
+1. Add a group name from your external identity provider. Please note that regex is allowed; for example, `*` translates to all groups.
 
 1. Click **Save Group Whitelist**.
 
