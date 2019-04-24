@@ -104,7 +104,7 @@ To make UAA identity zone API calls, do the following:
     </ul>
 </li>
 <li> In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper,
-leaving just the JSON blob. Confirm that the ID in this output matches <code>ZONE-ADMIN-CLIENT-ID</code>.<br><br>
+leaving just the JSON blob. Confirm that the ID in this output matches <code>YOUR-IDENTITY-ZONE-ID</code>.<br><br>
 
     Your remaining JSON blob looks similar to the truncated sample below:
 
@@ -139,7 +139,7 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>ZON
 <li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
     <p class="note warning"><strong>Warning:</strong> You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
-    <pre>uaac curl -k /identity-zones/ZONE-ADMIN-CLIENT-ID -X PUT
+    <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT
 \-H 'Content-Type: application/json' -d "$(cat file.txt)"</pre>
     Where:
     <ul>
