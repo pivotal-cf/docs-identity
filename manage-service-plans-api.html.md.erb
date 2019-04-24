@@ -57,7 +57,7 @@ To make UAA identity zone API calls, do the following:
         </li>
         
         <li>
-        Click the name of the SSO service plan you want to configure on the SSO dashboard and select 
+        Click the name of the SSO service plan that you want to configure on the SSO dashboard and select 
         <strong>Edit Plan</strong> from the dropdown.
         </li>
         
@@ -105,7 +105,7 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>ZON
 }
 </pre>
 </li>
-<li> In your <code>JSON-BLOB.txt</code> update the configurations in the JSON blob as needed, and then save the file.
+<li> In your <code>JSON-BLOB.txt</code> file, update the configurations in the JSON blob as needed, and then save the file.
   <p class="note warning"><strong>Warning:</strong> You must provide all <code>config</code> values,
     otherwise, data can be lost when doing an API update as a <code>PUT</code> command.</p></li>
 
@@ -119,7 +119,7 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>ZON
       <li> <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone id you obtained in step step 2c.</li>
     </ul>
 
-  A truncated example command would look similar to the following:
+  A truncated example command looks similar to the following:
 
      <pre class="terminal">$ uaac curl -k identity-zones/demo\
          -X PUT \
