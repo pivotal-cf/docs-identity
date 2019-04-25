@@ -24,7 +24,7 @@ owner: Identity Service
 </div>
 
 This topic describes how Pivotal Cloud Foundry (PCF) administrators or plan administrators can manage Single Sign-On (SSO)
-service plan configurations using the SSO dashboard or API using the User Account and Authentication Command Line Interface (UAAC)
+service plan configurations using the SSO Operator Dashboard or API using the User Account and Authentication Command Line Interface (UAAC)
 
 The SSO service for PCF manages configurations within
 the UAA and the Cloud Controller (CC) components
@@ -46,7 +46,7 @@ Refresh tokens typically have a longer expiration time than access tokens.
 
 To configure the token policy, do the following:
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
 You can find these credentials in your PAS tile in Ops Manager in the **Credentials** tab.
 
 2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the drop-down menu.
@@ -80,11 +80,11 @@ To make UAA identity zone API calls, do the following:
 <li> Find the UAA identity zone ID by doing the following:</li>
     <ol type="a">
         <li>
-          Log in to the SSO dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
+          Log in to the SSO Operator Dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
         </li>
         
         <li>
-        Click the name of the SSO service plan that you want to configure on the SSO dashboard, and select 
+        Click the name of the SSO service plan that you want to configure on the SSO Operator Dashboard, and select 
         <strong>Edit Plan</strong> from the dropdown.
         </li>
         

@@ -20,16 +20,16 @@ For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/i
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-PCF administrators can create new SSO service plans at any time from the SSO dashboard.
-You can use the SSO dashboard to create and configure service plans at any time.
+PCF administrators can create new SSO service plans at any time from the SSO Operator Dashboard.
+You can use the SSO Operator Dashboard to create and configure service plans at any time.
 
 <p class="note"><strong>Note</strong>: You must create at least one plan for any service before your applications can use it.</p>
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+1. Log into the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
 using your User Account and Authentication (UAA) administrator credentials.
 You can find these credentials in the Pivotal Application Service (PAS) tile in Ops Manager in the **Credentials** tab.
 
-1. Click **New Plan** on the SSO dashboard to create a new SSO service plan.
+1. Click **New Plan** on the SSO Operator Dashboard to create a new SSO service plan.
 
 	<%= image_tag 'images/managing_create_plan.png' %>
 
@@ -65,7 +65,7 @@ application configurations and resources associated with the plan.
 It also deletes the associated service instances and service bindings.
 You must rebind any applications bound to the deleted service instances to new service instances.</p>
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN`
 using your UAA administrator credentials. You can find these credentials in your
 Pivotal Application Service tile in Ops Manager under the Credentials tab.
 

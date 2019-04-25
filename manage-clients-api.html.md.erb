@@ -25,16 +25,16 @@ Do not use the UAAC to do the following:
 
 + Create clients—Do not create clients through UAAC because additional metadata is required for their usage by SSO.
 
-+ Make most types of updates—Most updates for UAA Identity Zone clients can be made through the SSO developer dashboard.
++ Make most types of updates—Most updates for UAA Identity Zone clients can be made through the SSO Developer Dashboard.
 
 ###<a id="when-not"></a>When to Use UAAC
 
-Some updates cannot be done through the SSO developer dashboard and so must be made through the UAAC.
+Some updates cannot be done through the SSO Developer Dashboard and so must be made through the UAAC.
 You need to use the UAAC if you want to:
 
-+ Add multiple grant types. The SSO developer dashboard only allows one grant type per client.
++ Add multiple grant types. The SSO Developer Dashboard only allows one grant type per client.
 
-+ Set a configuration to a value that is not listed on the SSO developer dashboard.
++ Set a configuration to a value that is not listed on the SSO Developer Dashboard.
 
 ## <a id="creating"></a> Create an Admin Client
 
@@ -53,8 +53,8 @@ For information, see <a href="./manage-service-plans-api.html">Updating Service 
 1. Target an org and space that your service plan is visible in.
 1. If you have not already created a service instance for your service plan, create one now.
    For how to create an instance, see [Create a Service Instance](./manage-service-instances.html#create-svc-instance).
-   The service instance exposes the SSO developer dashboard.
-1. Log in to the SSO developer dashboard as an administrator.
+   The service instance exposes the SSO Developer Dashboard.
+1. Log in to the SSO Developer Dashboard as an administrator.
    You can find the dashboard URL by using Apps Manager or `cf service SERVICE-INSTANCE-NAME`.
 1. Click **New App**.
 1. Enter an **App Name**.
@@ -91,11 +91,11 @@ For information, see <a href="./manage-service-plans-api.html">Updating Service 
 ## <a id="updating"></a> Update Clients with UAAC
 
 Use the UAAC to update a client to have multiple grant types
-or set a special value that is not available on the SSO developers dashboard. 
+or set a special value that is not available on the SSO Developer Dashboard. 
 
 The example shown here adds the `client credentials` grant type
 and the corresponding client credentials `authorities` to an existing web-app
-configured via SSO developers dashboard.
+configured via SSO Developer Dashboard.
 
 1. Install the UAAC.
     <pre class="terminal">
@@ -165,7 +165,7 @@ run the following command:
     uaac client get MY-WEB-APP-ID
     ```
 
-    Where `MY-WEB-APP-ID` is your web app's App ID. You can obtain this in the SSO developer dashboard.<br><br>
+    Where `MY-WEB-APP-ID` is your web app's App ID. You can obtain this in the SSO Developer Dashboard.<br><br>
 
     For example: 
     <pre class="terminal">

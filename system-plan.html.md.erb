@@ -40,7 +40,7 @@ for use by other developers.
 PCF administrators follow the steps below to enable the system plan and provide
 access to app developers:
 
-1. Log into the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using
+1. Log into the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using
 your User Account and Authentication (UAA) administrator credentials.
 In your Pivotal Application Service tile in Ops Manager, the **Domain** settings show your
 system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
@@ -61,7 +61,7 @@ For more information, see [Bind a PCF App](./configure-apps/index.html#bind).
 
 1. If your app is a pipeline or a script that runs external to PCF but calls PCF APIs,
    do the following:
-	1. Follow the instructions to [Register an Externally Hosted App Using the SSO Dashboard](./configure-apps/index.html#register-dashboard)
+	1. Follow the instructions to [Register an Externally Hosted App Using the SSO Developer Dashboard](./configure-apps/index.html#register-dashboard)
 	   and use the guidelines below:
 		* Choose **Native App** for your application type.
 		* In the app configuration, set a value for the **Refresh token lifetime**
@@ -70,7 +70,7 @@ For more information, see [Bind a PCF App](./configure-apps/index.html#bind).
 	   presence, embed a refresh token instead of hardcoding your credentials:
 		1. Run `uaac token sso get`.
 		1. At the prompts, enter the Client ID and Secret from the **Next Steps**
-		   section of the SSO dashboard. Copy the authentication URL from the command output.
+		   section of the SSO Developer Dashboard. Copy the authentication URL from the command output.
 		1. Paste the authentication URL into a browser, and log in using your
 		   UAA Admin Credentials.
 		1. Copy the **Temporary Authentication Code** from the browser into the

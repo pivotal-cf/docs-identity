@@ -42,7 +42,7 @@ Follow the steps below to set up relying party in Azure AD.
 
 1. Under **Reply URLs**, configure and save the URI of the form `https://AUTH_DOMAIN/login/callback/ORIGIN_KEY` where:
   - `AUTH_DOMAIN` is the Auth Domain setting you entered when you created the service plan that you are integrating with Azure AD.
-  - `ORIGIN_KEY` is based on the **Identity Provider Name** you set in the SSO dashboard in **Set Up OIDC Identity Provider in SSO** as shown below. Do not use spaces or uppercase letters in this value. You might need to change this later.
+  - `ORIGIN_KEY` is based on the **Identity Provider Name** you set in the SSO Operator Dashboard in **Set Up OIDC Identity Provider in SSO** as shown below. Do not use spaces or uppercase letters in this value. You might need to change this later.
 
 	<%= image_tag '../images/azure-oidc-reply.png' %>
 
@@ -58,4 +58,3 @@ For example, in the App ID URI `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b
 Record these values for the [next step](./config-sso.html), configuring your OpenID Connect identity provider in SSO.
 
 	<%= image_tag '../images/azure-oidc-connect-string.png' %>
-
