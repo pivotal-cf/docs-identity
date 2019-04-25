@@ -7,7 +7,11 @@ This topic describes how Pivotal Cloud Foundry (PCF) administrators configure a
 Single Sign-On (SSO) service plan to manage user access to PCF apps.
 Users may have accounts in the internal user store or in external identity providers.
 
-## <a id='config-int-store'></a> Configure Internal User Store
+## <a id='config-int-prov'></a> Manage Internal User Store
+
+By default, each SSO service plan comes with an internal user store, which stores user accounts natively in User Account and Authentication (UAA).
+
+### <a id='config-int-store'></a> Configure Internal User Store
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
 Find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
@@ -26,7 +30,7 @@ Find these credentials in your Pivotal Application Service tile in Ops Manager u
 
 1. Click **Save Identity Provider**.
 
-## <a id='add-to-int'></a> Add Internal Users From the Command Line
+### <a id='add-to-int'></a> Add Internal Users From the Command Line
 
 You can use the **Internal Users** [admin pane](./manage-users.html#internal) to send invitations to users, so that they can add themselves to the internal user store.
 But you cannot use the admin pane to add users directly.
@@ -73,7 +77,7 @@ Group name:  YOUR-GROUP
 To add a member to your new group, use the following command.
 <pre class="terminal">$ uaac member add YOUR-GROUP YOUR-USER</pre>
 
-## <a id='passwd-policy'></a> Define Password Policy for the Internal User Store
+### <a id='passwd-policy'></a> Define Password Policy for the Internal User Store
 
 Administrators can define the password policy for SSO users in the internal user store.
 The password policy enforces rules that restrict the kinds of passwords users can create.
@@ -141,7 +145,7 @@ See the following sets of instructions for how to configure the SSO service to u
     * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
 <p class="note"><strong>Note</strong>: If you choose to upload the Identity Provider Metadata as an XML file, you will be unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+1. Under **Advanced Settings**, and then under **Attribute Mappings**, configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
 	* Select a **User Scheme Attribute** from the dropdown.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
@@ -153,7 +157,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 1. Click **Create Identity Provider** to save the identity provider.
 
-<p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click on <strong>Configure SAML Service Provider</strong> on the Identity Providers page.</p>
+<p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click on <strong>Configure SAML Service Provider</strong> on the Identity Providers page. Please see <a href="#config-ext-settings">Configure Service Provider SAML Settings</a> above for more information.</p>
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
@@ -247,12 +251,14 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 ## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
-An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider. An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
+An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider.
+An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
 
 For information about how to create resource permission mappings,
 see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> below.
 
-<p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
+<p class="note"><strong>Note</strong>: For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups,
+the app must request the <code>roles</code> claim, and the Group Whitelist must include the external groups.</p>
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
    You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
@@ -261,7 +267,7 @@ see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping<
 
 1. Click on the name of your external identity provider and select **Group Whitelist** from the dropdown.
 
-1. Add a group name from your external identity provider.
+1. Add a group name from your external identity provider. Please note that regex is allowed; for example, `*` translates to all groups.
 
 1. Click **Save Group Whitelist**.
 
