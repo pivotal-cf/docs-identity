@@ -7,11 +7,19 @@ This topic describes how Pivotal Cloud Foundry (PCF) administrators configure a
 Single Sign-On (SSO) service plan to manage user access to PCF apps.
 Users can have accounts in the internal user store or in external identity providers.
 
-## <a id='config-int-prov'></a> Manage Internal User Store
+## <a id='config-int-prov'></a> Manage the Internal User Store
 
 By default, each SSO service plan comes with an internal user store, which stores user accounts natively in User Account and Authentication (UAA).
 
-### <a id='config-int-store'></a> Configure Internal User Store
+You can manage the internal user store in the following ways:
+
++ [Configure the Internal User Store](#config-int-store)
++ [Add Internal Users From the Command Line](#add-to-int)
++ [Define Password Policy for the Internal User Store](#passwd-policy)
+
+### <a id='config-int-store'></a> Configure the Internal User Store
+
+Follow the steps below to configure the internal user store: 
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
 Find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
@@ -128,6 +136,8 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
+Follow the steps below to add an external SAML identity provider: 
+
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
@@ -159,8 +169,9 @@ See the following sets of instructions for how to configure the SSO service to u
 
 1. Click **Create Identity Provider** to save the identity provider.
 
-<p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click <strong>Configure SAML Service Provider</strong> on the Identity Providers page.
-See <a href="#config-ext-settings">Configure Service Provider SAML Settings</a> above for more information.</p>
+<p class="note"><strong>Note:</strong> To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click <strong>Configure SAML Service Provider</strong> on the Identity Providers page.
+For more information, see <a href="#config-ext-settings">Configure Service Provider SAML Settings</a> above.
+</p>
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
@@ -204,7 +215,7 @@ LDAP service accounts should not be subject to manual lockouts, such as lockouts
 LDAP service accounts should not be subject to automated deletions as disruption to these service accounts could prevent user logins.
 </p>
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator <%# "admin" is preferred. %>credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -255,12 +266,13 @@ LDAP service accounts should not be subject to automated deletions as disruption
 ## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
 An admin can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider.
-An app can then retrieve from the ID token the list of external groups that the user belongs to. An admin can use these groups to assign permissions by group rather than by individual users.
+
+An app can retrieve from the ID token the list of external groups that the user belongs to. An admin can use these groups to assign permissions by group rather than by individual users.
 
 For information about how to create resource permission mappings,
 see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> below.
 
-<p class="note"><strong>Note</strong>: For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the roles claim, and the Group Whitelist must include the external groups.</p>
+<p class="note"><strong>Note:</strong>For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the roles claim and the Group Whitelist must include the external groups.</p>
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
    You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
@@ -269,7 +281,7 @@ see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping<
 
 1. Click on the name of your external identity provider and select **Group Whitelist** from the dropdown.
 
-1. Add a group name from your external identity provider. Regex is allowed: you can use `*` to refer to all groups.
+1. Add a group name from your external identity provider. You can use regex to add group names. For example, you can use `*` to refer to all groups.
 
 1. Click **Save Group Whitelist**.
 
