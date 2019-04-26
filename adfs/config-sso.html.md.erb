@@ -37,17 +37,16 @@ Follow the steps below to configure a new identity provider.
 1. Click **SAML File Metadata (optional)** and then click **Upload Identity Provider Metadata** to upload the XML metadata that you downloaded from your ADFS server.
 
 1. Under **Advanced SAML Settings**, click **Attribute Mappings** to enter the mappings. These mappings determine how user attributes are propagated from the identity provider (ADFS) to the service provider (SSO).
-In particular, you might want to propagate ADFS's SAML groups to SSO's `external_groups`. <%# Is this commanded in the next step? %>
+In particular, you might want to propagate ADFS's SAML groups to SSO's `external_groups`.
+	* Under **User Schema Attribute**, select **external_groups**.
+	* If you followed the steps in [Create Custom Value Groups](https://docs.pivotal.io/p-identity/1-8/adfs/config-adfs.html#groups), type `groups` under **Attribute Name**.
+	* If you did not follow the steps in [Create Custom Value Groups](https://docs.pivotal.io/p-identity/1-8/adfs/config-adfs.html#groups), type `http://schemas.xmlsoap.org/claims/group` under **Attribute Name**.<br><br>
 
-1. Under **User Schema Attribute**, select **external_groups**.
-
-1. If you followed the steps in [Create Custom Value Groups](https://docs.pivotal.io/p-identity/1-8/adfs/config-adfs.html#groups), type `groups` under **Attribute Name**.<br>
-If you did not, type `http://schemas.xmlsoap.org/claims/group` under **Attribute Name**.<br><br>
-An attribute mapping with a customized SAML assertion value looks like this:<br><br>
+	An attribute mapping with a customized SAML assertion value looks like this:<br><br>
 
 	<%= image_tag '../images/customized.png' %>
 
-	An attribute mapping with a non-customized SAML assertion value looks like this:
+	An attribute mapping with a non-customized SAML assertion value looks like this:<br><br>
 
 	<%= image_tag '../images/non-customized.png' %>
 
