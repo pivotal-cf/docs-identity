@@ -5,7 +5,7 @@ owner: Identity Service
 
 This topic describes how Pivotal Cloud Foundry (PCF) administrators configure a
 Single Sign-On (SSO) service plan to manage user access to PCF apps.
-Users may have accounts in the internal user store or in external identity providers.
+Users can have accounts in the internal user store or in external identity providers.
 
 ## <a id='config-int-store'></a> Configure Internal User Store
 
@@ -42,7 +42,7 @@ To create new internal user accounts directly, supplying the user's name, email 
 
 1. Record the **App ID** and **App Secret**. These are used as your client ID and client secret.
 
-1. Target the auth domain of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO dashboard.
+1. Target the authentication domain of your SSO service plan. This is the URL you provided when creating a Service Plan in the SSO Operator Dashboard.
 <pre class="terminal">$ uaac target <span>https</span>://YOUR-AUTH-DOMAIN.login.YOUR-SYSTEM-DOMAIN</pre>
 
 1. Fetch the **App ID** token for the admin client created above.
@@ -78,8 +78,8 @@ To add a member to your new group, use the following command.
 Administrators can define the password policy for SSO users in the internal user store.
 The password policy enforces rules that restrict the kinds of passwords users can create.
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-   You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+   You can find these credentials in your Pivotal Application Service tile in Ops Manager under the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -103,8 +103,8 @@ The password policy enforces rules that restrict the kinds of passwords users ca
 
 For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider. The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -124,8 +124,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -140,9 +139,11 @@ You can find these credentials in your PAS tile in Ops Manager under the **Crede
 1. Enter the external identity provider metadata in one of the following ways:
     * Option 1: Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
     * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
-<p class="note"><strong>Note</strong>: If you choose to upload the Identity Provider Metadata as an XML file, you will be unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
+<p class="note"><strong>Note</strong>: Uploading the Identity Provider Metadata as an XML file makes you unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+1. Under **Advanced Settings**, click  **Attribute Mappings**.
+
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first names, last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
 	* Select a **User Scheme Attribute** from the dropdown.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
@@ -154,12 +155,12 @@ You can find these credentials in your PAS tile in Ops Manager under the **Crede
 
 1. Click **Create Identity Provider** to save the identity provider.
 
-<p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click on <strong>Configure SAML Service Provider</strong> on the Identity Providers page.</p>
+<p class="note"><strong>Note</strong>: To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click <strong>Configure SAML Service Provider</strong> on the Identity Providers page.
+See <a href="#config-ext-settings">Configure Service Provider SAML Settings</a> above for more information.</p>
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select Manage Identity Providers from the dropdown.
 
@@ -191,16 +192,15 @@ You can find these credentials in your PAS tile in Ops Manager under the **Crede
 
 ### <a id='config-ext-ldap'></a> Add an LDAP Identity Provider
 
-When integrating with an external identity provider for LDAP, authentication becomes chained. An authentication attempt with a user's credentials is first attempted against the internal user store before the external LDAP identity provider. To avoid username collision, do not bootstrap or create users in the UAA directly. You may only have one LDAP external identity provider per service plan.
+When integrating with an external identity provider for LDAP, authentication becomes chained. An authentication attempt with a user's credentials is first attempted against the internal user store before the external LDAP identity provider. To avoid username collision, do not bootstrap or create users in the UAA directly. You can only have one LDAP external identity provider per service plan.
 
 <p class="note warning">
-<strong>WARNING: </strong> Pivotal recommends against reusing LDAP service accounts across environments.
-LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users utilizing the same account.
-Also, LDAP service accounts should not be subject to automated deletions, since disruption to these service accounts could prevent user logins.
+<strong>Warning:</strong> Pivotal recommends against reusing LDAP service accounts across environments.
+LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users using the same account.
+LDAP service accounts should not be subject to automated deletions as disruption to these service accounts could prevent user logins.
 </p>
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator <%# "admin" is preferred. %>credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -220,7 +220,7 @@ You can find these credentials in your PAS tile in Ops Manager under the **Crede
   1. Under the **Users** section, enter the **Search Base**.
   1. Under the **Users** section, you may also enter in **Search Filter** (Optional).
   1. Under the **Users** section, you may select **Just in Time Provisioning**. If this option is enabled, users will be created at login time. If this option is not enabled, users must be created prior to being able to login.
-  1. Under the **Groups** section, you may enter in enter the **Search Base** (optional) and **Search Filter** (optional) in order to associate LDAP groups with your user. If you wish to use the `memberOf` attribute on user objects, you can enter in the value `memberOf` as the Search Base instead of an LDAP path for a group OU, and the Search Filter value will be ignored.
+  1. Under the **Groups** section, you may enter in enter the **Search Base** (optional) and **Search Filter** (optional) in order to associate LDAP groups with your user. If you want to use the `memberOf` attribute on user objects, you can enter in the value `memberOf` as the Search Base instead of an LDAP path for a group OU, and the Search Filter value will be ignored.
 
 1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
   - Select a **User Scheme Attribute** from the dropdown.
@@ -236,7 +236,7 @@ You can find these credentials in your PAS tile in Ops Manager under the **Crede
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -244,27 +244,28 @@ You can find these credentials in your PAS tile in Ops Manager under the **Crede
 
 1. Click **Delete** at the bottom of the page.
 
-1. In the popup that appears, click **Delete Identity Provider** to confirm that you want to delete the identity provider, along with all of its configurations.
+1. In the pop-up that appears, click **Delete Identity Provider** to confirm that you want to delete the identity provider, along with all of its configurations.
 
-<p class="note warning"><strong>Note</strong>: Deleting an external identity provider deletes all of its configurations. Users will no longer be able to authenticate using the external identity provider. This action cannot be undone.</p>
+<p class="note warning"><strong>Note:</strong> Deleting an external identity provider deletes all of its configurations, preventing users from authenticating through the external identity provider. This action cannot be undone.</p>
 
 ## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
-An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider. An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
+An admin can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider.
+An app can then retrieve from the ID token the list of external groups that the user belongs to. An admin can use these groups to assign permissions by group rather than by individual users.
 
 For information about how to create resource permission mappings,
 see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> below.
 
-<p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
+<p class="note"><strong>Note</strong>: For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the roles claim, and the Group Whitelist must include the external groups.</p>
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
    You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click on the name of your external identity provider and select **Group Whitelist** from the dropdown.
 
-1. Add a group name from your external identity provider.
+1. Add a group name from your external identity provider. Regex is allowed: you can use `*` to refer to all groups.
 
 1. Click **Save Group Whitelist**.
 
@@ -278,8 +279,8 @@ see [Create or Edit Resources](./manage-resources.html#create-resources).
 After resource permissions mappings are configured and a user authenticates,
 the user's group memberships is mapped to scopes in the resulting token.
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -305,8 +306,8 @@ see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Z
 
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -316,12 +317,12 @@ You can find these credentials in your PAS tile in Ops Manager under the **Crede
 
 1. Click **Delete** at the bottom of the page.
 
-1. On the popup, click **Delete Permissions Mapping** to delete the resource.
+1. On the pop-up, click **Delete Permissions Mapping** to delete the resource.
 
 <p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
 
 <p class="note"><strong>Note:</strong> If you want to automate the above procedure,
-deleting resource permissions mappings, you can use the UAA API to unmap a group mapping.
-See Unmap in the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry UAA API</a> documentation.
-To do this automation, you need an identity zone admin client; for information,
+deleting resource permissions mappings, you can use the UAA API to un-map a group mapping.
+See the <a href="http://docs.cloudfoundry.org/api/uaa/index.html#unmap">Cloud Foundry documentation</a> for more information.
+To do this automation, you need an identity zone admin client. For more information,
 see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.</p>
