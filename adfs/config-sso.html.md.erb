@@ -4,15 +4,26 @@ owner: Identity Service
 ---
 
 This topic describes how to add an Active Directory Federation Services (ADFS) external SAML identity provider to your Pivotal Single Sign-On (SSO) service plan.
-For information about how to add a SAML provider in general, refer to [Add a SAML Provider](../configure-id-providers.html#config-saml-prov).
+
+
+## <a id='overview'></a> Overview
+When you integrate ADFS with your deployment, you must configure an ADFS external SAML identity provider with
+specific settings. 
+For information about how to add an external SAML identity provider in general, see [Add a SAML Provider](../configure-id-providers.html#config-saml-prov).
+
+To configure an ADFS external SAML identity provider, do the following:
+
+1. [Download Identity Provider Metadata](#download-metadata)
+1. [Create a New SAML Identity Provider](#new-id-prov)
+1. [Configure Your New Identity Provider](#config-id-prov)
 
 ## <a id='download-metadata'></a> Download Identity Provider Metadata
 
 Download the metadata from your Active Directory Federation Services (ADFS) server at the following URL: `https://YOUR-ADFS-HOSTNAME/federationmetadata/2007-06/federationmetadata.xml`
 
-## <a id='new-id-prov'></a> Create a New Identity Provider
+## <a id='new-id-prov'></a> Create a New SAML Identity Provider
 
-Follow the steps below to create a new identity provider.
+Follow the steps below to create a new identity provider:
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 
@@ -26,21 +37,24 @@ Follow the steps below to create a new identity provider.
 
 ## <a id='config-id-prov'></a> Configure Your New Identity Provider
 
-Follow the steps below to configure a new identity provider.
+Follow the steps below to configure a new identity provider:
 
 1. Enter an identity provider name below **Identity Provider Name**.
 
-1. Type `SAML 2.0` below **Identity Provider Type**.
-
 1. (Optional) Enter a description under **Identity Provider Description**. This is displayed to space developers when they select an identity provider for their app.
+
+1. Select **SAML 2.0** from the dropdown under **Identity Provider Type**.
 
 1. Click **SAML File Metadata (optional)** and then click **Upload Identity Provider Metadata** to upload the XML metadata that you downloaded from your ADFS server.
 
-1. Under **Advanced SAML Settings**, click **Attribute Mappings** to enter the mappings. These mappings determine how user attributes are propagated from the identity provider (ADFS) to the service provider (SSO).
-In particular, you might want to propagate ADFS's SAML groups to SSO's `external_groups`.
-	* Under **User Schema Attribute**, select **external_groups**.
-	* If you followed the steps in [Create Custom Value Groups](https://docs.pivotal.io/p-identity/1-8/adfs/config-adfs.html#groups), type `groups` under **Attribute Name**.
-	* If you did not follow the steps in [Create Custom Value Groups](https://docs.pivotal.io/p-identity/1-8/adfs/config-adfs.html#groups), type `http://schemas.xmlsoap.org/claims/group` under **Attribute Name**.<br><br>
+1. Under **Advanced Settings**, click **Attribute Mappings (optional)**.
+1.  Configure **User Attributes** to determine how user attributes are propagated from the ADFS identity provider to the SSO service provider.
+For example, you might want to map ADFS's SAML groups to SSO's `external_groups`. <br>
+To map ADFS's SAML groups to SSO's `external_groups`, do the following:
+
+	1. Under **User Schema Attribute**, select **external_groups**.
+	2. If you followed the steps in [Create Custom Value Groups](https://docs.pivotal.io/p-identity/1-8/adfs/config-adfs.html#groups), type `groups` under **Attribute Name**. <br>
+	If you did not follow the steps in [Create Custom Value Groups](https://docs.pivotal.io/p-identity/1-8/adfs/config-adfs.html#groups), type `http://schemas.xmlsoap.org/claims/group` under **Attribute Name**.<br><br>
 
 	An attribute mapping with a customized SAML assertion value looks like this:<br><br>
 
