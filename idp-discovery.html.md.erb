@@ -5,7 +5,7 @@ owner: Identity
 
 This topic describes Identity Provider (IdP) Discovery and how to configure it for your Pivotal Cloud Foundry (PCF) apps that use the Single Sign-On (SSO) service.
 
-## <a id="definition"></a> What it Does
+## <a id="definition"></a> What IdP Discovery Does
 
 If users with different email domains access the same PCF app, you can configure SSO to authenticate them through different identity providers.
 
@@ -15,7 +15,10 @@ When a user logs in to an app, an account chooser autofills their email address 
 
 ### Example
 
-As an example, consider an app where some users log in with `@example.com` username and some with `@gmail.com` username. With IdP Discovery, users with both email domains can log in from the same login page, and do not have to see or choose from a list of login options that covers all the domains. IdP Discovery ascertains each user's IdP from their email domain.
+As an example, consider an app where some users log in with `@example.com` username and some with `@gmail.com` username.
+With IdP Discovery, users with both email domains can log in from the same login page
+and do not have to see or choose from a list of login options that covers all the domains.
+IdP Discovery ascertains each user's IdP from their email domain.
 
 ## <a id="how-to"></a> Enable IdP Discovery
 
@@ -36,9 +39,9 @@ IdP Discovery is associated with a service plan, and configured for the apps bou
 
 1. Click the **Manage** link under the service name, and edit the app configuration by selecting the required Identity Providers.
 
-After these steps, the login page will prompt for the username first:
+After these steps, the login page prompts for the username first:
 ![IdP Discovery Login Page](images/idp-discovery-login-page.png)
 
-And if the user enters their `@example.com` username, they will be redirected to the Okta login page:
+If the user enters their `@example.com` username, they are redirected to the Okta login page:
 ![IdP Discovery Okta Login Page](images/idp-discovery-okta-login-page.png)
 
