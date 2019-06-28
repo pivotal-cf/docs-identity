@@ -11,13 +11,16 @@ Because SSO service is based on the OAuth protocol, any app that uses SSO must b
 
 ### <a id="app-integration-java"></a>Java Apps 
 
-If you are using Java, see [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps).
+If you are using Java, see the [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository.
 These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/) 
 for all four [app types](../determine-type.html).
 These apps use the SSO Service Connector, which auto-configures the app for OAuth. 
 For more information about the SSO Service Connector, see
 [spring-cloud-sso-connector](https://github.com/pivotal-cf/spring-cloud-sso-connector)
 on GitHub.
+For Spring Boot 1.5, you can use [spring-cloud-sso-connector](https://github.com/pivotal-cf/spring-cloud-sso-connector).
+And for Spring Boot 2.1, you can use [java-cfenv-boot-pivotal-sso](https://github.com/pivotal-cf/java-cfenv/tree/master/java-cfenv-boot-pivotal-sso).
+See the `spring-boot-2.1` and `spring-boot-1.5` branches of the [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository for examples.
 
 After binding the app to an SSO service instance,
 you must restart the app for the new SSO configuration to take effect.
