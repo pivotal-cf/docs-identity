@@ -237,7 +237,7 @@ LDAP service accounts should not be subject to automated deletions as disruption
   1. Under the **Users** section, you may select **Just in Time Provisioning**. If this option is enabled, users will be created at login time. If this option is not enabled, users must be created prior to being able to login.
   1. Under the **Groups** section, you may enter in enter the **Search Base** (optional) and **Search Filter** (optional) in order to associate LDAP groups with your user. If you want to use the `memberOf` attribute on user objects, you can enter in the value `memberOf` as the Search Base instead of an LDAP path for a group OU, and the Search Filter value will be ignored.
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. Note that the only configurable attributes for LDAP are `given_name`, `family_name`, and `phone_number` (configuring `email` and `external_groups` has no effects on your LDAP integration). They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
   - Select a **User Scheme Attribute** from the dropdown.
   - Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
 
@@ -248,6 +248,10 @@ LDAP service accounts should not be subject to automated deletions as disruption
 1. (Optional) Check **Persist Custom Attributes** if you want to expose custom user attributes through the `/userinfo` endpoint.  Your app must also have the `user_attributes` scope assigned in order for the custom attributes to appear.
 
 1. Click **Create Identity Provider** to save the identity provider.
+
+1. (Optional) Next steps:
+  1. To map existing LDAP user group memberships to SSO resources, [create resource permissions mapping](#create-resource-perm) for your LDAP identity provider (note that the **Group Name** values need to be fully qualified LDAP paths such as `cn=xxx-group,ou=users,o=yyy,dc=zzz,dc=com`).
+  1. To propagate the existing LDAP user group memberships into the `roles` claim of the OpenID tokens issued by the Single Sign-On service, [configure group whitelist](#config-whitelist) for your LDAP identity provider.
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
@@ -272,7 +276,7 @@ An app can retrieve from the ID token the list of external groups that the user 
 For information about how to create resource permission mappings,
 see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> below.
 
-<p class="note"><strong>Note:</strong>For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the roles claim and the Group Whitelist must include the external groups.</p>
+<p class="note"><strong>Note:</strong>For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the <code>roles</code> claim and the Group Whitelist must include the external groups.</p>
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
    You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
