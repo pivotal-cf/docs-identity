@@ -10,16 +10,15 @@ owner: Identity Service
           <ul>
             <li><a href="#admin">Create an Admin Client</a></li>
             <li><a href="#zone-admin">Create a UAA Identity Zone Admin Client</a></li>
-            <ul>
-              <li><a href="#enable-default-idp">Enable Default Identity Provider (IDP)</a></li>
-              <li><a href="#disable-sso-plans">Disable SSO Plans</a></li>
-            </ul>
           </ul>
         <li><a href="#updating">Update UAA Identity Zone Configurations with the API</a></li>
-        <li><a href="#branding">Modify Branding</a></li>
-        <li><a href="#default-groups">Add Default Groups for Users</a></li>
-        <li><a href="#rotate-keys">Rotate JSON Web Token (JWT) Signing Keys</a></li>
-
+        <ul>
+          <li><a href="#enable-default-idp">Enable Default Identity Provider (IDP)</a></li>
+          <li><a href="#disable-sso-plans">Disable SSO Plans</a></li>
+          <li><a href="#branding">Modify Branding</a></li>
+          <li><a href="#default-groups">Add Default Groups for Users</a></li>
+          <li><a href="#rotate-keys">Rotate JSON Web Token (JWT) Signing Keys</a></li>
+        </ul>    
     </ul>
 </div>
 
@@ -216,7 +215,7 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 
  For information about <code>active</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a> in the UAA documentation.
 
-<h2> <a id="branding"></a> Modify Branding</h2>
+<h3> <a id="branding"></a> Modify Branding</h3>
 
 You can optionally modify the branding of your login page by changing your company name, logos, legal text, and legal links. <br><br>
 
@@ -241,7 +240,7 @@ An example branding section is shown below.<br>
     },
 </pre>
 
-<h2><a id="default-groups"></a> Add Default Groups for Users</h2>
+<h3><a id="default-groups"></a> Add Default Groups for Users</h3>
 
 Optionally, you can add additional default groups for all users.
 You do not need to
@@ -270,7 +269,7 @@ Users will automatically have these scopes though they are not explicitly assign
     },
 </pre>
 
-<h2><a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys</h2>
+<h3><a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys</h3>
 
 To rotate JWT signing keys, do the following:<br><br>
 
