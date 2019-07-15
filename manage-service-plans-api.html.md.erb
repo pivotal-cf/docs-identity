@@ -185,10 +185,10 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
  For PCF v2.4 or later, a default IDP can be set so that end users are automatically
  redirected to an appropriate enterprise IDP. <br>
 
- To set a default IDP, do the following:<br>
+ To set a default IDP, do the following:
 
  <ol>
-   <li>Follow the steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+   <li>Follow steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
 
    <li>
      In step 4, add the following line to the config section in the JSON blob:
@@ -205,10 +205,10 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
  For PCF v2.4 and later, SSO plans that are no longer in use can be disabled.
  Disabled plans can be re-enabled later when they need to be used again. <br>
 
- To disable SSO plans, do the following: <br>
+ To disable SSO plans, do the following:
 
  <ol>
- <li>Follow the steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+ <li>Follow steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
 
 <li> In step 4, add the following line to the config section in the JSON blob:
       <pre>"active": false</pre>
@@ -222,10 +222,12 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 <h2> <a id="branding"></a> Modify Branding</h2>
 
 You can optionally modify the branding of your login page by changing your company
-name, logos, legal text, and legal links. <br>
+name, logos, legal text, and legal links.
+
+To modify branding of the login page, do the following:
 
 <ol>
-  <li>Follow the steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
     In step 4, add or modify the branding section in the JSON blob according
     to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.
@@ -236,18 +238,18 @@ name, logos, legal text, and legal links. <br>
       such as <code>base64 image.png</code>.
     </p>
 
-    <pre>
-      "branding": {
-          "companyName": "Pivotal",
-          "productLogo": "(base64 of png image here, will show up as image on login page)",
-          "squareLogo": "(base64 of png image here, will show up as browser icon)",
-          "footerLegalText": "©2017 Pivotal Software, Inc. All Rights Reserved.",
-          "footerLinks": {
-            "Privacy Policy": "https://run.pivotal.io/policies/privacy-policy/",
-            "Terms of Service": "https://run.pivotal.io/policies/terms-of-service",
-            "Up to three links, label here": "https://link-here"
-          }
-        },
+  <pre>
+  "branding": {
+      "companyName": "Pivotal",
+      "productLogo": "(base64 of png image here, will show up as image on login page)",
+      "squareLogo": "(base64 of png image here, will show up as browser icon)",
+      "footerLegalText": "©2017 Pivotal Software, Inc. All Rights Reserved.",
+      "footerLinks": {
+        "Privacy Policy": "https://run.pivotal.io/policies/privacy-policy/",
+        "Terms of Service": "https://run.pivotal.io/policies/terms-of-service",
+        "Up to three links, label here": "https://link-here"
+      }
+  },
     </pre>
   </li>
   <li>Complete the procedure by following steps 5-6.</li>
@@ -260,6 +262,8 @@ You do not need to do manual group assignment or group mappings for these groups
 Use default groups only for universal scopes that all users can have, such as
 for a global read-only resource.<br>
 
+To add default groups for users, do the following:
+
 <ol>
   <li>Follow the steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
@@ -271,22 +275,22 @@ for a global read-only resource.<br>
       Users will automatically have these scopes though they are not explicitly assigned to users.
     </p>
 
-    <pre>
-      "userConfig": {
-          "defaultGroups": [
-            "openid",
-            "password.write",
-            "uaa.user",
-            "approvals.me",
-            "profile",
-            "roles",
-            "user_attributes",
-            "uaa.offline_token",
-            "new.group.everyone.should.have",
-            "another.new.group.everyone.should.have"
-          ]
-        },
-    </pre>
+  <pre>
+  "userConfig": {
+      "defaultGroups": [
+        "openid",
+        "password.write",
+        "uaa.user",
+        "approvals.me",
+        "profile",
+        "roles",
+        "user_attributes",
+        "uaa.offline_token",
+        "new.group.everyone.should.have",
+        "another.new.group.everyone.should.have"
+      ]
+  },
+  </pre>
   </li>
   <li>Complete the procedure by following steps 5-6.</li>
 </ol>
@@ -305,12 +309,12 @@ To rotate JWT signing keys, do the following:<br><br>
     Take the value of the generated private key and make it a single
     line of text, replacing all new lines with <code>\n</code>. For example:
 
-    <pre>
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
-    5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x
-    -----END RSA PRIVATE KEY-----
-    </pre>
+  <pre>
+  -----BEGIN RSA PRIVATE KEY-----
+  MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
+  5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x
+  -----END RSA PRIVATE KEY-----
+  </pre>
 
     Becomes:
 
@@ -332,20 +336,20 @@ To rotate JWT signing keys, do the following:<br><br>
       You may need to restart applications that do offline validation for the new signing keys to take effect.
     </p>
 
-    <pre>
-    "tokenPolicy": {
-      "accessTokenValidity": -1,
-      "refreshTokenValidity": -1,
-      "jwtRevocable": false,
-      "refreshTokenUnique": false,
-      "refreshTokenFormat": "jwt",
-      "activeKeyId": "first-signing-key",
-      "keys" : {
-              "first-signing-key" : {
-                "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
-               }
-      },
-    </pre>
+  <pre>
+  "tokenPolicy": {
+    "accessTokenValidity": -1,
+    "refreshTokenValidity": -1,
+    "jwtRevocable": false,
+    "refreshTokenUnique": false,
+    "refreshTokenFormat": "jwt",
+    "activeKeyId": "first-signing-key",
+    "keys" : {
+            "first-signing-key" : {
+              "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
+             }
+    },
+  </pre>
     For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.
   </li>
   <li>Complete the procedure by following steps 5-6.</li>
