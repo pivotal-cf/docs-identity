@@ -21,16 +21,15 @@ owner: Identity Service
         <li><a href="#branding">Modify Branding</a></li>
         <li><a href="#default-groups">Add Default Groups for Users</a></li>
         <li><a href="#rotate-keys">Rotate JSON Web Token (JWT) Signing Keys</a></li>
-
     </ul>
 </div>
 
 This topic describes how Pivotal Cloud Foundry (PCF) administrators or plan administrators can manage Single Sign-On (SSO)
-service plan configurations using the SSO dashboard or API using the User Account and Authentication Command Line Interface (UAAC)
+service plan configurations using the SSO Operator Dashboard or API using the User Account and Authentication Command Line Interface (UAAC)
 
 The SSO service for PCF manages configurations within
 the UAA and the Cloud Controller (CC) components
-of the Pivotal Application Service.
+of the Pivotal Application Service (PAS).
 Each SSO service plan ties together a CC plan and a UAA identity zone.
 
 Beginning with SSO v1.6, you can use the UAAC
@@ -48,8 +47,8 @@ Refresh tokens typically have a longer expiration time than access tokens.
 
 To configure the token policy, do the following:
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your Pivotal Application Service (PAS) tile in Ops Manager in the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+You can find these credentials in your PAS tile in Ops Manager in the **Credentials** tab.
 
 2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the drop-down menu.
 
@@ -82,7 +81,7 @@ To make UAA identity zone API calls, do the following:
 <li> Find the UAA identity zone ID by doing the following:</li>
     <ol type="a">
         <li>
-          Log in to the SSO dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
+          Log in to the SSO Operator Dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
         </li>
 
         <li>
@@ -106,13 +105,13 @@ To make UAA identity zone API calls, do the following:
     </ul>
 </li>
 <li> In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper,
-leaving just the JSON blob. Confirm that the ID in this output matches <code>YOUR-IDENTITY-ZONE-ID</code>.<br><br>
+leaving just the JSON blob. Confirm that the <code>id</code> in this output matches <code>YOUR-IDENTITY-ZONE-ID</code>.<br><br>
 
     Your remaining JSON blob looks similar to the truncated sample below:
 
     <pre>
 {
-  "id": "demo",
+  "id": "d324e405-4976-49a4-a142-cf33e19d4715",
   "subdomain": "demo",
   "config": {
     "clientSecretPolicy": {
@@ -150,7 +149,7 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>YOU
 
   A truncated example command looks similar to the following:
 
-     <pre class="terminal">$ uaac curl -k identity-zones/demo\
+     <pre class="terminal">$ uaac curl -k identity-zones/YOUR-IDENTITY-ZONE-ID\
          -X PUT \
          -H 'Content-Type: application/json' \
          -d '{
@@ -220,7 +219,7 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>YOU
 
 <h2> <a id="branding"></a> Modify Branding</h2>
 
-You can modify the branding on your login page such as your company name, logos,
+Optionally, you can modify the branding on your login page such as your company name, logos,
 legal text, and legal links.
 
 To modify branding of the login page, do the following:
@@ -353,5 +352,3 @@ To rotate JWT signing keys, do the following:<br><br>
   </li>
   <li>Complete the procedure by doing step 6.</li>
 </ol>
-
-<p>For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.</p></li>
