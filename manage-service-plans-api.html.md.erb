@@ -188,14 +188,14 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
  To set a default IDP, do the following:
 
  <ol>
-   <li>Follow steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+   <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
 
    <li>
-     In step 4, add the following line to the config section in the JSON blob:
+     In step 5, add the following line to the config section in the JSON blob:
      <pre>"defaultIdentityProvider": "YOUR-IDP"</pre>
      Where <code>YOUR-IDP</code> is the IDP you want to set as the default.
    </li>
-   <li>Complete the procedure by following steps 5-6.</li>
+   <li>Complete the procedure by doing step 6.</li>
 </ol>
 
  For information about <code>defaultIdentityProvider</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a> in the UAA documentation.
@@ -208,13 +208,13 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
  To disable SSO plans, do the following:
 
  <ol>
- <li>Follow steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+ <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
 
-<li> In step 4, add the following line to the config section in the JSON blob:
+<li> In step 5, add the following line to the config section in the JSON blob:
       <pre>"active": false</pre>
 </li>
 
-<li>Complete the procudure by following steps 5-6.</li>
+<li>Complete the procedure by doing step 6.</li>
 </ol>
 
  For information about <code>active</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a> in the UAA documentation.
@@ -227,9 +227,9 @@ name, logos, legal text, and legal links.
 To modify branding of the login page, do the following:
 
 <ol>
-  <li>Follow steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
-    In step 4, add or modify the branding section in the JSON blob according
+    In step 5, add or modify the branding section in the JSON blob according
     to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.
     An example branding section is shown below:
 
@@ -252,7 +252,7 @@ To modify branding of the login page, do the following:
   },
     </pre>
   </li>
-  <li>Complete the procedure by following steps 5-6.</li>
+  <li>Complete the procedure by doing step 6.</li>
 </ol>
 
 <h2><a id="default-groups"></a> Add Default Groups for Users</h2>
@@ -265,9 +265,9 @@ for a global read-only resource.<br>
 To add default groups for users, do the following:
 
 <ol>
-  <li>Follow the steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow the steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
-    In step 4, update the default groups section in the JSON blob according
+    In step 5, update the default groups section in the JSON blob according
     to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.
     An example default groups section is shown below:
 
@@ -292,7 +292,7 @@ To add default groups for users, do the following:
   },
   </pre>
   </li>
-  <li>Complete the procedure by following steps 5-6.</li>
+  <li>Complete the procedure by doing step 6.</li>
 </ol>
 
 <h2><a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys</h2>
@@ -320,9 +320,9 @@ To rotate JWT signing keys, do the following:<br><br>
 
   <pre><code>-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n</code></pre>
   </li>
-  <li>Follow the steps 1-3 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow the steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
-    In step 4, update the token policy section to add your new generated private key as the value for <code>signingKey</code>.
+    In step 5, update the token policy section to add your new generated private key as the value for <code>signingKey</code>.
     An example of this section is shown below:
 
     <p class="note"><strong>Note</strong>:
@@ -352,5 +352,5 @@ To rotate JWT signing keys, do the following:<br><br>
   </pre>
     For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.
   </li>
-  <li>Complete the procedure by following steps 5-6.</li>
+  <li>Complete the procedure by doing step 6.</li>
 </ol>
