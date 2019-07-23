@@ -24,7 +24,7 @@ owner: Identity Service
     </ul>
 </div>
 
-This topic describes how Pivotal Cloud Foundry (PCF) administrators or plan administrators can manage Single Sign-On (SSO)
+This topic describes how Pivotal Cloud Foundry (PCF) admins or plan admins can manage Single Sign-On (SSO)
 service plan configurations using the SSO Operator Dashboard or API using the User Account and Authentication Command Line Interface (UAAC)
 
 The SSO service for PCF manages configurations within
@@ -47,10 +47,10 @@ Refresh tokens typically have a longer expiration time than access tokens.
 
 To configure the token policy, do the following:
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
 You can find these credentials in your PAS tile in Ops Manager in the **Credentials** tab.
 
-2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the drop-down menu.
+2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the dropdown.
 
 3. Enter the number of seconds for **Access Token Expiration** or select **Use System Default**.
 
@@ -69,9 +69,9 @@ This section shows how to use the UAAC to update UAA identity zone configuration
 <p class="note warning"><strong>Warning:</strong> This flow is for advanced users only.
   You must always run the <code>PUT</code> command
   with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.
-  You must also provide all configuration values, otherwise, data may be lost.</p>
+  You must also provide all configuration values, otherwise, data might be lost.</p>
 
-For general information about UAA API, see the <a href="https://docs.cloudfoundry.org/api/uaa">CF UAA API documentation page </a>.<br>
+For general information about UAA API, see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.<br>
 
 To make UAA identity zone API calls, do the following:
 
@@ -81,7 +81,7 @@ To make UAA identity zone API calls, do the following:
 <li> Find the UAA identity zone ID by doing the following:</li>
     <ol type="a">
         <li>
-          Log in to the SSO Operator Dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
+          Log in to the SSO Operator Dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
         </li>
 
         <li>
@@ -186,7 +186,7 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
  To set a default IDP, do the following:
 
  <ol>
-   <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+   <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
 
    <li>
      In step 5, add the following line to the config section in the JSON blob:
@@ -206,7 +206,7 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
  To disable SSO plans, do the following:
 
  <ol>
- <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+ <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
 
 <li> In step 5, add the following line to the config section in the JSON blob:
       <pre>"active": false</pre>
@@ -225,10 +225,10 @@ legal text, and legal links.
 To modify branding of the login page, do the following:
 
 <ol>
-  <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
     In step 5, add or modify the branding section in the JSON blob according
-    to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.
+    to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
     An example branding section is shown below:
 
     <p class="note"><strong>Note</strong>: All values are optional.
@@ -263,14 +263,14 @@ for a global read-only resource.<br>
 To add default groups for users, do the following:
 
 <ol>
-  <li>Follow the steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow the steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
     In step 5, update the default groups section in the JSON blob according
-    to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.
+    to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
     An example default groups section is shown below:
 
     <p class="note"><strong>Note</strong>: You can add more groups to the array list.
-      Users will automatically have these scopes though they are not explicitly assigned to users.
+      Users automatically have these scopes though they are not explicitly assigned to users.
     </p>
 
   <pre>
@@ -301,7 +301,7 @@ To rotate JWT signing keys, do the following:<br><br>
   <li>
     Generate a private key that can be used for signing. For example, run <code>ssh-keygen -t rsa</code>.<br><br>
     Generate your signing keys in a secure manner.
-    Refer to your security organization for acceptable key generation practices.
+    Refer to your security org for acceptable key generation practices.
   </li>
   <li>
     Take the value of the generated private key and make it a single
@@ -318,7 +318,7 @@ To rotate JWT signing keys, do the following:<br><br>
 
   <pre><code>-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n</code></pre>
   </li>
-  <li>Follow the steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow the steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
     In step 5, update the token policy section to add your new generated private key as the value for <code>signingKey</code>.
     An example of this section is shown below:
@@ -331,7 +331,7 @@ To rotate JWT signing keys, do the following:<br><br>
     <p class="note"><strong>Note</strong>:
       The first time you set a signing key for an identity zone,
       existing issued tokens are immediately invalidated for online validation.
-      You may need to restart applications that do offline validation for the new signing keys to take effect.
+      You might need to restart apps that do offline validation for the new signing keys to take effect.
     </p>
 
   <pre>
@@ -348,7 +348,7 @@ To rotate JWT signing keys, do the following:<br><br>
              }
     },
   </pre>
-    For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.
+    For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
   </li>
   <li>Complete the procedure by doing step 6.</li>
 </ol>
