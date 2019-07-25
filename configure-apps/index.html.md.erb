@@ -32,9 +32,9 @@ and choose your SSO application type as follows:
    	<p class="note"><strong>Note:</strong> If your app is a resource server, you do not need to register the app because it only consumes tokens and does not handle any token acquisition flow itself.
     A resource server hosts protected resources and accepts and responds to protected resource requests using access tokens, such as an API.</p>
 
-2. Choose a method to register your app with the SSO service:
- - If your app is a PCF app, follow one of the procedures in [Register a PCF App](#internal) below.
- - If your app is an externally hosted app, a non-PCF app, follow one of the procedures in [Register an Externally Hosted App](#external) below.
+1. Choose a method to register your app with the SSO service:
+    - If your app is a PCF app, follow one of the procedures in [Register a PCF App](#internal) below.
+    - If your app is an externally hosted app, a non-PCF app, follow one of the procedures in [Register an Externally Hosted App](#external) below.
 
  ### <a id="internal"></a> Register a PCF App
 
@@ -99,7 +99,7 @@ in the Cloud Foundry CLI Reference Guide.
 You can also bind service instances with Apps Manager. For more information, see
 [Bind a Service Instance to an Application](https://docs.pivotal.io/pivotalcf/appsman-services/adding-services-marketplace.html#bind-instance).
 
-##### <a id="bind-params"></a>Bind Parameters
+##### Bind Parameters
 
 The table below provides descriptions and default values for bind parameters:
 
