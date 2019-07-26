@@ -4,22 +4,28 @@ owner: SSO
 ---
 This topic describes how to set up the Plan-to-Plan OpenID Connect (OIDC) integration between two Single Sign-On service plans, one acting as an identity provider (“identity provider plan” or IDP) and one acting as a relying party (“relying party plan” or RP).
 
-Doing this enables users from the identity provider plan to authenticate into the relying party plan through OIDC.
+## <a id="overview"></a> Overview
 
-## <a id="idp"></a> Set Up Relying Party Configurations in the Identity Provider Plan
+A Plan-to-Plan OIDC integration enables users from the identity provider plan to authenticate into the relying party plan through OIDC.
 
-### <a id="prereqs"></a> Prerequisites
+## <a id="prereqs"></a> Prerequisites
+
+You must meet the following prerequisites to set up Plan-to-Plan OIDC integration:
 
 * Your IDP must be visible to your org.
 * You must add the IDP as a service instance in a space so you can access the app developer dashboard.
 
 If you have not completed these prerequisites, see [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
 
+## <a id="idp"></a> Set Up Relying Party Configurations in the Identity Provider Plan
+
+Follow the instructions below to set up relying party configurations in the identity provider plan.
+
 <ol>
 	<li>Navigate to Apps Manager.</li>
 	<li>Select the space.</li>
 	<li>Click into the <strong>Service</strong> tab.</li>
-	<li>Click to select the service you want to modify.</li>
+	<li>Click the service you want to modify.</li>
 	<li>Click <strong>Manage</strong>.<br/>
 	<img src="../images/manage-button.png"></li>
 	<li>Click <strong>New App</strong>. The New App page appears.</li>
@@ -28,13 +34,15 @@ If you have not completed these prerequisites, see [Create or Edit Service Plans
 	<li>Type a temporary URL in the <strong>Auth Redirect URIs</strong> field. You replace this URL after configuring an identity provider on the relying party plan.</li>
 	<li>In the <strong>Scopes</strong> field, type <code>openid</code>.<br/>
 	Optionally, select <code>openid</code> from the list of <strong>Auto-Approved Scopes</strong>. By adding <code>openid</code> as an automatically approved scope, you keep users from being prompted to authorize a login from the identity provider.</li>
-	<li>Click <strong>Register App</strong>. If the app is created successfully, you are prompted to download your app credentials.
+	<li>Click <strong>Register App</strong>. When the app is created successfully, you are prompted to download your app credentials.
 	<img src="../images/dl-app-creds.png"><br/></li>
 	<li>Click <strong>Download App Credentials</strong> to save the credentials for your application.<br/>
 	<p class="note warning"><strong>Warning:</strong> This is the last time you can download your app credentials. Pivotal recommends that you download the credentials and store them securely.</p></li>
 </ol>
 
 ## <a id="rp"></a>Set Up the OIDC Identity Provider Configuration in the Relying Party Plan
+
+Follow the instructions below to set up OIDC identity provider configuration in the relying party plan.
 
 <ol>
 	<li>Navigate to <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code>.</li>
@@ -55,14 +63,20 @@ If you have not completed these prerequisites, see [Create or Edit Service Plans
 	<img src="../images/openid-dropdown.png"></li>
 </ol>
 
-## <a id="finalizing"></a>Finalize Configuration
+## <a id="finalizing"></a>Finish Configuration
 
-After you create an app, you can return to the App page to finish configuration.
+After you create an app, follow the steps below to finish configuration.
 
 <ol>
-<li>Return to the <a href="#idp">app you created</a>.
-<li>Click <strong>Edit Config</strong>. The app configuration screen appears.<br/>
-<img src="../images/edit-config.png"></li>
-<li>Add a <strong>Auth Redirect URL</strong>. The URL should read <code>https://RP-AUTH-DOMAIN/login/callback/ORIGIN-KEY</code>, where the <code>RP-AUTH-DOMAIN</code> is the Auth Domain setting you entered during RP configuration and the <code>ORIGIN-KEY</code> is based on the IDP name you set in the SSO Operator Dashboard.</li>
-<li>Click <strong>Save Config</strong>.</li>
+	<li>Return to the page for the app you created.
+	<li>Click <strong>Edit Config</strong>. The app configuration screen appears.<br/>
+	<img src="../images/edit-config.png"></li>
+	<li>Add an <strong>Auth Redirect URL</strong>. The URL should read <code>https://RP-AUTH-DOMAIN/login/callback/ORIGIN-KEY</code>
+		Where:
+		<ul>
+			 <li>the <code>RP-AUTH-DOMAIN</code> is the Auth Domain setting you entered during RP configuration</li>
+			 <li>the <code>ORIGIN-KEY</code> is based on the IDP name you set in the SSO Operator Dashboard</li>
+		</ul>
+	</li>
+	<li>Click <strong>Save Config</strong>.</li>
 </ol>
