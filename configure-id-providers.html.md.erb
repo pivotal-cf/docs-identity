@@ -21,8 +21,8 @@ You can manage the internal user store in the following ways:
 
 Follow the steps below to configure the internal user store:
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) admin credentials.
-Find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the **Single Sign-On Operator Dashboard** at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) admin credentials.
+Find these credentials in your Pivotal Application Service (PAS) tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -34,7 +34,18 @@ Find these credentials in your Pivotal Application Service tile in Ops Manager u
 	- **Disable User Management**: This option prevents all users, including admins, from performing actions on internal users.
 	<p class="note"><strong>Note:</strong> The login page does not include <strong>Create Account</strong> and <strong>Reset Password</strong> links if you select this option.</p>
 
-1. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**, or enter custom settings in the fields below.
+1. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**, or enter custom settings in the **Password Complexity** and **Lockout Policy** fields. See descriptions of the fields in the table below.
+
+| Field              | Description                                                               |
+|--------------------|---------------------------------------------------------------------------|
+| Min Length         | The minimum number of characters required                                 |
+| Uppercase          | The minimum number of uppercase letters required                          |
+| Special Characters | The minimum number of special characters required                         |
+| Lowercase          | The minimum number of lowercase letters required                          |
+| Numerals           | The minimum number of numeric characters required                         |
+| Failures Allowed   | The maximum failed attempts to enter the password before being locked out |
+| Lockout Period     | The number of seconds that a lockout period lasts                         |
+| Password Expires   | The number of months for which a password is valid                        |
 
 1. Click **Save Identity Provider**.
 
@@ -43,7 +54,7 @@ Find these credentials in your Pivotal Application Service tile in Ops Manager u
 You can use the **Internal Users** [admin pane](./manage-users.html#internal) to send invitations to users, so that they can add themselves to the internal user store.
 But you cannot use the admin pane to add users directly.
 
-To create new internal user accounts directly, supplying the user's name, email address and other information, use the UAA Command Line Interface (UAAC) as follows:
+To create new internal user accounts directly by supplying the user's name, email address and other information, use the UAA Command Line Interface (UAAC) as follows:
 
 1. If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
 
@@ -91,7 +102,7 @@ Admins can define the password policy for SSO users in the internal user store.
 The password policy enforces rules that restrict the kinds of passwords users can create.
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-   You can find these credentials in your Pivotal Application Service tile in Ops Manager under the Credentials tab.
+   You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -116,7 +127,7 @@ The password policy enforces rules that restrict the kinds of passwords users ca
 For each plan, the Single Sign-On service allows you to configure SAML settings when SAML is used for exchanging authentication and authorization data between the identity provider and the service provider. The SSO service provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -138,7 +149,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 Follow the steps below to add an external SAML identity provider:
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -175,7 +186,7 @@ For more information, see <a href="#config-ext-settings">Configure Service Provi
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select Manage Identity Providers from the dropdown.
 
@@ -215,7 +226,7 @@ LDAP service accounts should not be subject to manual lockouts, such as lockouts
 LDAP service accounts should not be subject to automated deletions as disruption to these service accounts could prevent user logins.
 </p>
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -264,7 +275,7 @@ LDAP service accounts should not be subject to automated deletions as disruption
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -309,7 +320,7 @@ After resource permissions mappings are configured and a user authenticates,
 the user's group memberships is mapped to scopes in the resulting token.
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -337,7 +348,7 @@ see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Z
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
