@@ -3,7 +3,7 @@ title: Configuring Identity Providers
 owner: Identity Service
 ---
 
-This topic describes how Pivotal Cloud Foundry (PCF) administrators configure a
+This topic describes how Pivotal Cloud Foundry (PCF) admins configure a
 Single Sign-On (SSO) service plan to manage user access to PCF apps.
 Users can have accounts in the internal user store or in external identity providers.
 
@@ -19,9 +19,9 @@ You can manage the internal user store in the following ways:
 
 ### <a id='config-int-store'></a> Configure the Internal User Store
 
-Follow the steps below to configure the internal user store: 
+Follow the steps below to configure the internal user store:
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) admin credentials.
 Find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
@@ -30,9 +30,9 @@ Find these credentials in your Pivotal Application Service tile in Ops Manager u
 
 1. (Optional) Under **Authentication Policy** select one of the following:
 	- **Disable Internal Authentication**: This option prevents authentication against the internal user store. You must have at least one external identity provider configured.
-	<p class="note"><strong>Note</strong>: The login page does not include the <strong>Email</strong> and <strong>Password</strong> fields if you select this option.</p>
-	- **Disable User Management**: This option prevents all users, including administrators, from performing actions on internal users.
-	<p class="note"><strong>Note</strong>: The login page does not include <strong>Create Account</strong> and <strong>Reset Password</strong> links if you select this option.</p>
+	<p class="note"><strong>Note:</strong> The login page does not include the <strong>Email</strong> and <strong>Password</strong> fields if you select this option.</p>
+	- **Disable User Management**: This option prevents all users, including admins, from performing actions on internal users.
+	<p class="note"><strong>Note:</strong> The login page does not include <strong>Create Account</strong> and <strong>Reset Password</strong> links if you select this option.</p>
 
 1. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**, or enter custom settings in the fields below.
 
@@ -43,7 +43,7 @@ Find these credentials in your Pivotal Application Service tile in Ops Manager u
 You can use the **Internal Users** [admin pane](./manage-users.html#internal) to send invitations to users, so that they can add themselves to the internal user store.
 But you cannot use the admin pane to add users directly.
 
-To create new internal user accounts directly, supplying the user's name, email address and other info, use the UAA Command Line Interface (UAAC) as follows:
+To create new internal user accounts directly, supplying the user's name, email address and other information, use the UAA Command Line Interface (UAAC) as follows:
 
 1. If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
 
@@ -87,7 +87,7 @@ To add a member to your new group, use the following command.
 
 ### <a id='passwd-policy'></a> Define Password Policy for the Internal User Store
 
-Administrators can define the password policy for SSO users in the internal user store.
+Admins can define the password policy for SSO users in the internal user store.
 The password policy enforces rules that restrict the kinds of passwords users can create.
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
@@ -136,7 +136,7 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
-Follow the steps below to add an external SAML identity provider: 
+Follow the steps below to add an external SAML identity provider:
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
@@ -153,15 +153,15 @@ Follow the steps below to add an external SAML identity provider:
 1. Enter the external identity provider metadata in one of the following ways:
     * Option 1: Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
     * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
-<p class="note"><strong>Note</strong>: Uploading the Identity Provider Metadata as an XML file makes you unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
+<p class="note"><strong>Note:</strong> Uploading the Identity Provider Metadata as an XML file makes you unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you must manually re-upload them as an updated XML file.</p>
 
-1. Under **Advanced Settings**, click  **Attribute Mappings**.
+1. Under **Advanced Settings**, click **Attribute Mappings**.
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first names, last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first names, last names, or external groups. They are sent to apps through OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
 	* Select a **User Scheme Attribute** from the dropdown.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
-1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by the Single Sign-On service.
 	* Enter a **Custom Attribute Name**.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
@@ -189,15 +189,15 @@ For more information, see <a href="#config-ext-settings">Configure Service Provi
 
 1. Enter the external OpenID Connect (OIDC) identity provider metadata in one of the following ways:
   - Option 1: Select the **Enable Discovery** checkbox, provide the **Discovery Endpoint URL**, **Relying Party OAuth Client ID**, and **Relying Party OAuth Client Secret** and click **Fetch Scopes**.
-  - Option 2: Clear the **Enable Discovery** checkbox and provide the **Authorization Endpoint URL**, **Token Endpoint URL**, **Token Key** (URL), **Relying Party OAuth Client ID**, and **Relying Party OAuth Client Secret**. You may also optionally configure the **Issuer**, **User Info Endpoint URL**, or **Response Type** if required for your OIDC Identity Provider integration.
+  - Option 2: Clear the **Enable Discovery** checkbox and provide the **Authorization Endpoint URL**, **Token Endpoint URL**, **Token Key** (URL), **Relying Party OAuth Client ID**, and **Relying Party OAuth Client Secret**. You can also optionally configure the **Issuer**, **User Info Endpoint URL**, or **Response Type** if required for your OIDC Identity Provider integration.
 
 1. Select the applicable **Scopes** for the OIDC identity provider.
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps via OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps through OpenID tokens, along with any other stored user information issued by the Single Sign-On service.
   - Select a **User Scheme Attribute** from the dropdown.
   - Enter an **ID Token Attribute Name** with the corresponding attribute from the incoming OIDC ID token.
 
-1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by the Single Sign-On service.
   - Enter a **Custom Attribute Name**.
   - Enter an **ID Token Attribute Name** with the corresponding attribute from the incoming OIDC ID token.
 
@@ -210,12 +210,12 @@ For more information, see <a href="#config-ext-settings">Configure Service Provi
 When integrating with an external identity provider for LDAP, authentication becomes chained. An authentication attempt with a user's credentials is first attempted against the internal user store before the external LDAP identity provider. To avoid username collision, do not bootstrap or create users in the UAA directly. You can only have one LDAP external identity provider per service plan.
 
 <p class="note warning">
-<strong>Warning:</strong> Pivotal recommends against reusing LDAP service accounts across environments.
+<strong>Warning:</strong> Pivotal discourages reusing LDAP service accounts across environments.
 LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users using the same account.
 LDAP service accounts should not be subject to automated deletions as disruption to these service accounts could prevent user logins.
 </p>
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -225,7 +225,7 @@ LDAP service accounts should not be subject to automated deletions as disruption
 
 1. Enter a **Description**. This is displayed to space developers when they select an identity provider for their app.
 
-1. Select `LDAP` as the **Identity Provider Type**. You may only have one LDAP provider per Service Plan.
+1. Select `LDAP` as the **Identity Provider Type**. You can only have one LDAP provider per Service Plan.
 
 1. Enter the external LDAP identity provider configurations:
   1. Enter the **Hostname** and **Port**.
@@ -233,12 +233,12 @@ LDAP service accounts should not be subject to automated deletions as disruption
   1. Select the applicable **Referral**.
   1. Enter the **User DN** and **Bind Password** for your LDAP service account.
   1. Under the **Users** section, enter the **Search Base**.
-  1. Under the **Users** section, you may also enter in **Search Filter** (Optional).
-  1. Under the **Users** section, you may select **Just in Time Provisioning**. If this option is enabled, users will be created at login time. If this option is not enabled, users must be created prior to being able to login.
-  1. Under the **Groups** section, you may enter in enter the **Search Base** (optional) and **Search Filter** (optional) in order to associate LDAP groups with your user. If you want to use the `memberOf` attribute on user objects, you can enter in the value `memberOf` as the Search Base instead of an LDAP path for a group OU, and the Search Filter value will be ignored.
+  1. Under the **Users** section, you can also enter in **Search Filter** (Optional).
+  1. Under the **Users** section, you can select **Just in Time Provisioning**. If this option is enabled, users are created at login time. If this option is not enabled, users must be created before being able to log in.
+  1. Under the **Groups** section, you can enter the **Search Base** (optional) and **Search Filter** (optional) to associate LDAP groups with your user. If you want to use the `memberOf` attribute on user objects, you can enter the value `memberOf` as the Search Base instead of an LDAP path for a group OU. Doing so causes the Search Filter value to be ignored.
 
 1. Configure any **User Attributes** to propagate from the identity provider to the service provider.
-   The configurable attributes are sent to apps via OpenID tokens,
+   The configurable attributes are sent to apps through OpenID tokens,
    along with any other stored user information issued by the Single Sign-On service.
   1. Select a **User Scheme Attribute** from the dropdown.
   1. Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
@@ -246,7 +246,7 @@ LDAP service accounts should not be subject to automated deletions as disruption
 	The only configurable attributes for LDAP are `given_name`, `family_name`, and `phone_number`.
         Configuring `email` and `external_groups` has no effect on your LDAP integration.
 
-1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps via OpenID tokens issued by the Single Sign-On service.
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by the Single Sign-On service.
   - Enter a **Custom Attribute Name**.
   - Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
 
@@ -301,7 +301,7 @@ see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping<
 ## <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
 
 After a space developer defines resources required by an app,
-an administrator can map existing groups to those resources.
+an admin can map existing groups to those resources.
 For information about how the space developer defines resources,
 see [Create or Edit Resources](./manage-resources.html#create-resources).
 
@@ -349,7 +349,7 @@ You can find these credentials in your Pivotal Application Service tile in Ops M
 
 1. On the pop-up, click **Delete Permissions Mapping** to delete the resource.
 
-<p class="note"><strong>Note</strong>: Groups with unsupported characters in Permission Mappings are not editable.</p>
+<p class="note"><strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.</p>
 
 <p class="note"><strong>Note:</strong> If you want to automate the above procedure,
 deleting resource permissions mappings, you can use the UAA API to un-map a group mapping.
