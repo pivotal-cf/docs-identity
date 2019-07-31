@@ -8,6 +8,13 @@ This topic describes how to set up the Plan-to-Plan OpenID Connect (OIDC) integr
 
 A Plan-to-Plan OIDC integration enables users from the identity provider plan to authenticate into the relying party plan through OIDC.
 
+To set up this integration:
+
+1. [Meet the prerequisites](#prereqs)
+1. [Set up relying party configurations in the identity provider plan](#idp)
+1. [Set Up the OIDC Identity Provider Configuration in the Relying Party Plan](#rp)
+1. [Finish the configuration](#finalizing)
+
 ## <a id="prereqs"></a> Prerequisites
 
 You must meet the following prerequisites to set up Plan-to-Plan OIDC integration:
@@ -42,18 +49,10 @@ Follow the instructions below to set up relying party configurations in the iden
 
 ## <a id="rp"></a>Set Up the OIDC Identity Provider Configuration in the Relying Party Plan
 
-Follow the instructions below to set up OIDC identity provider configuration in the relying party plan.
+To set up the OIDC Identity Provider Configuration in the relying party plan, follow steps 1&ndash;7 in
+[Add an OIDC Provider](../configure-internal-us.html#config-ext-oidc) and then follow the steps below.
 
 <ol>
-	<li>Navigate to <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code>.</li>
-	<li>Log into the SSO Operator Dashboard using the credentials associated with your UAA admin account. You can find these credentials in your Pivotal Application Service tile in Ops Manager. For more information, see <a href="https://docs.pivotal.io/pivotalcf/1-11/customizing/console-login.html">Logging in to Apps Manager</a>.</li>
-	<li>Click the Relying Party plan name and choose <strong>Manage Identity Providers</strong> from the dropdown.<br/>
-	<img src="../images/manage-idp.png"></li>
-	<li>Click <strong>New Identity Provider</strong>. The New Identity Provider screen appears.</li>
-	<li>Enter an <strong>Identity Provider Name</strong>. This string, in lowercase with dashes replacing spaces, becomes your Origin Key. For example, "My Test Provider" becomes "my-test-provider."</li>
-	<li>Enter a <strong>Description</strong>. This description is visible to space developers when they select an IDP for their application.</li>
-	<li>Select <strong>OpenID Connect</strong> as the <strong>Identity Provider type</strong>. The OpenID Connect Settings appear.<br/>
-	<img src="../images/idp-type-openid.png"></li>
 	<li>If you use a self-signed certificate for PCF where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you do not use a self-signed certificate, you can leave this box unchecked.</li>
 	<li>Select the <strong>Enable Discovery</strong> checkbox and type in the <strong>Discovery Endpoint URL</strong>. <br/>
 	This URL is <code>ht<span>tps</span>://IDP-AUTH-DOMAIN/.well-known/openid-configuration</code>, where <code>IDP-AUTH-DOMAIN</code> is the Auth Domain setting you entered when you created the IDP service plan you are integrating with.</li>
