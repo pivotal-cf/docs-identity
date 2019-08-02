@@ -3,23 +3,15 @@ title: Configuring an OIDC Service Provider in SSO
 owner: Identity Service
 ---
 
-This topic describes how to add an OpenID Connect (OIDC) external identity provider to your Pivotal Single Sign-On (SSO) service plan, using Azure Active Directory (Azure AD) as an example.
+This topic describes how to add an OpenID Connect (OIDC) external identity
+provider to your Pivotal Single Sign-On (SSO) service plan, using Azure Active
+Directory (Azure AD) as an example.
+
+## <a id="set-up-OIDC"></a> Set Up the OIDC Identity Provider in SSO
 
 Follow the steps below to set up an OIDC provider for the SSO service.
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
-
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
-
-1. Click **New Identity Provider**.
-
-1. Enter an **Identity Provider Name**. This value in all lowercase with dashes replacing spaces becomes your **Origin Key**. For example, `Example Azure Origin` becomes `example-azure-origin`. If you did not enter this for your OAuth Client’s authorized redirect URIs, [go back](./config-azure.html#relying) and edit the value in Azure.
-
-1. Enter a **Description**. Space developers see this description when they select an identity provider for their app.
-
-1. Under **Identity Provider type**, select **OpenID Connect** .
-
-	<%= image_tag '../images/azure-oidc-new-idp.png' %>
+1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-internal-us.html#config-ext-oidc).
 
 1. Clear the **Enable Discovery** checkbox and enter the following information from the **OpenID Connect metadata endpoint** you constructed at the end of the [previous section](./config-azure.html#relying).
   - For **Authorization Endpoint URL**, enter in the `authorization_endpoint` value from the metadata endpoint.
@@ -37,7 +29,7 @@ Follow the steps below to set up an OIDC provider for the SSO service.
 
 	<%= image_tag '../images/azure-oidc-scopes.png' %>
 
-1. Under **Advanced Settings** > **User Attributes**, map `user_name` to `unique_name`. This enables SSO to identify the authenticated user.
+1. Under **Advanced Settings** &gt **User Attributes**, map `user_name` to `unique_name`. This enables SSO to identify the authenticated user.
 
 1. (Optional) Configure additional attribute mappings.
 
