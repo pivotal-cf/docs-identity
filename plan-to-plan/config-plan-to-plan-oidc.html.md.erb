@@ -49,16 +49,16 @@ Follow the instructions below to set up relying party configurations in the iden
 
 ## <a id="rp"></a>Set Up the OIDC Identity Provider Configuration in the Relying Party Plan
 
-To set up the OIDC Identity Provider Configuration in the relying party plan, follow steps 1&ndash;6 in
-[Add an OIDC Provider](../configure-internal-us.html#config-ext-oidc) and then follow the steps below.
+To set up the OIDC Identity Provider Configuration in the relying party plan, follow the steps below.
 
 <ol>
+	<li>Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-internal-us.html#config-ext-oidc).</li>
 	<li>If you use a self-signed certificate for PCF where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you do not use a self-signed certificate, you can leave this box unchecked.</li>
-	<li>Select the <strong>Enable Discovery</strong> checkbox and type in the <strong>Discovery Endpoint URL</strong>. <br/>
+	<li>Select the <strong>Enable Discovery</strong> checkbox and type in the <strong>Discovery Endpoint URL</strong>. <br/><br/>
 	This URL is <code>ht<span>tps</span>://IDP-AUTH-DOMAIN/.well-known/openid-configuration</code>, where <code>IDP-AUTH-DOMAIN</code> is the Auth Domain setting you entered when you created the IDP service plan you are integrating with.</li>
 	<li>Fill in the <strong>Relying Party OAuth Client ID</strong> with the App Client ID from <a href="#idp">the previous section</a>.</li>
 	<li>Fill in the <strong>Relying Party OAuth Client Secret</strong> with the App Secret from <a href="#idp">the previous section</a>.</li>
-	<li>Confirm that <code>openid</code> is selected as a Scope by clicking <strong>All Selected</strong>.<br/>
+	<li>Confirm that <code>openid</code> is selected as a scope by clicking <strong>All Selected</strong>.<br/>
 	<img src="../images/openid-dropdown.png"></li>
 </ol>
 
