@@ -3,18 +3,26 @@ title: Configuring Azure Active Directory as an OIDC Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to integrate Azure Active Directory (Azure AD) as an identity provider for a Single Sign-On (SSO) service plan,
+This topic describes how to integrate Azure Active Directory (Azure AD) as an
+identity provider for a Single Sign-On (SSO) service plan,
 by configuring OpenID Connect (OIDC) in both Pivotal Cloud Foundry (PCF) and Azure AD.
 
 ## <a id="overview"></a> Overview
 
-Azure Active Directory (Azure AD) is Microsoft’s multi-tenant cloud-based directory and identity management service. It is one of several identity providers you can use in an SSO service plan.
+Azure Active Directory (Azure AD) is Microsoft’s multi-tenant cloud-based directory and identity management service.
+It is one of several identity providers you can use in an SSO service plan.
+
+To set up the integration, follow the procedures below:
+
+1. [Set up a Relying Party in Azure AD](#procedure)
+1. [Set up the OIDC Identity Provider in SSO](#set-up-OIDC)
 
 ## <a id="prereqs"></a> Prerequisites
 
-Before you can set up a relying party in Azure AD, you must meet the prerequisites listed in [Azure Active Directory OIDC Integration Guide Overview](./index.html).
+Before you can set up a relying party in Azure AD, you must meet the prerequisites
+listed in [Azure Active Directory OIDC Integration Guide Overview](./index.html).
 
-## <a id="procedure"></a> Procedure
+## <a id="procedure"></a> Set Up a Relying Party in Azure AD
 
 Follow the steps below to set up a relying party in Azure AD.
 
@@ -34,7 +42,7 @@ Follow the steps below to set up a relying party in Azure AD.
 
 	<%= image_tag '../images/azure-oidc-app-reg-searched.png' %>
 
-1. Record the **Application ID** displayed on the screen. This is the **Relying Party OAuth Client ID**.
+1. <a id="app-id"></a>Record the **Application ID** displayed on the screen. This is the **Relying Party OAuth Client ID**.
 
 	<%= image_tag '../images/azure-oidc-app-reg-id.png' %>
 
@@ -46,7 +54,7 @@ Follow the steps below to set up a relying party in Azure AD.
 
 	<%= image_tag '../images/azure-oidc-app-secret-set.png' %>
 
-1. Click **Save** to generate your key value. This value is the **Relying Party OAuth Client Secret**. Record this value for future use.
+1. <a id="key"></a>Click **Save** to generate your key value. This value is the **Relying Party OAuth Client Secret**. Record this value for future use.
 
 	<%= image_tag '../images/azure-oidc-app-secret-show.png' %>
 
@@ -62,9 +70,77 @@ For example, in the App ID URI `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b
 
 	<%= image_tag '../images/azure-oidc-tenant-name.png' %>
 
-1. Construct the URL for the OpenID Connect metadata endpoint by replacing `TENANT-NAME` with your Azure Tenant Name in the following string:
+1. <a id="relying"></a>Construct the URL for the OpenID Connect metadata endpoint by replacing `TENANT-NAME` with your Azure Tenant Name in the following string:
 `https://login.microsoftonline.com/TENANT-NAME/.well-known/openid-configuration`. Example:  `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`
 <br><br>
-Record these values for the [next step](./config-sso.html), configuring your OpenID Connect identity provider in SSO.
+Record these values for the [next step](#set-up-OIDC), configuring your OpenID Connect identity provider in SSO.
 
 	<%= image_tag '../images/azure-oidc-connect-string.png' %>
+
+
+## <a id="set-up-OIDC"></a> Set Up the OIDC Identity Provider in SSO
+
+Follow the steps below to set up an OIDC provider for the SSO service.
+
+1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-internal-us.html#config-ext-oidc).
+
+1. Clear the **Enable Discovery** checkbox and enter the following information
+from the **OpenID Connect metadata endpoint** you constructed in the final step of
+[the previous section](#relying).
+    <table>
+      <tr>
+        <th>For…</th>
+        <th>Do the following…</th>
+      </tr>
+      <tr>
+        <td><strong>Authorization Endpoint URL</strong></td>
+        <td>Enter the <code>authorization\_endpoint</code> value from the metadata endpoint.</td>
+      </tr>
+      <tr>
+        <td><strong>Token Endpoint URL</strong></td>
+        <td>Enter the <code>token\_endpoint</code> value from the metadata endpoint.</td>
+      </tr>
+      <tr>
+        <td><strong>Token Key</strong></td>
+        <td>Enter the <code>jwks\_uri</code> value from the metadata endpoint.</td>
+      </tr>
+      <tr>
+        <td><strong>Issuer</strong></td>
+        <td>Enter the <code>issuer</code> value from the metadata endpoint.</td>
+      </tr>
+      <tr>
+        <td><strong>User Info Endpoint URL</strong></td>
+        <td>Enter the <code>userinfo\_endpoint</code> value from the metadata endpoint.</td>
+      </tr>
+      <tr>
+        <td><strong>Response Type</strong></td>
+        <td>Select <code>id\_token</code> from the dropdown.</td>
+      </tr>
+      <tr>
+        <td><strong>Relying Party OAuth Client ID</strong></td>
+        <td>
+          Enter the <strong>Application ID</strong> you recorded in step 5 of
+          [Configuring Azure Active Directory as an OIDC Identity Provider](./config-azure.html#app-id).
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Relying Party OAuth Client Secret</strong></td>
+        <td>
+          Enter the <strong>Client Secret</strong> you recorded in step 8 of
+          [Configuring Azure Active Directory as an OIDC Identity Provider](./config-azure.html#key).
+        </td>
+      </tr>
+    </table>
+    <br>
+
+1. Select `openid` as a scope. You can select additional scopes.
+
+1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
+select  **user_name** as the **User Schema Attribute** and enter `unique_name` as the **Attribute Name**.
+This enables SSO to identify the authenticated user.
+
+1. (Optional) Configure additional attribute mappings.
+
+1. Click **Create Identity Provider** to save your settings.
+
+1. (Optional) [Enable identity provider discovery](../idp-discovery.html#how-to) for the service plan.
