@@ -15,7 +15,7 @@ It is one of several identity providers you can use in an SSO service plan.
 To set up the integration, follow the procedures below:
 
 1. [Set up a Relying Party in Azure AD](#procedure)
-1. [Set up the OIDC Identity Provider in SSO](#set-up-OIDC)
+1. [Set up the OIDC Identity Provider in SSO](#config-sso)
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -73,12 +73,12 @@ For example, in the App ID URI `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b
 1. <a id="relying"></a>Construct the URL for the OpenID Connect metadata endpoint by replacing `TENANT-NAME` with your Azure Tenant Name in the following string:
 `https://login.microsoftonline.com/TENANT-NAME/.well-known/openid-configuration`. Example:  `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`
 <br><br>
-Record these values for the [next step](#set-up-OIDC), configuring your OpenID Connect identity provider in SSO.
+Record these values for the [next step](#config-sso), configuring your OpenID Connect identity provider in SSO.
 
 	<%= image_tag '../images/azure-oidc-connect-string.png' %>
 
 
-## <a id="set-up-OIDC"></a> Set Up the OIDC Identity Provider in SSO
+## <a id="config-sso"></a> Set Up the OIDC Identity Provider in SSO
 
 Follow the steps below to set up an OIDC provider for the SSO service.
 
