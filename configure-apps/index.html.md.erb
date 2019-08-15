@@ -114,10 +114,16 @@ The table below provides descriptions and default values for bind parameters:
 	</tr>
 	<tr>
 		<td><code>grant_types</code></td>
-		<td>Allowed grant type for the app through the SSO service.
-			Only one grant type per app is supported by SSO.
-			If you want to set more than one grant types per app, you can resort
-			to <a href="../manage-clients-api.html">this workaround</a>.</td>
+		<td>Supported grant types for the apps through the SSO service are:
+		  <ul>
+             <li><code>authorization_code</code></li>
+             <li><code>password</code></li>
+             <li><code>client_credentials</code></li>
+             <li><code>implicit</code></li>
+           </ul>
+            The only multiple grant types combination supported is <code>authorization_code</code>
+            and <code>client_credentials</code>.
+		</td>
 		<td> </td>
 	</tr>
 	<tr>
@@ -263,10 +269,16 @@ The table below provides descriptions and default values for SSO properties to i
 	</tr>
 	<tr>
 		<td><code>GRANT_TYPE</code></td>
-		<td>Allowed grant type for the app through the SSO service.
-			Only one grant type per app is supported by SSO.
-			If you want to set more than one grant types per app, you can use the workaround in
-			<a href="../manage-clients-api.html#updating">Update Clients with UAAC</a>.</td>
+		<td>Supported grant types for the apps through the SSO service are:
+        		  <ul>
+                     <li><code>authorization_code</code></li>
+                     <li><code>password</code></li>
+                     <li><code>client_credentials</code></li>
+                     <li><code>implicit</code></li>
+                   </ul>
+                    The only multiple grant types combination supported is <code>authorization_code</code>
+                    and <code>client_credentials</code>.
+        		</td>
 		<td><code>authorization_code</code>(Web application type)</td>
 	</tr>
 	<tr>
