@@ -475,8 +475,8 @@ This launches the SSO Developer Dashboard.
 	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
-1. Enter an **Application Name**.
-1. Choose an app type under **Select an Application Type**.
+1. Enter an **App Name**.
+1. Choose an app type under **Select an App Type**.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store
   is the default.
 	<p class="note"><strong>Note:</strong> When registering an externally hosted app,
@@ -487,8 +487,8 @@ This launches the SSO Developer Dashboard.
 		<code>Service-to-Service App</code>.</p>
 
     <%= image_tag '../images/sso_dev_select_idp.png' %>
-1. If your Application Type is `Web App` or `Single-Page JavaScript App`,
-   under **Application Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
+1. If your App Type is `Web App` or `Single-Page JavaScript App`,
+   under **App Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, SSO rejects the request.
    <%= image_tag '../images/sso_dev_redirect_uri.png' %>
@@ -543,7 +543,7 @@ This launches the SSO Developer Dashboard.
 The default is set in the configuration for the SSO service plan.
 For more information about tokens, see [Configure a Token Policy](../manage-service-plans-api.html#configure-token-policy).
 
-1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can enable
+1. (Optional) If your App Type is a `Web App` or `Single-Page JavaScript App`, you can enable
     **Show on Homepage** to display the app on the UAA or Pivotal Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
       1. In **App Launch URL**, enter the address you want for your app.
       1. Upload an app icon for your app.
@@ -586,7 +586,7 @@ To manage your application configurations through the SSO Developer Dashboard, d
 		<code>Service-to-Service App</code>.</p>
 
     <%= image_tag '../images/sso_dev_select_idp.png' %>
-1. If your Application Type is `Web App` or `Single-Page JavaScript App`, under **Application Settings**
+1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings**
    enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the
    URIs specified in this list. Otherwise, SSO rejects the request.
@@ -640,7 +640,7 @@ To manage your application configurations through the SSO Developer Dashboard, d
    The default is set in the configuration for the SSO service plan.
    For more information about tokens, see [Configure a Token Policy](../manage-service-plans-api.html#configure-token-policy).
 
-1. (Optional) If your Application Type is a `Web App` or `Single-Page JavaScript App`, you can enable
+1. (Optional) If your App Type is a `Web App` or `Single-Page JavaScript App`, you can enable
 **Show on Homepage** to display the app on the UAA or Pivotal Account home page.
 	<p class="note"><strong>Note:</strong> If you want an app to display on
 		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
@@ -650,10 +650,10 @@ To manage your application configurations through the SSO Developer Dashboard, d
 
 1. Click **Update App**.
 
-## <a id="view-credentials"></a> View Credentials of Existing App Configurations
+## <a id="view-credentials"></a> Credentials of Existing App Configurations
 
 You can view the credentials and endpoints required for app integration for an existing app on the
-**View Credentials** page.
+**Credentials** page.
 
 To view credentials of an existing app, do the following:
 
@@ -661,7 +661,7 @@ To view credentials of an existing app, do the following:
 1. Select the space where your service instance is located.
 1. Under **Services**, click the **Single Sign-On** service.
 1. Click **Manage** next to your SSO service instance to launch the SSO Developer Dashboard.
-1. Under **Applications**, click **View Credentials** near the name of your app.
+1. Under **Apps**, click **Credentials** near the name of your app.
 	<p class="note"><strong>Note:</strong>
 		You can only view the <strong>App Secret</strong> when an app is first registered or
 		the secret is regenerated.</p>
@@ -682,7 +682,7 @@ To regenerate an app secret of an existing app, do the following:
 1. Select the space where your service instance is located.
 1. Under **Services**, click the **Single Sign-On** service.
 1. Click **Manage** next to your SSO service instance to launch the SSO Developer Dashboard.
-1. Under **Applications**, click the **View Credentials** near the name of your app.
+1. Under **Apps**, click the **Credentials** near the name of your app.
 1. Click **Regenerate App secret** under the **App Secret** field.
 1. On the pop-up, click **Regenerate App Secret** to confirm that you want to regenerate an
    app's secret value.
@@ -708,8 +708,8 @@ To create an admin client, do the following:
 3. Under **Services**, click the **Single Sign-On** service.
 4. Click **Manage** next to your SSO service instance to launch the SSO Developer Dashboard.
 5. Click **Register App**.
-6. Enter an **Application Name**.
-7. Under **Select an Application Type**, select **Service-to-Service App**.
+6. Enter an **App Name**.
+7. Under **Select an App Type**, select **Service-to-Service App**.
 8. Under **Authorization**, select what actions the admin client can perform
    from the following **Admin Permissions**:
    <table>
@@ -821,8 +821,8 @@ To unregister an externally hosted app using the SSO Developer Dashboard, do the
 
 1. To navigate to the Service Instance Developer Dashboard, do the procedure in [Access Service Instance Developer Dashboard](../manage-service-instances.html#access-svc-instance-developer-dashboard).
 3. Click your app.
-4. Click **Delete App** at the bottom of the page.
-5. When prompted, click **Delete App** to confirm that you want to delete the app
+4. Click **Unregister App** at the bottom of the page.
+5. When prompted, click **Unregister App** to confirm that you want to unregister the app
    and its configurations.
 
 	<p class="note"><strong>Note:</strong>
