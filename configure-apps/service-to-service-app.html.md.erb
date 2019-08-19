@@ -6,13 +6,13 @@ owner: Identity Service
 For Service-to-Service applications, Pivotal Single Sign-On (SSO) supports the Client Credentials OAuth 2.0 grant type.
 The client credentials grant type is for applications that can request an access token and access resources on its own. This is often the case when there are services that call APIs without users.
 
-### OAuth 2.0 Actors
+## <a id='oauth'></a> OAuth 2.0 Actors
 
 - **Application**: A client that makes protected requests using the authorization of the resource owner.
 - **Authorization Server**: The Single Sign-On server that issues access tokens to client applications after successfully authenticating the resource owner.
 - **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Applications access the server through APIs.
 
-### Client Credentials Flow
+## <a id='client-cred-flow'></a> Client Credentials Flow
 
 <%= image_tag '../images/oauth_client_credentials.png' %>
 
