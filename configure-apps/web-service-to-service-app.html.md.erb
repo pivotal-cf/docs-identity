@@ -3,50 +3,64 @@ title: Web + Service-to-Service App
 owner: Identity Service
 ---
 
-For Web + Service-to-Service applications, Pivotal Single Sign-On (SSO) supports the Authorization Code and Client Credentials OAuth 2.0 grant types respectively.
-This App Type enables an application to take advantage of the two grant types simultaneously. This allows the application to access resources on behalf of the user, and also access resources on behalf of the application.
+This topic describes the Web + Service-to-Service App Type for Single Sign-On (SSO) for Pivotal Cloud Foundry
+(PCF).
 
-This App Type has two grant types, authorization code and client credentials.
-The authorization code grant type is for server-side applications.
-The client credentials grant type is for applications that can request an access token
-and access resources on its own. This is often the case when there are services that
-call APIs without users.
+## <a id="overview"></a>Overview
 
-### Authorization Code OAuth 2.0 Roles
+The Web + Service-to-Service App Type enables an app to use the following OAuth 2.0 grant types:
+
++ **Authorization Code:** This grant type is for server-side apps.
+See [Authorization Code OAuth 2.0 Grant Type ](#auth) below.
++ **Client Credentials:** This grant type is for apps that can request an access token
+and access resources on its own. These apps often use services that call APIs without users.
+See [Client Credentials OAuth 2.0 Grant Type](#client-cred) below.
+
+Web + Service-to-Service apps can use both of the above grant types to access resources for users and the app.
+
+## <a id='auth'></a> Authorization Code OAuth 2.0 Grant Type 
+
+The Authorization Code OAuth 2.0 grant type uses the following roles:
+
 - **Resource Owner**: A person or system capable of granting access to a protected resource.
 - **Application**: A client that makes protected requests using the authorization of the resource owner.
-- **Authorization Server**: The Single Sign-On server that issues access tokens to client applications after successfully authenticating the resource owner.
-- **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Applications access the server through APIs.
+- **Authorization Server**: The SSO server that issues access tokens to client apps after successfully authenticating the resource owner.
+- **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Apps access the server through APIs.
 
-### Authorization Code Flow
+## <a id='auth-code-flow'></a> Authorization Code Flow 
+
+The following diagram describes the flow for the Authorization Code grant type:
 
 <%= image_tag '../images/oauth_auth_code.png' %>
 
-1. **Access Application**: The user accesses the application and triggers authentication and authorization.
-2. **Authentication and Request Authorization**: The application prompts the user for their username and password. The first time the user goes through this flow for the application, the user sees an approval page. On this page, the user can choose permissions to authorize the application to access resources on their behalf.
+1. **Access Application**: The user accesses the app and triggers authentication and authorization.
+2. **Authentication and Request Authorization**: The app prompts the user for their username and password. The first time the user goes through this flow for the app, the user sees an approval page. On this page, the user can choose permissions to authorize the app to access resources on their behalf.
 3. **Authentication and Grant Authorization**: The authorization server receives the authentication and authorization grant.
-4. **Send Authentication Code**: After the user authorizes the application, the authorization server sends an authorization code to the application.
-5. **Request Code Exchange for Token**: The application receives the authorization code and requests an access token from the authorization server. This gives the application access to the approved permissions.
+4. **Send Authentication Code**: After the user authorizes the app, the authorization server sends an authorization code to the app.
+5. **Request Code Exchange for Token**: The app receives the authorization code and requests an access token from the authorization server. This gives the app access to the approved permissions.
 6. **Issue Access Token**: The authorization server validates the authorization code and issues an access token.
-7. **Request Resource w/ Access Token**: The application attempts to access the resource from the resource server by presenting the access token.
-8. **Return Resource**: If the access token is valid, the resource server returns the resources that the user authorized the application to receive.
+7. **Request Resource w/ Access Token**: The app attempts to access the resource from the resource server by presenting the access token.
+8. **Return Resource**: If the access token is valid, the resource server returns the resources that the user authorized the app to receive.
 
-The resource server runs in PCF under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Applications can then access these resources on behalf of users.
+The resource server runs in PCF under a given space and org. Developers set the permissions for the resource server API endpoints. To do this, developers create resources that correspond to API endpoints secured by the SSO service. Apps can then access these resources on behalf of users.
 
-### Client Credentials OAuth 2.0 Actors
+## <a id='client-cred'></a> Client Credentials OAuth 2.0 Grant Type
+
+The Client Credentials OAuth 2.0 grant type uses the following actors:
 
 - **Application**: A client that makes protected requests using the authorization of the resource owner.
-- **Authorization Server**: The Single Sign-On server that issues access tokens to client applications after successfully authenticating the resource owner.
-- **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Applications access the server through APIs.
+- **Authorization Server**: The SSO server that issues access tokens to client apps after successfully authenticating the resource owner.
+- **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Apps access the server through APIs.
 
-### Client Credentials Flow
+## <a id='client-cred-flow'></a> Client Credentials Flow
 
 <%= image_tag '../images/oauth_client_credentials.png' %>
 
-1. **Authenticate w/ Client ID and Secret**: The application authenticates with the authorization server using its client ID and client secret.
+The following diagram describes the flow for the Client Credentials grant type:
+
+1. **Authenticate w/ Client ID and Secret**: The app authenticates with the authorization server using its client ID and client secret.
 2. **Issue Access Token**: The authorization server validates the client ID and client secret and issues an access token.
-3. **Request Resource w/ Access Token**: The application attempts to access the resource from the resource server by presenting the access token.
-4. **Return Resource**: If the access token is valid, the resource server returns the resources to the application.
+3. **Request Resource w/ Access Token**: The app attempts to access the resource from the resource server by presenting the access token.
+4. **Return Resource**: If the access token is valid, the resource server returns the resources to the appl.
 
-The resource server runs in PCF under a given space and organization. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by the Single Sign-On service. Administrators can create admin clients to perform automated management actions without a user. See <a href="./index.html#admin">Create Admin Client</a>.
-
+The resource server runs in PCF under a given space and org. Developers set the permissions for the resource server API endpoints. To do this, developers create resources that correspond to API endpoints secured by the SSO service. Administrators can create admin clients to perform automated management actions without a user. See <a href="./index.html#admin">Create Admin Client</a>.

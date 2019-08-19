@@ -114,15 +114,15 @@ The table below provides descriptions and default values for bind parameters:
 	</tr>
 	<tr>
 		<td><code>grant_types</code></td>
-		<td>Supported grant types for the apps through the SSO service are:
+		<td>The following grant types are supported by SSO for PCF:
 		  <ul>
              <li><code>authorization_code</code></li>
              <li><code>password</code></li>
              <li><code>client_credentials</code></li>
              <li><code>implicit</code></li>
            </ul>
-            The only multiple grant types combination supported is <code>authorization_code</code>
-            and <code>client_credentials</code>.
+            If you want to use more than one grant type, you can only use the <code>authorization_code</code>
+            and <code>client_credentials</code> grant types at the same time. Otherwise, you can only use one grant type per app.
 		</td>
 		<td> </td>
 	</tr>
@@ -269,15 +269,15 @@ The table below provides descriptions and default values for SSO properties to i
 	</tr>
 	<tr>
 		<td><code>GRANT_TYPE</code></td>
-		<td>Supported grant types for the apps through the SSO service are:
-        		  <ul>
-                     <li><code>authorization_code</code></li>
-                     <li><code>password</code></li>
-                     <li><code>client_credentials</code></li>
-                     <li><code>implicit</code></li>
-                   </ul>
-                    The only multiple grant types combination supported is <code>authorization_code</code>
-                    and <code>client_credentials</code>.
+		<td>The following grant types are supported by SSO for PCF:
+		  <ul>
+             <li><code>authorization_code</code></li>
+             <li><code>password</code></li>
+             <li><code>client_credentials</code></li>
+             <li><code>implicit</code></li>
+           </ul>
+            If you want to use more than one grant type, you can only use the <code>authorization_code</code>
+            and <code>client_credentials</code> grant types at the same time. Otherwise, you can only use one grant type per app.
         		</td>
 		<td><code>authorization_code</code>(Web application type)</td>
 	</tr>
