@@ -7,12 +7,12 @@ This topic explains how to monitor Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 ## <a id="overview"></a>Overview
 
-SSO uses the User Account and Authentication (UAA) service to log security events through Loggregator. 
-UAA security events can be filtered to destinations through a syslog drain. To configure logs to monitor SSO plan events, app, and UAA client events you need to obtain the IDs for the corresponding plan or app. 
+SSO uses the User Account and Authentication (UAA) service to log security events through Loggregator.
+UAA security events can be filtered to destinations through a syslog drain. To configure logs to monitor SSO plan events, app, and UAA client events you need to obtain the IDs for the corresponding plan or app.
 
-To obtain the identity zone ID for SSO plans, do one of the procedures in [Monitor SSO Plan Events](#plan).
+To obtain the identity zone ID for SSO plans, do one of the procedures in [Monitor SSO Plan Events](#plan) below.
 
-To obtain the client ID for an app or UAA client, do the procedure in [Monitor App Events](#app).
+To obtain the client ID for an app or UAA client, do the procedure in [Monitor App Events](#app) below.
 
 For information about configuring logging in Pivotal Application Services (PAS), see [Configuring Logging in PAS](https://docs.pivotal.io/pivotalcf/opsguide/logging-config-opsman.html).
 
@@ -23,16 +23,16 @@ All SSO service plans are given a unique identity zone ID. You can monitor all e
 
 You can obtain a list of plans and their corresponding identity zone IDs by doing one of the following:
 
-+ Making a call to the SSO API. See [Use the SSO API](#api).
-+ Using the SSO Operator Dashboard. See [Use the SSO Operator Dashboard](#dashboard).
++ Making a call to the SSO API. See [Use the SSO API](#api) below.
++ Using the SSO Operator Dashboard. See [Use the SSO Operator Dashboard](#dashboard) below.
 
 ###<a id="api-preq"></a> Prerequisites
 
-Before you can use the SSO API to monitor plan events, you must do the following:
+Before you can use the SSO API to monitor plan events, you must:
 
 1. Create an admin client. See [Create an Admin Client](./manage-clients-api.html#creating).
 2. Create a UAA identity zone admin client. See [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
-    
+
 ###<a id="api"></a>Use the SSO API
 
 To use the SSO API to obtain plan identity zone IDs, run the following command:
@@ -50,11 +50,11 @@ For more information, see [SSO Service Plan Automation API](http://docs.pivotal.
 
 ###<a id="dashboard"></a>Use the SSO Operator Dashboard
 
-To use the SSO Operator Dashboard to obtain plan identity zone IDs, do the following:
-  
+To use the SSO Operator Dashboard to obtain plan identity zone IDs:
+
 1. Log into the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard`
 1. Click the plan you want to obtain the identity zone ID for and select **Edit Plan**.
-1. Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The  URL looks similar to the following:
+1. Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The URL looks similar to the one below.
 
     ```
     https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/IDENTITY-ZONE-ID
@@ -64,7 +64,7 @@ To use the SSO Operator Dashboard to obtain plan identity zone IDs, do the follo
 ## <a id="app"></a>Monitor App Events
 All apps that use SSO have a unique client ID. You can monitor app and UAA client events using the client ID.
 
-To find your app's client ID, do the following:
+To find your app's client ID:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
@@ -73,5 +73,5 @@ To find your app's client ID, do the following:
 1. Under **App**, click **Credentials** near the name of your app.
 1. Record the value of **App ID**.
 
-<%= image_tag '../images/sso_dev_creds.png' %>
+<%= image_tag("../images/sso_dev_creds.png", :alt => "App credentials") %>
 <a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>

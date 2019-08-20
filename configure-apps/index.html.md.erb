@@ -327,7 +327,7 @@ The table below provides descriptions and default values for SSO properties to i
 			This value is ignored for any grant type other than client credentials.
         <br><br>
 			Pivotal recommends including <code>uaa.resource</code>, which
-      is not added your user-provided list by default.</p>
+      is not added your user-provided list by default.
 
 			</td>
 		<td><code>uaa.resource</code></td>
@@ -399,7 +399,7 @@ For more information about bind parameters, see [Bind Parameters](#bind-params) 
 
 Service keys enable you to register apps for automation, such as scripts or pipelines.
 
-To register an externally hosted app using service keys, do the following:
+To register an externally hosted app using service keys:
 
 1. To create a service key, run the following command:
 
@@ -463,7 +463,7 @@ To register an externally hosted app using service keys, do the following:
 
 #### <a id="register-dashboard"></a> Register an Externally Hosted App Using the SSO Developer Dashboard
 
-To register an externally hosted app using the SSO Developer Dashboard, do the following:
+To register an externally hosted app using the SSO Developer Dashboard:
 
 1. Determine the type of app for the SSO `service.bind`.
 For more information, see [Determining SSO Application Type](../determine-type.html).
@@ -472,7 +472,7 @@ For more information, see [Determining SSO Application Type](../determine-type.h
 1. Under **Services**, click **Manage** next to the SSO service instance.
 This launches the SSO Developer Dashboard.
 
-	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
+	<%= image_tag("../images/sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
 1. Enter an **App Name**.
@@ -486,12 +486,12 @@ This launches the SSO Developer Dashboard.
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
 
-    <%= image_tag '../images/sso_dev_select_idp.png' %>
+    <%= image_tag("../images/sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`,
    under **App Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, SSO rejects the request.
-   <%= image_tag '../images/sso_dev_redirect_uri.png' %>
+   <%= image_tag("../images/sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
@@ -547,7 +547,7 @@ For more information about tokens, see [Configure a Token Policy](../manage-serv
     **Show on Homepage** to display the app on the UAA or Pivotal Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
       1. In **App Launch URL**, enter the address you want for your app.
       1. Upload an app icon for your app.
-      <%= image_tag '../images/sso_dev_show_homepage.png' %>
+      <%= image_tag("../images/sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
 1. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other SSO procedures.
@@ -555,7 +555,7 @@ Record these credentials to use in other SSO procedures.
   You can only view the <strong>App Secret</strong> when an app is first registered or
   the secret is regenerated.</p>
 1. (Optional) If you want to view examples of how to integrate the SSO service into your Spring Boot apps, click **Download Sample Apps**.
-		<%= image_tag '../images/download_sample_apps.png' %>
+		<%= image_tag("../images/download_sample_apps.png", :alt => "Download Sample Apps") %>
 
 ## <a id="sso-dashboard"></a> Manage App Configurations
 
@@ -568,13 +568,13 @@ Before you access the dashboard, you must
 create a service instance for your space. See [Create Service Instances](../manage-service-instances.html#create-svc-instance).
 
 ### <a id="config-proced"></a> Procedure
-To manage your application configurations through the SSO Developer Dashboard, do the following:
+To manage your application configurations through the SSO Developer Dashboard:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance to launch the SSO Developer Dashboard.
 
-	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
+	<%= image_tag("../images/sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
@@ -585,12 +585,12 @@ To manage your application configurations through the SSO Developer Dashboard, d
 		This option is available for all application types except
 		<code>Service-to-Service App</code>.</p>
 
-    <%= image_tag '../images/sso_dev_select_idp.png' %>
+    <%= image_tag("../images/sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings**
    enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the
    URIs specified in this list. Otherwise, SSO rejects the request.
-   <%= image_tag '../images/sso_dev_redirect_uri.png' %>
+   <%= image_tag("../images/sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
@@ -646,7 +646,7 @@ To manage your application configurations through the SSO Developer Dashboard, d
 		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
     1. In **App Launch URL**, enter the address you want for your app.
     1. Upload an app icon for your app.
-    <%= image_tag '../images/sso_dev_show_homepage.png' %>
+    <%= image_tag("../images/sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
 
 1. Click **Update App**.
 
@@ -655,7 +655,7 @@ To manage your application configurations through the SSO Developer Dashboard, d
 You can view the credentials and endpoints required for app integration for an existing app on the
 **Credentials** page.
 
-To view credentials of an existing app, do the following:
+To view credentials of an existing app:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
@@ -665,7 +665,7 @@ To view credentials of an existing app, do the following:
 	<p class="note"><strong>Note:</strong>
 		You can only view the <strong>App Secret</strong> when an app is first registered or
 		the secret is regenerated.</p>
-	<%= image_tag '../images/sso_dev_creds.png' %>
+	<%= image_tag("../images/sso_dev_creds.png", :alt => "App credentials") %>
   <a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
@@ -676,7 +676,7 @@ To view credentials of an existing app, do the following:
 	To regenerate a client for a PCF bound app, you need to delete and re-create the
 	service binding from your app to SSO.</p>
 
-To regenerate an app secret of an existing app, do the following:
+To regenerate an app secret of an existing app:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
@@ -700,7 +700,7 @@ in a specific zone where you create the client.
 
 You must be at least a plan admin to perform these steps.
 
-To create an admin client, do the following:
+To create an admin client:
 
 1. Log in to Apps Manager.
 2. Select the space where your service instance is located.
@@ -769,7 +769,7 @@ Record these credentials to use in other SSO procedures.
 
 ## <a id="unregister"></a> Unregister App from SSO
 
-To unregister an app from SSO, do one of the following:
+To unregister an app from SSO:
 
 + If you configured a PCF app in [Set Up Apps to Use SSO](#set-up) above,
 see [Unregister a PCF App](#unregister-pcf) below.
@@ -817,7 +817,7 @@ For more information about the `cf delete-service-key` command, see [delete-serv
 
 ### <a id="unregister-dashboard"></a> Unregister an Externally Hosted App Using the SSO Developer Dashboard
 
-To unregister an externally hosted app using the SSO Developer Dashboard, do the following:
+To unregister an externally hosted app using the SSO Developer Dashboard:
 
 1. To navigate to the Service Instance Developer Dashboard, do the procedure in [Access Service Instance Developer Dashboard](../manage-service-instances.html#access-svc-instance-developer-dashboard).
 3. Click your app.

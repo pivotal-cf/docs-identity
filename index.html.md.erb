@@ -8,7 +8,7 @@ This topic provides an overview of the
 Pivotal Cloud Foundry (PCF).
 
 The Single Sign-On service is an all-in-one solution for securing access to
-applications and APIs on PCF. The Single Sign-On service provides support for
+apps and APIs on PCF. The Single Sign-On service provides support for
 native authentication, federated single sign-on, and authorization. Operators
 can configure native authentication and federated single sign-on, for example SAML,
 to verify the identities of application users. After authentication,
@@ -17,14 +17,14 @@ the Single Sign-On service uses OAuth 2.0 to secure resources or APIs.
 ## <a id="sso-overview"></a> Single Sign-On
 
 The Single Sign-On service allows users to log in through a single sign-on service
-and access other applications that are hosted or protected by the service.
-This improves security and productivity since users do not have to log in to
-individual applications.
+and access other apps that are hosted or protected by the service.
+This improves security and productivity by removing the need for users to log in to
+individual apps.
 
 Developers are responsible for selecting the authentication method for application users.
 They can select native authentication provided by the User Account and Authentication (UAA)
 or external identity providers. UAA is an open source identity server project under
-the Cloud Foundry (CF) foundation that provides identity based security for applications and APIs.
+the Cloud Foundry (CF) foundation that provides identity based security for apps and APIs.
 
 SSO supports service provider-initiated authentication flow and single logout.
 It does not support identity provider-initiated authentication flow.
@@ -33,7 +33,7 @@ All SSO communication takes place over SSL.
 ## <a id="oauth2"></a> OAuth 2.0 Authorization
 
 After authentication, the Single Sign-On service uses OAuth 2.0 for authorization.
-OAuth 2.0 is an authorization framework that delegates access to applications
+OAuth 2.0 is an authorization framework that delegates access to apps
 to access resources on behalf of a resource owner.
 
 Developers define resources required by an application bound to a Single Sign-On (SSO)
