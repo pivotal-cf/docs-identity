@@ -3,39 +3,23 @@ title: Updating Service Plans with UAAC
 owner: Identity Service
 ---
 
-<div class="quick-links">
-    <ul>
-        <li><a href="#creating">Create a UAA Identity Zone Admin Client</a></li>
-          <ul>
-            <li><a href="#admin">Create an Admin Client</a></li>
-            <li><a href="#zone-admin">Create a UAA Identity Zone Admin Client</a></li>
-          </ul>
-        <li><a href="#updating">Update UAA Identity Zone Configurations with the API</a></li>
-        <li><a href="#branding">Modify Branding</a></li>
-        <li><a href="#default-groups">Add Default Groups for Users</a></li>
-        <li><a href="#rotate-keys">Rotate JSON Web Token (JWT) Signing Keys</a></li>
-        <li><a href="#enable-default-idp">Enable Default Identity Provider (IDP)</a></li>
-        <li><a href="#disable-sso-plans">Disable SSO Plans</a></li>
-    </ul>
-</div>
+This topic describes how Pivotal Cloud Foundry (PCF) admins or plan admins can manage Single Sign-On (SSO)
+service plan configurations using the SSO Operator Dashboard or API using the User Account and Authentication Command Line Interface (UAAC).
 
-This topic describes how Pivotal Cloud Foundry (PCF) administrators manage Single Sign-On (SSO) 
-service plans using the User Account and Authentication Command Line Interface (UAAC)
-
-The SSO service for PCF manages configurations within 
-the UAA and the Cloud Controller (CC) components 
-of the Pivotal Application Service (formerly Elastic Runtime). 
-Each SSO service plan ties together a CC plan and a UAA identity zone. 
+The SSO service for PCF manages configurations within
+the UAA and the Cloud Controller (CC) components
+of the Pivotal Application Service (formerly Elastic Runtime).
+Each SSO service plan ties together a CC plan and a UAA identity zone.
 
 Beginning with SSO v1.6, you can use the UAAC
 to manage UAA identity zones configured as part of SSO service plans.
 
 <h2> <a id="creating"></a> Create a UAA Identity Zone Admin Client </h2>
-<%= partial 'create_zone_admin' %>  
-   
+<%= partial 'create_zone_admin' %>
+
 <h2><a id="updating"></a> Update UAA Identity Zone Configurations with the API </h2>
 
-This section shows how to use the UAAC to update UAA identity zone configurations, using a 
+This section shows how to use the UAAC to update UAA identity zone configurations, using a
 <code>PUT</code> command.
 
 <p class="note warning"><strong>Warning:</strong> This flow is for advanced users only.
@@ -55,28 +39,28 @@ To make UAA identity zone API calls, do the following:
         <li>
           Log in to the SSO dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
         </li>
-        
+
         <li>
-        Click the name of the SSO service plan that you want to configure on the SSO dashboard and select 
+        Click the name of the SSO service plan that you want to configure on the SSO dashboard and select
         <strong>Edit Plan</strong> from the dropdown.
         </li>
-        
+
         <li> Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The URL looks similar to the following:
           <pre>https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</pre>
-          Where <code>YOUR-IDENTITY-ZONE-ID</code> is your plan’s identity zone ID. 
+          Where <code>YOUR-IDENTITY-ZONE-ID</code> is your plan’s identity zone ID.
         </li>
     </ol>
 <li> Run the following command, directing the output to a text file: <br>
-    
+
     <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID > JSON-BLOB.txt</pre>
-    
+
     Where:
     <ul>
       <li> <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone ID you obtained in step 2c.</li>
       <li> <code>JSON-BLOB.txt</code> is the name of your text file.</li>
     </ul>
 </li>
-<li> In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper, 
+<li> In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper,
 leaving just the JSON blob. Confirm that the ID in this output matches <code>YOUR-IDENTITY-ZONE-ID</code>.<br><br>
 
     Your remaining JSON blob looks similar to the truncated sample below:
@@ -112,7 +96,7 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>YOU
 <li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
     <p class="note warning"><strong>Warning:</strong> You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
 
-    <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT 
+    <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT
 \-H 'Content-Type: application/json' -d "$(cat file.txt)"</pre>
     Where:
     <ul>
@@ -148,13 +132,13 @@ leaving just the JSON blob. Confirm that the ID in this output matches <code>YOU
    </li>
 </ol>
    For a full list of UAA API update parameters,
-   see the <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.    
+   see the <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.
 <h2> <a id="branding"></a> Modify Branding</h2>
 
 You can optionally modify the branding of your login page by changing your company name, logos, legal text, and legal links. <br><br>
 
-Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> above 
-to retrieve the identity zone configurations for your SSO plan, 
+Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> above
+to retrieve the identity zone configurations for your SSO plan,
 add or modify the branding section according to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>. <br> <br>
 
 An example branding section is shown below.<br>
@@ -174,17 +158,17 @@ An example branding section is shown below.<br>
     },
 </pre>
 
-<h2><a id="default-groups"></a> Add Default Groups for Users</h2>
+##<a id="default-groups"></a> Add Default Groups for Users
 
-Optionally, you can add additional default groups for all users. 
-You do not need to 
-do manual group assignment or group mappings for these groups. 
+Optionally, you can add additional default groups for all users.
+You do not need to
+do manual group assignment or group mappings for these groups.
 Use default groups only for universal scopes that all users can have, such as for a global read-only resource.<br><br>
 
-Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> to retrieve and update 
+Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> to retrieve and update
 the current identity zone configurations for your SSO plan, update the default groups section according to the <a href="https://docs.cloudfoundry.org/api/uaa">UAA API documentation</a>.<br><br>
 
-An example of the default groups section is shown below. You can add more groups in the array list. 
+An example of the default groups section is shown below. You can add more groups in the array list.
 Users will automatically have these scopes though they are not explicitly assigned to users.<br>
 
 <pre>"userConfig": {
@@ -203,16 +187,16 @@ Users will automatically have these scopes though they are not explicitly assign
     },
 </pre>
 
-<h2><a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys</h2>
+##<a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
 
 To rotate JWT signing keys, do the following:<br><br>
 
 <ol>
 <li><p>Generate a private key that can be used for signing. For example, run <code>ssh-keygen -t rsa</code>.<br><br>
-Generate your signing keys in a secure manner. 
+Generate your signing keys in a secure manner.
 Refer to your security organization for acceptable key generation practices.</p></li>
 
-<li><p>Take the value of the generated private key and make it a single 
+<li><p>Take the value of the generated private key and make it a single
 line of text, replacing all new lines with <code>\n</code>. For example:<br><br></p>
 
 <p><code>-----BEGIN RSA PRIVATE KEY-----</code>
@@ -225,15 +209,15 @@ line of text, replacing all new lines with <code>\n</code>. For example:<br><br>
 <pre><code>-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n
 </code></pre></li>
 
-<li><p>Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> above to 
-retrieve and update the identity zone configurations for your SSO plan, 
+<li><p>Using the steps in <a href="#updating">Update UAA Identity Zone Configurations with the API</a> above to
+retrieve and update the identity zone configurations for your SSO plan,
 update the token policy section to add your new generated private key as the value for <code>signingKey</code>. <br><br>
 An example of this section is shown below.
-<p class="note"><strong>Note</strong>: After you begin to configure JWT signing keys within a service plan, 
+<p class="note"><strong>Note</strong>: After you begin to configure JWT signing keys within a service plan,
     you can no longer default to share the multi-tenant JWT signing key inherited from the default zone.</p>
 
-<p class="note"><strong>Note</strong>: The first time you set a signing key for an identity zone, 
-existing issued tokens are immediately invalidated for online validation. 
+<p class="note"><strong>Note</strong>: The first time you set a signing key for an identity zone,
+existing issued tokens are immediately invalidated for online validation.
 You may need to restart applications that do offline validation for the new signing keys to take effect.</p>
 
 <pre><code> "tokenPolicy": {
