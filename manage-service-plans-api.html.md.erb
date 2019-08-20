@@ -3,29 +3,8 @@ title: Managing Service Plan Configurations
 owner: Identity Service
 ---
 
-<div class="quick-links">
-    <ul>
-      <li><a href="#configure-token-policy">Configure a Token Policy</a></li>
-        <li><a href="#creating">Create a UAA Identity Zone Admin Client</a></li>
-          <ul>
-            <li><a href="#admin">Create an Admin Client</a></li>
-            <li><a href="#zone-admin">Create a UAA Identity Zone Admin Client</a></li>
-            <ul>
-              <li><a href="#enable-default-idp">Enable Default Identity Provider (IDP)</a></li>
-              <li><a href="#disable-sso-plans">Disable SSO Plans</a></li>
-            </ul>
-          </ul>
-        <li><a href="#updating">Update UAA Identity Zone Configurations with the API</a></li>
-        <li><a href="#enable-default-idp">Enable Default Identity Provider (IDP)</a></li>
-        <li><a href="#disable-sso-plans">Disable SSO Plans</a></li>
-        <li><a href="#branding">Modify Branding</a></li>
-        <li><a href="#default-groups">Add Default Groups for Users</a></li>
-        <li><a href="#rotate-keys">Rotate JSON Web Token (JWT) Signing Keys</a></li>
-    </ul>
-</div>
-
-This topic describes how Pivotal Cloud Foundry (PCF) administrators or plan administrators can manage Single Sign-On (SSO)
-service plan configurations using the SSO Operator Dashboard or API using the User Account and Authentication Command Line Interface (UAAC)
+This topic describes how Pivotal Cloud Foundry (PCF) admins or plan admins can manage Single Sign-On (SSO)
+service plan configurations using the SSO Operator Dashboard or API using the User Account and Authentication Command Line Interface (UAAC).
 
 The SSO service for PCF manages configurations within
 the UAA and the Cloud Controller (CC) components
@@ -35,7 +14,7 @@ Each SSO service plan ties together a CC plan and a UAA identity zone.
 Beginning with SSO v1.6, you can use the UAAC
 to manage UAA identity zones configured as part of SSO service plans.
 
-<h2> <a id='configure-token-policy'></a> Configure a Token Policy</h2>
+## <a id='configure-token-policy'></a> Configure a Token Policy
 
 The Single Sign-On service allows PCF administrators and plan administrators to override the
 default expiry of access tokens (12 hours) and refresh tokens (30 days) by zone.
@@ -58,10 +37,10 @@ You can find these credentials in your PAS tile in Ops Manager in the **Credenti
 
 5. Click **Save**.
 
-<h2> <a id="creating"></a> Create a UAA Identity Zone Admin Client </h2>
+## <a id="creating"></a> Create a UAA Identity Zone Admin Client
 <%= partial 'create_zone_admin' %>
 
-<h2><a id="updating"></a> Update UAA Identity Zone Configurations with the API </h2>
+## <a id="updating"></a> Update UAA Identity Zone Configurations with the API
 
 This section shows how to use the UAAC to update UAA identity zone configurations, using a
 <code>PUT</code> command.
@@ -178,7 +157,7 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
    For a full list of UAA API update parameters,
    see the <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.
 
- <h2> <a id="enable-default-idp"></a> Set Default Identity Provider (IDP)</h2>
+ ## <a id="enable-default-idp"></a> Set Default Identity Provider (IDP)
 
  For PCF v2.4 or later, a default IDP can be set so that end users are automatically
  redirected to an appropriate enterprise IDP. <br>
@@ -198,7 +177,7 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 
  For information about <code>defaultIdentityProvider</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a> in the UAA documentation.
 
- <h2> <a id="disable-sso-plans"></a> Disable SSO Plans</h2>
+ ## <a id="disable-sso-plans"></a> Disable SSO Plans
 
  For PCF v2.4 and later, SSO plans that are no longer in use can be disabled.
  Disabled plans can be re-enabled later when they need to be used again. <br>
@@ -217,7 +196,7 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 
  For information about <code>active</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a> in the UAA documentation.
 
-<h2> <a id="branding"></a> Modify Branding</h2>
+## <a id="branding"></a> Modify Branding
 
 Optionally, you can modify the branding on your login page such as your company name, logos,
 legal text, and legal links.
@@ -253,7 +232,7 @@ To modify branding of the login page, do the following:
   <li>Complete the procedure by doing step 6.</li>
 </ol>
 
-<h2><a id="default-groups"></a> Add Default Groups for Users</h2>
+##<a id="default-groups"></a> Add Default Groups for Users
 
 Optionally, you can add additional default groups for all users.
 You do not need to do manual group assignment or group mappings for these groups.
@@ -293,7 +272,7 @@ To add default groups for users, do the following:
   <li>Complete the procedure by doing step 6.</li>
 </ol>
 
-<h2><a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys</h2>
+##<a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
 
 To rotate JWT signing keys, do the following:<br><br>
 
