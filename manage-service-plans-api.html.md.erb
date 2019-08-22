@@ -4,15 +4,13 @@ owner: Identity Service
 ---
 
 This topic describes how Pivotal Cloud Foundry (PCF) admins or plan admins can manage Single Sign-On (SSO)
-service plan configurations using the SSO Operator Dashboard or API using the User Account and Authentication Command Line Interface (UAAC).
+service plan configurations using the SSO Operator Dashboard or API using the User Account and
+Authentication Command Line Interface (UAAC).
 
-The SSO service for PCF manages configurations within
-the UAA and the Cloud Controller (CC) components
-of the Pivotal Application Service (PAS).
-Each SSO service plan ties together a CC plan and a UAA identity zone.
+The SSO service for PCF manages configurations within the UAA and the Cloud Controller (CC) components of the
+Pivotal Application Service (PAS). Each SSO service plan ties together a CC plan and a UAA identity zone.
 
-Beginning with SSO v1.6, you can use the UAAC
-to manage UAA identity zones configured as part of SSO service plans.
+Beginning with SSO v1.6, you can use the UAAC to manage UAA identity zones configured as part of SSO service plans.
 
 ## <a id='configure-token-policy'></a> Configure a Token Policy
 
@@ -24,10 +22,10 @@ Servers use access tokens to determine whether the client is authorized or not. 
 * **Refresh tokens** carry information necessary to retrieve a new access token after an existing access token expires.
 Refresh tokens typically have a longer expiration time than access tokens.
 
-To configure the token policy, do the following:
+To configure the token policy:
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials.
-You can find these credentials in your PAS tile in Ops Manager in the **Credentials** tab.
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+You can find these credentials in your PAS tile in Ops Manager in **Credentials**.
 
 2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the drop-down menu.
 
@@ -38,9 +36,10 @@ You can find these credentials in your PAS tile in Ops Manager in the **Credenti
 5. Click **Save**.
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
+
 <%= partial 'create_zone_admin' %>
 
-## <a id="updating"></a> Update UAA Identity Zone Configurations with the API
+<h2 id="updating">Update UAA Identity Zone Configurations with the API</h2>
 
 This section shows how to use the UAAC to update UAA identity zone configurations, using a
 <code>PUT</code> command.
@@ -48,19 +47,20 @@ This section shows how to use the UAAC to update UAA identity zone configuration
 <p class="note warning"><strong>Warning:</strong> This flow is for advanced users only.
   You must always run the <code>PUT</code> command
   with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.
-  You must also provide all configuration values, otherwise, data may be lost.</p>
+  You must also provide all configuration values, otherwise, data might be lost.
+</p>
 
 For general information about UAA API, see the <a href="https://docs.cloudfoundry.org/api/uaa">CF UAA API documentation page </a>.<br>
 
-To make UAA identity zone API calls, do the following:
+To make UAA identity zone API calls:
 
 <ol>
 <li> Create an identity zone admin client by following the procedure in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
 
-<li> Find the UAA identity zone ID by doing the following:</li>
+<li> Find the UAA identity zone ID:</li>
     <ol type="a">
         <li>
-          Log in to the SSO Operator Dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in the PAS tile in Ops Manager in the <strong>Credentials</strong> tab.
+          Log in to the SSO Operator Dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the PAS tile in Ops Manager in <strong>Credentials</strong>.
         </li>
 
         <li>
@@ -68,7 +68,7 @@ To make UAA identity zone API calls, do the following:
         <strong>Edit Plan</strong> from the dropdown.
         </li>
 
-        <li> Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The URL looks similar to the following:
+        <li> Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The URL looks similar to the below.
           <pre>https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</pre>
           Where <code>YOUR-IDENTITY-ZONE-ID</code> is your plan’s identity zone ID.
         </li>
@@ -114,19 +114,20 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 </li>
 <li> In your <code>JSON-BLOB.txt</code> file, update the configurations in the JSON blob as needed, and then save the file.
   <p class="note warning"><strong>Warning:</strong> You must provide all <code>config</code> values,
-    otherwise, data can be lost when doing an API update as a <code>PUT</code> command.</p></li>
+    otherwise, data can be lost when doing an API update as a <code>PUT</code> command.
+  </p>
+</li>
 
 <li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
-    <p class="note warning"><strong>Warning:</strong> You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.</p>
+    <p class="note warning"><strong>Warning:</strong> You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.
+    </p>
 
     <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT
     \-H 'Content-Type: application/json' -d "$(cat file.txt)"</pre>
-    Where:
-    <ul>
-      <li> <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone ID you obtained in step step 2c.</li>
-    </ul>
 
-  A truncated example command looks similar to the following:
+    Where <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone ID you obtained in step 2c.<br><br>
+
+    A truncated example command looks similar to the below.
 
      <pre class="terminal">$ uaac curl -k identity-zones/YOUR-IDENTITY-ZONE-ID\
          -X PUT \
@@ -154,15 +155,15 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
      </pre>
    </li>
 </ol>
-   For a full list of UAA API update parameters,
-   see the <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.
+  For a full list of UAA API update parameters, see the
+  <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.
 
- ## <a id="enable-default-idp"></a> Set Default Identity Provider (IDP)
+## <a id="enable-default-idp"></a> Set Default Identity Provider (IDP)
 
- For PCF v2.4 or later, a default IDP can be set so that end users are automatically
- redirected to an appropriate enterprise IDP. <br>
+For PCF v2.4 or later, a default IDP can be set so that end users are automatically
+redirected to an appropriate enterprise IDP. <br>
 
- To set a default IDP, do the following:
+To set a default IDP:
 
  <ol>
    <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
@@ -177,31 +178,30 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 
  For information about <code>defaultIdentityProvider</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a> in the UAA documentation.
 
- ## <a id="disable-sso-plans"></a> Disable SSO Plans
+## <a id="disable-sso-plans"></a> Disable SSO Plans
 
- For PCF v2.4 and later, SSO plans that are no longer in use can be disabled.
- Disabled plans can be re-enabled later when they need to be used again. <br>
+For PCF v2.4 and later, SSO plans that are no longer in use can be disabled.
+Disabled plans can be re-enabled later when they need to be used again. <br>
 
- To disable SSO plans, do the following:
+To disable SSO plans:
 
- <ol>
- <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
-
-<li> In step 5, add the following line to the config section in the JSON blob:
+<ol>
+  <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li> In step 5, add the following line to the config section in the JSON blob:
       <pre>"active": false</pre>
 </li>
 
 <li>Complete the procedure by doing step 6.</li>
 </ol>
 
- For information about <code>active</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a> in the UAA documentation.
+For information about <code>active</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a> in the UAA documentation.
 
 ## <a id="branding"></a> Modify Branding
 
 Optionally, you can modify the branding on your login page such as your company name, logos,
 legal text, and legal links.
 
-To modify branding of the login page, do the following:
+To modify branding of the login page:
 
 <ol>
   <li>Follow steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
@@ -232,14 +232,14 @@ To modify branding of the login page, do the following:
   <li>Complete the procedure by doing step 6.</li>
 </ol>
 
-##<a id="default-groups"></a> Add Default Groups for Users
+## <a id="default-groups"></a> Add Default Groups for Users
 
 Optionally, you can add additional default groups for all users.
 You do not need to do manual group assignment or group mappings for these groups.
 Use default groups only for universal scopes that all users can have, such as
 for a global read-only resource.<br>
 
-To add default groups for users, do the following:
+To add default groups for users:
 
 <ol>
   <li>Follow the steps 1-4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
@@ -274,7 +274,7 @@ To add default groups for users, do the following:
 
 ##<a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
 
-To rotate JWT signing keys, do the following:<br><br>
+To rotate JWT signing keys:
 
 <ol>
   <li>
