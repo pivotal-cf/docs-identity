@@ -1,8 +1,8 @@
 To use the UAAC with your SSO service plan, you need an identity zone admin client. To create
-the identity zone admin client, you need to create an UAA admin client that corresponds to your SSO 
+the identity zone admin client, you need to create a UAA admin client that corresponds to your SSO
 service plan.
 <h3> <a id=""#admin""></a> Create an Admin Client </h3>
-To create an UAA admin client, do the following: 
+To create an UAA admin client, do the following:
 
 1. Follow the procedure in [Create an Admin Client](./configure-apps/#admin).
 
@@ -12,13 +12,13 @@ To create an UAA admin client, do the following:
 
 <h3><a id="zone-admin"></a>Create a UAA Identity Zone Admin Client</h3>
 
-To create a UAA identity zone admin client, do the following:
+To create a UAA identity zone admin client:
 
 1. Install the UAAC as follows:
 
     ```
     gem install cf-uaac
-    ``` 
+    ```
 
     For information about the UAAC,
     see [the UAAC Github Repository](https://github.com/cloudfoundry/cf-uaac).
@@ -29,10 +29,9 @@ To create a UAA identity zone admin client, do the following:
     uaac target MY-AUTH-DOMAIN.login.example.com
     ```
 
-    Where:<br>
-    `MY-AUTH-DOMAIN` is the **Auth Domain** you entered when you created the <a href="./manage-service-plans.html#create-svc-plan">Service Plan</a>.
+    Where `MY-AUTH-DOMAIN` is the **Auth Domain** you entered when you created the <a href="./manage-service-plans.html#create-svc-plan">Service Plan</a>.
 
-1. Run the command below to authenticate and obtain 
+1. Run the command below to authenticate and obtain
 an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.
 
 
@@ -44,14 +43,14 @@ an access token for the admin client for your service plan. UAAC stores the toke
     * `MY-APP-ID` is your admin app ID.
     * `MY-APP-SECRET` is your app secret.<br>
 
-    Use the **App ID** and **App Secret** provided when you created the admin client in the 
+    Use the **App ID** and **App Secret** provided when you created the admin client in the
     procedure above.
 
 <% if current_page.data.title == "Updating Identity Providers with UAAC" %>
 1. Run the following command to display your client context and verify that you have `idps.read`, `idps.write`, and `clients.admin` under the scope section.
 
-    ``` 
-    uaac context 
+    ```
+    uaac context
     ```
 
     For example:
@@ -67,13 +66,13 @@ an access token for the admin client for your service plan. UAAC stores the toke
     </pre>
 <% end %>
 
-    
+
 <% if current_page.data.title == "Updating Service Plans with UAAC" %>
-1. Run the following command to display your client context and verify that you have `clients.admin` 
+1. Run the following command to display your client context and verify that you have `clients.admin`
 under the scope section.
 
-    ``` 
-    uaac context 
+    ```
+    uaac context
     ```
 
     For example:
@@ -95,13 +94,12 @@ under the scope section.
     ```
     uaac client add ZONE-ADMIN-CLIENT-ID --authorized_grant_types client_credentials --authorities uaa.admin
     ```
-    Where:<br>
-    * `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.
-    
-    When prompted for a `New client secret`, provide a client secret for this 
+    Where `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.<br><br>
+
+    When prompted for a `New client secret`, provide a client secret for this
     identity zone admin client.
-    Make sure to use a secure value for your client secret. <br><br>
-    
+    Ensure you use a secure value for your client secret. <br><br>
+
     For example:
     <pre class="terminal">
     $ uaac client add ExampleZoneAdminClientID --authorized\_grant\_types client\_credentials --authorities uaa.admin
@@ -109,20 +107,18 @@ under the scope section.
     Verify new client secret:  *****
     </pre>
 
-    Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`.<br><br>  
-    
-    You can delete the original admin client created via the SSO UI after you create the identity zone client.
+    Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`.<br><br>
 
-1. Run the following command to authenticate and obtain an access token for the 
+    You can delete the original admin client created through the SSO UI after you create the identity zone client.
+
+1. Run the following command to authenticate and obtain an access token for the
 identity zone admin client for your service plan.
 
     ```
     uaac token client get ZONE-ADMIN-CLIENT-ID
     ```
 
-    Where:<br>
-    * `ZONE-ADMIN-CLIENT-ID` is zone admin client ID you provided in the previous step.
-    
+    Where `ZONE-ADMIN-CLIENT-ID` is zone admin client ID you provided in the previous step.<br><br>
     When prompted for a `Client secret`, use the client secret you provided in the previous step.
 
     For example:
@@ -132,23 +128,25 @@ identity zone admin client for your service plan.
     </pre>
 
 
-1. Use the following command to display your client context and verify that you have `uaa.admin` 
-under the scope section. 
+1. Use the following command to display your client context and verify that you have `uaa.admin`
+under the scope section.
 
-    ``` 
-    uaac context 
+    ```
+    uaac context
     ```
 
-    For example: 
-  <pre class="terminal">
-  $ uaac context
-  [1]*[ExampleZoneAdminClientID]
-    client\_id: ExampleZoneAdminClientID
-      access\_token: asdioqwuelk12312.e21e
-      token\_type: bearer
-      expires\_in: 43200
-      scope: uaa.admin
-      jti: 123908dkl1-23298
-  </pre>
-      You can now do operator level API configurations for the SSO service plan.
-      You do not have permissions for any other SSO service plan.
+    For example:
+    <pre class="terminal">
+    $ uaac context
+    [1]*[ExampleZoneAdminClientID]
+      client\_id: ExampleZoneAdminClientID
+        access\_token: asdioqwuelk12312.e21e
+        token\_type: bearer
+        expires\_in: 43200
+        scope: uaa.admin
+        jti: 123908dkl1-23298
+    </pre>
+    <p>
+    You can now do operator level API configurations for the SSO service plan.
+    You do not have permissions for any other SSO service plan.
+    </p>

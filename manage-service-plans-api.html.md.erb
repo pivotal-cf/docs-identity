@@ -4,15 +4,13 @@ owner: Identity Service
 ---
 
 This topic describes how Pivotal Cloud Foundry (PCF) admins or plan admins can manage Single Sign-On (SSO)
-service plan configurations using the SSO Operator Dashboard or API using the User Account and Authentication Command Line Interface (UAAC).
+service plan configurations using the SSO Operator Dashboard or API using the User Account and
+Authentication Command Line Interface (UAAC).
 
-The SSO service for PCF manages configurations within
-the UAA and the Cloud Controller (CC) components
-of the Pivotal Application Service (formerly Elastic Runtime).
-Each SSO service plan ties together a CC plan and a UAA identity zone.
+The SSO service for PCF manages configurations within the UAA and the Cloud Controller (CC) components of the
+Pivotal Application Service (PAS). Each SSO service plan ties together a CC plan and a UAA identity zone.
 
-Beginning with SSO v1.6, you can use the UAAC
-to manage UAA identity zones configured as part of SSO service plans.
+Beginning with SSO v1.6, you can use the UAAC to manage UAA identity zones configured as part of SSO service plans.
 
 <h2> <a id="creating"></a> Create a UAA Identity Zone Admin Client </h2>
 <%= partial 'create_zone_admin' %>
@@ -25,7 +23,8 @@ This section shows how to use the UAAC to update UAA identity zone configuration
 <p class="note warning"><strong>WARNING:</strong> This flow is for advanced users only.
   You must always run the <code>PUT</code> command
   with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.
-  You must also provide all configuration values, otherwise, data may be lost.</p>
+  You must also provide all configuration values, otherwise, data might be lost.
+</p>
 
 For general information about UAA API, see the <a href="https://docs.cloudfoundry.org/api/uaa">CF UAA API documentation page </a>.<br><br>
 
@@ -141,7 +140,7 @@ An example branding section is shown below.<br>
     },
 </pre>
 
-##<a id="default-groups"></a> Add Default Groups for Users
+## <a id="default-groups"></a> Add Default Groups for Users
 
 Optionally, you can add additional default groups for all users.
 You do not need to
@@ -172,7 +171,7 @@ Users will automatically have these scopes though they are not explicitly assign
 
 ##<a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
 
-To rotate JWT signing keys, do the following:<br><br>
+To rotate JWT signing keys:
 
 <ol>
 <li><p>Generate a private key that can be used for signing. For example, run <code>ssh-keygen -t rsa</code>.<br><br>
