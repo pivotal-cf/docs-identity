@@ -48,8 +48,8 @@ To validate the token, you must verify the following:
 
 ### <a id="login-hint"></a>Login Hints
 
-For PCF v2.2 and later, when making an authorization code, password, or implicit grant request,
-a login hint can be provided so that the end user is automatically redirected to the appropriate IDP.
+When you make an authorization code, password or implicit grant request,
+a login hint can be provided so that the end user is automatically redirected to the appropriate identity provider.
 
 An encoded JSON string containing `origin_key` tied to the origin key of an
 identity provider can be provided as a login hint using `login_hint` in a query
