@@ -3,23 +3,16 @@ title: Okta Integration Guide Overview
 owner: Identity Service
 ---
 
-Okta is an enterprise identity management and single sign-on service that integrates with applications in the cloud, on-premises, or on a mobile device. This documentation describes how to configure a single sign-on partnership between Okta as the Identity Provider (IdP) and the Single Sign-On Service (SSO) for Pivotal Cloud Foundry as the Service Provider (SP).
+Okta is an enterprise identity management and single sign-on service that integrates with applications in the cloud, on-premises, or on a mobile device. This documentation describes how to configure a single sign-on partnership between Okta as the identity provider and the Single Sign-On Service (SSO) for Pivotal Cloud Foundry as the service provider.
 
 SSO supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All SSO communication takes place over SSL.
 
 ## <a id='prereqs'></a>Prerequisites
 
-To integrate Okta with Pivotal Cloud Foundry (PCF), you need:
+To integrate Okta with Pivotal Cloud Foundry (PCF), you must have the following:
 
-**Pivotal**
-
-* PCF, v1.7.0 or later.
-* Single Sign-On, v1.1.0 or later.
-
-**Okta**
-
-* Okta, v2016.07 or later.
-* A user with Application Admin privileges.
+* Okta v2016.07 or later
+* A user with app admin privileges
 
 <p class="note"><strong>Note</strong>: To configure SAML, you must <%=vars.sso_plan_enabled%></p>
 
