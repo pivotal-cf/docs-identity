@@ -107,12 +107,10 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 1. (Optional) If you are using a self-signed certificate, disable CRL checks by following these steps:
 
 	1. Open **Windows Powershell** as an Administrator.
-	
+
 	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
 
 1. (Optional) If you are using a self-signed certificate, add it to the ADFS trust store. Obtain the Ops Manager certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the ADFS trust store, so ADFS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
-
-    <p class="note"><strong>Note</strong>: Prior to PCF v1.10, steps 13 and 14 are required as all PCF components (including SSO tile) have certificates are signed by an internal CA. In PCF v1.10+, customers can upload their own CA certificate to PCF. </p>
 
 1. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**. For more information, see the next section.
 
