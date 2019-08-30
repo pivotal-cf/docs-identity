@@ -5,35 +5,36 @@ owner: Identity Service
 
 These are release notes for the [Single Sign-On (SSO) for Pivotal Cloud Foundry (PCF)](https://network.pivotal.io/products/p-identity).
 
-## <a id="XX"></a> v1.10.0
+## <a id="1-10-0"></a> v1.10.0
 
-**Release Date: Sept 6, 2019**
+**Release Date: XXX XX, XXXX**
 
-### <a id="XX-features"></a> Features
+### <a id="1-10-0-features"></a> Features
 
 New features and changes in this release:
 
-- **Authorization Code & Client Credentials Multi-Grant Type:**  SSO supports multiple grant types.
-  Application developers can build an SSO application that needs to access both resources for users
-  and the app.
-- **Accessibility Design Improvements:** Single Sign-On Developer Dashboard now has added visual
-  cues beyond color to help navigate through the UI.
-- **UX Enhancement:** Single Sign-On Developer Dashboard has the following usability enhancements:
-  - Error clarity to help understand where and what errors are on the page
-  - Clear distinction of scopes between authorization for user, authorization for application,
-    and admin permissions
-  - Added tooltips and improved page navigation
+- **Authorization Code and Client Credentials Multi-Grant Type:** SSO for PCF v1.10.0 adds support for multiple grant types. This feature enables app developers to build Web + Service-to-Service apps that can use both user and app resources. For more information see, [Web + Service-to-Service App](./web-service-to-service-app.html).
+- **Accessibility Design Improvements:** The Single Sign-On Developer Dashboard has more  visual cues to help navigate through the UI and improve accessibility.
+- **UX Enhancement:** The Single Sign-On Developer Dashboard has the following usability enhancements:
+  - Errors messages are clearer.
+  - User authorization scopes, app authorization scopes,
+    and admin permissions scopes are more distinct. 
+  - Tooltips and page navigation have been improved.
 - **Stemcell Update:** The major stemcell line is now the 315 series for Ubuntu Xenial.
 
-
-### <a id="XX-fixed-issues"></a> Fixed Issues
+### <a id="1-10-0-resolved"></a> Resolved Issues
 
 This release fixes the following issues:
 
-- **Single Sign-On Tile Install:** Fixed installation of SSO for PCF tile failing when logos
-  and favicons are larger than 64 KB.
-- **Single Sign-On Developer Dashboard Login:** Fixed bug that prevented logging into
-  Single Sign-On Developer Dashboard when Single Sign-On Operator Dashboard had more than 60 plans.
+* **Maximum Branding Size:** If logos and favicons are larger than 64&nbsp;KB,
+then the installation of the SSO for PCF tile fails.
+ 
+- **Single Sign-On Developer Dashboard Login:** If an operator configures more than 60 plans,
+developers are prevented from logging into the Single Sign-On Developer Dashboard.
+  
+### <a id="1-10-0-known"></a> Known Issues
+
+There are no known issues for this release.
 
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
