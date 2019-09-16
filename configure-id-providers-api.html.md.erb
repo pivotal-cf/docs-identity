@@ -1,0 +1,198 @@
+---
+title: Updating Identity Providers with UAAC
+owner: Identity Service
+---
+
+This topic describes how to update the configuration of identity providers
+using the User Account and Authentication Command Line Interface (UAAC).
+
+For instructions on configuring identity providers, see [Configuring Identity Providers](./configure-internal-us.html).
+
+## <a id="creating"></a> Create a UAA Identity Zone Admin Client
+<%= partial '../../identity/partials/identity/create_zone_admin' %>
+
+## <a id="updating"></a> Update UAA Identity Provider Configurations with the API
+
+This section shows how to use the UAAC to update UAA identity provider configurations, using a `PUT` command.
+
+<p class="note warning"><strong>WARNING</strong>: This flow is for advanced users only.
+  You must always run the <code>PUT</code> command
+  with the latest data by doing a <code>GET</code> before the <code>PUT</code> command.
+  You must also provide all configuration values, otherwise, data can be lost.</p>
+
+For general information about UAAC, see the [CF UAA API documentation page](https://docs.cloudfoundry.org/api/uaa).
+
+To make UAA identity provider API calls, do the following:
+
+1. Create an identity zone admin client following [Create a UAA Identity Zone Admin Client](#creating) above.
+
+1. To retrieve your identity provider ID, run the following command: <br>
+
+    ```
+    uaac curl -k /identity-providers > ID-TEXT.txt
+    ```
+    Where:
+      * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
+      * `ID-TEXT.txt` is the name of your text file.
+
+    The command above outputs a JSON blob similar to the example below.
+
+    <pre>
+      {
+        "type" : "uaa",
+        "config" : "null",
+        "id" : "4be9d903-b6ce-4a57-9c56-94e731b58628",
+        "originKey" : "uaa",
+        "name" : "uaa",
+        "version" : 3,
+        "created" : 946684800000,
+        "last_modified" : 1538589026045,
+        "active" : true,
+        "identityZoneId" : "uaa"
+    </pre>
+    Your identity provider ID is the value of `id`. In most cases, this command returns one
+    identity provider. If there are several, you can identify your identity provider by the `name`.
+
+1. Run the following command, directing the output to a text file:
+
+    ```
+    uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID > JSON-BLOB.txt
+    ```
+
+    Where:
+      * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
+      * `JSON-BLOB.txt` is the name of your text file.
+
+3. The command above outputs a JSON blob similar
+to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-PROVIDER-ID`.
+
+	<pre>
+	{
+      "type": "uaa",
+      "config": "{"emailDomain\":null,
+      \"additionalConfiguration\":null,
+      \"providerDescription\":null,
+      \"passwordPolicy\":null,
+      \"lockoutPolicy\":null,
+      \"disableInternalUserManagement\":false}",
+      "id": "b38dfbbc-f187-4eeb-a3f3-21a3c72c6975",
+      "originKey": "uaa",
+      "name": "uaa",
+      "version": 0,
+      "created": 1530220213000,
+      "last_modified": 1530220213000,
+      "active": true,
+      "identityZoneId": "uaa"
+    }
+	</pre>
+
+4. In your `JSON-BLOB.txt`, update the configurations in the JSON blob as needed, and then save the file.
+  <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values, otherwise,
+    data can be lost when doing an API update as a <code>PUT</code> command.</p>
+
+5. Submit a UAAC curl request to apply your updated configurations to the identity provider, as shown below.
+    <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before the below <code>PUT</code> command.</p>
+
+    ```
+    $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT
+    \-H 'Content-Type: application/json' -d "$(cat file.txt)"
+    ```
+    Where:
+    * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
+
+     A minimal example command would look similar to the following:
+
+     <pre class="terminal">$ uaac curl -k /identity-providers/b38dfbbc-f187-4eeb-a3f3-21a3c72c6975\
+         -X PUT \
+         -H 'Content-Type: application/json' \
+         -d '{
+             "type": "uaa",
+             "config": {
+                 "emailDomain": null,
+                 "providerDescription": null,
+                 "passwordPolicy": null,
+                 "lockoutPolicy": {
+                     "lockoutPeriodSeconds": 8,
+                     "lockoutAfterFailures": 8,
+                     "countFailuresWithin": 8
+                 },
+                 "disableInternalUserManagement": false
+             },
+             "originKey": "uaa",
+             "name": "uaa",
+             "version": 0,
+             "active": true
+             }'
+     </pre>
+
+   For a full list of UAA API update parameters,
+   see the [Identity Providers Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#update).
+
+### <a id="enable-client-auth"></a> Enable Client Auth for OpenID Connect (OIDC)
+
+Some OIDC providers only support client secrets via POST instead of via basic authentication.
+
+<p class="note"><strong>Note</strong>: Azure Active Directory integrations using
+   the response type of code only work with <code>clientAuthInBody</code>.</p>
+
+To enable client authentication via POST, do the following:
+
+1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
+
+1. In step 5, add the following line to the config section in the JSON blob:
+
+    ```
+    "clientAuthInBody": true
+    ```
+
+1. Complete the procedure by following step 6.
+
+For more information about client authentication,
+see [OAuth/OIDC](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#oauth-oidc)
+in the UAA API documentation.
+
+### <a id="enable-password"></a> Enable Password Grant for OpenID Connect (OIDC)
+
+You can enable OIDC password grant to permit native apps to forward credentials to an enterprise identity provider for authentication.
+
+To enable OIDC password grant, do the following:
+
+1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
+
+1. In step 5, add the following line to the config section in the JSON blob:
+
+    ```
+    "passwordGrantEnabled": true
+    ```
+
+1. Complete the procedure by following step 6.
+
+For more information about OIDC password grant,
+see [OAuth/OIDC](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#oauth-oidc)
+in the UAA API documentation.
+
+### <a id="skip-ssl-saml"></a> Skip SSL Validation for SAML
+
+For cases where the SAML provider is configured using a valid SAML URL and a self-signed certificate,
+you might need to skip SSL validation.
+
+<p class="note"><strong>Note</strong>: This section assumes you have created the SAML identity provider, most likely
+by providing the SAML metadata directly.
+For more information, see <a href="./configure-external-id.html#config-saml-prov"> Add a SAML Provider</a>. </p>
+
+To enable skipping SSL validation, do the following:
+
+1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
+
+1. In step 5, add the following line to the config section in the JSON blob:
+
+    ```
+    "skipSslValidation": true
+    ```
+
+1. Complete the procedure by following step 6.
+
+For more information about skipping SSL validation, see
+[SAML](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/#saml) in the UAA API documentation.
+
+To test your identity provider configurations, you can deploy the [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) to validate the effects of the instructions given in this guide.
