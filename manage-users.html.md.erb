@@ -3,12 +3,12 @@ title: Managing Users
 owner: Identity Service
 ---
 
-This topic describes how a <%= vars.platform %> Plan Administrator uses t<%= vars.product_full %> to manage user access to <%= vars.platform %> apps,
+This topic describes how a <%= vars.platform %> Plan Administrator uses t<%= vars.product_name %> to manage user access to <%= vars.platform %> apps,
 for users with accounts in the internal user store or with external identity providers.
 
 ## <a id="internal"></a> Manage Users in an Internal User Store
 
-<%= vars.product_full %> has an **Internal Users** admin pane that lets you manage user accounts in the <%= vars.platform %> internal user store:
+<%= vars.product_name %> has an **Internal Users** admin pane that lets you manage user accounts in the <%= vars.platform %> internal user store:
 invite and delete users, request users to reset their passwords, and update user attributes and permissions.
 
 To open the **Internal Users** pane:
@@ -48,7 +48,7 @@ Entering a blank value returns all users in the service plan’s internal user s
 
 ## <a id="external"></a> Manage Users from an External Identity Provider
 
-For each external identity provider that <%= vars.product_full %> connects to, a users admin pane lets you browse, delete, and update <%= vars.platform %> permissions for user accounts from external identity providers. For example, **Okta SSO Users**.
+For each external identity provider that <%= vars.product_name %> connects to, a users admin pane lets you browse, delete, and update <%= vars.platform %> permissions for user accounts from external identity providers. For example, **Okta SSO Users**.
 
 To open the external identity provider users admin pane:
 
@@ -79,9 +79,9 @@ From the external identity provider users admin pane, you can:
 
 ## <a id="uaac"></a> Manage Users with the UAA CLI
 
-You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users for <%= vars.product_full %>. You can use this approach to programmatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
+You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users for <%= vars.product_name %>. You can use this approach to programmatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
 
-<p class="note"><strong>Note</strong>: Clients and Groups for <%= vars.product_full %> should be created directly using the <%= vars.operator_dash %> or through app manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by <%= vars.product_full %>.</p>
+<p class="note"><strong>Note</strong>: Clients and Groups for <%= vars.product_name %> should be created directly using the <%= vars.operator_dash %> or through app manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by <%= vars.product_name %>.</p>
 
 1. Install the UAA CLI, `uaac`.
     <pre class="terminal">

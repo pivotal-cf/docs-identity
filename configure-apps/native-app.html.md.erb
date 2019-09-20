@@ -3,7 +3,7 @@ title: Native Mobile, Desktop, or Command Line App
 owner: Identity Service
 ---
 
-For Native Mobile and Desktop apps, <%= vars.product_full %> supports the Resource Owner Password OAuth 2.0 grant type. This password grant type is for highly trusted apps where resource owners share their credentials directly with the app. 
+For Native Mobile and Desktop apps, <%= vars.product_name %> supports the Resource Owner Password OAuth 2.0 grant type. This password grant type is for highly trusted apps where resource owners share their credentials directly with the app. 
 
 ## <a id='oauth'></a> OAuth 2.0 Roles
 
@@ -11,7 +11,7 @@ The following roles are available in an OAuth 2.0 scenario:
 
 - **Resource Owner**: A person or system capable of granting access to a protected resource.
 - **Application**: A client that makes protected requests using the authorization of the resource owner.
-- **Authorization Server**: The <%= vars.product_full %> server that issues access tokens to client apps after successfully authenticating the resource owner.
+- **Authorization Server**: The <%= vars.product_name %> server that issues access tokens to client apps after successfully authenticating the resource owner.
 - **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. Apps access the server through APIs.
 
 ## <a id='app-flow'></a> Native App Flow
@@ -26,4 +26,4 @@ The following diagram shows the authentication flow used by mobile apps. In this
 4. **Request Resource w/ Access Token**: The app attempts to access the resource from the resource server by presenting the access token.
 5. **Return Resource**: If the access token is valid, the resource server returns the resources that the user authorized the app to receive.
 
-The resource server runs in <%= vars.platform %> under a given space and orgn. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_full %>. Apps can then access these resources on behalf of users.
+The resource server runs in <%= vars.platform %> under a given space and orgn. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_name %>. Apps can then access these resources on behalf of users.

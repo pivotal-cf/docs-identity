@@ -3,18 +3,18 @@ title: Configuring External Identity Providers
 owner: Identity Service
 ---
 This topic describes how <%= vars.platform %> admins configure a
-<%= vars.product_full %> service plan to manage user access to <%= vars.platform %> apps using an
+<%= vars.product_name %> service plan to manage user access to <%= vars.platform %> apps using an
 external identity provider.
 
 ## <a id='overview'></a> Overview
 
-You can also configure a <%= vars.product_full %> service plan to use the internal user store to
+You can also configure a <%= vars.product_name %> service plan to use the internal user store to
 manage user accounts.
 For more information, see [Configuring Internal User Store](./configure-internal-us.html).
 
 ## <a id='config-ext-prov'></a> Add an External Identity Provider
 
-See the following sets of instructions for how to configure <%= vars.product_full %> to use external identity providers that support SAML 2.0, OpenID Connect (OIDC), and LDAP.
+See the following sets of instructions for how to configure <%= vars.product_name %> to use external identity providers that support SAML 2.0, OpenID Connect (OIDC), and LDAP.
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
@@ -39,11 +39,11 @@ Follow the steps below to add an external SAML identity provider:
 
 1. Under **Advanced Settings**, click **Attribute Mappings**.
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first names, last names, or external groups. They are sent to apps through OpenID tokens, along with any other stored user information issued by <%= vars.product_full %>.
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first names, last names, or external groups. They are sent to apps through OpenID tokens, along with any other stored user information issued by <%= vars.product_name %>.
 	* Select a **User Scheme Attribute** from the dropdown.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
-1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by <%= vars.product_full %>.
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by <%= vars.product_name %>.
 	* Enter a **Custom Attribute Name**.
 	* Enter a **SAML Attribute Name** with the corresponding attribute from the incoming SAML assertion.
 
@@ -57,10 +57,10 @@ For more information, see <a href="#config-ext-settings">Configure Service Provi
 
 #### <a id='config-ext-settings'></a> Configure SAML Settings
 
-For each plan, <%= vars.product_full %> enables you to configure SAML settings
+For each plan, <%= vars.product_name %> enables you to configure SAML settings
 when SAML is used for exchanging authentication and authorization data
 between the identity provider and the service provider.
-<%= vars.product_full %> provides the ability to sign authentication requests and require signed assertions from the external identity provider.
+<%= vars.product_name %> provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
 You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
@@ -98,11 +98,11 @@ You can find these credentials in your Pivotal Application Service tile in Ops M
 
 1. Select the applicable **Scopes** for the OIDC identity provider.
 
-1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps through OpenID tokens, along with any other stored user information issued by <%= vars.product_full %>.
+1. Configure any **User Attributes** to propagate from the identity provider to the service provider. These attributes can include email addresses, first or last names, or external groups. They are sent to apps through OpenID tokens, along with any other stored user information issued by <%= vars.product_name %>.
   - Select a **User Scheme Attribute** from the dropdown.
   - Enter an **ID Token Attribute Name** with the corresponding attribute from the incoming OIDC ID token.
 
-1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by <%= vars.product_full %>.
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by <%= vars.product_name %>.
   - Enter a **Custom Attribute Name**.
   - Enter an **ID Token Attribute Name** with the corresponding attribute from the incoming OIDC ID token.
 
@@ -144,14 +144,14 @@ LDAP service accounts should not be subject to automated deletions as disruption
 
 1. Configure any **User Attributes** to propagate from the identity provider to the service provider.
    The configurable attributes are sent to apps through OpenID tokens,
-   along with any other stored user information issued by <%= vars.product_full %>.
+   along with any other stored user information issued by <%= vars.product_name %>.
   1. Select a **User Scheme Attribute** from the dropdown.
   1. Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
 
 	The only configurable attributes for LDAP are `given_name`, `family_name`, and `phone_number`.
         Configuring `email` and `external_groups` has no effect on your LDAP integration.
 
-1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by <%= vars.product_full %>.
+1. Configure any **Custom Attributes** to propagate from the identity provider to the service provider. These attributes are sent to apps through OpenID tokens issued by <%= vars.product_name %>.
   - Enter a **Custom Attribute Name**.
   - Enter an **LDAP Attribute Name** with the corresponding attribute from LDAP.
 
@@ -159,12 +159,12 @@ LDAP service accounts should not be subject to automated deletions as disruption
 
 1. Click **Create Identity Provider** to save the identity provider.
 
-1. (Optional) Transfer group memberships and roles from an existing LDAP groups to <%= vars.product_full %> as follows:
-  1. To map existing LDAP user group memberships to <%= vars.product_full %> resources,
+1. (Optional) Transfer group memberships and roles from an existing LDAP groups to <%= vars.product_name %> as follows:
+  1. To map existing LDAP user group memberships to <%= vars.product_name %> resources,
      create a permissions mapping for your LDAP identity provider as described in
      [Create or Edit Resource Permissions Mapping](#create-resource-perm) below.
   1. To propagate the existing LDAP user group memberships into the `roles` claim of the OpenID tokens
-     issued by <%= vars.product_full %>,
+     issued by <%= vars.product_name %>,
      follow the procedure in [Configure Group Whitelist for an External Identity Provider](#config-whitelist) below.
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider

@@ -4,11 +4,11 @@ owner: Identity Service
 ---
 
 This topic describes how <%= vars.platform %> admins can configure a
-<%= vars.product_full %> service plan to manage user access to <%= vars.platform %> apps with the internal user store.
+<%= vars.product_name %> service plan to manage user access to <%= vars.platform %> apps with the internal user store.
 
 ## <a id='overview'></a> Overview
 
-By default, each <%= vars.product_full %> service plan comes with an internal user store, which
+By default, each <%= vars.product_name %> service plan comes with an internal user store, which
 natively stores user accounts in a User Account and Authentication (UAA) database.
 
 To manage the internal user store:
@@ -17,7 +17,7 @@ To manage the internal user store:
 2. [Add Internal Users Using UAAC](#add-to-int)
 3. [Test Identity Provider Configurations](#test-id-config)
 
-You can also configure a <%= vars.product_full %> service plan to use an external identity provider to
+You can also configure a <%= vars.product_name %> service plan to use an external identity provider to
 manage user accounts.
 For more information, see [Configuring External Identity Providers](./configure-external-id.html).
 
@@ -128,7 +128,7 @@ To create new internal user accounts with the UAAC:
 	gem install cf-uaac
 	```
 
-1. Create an admin client that can manage users for the <%= vars.product_full %> service plan with the
+1. Create an admin client that can manage users for the <%= vars.product_name %> service plan with the
 following scopes:
 	- `clients.admin`
 	- `scim.read`
@@ -138,7 +138,7 @@ following scopes:
 
 1. Record the **App ID** and **App Secret**. These are used as your client ID and client secret.
 
-1. Target the authentication domain of your <%= vars.product_full %> service plan by running the following command:
+1. Target the authentication domain of your <%= vars.product_name %> service plan by running the following command:
 	
 	```
 	uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
