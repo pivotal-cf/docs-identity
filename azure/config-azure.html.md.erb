@@ -3,11 +3,11 @@ title: Configuring Azure Active Directory as a SAML Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Azure Active Directory (AD) as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry&reg; (PCF) and Azure AD. 
+This topic describes how to set up Azure Active Directory (AD) as your identity provider by configuring SAML integration in both <%= vars.product_full %> and Azure AD. 
 
-## <a id='pcf'></a> Step 1: Set up SAML in PCF
+## <a id='pcf'></a> Step 1: Set up SAML in <%= vars.product_full %>
 
-1. Log in to the Single Sign-On (SSO) Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 
 1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
@@ -27,7 +27,7 @@ This topic describes how to set up Azure Active Directory (AD) as your identity 
 
 4. Click **Save**.
 
-## <a id='azure'></a> Step 2: Set up SAML in Azure Active Directory (AD)
+## <a id='azure'></a> Step 2: Set up SAML in Azure AD
 
 1. Log in to Azure AD as a Global Administrator at https://portal.azure.com/. 
 
@@ -43,10 +43,10 @@ This topic describes how to set up Azure Active Directory (AD) as your identity 
 
 	<%= image_tag('../images/azure-manage-ent-app.png',:width => 300) %>
 
-1. Click your application and then click the **Single sign-on** tab.  
+1. Click your app and then click the **Single sign-on** tab.  
 
 1. Select **SAML-based Sign-on** from the dropdown and then click **Upload 
-metadata file** to upload the metadata file you downloaded from step 6 of [Step 1: Set up SAML in PCF](#pcf).
+metadata file** to upload the metadata file you downloaded from step 6 of [Step 1: Set up SAML in <%= vars.product_full %>](#pcf).
 
 	<%= image_tag '../images/azure-samlbased-signon.png' %>
 
@@ -61,13 +61,13 @@ metadata file** to upload the metadata file you downloaded from step 6 of [Step 
 	<%= image_tag '../images/azure-users-groups.png' %>
 
 5. Select users or group names from the dropdown. For example, you can add a group that includes all 
-users that should be able to login to the SSO plan.
+users that should be able to login to the <%= vars.product_full %> plan.
 
 	<%= image_tag '../images/azure-add-user.png' %>
 	
 ## <a id='claims'></a> Step 3: Set up Claims Mapping
 
-1. Navigate to **Azure Active Directory** > **App registration**. Click your application.
+1. Navigate to **Azure Active Directory** > **App registration**. Click your app.
 	
 	<%= image_tag '../images/azure-app-registration.png' %>
 	
@@ -81,7 +81,7 @@ users that should be able to login to the SSO plan.
 
 	<%= image_tag '../images/azure-user-attributes.png' %>
 	
-2. To pass group membership claims to the application, do the following:
+2. To pass group membership claims to the app, do the following:
 	1. Click **Manifest**.
 	2. Locate `groupMembershipClaims` and set the value to one of the following:
 		- `SecurityGroup`. Groups claim will contain identifiers of all security 
@@ -97,7 +97,7 @@ users that should be able to login to the SSO plan.
 	
 1. Navigate to **Azure Active Directory** > **Groups**. 
 
-1. For each group that is used by the SSO plan, record the **Object ID**. Azure AD will pass the
-	Object ID of these groups to the SSO plan. For more information, see [Configure Group Permissions](./config-sso.html#config-permissions).
+1. For each group that is used by the <%= vars.product_full %> plan, record the **Object ID**. Azure AD passes the
+	Object ID of these groups to the <%= vars.product_full %> plan. For more information, see [Configure Group Permissions](./config-sso.html#config-permissions).
 
 	<%= image_tag '../images/azure-object-id.png' %>

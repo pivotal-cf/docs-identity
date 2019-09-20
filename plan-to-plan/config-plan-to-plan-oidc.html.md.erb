@@ -2,7 +2,9 @@
 title: Configuring Plan-to-Plan OIDC Integration
 owner: SSO
 ---
-This topic describes how to set up the Plan-to-Plan OpenID Connect (OIDC) integration between two Single Sign-On service plans, one acting as an identity provider (“identity provider plan” or IDP) and one acting as a relying party (“relying party plan” or RP).
+This topic describes how to set up the Plan-to-Plan OpenID Connect (OIDC) integration between two 
+<%= vars.product_full %> service plans, one acting as an identity provider 
+(“identity provider plan” or IDP) and one acting as a relying party (“relying party plan” or RP).
 
 ## <a id="overview"></a> Overview
 
@@ -35,15 +37,15 @@ Follow the instructions below to set up relying party configurations in the iden
 	<li>Click the service you want to modify.</li>
 	<li>Click <strong>Manage</strong>.<br/>
 	<img src="../images/manage-button.png"></li>
-	<li>Click <strong>New App</strong>. The New App page appears.</li>
+	<li>Click <strong>New App</strong>.</li>
 	<li>Type a name in the <strong>App Name</strong> field.</li>
-	<li>Choose <strong>Web App</strong> from the list of Application Types.</li>
+	<li>Choose <strong>Web App</strong> from the list of app types.</li>
 	<li>Type a temporary URL in the <strong>Auth Redirect URIs</strong> field. You replace this URL after configuring an identity provider on the relying party plan.</li>
 	<li>In the <strong>Scopes</strong> field, type <code>openid</code>.<br/>
 	Optionally, select <code>openid</code> from the list of <strong>Auto-Approved Scopes</strong>. By adding <code>openid</code> as an automatically approved scope, you prevent users from being prompted to authorize a login from the identity provider.</li>
 	<li>Click <strong>Register App</strong>. When the app is created successfully, you are prompted to download your app credentials.
 	<img src="../images/dl-app-creds.png"><br/></li>
-	<li>Click <strong>Download App Credentials</strong> to save the credentials for your application.<br/>
+	<li>Click <strong>Download App Credentials</strong> to save the credentials for your app.<br/>
 	<p class="note warning"><strong>Warning:</strong> This is the last time you can download your app credentials. Pivotal recommends that you download the credentials and store them securely.</p></li>
 </ol>
 
@@ -53,7 +55,7 @@ To set up the OIDC Identity Provider Configuration in the relying party plan, fo
 
 <ol>
 	<li>Follow steps 1&ndash;6 in <a href="../configure-external-id.html#config-ext-oidc">Add an OIDC Provider</a>.</li>
-	<li>If you use a self-signed certificate for PCF where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you do not use a self-signed certificate, you can leave this box unchecked.</li>
+	<li>If you use a self-signed certificate for <%= vars.platform %> where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you do not use a self-signed certificate, you can leave this box unchecked.</li>
 	<li>Select the <strong>Enable Discovery</strong> checkbox and type in the <strong>Discovery Endpoint URL</strong>. <br/><br/>
 	This URL is <code>ht<span>tps</span>://IDP-AUTH-DOMAIN/.well-known/openid-configuration</code>, where <code>IDP-AUTH-DOMAIN</code> is the Auth Domain setting you entered when you created the IDP service plan you are integrating with.</li>
 	<li>Fill in the <strong>Relying Party OAuth Client ID</strong> with the App Client ID from <a href="#idp">the previous section</a>.</li>
@@ -74,7 +76,7 @@ After you create an app, follow the steps below to finish configuration.
 		Where:
 		<ul>
 			 <li>the <code>RP-AUTH-DOMAIN</code> is the Auth Domain setting you entered during RP configuration</li>
-			 <li>the <code>ORIGIN-KEY</code> is based on the IDP name you set in the SSO Operator Dashboard</li>
+			 <li>the <code>ORIGIN-KEY</code> is based on the IDP name you set in the <%= vars.operator_dash %></li>
 		</ul>
 	</li>
 	<li>Click <strong>Save Config</strong>.</li>

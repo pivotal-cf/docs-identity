@@ -3,15 +3,16 @@ title: Azure Active Directory SAML Integration Guide Overview
 owner: Identity Service
 ---
 
-This documentation introduces how to set up Azure Active Directory (Azure AD) with Security Assertion Markup Language (SAML) as the identity provider for the Single Sign-On service running on Pivotal Cloud Foundry (PCF).
+This documentation introduces how to set up Azure Active Directory (Azure AD) with Security Assertion Markup Language (SAML) as the identity provider for <%= vars.product_full %>.
 
 Azure Active Directory (Azure AD) is Microsoft's multi-tenant cloud based directory and identity management service. 
 
-For how to set up Azure AD with Open ID Connect (OIDC) , see [Azure Active Directory OIDC Integration Guide](../azure-oidc/index.html).
+For how to set up Azure AD with Open ID Connect (OIDC), 
+see [Azure Active Directory OIDC Integration Guide](../azure-oidc/index.html).
 
 ## <a id='prereqs'></a>Prerequisites
 
-To integrate Azure AD with Pivotal Cloud Foundry&reg; (PCF), you must have the following:
+To integrate Azure AD with <%= vars.platform %>, you must have the following:
 
 * An Azure AD subscription
 * A user with admin privileges
@@ -20,8 +21,8 @@ To integrate Azure AD with Pivotal Cloud Foundry&reg; (PCF), you must have the f
 
 ## <a id='azure'></a> Azure AD Integration Guide
 
-### Configuring Azure AD with SSO 
-Complete both steps below to integrate your deployment with Azure AD and SSO.
+### Configuring Azure AD with <%= vars.product_full %>
+Complete both steps below to integrate your deployment with Azure AD and <%= vars.product_full %>.
 
 1. <a href="config-azure.html">Configure Azure AD as a SAML Identity Provider</a>
 1. <a href="config-sso.html">Configure a Single Sign-On Service Provider</a>

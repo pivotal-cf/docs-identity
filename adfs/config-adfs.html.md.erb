@@ -3,11 +3,11 @@ title: Configuring Active Directory Federation Services as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Active Directory Federation Services (ADFS) as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry (PCF) and ADFS.
+This topic describes how to set up Active Directory Federation Services (AD FS) as your identity provider by configuring SAML integration.
 
-## <a id='pcf'></a> Set Up SAML in PCF
+## <a id='pcf'></a> Set Up SAML with the  <%= vars.operator_dash %>
 
-1. Log in to the Single Sign-On (SSO) Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
 	<%= image_tag '../images/adfs_manage_id_providers.png' %>
@@ -16,7 +16,7 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 	<%= image_tag '../images/adfs_config_saml_service_provider.png' %>
 
-1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
+1. (Optional) Select **Perform signed authentication requests** to enforce single sign-on private key signature and identity provider validation.
 
 	<%= image_tag '../images/saml_auth_checkbox.png' %>
 
@@ -26,7 +26,7 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 1. Click **Save**.
 
-## <a id='adfs'></a> Set Up SAML in Active Directory Federation Services
+## <a id='adfs'></a> Set Up SAML in AD FS
 
 1. Open the **AD FS Management** console.
 
@@ -100,7 +100,7 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 	<%= image_tag '../images/adfs_remove_cert.png' %>
 
-1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for Pivotal Application Service (PAS)](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
+1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for Pivotal Application Service](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
 
 	<%= image_tag '../images/adfs_sha1.png' %>
 
@@ -110,20 +110,21 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 
 	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
 
-1. (Optional) If you are using a self-signed certificate, add it to the ADFS trust store. Obtain the Ops Manager certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the ADFS trust store, so ADFS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
+1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the Ops Manager certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
 
 1. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**. For more information, see the next section.
 
-## <a id='adfs-groups'></a> Setting Up Groups in SAML from ADFS
+## <a id='adfs-groups'></a> Setting Up Groups in SAML from AD FS
 
 1. Right-click your **Relying Party Trust** and select **Edit Claim Rules...**.
 
-    <%= image_tag '../images/edit-claim-rules.png' %>
+  <%= image_tag '../images/edit-claim-rules.png' %>
 
 1. Select **Add Rule**.
 
 1. Select **Send Group Membership as a Claim** and click **Next**.
-    <%= image_tag '../images/send-group-membership-as-claim.png' %>
+  
+	<%= image_tag '../images/send-group-membership-as-claim.png' %>
 
 1. Enter the **Claim rule name**.
 
@@ -134,14 +135,16 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 1. Set your **Outgoing claim value** to match your group’s name.
 
 1. Click **Finish**.
-    <%= image_tag '../images/claim-rule-name-type.png' %>
+  
+	<%= image_tag '../images/claim-rule-name-type.png' %>
 
 1. To save these configurations and use the default SAML assertion of `http://schemas.xmlsoap.org/claims/Group`, click **OK**. If you want to pass the claims assertion as a custom value `“groups”` in the SAML assertion, continue to the procedure below.
 
 ## <a id='groups'></a> Create Custom Value "groups"
 
 1. Select your newly created rule and click **Edit Rule**.
-    <%= image_tag '../images/edit-rule.png' %>
+    
+	<%= image_tag '../images/edit-rule.png' %>
 
 1. Click **View Rule Language**.
 
@@ -152,9 +155,11 @@ This topic describes how to set up Active Directory Federation Services (ADFS) a
 1. Click **Add Rule**.
 
 1. Select **Send Claims Using a Custom Rule**.
-    <%= image_tag '../images/send-claim-using-custom-rule.png' %>
+    
+	<%= image_tag '../images/send-claim-using-custom-rule.png' %>
 
 1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that it only says `“groups”`.
-    <%= image_tag '../images/edit-type.png' %>
+    
+	<%= image_tag '../images/edit-type.png' %>
 
 1. Click **OK** to finish making your changes and save the changes you made.

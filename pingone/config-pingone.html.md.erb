@@ -3,11 +3,12 @@ title: Configuring PingOne Cloud as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up PingOne Cloud as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry (PCF) and PingOne Cloud.
+This topic describes how to set up PingOne Cloud as your identity provider by configuring SAML integration in both 
+<%= vars.product_full %> and PingOne Cloud.
 
-## <a id='pcf'></a> Set up SAML in PCF
+## <a id='pcf'></a> Set up SAML in <%= vars.product_full %>
 
-1. Log into the Single Sign-On (SSO) Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
+1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the dropdown.
 
 	<%= image_tag("../images/pingone_manage_id_providers.png", :alt => "SSO Dashboard Plans screen") %>
@@ -30,7 +31,7 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 
 1. Sign in as a PingOne Cloud administrator.
 
-2. Navigate to your application by clicking on **Apps**.
+2. Navigate to your app by clicking on **Apps**.
 
 3. Click **Add Application** and choose **New SAML Application**.
 
@@ -54,7 +55,7 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 
 	5. Click **Continue to Next Step**.
 
-4. (Optional) Under **SSO Attribute Mapping**, specify any application or group attributes that you want to map to users in the ID token.
+4. (Optional) Under **SSO Attribute Mapping**, specify any app or group attributes that you want to map to users in the ID token.
 
 	<%= image_tag("../images/pingone_attribute_mapping.png", :alt => "SSO Attribute Mapping section") %>
 
