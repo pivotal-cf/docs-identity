@@ -3,11 +3,11 @@ title: Enabling Identity Provider Discovery
 owner: Identity
 ---
 
-This topic describes Identity Provider (IdP) Discovery and how to configure it for your Pivotal Cloud Foundry (PCF) apps that use the Single Sign-On (SSO) service.
+This topic describes Identity Provider (IdP) Discovery and how to configure it for your <%= vars.platform %> apps that use <%= vars.product_full %>.
 
 ## <a id="definition"></a> What IdP Discovery Does
 
-If users with different email domains access the same PCF app, you can configure SSO to authenticate them through different identity providers.
+If users with different email domains access the same <%= vars.platform %> app, you can configure <%= vars.product_full %> to authenticate them through different identity providers.
 
 In this situation, IdP Discovery streamlines the login experience by automatically redirecting the user to their own IdP and shielding them from seeing the IdPs of other app users.
 
@@ -22,10 +22,10 @@ IdP Discovery ascertains each user's IdP from their email domain.
 
 ## <a id="how-to"></a> Enable IdP Discovery
 
-IdP Discovery is associated with a service plan, and configured for the apps bound to instances of that plan. To enable IdP Discovery for a service plan and the apps that use it, you must be a PCF Administrator or a Plan Administrator.
+IdP Discovery is associated with a service plan, and configured for the apps bound to instances of that plan. To enable IdP Discovery for a service plan and the apps that use it, you must be a <%= vars.platformq %> Administrator or a Plan Administrator.
 
-1. Enable IdP Discovery for the SSO Service Plan instance that your app is bound to:
-	1. Log into the SSO Operator dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the Credentials tab.
+1. Enable IdP Discovery for the <%= vars.product_full %> service instance that your app is bound to:
+	1. Log into the <%= vars.platform %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the Credentials tab.
 	1. Click the plan name and select **Configure** under the plan menu.
 	1. Select the checkbox under the **Identity Provider Discovery** section and click **Save**.
 ![Enable IdP Discovery](images/enable-idp-discovery.png)
@@ -46,4 +46,3 @@ After these steps, the login page prompts for the username first:
 If the user enters their `@example.com` username, they are redirected to the Okta login page:
 
 ![IdP Discovery Okta Login Page](images/idp-discovery-okta-login-page.png)
-

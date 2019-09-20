@@ -3,23 +3,23 @@ title: Managing Users
 owner: Identity Service
 ---
 
-This topic describes how a Pivotal Cloud Foundry (PCF) Plan Administrator uses the Single Sign-On (SSO) service to manage user access to PCF apps,
+This topic describes how a <%= vars.platform %> Plan Administrator uses t<%= vars.product_full %> to manage user access to <%= vars.platform %> apps,
 for users with accounts in the internal user store or with external identity providers.
 
 ## <a id="internal"></a> Manage Users in an Internal User Store
 
-The SSO service has an **Internal Users** admin pane that lets you manage user accounts in PCF's internal user store:
+<%= vars.product_full %> has an **Internal Users** admin pane that lets you manage user accounts in the <%= vars.platform %> internal user store:
 invite and delete users, request users to reset their passwords, and update user attributes and permissions.
 
 To open the **Internal Users** pane:
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
 Find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
 1. Click **Internal User Store** and select **Internal Users** from the drop-down menu. This brings you to the admin screen.
-![SSO Admin](images/admin.png)
+![Pivotal Single Sign-On Admin](images/admin.png)
 
 From the **Internal Users** pane, you can:
 
@@ -48,12 +48,11 @@ Entering a blank value returns all users in the service plan’s internal user s
 
 ## <a id="external"></a> Manage Users from an External Identity Provider
 
-For each external identity provider that the SSO service connects to, a users admin pane (example: **Okta SSO Users**)
-lets you browse, delete, and update PCF permissions for user accounts from external identity providers.
+For each external identity provider that <%= vars.product_full %> connects to, a users admin pane lets you browse, delete, and update <%= vars.platform %> permissions for user accounts from external identity providers. For example, **Okta SSO Users**.
 
 To open the external identity provider users admin pane:
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
 You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
@@ -65,7 +64,7 @@ This brings you to the users admin pane.
 From the external identity provider users admin pane, you can:
 
 * **Search** existing users by entering a value into the search bar and clicking **Search**.
-  Entering a blank value returns all users in the service plan’s internal user store.
+  Entering a blank value returns all users in the service plan internal user store.
 ![Okta Users Search Results](images/okta_results.png)
 
 * **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
@@ -80,9 +79,9 @@ From the external identity provider users admin pane, you can:
 
 ## <a id="uaac"></a> Manage Users with the UAA CLI
 
-You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users for the SSO service. You can use this approach to programatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
+You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users for <%= vars.product_full %>. You can use this approach to programmatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
 
-<p class="note"><strong>Note</strong>: Clients and Groups for SSO should be created directly through the SSO UI or through application manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by SSO.</p>
+<p class="note"><strong>Note</strong>: Clients and Groups for <%= vars.product_full %> should be created directly using the <%= vars.operator_dash %> or through app manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by <%= vars.product_full %>.</p>
 
 1. Install the UAA CLI, `uaac`.
     <pre class="terminal">

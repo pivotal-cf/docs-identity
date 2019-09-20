@@ -60,7 +60,7 @@ To make UAA identity provider API calls, do the following:
     ```
 
     Where:
-      * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
+      * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrieved in the above step.
       * `JSON-BLOB.txt` is the name of your text file.
 
 3. The command above outputs a JSON blob similar
@@ -87,18 +87,18 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
 	</pre>
 
 4. In your `JSON-BLOB.txt`, update the configurations in the JSON blob as needed, and then save the file.
-  <p class="note warning"><strong>WARNING</strong>: You must provide all <code>config</code> values, otherwise,
+  <p class="note warning"><strong>Warning:</strong> You must provide all <code>config</code> values, otherwise,
     data can be lost when doing an API update as a <code>PUT</code> command.</p>
 
 5. Submit a UAAC curl request to apply your updated configurations to the identity provider, as shown below.
-    <p class="note warning"><strong>WARNING</strong>: You must always run this command with the latest data by doing a <code>GET</code> before the below <code>PUT</code> command.</p>
+    <p class="note warning"><strong>Warning:</strong> You must always run this command with the latest data by doing a <code>GET</code> before the below <code>PUT</code> command.</p>
 
     ```
     $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT
     \-H 'Content-Type: application/json' -d "$(cat file.txt)"
     ```
     Where:
-    * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrived in the above step.
+    * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrieved in the above step.
 
      A minimal example command would look similar to the following:
 
@@ -195,4 +195,4 @@ To enable skipping SSL validation, do the following:
 For more information about skipping SSL validation, see
 [SAML](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/#saml) in the UAA API documentation.
 
-To test your identity provider configurations, you can deploy the [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) to validate the effects of the instructions given in this guide.
+To test your identity provider configurations, you can deploy the [<%= vars.product_full %> Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) to validate the effects of the instructions given in this guide.
