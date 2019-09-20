@@ -3,7 +3,7 @@ title: Managing Resources
 owner: Identity Service
 ---
 
-This topic describes how a Space Developer defines resources required by an app bound to a Single Sign-On (SSO) service instance
+This topic describes how a Space Developer defines resources required by an app bound to a <%= vars.product_full %> service instance
 and how an administrator grants resource permissions.
 
 In this topic, _resources_ are the API endpoints that users and apps need to retrieve information from a resource server.
@@ -14,18 +14,18 @@ Because developers know what endpoints exist for their apps, they are responsibl
 
 ## <a id='create-resources'></a> Create or Edit Resources
 
-If an app requires access to specific resources such as API endpoints, permissions for those resources must be either bootstrapped from the application manifest or defined by the Space Developer in the SSO Developer Dashboard.
+If an app requires access to specific resources such as API endpoints, permissions for those resources must be either bootstrapped from the app manifest or defined by the Space Developer in the <%= vars.developer_dash %>.
 
 To bootstrap resources from the manifest, follow the instructions in the <a href="https://github.com/pivotal-cf/identity-sample-apps
-">SSO Sample Applications repository</a>.</p>
+"><%= vars.product_full %> Sample Applications repository</a>.</p>
 
-To create resources in the SSO Developer Dashboard, do the following:
+To create resources in the <%= vars.developer_dash %>, do the following:
 
 1. Log in to Apps Manager as a Space Developer.
 
 1. Select the space where your service instance is located.
 
-1. Under **Services**, click **Manage** next to your SSO service instance to launch the SSO Developer Dashboard.
+1. Under **Services**, click **Manage** next to your <%= vars.product_full %> service instance to launch the <%= vars.developer_dash %>.
     <%= image_tag '../images/sso_dev_dashboard_resources.png' %>
       <a href="images/sso_dev_dashboard_resources.png" target="_blank">View a larger version of this image.</a>
 
@@ -51,7 +51,7 @@ Space Developers only see the resources created in the spaces they have access t
 
 1. Log in to Apps Manager as a Space Developer.
 
-1. Click the **Manage** link under the SSO service instance to launch the SSO Developer Dashboard.
+1. Click the **Manage** link under the <%= vars.product_full %> service instance to launch the <%= vars.developer_dash %>.
     <%= image_tag '../images/sso_dev_dashboard_resources.png' %>
     <a href="images/sso_dev_dashboard_resources.png" target="_blank">View a larger version of this image.</a>
 
@@ -82,4 +82,4 @@ App developers can assign scopes to any app that is _not_ a service-to-service a
 But, only plan administrators can assign scopes to users.
 
 When assigning a resource as a scope for a service-to-service app, app developers can only assign resources they have created within their own space.
-Only an plan administrator can assign a scope from another space to a service-to-service app.
+Only a plan administrator can assign a scope from another space to a service-to-service app.
