@@ -1,14 +1,14 @@
 ---
-title: Installing Single Sign-On
+title: Installing Pivotal Single Sign-On
 owner: Identity Service
 ---
 
-This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundry (PCF).
+This topic explains how to install <%= vars.product_full %>.
 
 
 ## <a id='pre-reqs'></a> Prerequisites
 
-To install SSO for PCF, you require the following:
+To install <%= vars.product_full %>, you must have:
 
 * [Ops Manager](https://network.pivotal.io/products/ops-manager)
 
@@ -19,15 +19,15 @@ To install SSO for PCF, you require the following:
 * Application Security Groups
 
 
-## <a id='install'></a> Install SSO via Ops Manager
+## <a id='install'></a> Install <%= vars.product_full %> using Ops Manager
 
-<p class="note"><strong>Note:</strong> If you are upgrading to this version of SSO,
-  you must update the definitions of any BOSH Add-On's for PCF you are using to
+<p class="note"><strong>Note:</strong> If you are upgrading to this version of <%= vars.product_full %>,
+  you must update the definitions of any BOSH Add-Ons you are using to
   include the Xenial stemcell.
 	See <a href="#update-addons">Update Add-ons to Run with Xenial Stemcell</a> below.</p>
 
 1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select
-a **Single Sign-On** tile version and download the product release file.
+a **<%= vars.product_full %>** tile version and download the product release file.
 
 1. From the Ops Manager Installation Dashboard, select the **Import a Product**
 button to upload the product file.
@@ -35,13 +35,13 @@ button to upload the product file.
 1. Click the **+** icon next to the uploaded product to add this product to your
 staging area.
 
-1. Click on the **Single Sign-On** tile to enter any configurations.
+1. Click on the **<%= vars.product_full %>** tile to enter any configurations.
 
-    <p class="note"><strong>Note:</strong> The SSO Identity Service Broker is
-    deployed as a PCF app from a BOSH errand, and has no associated BOSH
+    <p class="note"><strong>Note:</strong> The <%= vars.product_full %> Identity Service Broker is
+    deployed as an app from a BOSH errand, and has no associated BOSH
     VMs that require selecting a corresponding network. If you are forced to select
     a network during installation, select the <strong>Deployment</strong> network,
-    also known as the PAS network.</p>
+    also known as the Pivotal Application Service network.</p>
 
 1. In the Ops Manager Dashboard, do the following to complete the installation:
 
@@ -52,7 +52,7 @@ staging area.
 
 ## <a id="stemcell"></a>Update Stemcell
 
-If required, do the following to update the stemcell for SSO:
+If required, do the following to update the stemcell for <%= vars.product_full %>:
 
 1. Download the stemcell from [Pivotal Network](https://network.pivotal.io/).
 1. In the Ops Manager, click **Stemcell Library**.
@@ -79,13 +79,13 @@ load balancer configuration for the following domains:
 
 ## <a id='configure'></a> Configure Application Security Groups
 
-The Single Sign-On service requires the following network connections:
+<%= vars.product_full %> requires the following network connections:
 
 * TCP connection to load balancer(s) on port 443
 * TCP and UDP connection to Domain Name Servers on port 53
 * (Optional) TCP connection to your external identity provider on port 80 or 443
 
-To enable access to the Single Sign-On service, you must ensure your
+To enable access to <%= vars.product_full %>, you must ensure your
 Application Security Group allows access to the load balancer(s) and domain
 name servers that provide access to Cloud Controller and UAA. Optionally, you
 can configure access to your external identity provider to receive SAML
@@ -94,17 +94,17 @@ Groups](http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html).
 
 ## <a id="update-addons"></a>Update Add-ons to Run with Xenial Stemcell
 
-SSO v1.7.1 and later requires a Xenial stemcell.
-If you are using any of the following BOSH add-ons with your PCF deployment,
+<%= vars.product_full %> v1.7.1 and later requires a Xenial stemcell.
+If you are using any of the following BOSH Add-ons with your deployment,
 you must update the add-on definition to include the Xenial stemcell before you
-deploy SSO v1.7.1:
+deploy <%= vars.product_full %> v1.7.1:
 
-+ File Integrity Monitoring for PCF Add-on.
++ Pivotal File Integrity Monitoring.
   For update instructions,
-  see [Updating FIM Add-on for PCF to Run with Xenial Stemcells](https://docs.pivotal.io/addon-fim/updating-for-xenial.html).
-+ ClamAV for PCF Add-on.
+  see [Updating Pivotal File Integrity Monitoring to Run with Xenial Stemcells](https://docs.pivotal.io/addon-fim/updating-for-xenial.html).
++ Pivotal Anti-Virus.
   For update instructions,
-  see [Updating ClamAV Add-on for PCF to Run with Xenial Stemcells](https://docs.pivotal.io/addon-antivirus/1-4/updating-for-xenial.html).
-+ IPsec for PCF Add-on.
+  see [Updating Pivotal Anti-Virus to Run with Xenial Stemcells](https://docs.pivotal.io/addon-antivirus/1-4/updating-for-xenial.html).
++ Pivotal IPsec.
   For update instructions,
-  see [Updating IPsec Add-on for PCF to Run with Xenial Stemcells](https://docs.pivotal.io/addon-ipsec/updating-for-xenial.html).
+  see [Updating Pivotal IPsec to Run with Xenial Stemcells](https://docs.pivotal.io/addon-ipsec/updating-for-xenial.html).

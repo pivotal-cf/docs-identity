@@ -3,18 +3,18 @@ title: Managing Service Plan Configurations
 owner: Identity Service
 ---
 
-This topic describes how Pivotal Cloud Foundry (PCF) admins or plan admins can manage Single Sign-On (SSO)
-service plan configurations using the SSO Operator Dashboard or API using the User Account and
+This topic describes how <%= vars.platform %> admins or plan admins can manage <%= vars.product_full %>
+service plan configurations using the <%= vars.operator_dash %> or API using the User Account and
 Authentication Command Line Interface (UAAC).
 
-The SSO service for PCF manages configurations within the UAA and the Cloud Controller (CC) components of the
-Pivotal Application Service (PAS). Each SSO service plan ties together a CC plan and a UAA identity zone.
+<%= vars.product_full %> manages configurations within the UAA and the Cloud Controller (CC) components of the
+Pivotal Application Service. Each <%= vars.product_full %> service plan ties together a CC plan and a UAA identity zone.
 
-Beginning with SSO v1.6, you can use the UAAC to manage UAA identity zones configured as part of SSO service plans.
+Beginning with <%= vars.product_full %> v1.6, you can use the UAAC to manage UAA identity zones configured as part of <%= vars.product_full %> service plans.
 
 ## <a id='configure-token-policy'></a> Configure a Token Policy
 
-The Single Sign-On service allows PCF admins and plan admins to override the default expiry of access tokens
+<%= vars.product_full %> enables <%= vars.platform %> admins and plan admins to override the default expiry of access tokens
 (12 hours) and refresh tokens (30 days) by zone.
 
 * **Access tokens** carry information about users and clients to servers that manage resources.
@@ -24,8 +24,8 @@ Refresh tokens typically have a longer expiration time than access tokens.
 
 To configure the token policy:
 
-1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your PAS tile in Ops Manager in **Credentials**.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+You can find these credentials in your Pivotal Application Service tile in Ops Manager in **Credentials**.
 
 2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the dropdown.
 
@@ -50,7 +50,8 @@ This section shows how to use the UAAC to update UAA identity zone configuration
   You must also provide all configuration values, otherwise, data might be lost.
 </p>
 
-For general information about UAA API, see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.<br>
+For general information about UAA API, 
+see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.<br>
 
 To make UAA identity zone API calls:
 
@@ -60,15 +61,15 @@ To make UAA identity zone API calls:
 <li> Find the UAA identity zone ID:</li>
     <ol type="a">
         <li>
-          Log in to the SSO Operator Dashboard at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the PAS tile in Ops Manager in <strong>Credentials</strong>.
+          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the PAS tile in Ops Manager in <strong>Credentials</strong>.
         </li>
 
         <li>
-        Click the name of the SSO service plan that you want to configure on the SSO Operator Dashboard, and select
+        Click the name of the <%= vars.product_full %> service plan that you want to configure on the <%= vars.operator_dash %>, and select
         <strong>Edit Plan</strong> from the dropdown.
         </li>
 
-        <li> Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The URL looks similar to the below.
+        <li> Record the identity zone ID for your plan from the <%= vars.operator_dash %> URL. The URL looks similar to the below.
           <pre>https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</pre>
           Where <code>YOUR-IDENTITY-ZONE-ID</code> is your plan’s identity zone ID.
         </li>
@@ -160,7 +161,7 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 
 ## <a id="enable-default-idp"></a> Set Default Identity Provider (IDP)
 
-For PCF v2.4 or later, a default IDP can be set so that end users are automatically
+For <%= vars.platform %> v2.4 or later, a default IDP can be set so that end users are automatically
 redirected to an appropriate enterprise IDP. <br>
 
 To set a default IDP:
@@ -178,12 +179,12 @@ To set a default IDP:
 
  For information about <code>defaultIdentityProvider</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a> in the UAA documentation.
 
-## <a id="disable-sso-plans"></a> Disable SSO Plans
+## <a id="disable-sso-plans"></a> Disable <%= vars.product_full %> Plans
 
-For PCF v2.4 and later, SSO plans that are no longer in use can be disabled.
+For <%= vars.platform %> v2.4 and later, <%= vars.product_full %> plans that are no longer in use can be disabled.
 Disabled plans can be re-enabled later when they need to be used again. <br>
 
-To disable SSO plans:
+To disable <%= vars.product_full %> plans:
 
 <ol>
   <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>

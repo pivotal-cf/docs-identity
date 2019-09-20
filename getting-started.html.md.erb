@@ -1,24 +1,23 @@
 ---
-title: Getting Started with Single Sign-On
+title: Getting Started with Pivotal Single Sign-On
 owner: Identity Service
 ---
 
-This topic outlines the steps for installing and configuring the
-[Single Sign-On](https://network.pivotal.io/products/p-identity) service.
+This topic outlines the steps for installing and configuring the <%= vars.product_full %>.
 
-## <a id='install'></a> Install and Set Up SSO for Applications
+## <a id='install'></a> Install and Set Up <%= vars.product_full %> for Apps
 
-1. [Install Single Sign-On](./installation.html) via Ops Manager.
+1. [Install <%= vars.product_full %>](./installation.html) using Ops Manager.
 
 1. [Create a service plan](./manage-service-plans.html#create-svc-plan).
-The Single Sign-On service is a multi-tenant service, and a service plan
+<%= vars.product_full %> is a multi-tenant service and a service plan
 corresponds to a tenant.
-This allows an enterprise to segregate users or environments using plans.
+This enables an enterprise to segregate users or environments using plans.
 Each service plan is accessible at a tenant-specific URL in the format
 `https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`.
 
 1. [Create a service instance](./manage-service-instances.html#create-svc-instance).
-Single Sign-On service plans can provide single sign-on capabilities for
+<%= vars.product_full %> plans can provide single sign-on capabilities for
 applications in various spaces.
 A service instance lets you bind an application to a service plan.
 
@@ -28,7 +27,7 @@ you can configure [external identity providers](./configure-external-id.html#con
 to provide single sign-on to applications.
 
 1. [Configure your applications](./configure-apps/index.html).
-Single Sign-On supports both Pivotal Cloud Foundry (PCF) apps as well
+<%= vars.product_full %> supports <%= vars.platform %> apps as well
 as externally hosted apps.
 Your applications must be able to request an OAuth or OpenID Connect token.
 
@@ -37,15 +36,17 @@ If your registered applications need to make external API calls, you can assign
 the API endpoints as resources permitted for the application.
 This adds the endpoints to an allow list for use by the application or client.
 
-## <a id='roles'></a> SSO User Roles
+## <a id='roles'></a> <%= vars.product_full %> User Roles
 
-A user's role determines which parts of an SSO configuration it can manage.
-SSO uses the existing user roles PCF Administrator and Space Developer, as well
-as a SSO-specific Plan Administrator role.
+A user's role determines which parts of an <%= vars.product_full %> configuration it can manage.
+<%= vars.product_full %> uses the existing user roles <%= vars.platform %> Administrator and Space Developer, as well
+as a Plan Administrator role that is specific to <%= vars.product_full %>.
+
+
 This chart shows the management permissions for each role.
 
 <table border="1" class="nice">
-  <tr><th>Management access by role</th><th>PCF Administrator</th><th>Plan Administrator</th><th>Space Developer</th></tr>
+  <tr><th>Management access by role</th><th><%= vars.platform %> Administrator</th><th>Plan Administrator</th><th>Space Developer</th></tr>
   <tr><th>Service plans</th><td>X</td><td></td><td></td></tr>
     <tr><th>Service instances</th><td>X</td><td>X</td><td>X</span></td></tr>
   <tr><th>Identity providers</th><td>X</td><td>X</td><td></td></tr>
@@ -53,14 +54,16 @@ This chart shows the management permissions for each role.
   <tr><th>Resources</th><td>X</td><td>X</td><td>X</td></tr>
 </table>
 
-## <a id='other'></a> Using SSO for Pivotal Cloud Foundry Components
+## <a id='other'></a> Using <%= vars.product_full %> Components
 
-In addition to applications, SSO supports single sign-on for components of Pivotal
-Cloud Foundry, including Ops Manager and Apps Manager.
-This allows users already managed in an external identity provider to sign into
+In addition to apps, <%= vars.product_full %> supports single sign-on for components of  <%= vars.platform %>, 
+including Ops Manager and Apps Manager.
+This enables users already managed in an external identity provider to sign into
 Pivotal services.
-Refer to the following pages for instructions on configuring SSO to enable users
-in an external identity store to access PCF components:
+
+
+Refer to the following pages for instructions on configuring <%= vars.product_full %> to enable users
+in an external identity store to access <%= vars.platform %> components:
 
 * Ops Manager, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp),
 [vSphere](http://docs.pivotal.io/pivotalcf/customizing/vsphere-config.html#idp),

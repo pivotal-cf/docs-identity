@@ -3,17 +3,16 @@ title: Using the System Plan
 owner: Identity
 ---
 
-This topic explains how to use the system plan for the Single Sign-On (SSO)
-service for Pivotal Cloud Foundry (PCF).
+This topic explains how to use the system plan for <%= vars.product_full %>.
 The system plan is the default plan meant for developer apps, not end-user apps.
 
-SSO for PCF comes with a default `system` plan that has the following features:
+<%= vars.product_full %> comes with a default `system` plan that has the following features:
 
 * Read-only
 * Minimal configuration options
 * Not deletable
 * Allows developer-level access to system components like Pivotal Application Service and its APIs
-* Available only to PCF administrators
+* Available only to <%= vars.platform %> administrators
 
 Restricting the visibility of this system plan to a single, developer-apps only
 org secures system components, following the principle of least privilege.
@@ -23,24 +22,24 @@ Any app that uses the [Cloud Foundry API](https://apidocs.cloudfoundry.org) is a
 
 ## <a id="best-practice"></a>System Plan Best Practice
 
-Pivotal recommends configuring your orgs and SSO plans as follows to prevent
+Pivotal recommends configuring your orgs and <%= vars.product_full %> plans as follows to prevent
 anyone from applying the system plan to end-user apps:
 
 1. Restrict all developer apps to a single org.
 
 2. Make the system plan visible only to the developer-apps org.
 
-3. Configure other orgs with SSO service plans of their own.
+3. Configure other orgs with <%= vars.product_full %> service plans of their own.
 
 Developers can then self-register their developers apps in the developer-apps org
 for use by other developers.
 
 ## <a id="configure"></a>Administrators: Configure the System Plan for an Org
 
-PCF administrators follow the steps below to enable the system plan and provide
+<%= vars.platform %> administrators follow the steps below to enable the system plan and provide
 access to app developers:
 
-1. Log into the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using
+1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using
 your User Account and Authentication (UAA) administrator credentials.
 In your Pivotal Application Service tile in Ops Manager, the **Domain** settings show your
 system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
@@ -53,15 +52,15 @@ system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
 
 Follow the steps below to create and use the `system` service plan with your developer apps.
 
-1. Follow the steps to [Create a Service Instance](./manage-service-instances.html#create-svc-instance) of SSO.
+1. Follow the steps to [Create a Service Instance](./manage-service-instances.html#create-svc-instance) of <%= vars.product_full %>.
     ![Create Service Instance](images/create-service-instance.png)
 
-1. If you have a PCF app, bind the application with the service instance you created.
-For more information, see [Bind a PCF App](./configure-apps/index.html#bind).
+1. If you have a <%= vars.platform %> app, bind the application with the service instance you created.
+For more information, see [Register a <%= vars.platform %> App](./configure-apps/index.html#internal).
 
-1. If your app is a pipeline or a script that runs external to PCF but calls PCF APIs,
+1. If your app is a pipeline or a script that runs external to <%= vars.platform %> but calls <%= vars.platform %> APIs,
    do the following:
-	1. Follow the instructions to [Register an Externally Hosted App Using the SSO Developer Dashboard](./configure-apps/index.html#register-dashboard)
+	1. Follow the instructions to [Register an Externally Hosted App Using the <%= vars.developer_dash %>](./configure-apps/index.html#register-dashboard)
 	   and use the guidelines below:
 		* Choose **Native App** for your application type.
 		* In the app configuration, set a value for the **Refresh token lifetime**
@@ -70,7 +69,7 @@ For more information, see [Bind a PCF App](./configure-apps/index.html#bind).
 	   presence, embed a refresh token instead of hardcoding your credentials:
 		1. Run `uaac token sso get`.
 		1. At the prompts, enter the Client ID and Secret from the **Next Steps**
-		   section of the SSO Developer Dashboard. Copy the authentication URL from the command output.
+		   section of the <%= vars.developer_dash %>. Copy the authentication URL from the command output.
 		1. Paste the authentication URL into a browser, and log in using your
 		   UAA Admin Credentials.
 		1. Copy the **Temporary Authentication Code** from the browser into the
@@ -84,7 +83,7 @@ For more information, see [Bind a PCF App](./configure-apps/index.html#bind).
 ## <a id="revoke"></a>Developers: Revoke System Plan Access for an Externally Hosted App
 
 To revoke system plan access from an externally hosted app that is registered
-with the system plan to access PCF components, do one of the following:
+with the system plan to access <%= vars.platform %> components, do one of the following:
 
 * Regenerate the App Secret
 * Delete the app
