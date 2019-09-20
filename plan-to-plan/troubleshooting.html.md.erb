@@ -3,7 +3,7 @@ title: Troubleshooting Plan-to-Plan OIDC Integration
 owner: SSO
 ---
 
-This topic explains how to resolve common errors that can arise when you configure a Single Sign-On (SSO) partnership between two SSO service plans, one acting as an Identity Provider (IDP) and one acting as a Relying Party (RP).
+This topic explains how to resolve common errors that can arise when you configure a single sign-on partnership between two <%= vars.product_full %> service plans, one acting as an Identity Provider (IDP) and one acting as a Relying Party (RP).
 
 ## No link for OIDC, or the Service Provider Login page is blank
 
@@ -12,7 +12,8 @@ This topic explains how to resolve common errors that can arise when you configu
 ### Cause
 
 * The discovery URL is incorrect or unavailable. No link appears on the login page.
-* This error can occur if you do not enable **Skip SSL Connection** and the IDP service plan is on a PCF instance that uses a self-signed certificate.
+* This error can occur if you do not enable **Skip SSL Connection** and the IDP service plan is 
+on a <%= vars.platform %> instance that uses a self-signed certificate.
 
 ## Authorization Request Error
 
@@ -35,8 +36,8 @@ You may have configured your OAuth client secret incorrectly.
 
 ### Cause
 
-* You may have ommitted the <code>openid</code> scope in the IDP configuration on the RP service plan.
-* You may be requesting the wrong scopes, or scopes that are not supported by the other SSO plan. Confirm that you are only requesting <code>openid</code> scopes. 
+* You may have omitted the <code>openid</code> scope in the IDP configuration on the RP service plan.
+* You may be requesting the wrong scopes or scopes that are not supported by the other <%= vars.product_full %> plan. Confirm that you are only requesting <code>openid</code> scopes. 
 
 ## Cannot determine username with given credentials
 

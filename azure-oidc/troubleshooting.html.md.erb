@@ -3,7 +3,7 @@ title: Troubleshooting
 owner: Identity Service
 ---
 
-This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory (Azure AD), OpenID Connect (OIDC), and Pivotal Single Sign-On (SSO).
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory (Azure AD), OpenID Connect (OIDC), and <%= vars.product_full %>.
 
 ##<a id='bad-request'></a> Bad Request
 
@@ -14,7 +14,7 @@ This topic describes how to resolve common errors that arise when configuring a 
 Explanations:
 
 * This is a generic error. Review UAA logs for detailed information.
-* This error can occur when the application type is created as **Native**. Ensure you created your client in Azure AD as **Web App/API**.
+* This error can occur when the app type is created as **Native**. Ensure you created your client in Azure AD as **Web App/API**.
 * This error can occur when a response type other than `id_token` is used. Ensure you configure the response type to use `id_token`.
 
 ##<a id='no-username'></a> Cannot determine username from credentials supplied
@@ -25,7 +25,7 @@ Explanations:
 
 ### Explanation:
 
-* No value is mapped to the username used by PCF. Under the identity provider attributes, map the `unique_name` attribute to `username` 
+* No value is mapped to the username used by <%= vars.platform %>. Under the identity provider attributes, map the `unique_name` attribute to `username` 
 
 ##<a id='address-error'></a> Azure Error for Reply Address
 
@@ -45,7 +45,7 @@ Explanations:
 
 ### Explanation:
 
-* The Authorization Endpoint URL may be incorrectly entered or not available. Ensure you correctly entered the authorization endpoint, and that the  authorization endpoint is available to the end user.
+* The Authorization Endpoint URL may be incorrectly entered or not available. Ensure you correctly entered the authorization endpoint, and that the authorization endpoint is available to the end user.
 
 ##<a id='idp-404'></a> Error authenticating against external identity provider: 404 Not Found
 

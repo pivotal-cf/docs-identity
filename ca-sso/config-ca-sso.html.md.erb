@@ -1,13 +1,13 @@
 ---
-title: Configuring CA Single Sign-On as an Identity Provider
+title: Configuring Layer7 SiteMinder as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up CA Single Sign-On as your identity provider by configuring SAML integration in both Pivotal Cloud Foundry (PCF) and CA Single Sign-On.
+This topic describes how to set up Layer7 SiteMinder as your identity provider by configuring SAML integration in both <%= vars.platform %> and Layer7 SiteMinder.
 
-## <a id='pcf'></a> Set up SAML in PCF
+## <a id='pcf'></a> Set up SAML in <%= vars.product_full %>
 
-1. Log in to the Single Sign-On (SSO) Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
+1. Log in to the <%= vars.platform %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
 	<%= image_tag '../images/ca_sso_manage_id_providers.png' %>
@@ -26,9 +26,9 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 
 4. Click **Save**.
 
-## <a id='ca'></a> Set up SAML in CA Single Sign-On
+## <a id='ca'></a> Set up SAML in Layer7 SiteMinder
 
-1. Sign in as a CA Single Sign-On administrator.
+1. Sign in as a Layer7 SiteMinder administrator.
 
 2. Click the **Federation** tab.
 
@@ -50,7 +50,7 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	
 	3. Enter a **Description**.
 	
-	4. Enter the fully-qualified domain name for your CA Single Sign-On as the **Base URL**.
+	4. Enter the fully-qualified domain name for your Layer7 SiteMinder as the **Base URL**.
 
 	5. Select or import a **Signing Private Key Alias**.
 
@@ -126,7 +126,7 @@ This topic describes how to set up CA Single Sign-On as your identity provider b
 	
 	3. Enter `mail` as the **Value**.
 	
-	4. (Optional) Under **Assertion Attributes**, specify any application or group attributes that you want to map to users in the ID token.
+	4. (Optional) Under **Assertion Attributes**, specify any app or group attributes that you want to map to users in the ID token.
 	
 		<div class="note"><strong>Note</strong>: The value for sending a user's groups is <strong>FMATTR:SM_USERGROUPS</strong>.</div>
 		

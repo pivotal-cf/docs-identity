@@ -3,29 +3,29 @@ title: Testing
 owner: Identity Service
 ---
 
-This topic describes how an administrator can test the connection between SSO and CA Single Sign-On. An administrator can test both service provider and identity provider connections.
+This topic describes how an administrator can test the connection between <%= vars.product_full %> and Layer7 SiteMinder. An administrator can test both service provider and identity provider connections.
 
 <%=vars.test_with_sample_apps%>
 
 ## <a id="service-provider"></a>Test Your Service Provider Connection
 
-1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN` and navigate to the organization and space where your application is located.
+1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN` and navigate to the org and space where your app is located.
 
-2. Under **Services**, locate the service instance of the Single Sign-On (SSO) plan bound to your application. Select the service instance and click **Manage**.
+2. Under **Services**, locate the service instance of the <%= vars.product_full %> plan bound to your app. Select the service instance and click **Manage**.
 
 	<%= image_tag '../images/click_service.png' %>
 	
 	<%= image_tag '../images/ca_sso_click_manage.png' %>
 
-1. Under the **Apps** tab, click your application.
+1. Under the **Apps** tab, click your app.
 
 	<%= image_tag '../images/ca_sso_select_authcode_app_tile.png' %>
 
-1. Under **Identity Providers**, select the CA Single Sign-On identity provider.
+1. Under **Identity Providers**, select the Layer7 SiteMinder identity provider.
 
 	<%= image_tag '../images/click_ca_sso_pcf.png' %>
 
-1. Return to Apps Manager and click on the URL below your application to be redirected to the identity provider to authenticate.
+1. Return to Apps Manager and click on the URL below your app to be redirected to the identity provider to authenticate.
 
 	<%= image_tag '../images/authcode_sample_address.png' %>
 
@@ -37,7 +37,7 @@ This topic describes how an administrator can test the connection between SSO an
 
 	<%= image_tag '../images/ca_sso_sign_in.png' %>
 
-1. The application asks for authorization to the necessary scopes. Click **Authorize**.
+1. The app asks for authorization to the necessary scopes. Click **Authorize**.
 
 	<%= image_tag '../images/popup_authcode.png' %>
 
@@ -47,28 +47,27 @@ This topic describes how an administrator can test the connection between SSO an
 
 ## <a id="identity-provider"></a>Test Your Identity Provider Connection
 
-<p class="note"><strong>Note</strong>: SSO does not support identity provider-initiated flow into applications, but it does redirect the user to the User Account and Authentication (UAA) page to select applications assigned to the user.</p>
+<p class="note"><strong>Note:</strong> <%= vars.product_full %> does not support identity provider-initiated flow into apps, but it does redirect the user to the User Account and Authentication (UAA) page to select apps assigned to the user.</p>
 
-1. Sign in to CA Single Sign-On.
+1. Sign in to Layer7 SiteMinder.
 
 	<%= image_tag '../images/ca_sso_sign_in.png' %>
 
-1. Navigate to your application and click it.
+1. Navigate to your app and click it.
 
-1. You are redirected to the page that lists applications you have access to.
+1. You are redirected to the page that lists apps you have access to.
 
 	<%= image_tag '../images/app_list.png' %>
 
 ## <a id="sso"></a>Test Your Single Sign-Off
 
-Test single sign-off to ensure that when users log out of the application, they are logged out of CA Single Sign-On as well.
+Test single sign-off to ensure that when users log out of the application, they are logged out of Layer7 SiteMinder as well.
 
-1. Sign in to the sample application. Information about the access and ID token displays, as well as the "What do you want to do?" section.
-1. Under "What do you want to do?", click **Log out**.
+1. Sign in to the sample app. Information about the access and ID token displays, as well as the **What do you want to do?** section.
+1. Under **What do you want to do?**, click **Log out**.
 
 	<%= image_tag '../images/what_do_you_want.png' %>
 
-1. You are logged out and redirected to the CA Single Sign-On login page.
+1. You are logged out and redirected to the Layer7 SiteMinder login page.
 
 	<%= image_tag '../images/ca_sso_sign_in.png' %>
-

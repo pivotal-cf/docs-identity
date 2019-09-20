@@ -3,15 +3,16 @@ title: Configuring GCP as an OIDC Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Google Cloud Platform (GCP) as an identity provider for a Single Sign-On (SSO) service plan
-by configuring OpenID Connect (OIDC) integration in both Pivotal Cloud Foundry (PCF) and GCP.
+This topic describes how to set up Google Cloud Platform (GCP) as an identity provider 
+for a <%= vars.product_full %> service plan
+by configuring OpenID Connect (OIDC) integration in both <%= vars.product_full %> and GCP.
 
 ## <a id='overview'></a> Overview
 
 To set up the integration, follow the procedures below:
 
 1. [Generate GCP Client Credentials](#gcp-rp)
-2. [Set up the OIDC Identity Provider in SSO](#gcp-oidc-sso)
+2. [Set up the OIDC Identity Provider in <%= vars.product_full %>](#gcp-oidc-sso)
 
 ## <a id='gcp-rp'></a> Generate GCP Client Credentials
 
@@ -28,21 +29,21 @@ Follow the steps below to generate GCP client credentials.
    and for **Authorized redirect URIs** enter a redirect URI of the form `https://AUTH_DOMAIN/login/callback/ORIGIN_KEY`, where:
   - `AUTH_DOMAIN` is the full URL generated based on the **Auth Domain** setting you entered
      when you [created the service plan](../manage-service-plans.html#create-svc-plan) that you are integrating with GCP.
-  - `ORIGIN_KEY` is identical to the **Identity Provider Name** you set later in the SSO dashboard
-     in [Set Up OIDC Identity Provider in SSO](#gcp-oidc-sso), except that it cannot include uppercase letters or spaces.
+  - `ORIGIN_KEY` is identical to the **Identity Provider Name** you set later in the <%= vars.operator_dash %>
+     in [Set Up OIDC Identity Provider in <%= vars.product_full %>](#gcp-oidc-sso), except that it cannot include uppercase letters or spaces.
      You can change this value later if, for example, you want to enter a different identity provider name later.
 
 	<%= image_tag '../images/gcp-config-oauth.png' %>
 
 1. Click **Create** and record the **client ID** and **client secret** generated.
    You enter these values as your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
-   in the SSO Operator Dashboard in [Set Up OIDC Identity Provider in SSO](#gcp-oidc-sso) below.
+   in the <%= vars.operator_dash %> in [Set Up OIDC Identity Provider in <%= vars.product_full %>](#gcp-oidc-sso) below.
 
 	<%= image_tag '../images/gcp-oauth-keypair.png' %>
 
-## <a id='gcp-oidc-sso'></a> Set up the OIDC Identity Provider in SSO
+## <a id='gcp-oidc-sso'></a> Set up the OIDC Identity Provider in <%= vars.product_full %>
 
-Follow the steps below to set up the OIDC identity provider in SSO.
+Follow the steps below to set up the OIDC identity provider in <%= vars.product_full %>.
 
 1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc).
 
@@ -61,7 +62,7 @@ Follow the steps below to set up the OIDC identity provider in SSO.
 	<%= image_tag '../images/gcp-scopes.png', :width => "200" %>
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**, select **email** as the **User Schema Attribute** and enter `user_name` as the **Attribute Name**.
-   This enables SSO to identify the authenticated user.
+   This enables <%= vars.product_full %> to identify the authenticated user.
 
 	<%= image_tag '../images/gcp-advanced-settings.png' %>
 

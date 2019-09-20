@@ -3,7 +3,7 @@ title: Testing
 owner: Identity Service
 ---
 
-This topic describes how a Pivotal Cloud Foundry (PCF) administrator can test the OpenID Connect (OIDC) connection between the Single Sign-On (SSO) service and Google Cloud Platform.
+This topic describes how <%= vars.platform %> administrators can test the OpenID Connect (OIDC) connection between <%= vars.product_full %> and Google Cloud Platform.
 
 <%=vars.test_with_sample_apps%>
 
@@ -11,7 +11,7 @@ This topic describes how a Pivotal Cloud Foundry (PCF) administrator can test th
 
 1. Log in to Apps Manager at `https://apps.YOUR-SYSTEM-DOMAIN` and navigate to the org and space where your app is located.
 
-1. Under **Services**, locate the service instance of the Single Sign-On (SSO) plan bound to your app.
+1. Under **Services**, locate the service instance of the <%= vars.product_full %> plan bound to your app.
 
 	<%= image_tag '../images/gcp-appsman-sso.png' %>
 
@@ -27,7 +27,7 @@ This topic describes how a Pivotal Cloud Foundry (PCF) administrator can test th
 
 	<%= image_tag '../images/gcp-appsman-ips.png' %>
 	
-1. Return to Apps Manager and click the URL listed below your app to access your application.
+1. Return to Apps Manager and click the URL listed below your app to access your app.
 
 	<%= image_tag '../images/gcp-appsman-route.png' %>
 	
@@ -41,6 +41,6 @@ This topic describes how a Pivotal Cloud Foundry (PCF) administrator can test th
 	
 1. If the app prompts for authorization to the necessary scopes, click **Authorize**.
 
-If you are now logged in to your app, your GCP OIDC to SSO connection works.
+If you are now logged in to your app, your GCP OIDC to <%= vars.product_full %> connection works.
 
 <%= image_tag '../images/gcp-sample-confirm.png' %>
