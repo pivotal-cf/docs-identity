@@ -3,13 +3,13 @@ title: Service-to-Service App
 owner: Identity Service
 ---
 
-For Service-to-Service apps, <%= vars.product_full %> supports the Client Credentials OAuth 2.0 grant type.
+For Service-to-Service apps, <%= vars.product_name %> supports the Client Credentials OAuth 2.0 grant type.
 The client credentials grant type is for apps that can request an access token and access resources on its own. This is often the case when there are services that call APIs without users.
 
 ## <a id='oauth'></a> OAuth 2.0 Actors
 
 - **Application**: A client that makes protected requests using the authorization of the resource owner.
-- **Authorization Server**: <%= vars.product_full %> server that issues access tokens to client apps after successfully authenticating the resource owner.
+- **Authorization Server**: <%= vars.product_name %> server that issues access tokens to client apps after successfully authenticating the resource owner.
 - **Resource Server**: The server that hosts protected resources and accepts and responds to protected resource requests using access tokens. apps access the server through APIs.
 
 ## <a id='client-cred-flow'></a> Client Credentials Flow
@@ -21,4 +21,4 @@ The client credentials grant type is for apps that can request an access token a
 3. **Request Resource w/ Access Token**: The app attempts to access the resource from the resource server by presenting the access token.
 4. **Return Resource**: If the access token is valid, the resource server returns the resources to the app.
 
-The resource server runs in <%= vars.platform %> under a given space and org. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_full %>. Administrators can create admin clients to perform automated management actions without a user. See <a href="./index.html#admin">Create Admin Client</a>.
+The resource server runs in <%= vars.platform %> under a given space and org. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_name %>. Administrators can create admin clients to perform automated management actions without a user. See <a href="./index.html#admin">Create Admin Client</a>.

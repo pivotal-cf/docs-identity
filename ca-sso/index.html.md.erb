@@ -3,13 +3,13 @@ title: Layer7 SiteMinder Integration Guide Overview
 owner: Identity Service
 ---
 
- Layer7 SiteMinder (formally known as CA Single Sign-On) is a Web Access Management system that supports advanced authentication, risk-based security policies, and federated identities. This documentation describes how to configure a single sign-on partnership between Layer7 SiteMinder as the identity provider and the <%= vars.product_full %> as the service provider.
+ Layer7 SiteMinder (formally known as CA Single Sign-On) is a Web Access Management system that supports advanced authentication, risk-based security policies, and federated identities. This documentation describes how to configure a single sign-on partnership between Layer7 SiteMinder as the identity provider and the <%= vars.product_name %> as the service provider.
  
-<%= vars.product_full %> supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All <%= vars.product_full %> communication takes place over SSL.
+<%= vars.product_name %> supports service provider-initiated authentication flow and single logout. It does not support identity provider-initiated authentication flow. All <%= vars.product_name %> communication takes place over SSL.
 
 ## <a id='prereqs'></a>Prerequisites
 
-To integrate Layer7 SiteMinder with <%= vars.product_full %> you must have the following:
+To integrate Layer7 SiteMinder with <%= vars.product_name %> you must have the following:
 
 * Layer7 SiteMinder v12.52 or later
 * A certificate signed by a certificate authority
@@ -18,8 +18,8 @@ To integrate Layer7 SiteMinder with <%= vars.product_full %> you must have the f
 
 ## <a id='ca-sso'></a> Layer7 SiteMinder Integration Guide
 
-### Configuring Layer7 SiteMinder with <%= vars.product_full %>
-Complete both steps below to integrate your deployment with Layer7 SiteMinder and <%= vars.product_full %> .
+### Configuring Layer7 SiteMinder with <%= vars.product_name %>
+Complete both steps below to integrate your deployment with Layer7 SiteMinder and <%= vars.product_name %> .
 
 1. <a href="config-ca-sso.html">Configure Layer7 SiteMinder as an Identity Provider</a>
 1. <a href="config-sso.html">Configure a Single Sign-On Service Provider</a>

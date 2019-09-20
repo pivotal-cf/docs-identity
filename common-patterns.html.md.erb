@@ -12,7 +12,7 @@ This section describes common architecture patterns for authenticating externall
 hosted apps that call <%= vars.platform %> APIs.
 In these patterns, externally hosted apps, secured either by Security Assertion
 Markup Language (SAML) or by OpenID Connect (OIDC) providers using JSON Web Tokens
-(JWTs), interact with <%= vars.product_full %> to gain access to <%= vars.platform %> services.
+(JWTs), interact with <%= vars.product_name %> to gain access to <%= vars.platform %> services.
 
 <a id="concept-diagram"></a>The following diagram is a conceptual view of an
 externally hosted app protected by a SAML or OIDC enterprise identity provider (IDP).
@@ -29,7 +29,7 @@ that is, users authenticate using the SAML or OIDC provider into the externally 
 * The externally hosted app needs to invoke API-1 and API-2, which are Spring Boot
 microservices running on <%= vars.platform %>.
 
-* API-1 and API-2 are protected by <%= vars.product_full %> using OAuth.
+* API-1 and API-2 are protected by <%= vars.product_name %> using OAuth.
 
 The following sections describe three authentication models that can be used for
 externally hosted apps using SAML or OIDC enterprise IDPs to call into <%= vars.platform %> APIs:
@@ -80,7 +80,7 @@ In this model:
 through interactions with the existing integration with the IDP upstream.
 
 * The authenticated session against the IDP empowers the user to get a SAML assertion
-intended for the <%= vars.product_full %> (also known as UAA) audience.
+intended for the <%= vars.product_name %> (also known as UAA) audience.
 In the SAML assertion, the recipient and audience must match UAA.
 See the [Example SAML Assertion](#saml-assertion) below.
 
@@ -191,17 +191,17 @@ token exchange transparently, as shown in the diagram below.
 The following setup procedure uses the example shown in the
 [conceptual diagram](#concept-diagram) above.
 
-1. Create API-1 and API-2 as resources in <%= vars.product_full %>,
+1. Create API-1 and API-2 as resources in <%= vars.product_name %>,
 for example, `api1.read`, `api1.write` and `api2.read`, `api2.write`.<br><br>
 	For instructions, see [Create or Edit Resources](./manage-resources.html#create-resources).
 
 
 1. Create an Admin Client with the ability to create more OAuth Clients under the
-<%= vars.product_full %> service plan.
+<%= vars.product_name %> service plan.
 Therefore, use the scope `clients.admin`.<br><br>
 	For instructions, see [Create Admin Client](./configure-apps/index.html#admin).
 
-1. Use UAAC to target the <%= vars.product_full %> service plan and log in using the Admin Client
+1. Use UAAC to target the <%= vars.product_name %> service plan and log in using the Admin Client
 created in the previous step. <br><br>
 For instructions, see Step 4 in [Manage Users with the UAA CLI (UAAC)](./manage-users.html#uaac).
 
@@ -219,7 +219,7 @@ For instructions, see Step 4 in [Manage Users with the UAA CLI (UAAC)](./manage-
 	   `api1.write`, or `api2.read` and `api2.write`. <br><br>
 	1. You can leave the redirect URI and other options empty.
 
-1. A plan admin must do the following in the <%= vars.product_full %> Plan Administrator Dashboard:
+1. A plan admin must do the following in the <%= vars.product_name %> Plan Administrator Dashboard:
 	1. Add the enterprise SAML or OIDC (for JWT) provider. <br><br>
 		For instructions, see [Add an External Identity Provider](./configure-external-id.html#config-ext-prov).<br><br>
 	1. Do one of the following:<br><br>
@@ -234,7 +234,7 @@ For instructions, see Step 4 in [Manage Users with the UAA CLI (UAAC)](./manage-
 
 1. The externally hosted app, or gateway, must make the following API call:
 
-	1. Invoke the `/oauth/token` endpoint of the <%= vars.product_full %> service plan with the parameters
+	1. Invoke the `/oauth/token` endpoint of the <%= vars.product_name %> service plan with the parameters
 	   laid out in this documentation:
 		* For SAML: [SAML2 Bearer Grant](https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#saml2-bearer-grant)
 		* For JWT: [JWT Bearer Token Grant](https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#jwt-bearer-token-grant)

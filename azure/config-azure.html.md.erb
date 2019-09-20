@@ -3,9 +3,9 @@ title: Configuring Azure Active Directory as a SAML Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Azure Active Directory (AD) as your identity provider by configuring SAML integration in both <%= vars.product_full %> and Azure AD. 
+This topic describes how to set up Azure Active Directory (AD) as your identity provider by configuring SAML integration in both <%= vars.product_name %> and Azure AD. 
 
-## <a id='pcf'></a> Step 1: Set up SAML in <%= vars.product_full %>
+## <a id='pcf'></a> Step 1: Set up SAML in <%= vars.product_name %>
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 
@@ -46,7 +46,7 @@ This topic describes how to set up Azure Active Directory (AD) as your identity 
 1. Click your app and then click the **Single sign-on** tab.  
 
 1. Select **SAML-based Sign-on** from the dropdown and then click **Upload 
-metadata file** to upload the metadata file you downloaded from step 6 of [Step 1: Set up SAML in <%= vars.product_full %>](#pcf).
+metadata file** to upload the metadata file you downloaded from step 6 of [Step 1: Set up SAML in <%= vars.product_name %>](#pcf).
 
 	<%= image_tag '../images/azure-samlbased-signon.png' %>
 
@@ -61,7 +61,7 @@ metadata file** to upload the metadata file you downloaded from step 6 of [Step 
 	<%= image_tag '../images/azure-users-groups.png' %>
 
 5. Select users or group names from the dropdown. For example, you can add a group that includes all 
-users that should be able to login to the <%= vars.product_full %> plan.
+users that should be able to login to the <%= vars.product_name %> plan.
 
 	<%= image_tag '../images/azure-add-user.png' %>
 	
@@ -97,7 +97,7 @@ users that should be able to login to the <%= vars.product_full %> plan.
 	
 1. Navigate to **Azure Active Directory** > **Groups**. 
 
-1. For each group that is used by the <%= vars.product_full %> plan, record the **Object ID**. Azure AD passes the
-	Object ID of these groups to the <%= vars.product_full %> plan. For more information, see [Configure Group Permissions](./config-sso.html#config-permissions).
+1. For each group that is used by the <%= vars.product_name %> plan, record the **Object ID**. Azure AD passes the
+	Object ID of these groups to the <%= vars.product_name %> plan. For more information, see [Configure Group Permissions](./config-sso.html#config-permissions).
 
 	<%= image_tag '../images/azure-object-id.png' %>
