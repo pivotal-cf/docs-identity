@@ -3,7 +3,7 @@ title: Configuring Apps
 owner: Identity Service
 ---
 
-This topic explains how <%= vars.platform %> developers configure their
+This topic explains how <%= vars.platform_name %> developers configure their
 apps to use <%= vars.product_name %> and use the SSO Admin Client to manage connections
 between SSO identity providers, apps, users, and other resources.
 
@@ -31,12 +31,12 @@ and choose your <%= vars.product_name %> app type as follows:
     A resource server hosts protected resources and accepts and responds to protected resource requests using access tokens, such as an API.</p>
 
 1. Choose a method to register your app with the <%= vars.product_name %> service:
-    - If your app is hosted on <%= vars.platform %>, follow one of the procedures in [Register a <%= vars.platform %> App](#internal) below.
+    - If your app is hosted on <%= vars.platform_name %>, follow one of the procedures in [Register a <%= vars.platform_name %> App](#internal) below.
     - If your app is not hosted on <%= vars.product_name %>, follow one of the procedures in [Register an Externally Hosted App](#external) below.
 
-### <a id="internal"></a> Register a <%= vars.platform %> App
+### <a id="internal"></a> Register a <%= vars.platform_name %> App
 
- To configure <%= vars.product_name %> for a <%= vars.platform %> app, use one of the following methods:
+ To configure <%= vars.product_name %> for a <%= vars.platform_name %> app, use one of the following methods:
 
  * [Configure <%= vars.product_name %> Properties with JSON Bind Parameters](#configure-bind-params)
  * [Configure <%= vars.product_name %> Properties with the App Manifest](#configure-app-manifest)
@@ -292,7 +292,7 @@ The table below provides descriptions and default values for <%= vars.product_na
 			</ul>
 			For example, if your identity provider name is <code>example.com Provider</code>,
 			the corresponding origin key is <code>example-com-provider</code>.</td>
-		<td><code>uaa</code>(<%= vars.platform %> internal user store)</td>
+		<td><code>uaa</code>(<%= vars.platform_name %> internal user store)</td>
 	</tr>
 	<tr>
 		<td><code>SSO_REDIRECT_URIS</code></td>
@@ -384,7 +384,7 @@ GitHub repository.
 
 ### <a id="external"></a> Register an Externally Hosted App
 
-To configure <%= vars.product_name %> for an app not hosted by <%= vars.platform %>, use one of the following methods:
+To configure <%= vars.product_name %> for an app not hosted by <%= vars.platform_name %>, use one of the following methods:
 
 * [Register an Externally Hosted App Using Service Keys](#register-service-keys)
 * [Register an Externally Hosted App Using the <%= vars.developer_dash %>](#register-dashboard)
@@ -578,7 +578,7 @@ To manage your app configurations through the <%= vars.developer_dash %>:
   <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
-	<p class="note"><strong>Note:</strong> When binding a <%= vars.platform %> app, a Space Developer
+	<p class="note"><strong>Note:</strong> When binding a <%= vars.platform_name %> app, a Space Developer
 		can choose from internal and external identity providers.
 		If the Space Developer selects multiple identity providers, users must select
 		which provider to use when they sign in.
@@ -672,9 +672,9 @@ To view credentials of an existing app:
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
 
 <p class="note warning"><strong>Warning:</strong>
-	You must not regenerate an app secret for <%= vars.platform %> bound apps,
+	You must not regenerate an app secret for <%= vars.platform_name %> bound apps,
 	because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
-	To regenerate a client for a <%= vars.platform %> bound app, you need to delete and re-create the
+	To regenerate a client for a <%= vars.platform_name %> bound app, you need to delete and re-create the
 	service binding from your app to <%= vars.product_name %>.</p>
 
 To regenerate an app secret of an existing app:
@@ -773,8 +773,8 @@ Record these credentials to use in other <%= vars.product_name %> procedures.
 
 To unregister an app from <%= vars.product_name %>:
 
-+ If you configured a <%= vars.platform %> app in [Set Up Apps to Use <%= vars.product_name %>](#set-up) above,
-see [Unregister a <%= vars.platform %> App](#unregister-pcf) below.
++ If you configured a <%= vars.platform_name %> app in [Set Up Apps to Use <%= vars.product_name %>](#set-up) above,
+see [Unregister a <%= vars.platform_name %> App](#unregister-pcf) below.
 
 + If you registered an externally hosted app using service keys in
 [Register an Externally Hosted App Using Service Keys](#register-service-keys) above,
@@ -784,9 +784,9 @@ see [Unregister an Externally Hosted App Using Service Keys](#unregister-service
 [Register an Externally Hosted App Using the <%= vars.developer_dash %>](#register-dashboard) above,
 see [Unregister an Externally Hosted App Using the Service Instance Developer Dashboard](#unregister-dashboard) below.
 
-### <a id="unregister-pcf"></a> Unregister a <%= vars.platform %> App
+### <a id="unregister-pcf"></a> Unregister a <%= vars.platform_name %> App
 
-To unregister a <%= vars.platform %> app, run the following command:
+To unregister a <%= vars.platform_name %> app, run the following command:
 
 ```
 cf unbind-service APP-NAME INSTANCE-NAME
@@ -801,7 +801,7 @@ For more information about the `cf unbind-service` command,
 see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
 in the Cloud Foundry CLI Reference Guide.
 
-<p class="note"><strong>Note:</strong> If you delete a <%= vars.platform %> app, 
+<p class="note"><strong>Note:</strong> If you delete a <%= vars.platform_name %> app, 
   the app is automatically unregistered from <%= vars.product_name %>.</p>
 
 ### <a id="unregister-service-keys"></a> Unregister an Externally Hosted App Using Service Keys
