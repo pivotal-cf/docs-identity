@@ -6,7 +6,7 @@ owner: Identity Service
 These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity)
 service for Pivotal Cloud Foundry (PCF).
 
-## <a id="184"></a> v1.8.4
+## <a id="1-8-4"></a> v1.8.4
 
 **Release Date: June 13, 2019**
 
@@ -22,7 +22,7 @@ This release has the following issue:
 
 <%= partial '../../identity/partials/identity/large-logo-ki' %>
 
-## <a id="183"></a> v1.8.3
+## <a id="1-8-3"></a> v1.8.3
 
 **Release Date: April 15, 2019**
 
@@ -38,7 +38,7 @@ This release has the following issue:
 
 <%= partial '../../identity/partials/identity/large-logo-ki' %>
 
-## <a id="182"></a> v1.8.2
+## <a id="1-8-2"></a> v1.8.2
 
 **Release Date: March 22, 2019**
 
@@ -55,7 +55,7 @@ This release has the following issue:
 
 <%= partial '../../identity/partials/identity/large-logo-ki' %>
 
-## <a id="181"></a> v1.8.1
+## <a id="1-8-1"></a> v1.8.1
 
 **Release Date: March 6, 2019**
 
@@ -63,7 +63,7 @@ This release has the following issue:
 
 This release fixes the following issue:
 
-* Custom branding images caused BOSH logs to exceed 1 MB and installations to fail. Logs are now 
+* Custom branding images caused BOSH logs to exceed 1 MB and installations to fail. Logs are now
 reduced to prevent this issue.
 
 ### <a id="181-known-issues"></a> Known Issues
@@ -72,7 +72,7 @@ This release has the following issue:
 
 <%= partial '../../identity/partials/identity/large-logo-ki' %>
 
-## <a id="180"></a> v1.8.0
+## <a id="1-8-0"></a> v1.8.0
 
 **Release Date: January 14, 2019**
 
@@ -130,11 +130,11 @@ This release has the following issue:
 <%= partial '../../identity/partials/identity/large-logo-ki' %>
 
 ## <a id="deprecation"></a> Request for Feedback on Feature Deprecation
-In future releases of SSO, Pivotal plans to deprecate the following features: 
+In future releases of SSO, Pivotal plans to deprecate the following features:
 
 * **User management interface**: We plan to shift admin user management from using a user management UI to the UAA CLI. For more information about user management, see [Managing Users](./manage-users.html).
 * **Password policies configuration**: We plan to deprecrate the **Password Complexity** and **Lockout Policy** sections in **Internal User Store**  > **Edit Provider**. This is because UAA plans to focus on enterprise IDPs as the core provider of users for production apps. For more information about configuring password policies, see [Define Password Policy for the Internal User Store](./configure-id-providers.html#passwd-policy).
-* **Native multi-factor authentication (MFA)**: We do not plan to make native MFA production ready. 
+* **Native multi-factor authentication (MFA)**: We do not plan to make native MFA production ready.
 This is because UAA plans to focus on enterprise IDPs, which already provide MFA.
 
 We plan to no longer recommend using the internal user store in production based upon the deprecation of these features.
