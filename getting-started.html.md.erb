@@ -27,7 +27,7 @@ you can configure [external identity providers](./configure-external-id.html#con
 to provide single sign-on to applications.
 
 1. [Configure your applications](./configure-apps/index.html).
-<%= vars.product_name %> supports <%= vars.platform %> apps as well
+<%= vars.product_name %> supports <%= vars.platform_name %> apps as well
 as externally hosted apps.
 Your applications must be able to request an OAuth or OpenID Connect token.
 
@@ -39,14 +39,14 @@ This adds the endpoints to an allow list for use by the application or client.
 ## <a id='roles'></a> <%= vars.product_name %> User Roles
 
 A user's role determines which parts of an <%= vars.product_name %> configuration it can manage.
-<%= vars.product_name %> uses the existing user roles <%= vars.platform %> Administrator and Space Developer, as well
+<%= vars.product_name %> uses the existing user roles <%= vars.platform_name %> Administrator and Space Developer, as well
 as a Plan Administrator role that is specific to <%= vars.product_name %>.
 
 
 This chart shows the management permissions for each role.
 
 <table border="1" class="nice">
-  <tr><th>Management access by role</th><th><%= vars.platform %> Administrator</th><th>Plan Administrator</th><th>Space Developer</th></tr>
+  <tr><th>Management access by role</th><th><%= vars.platform_name %> Administrator</th><th>Plan Administrator</th><th>Space Developer</th></tr>
   <tr><th>Service plans</th><td>X</td><td></td><td></td></tr>
     <tr><th>Service instances</th><td>X</td><td>X</td><td>X</span></td></tr>
   <tr><th>Identity providers</th><td>X</td><td>X</td><td></td></tr>
@@ -56,14 +56,14 @@ This chart shows the management permissions for each role.
 
 ## <a id='other'></a> Using <%= vars.product_name %> Components
 
-In addition to apps, <%= vars.product_name %> supports single sign-on for components of  <%= vars.platform %>, 
+In addition to apps, <%= vars.product_name %> supports single sign-on for components of  <%= vars.platform_name %>, 
 including Ops Manager and Apps Manager.
 This enables users already managed in an external identity provider to sign into
 Pivotal services.
 
 
 Refer to the following pages for instructions on configuring <%= vars.product_name %> to enable users
-in an external identity store to access <%= vars.platform %> components:
+in an external identity store to access <%= vars.platform_name %> components:
 
 * Ops Manager, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp),
 [vSphere](http://docs.pivotal.io/pivotalcf/customizing/vsphere-config.html#idp),

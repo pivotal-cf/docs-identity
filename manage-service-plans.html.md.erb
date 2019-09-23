@@ -3,7 +3,7 @@ title: Managing Service Plans
 owner: Identity Service
 ---
 
-This topic describes how <%= vars.platform %> Administrators manage Single Sign-On service plans.
+This topic describes how <%= vars.platform_name %> Administrators manage Single Sign-On service plans.
 
 <%= vars.product_name %> is a multi-tenant service, which enables a deployment to host multiple tenants as service plans.
 Each service plan can have its own administrators, applications and users.
@@ -20,7 +20,7 @@ For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/i
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-<%= vars.platform %> administrators can create new <%= vars.product_name %> service plans at any time 
+<%= vars.platform_name %> administrators can create new <%= vars.product_name %> service plans at any time 
 from the <%= vars.operator_dash %>.
 You can use the <%= vars.operator_dash %> to create and configure service plans at any time.
 
@@ -50,7 +50,7 @@ You can find these credentials in the Pivotal Application Service tile in Ops Ma
 		privileges.
 	</p>
 
-1. Under **Organizations**, select specific organizations in your  <%= vars.platform %> deployment
+1. Under **Organizations**, select specific organizations in your  <%= vars.platform_name %> deployment
 that can access your <%= vars.product_name %> service plan, or select **Enable for all Orgs**. <br><br>
 	* If you select **Enable for all Orgs** the plan is available for use and displayed in the Services Marketplace for all developers in any organization.
 	This is only recommended for test plans to allow developers to experiment with <%= vars.product_name %>.<br><br>
@@ -79,7 +79,7 @@ Pivotal Application Service tile in Ops Manager under the Credentials tab.
 
 ## <a id='plan-automation'></a> Automate Service Plan Creation Using <%= vars.product_name %> API
 
-<%= vars.platform %> administrators can create new <%= vars.product_name %> service plans using the <%= vars.product_name %> API. This
+<%= vars.platform_name %> administrators can create new <%= vars.product_name %> service plans using the <%= vars.product_name %> API. This
 allows them to automate creating and deleting <%= vars.product_name %> plans. Pivotal recommends creating a dedicated client for <%= vars.product_name %> plan automation.
 
 To automate service plan creation, do the following:
@@ -90,13 +90,13 @@ To automate service plan creation, do the following:
   gem install cf-uaac
   ```
 
-1. To target your <%= vars.platform %> UAA server, run the following command:
+1. To target your <%= vars.platform_name %> UAA server, run the following command:
 
     ```
     $ uaac target uaa.YOUR-SYSTEM-DOMAIN
     ```
 
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform %> system domain URL.
+	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
 
 1. To record your admin credentials, do one of the following:
 	+ Obtain **Admin Client Credentials** from Ops Manager.
@@ -171,7 +171,7 @@ run the following command:
 	```
 
 	Where:
-	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform %> system domain URL.
+	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
 	+ `YOUR-TOKEN` is the access token you recorded from the previous step.
 	+ `YOUR-PLAN-NAME` is the name of your plan.
 	+ `YOUR-DESCRIPTION` is the text you want to appear as a plan feature in the Services Marketplace.
@@ -209,7 +209,7 @@ you can run the following command:
 	  }' | jq -r '.id')
 	```
 
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform %> system domain URL.
+	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
 
 	 <p class="note"><strong>Note:</strong> Using <code>curl</code> instead of <code>uaac curl</code> in the example to facilitates parsing the response for ID below.</p>
 
@@ -232,7 +232,7 @@ command for each plan administrator:
 	```
 
 	Where:
-	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform %> system domain URL.
+	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
 	+ `AUTO-CLIENT-ID` is the name you provided in step 5.
 	+ `AUTO-CLIENT-SECRET` is the secret you provided in step 5.
 
@@ -259,14 +259,14 @@ command for each plan administrator:
 
 For more information on how you can manage <%= vars.product_name %> plans using the <%= vars.product_name %> API, see the [<%= vars.product_name %> API](https://docs.pivotal.io/p-identity/sso-api) documentation.
 
-## <a id="create"></a> Create a New <%= vars.platform %> Administrator for <%= vars.product_name %>
+## <a id="create"></a> Create a New <%= vars.platform_name %> Administrator for <%= vars.product_name %>
 
-<%= vars.platform %> administrators can grant users additional permissions to allow them to manage <%= vars.product_name %> plans. These
-permissions let users act as <%= vars.platform %> administrators.
+<%= vars.platform_name %> administrators can grant users additional permissions to allow them to manage <%= vars.product_name %> plans. These
+permissions let users act as <%= vars.platform_name %> administrators.
 
 <p class="note warning"><strong>Warning:</strong> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assigned to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
 
-To create a new <%= vars.platform %> administrator, do the following:
+To create a new <%= vars.platform_name %> administrator, do the following:
 
 1. To install the UAA CLI, run the following command:
 
@@ -274,13 +274,13 @@ To create a new <%= vars.platform %> administrator, do the following:
   gem install cf-uaac
   ```
 
-1. To target your <%= vars.platform %> UAA server, run the following command:
+1. To target your <%= vars.platform_name %> UAA server, run the following command:
 
     ```
     $ uaac target uaa.YOUR-SYSTEM-DOMAIN
     ```
 
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform %> system domain URL.
+	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
 
 1. To record your admin credentials, do one of the following:
 	+ Obtain **Admin Client Credentials** from OpsManager.
