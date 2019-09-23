@@ -5,7 +5,7 @@ owner: Identity Service
 
 These are release notes for the [Single Sign-On](https://network.pivotal.io/products/p-identity) service for Pivotal Cloud Foundry (PCF).
 
-## <a id="160"></a> v1.6.0
+## <a id="1-6-0"></a> v1.6.0
 
 **Release Date: April 19, 2018**
 
@@ -13,7 +13,7 @@ These are release notes for the [Single Sign-On](https://network.pivotal.io/prod
 
 New features included in this release:
 
-* **Expanded API Functionality**: Operators can now use the API to configure plan features that are not yet exposed through the SSO dashboard. 
+* **Expanded API Functionality**: Operators can now use the API to configure plan features that are not yet exposed through the SSO dashboard.
 The SSO service honors values configured through the API so that these values are retained when using the SSO dashboard.
 For more information, see the following sections of [Manage Service Plans with UAA API](manage-service-plans-api.html):
 
@@ -52,18 +52,18 @@ For more information, see the following sections of [Manage Service Plans with U
 		</tr>
 	</table>
 
-* **Plan Visibility for All Orgs**: Operators can now enable an SSO service plan to be visible to all orgs. 
-Operators may want to use this feature to provide a test plan to all developers as a default. 
+* **Plan Visibility for All Orgs**: Operators can now enable an SSO service plan to be visible to all orgs.
+Operators may want to use this feature to provide a test plan to all developers as a default.
 Operators can enable or disable this mode for any new or existing service plan.
 
 * **BOSH Backup and Restore Compatibility**: SSO now works with BOSH Backup and Restore (BBR).
   For more information, see [Backing Up and Restoring](backup-and-restore.html).
-  <p class="note warning"><strong>WARNING</strong>: 
+  <p class="note warning"><strong>WARNING</strong>:
      BBR will introduce about a minute of downtime for application login during a backup operation on PCF 2.0. Starting with PCF v2.1 and later, there is no application downtime when performing a BBR backup.
   </p>
-* **Availability of Performance Data**: Performance benchmarks, 
+* **Availability of Performance Data**: Performance benchmarks,
 metrics, and scaling indicators are now available.
-  For more information, see [About Performance](performance.html). 
+  For more information, see [About Performance](performance.html).
 
 ### <a id="known"></a> Known Issues
 No new issues known for this release.
