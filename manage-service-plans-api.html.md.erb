@@ -8,7 +8,7 @@ service plan configurations using the <%= vars.operator_dash %> or API using the
 Authentication Command Line Interface (UAAC).
 
 <%= vars.product_name %> manages configurations within the UAA and the Cloud Controller (CC) components of the
-Pivotal Application Service. Each <%= vars.product_name %> service plan ties together a CC plan and a UAA identity zone.
+<%= vars.app_runtime_full %>. Each <%= vars.product_name %> service plan ties together a CC plan and a UAA identity zone.
 
 Beginning with <%= vars.product_name %> v1.6, you can use the UAAC to manage UAA identity zones configured as part of <%= vars.product_name %> service plans.
 
@@ -25,7 +25,7 @@ Refresh tokens typically have a longer expiration time than access tokens.
 To configure the token policy:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your Pivotal Application Service tile in Ops Manager in **Credentials**.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager in **Credentials**.
 
 2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the dropdown.
 
@@ -61,7 +61,7 @@ To make UAA identity zone API calls:
 <li> Find the UAA identity zone ID:</li>
     <ol type="a">
         <li>
-          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the Pivotal Application Service tile in Ops Manager in <strong>Credentials</strong>.
+          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the <%= vars.app_runtime %> tile in Ops Manager in <strong>Credentials</strong>.
         </li>
 
         <li>

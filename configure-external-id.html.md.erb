@@ -20,7 +20,7 @@ See the following sets of instructions for how to configure <%= vars.product_nam
 
 Follow the steps below to add an external SAML identity provider:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -63,7 +63,7 @@ between the identity provider and the service provider.
 <%= vars.product_name %> provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -79,7 +79,7 @@ You can find these credentials in your Pivotal Application Service tile in Ops M
 
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -120,7 +120,7 @@ LDAP service accounts should not be subject to manual lockouts, such as lockouts
 LDAP service accounts should not be subject to automated deletions as disruption to these service accounts could prevent user logins.
 </p>
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your PAS tile in Ops Manager under the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -169,7 +169,7 @@ LDAP service accounts should not be subject to automated deletions as disruption
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -193,7 +193,7 @@ see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping<
 <p class="note"><strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the <code>roles</code> claim and the group whitelist must include the external groups.</p>
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-   You can find these credentials in your Pivotal Application Service tile in Ops Manager under the Credentials tab.
+   You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -214,7 +214,7 @@ After resource permissions mappings are configured and a user authenticates,
 the user's group memberships are mapped to scopes in the resulting token.
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -242,7 +242,7 @@ see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Z
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
