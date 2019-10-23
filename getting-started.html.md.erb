@@ -38,34 +38,78 @@ This adds the endpoints to an allow list for use by the application or client.
 
 ## <a id='roles'></a> <%= vars.product_name %> User Roles
 
-A user's role determines which parts of an <%= vars.product_name %> configuration it can view or manage.
-<%= vars.product_name %> uses the existing user roles <%= vars.platform_name %> Administrator, Space Developer, and Space Auditor, as well
-as a Plan Administrator role that is specific to <%= vars.product_name %>.
+User roles determines which parts of an <%= vars.product_name %> configuration a user can view or manage.
+<%= vars.product_name %> uses the following user roles:
 
-This chart shows the permissions for each role.
++ **<%= vars.platform_name %> Administrators,** who can manage service plans, service instances,
+identity providers (IdPs), apps, and resources. This is a <%= vars.platform_name %> user role.
++ **Plan Administrators,** who can manage service instances, IdPs, apps, and resources. This is
+user role that is specific to <%= vars.product_name %>.
++ **Space Developers,** who can manage service instances, apps, and resources.
+This is a <%= vars.platform_name %> user role.
++ **Space Auditors,** who can view service instances, apps, and resources.
+They cannot edit any configurations.
+This is a <%= vars.platform_name %> user role.
+
+The following chart shows the permissions for each role:
 
 <table border="1" class="nice">
-  <tr><th>Access by role</th><th><%= vars.platform_name %> Administrator</th><th>Plan Administrator</th><th>Space Developer</th><th>Space Auditor</th></tr>
+  <tr>
+    <th>Access by role</th>
+    <th><%= vars.platform_name %> Administrator</th>
+    <th>Plan Administrator</th>
+    <th>Space Developer</th>
+    <th>Space Auditor</th>
+  </tr>
 
-  <tr> <th>Service plans</th> <td>M</td> <td></td> <td></td><td></td> </tr>
+  <tr>
+    <th>Service plans</th>
+    <td>M</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
 
-  <tr><th>Service instances</th><td>M</td><td>M</td><td>M</span></td><td>V</td></tr>
+  <tr>
+    <th>Service instances</th>
+    <td>M</td>
+    <td>M</td>
+    <td>M</td>
+    <td>V</td>
+  </tr>
 
-  <tr><th>Identity providers</th><td>M</td><td>M</td><td></td><td></td></tr>
+  <tr>
+    <th>Identity providers</th>
+    <td>M</td>
+    <td>M</td>
+    <td></td>
+    <td></td>
+  </tr>
 
-  <tr><th>Applications</th><td>M</td><td>M</td><td>M</td><td>V</td></tr>
+  <tr>
+    <th>Applications</th>
+    <td>M</td>
+    <td>M</td>
+    <td>M</td>
+    <td>V</td></tr>
 
-  <tr><th>Resources</th><td>M</td><td>M</td><td>M</td><td>V</td></tr>
-  
+  <tr>
+    <th>Resources</th>
+    <td>M</td>
+    <td>M</td>
+    <td>M</td>
+    <td>V</td>
+  </tr>
+
   <tr><td align="center" colspan=5> <b>Legend:</b> <b>M</b> = Manage, <b>V</b> = View</td></tr>
-  
+
 </table>
 
 ## <a id='other'></a> Using <%= vars.product_name %> Components
 
-In addition to apps, <%= vars.product_name %> supports single sign-on for components of  <%= vars.platform_name %>, 
+In addition to apps, <%= vars.product_name %> supports single sign-on for components of  <%= vars.platform_name %>,
 including Ops Manager and Apps Manager.
-This enables users already managed in an external identity provider to sign into
+This enables users already managed in an external IdP to sign into
 Pivotal services.
 
 
