@@ -169,7 +169,8 @@ The table below provides descriptions and default values for bind parameters:
 	</tr>
 	<tr>
 		<td><code>required_user_groups</code></td>
-		<td>Comma-separated list of permissions a user must have to log in to the app. The user must have all of the listed permissions to access the app.</td>
+		<td>Comma-separated list of permissions a user must have to log in to the app.
+      The user must have all of the listed permissions to access the app.</td>
 		<td>No value</td>
 	</tr>
 	<tr>
@@ -437,7 +438,7 @@ To register an externally hosted app using service keys:
     }
     </pre>
 
-    For more information about the `cf create-service-key` command, 
+    For more information about the `cf create-service-key` command,
     see [create-service-key](https://cli.cloudfoundry.org/en-US/cf/create-service-key.html)
     in the Cloud Foundry CLI Reference Guide.
 
@@ -502,7 +503,7 @@ This launches the <%= vars.developer_dash %>.
 
        <tr>
          <td><code>open</code></td>
-         <td>Provides access to make OpenID Connect request. 
+         <td>Provides access to make OpenID Connect request.
            The default for Web, Native, and Single-Page JavaScript Apps</td>
       </tr>
 
@@ -538,9 +539,10 @@ This launches the <%= vars.developer_dash %>.
    Select only scopes pertaining to apps owned and managed by your company.
    Do not select scopes that pertain to externally hosted apps.
 
-1. (Optional) Under **Authentication**, select any permissions which users should be required to have in order to log into the application.
-   Any user who tries to log into the application must have all of these permissions to gain access to the application.
-   Note: **Authentication** setting is not applicable to `Serivce-to-Service App`.
+1. (Optional) Under **Authentication**, select any permissions which users are required to have
+  to log in to the app. The user must have all of the selected permissions to access the app.
+   <p class="note"><strong>Note:</strong> The <strong>Authentication</strong> setting is not applicable
+   to the <code>Service-to-Service App</code> app type.</p>
 
 1. (Optional) Under **Token Validity**, change the token expiration times.
 The default is set in the configuration for the <%= vars.product_name %> service plan.
@@ -606,7 +608,7 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 
        <tr>
          <td><code>open</code></td>
-         <td>Provides access to make OpenID Connect request. 
+         <td>Provides access to make OpenID Connect request.
            The default for Web, Native, and Single-Page JavaScript Apps</td>
       </tr>
 
@@ -690,7 +692,7 @@ To regenerate an app secret of an existing app:
 1. Click **Regenerate App secret** under the **App Secret** field.
 1. On the pop-up, click **Regenerate App Secret** to confirm that you want to regenerate an
    app's secret value.
-1. View and download the **App ID** and regenerated **App Secret**. 
+1. View and download the **App ID** and regenerated **App Secret**.
 Record these credentials to use in other <%= vars.product_name %> procedures.
 
 	<p class="note"><strong>Note:</strong>
@@ -804,7 +806,7 @@ For more information about the `cf unbind-service` command,
 see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
 in the Cloud Foundry CLI Reference Guide.
 
-<p class="note"><strong>Note:</strong> If you delete a <%= vars.platform_name %> app, 
+<p class="note"><strong>Note:</strong> If you delete a <%= vars.platform_name %> app,
   the app is automatically unregistered from <%= vars.product_name %>.</p>
 
 ### <a id="unregister-service-keys"></a> Unregister an Externally Hosted App Using Service Keys
@@ -819,8 +821,8 @@ Where:
 + `INSTANCE-NAME` is the name of your service instance.
 + `SERVICE-KEY` is the name you want for your service key.
 
-For more information about the `cf delete-service-key` command, 
-see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html) 
+For more information about the `cf delete-service-key` command,
+see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html)
 in the Cloud Foundry CLI Reference Guide.
 
 ### <a id="unregister-dashboard"></a> Unregister an Externally Hosted App Using <%= vars.developer_dash %>
