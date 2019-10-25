@@ -24,58 +24,48 @@ You can configure <%= vars.product_name %> to use external identity providers th
 
 To add an external SAML identity provider:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager under the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click **New Identity Provider**.
 
-1. Configure the fields as follows:
+1. Enter an **Identity Provider Name**. This name is displayed as a link on the login page.
+1. Enter an **Identity Provider Description**. This the name of the group that the identity provider authenticates.
+  This description is displayed to the Space Developers when they select an identity provider for their app.
+1. Under **Identity Provider type**, select **SAML 2.0**.
+
+1. Configure **Identity Provider Metadata** by configuring one of the below fields as follows:
+
+    ![SAML Identity Provider Metadata configurations](saml-metadata.png)
 
     <table>
       <tr>
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-      
+          
       <tr>
-        <td><strong>Identity Provider Name</strong></td>
-        <td>Enter a name for the identity provider. This name is displayed as a link on the login page.</td>
+        <td><strong>Identity Provider Metadata URL</strong></td>
+        <td>Enter a <strong>Identity Provider Metadata URL</strong> and click <strong>Fetch Metadata</strong>.</td>
       </tr>
       
       <tr>
-        <td><strong>Identity Provider Description</strong></td>
-        <td>Enter the name of the group that the identity provider authenticates. <br>
-        This description is displayed to the Space Developers when they select an identity provider for their app.</td>
-      </tr>
-      
-      <tr>
-        <td><strong>Identity Provider type</strong></td>
-        <td>Select <code>SAML 2.0</code></td>
-      </tr>
-      
-      <tr>
-        <td><strong>Identity Provider Metadata</strong></td>
-        <td>Do one of the following:
-          <ul>
-            <li>Enter a <strong>Identity Provider Metadata URL</strong> and click <strong>Fetch Metadata</strong>.</li>
-            <li>Under <strong>SAML File Metadata</strong>, click <strong>Upload Identity Provider Metadata</strong> 
-              and upload the XML metadata that you downloaded from your external identity provider.</li>
-          </ul>
-          <p class="note"><strong>Note:</strong> Uploading a XML metadata file disables entering 
-            a metadata URL to update your identity provider metadata later. 
-            If your metadata changes in your identity provider, 
-            you must manually re-upload the metadata as an updated XML file.</p>
-      </td>
-      </tr>
-      
-      <tr>
-        <td><strong>Email Domains</strong></td>
-        <td>Enter a comma-separated list of domains for identity provider discovery.</td>
+        <td><strong>SAML File Metadata</strong></td>
+        <td>Click <strong>Upload Identity Provider Metadata</strong> 
+          and upload the XML metadata that you downloaded from your external identity provider.
+        </td>
       </tr>
     </table>
+    <p class="note"><strong>Note:</strong> Uploading a XML metadata file disables entering 
+      a metadata URL to update your identity provider metadata later. 
+      If your metadata changes in your identity provider, 
+      you must manually re-upload the metadata as an updated XML file.</p>
+    
+1. Enter **Email Domains**. This a comma-separated list of domains for identity provider discovery.
     
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and configure the fields as follows:
+    ![Attribute Mappings fields](attribute-mappings.png)
     <table>
       <tr>
         <th>Field</th>
@@ -89,7 +79,7 @@ To add an external SAML identity provider:
           They are sent to apps through OpenID tokens, 
           along with any other stored user information issued by <%= vars.product_name %>.
           <ol>
-            <li>Select a <strong>User Scheme Attribute</strong>from the dropdown.</li>
+            <li>Select a <strong>User Scheme Attribute</strong> from the dropdown.</li>
             <li>Enter a <strong>SAML Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion</li>
           </ol>
         </td>
@@ -161,94 +151,124 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
 
 To add a external OIDC identity provider:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
-
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click **New Identity Provider**.
 
-1. Configure the fields as follows:
+1. Enter an **Identity Provider Name**. This name must match your origin key. However, you can replace lowercase letters with capital letters and replace dashes with spaces. This name is displayed as a link on the login page.
 
-    <table>
-      <tr>
-        <th>Field</th>
-        <th>Instructions</th>
-      </tr>
-      
-      <tr>
-        <td><strong>Identity Provider Name</strong></td>
-        <td>Enter a name for the identity provider. <br>
-          This name must match your origin key. However, you can replace lowercase letters with capital letters and replace dashes with spaces. This name is displayed as a link on the login page.</td>
-      </tr>
-      
-      <tr>
-        <td><strong>Identity Provider Description</strong></td>
-        <td>Enter the name of the group that the identity provider authenticates. <br>
-        This description is displayed to the Space Developers when they select an identity provider for their app.</td>
-      </tr>
-      
-      <tr>
-        <td><strong>Identity Provider type</strong></td>
-        <td>Select <code>OpenID Connect</code></td>
-      </tr>
-      
-      <tr>
-        <td><strong>OpenID Connect Settings</strong></td>
-        <td>Enter the OpenID Connect (OIDC) identity provider metadata by doing one of the following:
-          
+1. Enter an **Identity Provider Description**. This the name of the group that the identity provider authenticates.
+  This description is displayed to the Space Developers when they select an identity provider for their app.
+  
+1. Under **Identity Provider type**, select **OpenID Connect**.
+
+1. Configure **OpenID Connect Settings** by configuring one of the below fields as follows: <br>
+    The tabs below expand to show instructions for each type of endpoint URL. <br><br>
+
+    <style>
+    .tab {
+       overflow: hidden;
+       border: 1px solid #ccc;
+       background-color: #f1f1f1;
+    }
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+       background-color: inherit;
+       float: left;
+       border: inherit;
+       outline: none;
+       cursor: pointer;
+       padding: ;
+       transition: 0.3s;
+    }
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+       background-color: #ddd;
+    }
+    /* Create an active/current tablink class */
+    .tab button.active {
+       background-color: #ccc;
+    }
+    /* Style the tab content */
+    .tabcontent {
+       display: none;
+       padding: 6px 12px;
+       border: 1px solid #ccc;
+       border-top: none;
+    }
+    </style>
+
+    <script>
+    function openDocs(evt, docsName) {
+       // Declare all variables
+       var i, tabcontent, tablinks;
+       // Get all elements with class="tabcontent" and hide them
+       tabcontent = document.getElementsByClassName("tabcontent");
+       for (i = 0; i < tabcontent.length; i++) {
+           tabcontent[i].style.display = "none";
+       }
+       // Get all elements with class="tablinks" and remove the class "active"
+       tablinks = document.getElementsByClassName("tablinks");
+       for (i = 0; i < tablinks.length; i++) {
+           tablinks[i].className = tablinks[i].className.replace(" active", "");
+       }
+       // Show the current tab, and add an "active" class to the button that opened the tab
+       document.getElementById(docsName).style.display = "block";
+       evt.currentTarget.className += " active";
+    }
+    </script>
+
+
+    <div class="tab">
+     <!- Tab headers and links ->
+     <button class="tablinks active" onclick="openDocs(event, 'tab1')">Discovery Endpoint URL</button>
+     <button class="tablinks" onclick="openDocs(event, 'tab2')">Authorization Endpoint URL</button>
+    </div>
+
+
+    <div id="tab1" class="tabcontent" style="display:block">
+      <img src="./images/discovery-url.png" alt="Pane for configuring a Discovery Endpoint URL.">
+      <ol>
+        <li>(Optional) If you do not want to use SSL validation, select <strong>Skip SSL Validation</strong>.</li>
+        <li>Select the <strong>Enable Discovery</strong> checkbox.</li>
+        
+        <li>Enter the following values for your external identity provider:
           <ul>
-          
-            <li>Provide a discovery endpoint URL:
-              <ol>
-                <li>(Optional) If you do not want to use SSL validation, select <strong>Skip SSL Validation</strong>.</li>
-                <li>Select the <strong>Enable Discovery</strong> checkbox.</li>
-                
-                <li>Enter the following values for your external identity provider:
-                  <ul>
-                    <li><strong>Discovery Endpoint URL</strong></li>
-                    <li> <strong>Relying Party OAuth Client ID</strong></li>
-                    <li><strong>Relying Party OAuth Client Secret</strong></li>
-                  </ul>
-                </li>
-                
-                <li>Click <strong>Fetch Scopes</strong>.</li>
-              </ol>    
-            </li>
-            
-            <li>Provide an authorization endpoint URL:
-            <ol>
-              <li>Clear the <strong>Enable Discovery</strong> checkbox.</li>
-              
-              <li>Enter the following values from your external identity provider:
-                 <ul>
-                   <li><strong>Authorization Endpoint URL</strong></li>
-                   <li><strong>Token Endpoint URL</strong></li>
-                   <li><strong>Token Key:</strong> Enter a URL.</li>
-                   <li>(Optional) <strong>Issuer:</strong> If this field is required by your identity provider, enter a value.</li>
-                   <li>(Optional) <strong>User Info Endpoint URL:</strong> If this field is required by your identity provider, enter a value.</li>
-                   <li>(Optional) <strong>Response Type:</strong> If this field is required by your identity provider, select a value.</li>
-                   <li><strong>Relying Party OAuth Client ID</strong></li>
-                   <li><strong>Relying Party OAuth Client Secret</strong></li>
-                 </ul>
-                 
-            </ol> 
-          </li>
-         </ul>
-      </td>
-      </tr>
-      
-      <tr>
-        <td><strong>Scopes</strong></td>
-        <td>Select the applicable scopes for your identity provider</td>
-      </tr>
-      
-      <tr>
-        <td><strong>Email Domains</strong></td>
-        <td>Enter a comma-separated list of domains for identity provider discovery.</td>
-      </tr>
-    </table>
+            <li><strong>Discovery Endpoint URL</strong></li>
+            <li> <strong>Relying Party OAuth Client ID</strong></li>
+            <li><strong>Relying Party OAuth Client Secret</strong></li>
+          </ul>
+        </li>        
+        <li>Click <strong>Fetch Scopes</strong>.</li>
+        <li>Select the applicable <strong>Scopes</strong> for your identity provider</li>
+      </ol>    
+    </div>
+    <div id="tab2" class="tabcontent">
+      <img src="./images/authorization-url.png" alt="Pane for configuring a Authorization Endpoint URL.">
+      <ol>
+        <li>(Optional) If you do not want to use SSL validation, select <strong>Skip SSL Validation</strong>.</li>
+        <li>Select the <strong>Enable Discovery</strong> checkbox.</li>
+        <li>Enter the following values for your external identity provider:
+          <ul>
+            <li><strong>Authorization Endpoint URL</strong></li>
+            <li><strong>Token Endpoint URL</strong></li>
+            <li><strong>Token Key:</strong> Enter a URL.</li>
+            <li>(Optional) <strong>Issuer:</strong> If this field is required by your identity provider, enter a value.</li>
+            <li>(Optional) <strong>User Info Endpoint URL:</strong> If this field is required by your identity provider, enter a value.</li>
+            <li>(Optional) <strong>Response Type:</strong> If this field is required by your identity provider, select a value.</li>
+            <li><strong>Relying Party OAuth Client ID</strong></li>
+            <li><strong>Relying Party OAuth Client Secret</strong></li>
+          </ul>
+        </li>
+        <li>Select the applicable <strong>Scopes</strong> for your identity provider</li>
+      </ol>
+    </div>
+
+1. Enter **Email Domains**. This a comma-separated list of domains for identity provider discovery.
 
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and configure the fields as follows:
+    ![Attribute Mappings fields](attribute-mappings.png)
     <table>
       <tr>
         <th>Field</th>
@@ -301,33 +321,24 @@ LDAP service accounts should not be subject to automated deletions as disruption
 
 To add a LDAP identity provider:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager under the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click **New Identity Provider**.
+
+1. Enter an **Identity Provider Name**. This name is displayed as a link on the login page.
+
+1. Enter an **Identity Provider Description**. This the name of the group that the identity provider authenticates.
+  This description is displayed to the Space Developers when they select an identity provider for their app.
+  
+1. Under **Identity Provider type**, select **LDAP**. You can only have one LDAP provider per Service Plan.
 
 1. Configure the fields as follows:
   <table>
     <tr>
       <th>Field</th>
       <th>Instructions</th>
-    </tr>
-    
-    <tr>
-      <td><strong>Identity Provider Name</strong></td>
-      <td>Enter a name for the identity provider. This name is displayed as a link on the login page.</td>
-    </tr>
-    
-    <tr>
-      <td><strong>Identity Provider Description</strong></td>
-      <td>Enter the name of the group that the identity provider authenticates. <br>
-      This description is displayed to the Space Developers when they select an identity provider for their app.</td>
-    </tr>
-    
-    <tr>
-      <td><strong>Identity Provider type</strong></td>
-      <td>Select <code>LDAP</code>. You can only have one LDAP provider per Service Plan.</td>
     </tr>
     
     <tr>
@@ -379,6 +390,7 @@ To add a LDAP identity provider:
   
   
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and configure the fields as follows:
+    ![Attribute Mappings fields](attribute-mappings.png)
     <table>
       <tr>
         <th>Field</th>
@@ -418,7 +430,7 @@ To add a LDAP identity provider:
 
 1. Click **Create Identity Provider** to save the identity provider.
 
-1. (Optional) Transfer group memberships and roles from an existing LDAP groups to <%= vars.product_name %> as follows:
+1. (Optional) Transfer group memberships and roles from existing LDAP groups to <%= vars.product_name %> as follows:
   1. Map existing LDAP user group memberships to <%= vars.product_name %> resources by
      creating a permissions mapping for your LDAP identity provider. See
      [Create or Edit Resource Permissions Mapping](#create-resource-perm) below.
@@ -428,7 +440,14 @@ To add a LDAP identity provider:
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
+<p class="note warning"><strong>Note:</strong> Deleting an external identity provider deletes all of its configurations.
+  This prevents users from authenticating through the external identity provider. 
+  You cannot undo this action.
+</p>
+
+To delete an external identity provider:
+
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -436,44 +455,23 @@ To add a LDAP identity provider:
 
 1. Click **Delete** at the bottom of the page.
 
-1. In the pop-up that appears, click **Delete Identity Provider** to confirm that you want to delete the identity provider, along with all of its configurations.
+1. In the dialog box that appears, click **Delete Identity Provider** to confirm that you want to delete the identity provider, along with all of its configurations.
 
-<p class="note warning"><strong>Note:</strong> Deleting an external identity provider deletes all of its configurations, preventing users from authenticating through the external identity provider. This action cannot be undone.</p>
-
-## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
-
-An admin can include groups from an external identity provider in a group whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider.
-
-An app can retrieve from the ID token the list of external groups that the user belongs to. An admin can use these groups to assign permissions by group rather than by individual users.
-
-For information about how to create resource permission mappings,
-see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> below.
-
-<p class="note"><strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the <code>roles</code> claim and the group whitelist must include the external groups.</p>
-
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-   You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the Credentials tab.
-
-1. Click the plan name and select **Manage Identity Providers** from the dropdown.
-
-1. Click on the name of your external identity provider and select **Group Whitelist** from the dropdown.
-
-1. Add a group name from your external identity provider. You can use a regex to add group names. For example, you can use `*` to refer to all groups.
-
-1. Click **Save Group Whitelist**.
 
 ## <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
 
-After a space developer defines resources required by an app,
+After a Space Developer defines the resources required by an app,
 an admin can map existing groups to those resources.
-For information about how the space developer defines resources,
+For information about how Space Developers define resources,
 see [Create or Edit Resources](./manage-resources.html#create-resources).
 
 After resource permissions mappings are configured and a user authenticates,
 the user's group memberships are mapped to scopes in the resulting token.
 
+To create or edit resource permissions mappings:
+
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -481,27 +479,31 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
 
 1. Click **New Permissions Mapping**.
 
-1. Enter a **Group Name**.
-	- The **Group Name** values need to be fully qualified LDAP paths, following the format `cn=XXX-group,ou=users,o=YYY,dc=ZZZ,dc=com`.
+1. Enter a **Group Name**. You must enter fully qualified LDAP paths, 
+using the format `cn=XXX-group,ou=users,o=YYY,dc=ZZZ,dc=com`.
 
-1. Click **Select Permissions** to choose the permissions that users in the group should have access to.
+1. Click **Select Permissions** and select the permissions that users in the group should have access to.
 
 1. Click **Save Permissions Mapping**.
 
 <p class="note"><strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.</p>
 
-<p class="note"><strong>Note:</strong> If you want to automate the above procedure, creating or editing resource permissions,
-you can use the UAA API. For information about using <code>uaac group mappings</code> and <code>uaac group map</code>,
-see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
-Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
-To do this automation, you need an identity zone admin client; for information,
-see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.</p>
-
+<p class="note"><strong>Note:</strong> You can use the UAA API to automate the above procedure. 
+  To do this automation, you need an identity zone admin client. For instructions about creating the identity zone 
+  admin client,
+  see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.<br><br>
+  
+  For instructions about granting admin permissions to mapped external identity groups,
+  see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
+    Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.  
+</p>
 
 ## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
+To delete a resource permissions mapping:
+
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -511,18 +513,51 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
 
 1. Click **Delete** at the bottom of the page.
 
-1. On the pop-up, click **Delete Permissions Mapping** to delete the resource.
+1. On the dialog box, click **Delete Permissions Mapping** to delete the resource.
 
 <p class="note"><strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.</p>
 
-<p class="note"><strong>Note:</strong> If you want to automate the above procedure,
-deleting resource permissions mappings, you can use the UAA API to un-map a group mapping.
-See the <a href="http://docs.cloudfoundry.org/api/uaa/index.html#unmap">Cloud Foundry documentation</a> for more information.
-To do this automation, you need an identity zone admin client. For more information,
-see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.</p>
+<p class="note"><strong>Note:</strong> You can use the UAA API to automate the above procedure. 
+  To do this automation, you need an identity zone admin client. For instructions about creating the identity zone 
+  admin client,
+  see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.<br><br>
+  
+  For information about un-mapping a group mapping,
+  see <a href="http://docs.cloudfoundry.org/api/uaa/version/74.4.0/index.html#unmap">Unmap</a> in the UAA API
+  documentation.
+</p>
+
+## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
+
+An admin can include groups from an external identity provider in a group whitelist. 
+The list of groups in the whitelist propagates in the ID token when a user authenticates using an external identity provider.
+
+An app can retrieve from the ID token the list of external groups that the user belongs to. An admin can use these groups to assign permissions by group rather than by individual users.
+
+For information about how to create resource permission mappings,
+see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> above.
+
+<p class="note"><strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the <code>roles</code> claim and the group whitelist must include the external groups.</p>
+
+To configure a group whitelist:
+
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+   You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the Credentials tab.
+
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
+
+1. Click on the name of your external identity provider and select **Group Whitelist** from the dropdown.
+
+1. Enter a group name from your external identity provider. You can use a regex to add group names. For example, you can use `*` to refer to all groups.
+
+1. Click the **+** icon.
+
+1. Click **Save Group Whitelist**.
+
 
 ## <a id='testing-identity-provider-configurations'></a> Test Identity Provider Configurations
 
 Pivotal provides sample apps you can deploy to validate your identity provider configurations.
+
 To deploy a sample app, see [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps)
-in Github.
+in GitHub.
