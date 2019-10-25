@@ -12,7 +12,7 @@ You can also configure a <%= vars.product_name %> service plan to use the intern
 manage user accounts.
 For more information, see [Configuring Internal User Store](./configure-internal-us.html).
 
-## <a id='config-ext-prov'></a> Add an External Identity Provider
+## <a id='config-ext-prov'></a> Configure External Identity Providers
 
 You can configure <%= vars.product_name %> to use external identity providers that support:
 
@@ -20,11 +20,15 @@ You can configure <%= vars.product_name %> to use external identity providers th
 + OpenID Connect (OIDC). See [Add an OIDC Provider](#config-ext-oidc).
 + LDAP. See [Add an LDAP Identity Provider](#config-ext-ldap).
 
+To delete an external identity provider, 
+see [Delete an External Identity Provider](delete-idp).
+
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
 To add an external SAML identity provider:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager on the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. 
+You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -152,6 +156,7 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
 To add a external OIDC identity provider:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
+
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
 1. Click **New Identity Provider**.
@@ -231,14 +236,30 @@ To add a external OIDC identity provider:
       <img src="./images/discovery-url.png" alt="Pane for configuring a Discovery Endpoint URL.">
       <ol>
         <li>(Optional) If you do not want to use SSL validation, select <strong>Skip SSL Validation</strong>.</li>
-        <li>Select the <strong>Enable Discovery</strong> checkbox.</li>
+        <li>Ensure the <strong>Enable Discovery</strong> checkbox selected.</li>
         
-        <li>Enter the following values for your external identity provider:
-          <ul>
-            <li><strong>Discovery Endpoint URL</strong></li>
-            <li> <strong>Relying Party OAuth Client ID</strong></li>
-            <li><strong>Relying Party OAuth Client Secret</strong></li>
-          </ul>
+        <li>Configure the fields as follows:
+          <table>
+            <tr>
+              <th>Field</th>
+              <th>Instructions</th>
+            </tr>
+            
+            <tr>
+              <td><strong>Discovery Endpoint URL</strong></td>
+              <td>>Enter the discovery endpoint URL from the identity provider metadata.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>Relying Party OAuth Client ID</strong></td>
+              <td>Enter the client ID from the identity provider.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>Relying Party OAuth Client Secret</strong></td>
+              <td>Enter the client secret from the identity provider.</td>
+            </tr>
+          </table>
         </li>        
         <li>Click <strong>Fetch Scopes</strong>.</li>
         <li>Select the applicable <strong>Scopes</strong> for your identity provider</li>
@@ -248,18 +269,54 @@ To add a external OIDC identity provider:
       <img src="./images/authorization-url.png" alt="Pane for configuring a Authorization Endpoint URL.">
       <ol>
         <li>(Optional) If you do not want to use SSL validation, select <strong>Skip SSL Validation</strong>.</li>
-        <li>Select the <strong>Enable Discovery</strong> checkbox.</li>
-        <li>Enter the following values for your external identity provider:
-          <ul>
-            <li><strong>Authorization Endpoint URL</strong></li>
-            <li><strong>Token Endpoint URL</strong></li>
-            <li><strong>Token Key:</strong> Enter a URL.</li>
-            <li>(Optional) <strong>Issuer:</strong> If this field is required by your identity provider, enter a value.</li>
-            <li>(Optional) <strong>User Info Endpoint URL:</strong> If this field is required by your identity provider, enter a value.</li>
-            <li>(Optional) <strong>Response Type:</strong> If this field is required by your identity provider, select a value.</li>
-            <li><strong>Relying Party OAuth Client ID</strong></li>
-            <li><strong>Relying Party OAuth Client Secret</strong></li>
-          </ul>
+        <li>Deselect the <strong>Enable Discovery</strong> checkbox.</li>
+        <li>Configure the fields as follows:
+          <table>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+            </tr>
+            
+            <tr>
+              <td><strong>Authorization Endpoint URL</strong></td>
+              <td>Enter the authorization endpoint URL from the identity provider metadata.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>Token Endpoint URL</strong></td>
+              <td>Enter the token endpoint URL from the identity provider metadata.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>Token Key</strong></td>
+              <td>Enter the token key URL value from the identity provider metadata.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>Issuer</strong> (Optional)</td>
+              <td>If this field is required by your identity provider, enter a value.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>User Info Endpoint URL</strong> (Optional)</td>
+              <td>If this field is required by your identity provider, enter a value.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>Response Type</strong></td>
+              <td>If this field is required by your identity provider, select a value.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>Relying Party OAuth Client ID</strong></td>
+              <td>Enter the client ID from the identity provider.</td>
+            </tr>
+            
+            <tr>
+              <td><strong>Relying Party OAuth Client Secret</strong></td>
+              <td>Enter the client secret from the identity provider.</td>
+            </tr>
+          </table>
         </li>
         <li>Select the applicable <strong>Scopes</strong> for your identity provider</li>
       </ol>
@@ -335,59 +392,84 @@ To add a LDAP identity provider:
 1. Under **Identity Provider type**, select **LDAP**. You can only have one LDAP provider per Service Plan.
 
 1. Configure the fields as follows:
+  ![Fields for configuring a connection to a LDAP IdP](ldap-connection.png)
   <table>
     <tr>
-      <th>Field</th>
+      <th width=30%>Field</th>
       <th>Instructions</th>
     </tr>
     
     <tr>
-      <td><strong>Connection</strong></td>
-      <td>Enter or select the following values for your external identity provider:
-        <ul>
-          <li><strong>Hostname</strong></li>
-          <li><strong>Port</strong></li>
-          <li><strong>Security protocol</strong></li>
-          <li><strong>Referral</strong></li>
-          <li><strong>User DN</strong></li>
-          <li><strong>Bind Password</strong></li>
-        </ul>
-      </td>
+      <th colspan="2" style="text-align: center;">Connection</th>
     </tr>
     
     <tr>
-      <td><strong>Users</strong></td>
-      <td>Enter or select the following values for your external identity provider:
-        <ul>
-          <li><strong>Search Base</strong></li>
-          <li>(Optional) <strong>Search Filter</strong></li>
-          <li><strong>Just in Time Provisioning:</strong>
-            If this option is enabled, users are created at login time. 
-            If this option is not enabled, users must be created before being able to log in.
-          </li>
-        </ul>
-      </td>
+      <td><strong>Hostname</strong></td>
+      <td>Enter the hostname for your LDAP server.</td>
     </tr>
     
     <tr>
-      <td><strong>Groups</strong></td>
-      <td>Enter or select the following values for your external identity provider:
-        <ul>
-          <li>(Optional) <strong>Search Base:</strong> Enter a comma-seperated list of objects to associate
-          LDAP groups with your users.<br>
-          If you want to use the <code>memberOf</code> attribute on user objects, you can enter the value <code>memberOf</code> as the Search Base instead of an LDAP path for a group organizational unit. This causes <%= vars.product_name %> to ignore the <strong>Search Filter</strong> value.</li>
-          <li>(Optional) <strong>Search filter:</strong> Select a filter to associate
-          LDAP groups with your users.</li>
-        </ul>
-      </td>
+      <td><strong>Port</strong></td>
+      <td>Enter the post name for your LDAP server.</td>
     </tr>
     
     <tr>
-      <td><strong>Email Domains</strong></td>
-      <td>Enter a comma-separated list of domains for identity provider discovery.</td>
+      <td><strong>Security protocol</strong></td>
+      <td>Select the security protocol that your LDAP uses for connection.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>Referral</strong></td>
+      <td>Select how UAA handles LDAP server referrals to other user stores.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>User DN</strong></td>
+      <td>Enter the LDAP Distinguished Name (DN) for binding to your LDAP server.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>Bind Password</strong></td>
+      <td>Enter the password for binding to your LDAP server.</td>
+    </tr>
+    
+    <tr>
+      <th colspan="2" style="text-align: center;">Users</th>
+    </tr>
+    
+    <tr>
+      <td><strong>Search Base</strong></td>
+      <td>Enter the location in the LDAP directory tree where LDAP user search begins. The LDAP search base typically matches your domain name.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>Search Filter</strong> (Optional)</td>
+      <td> Enter a string to use for LDAP user search criteria. </td>
+    </tr>
+    
+    <tr>
+      <td><strong>Just in Time Provisioning</strong></td>
+      <td>  If this option is enabled, users are created at login time. <br>
+        If this option is not enabled, users must be created before being able to log in</td>
+    </tr>
+    
+    <tr>
+      <th colspan="2" style="text-align: center;">Groups</th>
+    </tr>
+    
+    <tr>
+      <td><strong>Search Base</strong> (Optional)</td>
+      <td> Enter the location in the LDAP directory tree where the LDAP group search begins.<br>
+      If you want to use the <strong>memberOf</strong> attribute on user objects, you can enter the value <code>memberOf</code> as the Search Base instead of an LDAP path for a group organizational unit. This causes <%= vars.product_name %> to ignore the <strong>Search Filter</strong> value.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>Search filter</strong> (Optional)</td>
+      <td>Enter a string that defines LDAP group search criteria. The standard value is <strong>member={0}</strong>.</td>
     </tr>
   </table>
   
+1. Enter **Email Domains**. This a comma-separated list of domains for identity provider discovery.
   
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and configure the fields as follows:
     ![Attribute Mappings fields](attribute-mappings.png)
@@ -438,7 +520,7 @@ To add a LDAP identity provider:
      issued by <%= vars.product_name %>. 
      See [Configure Group Whitelist for an External Identity Provider](#config-whitelist) below.
 
-## <a id='delete-idp'></a> Delete an External Identity Provider
+### <a id='delete-idp'></a> Delete an External Identity Provider
 
 <p class="note warning"><strong>Note:</strong> Deleting an external identity provider deletes all of its configurations.
   This prevents users from authenticating through the external identity provider. 
@@ -457,8 +539,18 @@ To delete an external identity provider:
 
 1. In the dialog box that appears, click **Delete Identity Provider** to confirm that you want to delete the identity provider, along with all of its configurations.
 
+## <a id='mapping-whitelist'></a> Transfer LDAP Group Membership and Roles
 
-## <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
+You can use the <%= vars.operator_dash %> to configure resource permissions mappings
+and group whitelists to transfer group membership and roles from existing LDAP groups to  <%= vars.product_name %>. 
+
+<%= vars.operator_dash %> enables you to:
+
++ [Create or Edit Resource Permissions Mapping](#create-resource-perm)
++ [Delete Resource Permissions Mapping](#delete-resource-perm)
++ [Configure Group Whitelist for an External Identity Provider](#config-whitelist)
+
+### <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
 
 After a Space Developer defines the resources required by an app,
 an admin can map existing groups to those resources.
@@ -498,7 +590,7 @@ using the format `cn=XXX-group,ou=users,o=YYY,dc=ZZZ,dc=com`.
     Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.  
 </p>
 
-## <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
+### <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
 To delete a resource permissions mapping:
 
@@ -527,7 +619,7 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
   documentation.
 </p>
 
-## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
+### <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
 An admin can include groups from an external identity provider in a group whitelist. 
 The list of groups in the whitelist propagates in the ID token when a user authenticates using an external identity provider.
