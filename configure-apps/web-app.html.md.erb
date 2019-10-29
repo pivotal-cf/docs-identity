@@ -20,7 +20,7 @@ The authorization code grant type is the most commonly used grant type. This gra
 1. **Access Application**: The user accesses the app and triggers authentication and authorization.
 2. **Authentication and Request Authorization**: The app redirects the user to the authorization server where it prompts the user for their username and password. The first time the user goes through this flow for the app, the user sees an approval page. On this page, the user can choose permissions to authorize the app to access resources on their behalf.
 3. **Authentication and Grant Authorization**: The authorization server receives the authentication and authorization grant.
-4. **Send Authorization Code**: After the user authorizes the app, the authorization server sends an authorization code to the app via a redirect.
+4. **Send Authorization Code**: After the user authorizes the app, the authorization server sends an authorization code to the app using a redirect.
 5. **Request Code Exchange for Token**: The app uses the authorization code to request an access token from the authorization server. This gives the app access to the approved permissions.
 6. **Issue Access Token**: The authorization server validates the authorization code and issues an access token.
 7. **Request Resource w/ Access Token**: The app attempts to access the resource from the resource server by presenting the access token.
