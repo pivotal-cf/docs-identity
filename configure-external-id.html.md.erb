@@ -20,14 +20,14 @@ You can configure <%= vars.product_name %> to use external identity providers th
 + OpenID Connect (OIDC). See [Add an OIDC Provider](#config-ext-oidc).
 + LDAP. See [Add an LDAP Identity Provider](#config-ext-ldap).
 
-To delete an external identity provider, 
+To delete an external identity provider,
 see [Delete an External Identity Provider](#delete-idp).
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
 To add an external SAML identity provider:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. 
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
 You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
@@ -35,7 +35,7 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops 
 1. Click **New Identity Provider**.
 
 1. Enter an **Identity Provider Name**. This name is displayed as a link on the login page.
-1. Enter an **Identity Provider Description**. This the name of the group that the identity provider authenticates.
+1. Enter an **Identity Provider Description**. This is the name of the group that the identity provider authenticates.
   This description is displayed to the Space Developers when they select an identity provider for their app.
 1. Under **Identity Provider type**, select **SAML 2.0**.
 
@@ -48,26 +48,26 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops 
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-          
+
       <tr>
         <td><strong>Identity Provider Metadata URL</strong></td>
         <td>Enter a <strong>Identity Provider Metadata URL</strong> and click <strong>Fetch Metadata</strong>.</td>
       </tr>
-      
+
       <tr>
         <td><strong>SAML File Metadata</strong></td>
-        <td>Click <strong>Upload Identity Provider Metadata</strong> 
+        <td>Click <strong>Upload Identity Provider Metadata</strong>
           and upload the XML metadata that you downloaded from your external identity provider.
         </td>
       </tr>
     </table>
-    <p class="note"><strong>Note:</strong> Uploading a XML metadata file disables entering 
-      a metadata URL to update your identity provider metadata later. 
-      If your metadata changes in your identity provider, 
+    <p class="note"><strong>Note:</strong> Uploading a XML metadata file disables entering
+      a metadata URL to update your identity provider metadata later.
+      If your metadata changes in your identity provider,
       you must manually re-upload the metadata as an updated XML file.</p>
-    
-1. Enter **Email Domains**. This a comma-separated list of domains for identity provider discovery.
-    
+
+1. Enter **Email Domains**. This is a comma-separated list of domains for identity provider discovery.
+
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and configure the fields as follows:
     ![Attribute Mappings fields](attribute-mappings.png)
     <table>
@@ -75,40 +75,40 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops 
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-      
+
       <tr>
         <td><strong>User Attributes</strong></td>
         <td>Enter any user attributes to propagate from the identity provider to the service provider. <br>
-          These attributes can include email addresses, first names, last names, or external groups. 
-          They are sent to apps through OpenID tokens, 
+          These attributes can include email addresses, first names, last names, or external groups.
+          They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_name %>.
           <ol>
             <li>Select a <strong>User Scheme Attribute</strong> from the dropdown.</li>
-            <li>Enter a <strong>SAML Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion</li>
+            <li>Enter a <strong>SAML Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion.</li>
           </ol>
         </td>
       </tr>
-      
+
       <tr>
         <td><strong>Custom Attributes</strong></td>
-        <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br> 
-          They are sent to apps through OpenID tokens, 
+        <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br>
+          They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_name %>.
           <ol>
             <li> (Optional) If you want to expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
               Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
             <li>Enter a <strong>Custom Attribute Name</strong>.</li>
-            <li>Enter a <strong>SAML Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion</li>
+            <li>Enter a <strong>SAML Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion.</li>
           </ol>
         </td>
       </tr>
-  
+
     </table>
 
 1. Click **Create Identity Provider** to save the identity provider.
 
 <p class="note"><strong>Note:</strong> To configure the service provider SAML settings, such as the signing of authentication requests and incoming assertions, click <strong>Configure SAML Service Provider</strong> on the Identity Providers page.
-For more information, see <a href="#config-ext-settings">Configure Service Provider SAML Settings</a> below.
+For more information, see <a href="#config-ext-settings">Configure SAML Settings</a> below.
 </p>
 
 #### <a id='config-ext-settings'></a> Configure SAML Settings
@@ -134,15 +134,15 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
         <th width=35%>Field</th>
         <th>Description</th>
       </tr>
-      
+
       <tr>
         <td><strong>Perform signed authentication requests</strong></td>
         <td>Select this checkbox to enable the service provider to sign requests sent to the external identity provider.</td>
       </tr>
-      
+
       <tr>
         <td><strong>Require signed assertions</strong></td>
-        <td>Select this checkbox to enable the service provider to require that responses from the 
+        <td>Select this checkbox to enable the service provider to require that responses from the
         external identity provider are signed</td>
       </tr>
     </table>
@@ -163,9 +163,9 @@ To add a external OIDC identity provider:
 
 1. Enter an **Identity Provider Name**. This name must match your origin key. However, you can replace lowercase letters with capital letters and replace dashes with spaces. This name is displayed as a link on the login page.
 
-1. Enter an **Identity Provider Description**. This the name of the group that the identity provider authenticates.
+1. Enter an **Identity Provider Description**. This is the name of the group that the identity provider authenticates.
   This description is displayed to the Space Developers when they select an identity provider for their app.
-  
+
 1. Under **Identity Provider type**, select **OpenID Connect**.
 
 1. Configure **OpenID Connect Settings** by configuring one of the below fields as follows: <br>
@@ -237,34 +237,34 @@ To add a external OIDC identity provider:
       <ol>
         <li>(Optional) If you do not want to use SSL validation, select <strong>Skip SSL Validation</strong>.</li>
         <li>Ensure the <strong>Enable Discovery</strong> checkbox selected.</li>
-        
+
         <li>Configure the fields as follows:
           <table>
             <tr>
               <th>Field</th>
               <th>Instructions</th>
             </tr>
-            
+
             <tr>
               <td><strong>Discovery Endpoint URL</strong></td>
               <td>Enter the discovery endpoint URL from the identity provider metadata.</td>
             </tr>
-            
+
             <tr>
               <td><strong>Relying Party OAuth Client ID</strong></td>
               <td>Enter the client ID from the identity provider.</td>
             </tr>
-            
+
             <tr>
               <td><strong>Relying Party OAuth Client Secret</strong></td>
               <td>Enter the client secret from the identity provider.</td>
             </tr>
           </table>
-        </li>  
-        <br>      
+        </li>
+        <br>
         <li>Click <strong>Fetch Scopes</strong>.</li>
         <li>Select the applicable <strong>Scopes</strong> for your identity provider</li>
-      </ol>    
+      </ol>
     </div>
     <div id="tab2" class="tabcontent">
       <img src="./images/authorization-url.png" alt="Pane for configuring a Authorization Endpoint URL.">
@@ -277,42 +277,42 @@ To add a external OIDC identity provider:
               <th>Field</th>
               <th>Description</th>
             </tr>
-            
+
             <tr>
               <td><strong>Authorization Endpoint URL</strong></td>
               <td>Enter the authorization endpoint URL from the identity provider metadata.</td>
             </tr>
-            
+
             <tr>
               <td><strong>Token Endpoint URL</strong></td>
               <td>Enter the token endpoint URL from the identity provider metadata.</td>
             </tr>
-            
+
             <tr>
               <td><strong>Token Key</strong></td>
               <td>Enter the token key URL value from the identity provider metadata.</td>
             </tr>
-            
+
             <tr>
               <td><strong>Issuer</strong> (Optional)</td>
               <td>If this field is required by your identity provider, enter a value.</td>
             </tr>
-            
+
             <tr>
               <td><strong>User Info Endpoint URL</strong> (Optional)</td>
               <td>If this field is required by your identity provider, enter a value.</td>
             </tr>
-            
+
             <tr>
               <td><strong>Response Type</strong></td>
               <td>If this field is required by your identity provider, select a value.</td>
             </tr>
-            
+
             <tr>
               <td><strong>Relying Party OAuth Client ID</strong></td>
               <td>Enter the client ID from the identity provider.</td>
             </tr>
-            
+
             <tr>
               <td><strong>Relying Party OAuth Client Secret</strong></td>
               <td>Enter the client secret from the identity provider.</td>
@@ -324,7 +324,7 @@ To add a external OIDC identity provider:
       </ol>
     </div>
 
-1. Enter **Email Domains**. This a comma-separated list of domains for identity provider discovery.
+1. Enter **Email Domains**. This is a comma-separated list of domains for identity provider discovery.
 
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and configure the fields as follows:
     ![Attribute Mappings fields](attribute-mappings.png)
@@ -333,12 +333,12 @@ To add a external OIDC identity provider:
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-      
+
       <tr>
         <td><strong>User Attributes</strong></td>
         <td>Enter any user attributes to propagate from the identity provider to the service provider. <br>
-          These attributes can include email addresses, first names, last names, or external groups. 
-          They are sent to apps through OpenID tokens, 
+          These attributes can include email addresses, first names, last names, or external groups.
+          They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_name %>.
           <ol>
             <li>Select a <strong>User Scheme Attribute</strong>from the dropdown.</li>
@@ -346,11 +346,11 @@ To add a external OIDC identity provider:
           </ol>
         </td>
       </tr>
-      
+
       <tr>
         <td><strong>Custom Attributes</strong></td>
-        <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br> 
-          They are sent to apps through OpenID tokens, 
+        <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br>
+          They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_name %>.
           <ol>
             <li> (Optional) If you want to expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
@@ -360,16 +360,16 @@ To add a external OIDC identity provider:
           </ol>
         </td>
       </tr>
-  
-    </table>    
+
+    </table>
 
 1. Click **Create Identity Provider** to save the identity provider.
 
 ### <a id='config-ext-ldap'></a> Add an LDAP Identity Provider
 
-When integrating <%= vars.product_name %> with a LDAP external identity provider, authentication is chained. An authentication attempt with user credentials is first attempted against the internal user store before the external LDAP identity provider. 
+When integrating <%= vars.product_name %> with a LDAP external identity provider, authentication is chained. An authentication attempt with user credentials is first attempted against the internal user store before the external LDAP identity provider.
 
-To avoid username collision, do not bootstrap or create users in the UAA database directly. 
+To avoid username collision, do not bootstrap or create users in the UAA database directly.
 You can only have one LDAP external identity provider per service plan.
 
 <p class="note warning">
@@ -388,9 +388,9 @@ To add a LDAP identity provider:
 
 1. Enter an **Identity Provider Name**. This name is displayed as a link on the login page.
 
-1. Enter an **Identity Provider Description**. This the name of the group that the identity provider authenticates.
+1. Enter an **Identity Provider Description**. This is the name of the group that the identity provider authenticates.
   This description is displayed to the Space Developers when they select an identity provider for their app.
-  
+
 1. Under **Identity Provider type**, select **LDAP**. You can only have one LDAP provider per Service Plan.
 
 1. Configure the fields as follows:
@@ -400,79 +400,79 @@ To add a LDAP identity provider:
       <th width=30%>Field</th>
       <th>Instructions</th>
     </tr>
-    
+
     <tr>
       <th colspan="2" style="text-align: center;">Connection</th>
     </tr>
-    
+
     <tr>
       <td><strong>Hostname</strong></td>
       <td>Enter the hostname for your LDAP server.</td>
     </tr>
-    
+
     <tr>
       <td><strong>Port</strong></td>
       <td>Enter the post name for your LDAP server.</td>
     </tr>
-    
+
     <tr>
       <td><strong>Security protocol</strong></td>
       <td>Select the security protocol that your LDAP uses for connection.</td>
     </tr>
-    
+
     <tr>
       <td><strong>Referral</strong></td>
       <td>Select how UAA handles LDAP server referrals to other user stores.</td>
     </tr>
-    
+
     <tr>
       <td><strong>User DN</strong></td>
       <td>Enter the LDAP Distinguished Name (DN) for binding to your LDAP server.</td>
     </tr>
-    
+
     <tr>
       <td><strong>Bind Password</strong></td>
       <td>Enter the password for binding to your LDAP server.</td>
     </tr>
-    
+
     <tr>
       <th colspan="2" style="text-align: center;">Users</th>
     </tr>
-    
+
     <tr>
       <td><strong>Search Base</strong></td>
       <td>Enter the location in the LDAP directory tree where LDAP user search begins. The LDAP search base typically matches your domain name.</td>
     </tr>
-    
+
     <tr>
       <td><strong>Search Filter</strong> (Optional)</td>
       <td> Enter a string to use for LDAP user search criteria. </td>
     </tr>
-    
+
     <tr>
       <td><strong>Just in Time Provisioning</strong></td>
       <td>  If this option is enabled, users are created at login time. <br>
         If this option is not enabled, users must be created before being able to log in</td>
     </tr>
-    
+
     <tr>
       <th colspan="2" style="text-align: center;">Groups</th>
     </tr>
-    
+
     <tr>
       <td><strong>Search Base</strong> (Optional)</td>
       <td> Enter the location in the LDAP directory tree where the LDAP group search begins.<br>
       If you want to use the <strong>memberOf</strong> attribute on user objects, you can enter the value <code>memberOf</code> as the Search Base instead of an LDAP path for a group organizational unit. This causes <%= vars.product_name %> to ignore the <strong>Search Filter</strong> value.</td>
     </tr>
-    
+
     <tr>
       <td><strong>Search filter</strong> (Optional)</td>
       <td>Enter a string that defines LDAP group search criteria. The standard value is <strong>member={0}</strong>.</td>
     </tr>
   </table>
-  
-1. Enter **Email Domains**. This a comma-separated list of domains for identity provider discovery.
-  
+
+1. Enter **Email Domains**. This is a comma-separated list of domains for identity provider discovery.
+
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and configure the fields as follows:
     ![Attribute Mappings fields](attribute-mappings.png)
     <table>
@@ -480,13 +480,13 @@ To add a LDAP identity provider:
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-      
+
       <tr>
         <td><strong>User Attributes</strong></td>
-        <td>Enter any user attributes to propagate from the identity provider to the service provider. <br> 
-          They are sent to apps through OpenID tokens, 
+        <td>Enter any user attributes to propagate from the identity provider to the service provider. <br>
+          They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_name %>.<br><br>
-          The only configurable attributes for LDAP are <code>given\_name</code>, <code>family\_name</code>, 
+          The only configurable attributes for LDAP are <code>given\_name</code>, <code>family\_name</code>,
           and <code>phone\_number</code>.
           Configuring <code>email</code> and <code>external\_groups</code> has no effect on your LDAP integration.
           <ol>
@@ -495,11 +495,11 @@ To add a LDAP identity provider:
           </ol>
         </td>
       </tr>
-      
+
       <tr>
         <td><strong>Custom Attributes</strong></td>
-        <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br> 
-          They are sent to apps through OpenID tokens, 
+        <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br>
+          They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_name %>.
           <ol>
             <li> (Optional) If you want to expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
@@ -509,8 +509,8 @@ To add a LDAP identity provider:
           </ol>
         </td>
       </tr>
-  
-    </table>    
+
+    </table>
 
 1. Click **Create Identity Provider** to save the identity provider.
 
@@ -519,13 +519,13 @@ To add a LDAP identity provider:
      creating a permissions mapping for your LDAP identity provider. See
      [Create or Edit Resource Permissions Mapping](#create-resource-perm) below.
   1. Propagate the existing LDAP user group memberships into the `roles` claim of the OpenID tokens
-     issued by <%= vars.product_name %>. 
+     issued by <%= vars.product_name %>.
      See [Configure Group Whitelist for an External Identity Provider](#config-whitelist) below.
 
 ### <a id='delete-idp'></a> Delete an External Identity Provider
 
 <p class="note warning"><strong>Note:</strong> Deleting an external identity provider deletes all of its configurations.
-  This prevents users from authenticating through the external identity provider. 
+  This prevents users from authenticating through the external identity provider.
   You cannot undo this action.
 </p>
 
@@ -544,7 +544,7 @@ To delete an external identity provider:
 ## <a id='mapping-whitelist'></a> Transfer LDAP Group Membership and Roles
 
 You can use the <%= vars.operator_dash %> to configure resource permissions mappings
-and group whitelists to transfer group membership and roles from existing LDAP groups to  <%= vars.product_name %>. 
+and group whitelists to transfer group membership and roles from existing LDAP groups to  <%= vars.product_name %>.
 
 <%= vars.operator_dash %> enables you to:
 
@@ -573,7 +573,7 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
 
 1. Click **New Permissions Mapping**.
 
-1. Enter a **Group Name**. You must enter fully qualified LDAP paths, 
+1. Enter a **Group Name**. You must enter fully qualified LDAP paths,
 using the format `cn=XXX-group,ou=users,o=YYY,dc=ZZZ,dc=com`.
 
 1. Click **Select Permissions** and select the permissions that users in the group should have access to.
@@ -582,14 +582,14 @@ using the format `cn=XXX-group,ou=users,o=YYY,dc=ZZZ,dc=com`.
 
 <p class="note"><strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.</p>
 
-<p class="note"><strong>Note:</strong> You can use the UAA API to automate the above procedure. 
-  To do this automation, you need an identity zone admin client. For instructions about creating the identity zone 
+<p class="note"><strong>Note:</strong> You can use the UAA API to automate the above procedure.
+  To do this automation, you need an identity zone admin client. For instructions about creating the identity zone
   admin client,
   see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.<br><br>
-  
+
   For instructions about granting admin permissions to mapped external identity groups,
   see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
-    Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.  
+    Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
 </p>
 
 ### <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
@@ -611,11 +611,11 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
 
 <p class="note"><strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.</p>
 
-<p class="note"><strong>Note:</strong> You can use the UAA API to automate the above procedure. 
-  To do this automation, you need an identity zone admin client. For instructions about creating the identity zone 
+<p class="note"><strong>Note:</strong> You can use the UAA API to automate the above procedure.
+  To do this automation, you need an identity zone admin client. For instructions about creating the identity zone
   admin client,
   see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.<br><br>
-  
+
   For information about un-mapping a group mapping,
   see <a href="http://docs.cloudfoundry.org/api/uaa/version/74.4.0/index.html#unmap">Unmap</a> in the UAA API
   documentation.
@@ -623,7 +623,7 @@ You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manag
 
 ### <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
 
-An admin can include groups from an external identity provider in a group whitelist. 
+An admin can include groups from an external identity provider in a group whitelist.
 The list of groups in the whitelist propagates in the ID token when a user authenticates using an external identity provider.
 
 An app can retrieve from the ID token the list of external groups that the user belongs to. An admin can use these groups to assign permissions by group rather than by individual users.
