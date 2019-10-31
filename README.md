@@ -13,8 +13,8 @@ authenticate with an external identity provider rather than having to create a n
 |**1.9** | This branch contains the published documentation for the v1.9 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-9/</a> |
 |**1.8** | This branch contains the published documentation for the v1.8 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-8/">https://docs.pivotal.io/p-identity/1-8/</a> |
 |**1.7** | This branch contains the published documentation for the v1.7 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-7/">https://docs.pivotal.io/p-identity/1-7/</a>|
-|**1.6** | This branch contains the published documentation for the v1.6 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-6/">https://docs.pivotal.io/p-identity/1-6/</a>|
-|**1.5** | This branch contains the published documentation for the v1.5 release of SSO. | <a href="https://docs.pivotal.io/p-identity/1-5/">https://docs.pivotal.io/p-identity/1-5/</a>|
+|**1.6** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-6/">https://docs.pivotal.io/p-identity/1-6/</a>|
+|**1.5** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-5/">https://docs.pivotal.io/p-identity/1-5/</a>|
 |**1.4** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.4.pdf">https://docs.pivotal.io/archives/docs-identity-1.4.pdf</a>|
 |**1.3** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.3.pdf">https://docs.pivotal.io/archives/docs-identity-1.3.pdf</a>|
 |**1.2** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.2.pdf">https://docs.pivotal.io/archives/docs-identity-1.2.pdf</a>|
