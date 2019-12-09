@@ -3,21 +3,21 @@ title: Getting Started with Pivotal Single Sign-On
 owner: Identity Service
 ---
 
-This topic outlines the steps for installing and configuring the <%= vars.product_name %>.
+This topic outlines the steps for installing and configuring the <%= vars.product_full %>.
 
-## <a id='install'></a> Install and Set Up <%= vars.product_name %> for Apps
+## <a id='install'></a> Install and Set Up <%= vars.product_short %> for Apps
 
-1. [Install <%= vars.product_name %>](./installation.html) using Ops Manager.
+1. [Install <%= vars.product_short %>](./installation.html) using Ops Manager.
 
 1. [Create a service plan](./manage-service-plans.html#create-svc-plan).
-<%= vars.product_name %> is a multi-tenant service and a service plan
+<%= vars.product_short %> is a multi-tenant service and a service plan
 corresponds to a tenant.
 This enables an enterprise to segregate users or environments using plans.
 Each service plan is accessible at a tenant-specific URL in the format
 `https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`.
 
 1. [Create a service instance](./manage-service-instances.html#create-svc-instance).
-<%= vars.product_name %> plans can provide single sign-on capabilities for
+<%= vars.product_short %> plans can provide single sign-on capabilities for
 applications in various spaces.
 A service instance lets you bind an application to a service plan.
 
@@ -27,7 +27,7 @@ you can configure [external identity providers](./configure-external-id.html#con
 to provide single sign-on to applications.
 
 1. [Configure your applications](./configure-apps/index.html).
-<%= vars.product_name %> supports <%= vars.platform_name %> apps as well
+<%= vars.product_short %> supports <%= vars.platform_name %> apps as well
 as externally hosted apps.
 Your applications must be able to request an OAuth or OpenID Connect token.
 
@@ -36,11 +36,11 @@ If your registered applications need to make external API calls, you can assign
 the API endpoints as resources permitted for the application.
 This adds the endpoints to an allow list for use by the application or client.
 
-## <a id='roles'></a> <%= vars.product_name %> User Roles
+## <a id='roles'></a> <%= vars.product_short %> User Roles
 
-A user's role determines which parts of an <%= vars.product_name %> configuration it can manage.
-<%= vars.product_name %> uses the existing user roles <%= vars.platform_name %> Administrator and Space Developer, as well
-as a Plan Administrator role that is specific to <%= vars.product_name %>.
+A user's role determines which parts of an <%= vars.product_short %> configuration it can manage.
+<%= vars.product_short %> uses the existing user roles <%= vars.platform_name %> Administrator and Space Developer, as well
+as a Plan Administrator role that is specific to <%= vars.product_short %>.
 
 
 This chart shows the management permissions for each role.
@@ -54,15 +54,15 @@ This chart shows the management permissions for each role.
   <tr><th>Resources</th><td>X</td><td>X</td><td>X</td></tr>
 </table>
 
-## <a id='other'></a> Using <%= vars.product_name %> Components
+## <a id='other'></a> Using <%= vars.product_short %> Components
 
-In addition to apps, <%= vars.product_name %> supports single sign-on for components of  <%= vars.platform_name %>, 
+In addition to apps, <%= vars.product_short %> supports single sign-on for components of  <%= vars.platform_name %>, 
 including Ops Manager and Apps Manager.
 This enables users already managed in an external identity provider to sign into
 Pivotal services.
 
 
-Refer to the following pages for instructions on configuring <%= vars.product_name %> to enable users
+Refer to the following pages for instructions on configuring <%= vars.product_short %> to enable users
 in an external identity store to access <%= vars.platform_name %> components:
 
 * Ops Manager, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp),

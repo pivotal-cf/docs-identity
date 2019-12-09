@@ -7,18 +7,18 @@ owner: Identity Service
 
 <%= partial '../../identity/partials/pcf-name-change' %>
 
-This topic provides an overview of <%= vars.product_name %>.
+This topic provides an overview of <%= vars.product_full %>.
 
-<%= vars.product_name %> is an all-in-one solution for securing access to
-apps and APIs on <%= vars.platform_name %>. <%= vars.product_name %> provides support for
+<%= vars.product_short %> is an all-in-one solution for securing access to
+apps and APIs on <%= vars.platform_name %>. <%= vars.product_short %> provides support for
 native authentication, federated single sign-on, and authorization. Operators
 can configure native authentication and federated single sign-on, for example SAML,
 to verify the identities of application users. After authentication,
-<%= vars.product_name %> uses OAuth 2.0 to secure resources or APIs.
+<%= vars.product_short %> uses OAuth 2.0 to secure resources or APIs.
 
-## <a id="sso-overview"></a> About <%= vars.product_name %>
+## <a id="sso-overview"></a> About <%= vars.product_short %>
 
-<%= vars.product_name %> enables users to log in through a single sign-on service
+<%= vars.product_short %> enables users to log in through a single sign-on service
 and access other apps that are hosted or protected by the service.
 This improves security and productivity by removing the need for users to log in to
 individual apps.
@@ -28,24 +28,24 @@ They can select native authentication provided by the User Account and Authentic
 or external identity providers. UAA is an open source identity server project under
 the Cloud Foundry (CF) foundation that provides identity based security for apps and APIs.
 
-<%= vars.product_name %> supports service provider-initiated authentication flow and single logout.
+<%= vars.product_short %> supports service provider-initiated authentication flow and single logout.
 It does not support identity provider-initiated authentication flow.
-All <%= vars.product_name %> communication takes place over SSL.
+All <%= vars.product_short %> communication takes place over SSL.
 
 ## <a id="oauth2"></a> OAuth 2.0 Authorization
 
-After authentication, <%= vars.product_name %> uses OAuth 2.0 for authorization.
+After authentication, <%= vars.product_short %> uses OAuth 2.0 for authorization.
 OAuth 2.0 is an authorization framework that delegates access to apps
 to access resources on behalf of a resource owner.
 
-Developers define resources required by an application bound to a <%= vars.product_name %>
+Developers define resources required by an application bound to a <%= vars.product_short %>
 service instance and administrators grant resource permissions.
 See the <a href="./configure-apps/index.html">Configure Applications</a> topic for more details.
 
 ## <a id='product-snapshot'></a> Product Snapshot
 
 The following table provides version and version-support information about
-<%= vars.product_name %>:
+<%= vars.product_short %>:
 
 <table class="nice">
     <th>Element</th>
@@ -74,7 +74,7 @@ The following table provides version and version-support information about
 
 ## <a id='guides'></a> Integration Guides
 
-Use these guides to help you plan and implement your integration with <%= vars.product_name %>.
+Use these guides to help you plan and implement your integration with <%= vars.product_short %>.
 
 * <a href="./adfs/index.html">Active Directory Federation Services (AD FS) Integration Guide</a>
 * <a href="./azure/index.html">Azure Active Directory SAML Integration Guide</a>
@@ -89,7 +89,7 @@ Use these guides to help you plan and implement your integration with <%= vars.p
 ## <a id='sso'></a> Useful Links
 
 * <a href="installation.html">Installation</a>
-* <a href="getting-started.html">Getting Started with <%= vars.product_name %></a>
+* <a href="getting-started.html">Getting Started with <%= vars.product_short %></a>
 * <a href="system-plan.html">Using the System Plan</a>
 * <a href="manage-service-plans.html">Manage Service Plans</a>
 * <a href="manage-service-instances.html">Manage Service Instances</a>

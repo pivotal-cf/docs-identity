@@ -3,14 +3,14 @@ title: Monitoring Service Plans and Apps
 owner: Identity Service
 ---
 
-This topic explains how to monitor <%= vars.product_name %> for <%= vars.platform_name %> service plans and apps.
+This topic explains how to monitor <%= vars.product_full %> for <%= vars.platform_name %> service plans and apps.
 
 ## <a id="overview"></a>Overview
 
-<%= vars.product_name %> uses the User Account and Authentication (UAA) service to log security events through Loggregator.
-UAA security events can be filtered to destinations through a syslog drain. To configure logs to monitor <%= vars.product_name %> plan events, app, and UAA client events you need to obtain the IDs for the corresponding plan or app.
+<%= vars.product_short %> uses the User Account and Authentication (UAA) service to log security events through Loggregator.
+UAA security events can be filtered to destinations through a syslog drain. To configure logs to monitor <%= vars.product_short %> plan events, app, and UAA client events you need to obtain the IDs for the corresponding plan or app.
 
-To obtain the identity zone ID for <%= vars.product_name %> plans, do one of the procedures in [Monitor <%= vars.product_name %> Plan Events](#plan) below.
+To obtain the identity zone ID for <%= vars.product_short %> plans, do one of the procedures in [Monitor <%= vars.product_short %> Plan Events](#plan) below.
 
 To obtain the client ID for an app or UAA client, do the procedure in [Monitor App Events](#app) below.
 
@@ -18,24 +18,24 @@ For information about configuring logging in <%= vars.app_runtime_full %>, see [
 
 For information about UAA security events, see [UAA Logging](https://docs.pivotal.io/pivotalcf/loggregator/cc-uaa-logging.html#uaa).
 
-## <a id="plan"></a>Monitor <%= vars.product_name %> Plan Events
-All <%= vars.product_name %> service plans are given a unique identity zone ID. You can monitor all events for a plan by filtering UAA generated logs using the plan's identity zone ID.
+## <a id="plan"></a>Monitor <%= vars.product_short %> Plan Events
+All <%= vars.product_short %> service plans are given a unique identity zone ID. You can monitor all events for a plan by filtering UAA generated logs using the plan's identity zone ID.
 
 You can obtain a list of plans and their corresponding identity zone IDs by doing one of the following:
 
-+ [Use the <%= vars.product_name %> API](#api), as detailed below.
++ [Use the <%= vars.product_short %> API](#api), as detailed below.
 + [Use the <%= vars.operator_dash %>](#dashboard), as detailed below.
 
 ###<a id="api-preq"></a> Prerequisites
 
-Before you can use the <%= vars.product_name %> API to monitor plan events, you must:
+Before you can use the <%= vars.product_short %> API to monitor plan events, you must:
 
 1. [Create an Admin Client](./manage-clients-api.html#creating).
 2. [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
 
-###<a id="api"></a>Use the <%= vars.product_name %> API
+###<a id="api"></a>Use the <%= vars.product_short %> API
 
-To use the <%= vars.product_name %> API to obtain plan identity zone IDs, run the following command:
+To use the <%= vars.product_short %> API to obtain plan identity zone IDs, run the following command:
 
 ```
 curl -X GET "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
@@ -46,7 +46,7 @@ Where:
 + `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
 + `YOUR-TOKEN` is the access token you obtained in [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
 
-For more information, see [<%= vars.product_name %> Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) in the <%= vars.product_name %> API documentation.
+For more information, see [<%= vars.product_short %> Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) in the <%= vars.product_short %> API documentation.
 
 ###<a id="dashboard"></a>Use the <%= vars.operator_dash %>
 
@@ -62,14 +62,14 @@ To use the <%= vars.operator_dash %> to obtain plan identity zone IDs:
     Where `IDENTITY-ZONE-ID` is your plan's identity zone ID.
 
 ## <a id="app"></a>Monitor App Events
-All apps that use <%= vars.product_name %>have a unique client ID. You can monitor app and UAA client events using the client ID.
+All apps that use <%= vars.product_short %>have a unique client ID. You can monitor app and UAA client events using the client ID.
 
 To find your app's client ID:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
-1. Under **Services**, click the **<%= vars.product_name %>** service.
-1. Click **Manage** next to your <%= vars.product_name %> service instance to launch the <%= vars.developer_dash %>.
+1. Under **Services**, click the **<%= vars.product_short %>** service.
+1. Click **Manage** next to your <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
 1. Under **App**, click **Credentials** near the name of your app.
 1. Record the value of **App ID**.
 
