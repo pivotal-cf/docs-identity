@@ -4,18 +4,18 @@ owner: Identity Service
 ---
 
 This topic describes how to integrate Azure Active Directory (Azure AD) as an
-identity provider for a <%= vars.product_name %> plan,
-by configuring OpenID Connect (OIDC) in both <%= vars.product_name %> and Azure AD.
+identity provider for a <%= vars.product_full %> plan,
+by configuring OpenID Connect (OIDC) in both <%= vars.product_short %> and Azure AD.
 
 ## <a id="overview"></a> Overview
 
 Azure Active Directory (Azure AD) is Microsoft’s multi-tenant cloud-based directory and identity management service.
-It is one of several identity providers you can use in a <%= vars.product_name %> service plan.
+It is one of several identity providers you can use in a <%= vars.product_short %> service plan.
 
 To set up the integration, follow the procedures below:
 
 1. [Set up a Relying Party in Azure AD](#procedure)
-1. [Set up the OIDC Identity Provider in <%= vars.product_name %>](#config-sso)
+1. [Set up the OIDC Identity Provider in <%= vars.product_short %>](#config-sso)
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -45,7 +45,7 @@ Follow the steps below to set up a relying party in Azure AD.
 1. <a id="app-id"></a>Record the **Application ID** displayed on the screen. This is the **Relying Party OAuth Client ID**.
 
 	<%= image_tag '../images/azure-oidc-app-reg-id.png' %>
-
+product_full
 1. Open the **Keys** tab to generate your **Client Secret**.
 
 	<%= image_tag '../images/azure-oidc-app-keys.png' %>
@@ -73,14 +73,14 @@ For example, in the App ID URI `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b
 1. <a id="relying"></a>Construct the URL for the OpenID Connect metadata endpoint by replacing `TENANT-NAME` with your Azure Tenant Name in the following string:
 `https://login.microsoftonline.com/TENANT-NAME/.well-known/openid-configuration`. Example:  `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`
 <br><br>
-Record these values for the [next step](#config-sso), configuring your OpenID Connect identity provider in <%= vars.product_name %>.
+Record these values for the [next step](#config-sso), configuring your OpenID Connect identity provider in <%= vars.product_short %>.
 
 	<%= image_tag '../images/azure-oidc-connect-string.png' %>
 
 
-## <a id="config-sso"></a> Set Up the OIDC Identity Provider in <%= vars.product_name %>
+## <a id="config-sso"></a> Set Up the OIDC Identity Provider in <%= vars.product_short %>
 
-Follow the steps below to set up an OIDC provider for <%= vars.product_name %>.
+Follow the steps below to set up an OIDC provider for <%= vars.product_short %>.
 
 1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc).
 
@@ -137,7 +137,7 @@ from the **OpenID Connect metadata endpoint** you constructed in the final step 
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
 select  **user_name** as the **User Schema Attribute** and enter `unique_name` as the **Attribute Name**.
-This enables <%= vars.product_name %> to identify the authenticated user.
+This enables <%= vars.product_short %> to identify the authenticated user.
 
 1. (Optional) Configure additional attribute mappings.
 

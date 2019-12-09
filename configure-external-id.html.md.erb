@@ -3,18 +3,18 @@ title: Configuring External Identity Providers
 owner: Identity Service
 ---
 This topic describes how <%= vars.platform_name %> admins configure a
-<%= vars.product_name %> service plan to manage user access to <%= vars.platform_name %> apps using an
+<%= vars.product_full %> service plan to manage user access to <%= vars.platform_name %> apps using an
 external identity provider.
 
 <p class="note"><strong>Note:</strong>
-You can also configure a <%= vars.product_name %> service plan to use the internal user store to
+You can also configure a <%= vars.product_short %> service plan to use the internal user store to
 manage user accounts.
 For more information, see <a href="./configure-internal-us.html">Configuring Internal User Store</a>.
 </p>
 
 ## <a id='config-ext-prov'></a> Configure an External Identity Provider
 
-You can configure <%= vars.product_name %> to use external identity providers that support:
+You can configure <%= vars.product_short %> to use external identity providers that support:
 
 + SAML 2.0. See [Add a SAML Provider](#config-saml-prov).
 + OpenID Connect (OIDC). See [Add an OIDC Provider](#config-ext-oidc).
@@ -81,7 +81,7 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops 
         <td>Enter any user attributes to propagate from the identity provider to the service provider. <br>
           These attributes can include email addresses, first names, last names, or external groups.
           They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_name %>.
+          along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
             <li>Select a <strong>User Scheme Attribute</strong> from the dropdown.</li>
             <li>Enter a <strong>SAML Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion.</li>
@@ -93,7 +93,7 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in Ops 
         <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br>
           They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_name %>.
+          along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
             <li> (Optional) If you want to expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
               Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
@@ -117,7 +117,7 @@ For each plan, you can configure SAML settings
 when SAML is used for exchanging authentication and authorization data
 between the identity provider and the service provider.
 
-<%= vars.product_name %> provides the ability to sign authentication requests and require signed assertions from the external identity provider.
+<%= vars.product_short %> provides the ability to sign authentication requests and require signed assertions from the external identity provider.
 
 To configure SAML settings:
 
@@ -339,7 +339,7 @@ To add a external OIDC identity provider:
         <td>Enter any user attributes to propagate from the identity provider to the service provider. <br>
           These attributes can include email addresses, first names, last names, or external groups.
           They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_name %>.
+          along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
             <li>Select a <strong>User Scheme Attribute</strong>from the dropdown.</li>
             <li>Enter a <strong>ID Token Attribute Name</strong> with the corresponding attribute from the incoming OIDC ID token</li>
@@ -351,7 +351,7 @@ To add a external OIDC identity provider:
         <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br>
           They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_name %>.
+          along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
             <li> (Optional) If you want to expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
               Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
@@ -367,7 +367,7 @@ To add a external OIDC identity provider:
 
 ### <a id='config-ext-ldap'></a> Add an LDAP Identity Provider
 
-When integrating <%= vars.product_name %> with a LDAP external identity provider, authentication is chained. An authentication attempt with user credentials is first attempted against the internal user store before the external LDAP identity provider.
+When integrating <%= vars.product_short %> with a LDAP external identity provider, authentication is chained. An authentication attempt with user credentials is first attempted against the internal user store before the external LDAP identity provider.
 
 To avoid username collision, do not bootstrap or create users in the UAA database directly.
 You can only have one LDAP external identity provider per service plan.
@@ -462,7 +462,7 @@ To add a LDAP identity provider:
     <tr>
       <td><strong>Search Base</strong> (Optional)</td>
       <td> Enter the location in the LDAP directory tree where the LDAP group search begins.<br>
-      If you want to use the <strong>memberOf</strong> attribute on user objects, you can enter the value <code>memberOf</code> as the Search Base instead of an LDAP path for a group organizational unit. This causes <%= vars.product_name %> to ignore the <strong>Search Filter</strong> value.</td>
+      If you want to use the <strong>memberOf</strong> attribute on user objects, you can enter the value <code>memberOf</code> as the Search Base instead of an LDAP path for a group organizational unit. This causes <%= vars.product_short %> to ignore the <strong>Search Filter</strong> value.</td>
     </tr>
 
     <tr>
@@ -485,7 +485,7 @@ To add a LDAP identity provider:
         <td><strong>User Attributes</strong></td>
         <td>Enter any user attributes to propagate from the identity provider to the service provider. <br>
           They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_name %>.<br><br>
+          along with any other stored user information issued by <%= vars.product_short %>.<br><br>
           The only configurable attributes for LDAP are <code>given\_name</code>, <code>family\_name</code>,
           and <code>phone\_number</code>.
           Configuring <code>email</code> and <code>external\_groups</code> has no effect on your LDAP integration.
@@ -500,7 +500,7 @@ To add a LDAP identity provider:
         <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the identity provider to the service provider. <br>
           They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_name %>.
+          along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
             <li> (Optional) If you want to expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
               Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
@@ -514,12 +514,12 @@ To add a LDAP identity provider:
 
 1. Click **Create Identity Provider** to save the identity provider.
 
-1. (Optional) Transfer group memberships and roles from existing LDAP groups to <%= vars.product_name %> as follows:
-  1. Map existing LDAP user group memberships to <%= vars.product_name %> resources by
+1. (Optional) Transfer group memberships and roles from existing LDAP groups to <%= vars.product_short %> as follows:
+  1. Map existing LDAP user group memberships to <%= vars.product_short %> resources by
      creating a permissions mapping for your LDAP identity provider. See
      [Create or Edit Resource Permissions Mapping](#create-resource-perm) below.
   1. Propagate the existing LDAP user group memberships into the `roles` claim of the OpenID tokens
-     issued by <%= vars.product_name %>.
+     issued by <%= vars.product_short %>.
      See [Configure Group Whitelist for an External Identity Provider](#config-whitelist) below.
 
 ### <a id='delete-idp'></a> Delete an External Identity Provider
@@ -544,7 +544,7 @@ To delete an external identity provider:
 ## <a id='mapping-whitelist'></a> Transfer LDAP Group Membership and Roles
 
 You can use the <%= vars.operator_dash %> to configure resource permissions mappings
-and group whitelists to transfer group membership and roles from existing LDAP groups to  <%= vars.product_name %>.
+and group whitelists to transfer group membership and roles from existing LDAP groups to  <%= vars.product_short %>.
 
 <%= vars.operator_dash %> enables you to:
 

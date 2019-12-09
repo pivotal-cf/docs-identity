@@ -3,18 +3,18 @@ title: Managing Service Plan Configurations
 owner: Identity Service
 ---
 
-This topic describes how <%= vars.platform_name %> admins or plan admins can manage <%= vars.product_name %>
+This topic describes how <%= vars.platform_name %> admins or plan admins can manage <%= vars.product_full %>
 service plan configurations using the <%= vars.operator_dash %> or API using the User Account and
 Authentication Command Line Interface (UAAC).
 
-<%= vars.product_name %> manages configurations within the UAA and the Cloud Controller (CC) components of the
-<%= vars.app_runtime_full %>. Each <%= vars.product_name %> service plan ties together a CC plan and a UAA identity zone.
+<%= vars.product_short %> manages configurations within the UAA and the Cloud Controller (CC) components of the
+<%= vars.app_runtime_full %>. Each <%= vars.product_short %> service plan ties together a CC plan and a UAA identity zone.
 
-Beginning with <%= vars.product_name %> v1.6, you can use the UAAC to manage UAA identity zones configured as part of <%= vars.product_name %> service plans.
+Beginning with <%= vars.product_short %> v1.6, you can use the UAAC to manage UAA identity zones configured as part of <%= vars.product_short %> service plans.
 
 ## <a id='configure-token-policy'></a> Configure a Token Policy
 
-<%= vars.product_name %> enables <%= vars.platform_name %> admins and plan admins to override the default expiry of access tokens
+<%= vars.product_short %> enables <%= vars.platform_name %> admins and plan admins to override the default expiry of access tokens
 (12 hours) and refresh tokens (30 days) by zone.
 
 * **Access tokens** carry information about users and clients to servers that manage resources.
@@ -65,7 +65,7 @@ To make UAA identity zone API calls:
         </li>
 
         <li>
-        Click the name of the <%= vars.product_name %> service plan that you want to configure on the <%= vars.operator_dash %>, and select
+        Click the name of the <%= vars.product_short %> service plan that you want to configure on the <%= vars.operator_dash %>, and select
         <strong>Edit Plan</strong> from the dropdown.
         </li>
 
@@ -179,12 +179,12 @@ To set a default IDP:
 
  For information about <code>defaultIdentityProvider</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a> in the UAA documentation.
 
-## <a id="disable-sso-plans"></a> Disable <%= vars.product_name %> Plans
+## <a id="disable-sso-plans"></a> Disable <%= vars.product_short %> Plans
 
-For <%= vars.platform_name %> v2.4 and later, <%= vars.product_name %> plans that are no longer in use can be disabled.
+For <%= vars.platform_name %> v2.4 and later, <%= vars.product_short %> plans that are no longer in use can be disabled.
 Disabled plans can be re-enabled later when they need to be used again. <br>
 
-To disable <%= vars.product_name %> plans:
+To disable <%= vars.product_short %> plans:
 
 <ol>
   <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>

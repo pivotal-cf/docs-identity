@@ -3,23 +3,23 @@ title: Troubleshooting
 owner: Identity Service
 ---
 
-This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory (AD) and <%= vars.product_name %>.
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Azure Active Directory (AD) and <%= vars.product_full %>.
 
 ##<a id='login'></a> Failed Login
 
 #### Symptom:
-You cannot log in to your <%= vars.product_name %> plan.
+You cannot log in to your <%= vars.product_short %> plan.
 
 #### Solutions:
 
 + Pivotal recommends using a different browser or deleting your browser cache and history before 
-you log in to your <%= vars.product_name %> plan. Your <%= vars.product_name %> plan can fail if you are already logged in to Azure AD as the 
+you log in to your <%= vars.product_short %> plan. Your <%= vars.product_short %> plan can fail if you are already logged in to Azure AD as the 
 Global Administrator account that was used to set up all the configurations. 
 
 + If your login fails more than five times, Azure locks your account for 30 minutes. 
 There is currently no way to unlock an account in Azure AD, so wait for the lockout period.
 
-+ Pivotal recommends testing your <%= vars.product_name %> plan from Azure AD to see the contents of the SAML assertion.
++ Pivotal recommends testing your <%= vars.product_short %> plan from Azure AD to see the contents of the SAML assertion.
 For more information, see [Test Your Configurations in Azure AD](./testing.html#ad).
 
 

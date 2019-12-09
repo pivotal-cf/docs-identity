@@ -3,31 +3,31 @@ title: Integrating Pivotal Single Sign&#8209;On with Your App
 owner: Identity Service
 ---
 
-This topic describes how to integrate <%= vars.product_name %> with Java and non-Java apps.
+This topic describes how to integrate <%= vars.product_full %> with Java and non-Java apps.
 
-## <a id="app-integration"></a>Integrate <%= vars.product_name %> with an App
+## <a id="app-integration"></a>Integrate <%= vars.product_short %> with an App
 
-Because <%= vars.product_name %> is based on the OAuth protocol, any app that uses <%= vars.product_name %> must be OAuth-aware.
+Because <%= vars.product_short %> is based on the OAuth protocol, any app that uses <%= vars.product_short %> must be OAuth-aware.
 
 ### <a id="app-integration-java"></a>Java Apps 
 
-If you are using Java, see the [<%= vars.product_name %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository.
+If you are using Java, see the [<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository.
 These are sample [Spring Boot](https://projects.spring.io/spring-boot/) apps
-that demonstrate how to use <%= vars.product_name %> Service libraries to configure the app for OAuth.
+that demonstrate how to use <%= vars.product_short %> Service libraries to configure the app for OAuth.
 
 For Spring Boot 1.5, use [spring-cloud-sso-connector](https://github.com/pivotal-cf/spring-cloud-sso-connector)
-and see the `spring-boot-1.5` branch of the [<%= vars.product_name %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository for examples.
+and see the `spring-boot-1.5` branch of the [<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository for examples.
 
 For Spring Boot 2.1, use [java-cfenv-boot-pivotal-sso](https://github.com/pivotal-cf/java-cfenv/tree/master/java-cfenv-boot-pivotal-sso)
-and see the `spring-boot-2.1` branch of the [<%= vars.product_name %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository for examples.
+and see the `spring-boot-2.1` branch of the [<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository for examples.
 
-After binding the app to a <%= vars.product_name %> service instance,
-you must restart the app for the new <%= vars.product_name %> configuration to take effect.
+After binding the app to a <%= vars.product_short %> service instance,
+you must restart the app for the new <%= vars.product_short %> configuration to take effect.
 
 ### <a id="app-integration-nonjava"></a>Non-Java Apps
 
 To configure non-Java apps for OAuth, supply the following properties as environment 
-variables to your app after you bind the app to a <%= vars.product_name %> service instance.
+variables to your app after you bind the app to a <%= vars.product_short %> service instance.
 You can view this information on the **Next Steps** page of the <%= vars.developer_dash %>.
 
 * **App ID**, also known as OAuth Client ID

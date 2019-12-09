@@ -5,7 +5,7 @@ owner: Identity Service
 
 This topic describes how <%= vars.platform_name %> Administrators manage Single Sign-On service plans.
 
-<%= vars.product_name %> is a multi-tenant service, which enables a deployment to host multiple tenants as service plans.
+<%= vars.product_full %> is a multi-tenant service, which enables a deployment to host multiple tenants as service plans.
 Each service plan can have its own administrators, applications and users.
 This lets enterprises segregate access by using separate plans. For example, the following tenants might require separate plans:
 
@@ -15,12 +15,12 @@ This lets enterprises segregate access by using separate plans. For example, the
 
 * Development, staging, and production instances
 
-You may also want to configure an <%= vars.product_name %> as an OpenID Connect (OIDC) identity provider.
+You may also want to configure an <%= vars.product_short %> as an OpenID Connect (OIDC) identity provider.
 For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/index.html).
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-<%= vars.platform_name %> administrators can create new <%= vars.product_name %> service plans at any time 
+<%= vars.platform_name %> administrators can create new <%= vars.product_short %> service plans at any time 
 from the <%= vars.operator_dash %>.
 You can use the <%= vars.operator_dash %> to create and configure service plans at any time.
 
@@ -31,7 +31,7 @@ You can use the <%= vars.operator_dash %> to create and configure service plans 
 using your User Account and Authentication (UAA) administrator credentials.
 You can find these credentials in the <%= vars.app_runtime_full %> tile in Ops Manager in the **Credentials** tab.
 
-1. Click **New Plan** on the <%= vars.operator_dash %> to create a new <%= vars.product_name %> service plan.
+1. Click **New Plan** on the <%= vars.operator_dash %> to create a new <%= vars.product_short %> service plan.
 
 	<%= image_tag 'images/managing_create_plan.png' %>
 
@@ -51,9 +51,9 @@ You can find these credentials in the <%= vars.app_runtime_full %> tile in Ops M
 	</p>
 
 1. Under **Organizations**, select specific organizations in your  <%= vars.platform_name %> deployment
-that can access your <%= vars.product_name %> service plan, or select **Enable for all Orgs**. <br><br>
+that can access your <%= vars.product_short %> service plan, or select **Enable for all Orgs**. <br><br>
 	* If you select **Enable for all Orgs** the plan is available for use and displayed in the Services Marketplace for all developers in any organization.
-	This is only recommended for test plans to allow developers to experiment with <%= vars.product_name %>.<br><br>
+	This is only recommended for test plans to allow developers to experiment with <%= vars.product_short %>.<br><br>
 	* If you do not select any organizations, the plan is not available for use and it is not displayed in the Services Marketplace.
 
 1. Click **Create Plan**. Your new plan appears in the Services Marketplace in the organizations you selected.
@@ -61,8 +61,8 @@ Users in those organizations view the plan either in Apps Manager or through the
 
 ## <a id='delete-svc-plan'></a> Delete Service Plans
 
-<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a <%= vars.product_name %> service plan
-removes from the <%= vars.product_name %> database all of the configurations, identity providers, users,
+<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a <%= vars.product_short %> service plan
+removes from the <%= vars.product_short %> database all of the configurations, identity providers, users,
 application configurations and resources associated with the plan.
 It also deletes the associated service instances and service bindings.
 You must rebind any applications bound to the deleted service instances to new service instances.</p>
@@ -77,10 +77,10 @@ using your UAA administrator credentials. You can find these credentials in your
 
 4. In the popup that appears, click **Delete Plan** to confirm that you want to delete the plan.
 
-## <a id='plan-automation'></a> Automate Service Plan Creation Using <%= vars.product_name %> API
+## <a id='plan-automation'></a> Automate Service Plan Creation Using <%= vars.product_short %> API
 
-<%= vars.platform_name %> administrators can create new <%= vars.product_name %> service plans using the <%= vars.product_name %> API. This
-allows them to automate creating and deleting <%= vars.product_name %> plans. Pivotal recommends creating a dedicated client for <%= vars.product_name %> plan automation.
+<%= vars.platform_name %> administrators can create new <%= vars.product_short %> service plans using the <%= vars.product_short %> API. This
+allows them to automate creating and deleting <%= vars.product_short %> plans. Pivotal recommends creating a dedicated client for <%= vars.product_short %> plan automation.
 
 To automate service plan creation, do the following:
 
@@ -156,7 +156,7 @@ run the following command:
 
 1. Record the `access_token` value from the output of the previous step.
 
-1. To create a new <%= vars.product_name %> plan and record the plan ID, run the following command:
+1. To create a new <%= vars.product_short %> plan and record the plan ID, run the following command:
 
 	```
 	curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
@@ -236,8 +236,8 @@ command for each plan administrator:
 	+ `AUTO-CLIENT-ID` is the name you provided in step 5.
 	+ `AUTO-CLIENT-SECRET` is the secret you provided in step 5.
 
-1. To give orgs access to your <%= vars.product_name %> plan, do one of the following:
-	+ To give specific orgs access to your <%= vars.product_name %> plan, run the following command for each org:
+1. To give orgs access to your <%= vars.product_short %> plan, do one of the following:
+	+ To give specific orgs access to your <%= vars.product_short %> plan, run the following command for each org:
 
 		```
 		cf enable-service-access p-identity -p YOUR-AUTH-DOMAIN -o ORG-NAME
@@ -245,8 +245,8 @@ command for each plan administrator:
 
 		Where:
 		+ `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9.
-		+ `ORG-NAME` is the name of the org you want to have access to your <%= vars.product_name %> plan.
-	+ To give all orgs access to your <%= vars.product_name %> plan, run the following command:
+		+ `ORG-NAME` is the name of the org you want to have access to your <%= vars.product_short %> plan.
+	+ To give all orgs access to your <%= vars.product_short %> plan, run the following command:
 
 		```
 		cf enable-service-access p-identity -p PLAN_AUTH_DOMAIN
@@ -254,14 +254,14 @@ command for each plan administrator:
 
 		Where `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9.
 
-		<p class="note"> Pivotal recommends only giving all orgs access to your <%= vars.product_name %> plans 
-			for test plans to enable developers to experiment with <%= vars.product_name %>.</p>
+		<p class="note"> Pivotal recommends only giving all orgs access to your <%= vars.product_short %> plans 
+			for test plans to enable developers to experiment with <%= vars.product_short %>.</p>
 
-For more information on how you can manage <%= vars.product_name %> plans using the <%= vars.product_name %> API, see the [<%= vars.product_name %> API](https://docs.pivotal.io/p-identity/sso-api) documentation.
+For more information on how you can manage <%= vars.product_short %> plans using the <%= vars.product_short %> API, see the [<%= vars.product_short %> API](https://docs.pivotal.io/p-identity/sso-api) documentation.
 
-## <a id="create"></a> Create a New <%= vars.platform_name %> Administrator for <%= vars.product_name %>
+## <a id="create"></a> Create a New <%= vars.platform_name %> Administrator for <%= vars.product_short %>
 
-<%= vars.platform_name %> administrators can grant users additional permissions to allow them to manage <%= vars.product_name %> plans. These
+<%= vars.platform_name %> administrators can grant users additional permissions to allow them to manage <%= vars.product_short %> plans. These
 permissions let users act as <%= vars.platform_name %> administrators.
 
 <p class="note warning"><strong>Warning:</strong> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assigned to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
@@ -295,7 +295,7 @@ run the following command:
 
 	Where `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in step 3.
 
-1. To allow users to manage <%= vars.product_name %> plans, run the following commands:
+1. To allow users to manage <%= vars.product_short %> plans, run the following commands:
 
     ```
     uaac member add cloud_controller.admin ADMIN-USERNAME
