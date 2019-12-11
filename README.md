@@ -7,8 +7,9 @@ authenticate with an external identity provider rather than having to create a n
 
 | Branch name | Use for… | Publishes to… |
 |-------------| ------|--------|
-|**master** | This branch is on staging. ADD ALL NEW 2.0 (or 1.10?) CONTENT to this branch. When 1.10 was released, master and v1.10 were identical. | <a href="https://docs-pcf-staging.cfapps.io/p-identity/1-n/">https://docs-pcf-staging.cfapps.io/p-identity/1-n/</a> |
+|**master** | This branch is on staging. ADD ALL NEW 2.0 (or 1.12?) CONTENT to this branch. When 1.11 was released, master and v1.11 were identical. | <a href="https://docs-pcf-staging.cfapps.io/p-identity/1-n/">https://docs-pcf-staging.cfapps.io/p-identity/1-n/</a> |
 |**master-pws** | This branch contains PWS-specific SSO content. The audience is plan administrators and developers; not operators. This content is stale.| <a href="https://docs.run.pivotal.io/sso/index.html">https://docs.run.pivotal.io/sso/</a>|
+|**1.11** | This branch contains the published documentation for the v1.11 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-11/">https://docs.pivotal.io/p-identity/1-11/</a> |
 |**1.10** | This branch contains the published documentation for the v1.10 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-10/">https://docs.pivotal.io/p-identity/1-10/</a> |
 |**1.9** | This branch contains the published documentation for the v1.9 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-9/</a> |
 |**1.8** | This branch contains the published documentation for the v1.8 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-8/">https://docs.pivotal.io/p-identity/1-8/</a> |
