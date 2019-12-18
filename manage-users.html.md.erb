@@ -3,22 +3,20 @@ title: Managing Users
 owner: Identity Service
 ---
 
-This topic describes how a <%= vars.platform_name %> Plan Administrator uses <%= vars.product_full %> to manage user access to <%= vars.platform_name %> apps,
-for users with accounts in the internal user store or with external identity providers.
+This topic describes how a <%= vars.platform_name %> Plan Administrator uses <%= vars.product_full %> to manage user access to <%= vars.platform_name %> apps, for users with accounts in the internal user store or with external identity providers.
+
 
 ## <a id="internal"></a> Manage Users in an Internal User Store
 
-<%= vars.product_full %> has an **Internal Users** admin pane that lets you manage user accounts in the <%= vars.platform_name %> internal user store:
-invite and delete users, request users to reset their passwords, and update user attributes and permissions.
+<%= vars.product_full %> has an **Internal Users** admin pane that lets you manage user accounts in the <%= vars.platform_name %> internal user store: invite and delete users, request users to reset their passwords, and update user attributes and permissions.
 
 To open the **Internal Users** pane:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
-Find these credentials in your <%= vars.app_runtime_full %> tile in Ops Manager under the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) admin credentials. Find these credentials in your <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
-1. Click **Internal User Store** and select **Internal Users** from the drop-down menu. This brings you to the admin screen.
+1. Click **Internal User Store** and select **Internal Users** from the dropdown. This brings you to the admin screen.
 ![Pivotal Single Sign-On Admin](images/admin.png)
 
 From the **Internal Users** pane, you can:
@@ -26,8 +24,7 @@ From the **Internal Users** pane, you can:
 * **Invite users** by clicking **Invite User**, entering their email address, and clicking **Send Invite**.
 ![Invite User](images/invite_user.png)
 
-* **Search existing users** by entering a value into the search bar and clicking **Search**.
-Entering a blank value returns all users in the service plan’s internal user store.
+* **Search existing users** by entering a value into the search bar and clicking **Search**. Entering a blank value returns all users in the service plan’s internal user store.
 ![Internal Users](images/internal_users.png)
 
 * **Resend an invite** to an unverified user by selecting the checkbox next to their username and clicking **Resend Invite**.
@@ -46,25 +43,23 @@ Entering a blank value returns all users in the service plan’s internal user s
 
 * **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
 
+
 ## <a id="external"></a> Manage Users from an External Identity Provider
 
 For each external identity provider that <%= vars.product_short %> connects to, a users admin pane lets you browse, delete, and update <%= vars.platform_name %> permissions for user accounts from external identity providers. For example, **Okta SSO Users**.
 
 To open the external identity provider users admin pane:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials.
-You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) admin credentials. You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops Manager under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
+1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
-1. Click the external identity provider you want to manage and select the **Users** choice for the provider from the drop-down menu.
-This brings you to the users admin pane.
+1. Click the external identity provider you want to manage and select the **Users** choice for the provider from the dropdown. This brings you to the users admin pane.
 ![Okta Users Search](images/okta_search.png)
 
 From the external identity provider users admin pane, you can:
 
-* **Search** existing users by entering a value into the search bar and clicking **Search**.
-  Entering a blank value returns all users in the service plan internal user store.
+* **Search** existing users by entering a value into the search bar and clicking **Search**. Entering a blank value returns all users in the service plan internal user store.
 ![Okta Users Search Results](images/okta_results.png)
 
 * **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
@@ -77,16 +72,18 @@ From the external identity provider users admin pane, you can:
 
 * **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
 
+
 ## <a id="uaac"></a> Manage Users with the UAA CLI
 
-You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users for <%= vars.product_short %>. You can use this approach to programmatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
+You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users for <%= vars.product_short %>. You can use this approach to programmatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an admin for the service plan.
 
-<p class="note"><strong>Note</strong>: Clients and Groups for <%= vars.product_short %> should be created directly using the <%= vars.operator_dash %> or through app manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by <%= vars.product_short %>.</p>
+<p class="note"><strong>Note:</strong> Clients and Groups for <%= vars.product_short %> should be created directly using the <%= vars.operator_dash %> or through app manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by <%= vars.product_short %>.</p>
 
-1. Install the UAA CLI, `uaac`.
-    <pre class="terminal">
-    $ gem install cf-uaac
-    </pre>
+1. Install the UAA CLI, `uaac`, by running:
+    
+    ```
+    gem install cf-uaac
+    ``
 
 1. Use the `uaac target AUTH-DOMAIN` command to target your service plan. Auth Domain setting you entered when you created the service plan.
     <pre class="terminal">
@@ -95,9 +92,7 @@ You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac)
 
 1. Record the **App ID** and **App Secret** from your admin client created using the steps [here](./configure-apps/index.html#admin). You will need to give your admin client `scim.read` to read user information. You can give your admin client either `scim.write` to create users and modify group (scope) memberships or `scim.create` to only create users.
 
-1. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. Replace
-`ADMIN-APP-ID` with your **App ID** and `ADMIN-APP-SECRET` with your **App Secret**. UAAC stores the token in
-`~/.uaac.yml`.
+1. Run `uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET` to authenticate and obtain an access token for the admin client for your service plan. Replace `ADMIN-APP-ID` with your **App ID** and `ADMIN-APP-SECRET` with your **App Secret**. UAAC stores the token in `~/.uaac.yml`.
     <pre class="terminal">
     $ uaac token client get MyAdminAppId -s MyAdminAppSecret
     </pre>
@@ -123,14 +118,12 @@ Replace `NEW-USERNAME`, `NEW-PASSWORD`, and `NEW-EMAIL` with appropriate informa
     $ uaac user add Adam -p newSecretPassword --emails adam<span>@</span>example.com
     </pre>
 
-1. Run `uaac member add GROUP USERNAME` to add any
-group to any user (internal or external). Replace `GROUP` and `USERNAME` with appropriate information.
+1. Run `uaac member add GROUP USERNAME` to add any group to any user (internal or external). Replace `GROUP` and `USERNAME` with appropriate information.
     <pre class="terminal">
     $ uaac member add my-app.my-scope Adam
     </pre>
 
-1. Run `uaac member delete GROUP USERNAME` to delete any
-group from to any user (internal or external). Replace `GROUP` and `USERNAME` with appropriate information.
+1. Run `uaac member delete GROUP USERNAME` to delete any group from to any user (internal or external). Replace `GROUP` and `USERNAME` with appropriate information.
     <pre class="terminal">
     $ uaac member delete my-app.my-scope Adam
     </pre>

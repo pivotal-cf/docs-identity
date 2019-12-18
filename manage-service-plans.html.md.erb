@@ -5,9 +5,7 @@ owner: Identity Service
 
 This topic describes how <%= vars.platform_name %> Administrators manage Single Sign-On service plans.
 
-<%= vars.product_full %> is a multi-tenant service, which enables a deployment to host multiple tenants as service plans.
-Each service plan can have its own administrators, applications and users.
-This lets enterprises segregate access by using separate plans. For example, the following tenants might require separate plans:
+<%= vars.product_full %> is a multi-tenant service, which enables a deployment to host multiple tenants as service plans. Each service plan can have its own admins, apps, and users. This lets enterprises segregate access by using separate plans. For example, the following tenants might require separate plans:
 
 * Business units and geographical locations
 
@@ -15,21 +13,17 @@ This lets enterprises segregate access by using separate plans. For example, the
 
 * Development, staging, and production instances
 
-You may also want to configure an <%= vars.product_short %> as an OpenID Connect (OIDC) identity provider.
-For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/index.html).
+You may also want to configure an <%= vars.product_short %> as an OpenID Connect (OIDC) identity provider. For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/index.html).
+
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-<%= vars.platform_name %> administrators can create new <%= vars.product_short %> service plans at any time 
-from the <%= vars.operator_dash %>.
-You can use the <%= vars.operator_dash %> to create and configure service plans at any time.
+<%= vars.platform_name %> admins can create new <%= vars.product_short %> service plans at any time 
+from the <%= vars.operator_dash %>. You can use the <%= vars.operator_dash %> to create and configure service plans at any time.
 
-<p class="note"><strong>Note</strong>: You must create at least one plan for any service before your 
-	apps can use it.</p>
+<p class="note"><strong>Note:</strong> You must create at least one plan for any service before your apps can use it.</p>
 
-1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
-using your User Account and Authentication (UAA) administrator credentials.
-You can find these credentials in the <%= vars.app_runtime_full %> tile in Ops Manager in the **Credentials** tab.
+1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) tile in Ops Manager in the **Credentials** tab.
 
 1. Click **New Plan** on the <%= vars.operator_dash %> to create a new <%= vars.product_short %> service plan.
 
@@ -39,7 +33,7 @@ You can find these credentials in the <%= vars.app_runtime_full %> tile in Ops M
 
 1. Enter a **Description** to appear as a plan feature in the Services Marketplace.
 
-1. Enter an **Auth Domain** to be the URL where users authenticate to access applications covered by the service plan.
+1. Enter an **Auth Domain** to be the URL where users authenticate to access apps covered by the service plan.
 
 1. Enter an **Instance Name** to appear on the login page and in other user-facing content, such as email communications.
 
@@ -50,50 +44,42 @@ You can find these credentials in the <%= vars.app_runtime_full %> tile in Ops M
 		privileges.
 	</p>
 
-1. Under **Organizations**, select specific organizations in your  <%= vars.platform_name %> deployment
-that can access your <%= vars.product_short %> service plan, or select **Enable for all Orgs**. <br><br>
-	* If you select **Enable for all Orgs** the plan is available for use and displayed in the Services Marketplace for all developers in any organization.
-	This is only recommended for test plans to allow developers to experiment with <%= vars.product_short %>.<br><br>
-	* If you do not select any organizations, the plan is not available for use and it is not displayed in the Services Marketplace.
+1. Under **Organizations**, select specific orgs in your  <%= vars.platform_name %> deployment that can access your <%= vars.product_short %> service plan, or select **Enable for all Orgs**. <br><br>
+	* If you select **Enable for all Orgs** the plan is available for use and displayed in the Services Marketplace for all developers in any org. This is only recommended for test plans to allow developers to experiment with <%= vars.product_short %>.<br><br>
+	* If you do not select any orgs, the plan is not available for use and it is not displayed in the Services Marketplace.
 
-1. Click **Create Plan**. Your new plan appears in the Services Marketplace in the organizations you selected.
-Users in those organizations view the plan either in Apps Manager or through the CF CLI by entering `cf marketplace` in a terminal window.
+1. Click **Create Plan**. Your new plan appears in the Services Marketplace in the orgs you selected. Users in those orgs view the plan either in Apps Manager or through the cf CLI by entering `cf marketplace` in a terminal window.
+
 
 ## <a id='delete-svc-plan'></a> Delete Service Plans
 
-<p class='note'><strong>Note</strong>: This action cannot be undone. Deleting a <%= vars.product_short %> service plan
-removes from the <%= vars.product_short %> database all of the configurations, identity providers, users,
-application configurations and resources associated with the plan.
-It also deletes the associated service instances and service bindings.
-You must rebind any applications bound to the deleted service instances to new service instances.</p>
+<p class='note'><strong>Note:</strong> This action cannot be undone. Deleting a <%= vars.product_short %> service plan removes from the <%= vars.product_short %> database all of the configurations, identity providers, users, app configurations, and resources associated with the plan. It also deletes the associated service instances and service bindings. You must rebind any apps bound to the deleted service instances to new service instances.</p>
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
-using your UAA administrator credentials. You can find these credentials in your
-<%= vars.app_runtime %> tile in Ops Manager under the Credentials tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops Manager under the Credentials tab.
 
-2. Select the name of the plan you want to delete, and click **Edit Plan** in the drop-down menu.
+2. Select the name of the plan you want to delete, and click **Edit Plan** in the dropdown.
 
 3. Select **Delete** at the bottom of the page.
 
 4. In the popup that appears, click **Delete Plan** to confirm that you want to delete the plan.
 
+
 ## <a id='plan-automation'></a> Automate Service Plan Creation Using <%= vars.product_short %> API
 
-<%= vars.platform_name %> administrators can create new <%= vars.product_short %> service plans using the <%= vars.product_short %> API. This
-allows them to automate creating and deleting <%= vars.product_short %> plans. Pivotal recommends creating a dedicated client for <%= vars.product_short %> plan automation.
+<%= vars.platform_name %> admins can create new <%= vars.product_short %> service plans using the <%= vars.product_short %> API. This allows them to automate creating and deleting <%= vars.product_short %> plans. Pivotal recommends creating a dedicated client for <%= vars.product_short %> plan automation.
 
-To automate service plan creation, do the following:
+To automate service plan creation:
 
-1. To install the UAA CLI, run the following command:
+1. To install the UAA CLI, run:
 
 	```
-  gem install cf-uaac
-  ```
+  	gem install cf-uaac
+  	```
 
-1. To target your <%= vars.platform_name %> UAA server, run the following command:
+1. To target your <%= vars.platform_name %> UAA server, run:
 
     ```
-    $ uaac target uaa.YOUR-SYSTEM-DOMAIN
+    uaac target uaa.YOUR-SYSTEM-DOMAIN
     ```
 
 	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
@@ -102,8 +88,7 @@ To automate service plan creation, do the following:
 	+ Obtain **Admin Client Credentials** from Ops Manager.
 	+ Obtain **uaa:admin:client_secret** from your deployment manifest.
 
-1. To authenticate and obtain an access token for the admin client from the UAA server,
-run the following command:
+1. To authenticate and obtain an access token for the admin client from the UAA server, run:
 
 	```
 	uaac token client get admin -s ADMIN-CLIENT-SECRET
@@ -113,7 +98,7 @@ run the following command:
 
 	UAAC stores the token in `~/.uaac.yml`.
 
-1. To create an automation client with UAAC, run the following command:
+1. To create an automation client with UAAC, run:
 
 	```
 	uaac client add AUTO-CLIENT-ID --secret AUTO-CLIENT-SECRET \
@@ -125,7 +110,7 @@ run the following command:
 	+ `AUTO-CLIENT-ID` is the name of the automation client you want to use.
 	+ `AUTO-CLIENT-SECRET` is the secret for the automation client you want to use.
 
-1. To obtain an access token for your automation client, run the following command:
+1. To obtain an access token for your automation client, run:
 
 	```
 	uaac token client get AUTO-CLIENT-ID -s AUTO-CLIENT-SECRET
@@ -135,7 +120,7 @@ run the following command:
 	+ `AUTO-CLIENT-ID` is the name you provided in step 5.
 	+ `AUTO-CLIENT-SECRET` is the secret you provided in step 5.
 
-1. To obtain your automation access token, run the following command:
+1. To obtain your automation access token, run:
 
 	```
 	uaac context
@@ -156,12 +141,12 @@ run the following command:
 
 1. Record the `access_token` value from the output of the previous step.
 
-1. To create a new <%= vars.product_short %> plan and record the plan ID, run the following command:
+1. To create a new <%= vars.product_short %> plan and record the plan ID, run:
 
 	```
 	curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
 	  -H "Authorization: Bearer YOUR-TOKEN" \
-	  -H "Content-Type: application/json" \
+	  -H "Content-Type: app/json" \
 	  -d '{
 	    "name": "YOUR-PLAN-NAME",
 	    "description": "YOUR-DESCRIPTION",
@@ -175,14 +160,14 @@ run the following command:
 	+ `YOUR-TOKEN` is the access token you recorded from the previous step.
 	+ `YOUR-PLAN-NAME` is the name of your plan.
 	+ `YOUR-DESCRIPTION` is the text you want to appear as a plan feature in the Services Marketplace.
-	+ `YOUR-AUTH-DOMAIN` is the subdomain of the `login.YOUR-SYSTEM-DOMAIN` URL where users authenticate to access applications covered by the service plan.
+	+ `YOUR-AUTH-DOMAIN` is the subdomain of the `login.YOUR-SYSTEM-DOMAIN` URL where users authenticate to access apps covered by the service plan.
 	+ `YOUR-INSTANCE-NAME` is the name of your instance. This text appears in user-facing content, such as email communications.
 
 	The above command returns output similar to the following:
 
 	<pre class="terminal">
 	HTTP/1.1 201 Created
-	Content-Type: application/json
+	Content-Type: app/json
 
 	{
 	  "id": "1",
@@ -194,13 +179,12 @@ run the following command:
 	</pre>
 
 1. Record the `id` value from the output of the previous step. <br><br>
-Alternatively, you can save the plan ID, by parsing the output from the previous step. For example,
-you can run the following command:
+Alternatively, you can save the plan ID, by parsing the output from the previous step. For example, you can run:
 
 	```
 	$PLAN-ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans"  \
 	  -H "Authorization: Bearer YOUR-TOKEN" \
-	  -H "Content-Type: application/json" \
+	  -H "Content-Type: app/json" \
 	  -d '{
 	    "name": "YOUR-PLAN-NAME",
 	    "description": "YOUR-DESCRIPTION",
@@ -213,8 +197,7 @@ you can run the following command:
 
 	 <p class="note"><strong>Note:</strong> Using <code>curl</code> instead of <code>uaac curl</code> in the example to facilitates parsing the response for ID below.</p>
 
-1. To add plan administrators, who can view the plan and manage identity providers, run the following
-command for each plan administrator:
+1. To add plan admins, who can view the plan and manage identity providers, run the following command for each plan admin:
 
 	```
 	uaac member add zones.PLAN-ID.admin USER-NAME
@@ -222,9 +205,9 @@ command for each plan administrator:
 
 	Where:
 	+ `PLAN-ID` is the `id` recorded in the previous step.
-	+ `USER-NAME` is the username of the plan administrator you are adding.
+	+ `USER-NAME` is the username of the plan admin you are adding.
 
-1. To authenticate as your automation client, run the following commands:
+1. To authenticate as your automation client, run:
 
 	```
 	cf api api.YOUR-SYSTEM-DOMAIN
@@ -246,7 +229,7 @@ command for each plan administrator:
 		Where:
 		+ `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9.
 		+ `ORG-NAME` is the name of the org you want to have access to your <%= vars.product_short %> plan.
-	+ To give all orgs access to your <%= vars.product_short %> plan, run the following command:
+	+ To give all orgs access to your <%= vars.product_short %> plan, run:
 
 		```
 		cf enable-service-access p-identity -p PLAN_AUTH_DOMAIN
@@ -254,27 +237,27 @@ command for each plan administrator:
 
 		Where `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9.
 
-		<p class="note"> Pivotal recommends only giving all orgs access to your <%= vars.product_short %> plans 
-			for test plans to enable developers to experiment with <%= vars.product_short %>.</p>
+		<p class="note"><strong>Note:</strong> Pivotal recommends only giving all orgs access to your <%= vars.product_short %> plans for test plans to enable developers to experiment with <%= vars.product_short %>.</p>
 
 For more information on how you can manage <%= vars.product_short %> plans using the <%= vars.product_short %> API, see the [<%= vars.product_short %> API](https://docs.pivotal.io/p-identity/sso-api) documentation.
 
-## <a id="create"></a> Create a New <%= vars.platform_name %> Administrator for <%= vars.product_short %>
 
-<%= vars.platform_name %> administrators can grant users additional permissions to allow them to manage <%= vars.product_short %> plans. These
-permissions let users act as <%= vars.platform_name %> administrators.
+## <a id="create"></a> Create a New <%= vars.platform_name %> Admin for <%= vars.product_short %>
+
+<%= vars.platform_name %> admins can grant users additional permissions to allow them to manage <%= vars.product_short %> plans. These
+permissions let users act as <%= vars.platform_name %> admins.
 
 <p class="note warning"><strong>Warning:</strong> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assigned to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
 
-To create a new <%= vars.platform_name %> administrator, do the following:
+To create a new <%= vars.platform_name %> admin:
 
-1. To install the UAA CLI, run the following command:
+1. To install the UAA CLI, run:
 
 	```
   gem install cf-uaac
   ```
 
-1. To target your <%= vars.platform_name %> UAA server, run the following command:
+1. To target your <%= vars.platform_name %> UAA server, run:
 
     ```
     $ uaac target uaa.YOUR-SYSTEM-DOMAIN
@@ -286,8 +269,7 @@ To create a new <%= vars.platform_name %> administrator, do the following:
 	+ Obtain **Admin Client Credentials** from OpsManager.
 	+ Obtain **uaa:admin:client_secret** from your deployment manifest. UAAC stores the token in `~/.uaac.yml`.
 
-1. To authenticate and obtain an access token for the admin client from the UAA server,
-run the following command:
+1. To authenticate and obtain an access token for the admin client from the UAA server, run:
 
 	```
 	uaac token client get admin -s ADMIN-CLIENT-SECRET
@@ -295,7 +277,7 @@ run the following command:
 
 	Where `ADMIN-CLIENT-SECRET` is the admin credentials you recorded in step 3.
 
-1. To allow users to manage <%= vars.product_short %> plans, run the following commands:
+1. To allow users to manage <%= vars.product_short %> plans, run:
 
     ```
     uaac member add cloud_controller.admin ADMIN-USERNAME
@@ -304,4 +286,4 @@ run the following command:
     uaac member add zones.write ADMIN-USERNAME
     ```
 
-    Where `ADMIN-USERNAME` is the username of the user you want to make an administrator. <br><br>
+    Where `ADMIN-USERNAME` is the username of the user you want to make an admin. <br><br>
