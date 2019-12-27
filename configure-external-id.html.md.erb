@@ -2,10 +2,15 @@
 title: Configuring External Identity Providers
 owner: Identity Service
 ---
+This topic describes how <%= vars.platform_name %> admins configure a
+<%= vars.product_full %> service plan to manage user access to <%= vars.platform_name %> apps using an
+external identity provider.
 
-This topic describes how <%= vars.platform_name %> admins configure a <%= vars.product_full %> service plan to manage user access to <%= vars.platform_name %> apps using an external identity provider.
-
-<p class="note"><strong>Note:</strong> You can also configure a <%= vars.product_short %> service plan to use the internal user store to manage user accounts. For more information, see <a href="./configure-internal-us.html">Configuring Internal User Store</a>.</p>
+<p class="note"><strong>Note:</strong>
+You can also configure a <%= vars.product_short %> service plan to use the internal user store to
+manage user accounts.
+For more information, see <a href="./configure-internal-us.html">Configuring Internal User Store</a>.
+</p>
 
 ## <a id='config-ext-prov'></a> Configure an External Identity Provider
 
@@ -117,7 +122,7 @@ between the identity provider and the service provider.
 To configure SAML settings:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops Manager under the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -150,7 +155,7 @@ You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops 
 
 To add a external OIDC identity provider:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops Manager on the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -526,7 +531,7 @@ To add a LDAP identity provider:
 
 To delete an external identity provider:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops Manager on the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -560,7 +565,7 @@ the user's group memberships are mapped to scopes in the resulting token.
 To create or edit resource permissions mappings:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops Manager on the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -592,7 +597,7 @@ using the format `cn=XXX-group,ou=users,o=YYY,dc=ZZZ,dc=com`.
 To delete a resource permissions mapping:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops Manager on the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
@@ -631,7 +636,7 @@ see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping<
 To configure a group whitelist:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-   You can find these credentials in your <%= vars.app_runtime_abbr %> tile in Ops Manager on the Credentials tab.
+   You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager on the Credentials tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the dropdown.
 
