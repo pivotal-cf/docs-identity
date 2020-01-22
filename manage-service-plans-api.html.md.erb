@@ -25,7 +25,7 @@ Refresh tokens typically have a longer expiration time than access tokens.
 To configure the token policy:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime %> tile in Ops Manager in **Credentials**.
+You can find these credentials in your <%= vars.app_runtime %> tile in <%= vars.ops_manager_full %> in **Credentials**.
 
 2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the dropdown.
 
@@ -50,7 +50,7 @@ This section shows how to use the UAAC to update UAA identity zone configuration
   You must also provide all configuration values, otherwise, data might be lost.
 </p>
 
-For general information about UAA API, 
+For general information about UAA API,
 see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.<br>
 
 To make UAA identity zone API calls:
@@ -61,7 +61,7 @@ To make UAA identity zone API calls:
 <li> Find the UAA identity zone ID:</li>
     <ol type="a">
         <li>
-          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the <%= vars.app_runtime %> tile in Ops Manager in <strong>Credentials</strong>.
+          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the <%= vars.app_runtime %> tile in <%= vars.ops_manager %> in <strong>Credentials</strong>.
         </li>
 
         <li>
