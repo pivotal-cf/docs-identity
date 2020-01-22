@@ -20,16 +20,16 @@ For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/i
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-<%= vars.platform_name %> administrators can create new <%= vars.product_short %> service plans at any time 
+<%= vars.platform_name %> administrators can create new <%= vars.product_short %> service plans at any time
 from the <%= vars.operator_dash %>.
 You can use the <%= vars.operator_dash %> to create and configure service plans at any time.
 
-<p class="note"><strong>Note</strong>: You must create at least one plan for any service before your 
+<p class="note"><strong>Note</strong>: You must create at least one plan for any service before your
 	apps can use it.</p>
 
 1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
-using your User Account and Authentication (UAA) administrator credentials.
-You can find these credentials in the <%= vars.app_runtime_full %> tile in Ops Manager in the **Credentials** tab.
+using your User Account and Authentication (UAA) admin credentials.
+You can find these credentials in the <%= vars.app_runtime_full %> tile in <%= vars.ops_manager_full %> in the **Credentials** tab.
 
 1. Click **New Plan** on the <%= vars.operator_dash %> to create a new <%= vars.product_short %> service plan.
 
@@ -68,8 +68,8 @@ It also deletes the associated service instances and service bindings.
 You must rebind any applications bound to the deleted service instances to new service instances.</p>
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
-using your UAA administrator credentials. You can find these credentials in your
-<%= vars.app_runtime %> tile in Ops Manager under the Credentials tab.
+using your UAA admin credentials. You can find these credentials in your
+<%= vars.app_runtime %> tile in <%= vars.ops_manager %> under the Credentials tab.
 
 2. Select the name of the plan you want to delete, and click **Edit Plan** in the drop-down menu.
 
@@ -99,7 +99,7 @@ To automate service plan creation, do the following:
 	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
 
 1. To record your admin credentials, do one of the following:
-	+ Obtain **Admin Client Credentials** from Ops Manager.
+	+ Obtain **Admin Client Credentials** from <%= vars.ops_manager %>.
 	+ Obtain **uaa:admin:client_secret** from your deployment manifest.
 
 1. To authenticate and obtain an access token for the admin client from the UAA server,
@@ -254,7 +254,7 @@ command for each plan administrator:
 
 		Where `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9.
 
-		<p class="note"> Pivotal recommends only giving all orgs access to your <%= vars.product_short %> plans 
+		<p class="note"> Pivotal recommends only giving all orgs access to your <%= vars.product_short %> plans
 			for test plans to enable developers to experiment with <%= vars.product_short %>.</p>
 
 For more information on how you can manage <%= vars.product_short %> plans using the <%= vars.product_short %> API, see the [<%= vars.product_short %> API](https://docs.pivotal.io/p-identity/sso-api) documentation.
