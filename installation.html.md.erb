@@ -10,7 +10,7 @@ This topic explains how to install <%= vars.product_full %>.
 
 To install <%= vars.product_short %>, you must have:
 
-* [Ops Manager](https://network.pivotal.io/products/ops-manager)
+* [<%= vars.ops_manager_full %>](https://network.pivotal.io/products/ops-manager)
 
 * [<%= vars.app_runtime_full %>](https://network.pivotal.io/products/elastic-runtime)
 
@@ -19,7 +19,7 @@ To install <%= vars.product_short %>, you must have:
 * Application Security Groups
 
 
-## <a id='install'></a> Install <%= vars.product_short %> using Ops Manager
+## <a id='install'></a> Install <%= vars.product_short %> using <%= vars.ops_manager %>
 
 <p class="note"><strong>Note:</strong> If you are upgrading to this version of <%= vars.product_short %>,
   you must update the definitions of any BOSH Add-Ons you are using to
@@ -29,7 +29,7 @@ To install <%= vars.product_short %>, you must have:
 1. From [Pivotal Network](https://network.pivotal.io/products/p-identity), select
 a **<%= vars.product_short %>** tile version and download the product release file.
 
-1. From the Ops Manager Installation Dashboard, select the **Import a Product**
+1. From the <%= vars.ops_manager %> Installation Dashboard, select the **Import a Product**
 button to upload the product file.
 
 1. Click the **+** icon next to the uploaded product to add this product to your
@@ -43,10 +43,10 @@ staging area.
     a network during installation, select the <strong>Deployment</strong> network,
     also known as the <%= vars.app_runtime_full %> network.</p>
 
-1. In the Ops Manager Dashboard, do the following to complete the installation:
+1. In the <%= vars.ops_manager %> Dashboard, do the following to complete the installation:
 
-    1. If you are using Ops Manager v2.3 or later, click **Review Pending Changes**.
-    For more information about this Ops Manager page, see
+    1. If you are using <%= vars.ops_manager %> v2.3 or later, click **Review Pending Changes**.
+    For more information about this <%= vars.ops_manager %> page, see
     [Reviewing Pending Product Changes](https://docs.pivotal.io/pivotalcf/customizing/review-pending-changes.html).<br><br>
     1. Click **Apply Changes**.
 
@@ -55,7 +55,7 @@ staging area.
 If required, do the following to update the stemcell for <%= vars.product_short %>:
 
 1. Download the stemcell from [Pivotal Network](https://network.pivotal.io/).
-1. In the Ops Manager, click **Stemcell Library**.
+1. In the <%= vars.ops_manager %>, click **Stemcell Library**.
 1. Click **Import Stemcell**, and then select the stemcell you downloaded from
 Pivotal Network.
 

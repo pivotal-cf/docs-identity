@@ -31,7 +31,7 @@ create and configure service plans at any time.
 
 1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
 using your User Account and Authentication (UAA) admin credentials.
-You can find these credentials in the <%= vars.app_runtime_full %> tile in Ops Manager in the **Credentials** tab.
+You can find these credentials in the <%= vars.app_runtime_full %> tile in <%= vars.ops_manager_full %> in the **Credentials** tab.
 
 1. Click **New Plan** on the <%= vars.operator_dash %> to create a new <%= vars.product_short %> service plan.
 
@@ -76,7 +76,7 @@ Users in those orgs view the plan either in Apps Manager or through the cf CLI b
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
 using your UAA admin credentials. You can find these credentials in your
-<%= vars.app_runtime %> tile in Ops Manager under the Credentials tab.
+<%= vars.app_runtime %> tile in <%= vars.ops_manager %> under the Credentials tab.
 
 2. Select the name of the plan you want to delete, and click **Edit Plan** in the dropdown.
 
@@ -106,7 +106,7 @@ To automate service plan creation:
 	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
 
 1. To record your admin credentials, do one of the following:
-	+ Obtain **Admin Client Credentials** from Ops Manager.
+	+ Obtain **Admin Client Credentials** from <%= vars.ops_manager %>.
 	+ Obtain **uaa:admin:client_secret** from your deployment manifest.
 
 1. To authenticate and obtain an access token for the admin client from the UAA server,

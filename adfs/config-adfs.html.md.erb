@@ -110,7 +110,7 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
 
-1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the Ops Manager certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
+1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the <%= vars.ops_manager_full %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
 
 1. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**. For more information, see the next section.
 
@@ -123,7 +123,7 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 1. Select **Add Rule**.
 
 1. Select **Send Group Membership as a Claim** and click **Next**.
-  
+
 	<%= image_tag '../images/send-group-membership-as-claim.png' %>
 
 1. Enter the **Claim rule name**.
@@ -135,7 +135,7 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 1. Set your **Outgoing claim value** to match your group’s name.
 
 1. Click **Finish**.
-  
+
 	<%= image_tag '../images/claim-rule-name-type.png' %>
 
 1. To save these configurations and use the default SAML assertion of `http://schemas.xmlsoap.org/claims/Group`, click **OK**. If you want to pass the claims assertion as a custom value `“groups”` in the SAML assertion, continue to the procedure below.
@@ -143,7 +143,7 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 ## <a id='groups'></a> Create Custom Value "groups"
 
 1. Select your newly created rule and click **Edit Rule**.
-    
+
 	<%= image_tag '../images/edit-rule.png' %>
 
 1. Click **View Rule Language**.
@@ -155,11 +155,11 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 1. Click **Add Rule**.
 
 1. Select **Send Claims Using a Custom Rule**.
-    
+
 	<%= image_tag '../images/send-claim-using-custom-rule.png' %>
 
 1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that it only says `“groups”`.
-    
+
 	<%= image_tag '../images/edit-type.png' %>
 
 1. Click **OK** to finish making your changes and save the changes you made.

@@ -7,7 +7,7 @@ This topic outlines the steps for installing and configuring the <%= vars.produc
 
 ## <a id='install'></a> Install and Set Up <%= vars.product_short %> for Apps
 
-1. [Install <%= vars.product_short %>](./installation.html) using Ops Manager.
+1. [Install <%= vars.product_short %>](./installation.html) using <%= vars.ops_manager_full %>.
 
 1. [Create a service plan](./manage-service-plans.html#create-svc-plan).
 <%= vars.product_short %> is a multi-tenant service and a service plan
@@ -108,7 +108,7 @@ The following table shows the permissions for each role:
 ## <a id='other'></a> Using <%= vars.product_short %> Components
 
 In addition to apps, <%= vars.product_short %> supports single sign-on for components of  <%= vars.platform_name %>,
-including Ops Manager and Apps Manager.
+including <%= vars.ops_manager %> and Apps Manager.
 This enables users already managed in an external IdP to sign into
 Pivotal services.
 
@@ -116,7 +116,7 @@ Pivotal services.
 Refer to the following pages for instructions on configuring <%= vars.product_short %> to enable users
 in an external identity store to access <%= vars.platform_name %> components:
 
-* Ops Manager, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp),
+* <%= vars.ops_manager %>, on [Amazon Web Services](http://docs.pivotal.io/pivotalcf/customizing/cloudform-om-config.html#idp),
 [vSphere](http://docs.pivotal.io/pivotalcf/customizing/vsphere-config.html#idp),
 or [OpenStack](http://docs.pivotal.io/pivotalcf/customizing/openstack-om-config.html#idp)
 
