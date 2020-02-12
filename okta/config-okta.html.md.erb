@@ -49,8 +49,15 @@ system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
 	<%= image_tag '../images/okta_saml_config.png' %>
 
 1. In the **SAML Settings** section:
-	1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into **Single sign on URL**. For example, `https://AUTH-DOMAIN/saml/SSO/alias/AUTH-DOMAIN`.
-	1. Enter your Auth Domain URL into **Audience URI (SP Entity ID)**. You can view the Auth Domain for a plan by logging into the <%= vars.operator_dash %>, clicking the name of your plan, and selecting **Edit Plan**. For example, `https://AUTH-DOMAIN.login.SYSTEM-DOMAIN`. This value is also available in the downloaded service provider metadata as the entity ID.
+	1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata
+	into **Single sign on URL**. <br>
+	For example, `https://PORTAL-FQDN/saml/SSO/alias/PORTAL-FQDN`. <br>
+	Where `PORTAL-FQDN` is the fully qualified domain name (FQDN) for your login portal.
+	The portal FQDN uses the format `AUTH-DOMAIN.login.SYSTEM-DOMAIN`.
+	You can view the portal FQDN for a plan by logging into the <%= vars.operator_dash %>,
+	clicking the name of your plan, and selecting **Edit Plan**.
+	1. Enter the FQDN for your login portal into **Audience URI (SP Entity ID)**.
+	This value is available in the downloaded service provider metadata as the entity ID.
 	1. Select a **Name ID format**.
 	1. Select an **Application username**.
 
