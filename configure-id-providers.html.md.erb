@@ -34,7 +34,7 @@ To create new internal user accounts directly, supplying the user's name, email 
 
 1. If you do not already have the UAAC installed, run `gem install cf-uaac` in a terminal window.
 
-1. [Create an admin client](configure-apps/index.html#admin) that can manage users in the Service Plan. Include the following scopes for the client:
+1. [Create an admin client](config-apps/index.html#admin) that can manage users in the Service Plan. Include the following scopes for the client:
 	- `clients.admin`
 	- `scim.read`
 	- `scim.write`
@@ -123,7 +123,9 @@ See the following sets of instructions for how to configure the SSO service to u
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
-1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
+Follow the steps below to add an external SAML identity provider:
+
+1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials. You can find these credentials in your Pivotal Application Service tile in Ops Manager under the **Credentials** tab.
 
 1. Click the plan name and select **Manage Identity Providers** from the drop-down menu.
 
