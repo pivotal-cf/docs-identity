@@ -3,7 +3,7 @@ title: Determining SSO Application Type
 owner: Identity Service
 ---
 
-This topic explains how to determine your SSO Application type. 
+This topic explains how to determine your <%= vars.product_full %> app type.
 
 ## <a id='choose-type'></a> Determine Your SSO Application Type
 
@@ -15,18 +15,47 @@ If the app does not authenticate end users, but rather accesses other services o
 
 See the table below to determine your app's SSO Application Type and OAuth Grant Type:
 
-| Application Type  | SSO Application Type | OAuth Grant Type |
-|-------------------|------------------------------|-------------------------------|
-| <a href="./configure-apps/web-app.html">Web</a> | Web App | `authorization code` |
-| <a href="./configure-apps/native-app.html">Native Mobile, Desktop, or Command Line</a> | Native App | `password` (the resource owner's password) |
-| <a href="./configure-apps/single-page-js-app.html">Single-Page JavaScript</a> | Single-Page JavaScript App | `implicit` |
-| <a href="./configure-apps/service-to-service-app.html">Service-to-Service</a> | Service-to-Service App | `client_credentials` |
-| Resource Server | Secured API, Database Server | n/a |
+<table>
+  <thead>
+    <tr>
+      <th>App Type</th>
+      <th><%= vars.product_short %> App Type</th>
+      <th>OAuth Grant Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Web</td>
+      <td>Web App</td>
+      <td><a href=".grant-types.html#auth-code">Authorization Code</a></td>
+    </tr>
+    <tr>
+      <td>Native Mobile, Desktop, or Command Line</td>
+      <td>Native App</td>
+      <td><a href=".grant-types.html#resource-owner-pw">Resource Owner Password</a></td>
+    </tr>
+    <tr>
+      <td>Single-Page JavaScript</td>
+      <td>Single-Page JavaScript App</td>
+      <td><a href=".grant-types.html#implicit">Implicit</a></td>
+    </tr>
+    <tr>
+      <td>Service-to-Service</td>
+      <td>Service-to-Service App</td>
+      <td><a href=".grant-types.html#client-cred">Client Credentials</a></td>
+    </tr>
+    <tr>
+      <td>Resource Server</td>
+      <td>Secured API, Database Server</td>
+      <td>n/a</td>
+    </tr>
+  </tbody>
+</table>
 
 The [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) GitHub repository provides examples for a few application types listed above.
 
 <p class="note"><strong>Note</strong>: The Native App application type is intended only
    for highly-trusted apps, such as company-owned and managed apps.
-   The Native App application type works only with back-channel protocols, 
+   The Native app type only works with back-channel protocols,
    such as internal UAA store or LDAP.
    It does not work with front-channel protocols, such as SAML.</p>
