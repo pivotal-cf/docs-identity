@@ -3,7 +3,7 @@ title: Determining Pivotal Single Sign&#8209;On App Type
 owner: Identity Service
 ---
 
-This topic explains how to determine your <%= vars.product_full %> app type. 
+This topic explains how to determine your <%= vars.product_full %> app type.
 
 ## <a id='choose-type'></a> Determine Your <%= vars.product_short %> App Type
 
@@ -15,19 +15,52 @@ If the app does not authenticate end users, but rather accesses other services o
 
 See the table below to determine your app's <%= vars.product_short %> app type and OAuth Grant Type:
 
-| App Type  | <%= vars.product_short %> App Type | OAuth Grant Type |
-|-------------------|------------------------------|-------------------------------|
-|[Web](./configure-apps/web-app.html) | Web App | `authorization code` |
-|[Native Mobile, Desktop, or Command Line](./configure-apps/native-app.html) | Native App | `password` (the resource owner's password) |
-|[Single-Page JavaScript](./configure-apps/single-page-js-app.html)| Single-Page JavaScript App | `implicit` |
-|[Service-to-Service](./configure-apps/service-to-service-app.html)| Service-to-Service App | `client_credentials` |
-|[Web + Service-to-Service](./configure-apps/web-service-to-service-app.html)| Web + Service-to-Service App | `authorization_code` `client_credentials` |
-| Resource Server | Secured API, Database Server | n/a |
+<table>
+  <thead>
+    <tr>
+      <th>App Type</th>
+      <th><%= vars.product_short %> App Type</th>
+      <th>OAuth Grant Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Web</td>
+      <td>Web App</td>
+      <td><a href=".grant-types.html#auth-code">Authorization Code</a></td>
+    </tr>
+    <tr>
+      <td>Native Mobile, Desktop, or Command Line</td>
+      <td>Native App</td>
+      <td><a href=".grant-types.html#resource-owner-pw">Resource Owner Password</a></td>
+    </tr>
+    <tr>
+      <td>Single-Page JavaScript</td>
+      <td>Single-Page JavaScript App</td>
+      <td><a href=".grant-types.html#implicit">Implicit</a></td>
+    </tr>
+    <tr>
+      <td>Service-to-Service</td>
+      <td>Service-to-Service App</td>
+      <td><a href=".grant-types.html#client-cred">Client Credentials</a></td>
+    </tr>
+    <tr>
+      <td>Web + Service-to-Service</td>
+      <td>Web + Service-to-Service App</td>
+      <td><a href=".grant-types.html#auth-code">Authorization Code</a> and <a href=".grant-types.html#client-cred">Client Credentials</a></td>
+    </tr>
+    <tr>
+      <td>Resource Server</td>
+      <td>Secured API, Database Server</td>
+      <td>n/a</td>
+    </tr>
+  </tbody>
+</table>
 
 The [<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) GitHub repository provides examples for a few of the <%= vars.product_short %> app types listed above.
 
 <p class="note"><strong>Note</strong> Pivotal recommends only using the Native app type
    for highly-trusted apps, such as company-owned and managed apps.
-   The Native app type only works with back-channel protocols, 
+   The Native app type only works with back-channel protocols,
    such as internal UAA store or LDAP.
    It does not work with front-channel protocols, such as SAML.</p>
