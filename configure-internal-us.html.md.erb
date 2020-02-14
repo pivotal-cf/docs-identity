@@ -1,0 +1,189 @@
+---
+title: Configuring Internal User Store
+owner: Identity Service
+---
+
+This topic describes how <%= vars.platform_name %> admins can configure a
+<%= vars.product_full %> service plan to manage user access to <%= vars.platform_name %> apps with the internal user store.
+
+## <a id='overview'></a> Overview
+
+By default, each <%= vars.product_short %> service plan comes with an internal user store, which
+natively stores user accounts in a User Account and Authentication (UAA) database.
+
+To manage the internal user store:
+
+1. [Configure the Internal User Store](#config-int-store)
+2. [Add Internal Users Using UAAC](#add-to-int)
+3. [Test Identity Provider Configurations](#test-id-config)
+
+You can also configure a <%= vars.product_short %> service plan to use an external identity provider to
+manage user accounts.
+For more information, see [Configuring External Identity Providers](./configure-external-id.html).
+
+## <a id='config-int-store'></a> Configure the Internal User Store
+
+To configure the internal user store:
+
+1. Log in to the **<%= vars.operator_dash %>** at
+`https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+You can find these credentials in your <%= vars.app_runtime_full %> tile in
+<%= vars.ops_manager_full %> under the **Credentials** tab.
+
+1. Under **Name**, click the plan name and select **Manage Identity Providers** from the dropdown.
+
+1. Under **Name**, click **Internal User Store** and select **Edit Provider** from the dropdown.
+
+1. Under **Email Domains**, enter a comma-separated list of the email domains for service plan.
+	![Email Domains field for the Internal User Store](email-domains.png)
+
+1. (Optional) Under **Authentication Policy** select one of the following:
+	- **Disable Internal Authentication**: This option prevents authentication against the internal user store.
+	You must have at least one external identity provider configured.
+	<p class="note"><strong>Note:</strong> The login page does not include the <strong>Email</strong>
+		and <strong>Password</strong> fields if you select this option.</p>
+	- **Disable User Management**: This option prevents all users, including admins,
+	from managing internal users.
+	<p class="note"><strong>Note:</strong> The login page does not include <strong>Create Account</strong>
+		and <strong>Reset Password</strong> links if you select this option.</p>
+	![Authentication Policy field for the Internal User Store](auth-policy.png)
+
+1. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**,
+or enter custom settings in the **Password Complexity** and **Lockout Policy** fields.
+![ Password Policy Settings for the Internal User Store](password-complex.png)
+
+	See the following table for configuration instructions:
+
+	<table class="nice">
+		<tr>
+			<th>Field</th>
+			<th>Instructions</th>
+		</tr>
+
+		<tr>
+			<th style="text-align:center" colspan="2">Password Complexity</th>
+		</tr>
+
+		<tr>
+			<td><strong>Min Length</strong></td>
+			<td>Enter the minimum password length.</td>
+		</tr>
+
+		<tr>
+			<td><strong>Uppercase</strong></td>
+			<td>Enter the minimum number of uppercase characters required in a password.</td>
+		</tr>
+
+		<tr>
+			<td><strong>Lowercase</strong></td>
+			<td>Enter the minimum number of lowercase characters required in a password.</td>
+		</tr>
+
+		<tr>
+			<td><strong>Special Characters</strong></td>
+			<td>Enter the minimum number of special characters required in a password.</td>
+		</tr>
+
+		<tr>
+			<td><strong>Numerals</strong></td>
+			<td>Enter the minimum number of numeric characters required in a password.</td>
+		</tr>
+
+		<tr>
+			<th style="text-align:center" colspan="2">Lockout Policy</th>
+		</tr>
+
+		<tr>
+			<td><strong>Failures Allowed</strong></td>
+			<td>Enter the number of failed login attempts permitted per hour before a user is locked out.</td>
+		</tr>
+
+		<tr>
+			<td><strong>Lockout Period</strong></td>
+			<td>Enter the number of seconds a user is locked out for after excessive failed login attempts.</td>
+		</tr>
+
+		<tr>
+			<td><strong>Password Expires</strong></td>
+			<td>Enter the number of months passwords are valid for before users needs to enter a new password.</td>
+		</tr>
+
+	</table>
+
+1. Click **Save Identity Provider**.
+
+## <a id='add-to-int'></a> Add Internal Users Using UAAC
+
+You can create new internal user accounts with the UAA Command Line Interface (UAAC).
+You can also use the **Internal Users** admin pane to send invitations to users to enable them to add themselves to the internal user store.
+However, you cannot use the admin pane to add users directly.
+For information about the admin pane,
+see [Manage Users in an Internal User Store](./manage-users.html#internal).
+
+To create new internal user accounts with the UAAC:
+
+1. If you do not already have the UAAC installed,  install the UAAC by running the following command:
+
+	```
+	gem install cf-uaac
+	```
+
+1. Create an admin client that can manage users for the <%= vars.product_short %> service plan with the
+following scopes:
+	- `clients.admin`
+	- `scim.read`
+	- `scim.write`
+
+	To create an admin client, see [Create Admin Client](config-apps.html#admin).
+
+1. Record the **App ID** and **App Secret**. These are used as your client ID and client secret.
+
+1. Target the authentication domain of your <%= vars.product_short %> service plan by running the following command:
+
+	```
+	uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
+	```
+	Where:
+	+ `AUTH-DOMAIN` is the URL you provided when you create your service plan.
+	This URL is where users authenticate to access apps.
+	+ `SYSTEM-DOMAIN` is the URL for your <%= vars.platform_name %> system domain.
+
+1. Obtain an access token for your admin client by running the following command:
+
+	```
+ 	uaac token client get APP-ID
+	```
+
+	Where `APP-ID` is the **App ID** you recorded in the above step.
+
+1. When prompted for `Client secret`, enter the **App Secret** admin client secret you recorded in the above step.
+
+1. Add new users by running the following command:
+
+	```
+	uaac user add --emails USER-EMAIL
+	```
+	Where `USER-EMAIL` is the email address for the user you are creating.
+
+1. When prompted for `User name` and `Password`, enter a username and password for the user you are creating.
+
+1. (Optional) Create a user group and add users to the group by doing the following:
+
+	1. Create the user group by running the following command:
+
+		```
+		uaac group add GROUP-NAME
+		```
+		Where `GROUP-NAME` is the name of the group you are creating.
+
+	1. Add a member to your new group by running the following command:
+
+		```
+ 		uaac member add GROUP-NAME USER-NAME
+		```
+
+## <a id='#test-id-config'></a> Test Identity Provider Configurations
+
+Pivotal provides sample apps you can deploy to validate your identity provider configurations.
+To deploy a sample app, follow the instructions in [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps)
+in Github.
