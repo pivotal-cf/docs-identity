@@ -196,20 +196,20 @@ The table below provides descriptions and default values for bind parameters:
 	</tr>
 	<tr>
 		<td><code>icon</code></td>
-		<td>App icon displayed next to the app name on the Pivotal Account dashboard.
+		<td>App icon displayed next to the app name on the Account dashboard.
 			It is displayed if <code>show_on_home_page</code> is set to <code>true</code>.
 			Do not exceed 64kb.</td>
 		<td>No value</td>
 	</tr>
 	<tr>
 		<td><code>launch_url</code></td>
-		<td>App launch URL used for the app on the Pivotal Account dashboard
+		<td>App launch URL used for the app on the Account dashboard
 			if <code>show_on_home_page</code> is set to <code>true</code>.</td>
 		<td>The application route</td>
 	</tr>
 	<tr>
 		<td><code>show_on_home_page</code></td>
-		<td>If set to <code>true</code>, the app appears on the Pivotal Account
+		<td>If set to <code>true</code>, the app appears on the Account
 			dashboard with the corresponding icon and launch URL.</td>
 		<td><code>true</code></td>
 	</tr>
@@ -306,7 +306,7 @@ The table below provides descriptions and default values for <%= vars.product_sh
 		<td><code>SSO_SCOPES</code></td>
 		<td>Comma-separated list of scopes that belong to the app and are registered
 			as client scopes with <%= vars.product_short %>. This value is ignored for client credential grant type apps.<br><br>
-      Pivotal recommends including <code>openid</code>, which
+      <%= vars.recommended_by %> including <code>openid</code>, which
       is not added to your user-provided list by default.
 		<td><code>openid</code></td>
 	</tr>
@@ -325,7 +325,7 @@ The table below provides descriptions and default values for <%= vars.product_sh
 			by zone and plan admins.
 			This value is ignored for any grant type other than client credentials.
         <br><br>
-			Pivotal recommends including <code>uaa.resource</code>, which
+			<%= vars.recommended_by %> including <code>uaa.resource</code>, which
       is not added your user-provided list by default.
 
 			</td>
@@ -360,19 +360,18 @@ The table below provides descriptions and default values for <%= vars.product_sh
 	</tr>
 	<tr>
 		<td><code>SSO_ICON</code></td>
-		<td>App icon that is displayed next to the app name on the Pivotal
-			Account dashboard if <strong>Show on Homepage</strong> is enabled. Do not exceed 64kb.</td>
+		<td>App icon that is displayed next to the app name on the Account dashboard if <strong>Show on Homepage</strong> is enabled. Do not exceed 64kb.</td>
 		<td>(No value)</td>
 	</tr>
 	<tr>
 		<td><code>SSO_LAUNCH_URL</code></td>
-		<td>App launch URL that is used for the app on the Pivotal Account
+		<td>App launch URL that is used for the app on the Account
 			dashboard if <strong>Show on Homepage</strong> is enabled.</td>
 		<td>(App route)</td>
 	</tr>
 	<tr>
 		<td><code>SSO_SHOW_ON_HOME_PAGE</code></td>
-		<td>If set to <code>true</code>, the app appears on the Pivotal Account dashboard
+		<td>If set to <code>true</code>, the app appears on the Account dashboard
 			with the corresponding icon and launch URL.</td>
 		<td><code>true</code></td>
 	</tr>
@@ -550,7 +549,7 @@ The default is set in the configuration for the <%= vars.product_short %> servic
 For more information about tokens, see [Configure a Token Policy](../manage-service-plans-api.html#configure-token-policy).
 
 1. (Optional) If your App Type is a `Web App` or `Single-Page JavaScript App`, you can enable
-    **Show on Homepage** to display the app on the UAA or Pivotal Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
+    **Show on Homepage** to display the app on the UAA or Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
       1. In **App Launch URL**, enter the address you want for your app.
       1. Upload an app icon for your app.
       <%= image_tag("../images/sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
@@ -648,7 +647,7 @@ To manage your app configurations through the <%= vars.developer_dash %>:
    For more information about tokens, see [Configure a Token Policy](../manage-service-plans-api.html#configure-token-policy).
 
 1. (Optional) If your App Type is a `Web App` or `Single-Page JavaScript App`, you can enable
-**Show on Homepage** to display the app on the UAA or Pivotal Account home page.
+**Show on Homepage** to display the app on the UAA or Account home page.
 	<p class="note"><strong>Note:</strong> If you want an app to display on
 		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
     1. In **App Launch URL**, enter the address you want for your app.

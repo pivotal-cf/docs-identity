@@ -1,5 +1,5 @@
 ---
-title: Integrating Pivotal Single Sign&#8209;On with Your App
+title: Integrating Single Sign&#8209;On with Your App
 owner: Identity Service
 ---
 
@@ -9,7 +9,7 @@ This topic describes how to integrate <%= vars.product_full %> with Java and non
 
 Because <%= vars.product_short %> is based on the OAuth protocol, any app that uses <%= vars.product_short %> must be OAuth-aware.
 
-### <a id="app-integration-java"></a>Java Apps 
+### <a id="app-integration-java"></a>Java Apps
 
 If you are using Java, see the [<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository.
 These are sample [Spring Boot](https://projects.spring.io/spring-boot/) apps
@@ -26,7 +26,7 @@ you must restart the app for the new <%= vars.product_short %> configuration to 
 
 ### <a id="app-integration-nonjava"></a>Non-Java Apps
 
-To configure non-Java apps for OAuth, supply the following properties as environment 
+To configure non-Java apps for OAuth, supply the following properties as environment
 variables to your app after you bind the app to a <%= vars.product_short %> service instance.
 You can view this information on the **Next Steps** page of the <%= vars.developer_dash %>.
 
@@ -53,7 +53,7 @@ a login hint can be provided so that the end user is automatically redirected to
 
 An encoded JSON string containing `origin_key` tied to the origin key of an
 identity provider can be provided as a login hint using `login_hint` in a query
-parameter. 
+parameter.
 For information about login hints,
 see the [Authorization Code Grant](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#authorization-code-grant)
 in the UAA API documentation.

@@ -374,7 +374,7 @@ To avoid username collision, do not bootstrap or create users in the UAA databas
 You can only have one LDAP external identity provider per service plan.
 
 <p class="note warning">
-<strong>Warning:</strong> Pivotal recommends that you do not reuse LDAP service accounts across environments.
+<strong>Warning:</strong> <%= vars.recommended_by %> that you do not reuse LDAP service accounts across environments.
 LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users using the same account.
 LDAP service accounts should not be subject to automated deletions as disruption to these service accounts could prevent user logins.
 </p>
@@ -652,7 +652,7 @@ To configure a group whitelist:
 
 ## <a id='testing-identity-provider-configurations'></a> Test Identity Provider Configurations
 
-Pivotal provides sample apps you can deploy to validate your identity provider configurations.
+VMware provides sample apps you can deploy to validate your identity provider configurations.
 
 To deploy a sample app, see [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps)
 in GitHub.
