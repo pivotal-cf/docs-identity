@@ -15,7 +15,7 @@ This topic explains how to install Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 * SSL Certificates.
 
-* Application Security Groups.
+* Application Security Groups (ASGs).
 
 ## <a id='install'></a>Install SSO via Ops Manager
 
@@ -53,4 +53,9 @@ The Single Sign-On service requires the following network connections:
 * TCP and UDP connection to Domain Name Servers on port 53
 * (Optional) TCP connection to your external identity provider on port 80 or 443
 
-To enable access to the Single Sign-On service, you must ensure your Application Security Group allows access to the load balancer(s) and domain name servers that provide access to Cloud Controller and UAA. Optionally, you can configure access to your external identity provider to receive SAML metadata. For more details on how to set up application security groups, see [Understanding Application Security Groups](http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html).
+To enable access to the Single Sign-On service, you must ensure your
+ASG allows access to the load balancer(s) and domain
+name servers that provide access to Cloud Controller and UAA.
+Optionally, you can configure access to your external identity provider to receive SAML metadata.
+For how to set up ASGs, see [Application Security
+Security Groups](docs.pivotal.io/platform/application-service/operating/app-sec-groups.html).
