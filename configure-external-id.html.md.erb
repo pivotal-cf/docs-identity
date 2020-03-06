@@ -21,7 +21,7 @@ You can configure <%= vars.product_short %> to use external IdPs that support:
 + LDAP. See [Add an LDAP Provider](#config-ext-ldap).
 
 To delete an external IdP,
-see [Delete an External Identity Provider](#delete-idp).
+see [Delete an External Identity Provider](#delete-idp) below.
 
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
@@ -96,7 +96,7 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
           They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
-            <li> (Optional) If you want to expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
+            <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
               Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
             <li>Enter a <strong>Custom Attribute Name</strong>.</li>
             <li>Enter a <strong>SAML Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion.</li>
@@ -368,7 +368,7 @@ click **Attribute Mappings** and configure the fields as follows:
           They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
-            <li> (Optional) If you want to expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
+            <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
               Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
             <li>Enter a <strong>Custom Attribute Name</strong>.</li>
             <li>Enter a <strong>ID Token Attribute Name</strong> with the corresponding attribute from the incoming OIDC ID token.</li>
@@ -493,8 +493,8 @@ You can only have one LDAP provider per Service Plan.
     <tr>
       <td><strong>Search Base</strong> (Optional)</td>
       <td> Enter the location in the LDAP directory tree where the LDAP group search begins.<br>
-      If you want to use the <strong>memberOf</strong> attribute on user objects,
-      you can enter the value <code>memberOf</code> as the Search Base instead of
+      To use the <strong>memberOf</strong> attribute on user objects,
+      enter the value <code>memberOf</code> as the Search Base instead of
       an LDAP path for a group organizational unit.
       This causes <%= vars.product_short %> to ignore the <strong>Search Filter</strong> value.</td>
     </tr>
@@ -540,7 +540,7 @@ configure the fields as follows:
           They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
-            <li> (Optional) If you want to expose custom user attributes
+            <li> (Optional) To expose custom user attributes
               through the <code>/userinfo</code> endpoint,
               select <strong>Persist Custom Attributes</strong>.
               Your app must also have the <code>user_attributes</code> scope
