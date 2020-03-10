@@ -66,12 +66,16 @@ New features and changes in this release:
 
 This release fixes the following issues:
 
+<<<<<<< HEAD
 * **Single Sign-On Operator Dashboard:** Custom logos and favicons did not appear in the Single Sign-On Operator Dashboard.
 * **Plans API Endpoint:** When User Account and Authentication (UAA) contained identity zones that are not managed by SSO for PCF, the `GET /v1/plans` endpoint returned a 500 status error.
 
 ###  <a id="190-known-issues"></a>  Known Issues
 
 This release has the following issue:
+
+* UAA does not function properly with Okta when using UAA as an OIDC provider. 
+To update your OIDC provider configurations, see [Add an External Identity Provider](./configure-id-providers.html#config-ext-prov).
 
 <%= partial '../../identity/partials/identity/large-logo-ki' %>
 
