@@ -3,7 +3,7 @@ title: Managing Service Plan Configurations
 owner: Identity Service
 ---
 
-This topic describes how <%= vars.platform_name %> admins or plan admins can manage <%= vars.product_full %>
+This topic describes how admins or plan admins can manage <%= vars.product_full %>
 service plan configurations using the <%= vars.operator_dash %> or API using the User Account and
 Authentication Command Line Interface (UAAC).
 
@@ -14,7 +14,7 @@ Beginning with <%= vars.product_short %> v1.6, you can use the UAAC to manage UA
 
 ## <a id='configure-token-policy'></a> Configure a Token Policy
 
-<%= vars.product_short %> enables <%= vars.platform_name %> admins and plan admins to override the default expiry of access tokens
+<%= vars.product_short %> enables admins and plan admins to override the default expiry of access tokens
 (12 hours) and refresh tokens (30 days) by zone.
 
 * **Access tokens** carry information about users and clients to servers that manage resources.
@@ -161,7 +161,7 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 
 ## <a id="enable-default-idp"></a> Set Default Identity Provider (IDP)
 
-For <%= vars.platform_name %> v2.4 or later, a default IDP can be set so that end users are automatically
+For <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) v2.4 or later, a default IDP can be set so that end users are automatically
 redirected to an appropriate enterprise IDP. <br>
 
 To set a default IDP:
@@ -181,7 +181,7 @@ To set a default IDP:
 
 ## <a id="disable-sso-plans"></a> Disable <%= vars.product_short %> Plans
 
-For <%= vars.platform_name %> v2.4 and later, <%= vars.product_short %> plans that are no longer in use can be disabled.
+For <%= vars.app_runtime_abbr %> v2.4 and later, <%= vars.product_short %> plans that are no longer in use can be disabled.
 Disabled plans can be re-enabled later when they need to be used again. <br>
 
 To disable <%= vars.product_short %> plans:
@@ -218,10 +218,10 @@ To modify branding of the login page:
 
   <pre>
   "branding": {
-      "companyName": "Pivotal",
+      "companyName": "VMware",
       "productLogo": "(base64 of png image here, will show up as image on login page)",
       "squareLogo": "(base64 of png image here, will show up as browser icon)",
-      "footerLegalText": "©2017 Pivotal Software, Inc. All Rights Reserved.",
+      "footerLegalText": "©2017 VMware, Inc. or its affiliates All Rights Reserved.",
       "footerLinks": {
         "Privacy Policy": "https://run.pivotal.io/policies/privacy-policy/",
         "Terms of Service": "https://run.pivotal.io/policies/terms-of-service",

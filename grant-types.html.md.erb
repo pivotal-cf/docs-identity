@@ -35,7 +35,7 @@ The following diagram shows the flow for the Authorization Code grant type:
 7. **Request Resource w/ Access Token**: The app attempts to access the resource from the resource server by presenting the access token.
 8. **Return Resource**: If the access token is valid, the resource server returns the resources that the user authorized the app to receive.
 
-The resource server runs in <%= vars.platform_name %> under a given space and org. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_short %>. Apps can then access these resources on behalf of users.
+The resource server runs in <%= vars.app_runtime_full %>  (<%= vars.app_runtime_abbr %>) under a given space and org. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_short %>. Apps can then access these resources on behalf of users.
 
 
 ## <a id='client-cred'></a> Client Credentials Grant Type
@@ -103,7 +103,7 @@ The following diagram shows the flow for the Resource Owner Password grant type:
 4. **Request Resource w/ Access Token**: The app attempts to access the resource from the resource server by presenting the access token.
 5. **Return Resource**: If the access token is valid, the resource server returns the resources that the user authorized the app to receive.
 
-The resource server runs in <%= vars.platform_name %> under a given space and orgn. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_short %>. Apps can then access these resources on behalf of users.
+The resource server runs in <%= vars.app_runtime_abbr %> under a given space and orgn. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_short %>. Apps can then access these resources on behalf of users.
 
 
 ## <a id='implicit'></a> Implicit Grant Type
@@ -132,4 +132,4 @@ The following diagram shows the flow for the Implict grant type:
 5. **Request Resource w/ Access Token in**: The app attempts to access the resource from the resource server by presenting the access token in the URL.
 6. **Return Resource**: If the access token is valid, the resource server returns the resources that the user authorized the app to receive.
 
-The resource server runs in <%= vars.platform_name %> under a given space and org. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_short %>. apps can then access these resources on behalf of users.
+The resource server runs in <%= vars.app_runtime_abbr %> under a given space and org. Developers set the permissions for the resource server API endpoints. To do this, they create resources that correspond to API endpoints secured by <%= vars.product_short %>. apps can then access these resources on behalf of users.

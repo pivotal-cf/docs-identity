@@ -3,7 +3,7 @@ title: Managing Service Plans
 owner: Identity Service
 ---
 
-This topic describes how <%= vars.platform_name %> admins manage Single Sign-On service plans.
+This topic describes how admins manage Single Sign-On service plans.
 
 <%= vars.product_full %> is a multi-tenant service, which enables a deployment to host multiple tenants as service plans.
 Each service plan can have its own admins, apps, and users.
@@ -21,7 +21,7 @@ For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/i
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-<%= vars.platform_name %> admins can create new <%= vars.product_short %> service plans at any time
+Admins can create new <%= vars.product_short %> service plans at any time
 from the <%= vars.operator_dash %>. You can use the <%= vars.operator_dash %> to
 create and configure service plans at any time.
 
@@ -52,7 +52,7 @@ You can find these credentials in the <%= vars.app_runtime_full %> tile in <%= v
 		privileges.
 	</p>
 
-1. Under **Organizations**, select specific orgs in your  <%= vars.platform_name %> deployment
+1. Under **Organizations**, select specific orgs in your deployment
 that can access your <%= vars.product_short %> service plan, or select **Enable for all Orgs**. <br><br>
 	* If you select **Enable for all Orgs** the plan is available for use and displayed
 	in the Services Marketplace for all developers in any org.
@@ -86,7 +86,7 @@ using your UAA admin credentials. You can find these credentials in your
 
 ## <a id='plan-automation'></a> Automate Service Plan Creation Using <%= vars.product_short %> API
 
-<%= vars.platform_name %> admins can create new <%= vars.product_short %> service plans using the <%= vars.product_short %> API. This
+Admins can create new <%= vars.product_short %> service plans using the <%= vars.product_short %> API. This
 allows them to automate creating and deleting <%= vars.product_short %> plans. VMware recommends creating a dedicated client for <%= vars.product_short %> plan automation.
 
 To automate service plan creation:
@@ -97,13 +97,13 @@ To automate service plan creation:
   gem install cf-uaac
   ```
 
-1. To target your <%= vars.platform_name %> UAA server, run:
+1. To target your <%= vars.ops_manager %> UAA server, run:
 
     ```
     uaac target uaa.YOUR-SYSTEM-DOMAIN
     ```
 
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
+	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
 
 1. To record your admin credentials, do one of the following:
 	+ Obtain **Admin Client Credentials** from <%= vars.ops_manager %>.
@@ -178,7 +178,7 @@ run:
 	```
 
 	Where:
-	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
+	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
 	+ `YOUR-TOKEN` is the access token you recorded from the previous step.
 	+ `YOUR-PLAN-NAME` is the name of your plan.
 	+ `YOUR-DESCRIPTION` is the text you want to appear as a plan feature in the Services Marketplace.
@@ -216,7 +216,7 @@ you can run:
 	  }' | jq -r '.id')
 	```
 
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
+	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
 
 	 <p class="note"><strong>Note:</strong>
 		 Using <code>curl</code> instead of <code>uaac curl</code> in the example to
@@ -242,7 +242,7 @@ command for each plan administrator:
 	```
 
 	Where:
-	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
+	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
 	+ `AUTO-CLIENT-ID` is the name you provided in step 5.
 	+ `AUTO-CLIENT-SECRET` is the secret you provided in step 5.
 
@@ -269,15 +269,15 @@ command for each plan administrator:
 
 For more information on how you can manage <%= vars.product_short %> plans using the <%= vars.product_short %> API, see the [<%= vars.product_short %> API](https://docs.pivotal.io/p-identity/sso-api) documentation.
 
-## <a id="create"></a> Create a New <%= vars.platform_name %> Admin for <%= vars.product_short %>
+## <a id="create"></a> Create a New Admin for <%= vars.product_short %>
 
-<%= vars.platform_name %> admins can grant users additional permissions to allow
+Admins can grant users additional permissions to allow
 them to manage <%= vars.product_short %> plans.
-These permissions let users act as <%= vars.platform_name %> admins.
+These permissions let users act as admins.
 
 <p class="note warning"><strong>Warning:</strong> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assigned to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
 
-To create a new <%= vars.platform_name %> admin:
+To create a new admin:
 
 1. To install the UAA CLI, run:
 
@@ -285,16 +285,16 @@ To create a new <%= vars.platform_name %> admin:
   gem install cf-uaac
   ```
 
-1. To target your <%= vars.platform_name %> UAA server, run:
+1. To target your <%= vars.ops_manager %> UAA server, run:
 
     ```
     uaac target uaa.YOUR-SYSTEM-DOMAIN
     ```
 
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
+	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
 
 1. To record your admin credentials, do one of the following:
-	+ Obtain **Admin Client Credentials** from OpsManager.
+	+ Obtain **Admin Client Credentials** from <%= vars.ops_manager %>.
 	+ Obtain **uaa:admin:client_secret** from your deployment manifest. UAAC stores the token in `~/.uaac.yml`.
 
 1. To authenticate and obtain an access token for the admin client from the UAA server,

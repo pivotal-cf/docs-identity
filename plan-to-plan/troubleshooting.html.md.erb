@@ -12,8 +12,8 @@ This topic explains how to resolve common errors that can arise when you configu
 ### Cause
 
 * The discovery URL is incorrect or unavailable. No link appears on the login page.
-* This error can occur if you do not enable **Skip SSL Connection** and the IDP service plan is 
-on a <%= vars.platform_name %> instance that uses a self-signed certificate.
+* This error can occur if you do not enable **Skip SSL Connection** and the IDP service plan is
+on an instance that uses a self-signed certificate.
 
 ## Authorization Request Error
 
@@ -30,14 +30,14 @@ You may have configured your OAuth client ID incorrectly.
 
 You may have configured your OAuth client secret incorrectly.
 
-## 405 Method Not Allowed 
+## 405 Method Not Allowed
 
 <img src="../images/error-405-method-not-allowed.png" alt="A 405 error message.">
 
 ### Cause
 
 * You may have omitted the <code>openid</code> scope in the IDP configuration on the RP service plan.
-* You may be requesting the wrong scopes or scopes that are not supported by the other <%= vars.product_short %> plan. Confirm that you are only requesting <code>openid</code> scopes. 
+* You may be requesting the wrong scopes or scopes that are not supported by the other <%= vars.product_short %> plan. Confirm that you are only requesting <code>openid</code> scopes.
 
 ## Cannot determine username with given credentials
 

@@ -4,7 +4,7 @@ owner: Identity Service
 ---
 
 This topic explains how plan administrators use the User Account and Authentication Command Line Interface (UAAC)
-to manage existing UAA Identity Zone clients. 
+to manage existing UAA Identity Zone clients.
 
 ##<a id="about"></a> About Managing Clients with UAAC
 
@@ -25,30 +25,30 @@ Do not use the UAAC to do the following:
 
 + Create clients—Do not create clients through UAAC because additional metadata is required for their usage by <%= vars.product_short %>.
 
-+ Make most types of updates—Most updates for UAA Identity Zone clients can be made through the 
++ Make most types of updates—Most updates for UAA Identity Zone clients can be made through the
 <%= vars.developer_dash %>.
 
 ###<a id="when-not"></a>When to Use UAAC
 
 Some updates cannot be done through the <%= vars.developer_dash %> and so must be made through the UAAC.
-You need to use the UAAC if you want to set a configuration to a value that is not listed on the 
+You need to use the UAAC if you want to set a configuration to a value that is not listed on the
 <%= vars.developer_dash %>.
 
 ## <a id="creating"></a> Create an Admin Client
 
-To use the UAAC to modify clients, you need an admin client that corresponds to your 
+To use the UAAC to modify clients, you need an admin client that corresponds to your
 <%= vars.product_short %> service plan.
 
 If you do not already have an admin client for your UAA Identity Zone,
 follow the steps below to create an admin client.
 
-<p class="note"><strong>Note:</strong>  
-You can use the same admin client for updating service plans and identity providers. 
+<p class="note"><strong>Note:</strong>
+You can use the same admin client for updating service plans and identity providers.
 For information, see <a href="./manage-service-plans-api.html">Updating Service Plans with UAAC</a> and
 <a href="./configure-id-providers-api.html">Updating Identity Providers with UAAC</a>.
 </p>
 
-1. Target your <%= vars.platform_name %> deployment using `cf`.
+1. Target your deployment using `cf`.
 1. Target an org and space that your service plan is visible in.
 1. If you have not already created a service instance for your service plan, create one now.
    For how to create an instance, see [Create a Service Instance](./manage-service-instances.html#create-svc-instance).

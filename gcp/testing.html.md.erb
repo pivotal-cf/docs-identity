@@ -3,7 +3,8 @@ title: Testing
 owner: Identity Service
 ---
 
-This topic describes how <%= vars.platform_name %> administrators can test the OpenID Connect (OIDC) connection between <%= vars.product_full %> and Google Cloud Platform.
+This topic describes how administrators can test the OpenID Connect (OIDC) connection between
+ <%= vars.product_full %> and Google Cloud Platform.
 
 <%=vars.test_with_sample_apps%>
 
@@ -18,27 +19,27 @@ This topic describes how <%= vars.platform_name %> administrators can test the O
 1. Select the service instance and click **Manage**.
 
 	<%= image_tag '../images/gcp-appsman-manage.png' %>
-	
+
 1. Under the **Apps** tab, select your app.
 
 	<%= image_tag '../images/gcp-appsman-app.png' %>
-	
+
 1. Under **Identity Providers**, select the GCP identity provider. Remove any other identity providers.
 
 	<%= image_tag '../images/gcp-appsman-ips.png' %>
-	
+
 1. Return to Apps Manager and click the URL listed below your app to access your app.
 
 	<%= image_tag '../images/gcp-appsman-route.png' %>
-	
+
 1. Navigate to your login. You will be redirected to the identity provider to authenticate.
 
 	<%= image_tag '../images/gcp-sample.png' %>
-	
+
 1. On the identity provider sign-in page, enter your credentials and sign in.
 
 	<%= image_tag '../images/gcp-sign-in.png' %>
-	
+
 1. If the app prompts for authorization to the necessary scopes, click **Authorize**.
 
 If you are now logged in to your app, your GCP OIDC to <%= vars.product_short %> connection works.
