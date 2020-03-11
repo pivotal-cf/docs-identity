@@ -152,8 +152,12 @@ Follow the steps below to add an external SAML identity provider:
 
 1. Enter the external identity provider metadata in one of the following ways:
     * Option 1: Provide the **Identity Provider Metadata URL** and click **Fetch Metadata**.
-    * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you downloaded from your external identity provider.
-<p class="note"><strong>Note</strong>: Uploading the Identity Provider Metadata as an XML file makes you unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
+			If you select this option, your metadata is periodically fetched from the configured URL.
+			This keeps the metadata up-to-date.
+    * Option 2: Click **Upload Identity Provider Metadata** to upload XML metadata that you
+			downloaded from your external identity provider.
+			If you select this option, your metadata is not periodically updated.
+			If the metadata changes, you must manually upload the file again.
 
 1. Under **Advanced Settings**, click  **Attribute Mappings**.
 
