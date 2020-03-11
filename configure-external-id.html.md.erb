@@ -62,10 +62,10 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
         </td>
       </tr>
     </table>
-    <p class="note"><strong>Note:</strong> Uploading a XML metadata file disables entering
-      a metadata URL to update your IdP metadata later.
-      If your metadata changes in your IdP,
-      you must manually re-upload the metadata as an updated XML file.</p>
+    <p class="note"><strong>Note:</strong> When the Identity Provider Metadata URL option is chosen, the metadata
+      will be periodically refetched from the configured URL, keeping the metadata up to date.
+      When the Upload Identity Provider Metadata option is chosen, the metadata will NOT be periodically updated, 
+      requiring the changed metadata be re-uploaded by the operator as needed.</p>
 
 1. Enter **Email Domains**. This is a comma-separated list of domains for IdP discovery.
 
