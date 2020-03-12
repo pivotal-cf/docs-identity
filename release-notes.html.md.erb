@@ -26,7 +26,7 @@ This release fixes the following issues:
 
 ### <a id="1101-known-issues"></a> Known Issues
 
-This release has the following issues:
+This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 
@@ -64,9 +64,10 @@ developers are prevented from logging into the <%= vars.developer_dash %>.
 
 This release has the following issues:
 
-* UAA does not function properly with Okta when using Okta as an OIDC provider. 
-To update your OIDC provider configurations, see [Configure an External Identity Provider](./configure-external-id.html#config-ext-prov).
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
 * The SSO Developer Dashboard does not display more than 500 resources when registering or editing an app.
+
 * The SSO Developer Dashboard displays an error message when updating an invalid whitelist URI to a valid one.
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
