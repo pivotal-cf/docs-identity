@@ -65,9 +65,11 @@ New features and changes in this release:
 
 ### <a id="171-known"></a> Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
-Before you update or upgrade to SSO v1.7.1, if you are using BOSH add-on's for PCF,
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
+* Before you update or upgrade to SSO v1.7.1, if you are using BOSH add-on's for PCF,
 you must update the add-on definitions to include the Ubuntu Xenial 16.04 stemcell.
 For instructions, see [Update Add-ons to Run with Xenial Stemcell](./installation.html#update-addons).
 
@@ -129,11 +131,9 @@ and [Users](http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#users
 
 ### <a id="170-known"></a> Known Issues
 
-This release has the following issues:
+This release has the following issue:
 
-* UAA does not function properly with Okta when using Okta as an OIDC provider. 
-To update your OIDC provider configurations, see [Add an External Identity Provider](./configure-id-providers.html#config-ext-prov).
-
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
