@@ -9,12 +9,12 @@ This topic describes how to integrate SSO with Java and non-Java apps.
 
 Because SSO service is based on the OAuth protocol, any app that uses SSO must be OAuth-aware.
 
-### <a id="app-integration-java"></a>Java Apps 
+### <a id="app-integration-java"></a>Java Apps
 
 If you are using Java, see [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps).
-These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/) 
-for all four [app types](../determine-type.html).
-These apps use the SSO Service Connector, which auto-configures the app for OAuth. 
+These are sample apps created using [Spring Boot](https://projects.spring.io/spring-boot/)
+for all four [app types](./determine-type.html).
+These apps use the SSO Service Connector, which auto-configures the app for OAuth.
 For more information about the SSO Service Connector, see
 [spring-cloud-sso-connector](https://github.com/pivotal-cf/spring-cloud-sso-connector)
 on GitHub.
@@ -24,7 +24,7 @@ you must restart the app for the new SSO configuration to take effect.
 
 ### <a id="app-integration-nonjava"></a>Non-Java Apps
 
-To configure non-Java apps for OAuth, supply the following properties as environment 
+To configure non-Java apps for OAuth, supply the following properties as environment
 variables to your app after the SSO service bind.
 You can view this information on the **Next Steps** page of the SSO dashboard.
 
