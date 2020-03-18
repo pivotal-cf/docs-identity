@@ -12,7 +12,7 @@ between SSO identity providers, apps, users, and other resources.
 To configure SSO for a PCF app, do the following:
 
 1. Determine the SSO application type of the app to use the SSO service.
-   For information, see [Determining SSO Application Type](../determine-type.html).
+   For information, see [Determining SSO Application Type](./determine-type.html).
 
 1. Configure the SSO service for the app using one of the following methods:
 	- [Option 1: Configure SSO Properties with Bind Parameters](#configure_bind_params)
@@ -65,7 +65,7 @@ $ cat example.json
 }
 </pre>
 
-For more information about the `cf bind-service` command, 
+For more information about the `cf bind-service` command,
 see [bind-service](https://cli.cloudfoundry.org/en-US/cf/bind-service.html)
 in the Cloud Foundry CLI Reference Guide.
 
@@ -87,7 +87,7 @@ The table below provides descriptions and default values for bind parameters:
 		<td>Allowed grant type for the app through the SSO service.
 			Only one grant type per app is supported by SSO.
 			If you wish to set more than one grant types per app, you can resort
-			to <a href="../manage-clients-api.html">this workaround</a>.</td>
+			to <a href="./manage-clients-api.html">this workaround</a>.</td>
 		<td> </td>
 	</tr>
 	<tr>
@@ -231,7 +231,7 @@ and the `manifest.yml` files in the same repository for examples of [bootstrappi
 		<td>Allowed grant type for the app through the SSO service.
 			Only one grant type per app is supported by SSO.
 			If you wish to set more than one grant types per app, you can resort
-			to <a href="../manage-clients-api.html">this workaround</a>.</td>
+			to <a href="./manage-clients-api.html">this workaround</a>.</td>
 		<td> </td>
 	</tr>
 	<tr>
@@ -361,7 +361,7 @@ command, or in Apps Manager as follows:
 1. For **Value**, enter the property value. For example, to set the `GRANT_TYPE`
    property for a Single-Page JavaScript App,
    enter `implicit`, which is the OAuth Grant Type listed for your
-   [SSO application type](../determine-type.html) above.
+   [SSO application type](./determine-type.html) above.
 
 1. [Bind](#bind) and restage your app.
 
@@ -400,9 +400,9 @@ values in your `SSO_SCOPES` or `SSO_AUTHORITIES` property list.
 These values are not added your user-provided list by default:
 
 * `openid` — for apps with `authorization code`, `password`, and `implicit`
-[grant type](../determine-type.html)
+[grant type](./determine-type.html)
 
-* `uaa.resource` — for apps with `client_credentials` [grant type](../determine-type.html)
+* `uaa.resource` — for apps with `client_credentials` [grant type](./determine-type.html)
 
 The [table below](#configure) lists all SSO properties that you can set in your
 application manifest to bootstrap the values into your app's SSO client configuration.
@@ -439,7 +439,7 @@ Alternatively, you can bind the PCF app to an SSO service instance using cf CLI 
 
 The SSO dashboard allows application developers to view the app configurations and
 resources available within their space. To access the dashboard, first you must
-[create a service instance](../manage-service-instances.html#create-svc-instance)
+[create a service instance](./manage-service-instances.html#create-svc-instance)
 for your Space.
 Then you can follow the steps below to manage your application configurations via
 the SSO dashboard.
@@ -451,7 +451,7 @@ the SSO dashboard.
 
 ## <a id="register-service-keys"></a> Register an Externally Hosted App to PCF Using Service Keys
 
-You can use a JSON file or string containing bind parameters to register an 
+You can use a JSON file or string containing bind parameters to register an
 externally hosted app using service keys.
 For more information about bind parameters, see [Bind Parameter Options](#bind_params) above.
 
@@ -466,8 +466,8 @@ To register an externally hosted app using service keys, do the following:
     + `INSTANCE-NAME` is the name of your service instance.
     + `SERVICE-KEY` is the name you want for your service key.
     + `JSON` is the path to the JSON file or the full JSON string containing bind parameters.
-    
-    You must include the `name` parameter in your JSON file or string. The value of `name` is the user-defined 
+
+    You must include the `name` parameter in your JSON file or string. The value of `name` is the user-defined
     name of your externally hosted app. <br><br>
 
     For example:
@@ -505,24 +505,24 @@ To register an externally hosted app using service keys, do the following:
     ```
     cf service-key INSTANCE-NAME SERVICE-KEY
     ```
-    
+
     Where:
     + `INSTANCE-NAME` is the name of your service instance.
     + `SERVICE-KEY` is the name of the service key you created in step 1.
 
     For more information about how to use these values, see
-    [Integrate SSO with Your App](../integrating-sso.html).
-    
+    [Integrate SSO with Your App](./integrating-sso.html).
+
     <p class="note"><strong>Note:</strong> <code>client_credentials</code> grant types, administrative scopes, and
     scopes in other spaces are not available. These must be manually added by a Plan
     Administrator or system operator through the SSO Operator Dashboard or UAA CLI. </p>
-  
+
 ## <a id="register-dashboard"></a> Register an Externally Hosted App Using the SSO Dashboard
 
 To register an externally hosted app using the SSO Developer Dashboard, see the following steps:
 
 1. Determine the type of app for the SSO `service.bind`.
-For more information, see [Determining SSO Application Type](../determine-type.html).
+For more information, see [Determining SSO Application Type](./determine-type.html).
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance.
@@ -572,7 +572,7 @@ Select only scopes pertaining to apps owned and managed by your company.
 Do not select scopes that pertain to externally hosted apps.
 1. Click **Create App**. The **Next Steps** page appears, describing the endpoints
 required for app integration.
-For more information, see <a href="../integrating-sso.html">Integrate SSO with Your App</a>.
+For more information, see <a href="./integrating-sso.html">Integrate SSO with Your App</a>.
 
 ## <a id="admin"></a> Create Admin Client
 
