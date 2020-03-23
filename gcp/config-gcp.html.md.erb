@@ -22,30 +22,30 @@ Follow the steps below to generate GCP client credentials.
 
 1. Under the **Credentials** tab, click **Create credentials** &gt; **OAuth client ID**.
 
-	<%= image_tag '../images/gcp-create-oauth.png' %>
+	<%= image_tag './images/gcp-create-oauth.png' %>
 
 1. In the configuration pane that appears, select **Web application** under **Application type** and enter any **Name**.
    Under **Restrictions**, leave **Authorized JavaScript Origins** blank
    and for **Authorized redirect URIs** enter a redirect URI of the form `https://AUTH_DOMAIN/login/callback/ORIGIN_KEY`, where:
   - `AUTH_DOMAIN` is the full URL generated based on the **Auth Domain** setting you entered
-     when you [created the service plan](../manage-service-plans.html#create-svc-plan) that you are integrating with GCP.
+     when you [created the service plan](./manage-service-plans.html#create-svc-plan) that you are integrating with GCP.
   - `ORIGIN_KEY` is identical to the **Identity Provider Name** you set later in the <%= vars.operator_dash %>
      in [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso), except that it cannot include uppercase letters or spaces.
      You can change this value later if, for example, you want to enter a different identity provider name later.
 
-	<%= image_tag '../images/gcp-config-oauth.png' %>
+	<%= image_tag './images/gcp-config-oauth.png' %>
 
 1. Click **Create** and record the **client ID** and **client secret** generated.
    You enter these values as your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
    in the <%= vars.operator_dash %> in [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso) below.
 
-	<%= image_tag '../images/gcp-oauth-keypair.png' %>
+	<%= image_tag './images/gcp-oauth-keypair.png' %>
 
 ## <a id='gcp-oidc-sso'></a> Set up the OIDC Identity Provider in <%= vars.product_short %>
 
 Follow the steps below to set up the OIDC identity provider in <%= vars.product_short %>.
 
-1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc).
+1. Follow steps 1&ndash;6 in [Add an OIDC Provider](./configure-external-id.html#config-ext-oidc).
 
 1. In the **Discovery Endpoint URL** field, enter `https://accounts.google.com/.well-known/openid-configuration`.
 
@@ -54,20 +54,20 @@ Follow the steps below to set up the OIDC identity provider in <%= vars.product_
 1. Enter your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
    from the [Generate GCP Client Credentials](#gcp-rp) above.
 
-	<%= image_tag '../images/gcp-oidc-settings.png' %>
+	<%= image_tag './images/gcp-oidc-settings.png' %>
 
 1. Ensure that `openid` and `email` are selected as scopes.
    You can select additional scopes if you want.
 
-	<%= image_tag '../images/gcp-scopes.png', :width => "200" %>
+	<%= image_tag './images/gcp-scopes.png', :width => "200" %>
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**, select **email** as the **User Schema Attribute** and enter `user_name` as the **Attribute Name**.
    This enables <%= vars.product_short %> to identify the authenticated user.
 
-	<%= image_tag '../images/gcp-advanced-settings.png' %>
+	<%= image_tag './images/gcp-advanced-settings.png' %>
 
 1. (Optional) Configure additional attribute mappings.
 
 1. Click **Create Identity Provider** to save your settings.
 
-1. (Optional) [Enable IdP Discovery](../idp-discovery.html#how-to) for the service plan.
+1. (Optional) [Enable IdP Discovery](./idp-discovery.html#how-to) for the service plan.
