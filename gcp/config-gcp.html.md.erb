@@ -22,7 +22,7 @@ Follow the steps below to generate GCP client credentials.
 
 1. Under the **Credentials** tab, click **Create credentials** &gt; **OAuth client ID**.
 
-	<%= image_tag '../images/gcp-create-oauth.png' %>
+	<%= image_tag './images/gcp-create-oauth.png' %>
 
 1. In the configuration pane that appears, select **Web application** under **Application type** and enter any **Name**.
    Under **Restrictions**, leave **Authorized JavaScript Origins** blank
@@ -33,13 +33,13 @@ Follow the steps below to generate GCP client credentials.
      in [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso), except that it cannot include uppercase letters or spaces.
      You can change this value later if, for example, you want to enter a different identity provider name later.
 
-	<%= image_tag '../images/gcp-config-oauth.png' %>
+	<%= image_tag './images/gcp-config-oauth.png' %>
 
 1. Click **Create** and record the **client ID** and **client secret** generated.
    You enter these values as your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
    in the <%= vars.operator_dash %> in [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso) below.
 
-	<%= image_tag '../images/gcp-oauth-keypair.png' %>
+	<%= image_tag './images/gcp-oauth-keypair.png' %>
 
 ## <a id='gcp-oidc-sso'></a> Set up the OIDC Identity Provider in <%= vars.product_short %>
 
@@ -54,17 +54,17 @@ Follow the steps below to set up the OIDC identity provider in <%= vars.product_
 1. Enter your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
    from the [Generate GCP Client Credentials](#gcp-rp) above.
 
-	<%= image_tag '../images/gcp-oidc-settings.png' %>
+	<%= image_tag './images/gcp-oidc-settings.png' %>
 
 1. Ensure that `openid` and `email` are selected as scopes.
    You can select additional scopes if you want.
 
-	<%= image_tag '../images/gcp-scopes.png', :width => "200" %>
+	<%= image_tag './images/gcp-scopes.png', :width => "200" %>
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**, select **email** as the **User Schema Attribute** and enter `user_name` as the **Attribute Name**.
    This enables <%= vars.product_short %> to identify the authenticated user.
 
-	<%= image_tag '../images/gcp-advanced-settings.png' %>
+	<%= image_tag './images/gcp-advanced-settings.png' %>
 
 1. (Optional) Configure additional attribute mappings.
 
