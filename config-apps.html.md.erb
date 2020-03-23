@@ -443,8 +443,8 @@ For more information, see [Determining SSO Application Type](./determine-type.ht
 1. Under **Services**, click **Manage** next to the SSO service instance.
 This launches the SSO Developer Dashboard.
 
-	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
-  <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
+	<%= image_tag 'sso_dev_dashboard_apps.png' %>
+  <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
 1. Enter an **Application Name**.
 1. Choose an app type under **Select an Application Type**.
@@ -457,12 +457,12 @@ This launches the SSO Developer Dashboard.
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
 
-    <%= image_tag '../images/sso_dev_select_idp.png' %>
+    <%= image_tag 'sso_dev_select_idp.png' %>
 1. If your Application Type is `Web App` or `Single-Page JavaScript App`,
    under **Application Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, SSO rejects the request.
-   <%= image_tag '../images/sso_dev_redirect_uri.png' %>
+   <%= image_tag 'sso_dev_redirect_uri.png' %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
@@ -518,7 +518,7 @@ For more information about tokens, see [Configure a Token Policy](./manage-servi
     **Show on Homepage** to display the app on the UAA or Pivotal Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
       1. In **App Launch URL**, enter the address you want for your app.
       1. Upload an app icon for your app.
-      <%= image_tag '../images/sso_dev_show_homepage.png' %>
+      <%= image_tag 'sso_dev_show_homepage.png' %>
 1. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other SSO procedures.
@@ -526,7 +526,7 @@ Record these credentials to use in other SSO procedures.
   You can only view the <strong>App Secret</strong> when an app is first registered or
   the secret is regenerated.</p>
 1. (Optional) If you want to view examples of how to integrate the SSO service into your Spring Boot Applications, click **Download Sample Apps**.
-		<%= image_tag '../images/download_sample_apps.png' %>
+		<%= image_tag 'download_sample_apps.png' %>
 
 ## <a id="sso-dashboard"></a> Manage App Configurations
 
@@ -545,8 +545,8 @@ To manage your application configurations through the SSO Developer Dashboard, d
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the SSO service instance to launch the SSO Developer Dashboard.
 
-	<%= image_tag '../images/sso_dev_dashboard_apps.png' %>
-  <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
+	<%= image_tag 'sso_dev_dashboard_apps.png' %>
+  <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
 	<p class="note"><strong>Note:</strong> When binding a PCF app, a Space Developer
@@ -556,12 +556,12 @@ To manage your application configurations through the SSO Developer Dashboard, d
 		This option is available for all application types except
 		<code>Service-to-Service App</code>.</p>
 
-    <%= image_tag '../images/sso_dev_select_idp.png' %>
+    <%= image_tag 'sso_dev_select_idp.png' %>
 1. If your Application Type is `Web App` or `Single-Page JavaScript App`, under **Application Settings**
    enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the
    URIs specified in this list. Otherwise, SSO rejects the request.
-   <%= image_tag '../images/sso_dev_redirect_uri.png' %>
+   <%= image_tag 'sso_dev_redirect_uri.png' %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
@@ -617,7 +617,7 @@ To manage your application configurations through the SSO Developer Dashboard, d
 		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
     1. In **App Launch URL**, enter the address you want for your app.
     1. Upload an app icon for your app.
-    <%= image_tag '../images/sso_dev_show_homepage.png' %>
+    <%= image_tag 'sso_dev_show_homepage.png' %>
 
 1. Click **Update App**.
 
@@ -636,8 +636,8 @@ To view credentials of an existing app, do the following:
 	<p class="note"><strong>Note:</strong>
 		You can only view the <strong>App Secret</strong> when an app is first registered or
 		the secret is regenerated.</p>
-	<%= image_tag '../images/sso_dev_creds.png' %>
-  <a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
+	<%= image_tag 'sso_dev_creds.png' %>
+  <a href="./images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
 
