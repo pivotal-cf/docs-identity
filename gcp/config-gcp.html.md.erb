@@ -3,7 +3,7 @@ title: Configuring GCP as an OIDC Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Google Cloud Platform (GCP) as an identity provider 
+This topic describes how to set up Google Cloud Platform (GCP) as an identity provider
 for a <%= vars.product_full %> service plan
 by configuring OpenID Connect (OIDC) integration in both <%= vars.product_short %> and GCP.
 
@@ -28,7 +28,7 @@ Follow the steps below to generate GCP client credentials.
    Under **Restrictions**, leave **Authorized JavaScript Origins** blank
    and for **Authorized redirect URIs** enter a redirect URI of the form `https://AUTH_DOMAIN/login/callback/ORIGIN_KEY`, where:
   - `AUTH_DOMAIN` is the full URL generated based on the **Auth Domain** setting you entered
-     when you [created the service plan](./manage-service-plans.html#create-svc-plan) that you are integrating with GCP.
+when you [created the service plan](../manage-service-plans.html#create-svc-plan) that you are integrating with GCP.
   - `ORIGIN_KEY` is identical to the **Identity Provider Name** you set later in the <%= vars.operator_dash %>
      in [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso), except that it cannot include uppercase letters or spaces.
      You can change this value later if, for example, you want to enter a different identity provider name later.
@@ -45,7 +45,7 @@ Follow the steps below to generate GCP client credentials.
 
 Follow the steps below to set up the OIDC identity provider in <%= vars.product_short %>.
 
-1. Follow steps 1&ndash;6 in [Add an OIDC Provider](./configure-external-id.html#config-ext-oidc).
+1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc).
 
 1. In the **Discovery Endpoint URL** field, enter `https://accounts.google.com/.well-known/openid-configuration`.
 
@@ -70,4 +70,4 @@ Follow the steps below to set up the OIDC identity provider in <%= vars.product_
 
 1. Click **Create Identity Provider** to save your settings.
 
-1. (Optional) [Enable IdP Discovery](./idp-discovery.html#how-to) for the service plan.
+1. (Optional) [Enable IdP Discovery](../idp-discovery.html#how-to) for the service plan.
