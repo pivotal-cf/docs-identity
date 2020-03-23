@@ -10,15 +10,15 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 1. Log into the Single Sign-On (SSO) Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
-	<%= image_tag '../images/pingone_manage_id_providers.png' %>
+	<%= image_tag './images/pingone_manage_id_providers.png' %>
 
 1. Click **Configure SAML Service Provider**.
 
-	<%= image_tag '../images/pingone_config_saml_service_provider.png' %>
+	<%= image_tag './images/pingone_config_saml_service_provider.png' %>
 
 1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
 
-	<%= image_tag '../images/saml_auth_checkbox.png' %>
+	<%= image_tag './images/saml_auth_checkbox.png' %>
 
 2. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
 
@@ -34,13 +34,13 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 
 3. Click the **Add Application** button and choose **New SAML Application**.
 
-	<%= image_tag '../images/saml_add_application.png' %>
+	<%= image_tag './images/saml_add_application.png' %>
 
 1. Enter the **Application Name**, **Application Description**, **Category** and any **Graphics**.
 
 2. Click the **Continue to Next Step** button to configure SAML.
 
-	<%= image_tag '../images/pingone_saml_config.png' %>
+	<%= image_tag './images/pingone_saml_config.png' %>
 
 3. In the **Application Configuration** section, perform the following steps:
 
@@ -56,6 +56,6 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 
 4. (Optional) Under **SSO Attribute Mapping**, specify any application or group attributes that you want to map to users in the ID token.
 
-	<%= image_tag '../images/pingone_attribute_mapping.png' %>
+	<%= image_tag './images/pingone_attribute_mapping.png' %>
 
 5. Click the **Save \& Publish** button followed by the **Finish** button.
