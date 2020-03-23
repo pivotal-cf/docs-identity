@@ -7,8 +7,8 @@ This topic explains how to monitor Single Sign-On (SSO) for Pivotal Cloud Foundr
 
 ## <a id="overview"></a>Overview
 
-SSO uses the User Account and Authentication (UAA) service to log security events through Loggregator. 
-UAA security events can be filtered to destinations through a syslog drain. To configure logs to monitor SSO plan events, app, and UAA client events you need to obtain the IDs for the corresponding plan or app. 
+SSO uses the User Account and Authentication (UAA) service to log security events through Loggregator.
+UAA security events can be filtered to destinations through a syslog drain. To configure logs to monitor SSO plan events, app, and UAA client events you need to obtain the IDs for the corresponding plan or app.
 
 To obtain the identity zone ID for SSO plans, do one of the procedures in [Monitor SSO Plan Events](#plan).
 
@@ -32,7 +32,7 @@ Before you can use the SSO API to monitor plan events, you must do the following
 
 1. Create an admin client. See [Create an Admin Client](./manage-clients-api.html#creating).
 2. Create a UAA identity zone admin client. See [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
-    
+
 ###<a id="api"></a>Use the SSO API
 
 To use the SSO API to obtain plan identity zone IDs, run the following command:
@@ -51,7 +51,7 @@ For more information, see [SSO Service Plan Automation API](http://docs.pivotal.
 ###<a id="dashboard"></a>Use the SSO Operator Dashboard
 
 To use the SSO Operator Dashboard to obtain plan identity zone IDs, do the following:
-  
+
 1. Log into the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard`
 1. Click the plan you want to obtain the identity zone ID for and select **Edit Plan**.
 1. Record the identity zone ID for your plan from the SSO Operator Dashboard URL. The  URL looks similar to the following:
@@ -73,5 +73,5 @@ To find your app's client ID, do the following:
 1. Under **Applications**, click **View Credentials** near the name of your app.
 1. Record the value of **App ID**.
 
-<%= image_tag '../images/sso_dev_creds.png' %>
-<a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
+<%= image_tag 'sso_dev_creds.png' %>
+<a href="./images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
