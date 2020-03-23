@@ -24,7 +24,7 @@ You must meet the following prerequisites to set up Plan-to-Plan OIDC integratio
 * Your IDP must be visible to your org.
 * You must add the IDP as a service instance in a space so you can access the app developer dashboard.
 
-If you have not completed these prerequisites, see [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
+If you have not completed these prerequisites, see [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
 
 ## <a id="idp"></a> Set Up Relying Party Configurations in the Identity Provider Plan
 
@@ -36,7 +36,7 @@ Follow the instructions below to set up relying party configurations in the iden
 	<li>Click into the <strong>Service</strong> tab.</li>
 	<li>Click the service you want to modify.</li>
 	<li>Click <strong>Manage</strong>.<br/>
-	<img src="../images/manage-button.png"></li>
+	<img src="./images/manage-button.png"></li>
 	<li>Click <strong>New App</strong>.</li>
 	<li>Type a name in the <strong>App Name</strong> field.</li>
 	<li>Choose <strong>Web App</strong> from the list of app types.</li>
@@ -44,7 +44,7 @@ Follow the instructions below to set up relying party configurations in the iden
 	<li>In the <strong>Scopes</strong> field, type <code>openid</code>.<br/>
 	Optionally, select <code>openid</code> from the list of <strong>Auto-Approved Scopes</strong>. By adding <code>openid</code> as an automatically approved scope, you prevent users from being prompted to authorize a login from the identity provider.</li>
 	<li>Click <strong>Register App</strong>. When the app is created successfully, you are prompted to download your app credentials.
-	<img src="../images/dl-app-creds.png"><br/></li>
+	<img src="./images/dl-app-creds.png"><br/></li>
 	<li>Click <strong>Download App Credentials</strong> to save the credentials for your app.<br/>
 	<p class="note warning"><strong>Warning:</strong> This is the last time you can download your app credentials. Pivotal recommends that you download the credentials and store them securely.</p></li>
 </ol>
@@ -54,14 +54,14 @@ Follow the instructions below to set up relying party configurations in the iden
 To set up the OIDC Identity Provider Configuration in the relying party plan, follow the steps below.
 
 <ol>
-	<li>Follow steps 1&ndash;6 in <a href="../configure-external-id.html#config-ext-oidc">Add an OIDC Provider</a>.</li>
+	<li>Follow steps 1&ndash;6 in <a href="./configure-external-id.html#config-ext-oidc">Add an OIDC Provider</a>.</li>
 	<li>If you use a self-signed certificate for <%= vars.platform_name %> where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you do not use a self-signed certificate, you can leave this box unchecked.</li>
 	<li>Select the <strong>Enable Discovery</strong> checkbox and type in the <strong>Discovery Endpoint URL</strong>. <br/><br/>
 	This URL is <code>ht<span>tps</span>://IDP-AUTH-DOMAIN/.well-known/openid-configuration</code>, where <code>IDP-AUTH-DOMAIN</code> is the Auth Domain setting you entered when you created the IDP service plan you are integrating with.</li>
 	<li>Fill in the <strong>Relying Party OAuth Client ID</strong> with the App Client ID from <a href="#idp">the previous section</a>.</li>
 	<li>Fill in the <strong>Relying Party OAuth Client Secret</strong> with the App Secret from <a href="#idp">the previous section</a>.</li>
 	<li>Confirm that <code>openid</code> is selected as a scope by clicking <strong>All Selected</strong>.<br/>
-	<img src="../images/openid-dropdown.png"></li>
+	<img src="./images/openid-dropdown.png"></li>
 </ol>
 
 ## <a id="finalizing"></a>Finish Configuration
@@ -71,7 +71,7 @@ After you create an app, follow the steps below to finish configuration.
 <ol>
 	<li>Return to the page for the app you created.
 	<li>Click <strong>Edit Config</strong>. The app configuration screen appears.<br/>
-	<img src="../images/edit-config.png"></li>
+	<img src="./images/edit-config.png"></li>
 	<li>Add an <strong>Auth Redirect URL</strong>. The URL should read <code>https://RP-AUTH-DOMAIN/login/callback/ORIGIN-KEY</code><br><br>
 		Where:
 		<ul>
