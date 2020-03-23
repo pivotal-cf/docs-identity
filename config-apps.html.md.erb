@@ -485,12 +485,12 @@ This launches the <%= vars.developer_dash %>.
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
 
-    <%= image_tag("./images/sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
+    <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`,
    under **App Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
-   <%= image_tag("./images/sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
+   <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
