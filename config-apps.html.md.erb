@@ -474,8 +474,8 @@ For more information, see [Determining <%= vars.product_short %> Application Typ
 1. Under **Services**, click **Manage** next to the <%= vars.product_short %>service instance.
 This launches the <%= vars.developer_dash %>.
 
-	<%= image_tag("./images/sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
-  <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
+	<%= image_tag("../images/sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
+  <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
 1. Enter an **App Name**.
 1. Choose an app type under **Select an App Type**.
@@ -488,12 +488,12 @@ This launches the <%= vars.developer_dash %>.
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
 
-    <%= image_tag("./images/sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
+    <%= image_tag("../images/sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`,
    under **App Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
-   <%= image_tag("./images/sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
+   <%= image_tag("../images/sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
@@ -556,7 +556,7 @@ For more information about tokens, see [Configure a Token Policy](./manage-servi
     **Show on Homepage** to display the app on the UAA or Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
       1. In **App Launch URL**, enter the address you want for your app.
       1. Upload an app icon for your app.
-      <%= image_tag("./images/sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
+      <%= image_tag("../images/sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
 1. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other <%= vars.product_short %> procedures.
@@ -564,7 +564,7 @@ Record these credentials to use in other <%= vars.product_short %> procedures.
   You can only view the <strong>App Secret</strong> when an app is first registered or
   the secret is regenerated.</p>
 1. (Optional) If you want to view examples of how to integrate <%= vars.product_short %> into your Spring Boot apps, click **Download Sample Apps**.
-		<%= image_tag("./images/download_sample_apps.png", :alt => "Download Sample Apps") %>
+		<%= image_tag("../images/download_sample_apps.png", :alt => "Download Sample Apps") %>
 
 ## <a id="sso-dashboard"></a> Manage App Configurations
 
@@ -583,8 +583,8 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
 
-	<%= image_tag("./images/sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
-  <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
+	<%= image_tag("../images/sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
+  <a href="../images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
 	<p class="note"><strong>Note:</strong> When binding an <%= vars.app_runtime_abbr %> app, a Space Developer
@@ -594,12 +594,12 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
 
-    <%= image_tag("./images/sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
+    <%= image_tag("../images/sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings**
    enter an allow list of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the
    URIs specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
-   <%= image_tag("./images/sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
+   <%= image_tag("../images/sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
@@ -656,7 +656,7 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
     1. In **App Launch URL**, enter the address you want for your app.
     1. Upload an app icon for your app.
-    <%= image_tag("./images/sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
+    <%= image_tag("../images/sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
 
 1. Click **Update App**.
 
@@ -675,8 +675,8 @@ To view credentials of an existing app:
 	<p class="note"><strong>Note:</strong>
 		You can only view the <strong>App Secret</strong> when an app is first registered or
 		the secret is regenerated.</p>
-	<%= image_tag("./images/sso_dev_creds.png", :alt => "App credentials") %>
-  <a href="./images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
+	<%= image_tag("../images/sso_dev_creds.png", :alt => "App credentials") %>
+  <a href="../images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
 
