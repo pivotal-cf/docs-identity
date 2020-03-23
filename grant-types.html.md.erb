@@ -24,7 +24,7 @@ The Authorization Code grant type uses the following roles:
 
 The following diagram shows the flow for the Authorization Code grant type:
 
-<%= image_tag '../images/oauth_auth_code.png' %>
+<%= image_tag './images/oauth_auth_code.png' %>
 
 1. **Access Application**: The user accesses the app and triggers authentication and authorization.
 2. **Authentication and Request Authorization**: The app redirects the user to the authorization server where it prompts the user for their username and password. The first time the user goes through this flow for the app, the user sees an approval page. On this page, the user can choose permissions to authorize the app to access resources on their behalf.
@@ -58,7 +58,7 @@ The Client Credentials grant type uses the following roles:
 
 The following diagram shows the flow for the Client Credentials grant type:
 
-<%= image_tag '../images/oauth_client_credentials.png' %>
+<%= image_tag './images/oauth_client_credentials.png' %>
 
 1. **Authenticate w/ Client ID and Secret**: The app authenticates with the authorization server
      using its client ID and client secret.
@@ -95,7 +95,7 @@ The Resource Owner Password grant type uses the following roles:
 
 The following diagram shows the flow for the Resource Owner Password grant type:
 
-<%= image_tag '../images/oauth_password.png' %>
+<%= image_tag './images/oauth_password.png' %>
 
 1. **Authenticate w/ Username and Password**: The user authenticates with the app using their username and password.
 2. **Send Username/Password**: The app sends the username and password to the authorization server for validation.
@@ -123,7 +123,7 @@ The Implicit grant type uses the following roles:
 
 The following diagram shows the flow for the Implict grant type:
 
-<%= image_tag '../images/oauth_implicit.png' %>
+<%= image_tag './images/oauth_implicit.png' %>
 
 1. **Access Application**: The user accesses the app and triggers authentication and authorization.
 2. **Authentication and Request Authorization**: The app prompts the user for their username and password. The first time the user goes through this flow for the app, the user sees an approval page. On this page, the user can choose permissions to authorize the app to access resources on their behalf.
