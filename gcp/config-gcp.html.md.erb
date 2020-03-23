@@ -12,7 +12,7 @@ by configuring OpenID Connect (OIDC) integration in both Pivotal Cloud Foundry (
 
 1. Under the **Credentials** tab, click **Create credentials** > **OAuth client ID**.
 
-	<%= image_tag './images/gcp-create-oauth.png' %>
+	<%= image_tag '../images/gcp-create-oauth.png' %>
 
 1. In the configuration pane that appears, select **Web application** under **Application type** and enter any **Name**.
    Under **Restrictions**, leave **Authorized JavaScript Origins** blank
@@ -24,13 +24,13 @@ by configuring OpenID Connect (OIDC) integration in both Pivotal Cloud Foundry (
      This value should have no spaces or uppercase letters.
      You might need to change this value later.
 
-	<%= image_tag './images/gcp-config-oauth.png' %>
+	<%= image_tag '../images/gcp-config-oauth.png' %>
 
 1. Click **Create** and record the **client ID** and **client secret** generated.
    You will enter these values as your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
    in the SSO Operator Dashboard in [Set Up OIDC Identity Provider in SSO below](#gcp-oidc-sso).
 
-	<%= image_tag './images/gcp-oauth-keypair.png' %>
+	<%= image_tag '../images/gcp-oauth-keypair.png' %>
 
 ## <a id='gcp-oidc-sso'></a> Set Up OIDC Identity Provider in SSO
 
@@ -51,7 +51,7 @@ by configuring OpenID Connect (OIDC) integration in both Pivotal Cloud Foundry (
 
 1. Select **OpenID Connect** as the **Identity Provider type**.
 
-	<%= image_tag './images/gcp-new-idp.png' %>
+	<%= image_tag '../images/gcp-new-idp.png' %>
 
 1. Make sure the **Enable Discovery** checkbox is selected, to enable OIDC discovery.
 
@@ -62,17 +62,17 @@ by configuring OpenID Connect (OIDC) integration in both Pivotal Cloud Foundry (
 1. Enter your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
    from the [Generate GCP Client Credentials above](#gcp-rp).
 
-	<%= image_tag './images/gcp-oidc-settings.png' %>
+	<%= image_tag '../images/gcp-oidc-settings.png' %>
 
 1. Make sure that `openid` and `email` are selected as scopes.
    You can select additional scopes if you want.
 
-	<%= image_tag './images/gcp-scopes.png' %>
+	<%= image_tag '../images/gcp-scopes.png' %>
 
 1. Under **Advanced Settings** > **User Attributes**, map `user_name` to `email`.
    This enables SSO to identify the authenticated user.
 
-	<%= image_tag './images/gcp-advanced-settings.png' %>
+	<%= image_tag '../images/gcp-advanced-settings.png' %>
 
 1. (Optional) Configure additional attribute mappings.
 
