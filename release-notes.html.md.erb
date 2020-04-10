@@ -16,11 +16,12 @@ These are release notes for the [<%= vars.product_full %>](https://network.pivot
 
 **Release Date: April 13, 2020**
 
-### <a id="1102-fixed-issues"></a> Fixed Issues
+### <a id="1102-resolved-issues"></a> Resolved Issues
 
-This release fixes the following issues:
+This release has the following fix:
 
-* **Space Developer Profile Scope:** The space developer could not add the `profile` scope in the developer dashboard.
+* Space Developers can now select the `profile` scope in the <%= vars.developer_dash %>
+on the **Register App** page.
 
 ### <a id="1102-known-issues"></a> Known Issues
 
@@ -33,9 +34,9 @@ This release has the following issue:
 
 **Release Date: November 20, 2019**
 
-### <a id="1101-fixed-issues"></a> Fixed Issues
+### <a id="1101-resolved-issues"></a> Resolved Issues
 
-This release fixes the following issues:
+This release has the following fixes:
 
 * **Display All Resources:** The SSO Developer Dashboard did not display more than 500 resources
   when registering or editing an app.
@@ -48,6 +49,7 @@ This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 <%= partial vars.path_to_partials + "/identity/logout-ki" %>
+<%= partial vars.path_to_partials + "/identity/profile-scope" %>
 
 ## <a id="1-10-0"></a> v1.10.0
 
@@ -71,7 +73,7 @@ New features and changes in this release:
 
 ### <a id="1-10-0-resolved"></a> Resolved Issues
 
-This release fixes the following issues:
+This release has the following fixes:
 
 * **Maximum Branding Size:** If logos and favicons are larger than 64&nbsp;KB,
 then the installation of the <%= vars.product_short %> tile fails.
