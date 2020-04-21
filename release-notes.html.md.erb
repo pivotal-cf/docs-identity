@@ -20,7 +20,7 @@ These are release notes for the [<%= vars.product_full %>](https://network.pivot
 
 This release has the following fix:
 
-* Space Developers view and select permissions from other spaces in the <%= vars.developer_dash %>
+* Space Developers can now view and select permissions from any space in the <%= vars.developer_dash %>
 on the **Register App** page.
 
 ### <a id="1103-known-issues"></a> Known Issues
@@ -29,6 +29,7 @@ This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 <%= partial vars.path_to_partials + "/identity/logout-ki" %>
+<%= partial vars.path_to_partials + "/identity/space-permissions" %>
 
 ## <a id="1-10-2"></a> v1.10.2
 
@@ -47,6 +48,7 @@ This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 <%= partial vars.path_to_partials + "/identity/logout-ki" %>
+<%= partial vars.path_to_partials + "/identity/space-permissions" %>
 
 ## <a id="1-10-1"></a> v1.10.1
 
@@ -68,6 +70,7 @@ This release has the following issue:
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 <%= partial vars.path_to_partials + "/identity/logout-ki" %>
 <%= partial vars.path_to_partials + "/identity/profile-scope" %>
+<%= partial vars.path_to_partials + "/identity/space-permissions" %>
 
 ## <a id="1-10-0"></a> v1.10.0
 
@@ -106,10 +109,13 @@ This release has the following issues:
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 <%= partial vars.path_to_partials + "/identity/logout-ki" %>
 <%= partial vars.path_to_partials + "/identity/profile-scope" %>
+<%= partial vars.path_to_partials + "/identity/space-permissions" %>
 
 * The SSO Developer Dashboard does not display more than 500 resources when registering or editing an app.
 
 * The SSO Developer Dashboard displays an error message when updating an invalid whitelist URI to a valid one.
+
+
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
 
