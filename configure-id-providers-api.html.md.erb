@@ -9,7 +9,7 @@ using the User Account and Authentication Command Line Interface (UAAC).
 For instructions on configuring identity providers, see [Configuring Identity Providers](./configure-id-providers.html).
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
-<%= partial '././identity/partials/identity/create_zone_admin' %>
+<%= partial 'identity/create_zone_admin' %>
 
 ## <a id="updating"></a> Update UAA Identity Provider Configurations with the API
 
@@ -139,13 +139,13 @@ To enable client authentication via POST, do the following:
 
 1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
 
-1. In step 5, add the following line to the config section in the JSON blob: 
+1. In step 5, add the following line to the config section in the JSON blob:
 
     ```
     "clientAuthInBody": true
     ```
 
-1. Complete the procudure by following step 6. 
+1. Complete the procudure by following step 6.
 
 For more information about client authentication,
 see [OAuth/OIDC](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#oauth-oidc)
@@ -159,7 +159,7 @@ To enable OIDC password grant, do the following:
 
 1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
 
-1. In step 5, add the following line to the config section in the JSON blob: 
+1. In step 5, add the following line to the config section in the JSON blob:
 
     ```
     "passwordGrantEnabled": true
@@ -184,15 +184,15 @@ To enable skipping SSL validation, do the following:
 
 1. Follow the steps 1-4 in [Update UAA Identity Provider Configurations with the API](#updating) above.
 
-1. In step 5, add the following line to the config section in the JSON blob: 
+1. In step 5, add the following line to the config section in the JSON blob:
 
     ```
     "skipSslValidation": true
     ```
 
 1. Complete the procedure by following step 6.
- 
-For more information about skipping SSL validation, see 
+
+For more information about skipping SSL validation, see
 [SAML](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/#saml) in the UAA API documentation.
 
 To test your identity provider configurations, you can deploy the [Single Sign-On Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) to validate the effects of the instructions given in this guide.
