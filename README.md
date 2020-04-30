@@ -1,7 +1,9 @@
 # Single Sign-On (SSO) for VMware Tanzu Docs
 
 This repo contains the documentation for Single Sign-On for VMware Tanzu, which enables users to
-authenticate with an external identity provider rather than having to create a new account or re-enter credentials. Single Sign-On grants users centralized access to applications in various spaces, as well as to <%= vars.ops_manager %>, Apps Manager, and other Cloud Foundry components.
+authenticate with an external identity provider rather than having to create a new account or re-enter
+credentials. Single Sign-On grants users centralized access to applications in various spaces,
+as well as to <%= vars.ops_manager %>, Apps Manager, and other Cloud Foundry components.
 
 ### Branch Management
 
@@ -12,7 +14,7 @@ authenticate with an external identity provider rather than having to create a n
 |**1.12** | This branch contains the published documentation for the v1.12 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-12/">https://docs.pivotal.io/p-identity/1-12/</a> |
 |**1.11** | This branch contains the published documentation for the v1.11 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-11/">https://docs.pivotal.io/p-identity/1-11/</a> |
 |**1.10** | This branch contains the published documentation for the v1.10 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-10/">https://docs.pivotal.io/p-identity/1-10/</a> |
-|**1.9** | This branch contains the published documentation for the v1.9 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-9/</a> |
+|**1.9** |  **Do not update**. This branch is obsolete.  | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-9/</a> |
 |**1.8** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-8/">https://docs.pivotal.io/p-identity/1-8/</a>|
 |**1.7** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-7/">https://docs.pivotal.io/p-identity/1-7/</a>|
 |**1.6** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-6/">https://docs.pivotal.io/p-identity/1-6/</a>|
