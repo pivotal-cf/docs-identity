@@ -3,28 +3,32 @@ title: Configuring Active Directory Federation Services as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Active Directory Federation Services (AD FS) as your identity provider by configuring SAML integration.
+This topic describes how to set up Active Directory Federation Services (AD FS) as your identity provider by
+configuring SAML integration.
+
 
 ## <a id='pcf'></a> Set Up SAML with the  <%= vars.operator_dash %>
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
-1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
+1. Select your plan and click **Manage Identity Providers** on the dropdown.
 
-	<%= image_tag '../images/adfs_manage_id_providers.png' %>
+	<%= image_tag '../images/adfs_manage_id_providers.png' %> <%# Images require alt text. %>
 
 1. Click **Configure SAML Service Provider**.
 
-	<%= image_tag '../images/adfs_config_saml_service_provider.png' %>
+	<%= image_tag '../images/adfs_config_saml_service_provider.png' %> <%# Images require alt text. %>
 
-1. (Optional) Select **Perform signed authentication requests** to enforce single sign-on private key signature and identity provider validation.
+1. (Optional) Select **Perform signed authentication requests** to enforce single sign-on private key signature
+and identity provider validation.
 
-	<%= image_tag '../images/saml_auth_checkbox.png' %>
+	<%= image_tag '../images/saml_auth_checkbox.png' %> <%# Images require alt text. %>
 
 1. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
 
 1. Click **Download Metadata** to download the service provider metadata.
 
 1. Click **Save**.
+
 
 ## <a id='adfs'></a> Set Up SAML in AD FS
 
@@ -34,23 +38,24 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 1. On the Welcome step, click **Start**.
 
-	<%= image_tag '../images/adfs_add_relying_party.png' %>
+	<%= image_tag '../images/adfs_add_relying_party.png' %> <%# Images require alt text. %>
 
-1. Select **Import data about the relying party from a file**, enter the path to the downloaded service provider metadata, and click **Next**.
+1. Select **Import data about the relying party from a file**, enter the path to the downloaded service provider
+metadata, and click **Next**.
 
-	<%= image_tag '../images/adfs_import_metadata.png' %>
+	<%= image_tag '../images/adfs_import_metadata.png' %> <%# Images require alt text. %>
 
 1. Enter a name for **Display name** and click **Next**.
 
-	<%= image_tag '../images/adfs_display_name.png' %>
+	<%= image_tag '../images/adfs_display_name.png' %> <%# Images require alt text. %>
 
 1. Leave the default multi-factor authentication selection and click **Next**.
 
-	<%= image_tag '../images/adfs_mfa.png' %>
+	<%= image_tag '../images/adfs_mfa.png' %> <%# Images require alt text. %>
 
 1. Select **Permit all users to access this relying party** and click **Next**.
 
-	<%= image_tag '../images/adfs_permit_users.png' %>
+	<%= image_tag '../images/adfs_permit_users.png' %> <%# Images require alt text. %>
 
 1. Review your settings and click **Next**.
 
@@ -58,73 +63,89 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 1. The claim rule editor should open by default. If it does not, select your Relying Party Trust and click **Edit Claim Rules...** in the Actions pane.
 
-1. Create two claim rules by following these steps:
 
-	1. Click **Add Rule**.
+## <a id='create-claim-rules'></a> Create Claim Rules
 
-	2. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
+Create two claim rules:
 
-		<%= image_tag '../images/adfs_ldap_claims.png' %>
+1. Click **Add Rule**.
 
-	3. Enter a **Claim rule name**.
+1. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
 
-	4. Select **Active Directory** for **Attribute store**.
+	<%= image_tag '../images/adfs_ldap_claims.png' %> <%# Images require alt text. %>
 
-	5. Select **E-Mail-Addresses** for **LDAP Attribute** and select **E-mail Address** for **Outgoing Claim Type**.
+1. Enter a **Claim rule name**.
 
-	6. Click **Finish**.
+1. Select **Active Directory** for **Attribute store**.
 
-		<%= image_tag '../images/adfs_ldap_claim_mappings.png' %>
+1. Select **E-Mail-Addresses** for **LDAP Attribute** and select **E-mail Address** for **Outgoing Claim Type**.
 
-	1. Click **Add Rule**.
+1. Click **Finish**.
 
-	2. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
+	<%= image_tag '../images/adfs_ldap_claim_mappings.png' %> <%# Images require alt text. %>
 
-		<%= image_tag '../images/adfs_transform_claims.png' %>
+1. Click **Add Rule**.
 
-	3. Enter a **Claim rule name**.
+1. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
 
-	4. Select **E-Mail Address** for **Incoming claim type**.
+	<%= image_tag '../images/adfs_transform_claims.png' %> <%# Images require alt text. %>
 
-	5. Select **Name ID** for **Outgoing claim type**
+1. Enter a **Claim rule name**.
 
-	6. Select **Email** for **Outgoing name ID format**.
+1. Select **E-Mail Address** for **Incoming claim type**.
 
-	6. Click **Finish**.
+1. Select **Name ID** for **Outgoing claim type**
 
-		<%= image_tag '../images/adfs_transform_claim_mappings.png' %>
+1. Select **Email** for **Outgoing name ID format**.
 
-1. Double-click on the new Relying Party Trust to open the properties.
+1. Click **Finish**.
+
+	<%= image_tag '../images/adfs_transform_claim_mappings.png' %> <%# Images require alt text. %>
+
+1. Double-click the new Relying Party Trust to open the properties.
 
 1. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
 
-	<%= image_tag '../images/adfs_remove_cert.png' %>
+	<%= image_tag '../images/adfs_remove_cert.png' %> <%# Images require alt text. %>
 
-1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
+1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the
+[SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
 
-	<%= image_tag '../images/adfs_sha1.png' %>
+	<%= image_tag '../images/adfs_sha1.png' %> <%# Images require alt text. %>
 
-1. (Optional) If you are using a self-signed certificate, disable CRL checks by following these steps:
 
-	1. Open **Windows Powershell** as an Administrator.
+## <a id=`disable-crl-checks`></a> (Optional) Disable CRL Checks
 
-	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
+If you are using a self-signed certificate, disable CRL checks:
 
-1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the <%= vars.ops_manager %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
+1. Open **Windows Powershell** as an admin.
 
-1. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**. For more information, see the next section.
+1. Disable the CRL checks by running:
+```
+set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
+```
 
-## <a id='adfs-groups'></a> Setting Up Groups in SAML from AD FS
+1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the
+<%= vars.ops_manager %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add
+this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate"
+certificate signed by <%= vars.ops_manager %> ROOT CA.
+
+1. (Optional) To specify any application or group attributes that you want to map to users in the ID token,
+click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**. For more information, see the
+next section.
+
+
+## <a id='adfs-groups'></a> Set Up Groups in SAML from AD FS
 
 1. Right-click your **Relying Party Trust** and select **Edit Claim Rules...**.
 
-  <%= image_tag '../images/edit-claim-rules.png' %>
+  <%= image_tag '../images/edit-claim-rules.png' %> <%# Images require alt text. %>
 
 1. Select **Add Rule**.
 
 1. Select **Send Group Membership as a Claim** and click **Next**.
 
-	<%= image_tag '../images/send-group-membership-as-claim.png' %>
+	<%= image_tag '../images/send-group-membership-as-claim.png' %> <%# Images require alt text. %>
 
 1. Enter the **Claim rule name**.
 
@@ -136,15 +157,18 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 1. Click **Finish**.
 
-	<%= image_tag '../images/claim-rule-name-type.png' %>
+	<%= image_tag '../images/claim-rule-name-type.png' %> <%# Images require alt text. %>
 
-1. To save these configurations and use the default SAML assertion of `http://schemas.xmlsoap.org/claims/Group`, click **OK**. If you want to pass the claims assertion as a custom value `“groups”` in the SAML assertion, continue to the procedure below.
+1. To save these configurations and use the default SAML assertion of `http://schemas.xmlsoap.org/claims/Group`,
+click **OK**. If you want to pass the claims assertion as a custom value `“groups”` in the SAML assertion,
+continue to the procedure below.
+
 
 ## <a id='groups'></a> Create Custom Value "groups"
 
 1. Select your newly created rule and click **Edit Rule**.
 
-	<%= image_tag '../images/edit-rule.png' %>
+	<%= image_tag '../images/edit-rule.png' %> <%# Images require alt text. %>
 
 1. Click **View Rule Language**.
 
@@ -156,10 +180,10 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 1. Select **Send Claims Using a Custom Rule**.
 
-	<%= image_tag '../images/send-claim-using-custom-rule.png' %>
+	<%= image_tag '../images/send-claim-using-custom-rule.png' %> <%# Images require alt text. %>
 
 1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that it only says `“groups”`.
 
-	<%= image_tag '../images/edit-type.png' %>
+	<%= image_tag '../images/edit-type.png' %> <%# Images require alt text. %>
 
 1. Click **OK** to finish making your changes and save the changes you made.
