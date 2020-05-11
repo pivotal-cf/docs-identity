@@ -3,33 +3,17 @@ title: Configuring PingOne Cloud as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up PingOne Cloud as your identity provider by configuring SAML integration in both 
+This topic describes how to set up PingOne Cloud as your identity provider by configuring SAML integration in both
 <%= vars.product_full %> and PingOne Cloud.
 
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
 
-1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
-1. Select your plan and click **Manage Identity Providers** on the dropdown.
-
-	<%= image_tag("../images/pingone_manage_id_providers.png", :alt => "SSO Dashboard Plans screen") %>
-
-1. Click **Configure SAML Service Provider**.
-
-	<%= image_tag("../images/pingone_config_saml_service_provider.png", :alt => "Identity Providers screen") %>
-
-1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
-
-	<%= image_tag("../images/saml_auth_checkbox.png", :alt => "Configure SAML Service Provider section") %>
-
-2. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
-
-3. Click **Download Metadata** to download the service provider metadata.
-
-4. Click **Save**.
+Follow the steps in
+[Configure Service Provider SAML Settings](./configure-external-id.html#config-ext-settings).
 
 ## <a id='pingone'></a> Set up SAML in PingOne Cloud
 
-1. Sign in as a PingOne Cloud administrator.
+1. Sign in as a PingOne Cloud admin.
 
 2. Navigate to your app by clicking on **Apps**.
 

@@ -8,28 +8,12 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_full %>
 
-1. Log in at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
-1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
-
-	<%= image_tag '../images/ca_sso_manage_id_providers.png' %>
-
-1. Click **Configure SAML Service Provider**.
-
-	<%= image_tag '../images/ca_sso_config_saml_service_provider.png' %>
-
-1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
-
-	<%= image_tag '../images/saml_auth_checkbox.png' %>
-
-2. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
-
-3. Click **Download Metadata** to download the service provider metadata.
-
-4. Click **Save**.
+Follow the steps in
+[Configure Service Provider SAML Settings](./configure-external-id.html#config-ext-settings).
 
 ## <a id='ca'></a> Set up SAML in Layer7 SiteMinder
 
-1. Sign in as a Layer7 SiteMinder administrator.
+1. Sign in as a Layer7 SiteMinder admin.
 
 2. Click the **Federation** tab.
 
@@ -41,7 +25,7 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	2. Select **SAML2 IDP** for **New Entity Type**.
 
-	3. Click the **Next** button.
+	3. Click **Next**.
 
 5. In the **Entities** section, perform the following steps:
 
@@ -57,11 +41,11 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	6. Select a **Name ID format**.
 
-	7. Click the **Next** button.
+	7. Click **Next**.
 
-6. Confirm the Entity Details and click the **Finish** button.
+6. Confirm the Entity Details and click **Finish**.
 
-	<%= image_tag '../images/ca_sso_local_entity.png' %>
+	<%= image_tag '../images/ca_sso_local_entity.png' %> <%# Images require alt text. %>
 
 1. Click the **Federation** tab.
 
@@ -75,23 +59,23 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	3. Select **Create New** for **Operation**.
 
-	4. Click the **Next** button.
+	4. Click **Next**.
 
 4. In the **Select Entity Defined in Metadata File** section, perform the following steps:
 
 	1. Enter an **Entity Name**.
 
-	2. Click the **Next** button.
+	2. Click **Next**.
 
 5. In the **Select Key Entries to Import** section, perform the following steps:
 
 	1. Enter an **Alias**.
 
-	2. Click the **Next** button.
+	2. Click **Next**.
 
-6. Confirm the Entity Details and click the **Finish** button.
+6. Confirm the Entity Details and click **Finish**.
 
-	<%= image_tag '../images/ca_sso_remote_entity.png' %>
+	<%= image_tag '../images/ca_sso_remote_entity.png' %> <%# Images require alt text. %>
 
 1. Click on the **Federation** tab.
 
@@ -111,13 +95,13 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	6. Add any **User Directories**.
 
-	7. Click the **Next** button.
+	7. Click **Next**.
 
-	<%= image_tag '../images/ca_sso_partnership.png' %>
+	<%= image_tag '../images/ca_sso_partnership.png' %> <%# Images require alt text. %>
 
 4. Configure **Federation Users** by adding the users you want to include in the partnership and click **Next**.
 
-	<%= image_tag '../images/ca_sso_federation.png' %>
+	<%= image_tag '../images/ca_sso_federation.png' %> <%# Images require alt text. %>
 
 5. In the **Assertion Configuration** section, perform the following steps:
 
@@ -131,9 +115,9 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 		<div class="note"><strong>Note</strong>: The value for sending a user's groups is <strong>FMATTR:SM_USERGROUPS</strong>.</div>
 
-	5. Click the **Next** button.
+	5. Click **Next**.
 
-	<%= image_tag '../images/ca_sso_assertion.png' %>
+	<%= image_tag '../images/ca_sso_assertion.png' %> <%# Images require alt text. %>
 
 6. In the **SSO and SLO** section, perform the following steps:
 
@@ -143,9 +127,9 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	3. Select **Both IDP and SP initiated** for **Transactions Allowed**.
 
-	4. Click the **Next** button.
+	4. Click **Next**.
 
-	<%= image_tag '../images/ca_sso_sso_slo.png' %>
+	<%= image_tag '../images/ca_sso_sso_slo.png' %> <%# Images require alt text. %>
 
 7. In the **Signature and Encryption** section, perform the following steps:
 
@@ -153,14 +137,14 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	2. Select your certificate alias for **Verification Certificate Alias**.
 
-	3. Click the **Next** button.
+	3. Click **Next**.
 
-	<%= image_tag '../images/ca_sso_signature.png' %>
+	<%= image_tag '../images/ca_sso_signature.png' %> <%# Images require alt text. %>
 
-8. Confirm the Partnership Details and click the **Finish** button.
+8. Confirm the Partnership Details and click **Finish**.
 
-9. Click the **Action** button and click **Activate**.
+9. Click **Action** > **Activate**.
 
-	<%= image_tag '../images/ca_sso_activate.png' %>
+	<%= image_tag '../images/ca_sso_activate.png' %> <%# Images require alt text. %>
 
-10. Click the **Action** button and click **Export Metadata**.
+10. Click **Action** > **Export Metadata**.

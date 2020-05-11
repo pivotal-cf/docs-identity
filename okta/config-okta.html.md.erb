@@ -3,50 +3,30 @@ title: Configuring Okta as an Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Okta as your identity provider by configuring SAML integration in both <%= vars.product_full %> and Okta.
+This topic describes how to set up Okta as your identity provider by configuring SAML integration in both
+<%= vars.product_full %> and Okta.
 
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
 
-1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using
-your User Account and Authentication (UAA) administrator credentials.
-In your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %>, the **Domain** settings shows your
-system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
+Follow the steps in
+[Configure Service Provider SAML Settings](./configure-external-id.html#config-ext-settings).
 
-1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
-
-	<%= image_tag '../images/okta_manage_id_providers.png' %>
-
-1. Click **Configure SAML Service Provider**.
-
-	<%= image_tag '../images/okta_config_saml_service_provider.png' %>
-
-1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
-
-	<%= image_tag '../images/saml_auth_checkbox.png' %>
-
-1. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
-
-1. Click **Download Metadata** to download the service provider metadata.
-
-1. Click **Save**.
-
-1. Open the downloaded service provider metadata file. You will refer to this file in the [next step](#okta), when you fill in the SAML settings in Okta.
 
 ## <a id='okta'></a> Set Up SAML in Okta
 
-1. Sign in as an Okta administrator.
+1. Sign in as an Okta admin.
 
 1. Navigate to your app and click the **Sign On** tab.
 
 1. Under **Settings**, click **Edit**, and select **SAML 2.0**.
 
-	<%= image_tag '../images/saml_radio_button.png' %>
+	<%= image_tag '../images/saml_radio_button.png' %> <%# Images require alt text. %>
 
 1. Click the **General** tab.
 
-1. Under **SAML Settings**, click the **Edit** button followed by the **Next** button.
+1. Under **SAML Settings**, click **Edit** and then click **Next**.
 
-	<%= image_tag '../images/okta_saml_config.png' %>
+	<%= image_tag '../images/okta_saml_config.png' %> <%# Images require alt text. %>
 
 1. In the **SAML Settings** section:
 	1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata
@@ -64,16 +44,26 @@ system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
 1. (Optional) To configure single logout:
     1. Click **Show Advanced Settings**.
     1. For **Enable Single Logout**, select **Allow application** to initiate single logout.
-    1. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into **Single Logout URL**.
+    1. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into
+		**Single Logout URL**.
     1. Enter your `Auth Domain URL` into **SP Issuer**.
-    1. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service provider metadata. You will need to copy the `X509Certificate` information from the downloaded service provider metadata, and reformat it into a valid certificate file to upload.
+    1. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service
+		provider metadata.
+		You must copy the `X509Certificate` information from the downloaded service provider metadata and reformat
+		it as a valid certificate file to upload.
 
-1. (Optional) Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map to users in the ID token.
+1. (Optional) Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map
+to users in the ID token.
 
-1. (Optional) Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you want to map to users in the ID token. This is a group that users belong to within Okta.
+1. (Optional) Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you
+want to map to users in the ID token.
+This is a group that users belong to within Okta.
 
-1. Click the **Next** button followed by the **Finish** button.
+1. Click the **Next** and then click **Finish**.
 
-1. Click **Identity Provider metadata** to download the metadata, or copy and save the link address of the **Identity Provider metadata**. You will need this Okta metadata for the next step, [Configure a <%= vars.product_short %> Service Provider](./config-sso.html).
+1. Click **Identity Provider metadata** to download the metadata, or copy and save the link address of the
+**Identity Provider metadata**.
+You need this Okta metadata for the [Configure a <%= vars.product_short %> Service Provider](./config-sso.html)
+procedure.
 
-	<%= image_tag '../images/id_provider_metadata.png' %>
+	<%= image_tag '../images/id_provider_metadata.png' %> <%# Images require alt text. %>

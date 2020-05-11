@@ -8,36 +8,20 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
 
-1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
-1. Select your plan and choose **Manage Identity Providers** from the drop-down menu.
-
-	<%= image_tag '../images/pingfederate_manage_id_providers.png' %>
-
-1. Click **Configure SAML Service Provider**.
-
-	<%= image_tag '../images/pingfederate_config_saml_service_provider.png' %>
-
-1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
-
-	<%= image_tag '../images/saml_auth_checkbox.png' %>
-
-1. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
-
-1. Click **Download Metadata** to download the service provider metadata.
-
-1. Click **Save**.
+Follow the steps in
+[Configure Service Provider SAML Settings](./configure-external-id.html#config-ext-settings).
 
 ## <a id='pingfederate'></a> Set up SAML in PingFederate
 
 ###<a id="connection"></a> Configure the Connection
 
-1. Sign in as a PingFederate administrator.
+1. Sign in as a PingFederate admin.
 
 1. Navigate to your identity provider configurations by clicking on the **IDP Configuration** tab.
 
-1. Under **SP Connections**, click the **Create New** button.
+1. Under **SP Connections**, click **Create New**
 
-	<%= image_tag '../images/pingfederate_create_new_sp.png' %>
+	<%= image_tag '../images/pingfederate_create_new_sp.png' %> <%# Images require alt text. %>
 
 1. Select the **Browser SSO Profiles** connection template on the **Connection Type** tab and click **Next**.
 
@@ -45,13 +29,13 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Select **File** as the method for importing metadata and click **Choose file** to choose the SSO metadata on the **Import Metadata** tab. Click **Next**.
 
-	<%= image_tag '../images/pingfederate_import_metadata.png' %>
+	<%= image_tag '../images/pingfederate_import_metadata.png' %> <%# Images require alt text. %>
 
-1. Review the information on the **Metadata Summary** tab and click **Next**.
+1. Review the information about the **Metadata Summary** tab and click **Next**.
 
 1. Ensure that the **Partner's Entity ID**, **Connection Name**, and **Base URL** fields pre-populate based on the metadata. Click **Next**.
 
-	<%= image_tag '../images/pingfederate_general_info.png' %>
+	<%= image_tag '../images/pingfederate_general_info.png' %> <%# Images require alt text. %>
 
 ###<a id="browser-sso"></a> Configure Browser SSO
 
@@ -59,13 +43,13 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Select the **IdP-Initiated SSO** and **SP-Initiated SSO** options on the **SAML Profiles** tab and click **Next**.
 
-	<%= image_tag '../images/pingfederate_saml_profiles.png' %>
+	<%= image_tag '../images/pingfederate_saml_profiles.png' %> <%# Images require alt text. %>
 
 1. Enter your desired assertion validity time from on the **Assertion Lifetime** tab and click **Next**.
 
-1. (Optional) Select **IdP-Initiated SLO** and **SP-Initiated SLO** options if you wish to enforce Single Logout.
+1. (Optional) Select **IdP-Initiated SLO** and **SP-Initiated SLO** options if you want to enforce Single Logout.
 
-####<a id="assertion"></a> Assertion Creation
+####<a id="assertion"></a> Configure Assertion Creation
 
 1. Click **Configure Assertion Creation** on the **Assertion Creation** tab.
 
@@ -73,23 +57,23 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Select a **Subject Name Format** for the **SAML_SUBJECT** on the **Attribute Contract** tab and click **Next**.
 
-	<%= image_tag '../images/pingfederate_attribute_contract.png' %>
+	<%= image_tag '../images/pingfederate_attribute_contract.png' %> <%# Images require alt text. %>
 
 1. Click **Map New Adapter Instance** on the **Authentication Source Mapping** tab.
 
 1. Select an **Adapter Instance** and click **Next**. The adapter must include the user's email address.
 
-	<%= image_tag '../images/pingfederate_adapter_instance.png' %>
+	<%= image_tag '../images/pingfederate_adapter_instance.png' %> <%# Images require alt text. %>
 
 1. Select the **Use only the adapter contract values in the SAML assertion** option on the **Mapping Method** tab and click **Next**.
 
-	<%= image_tag '../images/pingfederate_mapping_method.png' %>
+	<%= image_tag '../images/pingfederate_mapping_method.png' %> <%# Images require alt text. %>
 
 1. Select your adapter instance as the **Source** and the email as the **Value** on the **Attribute Contract Fullfillment** tab and click **Next**.
 
-	<%= image_tag '../images/pingfederate_attribute_contract_fullfillment.png' %>
+	<%= image_tag '../images/pingfederate_attribute_contract_fullfillment.png' %> <%# Images require alt text. %>
 
-1. (Optional) Select any authorization conditions you would like on the **Issuance Criteria** tab and click **Next**.
+1. (Optional) Select any authorization conditions you want on the **Issuance Criteria** tab and then click **Next**.
 
 1. Click **Done** on the **Summary** tab.
 
@@ -99,17 +83,17 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Click **Next** on the **Assertion Creation** tab.
 
-####<a id="protocol"></a> Protocol Settings
+####<a id="protocol"></a> Configure Protocol Settings
 
 1. Click **Configure Protocol Settings** on the **Protocol Settings** tab.
 
-1. Select POST for **Binding** and specify the single sign-on endpoint url in the **Endpoint URL** field on the **Assertion Consumer Service URL** tab. Click **Next**
+1. Select **POST** for **Binding** and specify the single sign-on endpoint URL in the **Endpoint URL** field on the **Assertion Consumer Service URL** tab. Click **Next**
 
-	<%= image_tag '../images/pingfederate_service_url.png' %>
+	<%= image_tag '../images/pingfederate_service_url.png' %> <%# Images require alt text. %>
 
 1. Select **POST** on the **Allowable SAML Bindings** tab and click **Next**.
 
-	<%= image_tag '../images/pingfederate_saml_bindings.png' %>
+	<%= image_tag '../images/pingfederate_saml_bindings.png' %> <%# Images require alt text. %>
 
 1. Select your desired signature policies for assertions on the **Signature Policy** tab and click **Next**.
 
@@ -125,7 +109,7 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Select the **Signing Certificate** to use with the <%= vars.product_full %> service and select **Include the certificate in the signature <keyinfo> element**. Click **Next**.
 
-	<%= image_tag '../images/pingfederate_digital_signature.png' %>
+	<%= image_tag '../images/pingfederate_digital_signature.png' %> <%# Images require alt text. %>
 
 1. Click **Done** on the **Summary** tab.
 
