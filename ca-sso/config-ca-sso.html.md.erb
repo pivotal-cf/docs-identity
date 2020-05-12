@@ -6,145 +6,188 @@ owner: Identity Service
 This topic describes how to set up Layer7 SiteMinder as your identity provider by
 configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMinder.
 
+
+## <a id='overview'></a> Overview
+
+To set up Layer7 SiteMinder as your identity provider through SAML integration:
+
+* [Set up SAML in <%= vars.product_full %>](#pcf)
+* [Create an Identity](#create-identity)
+* [Configure the Entity](#config-entity)
+* [Import the Metadata](#metadata)
+* [Create a Partnership](#create-partner)
+* [Configure the Partnership](#config-partner)
+* [Add Federation Users](#add-fed-users)
+* [Configure the Assertion](#assert-config)
+* [Configure the SSO and SLO Authentication](#sso-slo)
+* [Configure the Signature and Encryption](#sig-encrypt)
+
+
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_full %>
 
 Follow the steps in
 [Configure Service Provider SAML Settings](../configure-external-id.html#config-ext-settings).
 
-## <a id='ca'></a> Set up SAML in Layer7 SiteMinder
+
+## <a id='create-entity'></a> Create an Entity
+
+To create an entity:
 
 1. Sign in as a Layer7 SiteMinder admin.
 
-2. Click the **Federation** tab.
+1. Click the **Federation** tab.
 
-3. Click on the **Entities** link.
+1. Click on the **Entities** link.
 
-4. Click the **Create Entity** button and perform the following steps:
+1. Click **Create Entity**.
 
-	1. Select **Local** for **Entity Location**.
+1. Select **Local** for **Entity Location**.
 
-	2. Select **SAML2 IDP** for **New Entity Type**.
+1. Select **SAML2 IDP** for **New Entity Type**.
 
-	3. Click **Next**.
+1. Click **Next**.
 
-5. In the **Entities** section, perform the following steps:
 
-	1. Enter an **Entity ID**.
+## <a id='config-entity'></a> Configure the Entity
 
-	2. Enter an **Entity Name**.
+To configure the entity in the **Entities** section:
 
-	3. Enter a **Description**.
+1. Enter an **Entity ID**.
 
-	4. Enter the fully-qualified domain name for your Layer7 SiteMinder as the **Base URL**.
+1. Enter an **Entity Name**.
 
-	5. Select or import a **Signing Private Key Alias**.
+1. Enter a **Description**.
 
-	6. Select a **Name ID format**.
+1. Enter the fully-qualified domain name for your Layer7 SiteMinder as the **Base URL**.
 
-	7. Click **Next**.
+1. Select or import a **Signing Private Key Alias**.
 
-6. Confirm the Entity Details and click **Finish**.
+1. Select a **Name ID format**.
+
+1. Click **Next**.
+
+1. Confirm the Entity Details and click **Finish**.
 
 	<%= image_tag '../images/ca_sso_local_entity.png' %> <%# Images require alt text. %>
 
+
+## <a id='metadata'></a> Import the Metadata
+
+To import the metadata you downloaded earlier in the
+[Configure Service Provider SAML Settings](../configure-external-id.html#config-ext-settings) procedure:
+
 1. Click the **Federation** tab.
 
-2. Click on the **Entities** link.
+1. Click the **Entities** link.
 
-3. Click the **Import Metadata** button and perform the following steps:
+1. Click **Import Metadata**.
 
-	1. Click **Browse** and select the downloaded metadata for **Metadata file**.
+1. Click **Browse** and select the downloaded metadata for **Metadata file**.
 
-	2. Select **Remote Entity** for **Import As**.
+1. Select **Remote Entity** for **Import As**.
 
-	3. Select **Create New** for **Operation**.
+1. Select **Create New** for **Operation**.
 
-	4. Click **Next**.
+1. Click **Next**.
 
-4. In the **Select Entity Defined in Metadata File** section, perform the following steps:
+1. In the **Select Entity Defined in Metadata File** section, fill in the **Entity Name** field and then click **Next**.
 
-	1. Enter an **Entity Name**.
+1. In the **Select Key Entries to Import** section, fill in the **Alias** field and then click **Next**.
 
-	2. Click **Next**.
-
-5. In the **Select Key Entries to Import** section, perform the following steps:
-
-	1. Enter an **Alias**.
-
-	2. Click **Next**.
-
-6. Confirm the Entity Details and click **Finish**.
+1. Click **Finish**.
 
 	<%= image_tag '../images/ca_sso_remote_entity.png' %> <%# Images require alt text. %>
+
+
+## <a id='create-partner'></a> Create a Partnership
+
+To create a partnership:
 
 1. Click on the **Federation** tab.
 
 2. Click **Create Partnership** and select **SAML2 IDP -> SP**.
 
-3. In the **Configure Partnership** section, perform the following steps:
 
-	1. Enter a **Partnership Name**.
+## <a id='config-partner'></a> Configure the Partnership
 
-	2. Enter a **Description**.
+To configure the partnership in the **Configure Partnership** section:
 
-	3. Select a previously created local entity for **Local IDP**.
+1. Enter a **Partnership Name**.
 
-	4. Select a previously created remote entity for **Remote SP**.
+1. Enter a **Description**.
 
-	5. Enter a **Skew Time**.
+1. Select a previously created local entity for **Local IDP**.
 
-	6. Add any **User Directories**.
+1. Select a previously created remote entity for **Remote SP**.
 
-	7. Click **Next**.
+1. Enter a **Skew Time**.
+
+1. Add any **User Directories**.
+
+1. Click **Next**.
 
 	<%= image_tag '../images/ca_sso_partnership.png' %> <%# Images require alt text. %>
 
-4. Configure **Federation Users** by adding the users you want to include in the partnership and click **Next**.
+
+## <a id='add-fed-users'></a> Add Federation Users
+
+1. Add the users you want to include in the partnership.
+
+1. Click **Next**.
 
 	<%= image_tag '../images/ca_sso_federation.png' %> <%# Images require alt text. %>
 
-5. In the **Assertion Configuration** section, perform the following steps:
 
-	1. Select a **Name ID Format**.
+## <a id='assert-config'></a> Configure the Assertion
 
-	2. Select **User Attribute** as the **Name ID Type**.
+To configure the assertion:
 
-	3. Enter `mail` as the **Value**.
+1. Select a **Name ID Format**.
 
-	4. (Optional) Under **Assertion Attributes**, specify any app or group attributes that you want to map to users in the ID token.
+1. Select **User Attribute** as the **Name ID Type**.
 
-		<div class="note"><strong>Note</strong>: The value for sending a user's groups is <strong>FMATTR:SM_USERGROUPS</strong>.</div>
+1. Enter `mail` as the **Value**.
 
-	5. Click **Next**.
+1. (Optional) Under **Assertion Attributes**, specify any app or group attributes that you want to map to users
+in the ID token.
+The value for sending a user's groups is <code>FMATTR:SM_USERGROUPS</code>.
+
+1. Click **Next**.
 
 	<%= image_tag '../images/ca_sso_assertion.png' %> <%# Images require alt text. %>
 
-6. In the **SSO and SLO** section, perform the following steps:
 
-	1. Enter the **Authentication URL**.
+## <a id='sso-slo'></a> Configure the SSO and SLO Authentication
 
-	2. Select **HTTP-Post** for **SSO Binding**.
+To configure the SSO and SLO in the **SSO and SLO** section:
 
-	3. Select **Both IDP and SP initiated** for **Transactions Allowed**.
+1. Enter the **Authentication URL**.
 
-	4. Click **Next**.
+1. Select **HTTP-Post** for **SSO Binding**.
+
+1. Select **Both IDP and SP initiated** for **Transactions Allowed**.
+
+1. Click **Next**.
 
 	<%= image_tag '../images/ca_sso_sso_slo.png' %> <%# Images require alt text. %>
 
-7. In the **Signature and Encryption** section, perform the following steps:
 
-	1. Select your key alias for **Signing Private Key Alias**.
+## <a id='sig-encrypt'></a> Configure the Signature and Encryption
 
-	2. Select your certificate alias for **Verification Certificate Alias**.
+To configure the signature and encryption in the **Signature and Encryption** section:
 
-	3. Click **Next**.
+1. Select your key alias for **Signing Private Key Alias**.
+
+1. Select your certificate alias for **Verification Certificate Alias**.
+
+1. Click **Next**.
 
 	<%= image_tag '../images/ca_sso_signature.png' %> <%# Images require alt text. %>
 
-8. Confirm the Partnership Details and click **Finish**.
+1. Click **Finish**.
 
-9. Click **Action** > **Activate**.
+1. Click the **Action** dropdown and select **Activate**.
 
 	<%= image_tag '../images/ca_sso_activate.png' %> <%# Images require alt text. %>
 
-10. Click **Action** > **Export Metadata**.
+1. Click the **Action** dropdown and select **Export Metadata**.

@@ -3,15 +3,28 @@ title: Configuring Azure Active Directory as a SAML Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Azure Active Directory (AD) as your identity provider by configuring SAML integration in both <%= vars.product_full %> and Azure AD.
+This topic describes how to set up Azure Active Directory (AD) as your identity provider by configuring SAML
+integration in both <%= vars.product_full %> and Azure AD.
+
+
+## <a id='overview'></a> Overview
+
+To set up Azure AD as your identity provider through SAML integration:
+
+* [Set up SAML in <%= vars.product_short %>](#pcf)
+* [Set up SAML in Azure AD](#azure)
+* [Set up Claims Mapping](#claims)
+
 
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
 
-Follow the steps in 
+To set up SAML in <%= vars.product_short %>, follow the steps in
 [Configure Service Provider SAML Settings](../configure-external-id.html#config-ext-settings).
 
 
 ## <a id='azure'></a> Set up SAML in Azure AD
+
+To set up SAML in Azure AD:
 
 1. Log in to Azure AD as a Global Administrator at https://portal.azure.com/.
 
@@ -50,7 +63,10 @@ should be able to log in to the <%= vars.product_short %> plan.
 
 	<%= image_tag '../images/azure-add-user.png' %> <%# Images require alt text. %>
 
+
 ## <a id='claims'></a> Set up Claims Mapping
+
+To set up claims mapping:
 
 1. Navigate to **Azure Active Directory** > **App registration**. Click your app.
 

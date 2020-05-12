@@ -7,13 +7,27 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 configuring SAML integration.
 
 
-## <a id='pcf'></a> Set Up SAML with the <%= vars.operator_dash %>
+## <a id='overview'></a> Overview
 
-Follow the steps in
+To set up AD FS as your identity provider through SAML integration:
+
+* [Set up SAML with the <%= vars.operator_dash %>](#pcf)
+* [Set up SAML in AD FS](#adfs)
+* [Create Claim Rules](#create-claim-rules)
+* [(Optional) Disable CRL Checks][#disable-crl-checks]
+* [Set up Groups in SAML from AD FS](#adfs-groups)
+* [Create Custom Value Groups](#groups)
+
+
+## <a id='pcf'></a> Set up SAML with the <%= vars.operator_dash %>
+
+To set up SAML with the <%= vars.operator_dash %>, follow the steps in
 [Configure Service Provider SAML Settings](../configure-external-id.html#config-ext-settings).
 
 
-## <a id='adfs'></a> Set Up SAML in AD FS
+## <a id='adfs'></a> Set up SAML in AD FS
+
+To set up SAML in AD FS:
 
 1. Open the **AD FS Management** console.
 
@@ -49,7 +63,7 @@ metadata, and click **Next**.
 
 ## <a id='create-claim-rules'></a> Create Claim Rules
 
-Create two claim rules:
+To create two claim rules:
 
 1. Click **Add Rule**.
 
@@ -120,6 +134,8 @@ next section.
 
 ## <a id='adfs-groups'></a> Set up Groups in SAML from AD FS
 
+To set up groups in SAML from AD FS:
+
 1. Right-click your **Relying Party Trust** and select **Edit Claim Rules...**.
 
   <%= image_tag '../images/edit-claim-rules.png' %> <%# Images require alt text. %>
@@ -147,7 +163,9 @@ click **OK**. If you want to pass the claims assertion as a custom value `“gro
 continue to the procedure below.
 
 
-## <a id='groups'></a> Create Custom Value "groups"
+## <a id='groups'></a> Create Custom Value Groups
+
+To create custom value groups:
 
 1. Select your newly created rule and click **Edit Rule**.
 
