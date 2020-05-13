@@ -6,14 +6,28 @@ owner: Identity Service
 This topic describes how to set up PingFederate as your identity provider by configuring SAML
 integration in both <%= vars.product_full %> and PingFederate.
 
+
+## <a id='overview'></a> Overview
+
+To set up PingFederate as your identity provider through SAML integration:
+
+1. [Set up SAML in <%= vars.product_short %>](#pcf)
+1. [Configure the Connection](#connection)
+1. [Configure Browser SSO](#browser-sso)
+1. [Configure Assertion Creation](#assertion)
+1. [Configure Protocol Settings](#protocol)
+1. [Configure Credentials](#credentials)
+
+
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
 
-Follow the steps in
+To set up SAML in <%= vars.product_short %>, follow the steps in
 [Configure Service Provider SAML Settings](../configure-external-id.html#config-ext-settings).
 
-## <a id='pingfederate'></a> Set up SAML in PingFederate
 
-###<a id="connection"></a> Configure the Connection
+## <a id="connection"></a> Configure the Connection
+
+To configure the connection:
 
 1. Sign in as a PingFederate admin.
 
@@ -37,7 +51,10 @@ Follow the steps in
 
 	<%= image_tag '../images/pingfederate_general_info.png' %> <%# Images require alt text. %>
 
-###<a id="browser-sso"></a> Configure Browser SSO
+
+## <a id="browser-sso"></a> Configure Browser SSO
+
+To configure browser SSO:
 
 1. Click **Configure Browser SSO** on the **Browser SSO** tab.
 
@@ -49,7 +66,10 @@ Follow the steps in
 
 1. (Optional) Select **IdP-Initiated SLO** and **SP-Initiated SLO** options if you want to enforce Single Logout.
 
-####<a id="assertion"></a> Configure Assertion Creation
+
+### <a id="assertion"></a> Configure Assertion Creation
+
+To configure assertion creation:
 
 1. Click **Configure Assertion Creation** on the **Assertion Creation** tab.
 
@@ -83,7 +103,10 @@ Follow the steps in
 
 1. Click **Next** on the **Assertion Creation** tab.
 
-####<a id="protocol"></a> Configure Protocol Settings
+
+### <a id="protocol"></a> Configure Protocol Settings
+
+To configure protocol settings:
 
 1. Click **Configure Protocol Settings** on the **Protocol Settings** tab.
 
@@ -103,7 +126,10 @@ Follow the steps in
 
 1. Click **Done** on the **Browser SSO Summary** tab.
 
-###<a id="credentials"></a> Configure Credentials
+
+## <a id="credentials"></a> Configure Credentials
+
+To configure credentials:
 
 1. Click **Configure Credentials** on the **Credentials** tab.
 
