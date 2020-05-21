@@ -11,22 +11,22 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 To set up Layer7 SiteMinder as your identity provider through SAML integration:
 
-* [Set up SAML in <%= vars.product_full %>](#pcf)
-* [Create an Identity](#create-identity)
-* [Configure the Entity](#config-entity)
-* [Import the Metadata](#metadata)
-* [Create a Partnership](#create-partner)
-* [Configure the Partnership](#config-partner)
-* [Add Federation Users](#add-fed-users)
-* [Configure the Assertion](#assert-config)
-* [Configure the SSO and SLO Authentication](#sso-slo)
-* [Configure the Signature and Encryption](#sig-encrypt)
+1. [Set up SAML in <%= vars.product_short %>](#pcf)
+1. [Create an Entity](#create-entity)
+1. [Configure the Entity](#config-entity)
+1. [Import the Metadata](#metadata)
+1. [Create a Partnership](#create-partner)
+1. [Configure the Partnership](#config-partner)
+1. [Add Federation Users](#add-fed-users)
+1. [Configure the Assertion](#assert-config)
+1. [Configure the SSO and SLO Authentication](#sso-slo)
+1. [Configure the Signature and Encryption](#sig-encrypt)
 
 
-## <a id='pcf'></a> Set up SAML in <%= vars.product_full %>
+## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
 
 Follow the steps in
-[Configure Service Provider SAML Settings](../configure-external-id.html#config-ext-settings).
+[Configure SAML Settings](../configure-external-id.html#config-ext-settings).
 
 
 ## <a id='create-entity'></a> Create an Entity
@@ -74,7 +74,7 @@ To configure the entity in the **Entities** section:
 ## <a id='metadata'></a> Import the Metadata
 
 To import the metadata you downloaded earlier in the
-[Configure Service Provider SAML Settings](../configure-external-id.html#config-ext-settings) procedure:
+[Configure SAML Settings](../configure-external-id.html#config-ext-settings) procedure:
 
 1. Click the **Federation** tab.
 
