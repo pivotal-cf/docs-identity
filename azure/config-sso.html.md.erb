@@ -5,9 +5,9 @@ owner: Identity Service
 
 This topic describes how to add an external identity provider to your <%= vars.product_full %> service plan.
 
-##<a id='set-up-saml'></a> Step 1: Set up SAML 
+##<a id='set-up-saml'></a> Step 1: Set up SAML
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` as a Plan Administrator.
 
 2. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
@@ -27,18 +27,18 @@ This topic describes how to add an external identity provider to your <%= vars.p
 
 ##<a id='config-permissions'></a> Step 2: Configure Group Permissions
 
-<p class="note"><strong>Note:</strong>  Azure AD passes the Object ID of the groups recorded in 
+<p class="note"><strong>Note:</strong>  Azure AD passes the Object ID of the groups recorded in
 	step 5 of <a href="./config-azure.html#claims">Step 3: Set up Claims Mapping</a> to the <%= vars.product_short %> plan.</p>
 
 1. Add groups to be propagated from the external identity provider to the ID token by following these steps:
-	1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
+	1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` as a Plan Administrator.
 	2. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 	3. Click **Group Whitelist** next to your identity provider.
 	4. Enter the group names.
 	5. Click **Save Group Whitelist**.
 
 2. Map the groups to resources defined in <%= vars.product_short %> by following these steps:
-	1. Log in to the <%= vars.platform_name %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator. 
+	1. Log in at `https://p-identity.SYSTEM-DOMAIN` as a Plan Administrator.
 	2. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 	3. Click **Resource Permissions**.
 	4. Click **New Permissions Mapping** and perform the following steps:
