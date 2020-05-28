@@ -29,7 +29,7 @@ create and configure service plans at any time.
 	apps can use it.
 </p>
 
-1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+1. Log into the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
 using your User Account and Authentication (UAA) admin credentials.
 You can find these credentials in the <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %> in the **Credentials** tab.
 
@@ -41,7 +41,7 @@ You can find these credentials in the <%= vars.app_runtime_full %> tile in <%= v
 
 1. Enter a **Description** to appear as a plan feature in the Services Marketplace.
 
-1. Enter an **Auth Domain** to be the URL where users authenticate to access apps covered by the service plan.
+1. Enter an **Auth Domain** to be the hostname where users authenticate to access apps covered by the service plan.
 
 1. Enter an **Instance Name** to appear on the login page and in other user-facing content, such as email communications.
 
@@ -74,7 +74,7 @@ Users in those orgs view the plan either in Apps Manager or through the cf CLI b
 	You must rebind any apps bound to the deleted service instances to new service instances.
 </p>
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
 using your UAA admin credentials. You can find these credentials in your
 <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> under the Credentials tab.
 
@@ -100,10 +100,8 @@ To automate service plan creation:
 1. To target your <%= vars.ops_manager %> UAA server, run:
 
     ```
-    uaac target uaa.YOUR-SYSTEM-DOMAIN
+    uaac target uaa.SYSTEM-DOMAIN
     ```
-
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
 
 1. To record your admin credentials, do one of the following:
 	+ Obtain **Admin Client Credentials** from <%= vars.ops_manager %>.
@@ -166,24 +164,23 @@ run:
 1. To create a new <%= vars.product_short %> plan and record the plan ID, run:
 
 	```
-	curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
-	  -H "Authorization: Bearer YOUR-TOKEN" \
+	curl -X POST "https://sso-api.SYSTEM-DOMAIN/v1/plans" \
+	  -H "Authorization: Bearer TOKEN" \
 	  -H "Content-Type: application/json" \
 	  -d '{
-	    "name": "YOUR-PLAN-NAME",
-	    "description": "YOUR-DESCRIPTION",
-	    "auth_domain": "YOUR-AUTH-DOMAIN",
-	    "instance_name": "YOUR-INSTANCE-NAME"
+	    "name": "PLAN-NAME",
+	    "description": "DESCRIPTION",
+	    "auth_domain": "AUTH-DOMAIN",
+	    "instance_name": "INSTANCE-NAME"
 	  }'
 	```
 
 	Where:
-	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
-	+ `YOUR-TOKEN` is the access token you recorded from the previous step.
-	+ `YOUR-PLAN-NAME` is the name of your plan.
-	+ `YOUR-DESCRIPTION` is the text you want to appear as a plan feature in the Services Marketplace.
-	+ `YOUR-AUTH-DOMAIN` is the subdomain of the `login.YOUR-SYSTEM-DOMAIN` URL where users authenticate to access apps covered by the service plan.
-	+ `YOUR-INSTANCE-NAME` is the name of your instance. This text appears in user-facing content, such as email communications.
+	+ `TOKEN` is the access token you recorded from the previous step.
+	+ `PLAN-NAME` is the name of your plan.
+	+ `DESCRIPTION` is the text you want to appear as a plan feature in the Services Marketplace.
+	+ `AUTH-DOMAIN` is the **Auth Domain** setting you entered when you created the service plan.
+	+ `INSTANCE-NAME` is the name of your instance. This text appears in user-facing content, such as email communications.
 
 	The above command returns output similar to the following:
 
@@ -205,19 +202,16 @@ Alternatively, you can save the plan ID, by parsing the output from the previous
 you can run:
 
 	```
-	$PLAN-ID=$(curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans"  \
-	  -H "Authorization: Bearer YOUR-TOKEN" \
+	$PLAN-ID=$(curl -X POST "https://sso-api.SYSTEM-DOMAIN/v1/plans"  \
+	  -H "Authorization: Bearer TOKEN" \
 	  -H "Content-Type: application/json" \
 	  -d '{
-	    "name": "YOUR-PLAN-NAME",
-	    "description": "YOUR-DESCRIPTION",
-	    "auth_domain": "YOUR-AUTH-DOMAIN",
-	    "instance_name": "YOUR-INSTANCE-NAME"
+	    "name": "PLAN-NAME",
+	    "description": "DESCRIPTION",
+	    "auth_domain": "AUTH-DOMAIN",
+	    "instance_name": "INSTANCE-NAME"
 	  }' | jq -r '.id')
 	```
-
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
-
 	 <p class="note"><strong>Note:</strong>
 		 Using <code>curl</code> instead of <code>uaac curl</code> in the example to
 		 facilitates parsing the response for ID below.
@@ -237,12 +231,11 @@ command for each plan administrator:
 1. To authenticate as your automation client, run:
 
 	```
-	cf api api.YOUR-SYSTEM-DOMAIN
+	cf api api.SYSTEM-DOMAIN
 	cf auth AUTO-CLIENT-ID AUTO-CLIENT-SECRET --client-credentials
 	```
 
 	Where:
-	+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
 	+ `AUTO-CLIENT-ID` is the name you provided in step 5.
 	+ `AUTO-CLIENT-SECRET` is the secret you provided in step 5.
 
@@ -250,11 +243,11 @@ command for each plan administrator:
 	+ To give specific orgs access to your <%= vars.product_short %> plan, run the following command for each org:
 
 		```
-		cf enable-service-access p-identity -p YOUR-AUTH-DOMAIN -o ORG-NAME
+		cf enable-service-access p-identity -p AUTH-DOMAIN -o ORG-NAME
 		```
 
 		Where:
-		+ `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9.
+		+ `AUTH-DOMAIN` is the hostname you provided in step 9.
 		+ `ORG-NAME` is the name of the org you want to have access to your <%= vars.product_short %> plan.
 	+ To give all orgs access to your <%= vars.product_short %> plan, run:
 
@@ -262,7 +255,7 @@ command for each plan administrator:
 		cf enable-service-access p-identity -p PLAN_AUTH_DOMAIN
 		```
 
-		Where `YOUR-AUTH-DOMAIN` is the subdomain you provided in step 9.
+		Where `AUTH-DOMAIN` is the hostname you provided in step 9.
 
 		<p class="note"> VMware recommends only giving all orgs access to your <%= vars.product_short %> plans
 			for test plans to enable developers to experiment with <%= vars.product_short %>.</p>
@@ -288,10 +281,8 @@ To create a new admin:
 1. To target your <%= vars.ops_manager %> UAA server, run:
 
     ```
-    uaac target uaa.YOUR-SYSTEM-DOMAIN
+    uaac target uaa.SYSTEM-DOMAIN
     ```
-
-	Where `YOUR-SYSTEM-DOMAIN` is your <%= vars.ops_manager %> system domain URL.
 
 1. To record your admin credentials, do one of the following:
 	+ Obtain **Admin Client Credentials** from <%= vars.ops_manager %>.

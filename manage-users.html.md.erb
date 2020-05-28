@@ -15,7 +15,7 @@ users, request users to reset their passwords, and update user attributes and pe
 
 To open the **Internal Users** pane:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
 using your User Account and Authentication (UAA) admin credentials.
 You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %> under the **Credentials** tab.
 
@@ -62,7 +62,7 @@ for user accounts from external identity providers. For example, **Okta SSO User
 
 To open the external identity provider users admin pane:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN`
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
 using your User Account and Authentication (UAA) admin credentials.
 You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> under the **Credentials** tab.
 
@@ -114,9 +114,9 @@ be configured by an admin for the service plan.
 1. Target your service plan by running:
 
     ```
-    uaac target AUTH-DOMAIN
+    uaac target AUTH-DOMAIN.login.SYSTEM-DOMAIN
     ```
-    Where `AUTH-DOMAIN` is the Auth Domain setting you entered when you created the service plan.
+    Where `AUTH-DOMAIN` is the **Auth Domain** setting you entered when you created the service plan.
     <br><br>
     For example:
     <pre class="terminal">

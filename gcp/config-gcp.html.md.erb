@@ -25,11 +25,15 @@ Follow the steps below to generate GCP client credentials.
 	<%= image_tag '../images/gcp-create-oauth.png' %>
 
 1. In the configuration pane that appears, select **Web application** under **Application type** and enter any **Name**.
-   Under **Restrictions**, leave **Authorized JavaScript Origins** blank
-   and for **Authorized redirect URIs** enter a redirect URI of the form `https://AUTH_DOMAIN/login/callback/ORIGIN_KEY`, where:
-  - `AUTH_DOMAIN` is the full URL generated based on the **Auth Domain** setting you entered
-when you [created the service plan](../manage-service-plans.html#create-svc-plan) that you are integrating with GCP.
-  - `ORIGIN_KEY` is identical to the **Identity Provider Name** you set later in the <%= vars.operator_dash %>
+   Under **Restrictions**, leave **Authorized JavaScript Origins** blank.
+   and for **Authorized redirect URIs** enter a redirect URI using the following pattern:
+
+	```
+  https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/login/callback/ORIGIN-KEY
+	```
+	Where:
+  - `AUTH-DOMAIN` is the **Auth Domain** setting you entered when you created the service plan.
+  - `ORIGIN-KEY` is identical to the **Identity Provider Name** you set later in the <%= vars.operator_dash %>
      in [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso), except that it cannot include uppercase letters or spaces.
      You can change this value later if, for example, you want to enter a different identity provider name later.
 
