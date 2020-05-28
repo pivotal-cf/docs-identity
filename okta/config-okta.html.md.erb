@@ -51,19 +51,19 @@ To configure the SAML settings:
 1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into
 **Single sign on URL**. <br>
 
-		For example:
+	For example:
 
-		```
-		https://PORTAL-FQDN/saml/SSO/alias/PORTAL-FQDN
-		```
+	```
+	https://PORTAL-FQDN/saml/SSO/alias/PORTAL-FQDN
+	```
 
-		Where `PORTAL-FQDN` is the fully qualified domain name (FQDN) for your login portal.
+	Where `PORTAL-FQDN` is the fully qualified domain name (FQDN) for your login portal.
 
-		<p class="note">
-			<strong>Note:</strong>The portal FQDN uses the format <code>AUTH-DOMAIN.login.SYSTEM-DOMAIN</code>.
-			You can view the portal FQDN for a plan by logging into the <%= vars.operator_dash %>, clicking the name of
-			your plan, and selecting <strong>Edit Plan</strong>.
-		</p>
+	<p class="note">
+		<strong>Note: </strong>The portal FQDN uses the format <code>AUTH-DOMAIN.login.SYSTEM-DOMAIN</code>.
+		You can view the portal FQDN for a plan by logging into the <%= vars.operator_dash %>, clicking the name of
+		your plan, and selecting <strong>Edit Plan</strong>.
+	</p>
 
 1. Enter the FQDN for your login portal into **Audience URI (SP Entity ID)**.
 This value is available in the downloaded service provider metadata as the entity ID.
