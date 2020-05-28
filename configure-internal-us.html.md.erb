@@ -26,7 +26,7 @@ For more information, see [Configuring External Identity Providers](./configure-
 To configure the internal user store:
 
 1. Log in to the **<%= vars.operator_dash %>** at
-`https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+`https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
 You can find these credentials in your <%= vars.app_runtime_full %> tile in
 <%= vars.ops_manager %> under the **Credentials** tab.
 
@@ -138,15 +138,13 @@ following scopes:
 
 1. Record the **App ID** and **App Secret**. These are used as your client ID and client secret.
 
-1. Target the authentication domain of your <%= vars.product_short %> service plan by running the following command:
+1. Target the login portal of your <%= vars.product_short %> service plan by running the following command:
 
 	```
 	uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
 	```
-	Where:
-	+ `AUTH-DOMAIN` is the URL you provided when you create your service plan.
-	This URL is where users authenticate to access apps.
-	+ `SYSTEM-DOMAIN` is the URL for your <%= vars.platform_name %> system domain.
+	Where `AUTH-DOMAIN` is the hostname you provided when you create your service plan.
+	This hostname is where users authenticate to access apps.
 
 1. Obtain an access token for your admin client by running the following command:
 
