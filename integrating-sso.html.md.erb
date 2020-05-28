@@ -42,7 +42,12 @@ To validate the token, you must verify the following:
 
 2. The value of `aud` in the token matches your **App ID**.
 
-3. The value of `iss` matches `https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token`.
+3. The value of `iss` uses the following pattern:
+
+    ```
+    https://AUTH-DOMAIN.uaa.YOUR-SYSTEM-DOMAIN/oauth/token
+    ```
+    Where `AUTH-DOMAIN` is the **Auth Domain** setting you entered when you created the service plan.
 
 4. The expiry time of the token, `exp`, has not passed.
 

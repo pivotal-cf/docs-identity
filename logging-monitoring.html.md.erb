@@ -35,16 +35,15 @@ Before you can use the <%= vars.product_short %> API to monitor plan events, you
 
 ###<a id="api"></a>Use the <%= vars.product_short %> API
 
-To use the <%= vars.product_short %> API to obtain plan identity zone IDs, run the following command:
+To use the <%= vars.product_short %> API to obtain plan identity zone IDs,
+run the following command:
 
 ```
-curl -X GET "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
+curl -X GET "https://sso-api.SYSTEM-DOMAIN/v1/plans" \
 -H "Authorization: Bearer YOUR-TOKEN"
 ```
-Where:
-
-+ `YOUR-SYSTEM-DOMAIN` is your <%= vars.platform_name %> system domain URL.
-+ `YOUR-TOKEN` is the access token you obtained in [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
+Where `YOUR-TOKEN` is the access token you obtained in
+[Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
 
 For more information, see [<%= vars.product_short %> Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) in the <%= vars.product_short %> API documentation.
 
@@ -52,12 +51,12 @@ For more information, see [<%= vars.product_short %> Service Plan Automation API
 
 To use the <%= vars.operator_dash %> to obtain plan identity zone IDs:
 
-1. Log into the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard`
+1. Log into the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN/dashboard`
 1. Click the plan you want to obtain the identity zone ID for and select **Edit Plan**.
 1. Record the identity zone ID for your plan from the <%= vars.operator_dash %> URL. The URL looks similar to the one below.
 
     ```
-    https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/IDENTITY-ZONE-ID
+    https://p-identity.SYSTEM-DOMAIN/dashboard/edit_plan/IDENTITY-ZONE-ID
     ```
     Where `IDENTITY-ZONE-ID` is your plan's identity zone ID.
 
