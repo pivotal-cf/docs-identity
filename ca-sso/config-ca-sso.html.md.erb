@@ -7,7 +7,7 @@ This topic describes how to set up Layer7 SiteMinder as your identity provider b
 
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_full %>
 
-1. Log in to the <%= vars.platform_name %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` as a Plan Administrator.
+1. Log in at `https://p-identity.SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
 	<%= image_tag 'ca_sso_manage_id_providers.png' %>
@@ -35,11 +35,11 @@ This topic describes how to set up Layer7 SiteMinder as your identity provider b
 3. Click on the **Entities** link.
 
 4. Click the **Create Entity** button and perform the following steps:
-	
+
 	1. Select **Local** for **Entity Location**.
-	
+
 	2. Select **SAML2 IDP** for **New Entity Type**.
-	
+
 	3. Click the **Next** button.
 
 5. In the **Entities** section, perform the following steps:
@@ -47,9 +47,9 @@ This topic describes how to set up Layer7 SiteMinder as your identity provider b
 	1. Enter an **Entity ID**.
 
 	2. Enter an **Entity Name**.
-	
+
 	3. Enter a **Description**.
-	
+
 	4. Enter the fully-qualified domain name for your Layer7 SiteMinder as the **Base URL**.
 
 	5. Select or import a **Signing Private Key Alias**.
@@ -67,13 +67,13 @@ This topic describes how to set up Layer7 SiteMinder as your identity provider b
 2. Click on the **Entities** link.
 
 3. Click the **Import Metadata** button and perform the following steps:
-	
+
 	1. Click **Browse** and select the downloaded metadata for **Metadata file**.
-	
+
 	2. Select **Remote Entity** for **Import As**.
-	
+
 	3. Select **Create New** for **Operation**.
-	
+
 	4. Click the **Next** button.
 
 4. In the **Select Entity Defined in Metadata File** section, perform the following steps:
@@ -81,11 +81,11 @@ This topic describes how to set up Layer7 SiteMinder as your identity provider b
 	1. Enter an **Entity Name**.
 
 	2. Click the **Next** button.
-	
+
 5. In the **Select Key Entries to Import** section, perform the following steps:
 
 	1. Enter an **Alias**.
-	
+
 	2. Click the **Next** button.
 
 6. Confirm the Entity Details and click the **Finish** button.
@@ -99,21 +99,21 @@ This topic describes how to set up Layer7 SiteMinder as your identity provider b
 3. In the **Configure Partnership** section, perform the following steps:
 
 	1. Enter a **Partnership Name**.
-	
+
 	2. Enter a **Description**.
-	
+
 	3. Select a previously created local entity for **Local IDP**.
-	
+
 	4. Select a previously created remote entity for **Remote SP**.
-	
+
 	5. Enter a **Skew Time**.
-	
+
 	6. Add any **User Directories**.
-	
+
 	7. Click the **Next** button.
-	
+
 	<%= image_tag 'ca_sso_partnership.png' %>
-	
+
 4. Configure **Federation Users** by adding the users you want to include in the partnership and click **Next**.
 
 	<%= image_tag 'ca_sso_federation.png' %>
@@ -121,41 +121,41 @@ This topic describes how to set up Layer7 SiteMinder as your identity provider b
 5. In the **Assertion Configuration** section, perform the following steps:
 
 	1. Select a **Name ID Format**.
-	
+
 	2. Select **User Attribute** as the **Name ID Type**.
-	
+
 	3. Enter `mail` as the **Value**.
-	
+
 	4. (Optional) Under **Assertion Attributes**, specify any app or group attributes that you want to map to users in the ID token.
-	
+
 		<div class="note"><strong>Note</strong>: The value for sending a user's groups is <strong>FMATTR:SM_USERGROUPS</strong>.</div>
-		
+
 	5. Click the **Next** button.
-	
+
 	<%= image_tag 'ca_sso_assertion.png' %>
-	
+
 6. In the **SSO and SLO** section, perform the following steps:
 
 	1. Enter the **Authentication URL**.
-	
+
 	2. Select **HTTP-Post** for **SSO Binding**.
-	
+
 	3. Select **Both IDP and SP initiated** for **Transactions Allowed**.
-	
+
 	4. Click the **Next** button.
-	
+
 	<%= image_tag 'ca_sso_sso_slo.png' %>
-	
+
 7. In the **Signature and Encryption** section, perform the following steps:
 
 	1. Select your key alias for **Signing Private Key Alias**.
 	
 	2. Select your certificate alias for **Verification Certificate Alias**.
-	
+
 	3. Click the **Next** button.
 
 	<%= image_tag 'ca_sso_signature.png' %>
-	
+
 8. Confirm the Partnership Details and click the **Finish** button.
 
 9. Click the **Action** button and click **Activate**.
