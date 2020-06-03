@@ -14,15 +14,15 @@ system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
 
 1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
-	<%= image_tag '../images/okta_manage_id_providers.png' %>
+	<%= image_tag('../images/okta_manage_id_providers.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Click **Configure SAML Service Provider**.
 
-	<%= image_tag '../images/okta_config_saml_service_provider.png' %>
+	<%= image_tag('../images/okta_config_saml_service_provider.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
 
-	<%= image_tag '../images/saml_auth_checkbox.png' %>
+	<%= image_tag('../images/saml_auth_checkbox.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
 
@@ -40,13 +40,13 @@ system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
 
 1. Under **Settings**, click **Edit**, and select **SAML 2.0**.
 
-	<%= image_tag '../images/saml_radio_button.png' %>
+	<%= image_tag('../images/saml_radio_button.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Click the **General** tab.
 
 1. Under **SAML Settings**, click the **Edit** button followed by the **Next** button.
 
-	<%= image_tag '../images/okta_saml_config.png' %>
+	<%= image_tag('../images/okta_saml_config.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. In the **SAML Settings** section:
 	1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata
@@ -76,4 +76,4 @@ system domain, and the **Credentials** tab shows the **UAA Admin Credentials**.
 
 1. Click **Identity Provider metadata** to download the metadata, or copy and save the link address of the **Identity Provider metadata**. You will need this Okta metadata for the next step, [Configure a Single Sign-On Service Provider](./config-sso.html).
 
-	<%= image_tag '../images/id_provider_metadata.png' %>
+	<%= image_tag('../images/id_provider_metadata.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
