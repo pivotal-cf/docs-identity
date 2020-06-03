@@ -35,24 +35,24 @@ To set up SAML in AD FS:
 
 1. On the Welcome step, click **Start**.
 
-	<%= image_tag '../images/adfs_add_relying_party.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_add_relying_party.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Select **Import data about the relying party from a file**, enter the path to the downloaded service provider
 metadata, and click **Next**.
 
-	<%= image_tag '../images/adfs_import_metadata.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_import_metadata.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Enter a name for **Display name** and click **Next**.
 
-	<%= image_tag '../images/adfs_display_name.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_display_name.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Leave the default multi-factor authentication selection and click **Next**.
 
-	<%= image_tag '../images/adfs_mfa.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_mfa.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Select **Permit all users to access this relying party** and click **Next**.
 
-	<%= image_tag '../images/adfs_permit_users.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_permit_users.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Review your settings and click **Next**.
 
@@ -69,7 +69,7 @@ To create two claim rules:
 
 1. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
 
-	<%= image_tag '../images/adfs_ldap_claims.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_ldap_claims.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Enter a **Claim rule name**.
 
@@ -79,13 +79,13 @@ To create two claim rules:
 
 1. Click **Finish**.
 
-	<%= image_tag '../images/adfs_ldap_claim_mappings.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_ldap_claim_mappings.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
 
 1. Click **Add Rule**.
 
-1. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
+1. Select **Transform an Incoming Claim** from the **Claim rule template** dropdown and click **Next**.
 
-	<%= image_tag '../images/adfs_transform_claims.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_transform_claims.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Enter a **Claim rule name**.
 
@@ -97,18 +97,18 @@ To create two claim rules:
 
 1. Click **Finish**.
 
-	<%= image_tag '../images/adfs_transform_claim_mappings.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_transform_claim_mappings.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
 
 1. Double-click the new Relying Party Trust to open the properties.
 
 1. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
 
-	<%= image_tag '../images/adfs_remove_cert.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_remove_cert.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the
 [SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
 
-	<%= image_tag '../images/adfs_sha1.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/adfs_sha1.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 
 ## <a id='disable-crl-checks'></a> (Optional) Disable CRL Checks
@@ -138,13 +138,13 @@ To set up groups in SAML from AD FS:
 
 1. Right-click your **Relying Party Trust** and select **Edit Claim Rules...**.
 
-  <%= image_tag '../images/edit-claim-rules.png' %> <%# Images require alt text. %>
+  <%= image_tag('../images/edit-claim-rules.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Select **Add Rule**.
 
 1. Select **Send Group Membership as a Claim** and click **Next**.
 
-	<%= image_tag '../images/send-group-membership-as-claim.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/send-group-membership-as-claim.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Enter the **Claim rule name**.
 
@@ -156,7 +156,7 @@ To set up groups in SAML from AD FS:
 
 1. Click **Finish**.
 
-	<%= image_tag '../images/claim-rule-name-type.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/claim-rule-name-type.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
 
 1. To save these configurations and use the default SAML assertion of `http://schemas.xmlsoap.org/claims/Group`,
 click **OK**. If you want to pass the claims assertion as a custom value `“groups”` in the SAML assertion,
@@ -169,7 +169,7 @@ To create custom value groups:
 
 1. Select your newly created rule and click **Edit Rule**.
 
-	<%= image_tag '../images/edit-rule.png' %> <%# Images require alt text. %>
+	<%= image_tag('../images/edit-rule.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Click **View Rule Language**.
 
@@ -179,12 +179,14 @@ To create custom value groups:
 
 1. Click **Add Rule**.
 
-1. Select **Send Claims Using a Custom Rule**.
+1. Select **Send Claims Using a Custom Rule** from the **Claim rule template** dropdown.
 
-	<%= image_tag '../images/send-claim-using-custom-rule.png' %> <%# Images require alt text. %>
+1. Click **Next**.
+
+	<%= image_tag('../images/send-claim-using-custom-rule.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
 
 1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that it only says `“groups”`.
 
-	<%= image_tag '../images/edit-type.png' %> <%# Images require alt text. %>
+	<%= image_tag '../images/edit-type.png', :alt => 'The information depicted in this screenshot is described in the step above.' %>
 
 1. Click **OK** to finish making your changes and save the changes you made.
