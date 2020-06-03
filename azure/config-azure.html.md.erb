@@ -33,43 +33,44 @@ This topic describes how to set up Azure Active Directory (AD) as your identity 
 
 2. Navigate to **Azure Active Directory** tab > **Enterprise application**.
 
- 	<%= image_tag 'azure-create-ent-app.png' %>
+ 	<%= image_tag('../images/azure-create-ent-app.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 3. Select **Non-gallery application**. Provide a name and click **Add**.
 
-	<%= image_tag 'azure-nongallery-app.png' %>
+	<%= image_tag('../images/azure-nongallery-app.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Navigate to **Azure Active Directory** > **Enterprise applications**.
 
-	<%= image_tag 'azure-manage-ent-app.png', :width => '300' %>
+	<%= image_tag('../images/azure-manage-ent-app.png', :width => 300, :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. Click your app and then click the **Single sign-on** tab.
 
 1. Select **SAML-based Sign-on** from the dropdown and then click **Upload
 metadata file** to upload the metadata file you downloaded from step 6 of [Step 1: Set up SAML in <%= vars.product_short %>](#pcf).
 
-	<%= image_tag 'azure-samlbased-signon.png' %>
+	<%= image_tag('../images/azure-samlbased-signon.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 2. Record the **App Federation Metadata Url**. You need this for setting up the SSO identity provider configurations. For more infomation, see [Setting up SAML](./config-sso.html#set-up-saml).
 
 1. Provide a **Notification Email** and click **Save**.
 
-	<%= image_tag 'azure-app-fed-metadata-url.png' %>
+	<%= image_tag('../images/azure-app-fed-metadata-url.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 3. Navigate to **Users and groups** tab and then click **Add User** .
 
-	<%= image_tag 'azure-users-groups.png' %>
+	<%= image_tag('../images/azure-users-groups.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
-5. Select users or group names from the dropdown. For example, you can add a group that includes all
-users that should be able to login to the <%= vars.product_short %> plan.
+5. Select users or group names from the dropdown. For example, you can add a group that includes all users that
+should be able to log in to the <%= vars.product_short %> plan.
 
-	<%= image_tag 'azure-add-user.png' %>
+	<%= image_tag('../images/azure-add-user.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+
 
 ## <a id='claims'></a> Step 3: Set up Claims Mapping
 
 1. Navigate to **Azure Active Directory** > **App registration**. Click your app.
 
-	<%= image_tag 'azure-app-registration.png' %>
+	<%= image_tag('../images/azure-app-registration.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. To enable user attribute mappings, do the following:
 
@@ -79,7 +80,7 @@ users that should be able to login to the <%= vars.product_short %> plan.
 	For more information, see
 	[How to: Customize claims issued in the SAML token for enterprise applications](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
 
-	<%= image_tag 'azure-user-attributes.png' %>
+	<%= image_tag('../images/azure-user-attributes.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 2. To pass group membership claims to the app, do the following:
 	1. Click **Manifest**.
@@ -93,11 +94,11 @@ users that should be able to login to the <%= vars.product_short %> plan.
 	For more information, see
 	[How to: Customize claims issued in the SAML token for enterprise applications](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
 
-	<%= image_tag 'azure-edit-manifest.png' %>
+	<%= image_tag('../images/azure-edit-manifest.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
 
 1. Navigate to **Azure Active Directory** > **Groups**.
 
 1. For each group that is used by the <%= vars.product_short %> plan, record the **Object ID**. Azure AD passes the
 	Object ID of these groups to the <%= vars.product_short %> plan. For more information, see [Configure Group Permissions](./config-sso.html#config-permissions).
 
-	<%= image_tag 'azure-object-id.png' %>
+	<%= image_tag('../images/azure-object-id.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
