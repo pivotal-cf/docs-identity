@@ -136,7 +136,12 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 1. Click **Finish**.
 
-	<%= image_tag('claim-rule-name-type.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/claim-rule-name-type.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+
+1. To save these configurations and use the default SAML assertion of `http://schemas.xmlsoap.org/claims/Group`,
+click **OK**. If you want to pass the claims assertion as a custom value `“groups”` in the SAML assertion,
+continue to the [Create Custom Value Groups](#groups) procedure below.
+
 
 
 ## <a id='groups'></a> Create Custom Value "groups"
