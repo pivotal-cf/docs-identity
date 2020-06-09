@@ -24,7 +24,11 @@ listed in [Azure Active Directory OIDC Integration Guide Overview](./index.html)
 
 ## <a id="procedure"></a> Set Up a Relying Party in Azure AD
 
-Follow the steps below to set up a relying party in Azure AD.
+Follow the procedures below to set up a relying party in Azure AD.
+
+### <a id="register-an-app"></a> Register a New App
+
+To register a new app:
 
 1. Log in to your Azure account and navigate to **Azure Active Directory** &gt; **App registrations**.
 
@@ -48,15 +52,20 @@ This can be the URL for the login portal, if you want. This URL has the followin
 
 	<%= image_tag('../images/azure-oidc-app-reg-create.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
 
+
+### <a id="generate-secret"></a> Generate a Relying Party OAuth Client Secret
+
+To create a client secret:
+
 1. Use the search bar to find your app registration, and click on its listing in the search results.
 
 	<%= image_tag('../images/azure-oidc-app-reg-searched.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
-1. Record the **Application ID** displayed on the screen. This is the **Relying Party OAuth Client ID**.
+1. <a id="app-id"></a>Record the **Application ID** displayed on the screen. This is the **Relying Party OAuth Client ID**.
 
 	<%= image_tag('../images/azure-oidc-app-reg-id.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
-1. Open the **Keys** tab to generate your **Client Secret**.
+1. Open the **Keys** tab.
 
 	<%= image_tag('../images/azure-oidc-app-keys.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
@@ -66,9 +75,14 @@ This can be the URL for the login portal, if you want. This URL has the followin
 
 	<%= image_tag('../images/azure-oidc-app-secret-set.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
 
-1. Click **Save** to generate your key value. This value is the **Relying Party OAuth Client Secret**. Record this value for later use.
+1. <a id="key"></a>Click **Save** to generate your key value. This value is the **Relying Party OAuth Client Secret**. Record this value for later use.
 
 	<%= image_tag('../images/azure-oidc-app-secret-show.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+
+
+### <a id="configure-urls"></a> Configure Reply and Endpoint URLs
+
+To create reply and endpoint URLs:
 
 1. Under **Reply URLs**, configure and save the URL using the following pattern:
 
@@ -78,7 +92,8 @@ This can be the URL for the login portal, if you want. This URL has the followin
 
 	Where:
   - `AUTH-DOMAIN` is the **Auth Domain** setting you entered when you created the service plan that you are integrating with Azure AD.
-  - `ORIGIN-KEY` is based on the **Identity Provider Name** you set in the <%= vars.operator_dash %> in **Set Up OIDC Identity Provider in SSO** as shown below. Do not use spaces or uppercase letters in this value. You might need to change this later.
+  - `ORIGIN-KEY` is based on the **Identity Provider Name** you set in the <%= vars.operator_dash %> in **Set Up OIDC Identity Provider in SSO** as shown below.
+	Do not use spaces or uppercase letters in this value. You might need to change this later.
 
 	<%= image_tag('../images/azure-oidc-reply.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
@@ -89,7 +104,7 @@ For example, in the App ID URI `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b
 	<%= image_tag('../images/azure-oidc-tenant-name.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
 1. <a id="relying"></a>Construct the URL for the OpenID Connect metadata endpoint by replacing `TENANT-NAME` with your Azure Tenant Name in the following string:
-`https://login.microsoftonline.com/TENANT-NAME/.well-known/openid-configuration`. Example:  `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`
+`https://login.microsoftonline.com/TENANT-NAME/.well-known/openid-configuration`. Example: `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`
 <br><br>
 Record these values for the [Set Up the OIDC Identity Provider in <%= vars.product_short %>](#config-sso)
 procedure below.
