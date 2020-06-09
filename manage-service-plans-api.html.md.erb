@@ -24,7 +24,7 @@ Refresh tokens typically have a longer expiration time than access tokens.
 
 To configure the token policy:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
 You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> in **Credentials**.
 
 2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the dropdown.
@@ -61,7 +61,7 @@ To make UAA identity zone API calls:
 <li> Find the UAA identity zone ID:</li>
     <ol type="a">
         <li>
-          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.YOUR-SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> in <strong>Credentials</strong>.
+          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> in <strong>Credentials</strong>.
         </li>
 
         <li>
@@ -70,7 +70,7 @@ To make UAA identity zone API calls:
         </li>
 
         <li> Record the identity zone ID for your plan from the <%= vars.operator_dash %> URL. The URL looks similar to the below.
-          <pre>https://p-identity.YOUR-SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</pre>
+          <pre>https://p-identity.SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</pre>
           Where <code>YOUR-IDENTITY-ZONE-ID</code> is your plan’s identity zone ID.
         </li>
     </ol>
