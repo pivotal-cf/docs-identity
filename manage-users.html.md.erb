@@ -81,7 +81,10 @@ From the external identity provider users admin pane, you can:
 
 ## <a id="uaac"></a> Manage Users with the UAA CLI
 
-You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users for <%= vars.product_short %>. You can use this approach to programmatically create new internal users or assign groups (scopes) to any user (whether internal or external). These operations require administrative access through an admin client that must be configured by an administrator for the service plan.
+You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac), to manage users 
+for <%= vars.product_short %>. You can use this approach to programmatically create new internal 
+users or assign groups (scopes) to any user (whether internal or external). These operations require 
+administrative access through an admin client that must be configured by an administrator for the service plan.
 
 <p class="note"><strong>Note</strong>: Clients and Groups for <%= vars.product_short %> should be created directly using the <%= vars.operator_dash %> or through app manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by <%= vars.product_short %>.</p>
 

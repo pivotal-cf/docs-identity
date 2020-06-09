@@ -172,7 +172,7 @@ run the following command:
 	+ `TOKEN` is the access token you recorded from the previous step.
 	+ `PLAN-NAME` is the name of your plan.
 	+ `DESCRIPTION` is the text you want to appear as a plan feature in the Services Marketplace.
-	+ `AUTH-DOMAIN` is the **Auth Domain** setting you entered when you created the service plan.
+	+ `AUTH-DOMAIN` is the **Auth Domain** you entered in [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
 	+ `INSTANCE-NAME` is the name of your instance. This text appears in user-facing content, such as email communications.
 
 	The above command returns output similar to the following:
@@ -239,16 +239,13 @@ command for each plan administrator:
 		cf enable-service-access p-identity -p AUTH-DOMAIN -o ORG-NAME
 		```
 
-		Where:
-		+ `AUTH-DOMAIN` is the hostname you provided in step 9.
-		+ `ORG-NAME` is the name of the org you want to have access to your <%= vars.product_short %> plan.
-	+ To give all orgs access to your <%= vars.product_short %> plan, run the following command:
+		Where `ORG-NAME` is the name of the org you want to have access to your <%= vars.product_short %> plan.
+	+ To give all orgs access to your <%= vars.product_short %> plan, run:
 
 		```
-		cf enable-service-access p-identity -p PLAN_AUTH_DOMAIN
+		cf enable-service-access p-identity -p AUTH-DOMAIN
 		```
 
-		Where `AUTH-DOMAIN` is the hostname you provided in step 9.
 
 		<p class="note"> Pivotal recommends only giving all orgs access to your <%= vars.product_short %> plans
 			for test plans to enable developers to experiment with <%= vars.product_short %>.</p>

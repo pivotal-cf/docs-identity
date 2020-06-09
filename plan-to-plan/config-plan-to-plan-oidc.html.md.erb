@@ -57,7 +57,8 @@ To set up the OIDC Identity Provider Configuration in the relying party plan, fo
 	<li>Follow steps 1&ndash;6 in <a href="../configure-external-id.html#config-ext-oidc">Add an OIDC Provider</a>.</li>
 	<li>If you use a self-signed certificate for <%= vars.platform_name %> where the IDP is located, select the <strong>Skip SSL Validation</strong> checkbox. If you do not use a self-signed certificate, you can leave this box unchecked.</li>
 	<li>Select the <strong>Enable Discovery</strong> checkbox and type in the <strong>Discovery Endpoint URL</strong>. <br/><br/>
-	This URL is <code>ht<span>tps</span>://IDP-AUTH-DOMAIN/.well-known/openid-configuration</code>, where <code>IDP-AUTH-DOMAIN</code> is the Auth Domain setting you entered when you created the IDP service plan you are integrating with.</li>
+	This URL is <code>ht<span>tps</span>://IDP-DOMAIN/.well-known/openid-configuration</code>, where <code>IDP-DOMAIN</code> is the domain setting you enter when you 
+	add the IDP service plan you are integrating.</li>
 	<li>Fill in the <strong>Relying Party OAuth Client ID</strong> with the App Client ID from <a href="#idp">the previous section</a>.</li>
 	<li>Fill in the <strong>Relying Party OAuth Client Secret</strong> with the App Secret from <a href="#idp">the previous section</a>.</li>
 	<li>Confirm that <code>openid</code> is selected as a scope by clicking <strong>All Selected</strong>.<br/>
@@ -72,11 +73,11 @@ After you create an app, follow the steps below to finish configuration.
 	<li>Return to the page for the app you created.
 	<li>Click <strong>Edit Config</strong>. The app configuration screen appears.<br/>
 	<img src="../images/edit-config.png"></li>
-	<li>Add an <strong>Auth Redirect URL</strong>. The URL should read <code>https://RP-AUTH-DOMAIN/login/callback/ORIGIN-KEY</code><br><br>
+	<li>Add an <strong>Auth Redirect URL</strong>. The URL should read <code>https://RELYING-PARTY-DOMAIN/login/callback/ORIGIN-KEY</code><br><br>
 		Where:
 		<ul>
-			 <li>the <code>RP-AUTH-DOMAIN</code> is the Auth Domain setting you entered during RP configuration</li>
-			 <li>the <code>ORIGIN-KEY</code> is based on the IDP name you set in the <%= vars.operator_dash %></li>
+			 <li><code>RELYING-PARTY-DOMAIN</code> is the domain setting you enter during Relying Party configuration.</li>
+			 <li><code>ORIGIN-KEY</code> is based on the IDP name you set in the <%= vars.operator_dash %>.</li>
 		</ul>
 	</li>
 	<li>Click <strong>Save Config</strong>.</li>
