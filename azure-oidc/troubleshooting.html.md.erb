@@ -15,7 +15,7 @@ Explanations:
 
 * This is a generic error. Review UAA logs for detailed information.
 * This error can occur when the app type is created as **Native**. Ensure you created your client in Azure AD as **Web App/API**.
-* This error can occur when a response type other than `id_token` is used. Ensure you configure the response type to use `id_token`.
+* This error can occur when a response type other than `code` is used. Ensure you configure the response type to use `code`.
 
 ##<a id='no-username'></a> Cannot determine username from credentials supplied
 
@@ -76,7 +76,7 @@ Under the identity provider attributes, map the `unique_name` attribute to `user
 
 ### Explanation:
 
-* This error can occur if you configure a response type that Azure AD does not support or has not been enabled for the application, such as `token` or `code id_token token`. Ensure that you configure the response type to `id_token`.
+* This error can occur if you configure a response type that Azure AD does not support or has not been enabled for the application, such as `token` or `code id_token token`. Ensure that you configure the response type to `code`.
 
 ##<a id='client-id-error'></a> Error authenticating against external identity provider: Some parties were not in the token audience
 
