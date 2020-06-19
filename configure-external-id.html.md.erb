@@ -117,7 +117,7 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
 1. (Optional) Transfer group memberships and roles from existing SAML groups to
 <%= vars.product_short %> by following the procedures in
      [Create or Edit Resource Permissions Mapping](#create-resource-perm)
-     and [Configure Group Whitelist for an External Identity Provider](#config-whitelist) below.
+     and [Configure Group Allowlist for an External Identity Provider](#config-allowlist) below.
 
 
 ### <a id='config-ext-settings'></a> Configure SAML Settings
@@ -385,7 +385,7 @@ click **Attribute Mappings** and configure the fields as follows:
 1. (Optional) Transfer group memberships and roles from existing OIDC groups to
 <%= vars.product_short %> by following the procedures in
      [Create or Edit Resource Permissions Mapping](#create-resource-perm)
-     and [Configure Group Whitelist for an External Identity Provider](#config-whitelist) below.
+     and [Configure Group Allowlist for an External Identity Provider](#config-allowlist) below.
 
 ### <a id='config-ext-ldap'></a> Add an LDAP Provider
 
@@ -561,7 +561,7 @@ configure the fields as follows:
 1. (Optional) Transfer group memberships and roles from existing SAML groups to
 <%= vars.product_short %> by following the procedures in
      [Create or Edit Resource Permissions Mapping](#create-resource-perm)
-     and [Configure Group Whitelist for an External Identity Provider](#config-whitelist) below.
+     and [Configure Group Allowlist for an External Identity Provider](#config-allowlist) below.
 
 ### <a id='delete-idp'></a> Delete an External Identity Provider
 
@@ -587,17 +587,17 @@ in <%= vars.ops_manager %> on the **Credentials** tab.
 1. In the dialog box that appears, click **Delete Identity Provider** to
 confirm that you want to delete the IdP, along with all of its configurations.
 
-## <a id='mapping-whitelist'></a> Transfer Group Membership and Roles
+## <a id='mapping-allowlist'></a> Transfer Group Membership and Roles
 
 You can use the <%= vars.operator_dash %> to configure resource permissions mappings
-and group whitelists to transfer group membership and roles from existing IdP groups to
+and group allowlists to transfer group membership and roles from existing IdP groups to
 <%= vars.product_short %>.
 
 <%= vars.operator_dash %> enables you to:
 
 + [Create or Edit Resource Permissions Mapping](#create-resource-perm)
 + [Delete Resource Permissions Mapping](#delete-resource-perm)
-+ [Configure Group Whitelist for an External Identity Provider](#config-whitelist)
++ [Configure Group Allowlist for an External Identity Provider](#config-allowlist)
 
 ### <a id='create-resource-perm'></a> Create or Edit Resource Permissions Mapping
 
@@ -685,10 +685,10 @@ select **Resource Permissions** from the dropdown.
   documentation.
 </p>
 
-### <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
+### <a id='config-allowlist'></a> Configure Group Allowlist for an External Identity Provider
 
-An admin can include groups from an external IdP in a group whitelist.
-The list of groups in the whitelist propagates in the ID token when a
+An admin can include groups from an external IdP in a group allowlist.
+The list of groups in the allowlist propagates in the ID token when a
  user authenticates using an external IdP.
 
 An app can retrieve from the ID token the list of external groups that the user belongs to.
@@ -699,9 +699,9 @@ see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping<
 
 <p class="note"><strong>Note:</strong> For an app to retrieve an ID token or a
   <code>/userinfo</code> response containing external groups, the app must request
-  the <code>roles</code> claim and the group whitelist must include the external groups.</p>
+  the <code>roles</code> claim and the group allowlist must include the external groups.</p>
 
-To configure a group whitelist:
+To configure a group allowlist:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
 using your UAA admin credentials.
