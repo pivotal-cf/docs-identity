@@ -28,9 +28,9 @@ as well as to Ops Manager, Apps Manager, and other Cloud Foundry components.
 
 ### Books that Use This Repository
 
-[docs-book-identity](https://github.com/pivotal-cf/docs-book-identity/blob/master/config.yml)
+[docs-book-identity](https://github.com/pivotal-cf/docs-book-identity/)
 
-[docs-book-runpivotal](https://github.com/pivotal-cf/docs-book-runpivotal/blob/master/config.yml)
+[docs-book-runpivotal](https://github.com/pivotal-cf/docs-book-runpivotal/)
 
 ### Local Development
 1. Clone https://github.com/pivotal-cf/docs-layout-repo
