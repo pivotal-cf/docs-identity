@@ -30,38 +30,58 @@ To set up SAML in Azure AD:
 
 2. Navigate to **Azure Active Directory** tab > **Enterprise application**.
 
- 	<%= image_tag('../images/azure-create-ent-app.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+ 	<%= image_tag('../images/azure-create-ent-app.png',
+  :alt => 'Screenshot of the "Overview" section in the "Azure Active Directory" tab in Azure AD.
+  Red boxes are drawn around the "Azure Active Directory" tab and the link "Enterprise application".') %>
 
 3. Select **Non-gallery application**. Provide a name and click **Add**.
 
-	<%= image_tag('../images/azure-nongallery-app.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/azure-nongallery-app.png',
+  :alt => 'Screenshot of the "Add an application" section in the "Azure Active Directory" tab in Azure AD.
+  Red boxes are drawn around the "Azure Active Directory" tab, the "Non-gallery application" link, the "Name" field", and the "Add" button.') %>
 
 1. Navigate to **Azure Active Directory** > **Enterprise applications**.
 
-	<%= image_tag('../images/azure-manage-ent-app.png', :width => 300, :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/azure-manage-ent-app.png', :width => 300, :alt => 'Screenshot of tabs and categories in Azure AD.
+  A red box is drawn around the "Enterprise applications" category.') %>
 
 1. Click your app and then click the **Single sign-on** tab.
 
 1. Select **SAML-based Sign-on** from the dropdown and then click **Upload metadata file** to upload the
 metadata file you downloaded earlier in [Set up SAML in <%= vars.product_short %>](#pcf).
 
-	<%= image_tag('../images/azure-samlbased-signon.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/azure-samlbased-signon.png',
+  :alt => 'Screenshot of the "Single sign-on" category in Azure AD.
+  There is a "Single Sign-on Mode" dropdown with the option "SAML-based Sign-on" selected.
+  Below that is a link to the document "How to configure single sign-on between Azure AD and new_test."
+  Below that are "Identifier" and "Reply URL" fields that contain example URLs.') %>
 
 2. Record the **App Federation Metadata Url**. You need this for setting up the SSO identity provider configurations.
 For more information, see [Setting up SAML](./config-sso.html#set-up-saml).
 
 1. Provide a **Notification Email** and click **Save**.
 
-	<%= image_tag('../images/azure-app-fed-metadata-url.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/azure-app-fed-metadata-url.png',
+  :alt => 'Screenshot of the "SAML Signing Certificate" section.
+  There is an "App Federation Metadata URL" field that contains an example URL.
+  Below that are the certificate status, expiration date, thumbprint, and download links.
+  Below that is a "Create new certificate" link.
+  Below that is a "Show advanced certificate signing settings" checkbox.
+  At the bottom is a "Notification Email" field, which is empty.') %>
 
-3. Navigate to **Users and groups** tab and then click **Add User** .
+3. Navigate to the **Users and groups** tab and then click **Add User** .
 
-	<%= image_tag('../images/azure-users-groups.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/azure-users-groups.png',
+  :alt => 'Screenshot of the "new_test - Users and groups" section of Azure AD.
+  The "Add user" button is highlighted.
+  Below that is a search field and below that are "Display Name" and "Object Type" columns.') %>
 
 5. Select users or group names from the dropdown. For example, you can add a group that includes all users that
 should be able to log in to the <%= vars.product_short %> plan.
 
-	<%= image_tag('../images/azure-add-user.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/azure-add-user.png',
+  :alt => 'Screenshot of the "Users and groups" tab of the "Add Assignment" section of Azure AD.
+  There is a search field and, below that, a list of users.') %>
 
 
 ## <a id='claims'></a> Set up Claims Mapping
@@ -70,7 +90,11 @@ To set up claims mapping:
 
 1. Navigate to **Azure Active Directory** > **App registration**. Click your app.
 
-	<%= image_tag('../images/azure-app-registration.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/azure-app-registration.png',
+  :alt => 'Screenshot of the "Default Directory - App registrations" section of Azure AD.
+  There is a filtering field and next to it is a dropdown with the option "All apps" selected.
+  Below are "Display Name", "Application Type", and "Application ID" columns.
+  There are two apps listed in the columns.') %>
 
 1. To enable user attribute mappings:
 
