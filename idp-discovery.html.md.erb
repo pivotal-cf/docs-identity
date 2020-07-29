@@ -26,13 +26,15 @@ IdP Discovery is associated with a service plan, and configured for the apps bou
 
 1. Enable IdP Discovery for the <%= vars.product_short %> service instance that your app is bound to:
 	1. Log in at `https://p-identity.SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %> under the Credentials tab.
-	1. Click the plan name and select **Configure** under the plan menu.
+	1. Click the plan name, then select **Configure** tab.
 	1. Select the checkbox under the **Identity Provider Discovery** section and click **Save**.
 ![Enable IdP Discovery](images/enable-idp-discovery.png)
 
-1. Click the plan name and select **Manage Identity Providers** under the plan menu.
+1. Click the plan name and select the **Identity Providers** tab.
 
-1. Enter the Email domains you want to include as a comma-separated list under the configuration page for the identity provider plan.
+1. Click on the name of an identity provider to be associated with an Email domain.
+
+1. Enter the Email domains you want to include as a comma-separated list under the configuration page for the identity provider plan, and click **Save**.
 ![IdP Discovery Domains](images/idp-discovery-domains.png)
 
 1. In Apps Manager, navigate to your space, open the **Service** tab, and select your service instance.
