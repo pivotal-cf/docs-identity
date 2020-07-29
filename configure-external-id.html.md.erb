@@ -31,9 +31,9 @@ To add an external SAML IdP:
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
 You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %> on the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the dropdown.
+1. Click the plan name and navigate to the **Identity Providers** tab.
 
-1. Click **New Identity Provider**.
+1. Click **Add IDP**.
 
 1. Enter an **Identity Provider Name**. This name is displayed as a link on the login page.
 1. Enter an **Identity Provider Description**. This is the name of the group that the IdP authenticates.
@@ -52,16 +52,16 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
 
       <tr>
         <td><strong>Identity Provider Metadata URL</strong></td>
-        <td>Enter a <strong>Identity Provider Metadata URL</strong>
-          and click <strong>Fetch Metadata</strong>. If you select this option,
+        <td>Click the <strong>Identity Provider Metadata URL</strong> radio button, then
+        enter a url and click <strong>Preview Metadata</strong>. If you select this option,
           your metadata is periodically fetched from the configured URL.
           This keeps the metadata up-to-date. </td>
       </tr>
 
       <tr>
         <td><strong>SAML File Metadata</strong></td>
-        <td>Click <strong>Upload Identity Provider Metadata</strong>
-          and upload the XML metadata that you downloaded from your external IdP.
+        <td>Click the <strong>Upload IdP Metadata File</strong> radio button, then click browse to
+          upload the XML metadata that you downloaded from your external IdP.
           If you select this option, your metadata is not periodically updated.
           If the metadata changes, you must manually upload the file again.
         </td>
@@ -114,17 +114,16 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
       </tr>
     </table>
 
-1. Click **Create Identity Provider** to save the IdP.
-
-1. (Optional) Configure the service provider SAML settings for
-    signing  authentication requests and incoming assertions,
-    by following the procedure in [Configure SAML Settings](#config-ext-settings) below.
-
 1. (Optional) Transfer group memberships and roles from existing SAML groups to
 <%= vars.product_short %> by following the procedures in
      [Create or Edit Resource Permissions Mapping](#create-resource-perm)
      and [Configure Group Allowlist for an External Identity Provider](#config-allowlist) below.
 
+1. Click **Save** to save the IdP.
+
+1. (Optional) Configure the service provider SAML settings for
+    signing authentication requests and incoming assertions,
+    by following the procedure in [Configure SAML Settings](#config-ext-settings) below.
 
 ### <a id='config-ext-settings'></a> Configure SAML Settings
 
@@ -134,6 +133,7 @@ between the IdP and the service provider.
 
 <%= vars.product_short %> enables the ability to sign authentication requests
 and require signed assertions from the external IdP.
+These settings affect all SAML Identity Providers in the plan.
 
 To configure SAML settings:
 
@@ -142,11 +142,10 @@ using your UAA admin credentials.
 You can find these credentials in your <%= vars.app_runtime_abbr %>
 tile in <%= vars.ops_manager %> under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the dropdown.
-
-1. Click **Configure SAML Service Provider**.
+1. Click the plan name and navigate to the **Configure** tab.
 
 1. Configure the fields as follows:
+    ![Configure SAML Provider](configure-saml-provider.png)
     <table>
       <tr>
         <th width=35%>Field</th>
@@ -178,9 +177,9 @@ To add a external OIDC IdP:
 using your UAA admin credentials. You can find these credentials in
 your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the dropdown.
+1. Click the plan name and navigate to the **Identity Providers** tab.
 
-1. Click **New Identity Provider**.
+1. Click **Add IDP**.
 
 1. Enter an **Identity Provider Name**. This name must match your origin key. However, you can replace lowercase letters with capital letters and replace dashes with spaces. This name is displayed as a link on the login page.
 
@@ -190,7 +189,7 @@ your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Crede
 1. Under **Identity Provider type**, select **OpenID Connect**.
 
 1. Configure **OpenID Connect Settings** by configuring one of the below fields as follows: <br>
-    The tabs below expand to show instructions for each type of endpoint URL. <br><br>
+    The tabs below expand to show instructions for using a discovery endpoint URL to fetch the settings or manually entering the OIDC settings. <br><br>
 
     <style>
     .tab {
@@ -248,8 +247,8 @@ your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Crede
 
     <div class="tab">
      <!- Tab headers and links ->
-     <button class="tablinks active" onclick="openDocs(event, 'tab1')">Discovery Endpoint URL</button>
-     <button class="tablinks" onclick="openDocs(event, 'tab2')">Authorization Endpoint URL</button>
+     <button class="tablinks active" onclick="openDocs(event, 'tab1')">Discover OIDC Configuration</button>
+     <button class="tablinks" onclick="openDocs(event, 'tab2')">Manually Enter OIDC Configuration</button>
     </div>
 
 
@@ -257,7 +256,7 @@ your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Crede
       <img src="./images/discovery-url.png" alt="Pane for configuring a Discovery Endpoint URL.">
       <ol>
         <li>(Optional) If you do not want to use SSL validation, select <strong>Skip SSL Validation</strong>.</li>
-        <li>Ensure the <strong>Enable Discovery</strong> checkbox selected.</li>
+        <li>Select the <strong>Discover OIDC Configuration</strong> radio button.</li>
 
         <li>Configure the fields as follows:
           <table>
@@ -283,16 +282,16 @@ your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Crede
           </table>
         </li>
         <br>
-        <li>Click <strong>Fetch Scopes</strong>.</li>
-        <li>Select the applicable <strong>Scopes</strong> for your IdP</li>
+        <li>Click <strong>Fetch Supported Scopes</strong> to retrieve the scopes supported by your OIDC provider.</li>
+        <li>Select the <strong>Scopes</strong> that SSO will use during authentication.</li>
       </ol>
     </div>
     <div id="tab2" class="tabcontent">
-      <img src="./images/authorization-url.png" alt="Pane for configuring a Authorization Endpoint URL.">
+      <img src="./images/manual-oidc-configuration.png" alt="Pane for manually configuring OIDC settings.">
       <ol>
         <li>(Optional) If you do not want to use SSL validation,
           select <strong>Skip SSL Validation</strong>.</li>
-        <li>Deselect the <strong>Enable Discovery</strong> checkbox.</li>
+        <li>Select the <strong>Manually Enter OIDC Configuration</strong> radio button.</li>
         <li>Configure the fields as follows:
           <table>
             <tr>
@@ -327,7 +326,7 @@ your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Crede
 
             <tr>
               <td><strong>Response Type</strong></td>
-              <td>If this field is required by your IdP, select a value.</td>
+              <td>Select the requested grant type(s) from the dropdown.</td>
             </tr>
 
             <tr>
