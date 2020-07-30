@@ -7,35 +7,48 @@ This topic describes Identity Provider (IdP) Discovery and how to configure it f
 
 ## <a id="definition"></a> What IdP Discovery Does
 
-If users with different email domains access the same <%= vars.app_runtime_abbr %> app, you can configure <%= vars.product_short %> to authenticate them through different identity providers.
+If users with different email domains access the same <%= vars.app_runtime_abbr %> app, you can
+configure <%= vars.product_short %> to authenticate them through different identity providers.
 
-In this situation, IdP Discovery streamlines the login experience by automatically redirecting the user to their own IdP and shielding them from seeing the IdPs of other app users.
+In this situation, IdP Discovery streamlines the login experience by automatically redirecting the user
+to their own IdP and shielding them from seeing the IdPs of other app users.
 
-When a user logs in to an app, an account chooser autofills their email address from any previous login, or presents a choice if they have logged in from more than one account. Users can add or remove accounts from the account chooser.
+When a user logs in to an app, an account chooser autofills their email address from any previous
+login, or presents a choice if they have logged in from more than one account. Users can add or remove
+accounts from the account chooser.
 
 ### Example
 
-As an example, consider an app where some users log in with `@example.com` username and some with `@gmail.com` username.
+As an example, consider an app where some users log in with `@example.com` username and some with
+`@gmail.com` username.
 With IdP Discovery, users with both email domains can log in from the same login page
 and do not have to see or choose from a list of login options that covers all the domains.
 IdP Discovery ascertains each user's IdP from their email domain.
 
 ## <a id="how-to"></a> Enable IdP Discovery
 
-IdP Discovery is associated with a service plan, and configured for the apps bound to instances of that plan. To enable IdP Discovery for a service plan and the apps that use it, you must be a <%= vars.platformq %> Administrator or a Plan Administrator.
+IdP Discovery is associated with a service plan, and configured for the apps bound to instances of
+that plan.
+To enable IdP Discovery for a service plan and the apps that use it, you must be a <%= vars.platform %>
+Admin or a Plan Admin.
+
+To enable IdP Discovery:
 
 1. Enable IdP Discovery for the <%= vars.product_short %> service instance that your app is bound to:
-	1. Log in at `https://p-identity.SYSTEM-DOMAIN` using your User Account and Authentication (UAA) administrator credentials. You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %> under the Credentials tab.
-	1. Click the plan name, then select **Configure** tab.
+	1. Log in at `https://p-identity.SYSTEM-DOMAIN` using your User Account and Authentication (UAA)
+	admin credentials.
+	You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %>
+	under the **Credentials** tab.
+	1. Click the plan name and then select the **Configure** tab.
 	1. Select the checkbox under the **Identity Provider Discovery** section and click **Save**.
-![Enable IdP Discovery](images/enable-idp-discovery.png)
+	![Enable IdP Discovery](images/enable-idp-discovery.png)<%# Alt text must describe the image in detail. %>
 
-1. Click the plan name and select the **Identity Providers** tab.
+1. Click the plan name and then select the **Identity Providers** tab.
 
 1. Click on the name of an identity provider to be associated with an Email domain.
 
 1. Enter the Email domains you want to include as a comma-separated list under the configuration page for the identity provider plan, and click **Save**.
-![IdP Discovery Domains](images/idp-discovery-domains.png)
+![IdP Discovery Domains](images/idp-discovery-domains.png)<%# Alt text must describe the image in detail. %>
 
 1. In Apps Manager, navigate to your space, open the **Service** tab, and select your service instance.
 
@@ -43,8 +56,8 @@ IdP Discovery is associated with a service plan, and configured for the apps bou
 
 After these steps, the login page prompts for the username first:
 
-![IdP Discovery Login Page](images/idp-discovery-login-page.png)
+![IdP Discovery Login Page](images/idp-discovery-login-page.png)<%# Alt text must describe the image in detail. %>
 
 If the user enters their `@example.com` username, they are redirected to the Okta login page:
 
-![IdP Discovery Okta Login Page](images/idp-discovery-okta-login-page.png)
+![IdP Discovery Okta Login Page](images/idp-discovery-okta-login-page.png)<%# Alt text must describe the image in detail. %>
