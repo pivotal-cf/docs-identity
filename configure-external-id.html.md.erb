@@ -752,35 +752,35 @@ An admin can include groups from an external IdP in a group allowlist.
 The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the `roles` key of the /userinfo endpoint response when a
  user authenticates using an external IdP.
 
-<p class="note">
-  <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
-  containing external groups, the app must request the <code>roles</code> claim and the group
-  allowlist must include the external groups.
-</p>
+  <p class="note">
+    <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
+    containing external groups, the app must request the <code>roles</code> claim and the group
+    allowlist must include the external groups.
+  </p>
 
-Configure a group allowlist as follows:
+  Configure a group allowlist as follows:
 
-  a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
-  <table>
-      <tr>
-        <th>Field</th>
-        <th>Description</th>
-      </tr>
-      <tr>
-        <td><strong>Allow all groups</strong></td>
-        <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
-      </tr>
-      <tr>
-        <td><strong>Do not allow any groups</strong></td>
-        <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
-      </tr>
-      <tr>
-        <td><strong>Select groups to allow</strong></td>
-        <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
-        To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
-        </td>
-      </tr>
-    </table>
+    a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
+    <table>
+        <tr>
+          <th>Field</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><strong>Allow all groups</strong></td>
+          <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Do not allow any groups</strong></td>
+          <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Select groups to allow</strong></td>
+          <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
+          To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
+          </td>
+        </tr>
+      </table>
 
 1. (Optional) Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields as follows:
     <table>
@@ -805,7 +805,7 @@ Configure a group allowlist as follows:
     ![Screenshot of the 'Custom Attributes' section.
     There is a selected 'Persist Custom Attributes' checkbox.
     Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
-    At the bottom is a 'Add New Item' button.](custom-attributes.png)](custom-attributes.png)
+    At the bottom is a 'Add New Item' button.](custom-attributes.png)
 
 1. Click **Save** to save the IdP.
 
