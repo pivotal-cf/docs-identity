@@ -711,11 +711,9 @@ You can only have one LDAP provider per Service Plan.
 After a Space Developer defines the resources required by an app,
 an admin can map existing groups to those resources.
 For information about how Space Developers define resources,
-see [Create or Edit Resources](./manage-resources.html#create-resources).
-
+see [Create or Edit Resources](./manage-resources.html#create-resources).<br><br>
 After resource permissions mappings are configured and a user authenticates,
-the user group memberships are mapped to scopes in the resulting token.
-
+the user group memberships are mapped to scopes in the resulting token.<br><br>
 You can configure external group mappings as follows:
     <table>
       <tr>
@@ -733,21 +731,21 @@ You can configure external group mappings as follows:
       </tr>
     </table>
 
-<p class="note">
-  <strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.
-</p>
+    <p class="note">
+      <strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.
+    </p>
 
-<p class="note">
-  <strong>Note:</strong> You can use the UAA API to automate the above procedure.
-  To do this automation, you need an identity zone admin client.
-  For instructions about creating the identity zone admin client,
-  see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
-  <br><br>
+    <p class="note">
+      <strong>Note:</strong> You can use the UAA API to automate the above procedure.
+      To do this automation, you need an identity zone admin client.
+      For instructions about creating the identity zone admin client,
+      see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
+      <br><br>
 
-  For instructions about granting admin permissions to mapped external identity groups,
-  see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
-    Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
-</p>
+      For instructions about granting admin permissions to mapped external identity groups,
+      see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
+        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
+    </p>
 
 1. (Optional) Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
 An admin can include groups from an external IdP in a group allowlist.
@@ -813,8 +811,8 @@ Configure a group allowlist as follows:
 
 ### <a id='delete-idp'></a> Delete an External Identity Provider
 
-<p class="note warning"><strong>Note:</strong>
-  Deleting an external IdP deletes all of its configurations.
+<p class="note warning">
+  <strong>Note:</strong> Deleting an external IdP deletes all of its configurations.
   This prevents users from authenticating through the external IdP.
   You cannot undo this action.
 </p>
@@ -858,15 +856,15 @@ in <%= vars.ops_manager %> on the **Credentials** tab.
 
 1. Click **Save** at the bottom of the page.
 
-<p class="note"><strong>Note:</strong>
-  Groups with unsupported characters in Permission Mappings are not editable.
+<p class="note">
+  <strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.
 </p>
 
-<p class="note"><strong>Note:</strong> You can use the UAA API to automate the above procedure.
+<p class="note">
+  <strong>Note:</strong> You can use the UAA API to automate the above procedure.
   To do this automation, you need an identity zone admin client.
   For instructions about creating the identity zone  admin client,
   see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.<br><br>
-
   For information about un-mapping a group mapping,
   see <a href="http://docs.cloudfoundry.org/api/uaa/version/74.4.0/index.html#unmap">Unmap</a> in the
   UAA API documentation.
