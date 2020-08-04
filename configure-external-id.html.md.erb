@@ -508,15 +508,15 @@ An admin can include groups from an external IdP in a group allowlist.
 The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the
 `roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
 
-<p class="note">
-  <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
-  containing external groups, the app must request the <code>roles</code> claim and the group
-  allowlist must include the external groups.
-</p>
+    <p class="note">
+      <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
+      containing external groups, the app must request the <code>roles</code> claim and the group
+      allowlist must include the external groups.
+    </p>
 
-Configure a group allowlist as follows:
+    Configure a group allowlist as follows:
 
-  a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
+    a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
     <table>
         <tr>
           <th>Field</th>
@@ -545,7 +545,7 @@ Configure a group allowlist as follows:
         <th>Instructions</th>
       </tr>
       <tr>
-        <td><strong>Custom Attributes</strong></td>
+      <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
           They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_short %>.
