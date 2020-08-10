@@ -9,119 +9,24 @@ This topic describes how admins can configure a
 
 ## <a id='overview'></a> Overview
 
+Starting with <%= vars.product_short %> v1.13, the internal user store is not configurable from the operator dashboard UI.
+These settings are still configurable from the UAA API.
 By default, each <%= vars.product_short %> service plan comes with an internal user store, which
 natively stores user accounts in a User Account and Authentication (UAA) database.
 
 To manage the internal user store:
 
-1. [Configure the Internal User Store](#config-int-store)
-2. [Add Internal Users Using UAAC](#add-to-int)
-3. [Test Identity Provider Configurations](#test-id-config)
+1. [Create an admin client and obtain a token](#create-zone-admin-client)
+1. [Configure the Internal User Store Using UAAC](#config-int-store)
+1. [Add Internal Users Using UAAC](#add-to-int)
+1. [Test Identity Provider Configurations](#test-id-config)
 
 You can also configure a <%= vars.product_short %> service plan to use an external identity provider to
 manage user accounts.
 For more information, see [Configuring External Identity Providers](./configure-external-id.html).
 
-## <a id='config-int-store'></a> Configure the Internal User Store
-
-To configure the internal user store:
-
-1. Log in to the **<%= vars.operator_dash %>** at
-`https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_full %> tile in
-<%= vars.ops_manager %> under the **Credentials** tab.
-
-1. Under **Name**, click the plan name and select **Manage Identity Providers** from the dropdown.
-
-1. Under **Name**, click **Internal User Store** and select **Edit Provider** from the dropdown.
-
-1. Under **Email Domains**, enter a comma-separated list of the email domains for service plan.
-	![Email Domains field for the Internal User Store](email-domains.png)
-
-1. (Optional) Under **Authentication Policy** select one of the following:
-	- **Disable Internal Authentication**: This option prevents authentication against the internal user store.
-	You must have at least one external identity provider configured.
-	<p class="note"><strong>Note:</strong> The login page does not include the <strong>Email</strong>
-		and <strong>Password</strong> fields if you select this option.</p>
-	- **Disable User Management**: This option prevents all users, including admins,
-	from managing internal users.
-	<p class="note"><strong>Note:</strong> The login page does not include <strong>Create Account</strong>
-		and <strong>Reset Password</strong> links if you select this option.</p>
-	![Authentication Policy field for the Internal User Store](auth-policy.png)
-
-1. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**,
-or enter custom settings in the **Password Complexity** and **Lockout Policy** fields.
-![ Password Policy Settings for the Internal User Store](password-complex.png)
-
-	See the following table for configuration instructions:
-
-	<table class="nice">
-		<tr>
-			<th>Field</th>
-			<th>Instructions</th>
-		</tr>
-
-		<tr>
-			<th style="text-align:center" colspan="2">Password Complexity</th>
-		</tr>
-
-		<tr>
-			<td><strong>Min Length</strong></td>
-			<td>Enter the minimum password length.</td>
-		</tr>
-
-		<tr>
-			<td><strong>Uppercase</strong></td>
-			<td>Enter the minimum number of uppercase characters required in a password.</td>
-		</tr>
-
-		<tr>
-			<td><strong>Lowercase</strong></td>
-			<td>Enter the minimum number of lowercase characters required in a password.</td>
-		</tr>
-
-		<tr>
-			<td><strong>Special Characters</strong></td>
-			<td>Enter the minimum number of special characters required in a password.</td>
-		</tr>
-
-		<tr>
-			<td><strong>Numerals</strong></td>
-			<td>Enter the minimum number of numeric characters required in a password.</td>
-		</tr>
-
-		<tr>
-			<th style="text-align:center" colspan="2">Lockout Policy</th>
-		</tr>
-
-		<tr>
-			<td><strong>Failures Allowed</strong></td>
-			<td>Enter the number of failed login attempts permitted per hour before a user is locked out.</td>
-		</tr>
-
-		<tr>
-			<td><strong>Lockout Period</strong></td>
-			<td>Enter the number of seconds a user is locked out for after excessive failed login attempts.</td>
-		</tr>
-
-		<tr>
-			<td><strong>Password Expires</strong></td>
-			<td>Enter the number of months passwords are valid for before users needs to enter a new password.</td>
-		</tr>
-
-	</table>
-
-1. Click **Save Identity Provider**.
-
-## <a id='add-to-int'></a> Add Internal Users Using UAAC
-
-You can create new internal user accounts with the UAA Command Line Interface (UAAC).
-You can also use the **Internal Users** admin pane to send invitations to users to enable them to add themselves to the internal user store.
-However, you cannot use the admin pane to add users directly.
-For information about the admin pane,
-see [Manage Users in an Internal User Store](./manage-users.html#internal).
-
-To create new internal user accounts with the UAAC:
+## <a id='create-zone-admin-client'></a> Creating a client for administrating users
+In order to configure Internal User Store settings and users, you will need to create an admin client using the developer dashboard.
 
 1. If you do not already have the UAAC installed,  install the UAAC by running the following command:
 
@@ -132,6 +37,8 @@ To create new internal user accounts with the UAAC:
 1. Create an admin client that can manage users for the <%= vars.product_short %> service plan with the
 following scopes:
 	- `clients.admin`
+	- `idps.write`
+	- `idps.read`
 	- `scim.read`
 	- `scim.write`
 
@@ -155,6 +62,72 @@ following scopes:
 	Where `APP-ID` is the **App ID** you recorded in the above step.
 
 1. When prompted for `Client secret`, enter the **App Secret** admin client secret you recorded in the above step.
+
+
+## <a id='config-int-store'></a> Configure the Internal User Store
+
+You can configure the internal user store with the UAA Command Line Interface (UAAC):
+
+1. First, obtain a token for the auth domain where your client was created as described [above](#create-zone-admin-client)
+
+1. List the IDPs by calling
+```
+uaac curl https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers -X GET
+```
+
+1. From the output, find the Identity Provider with the name `uaa`. Capture the json and record the `id` for that Identity Provider.
+
+1. Edit the captured json. Configure the password policy, email domains and other settings as desired.
+
+1. Remove the `version`, `created`, and `last_modified` keys from the json.
+
+1. When you are satisfied with the json configuration, send the modified json via UAAC to apply it:
+```
+uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/<uaa-idp-id>?rawConfig=true' -X PUT \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "type": "uaa",
+    "config": {
+      "emailDomain": [],
+      "additionalConfiguration": null,
+      "providerDescription": null,
+      "passwordPolicy": {
+        "minLength": 1,
+        "maxLength": 255,
+        "requireUpperCaseCharacter": 0,
+        "requireLowerCaseCharacter": 0,
+        "requireDigit": 0,
+        "requireSpecialCharacter": 0,
+        "passwordNewerThan": null,
+        "expirePasswordInMonths": 0
+      },
+      "lockoutPolicy": {
+        "lockoutPeriodSeconds": 300,
+        "lockoutAfterFailures": 5,
+        "countFailuresWithin": 3600
+      },
+      "disableInternalUserManagement": false
+    },
+    "id": "<uaa-idp-id>",
+    "originKey": "uaa",
+    "name": "uaa",
+    "active": true,
+    "identityZoneId": "xyz-123"
+  }'
+```
+
+
+## <a id='add-to-int'></a> Add Internal Users Using UAAC
+
+You can create new internal user accounts with the UAA Command Line Interface (UAAC).
+You can also use the **Internal Users** admin pane to send invitations to users to enable them to add themselves to the internal user store.
+However, you cannot use the admin pane to add users directly.
+For information about the admin pane,
+see [Manage Users in an Internal User Store](./manage-users.html#internal).
+
+To create new internal user accounts with the UAAC:
+
+1. First, obtain a token for the auth domain as described [above](#create-zone-admin-client)
 
 1. Add new users by running the following command:
 
