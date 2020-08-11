@@ -3,85 +3,112 @@ title: Configuring Internal User Store
 owner: Identity Service
 ---
 
-This topic describes how admins can configure a
-<%= vars.product_full %> service plan to manage user access to
-<%= vars.app_runtime_abbr %> apps with the internal user store.
+This topic describes how admins can configure a <%= vars.product_full %> service plan to manage user
+access to <%= vars.app_runtime_abbr %> apps with the internal user store.
+
 
 ## <a id='overview'></a> Overview
 
-Starting with <%= vars.product_short %> v1.13, the internal user store is not configurable from the operator dashboard UI.
-These settings are still configurable from the UAA API.
+As of <%= vars.product_short %> v1.13, the internal user store is not configurable from the operator
+dashboard UI.
+These settings are still configurable from the User Account and Authentication (UAA) API.
 By default, each <%= vars.product_short %> service plan comes with an internal user store, which
-natively stores user accounts in a User Account and Authentication (UAA) database.
+natively stores user accounts in a UAA database.
 
 To manage the internal user store:
 
-1. [Create an admin client and obtain a token](#create-zone-admin-client)
-1. [Configure the Internal User Store Using UAAC](#config-int-store)
-1. [Add Internal Users Using UAAC](#add-to-int)
+1. [Create and Configure a User Admin Client](#create-zone-admin-client)
+1. [Configure the Internal User Store](#config-int-store)
+1. [Add Internal Users](#add-to-int)
 1. [Test Identity Provider Configurations](#test-id-config)
 
-You can also configure a <%= vars.product_short %> service plan to use an external identity provider to
-manage user accounts.
+You can also configure a <%= vars.product_short %> service plan to use an external identity provider
+to manage user accounts.
 For more information, see [Configuring External Identity Providers](./configure-external-id.html).
 
-## <a id='create-zone-admin-client'></a> Creating a client for administrating users
-In order to configure Internal User Store settings and users, you will need to create an admin client using the developer dashboard.
 
-1. If you do not already have the UAAC installed,  install the UAAC by running the following command:
+## <a id='install-uaac'></a> Install UAAC
+
+Install UAA Command Line Client (UAAC), if you do not already have it installed:
+
+1. Install UAAC by running:
 
 	```
 	gem install cf-uaac
 	```
 
-1. Create an admin client that can manage users for the <%= vars.product_short %> service plan with the
-following scopes:
+
+## <a id='create-and-configure'></a> Create and Configure a User Admin Client
+
+To configure internal user store settings and users, create and configure an admin client for
+managing users by following the procedures below.
+
+
+### <a id='create-zone-admin-client'></a> Create a User Admin Client
+
+To create a user admin client:
+
+1. Follow the [Create an Admin Client](config-apps.html#admin) procedure to create an admin client
+that can manage users for the <%= vars.product_short %> service plan with the following scopes:
 	- `clients.admin`
 	- `idps.write`
 	- `idps.read`
 	- `scim.read`
 	- `scim.write`
 
-	To create an admin client, see [Create Admin Client](config-apps.html#admin).
-
 1. Record the **App ID** and **App Secret**. These are used as your client ID and client secret.
 
-1. Target the login portal of your <%= vars.product_short %> service plan by running the following command:
+1. Target the login portal of your <%= vars.product_short %> service plan by running:
 
 	```
 	uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
 	```
-	Where `AUTH-DOMAIN` is the **Auth Domain** you entered in [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+	Where `AUTH-DOMAIN` is the **Auth Domain** you submitted in
+	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
 
-1. Obtain an access token for your admin client by running the following command:
+
+### <a id='obtain-token'></a> Obtain an Access Token
+
+An access token for your admin client is needed for the
+[Configure the Internal User Store](#config-int-store) procedure below.
+
+To obtain an access token for your admin client:
+
+1. Run:
 
 	```
  	uaac token client get APP-ID
 	```
 
-	Where `APP-ID` is the **App ID** you recorded in the above step.
+	Where `APP-ID` is the **App ID** you recorded above in the
+	[Create a User Admin Client](#create-zone-admin-client) procedure.
 
-1. When prompted for `Client secret`, enter the **App Secret** admin client secret you recorded in the above step.
+1. When prompted for the `Client secret`, enter the **App Secret** you recorded above in the
+[Create a User Admin Client](#create-zone-admin-client) procedure.
 
 
 ## <a id='config-int-store'></a> Configure the Internal User Store
 
-You can configure the internal user store with the UAA Command Line Interface (UAAC):
+To configure the internal user store through the UAAC:
 
-1. First, obtain a token for the auth domain where your client was created as described [above](#create-zone-admin-client)
+1. If you have not already done so, complete the [Obtain an Access Token](#create-zone-admin-client)
+procedure above.
 
-1. List the IDPs by calling
+1. List the identity providers by running:
+
 ```
 uaac curl https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers -X GET
 ```
 
-1. From the output, find the Identity Provider with the name `uaa`. Capture the json and record the `id` for that Identity Provider.
+1. From the output, capture the JSON and record the `id` for the identity provider named `uaa`.
 
-1. Edit the captured json. Configure the password policy, email domains and other settings as desired.
+1. Configure to your needs the password policy, email domains, and other settings within the
+captured JSON.
 
-1. Remove the `version`, `created`, and `last_modified` keys from the json.
+1. Remove the `version`, `created`, and `last_modified` keys from the JSON.
 
-1. When you are satisfied with the json configuration, send the modified json via UAAC to apply it:
+1. To apply the modified JSON, send it through UAAC by running:
+
 ```
 uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/<uaa-idp-id>?rawConfig=true' -X PUT \
   -H 'Content-Type: application/json' \
@@ -117,44 +144,47 @@ uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/<uaa-idp-i
 ```
 
 
-## <a id='add-to-int'></a> Add Internal Users Using UAAC
+## <a id='add-to-int'></a> Add Internal Users
 
-You can create new internal user accounts with the UAA Command Line Interface (UAAC).
-You can also use the **Internal Users** admin pane to send invitations to users to enable them to add themselves to the internal user store.
+You can create new internal user accounts through the UAAC.
+You can also use the **Internal Users** admin pane to send invitations to users to enable them to
+add themselves to the internal user store.
 However, you cannot use the admin pane to add users directly.
 For information about the admin pane,
 see [Manage Users in an Internal User Store](./manage-users.html#internal).
 
-To create new internal user accounts with the UAAC:
+To create new internal user accounts through the UAAC:
 
-1. First, obtain a token for the auth domain as described [above](#create-zone-admin-client)
+1. If you have not already done so, complete the [Obtain an Access Token](#create-zone-admin-client)
+procedure above.
 
-1. Add new users by running the following command:
+1. Add a new user by running:
 
 	```
 	uaac user add --emails USER-EMAIL
 	```
 	Where `USER-EMAIL` is the email address for the user you are creating.
 
-1. When prompted for `User name` and `Password`, enter a username and password for the user you are creating.
+1. When prompted for `User name` and `Password`, enter a username and password for the new user.
 
-1. (Optional) Create a user group and add users to the group by doing the following:
+1. (Optional) Create a user group and add the user to the group:
 
-	1. Create the user group by running the following command:
+	1. Create the user group by running:
 
 		```
 		uaac group add GROUP-NAME
 		```
 		Where `GROUP-NAME` is the name of the group you are creating.
 
-	1. Add a member to your new group by running the following command:
+	1. Add a member to your new group by running:
 
 		```
  		uaac member add GROUP-NAME USER-NAME
 		```
 
+
 ## <a id='#test-id-config'></a> Test Identity Provider Configurations
 
 VMware Tanzu provides sample apps you can deploy to validate your identity provider configurations.
-To deploy a sample app, follow the instructions in [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps)
-in Github.
+To deploy a sample app, follow the instructions in
+[identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps) in GitHub.
