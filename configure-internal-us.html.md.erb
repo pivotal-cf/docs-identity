@@ -38,18 +38,12 @@ Install UAA Command Line Client (UAAC), if you do not already have it installed:
 	```
 
 
-## <a id='create-and-configure'></a> Create and Configure a User Admin Client
+## <a id='set-up-client'></a> Set up an Admin Client
 
-To configure internal user store settings and users, create and configure an admin client for
-managing users by following the procedures below.
-
-
-### <a id='create-zone-admin-client'></a> Create a User Admin Client
-
-To create a user admin client:
+To configure internal user store settings and users, set up an admin client for managing users:
 
 1. Follow the [Create an Admin Client](config-apps.html#admin) procedure to create an admin client
-that can manage users for the <%= vars.product_short %> service plan with the following scopes:
+and ensure it has the following permissions:
 	- `clients.admin`
 	- `idps.write`
 	- `idps.read`
@@ -67,9 +61,9 @@ that can manage users for the <%= vars.product_short %> service plan with the fo
 	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
 
 
-### <a id='obtain-token'></a> Obtain an Access Token
+## <a id='obtain-token'></a> Obtain an Access Token
 
-An access token for your admin client is needed for the
+You need an access token for your admin client for the
 [Configure the Internal User Store](#config-int-store) procedure below.
 
 To obtain an access token for your admin client:
@@ -81,10 +75,10 @@ To obtain an access token for your admin client:
 	```
 
 	Where `APP-ID` is the **App ID** you recorded above in the
-	[Create a User Admin Client](#create-zone-admin-client) procedure.
+	[Set up an Admin Client](#set-up-client) procedure.
 
 1. When prompted for the `Client secret`, enter the **App Secret** you recorded above in the
-[Create a User Admin Client](#create-zone-admin-client) procedure.
+[Set up an Admin Client](#set-up-client) procedure.
 
 
 ## <a id='config-int-store'></a> Configure the Internal User Store
