@@ -103,39 +103,39 @@ captured JSON.
 
 1. To apply the modified JSON, send it through UAAC by running:
 
-```
-uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/<uaa-idp-id>?rawConfig=true' -X PUT \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "type": "uaa",
-    "config": {
-      "emailDomain": [],
-      "additionalConfiguration": null,
-      "providerDescription": null,
-      "passwordPolicy": {
-        "minLength": 1,
-        "maxLength": 255,
-        "requireUpperCaseCharacter": 0,
-        "requireLowerCaseCharacter": 0,
-        "requireDigit": 0,
-        "requireSpecialCharacter": 0,
-        "passwordNewerThan": null,
-        "expirePasswordInMonths": 0
-      },
-      "lockoutPolicy": {
-        "lockoutPeriodSeconds": 300,
-        "lockoutAfterFailures": 5,
-        "countFailuresWithin": 3600
-      },
-      "disableInternalUserManagement": false
-    },
-    "id": "<uaa-idp-id>",
-    "originKey": "uaa",
-    "name": "uaa",
-    "active": true,
-    "identityZoneId": "xyz-123"
-  }'
-```
+	```
+	uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/<uaa-idp-id>?rawConfig=true' -X PUT \
+	  -H 'Content-Type: application/json' \
+	  -d '{
+	    "type": "uaa",
+	    "config": {
+	      "emailDomain": [],
+	      "additionalConfiguration": null,
+	      "providerDescription": null,
+	      "passwordPolicy": {
+	        "minLength": 1,
+	        "maxLength": 255,
+	        "requireUpperCaseCharacter": 0,
+	        "requireLowerCaseCharacter": 0,
+	        "requireDigit": 0,
+	        "requireSpecialCharacter": 0,
+	        "passwordNewerThan": null,
+	        "expirePasswordInMonths": 0
+	      },
+	      "lockoutPolicy": {
+	        "lockoutPeriodSeconds": 300,
+	        "lockoutAfterFailures": 5,
+	        "countFailuresWithin": 3600
+	      },
+	      "disableInternalUserManagement": false
+	    },
+	    "id": "<uaa-idp-id>",
+	    "originKey": "uaa",
+	    "name": "uaa",
+	    "active": true,
+	    "identityZoneId": "xyz-123"
+	  }'
+	```
 
 
 ## <a id='add-to-int'></a> Add Internal Users
