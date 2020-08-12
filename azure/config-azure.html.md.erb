@@ -67,7 +67,7 @@ For more information, see [Setting up SAML](./config-sso.html#set-up-saml).
 
 	<%= image_tag('../images/azure-app-fed-metadata-url.png',
   :alt => 'Screenshot of the "SAML Signing Certificate" section.
-  There is an "App Federation Metadata URL" field that contains an example URL.
+  There is an "App Federation Metadata URL" field that contains a partially redacted example URL.
   Below that are the certificate status, expiration date, thumbprint, and download links.
   Below that is a "Create new certificate" link.
   Below that is a "Show advanced certificate signing settings" checkbox.
@@ -85,7 +85,7 @@ users that should be able to log in to the <%= vars.product_short %> plan.
 
 	<%= image_tag('../images/azure-add-user.png',
   :alt => 'Screenshot of the "Users and groups" tab of the "Add Assignment" section of Azure AD.
-  There is a search field and, below that, a list of users.') %>
+  There is a search field and, below that, a list of partially redacted users.') %>
 
 
 ## <a id='claims'></a> Set up Claims Mapping
@@ -109,7 +109,8 @@ To set up claims mapping:
 	[Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
 
 	<%= image_tag('../images/azure-user-attributes.png', :alt => 'Screenshot of the "User Attributes"
-  section. A red box is drawn around the "View and edit all other user attributes".
+  section. A red box is drawn around the "View and edit all other user attributes checkbox".
+  The checkbox is selected.
   Below that is a table of SAML token attributes, which includes "Name", "Value", and "Namespace"
   columns.
   At the bottom is a link called "Add attribute".') %>
@@ -136,5 +137,6 @@ To set up claims mapping:
 passes the Object ID of these groups to the <%= vars.product_short %> plan. For more information, see
 [Configure Group Permissions](./config-sso.html#config-permissions).
 
-	<%= image_tag('../images/azure-object-id.png', :alt => 'The information depicted in this screenshot
-  is described in the steps above.') %>
+	<%= image_tag('../images/azure-object-id.png', :alt => 'Screenshot of the Admin group.
+  There are details for "Type", "Membership type", "Source", and "Object ID".
+  There is a red box around the Object ID, which is partially redacted.') %>
