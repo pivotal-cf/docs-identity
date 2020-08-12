@@ -43,11 +43,13 @@ To configure the connection:
 	There are "Manage All", "Crete New", and "Import" buttons below the header "SP Connections", and a
 	red box is drawn around the "Create New" button.') %>
 
-1. Select the **Browser SSO Profiles** connection template on the **Connection Type** tab and click **Next**.
+1. Select the **Browser SSO Profiles** connection template on the **Connection Type** tab and click
+**Next**.
 
 1. Select **Browser SSO** on the **Connection Options** tab and click **Next**.
 
-1. Select **File** as the method for importing metadata and click **Choose file** to choose the SSO metadata on the **Import Metadata** tab. Click **Next**.
+1. Select **File** as the method for importing metadata and click **Choose file** to choose the SSO
+metadata on the **Import Metadata** tab. Click **Next**.
 
 	<%= image_tag('../images/pingfederate_import_metadata.png', :alt => 'Screenshot of the "SP Connection" section within the "IdP Configuration" tab within the PingFederate UI.
 	There is a row of tabs across the top. The "Import Metadata" tab is selected.
@@ -79,7 +81,8 @@ To configure browser SSO:
 
 1. Click **Configure Browser SSO** on the **Browser SSO** tab.
 
-1. Select the **IdP-Initiated SSO** and **SP-Initiated SSO** options on the **SAML Profiles** tab and click **Next**.
+1. Select the **IdP-Initiated SSO** and **SP-Initiated SSO** options on the **SAML Profiles** tab and
+click **Next**.
 
 	<%= image_tag '../images/pingfederate_saml_profiles.png', :alt => 'Screenshot of the "Browser SSO"
 	section within the "IdP Configuration" tab within the PingFederate UI.
@@ -91,9 +94,11 @@ To configure browser SSO:
 	The "SP-INITIATED SSO" checkbox is selected and there is a red box drawn around it.
 	At the bottom right are "Cancel", "Save Draft", and "Next" buttons.' %>
 
-1. Enter your desired assertion validity time from on the **Assertion Lifetime** tab and click **Next**.
+1. Enter your desired assertion validity time from on the **Assertion Lifetime** tab and click
+**Next**.
 
-1. (Optional) Select **IdP-Initiated SLO** and **SP-Initiated SLO** options if you want to enforce Single Logout.
+1. (Optional) Select **IdP-Initiated SLO** and **SP-Initiated SLO** options if you want to enforce
+Single Logout.
 
 
 ### <a id="assertion"></a> Configure Assertion Creation
@@ -104,7 +109,8 @@ To configure assertion creation:
 
 1. Choose the **Standard** option on the **Identity Mapping** tab and click **Next**.
 
-1. Select a **Subject Name Format** for the **SAML_SUBJECT** on the **Attribute Contract** tab and click **Next**.
+1. Select a **Subject Name Format** for the **SAML_SUBJECT** on the **Attribute Contract** tab and
+click **Next**.
 
 	<%= image_tag('../images/pingfederate_attribute_contract.png', :alt => 'Screenshot of the "Assertion
 	Creation" section within the "IdP Configuration" tab within the PingFederate UI.
@@ -119,7 +125,8 @@ To configure assertion creation:
 
 1. Click **Map New Adapter Instance** on the **Authentication Source Mapping** tab.
 
-1. Select an **Adapter Instance** and click **Next**. The adapter must include the user's email address.
+1. Select an **Adapter Instance** and click **Next**. The adapter must include the user's email
+address.
 
 	<%= image_tag('../images/pingfederate_adapter_instance.png', :alt => 'Screenshot of the "IdP Adapter
 	Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
@@ -130,7 +137,8 @@ To configure assertion creation:
 	Below that is a "Manage Adapter Instances" button.
 	At the bottom right are "Cancel", "Save Draft", and "Next" buttons.') %>
 
-1. Select the **Use only the adapter contract values in the SAML assertion** option on the **Mapping Method** tab and click **Next**.
+1. Select the **Use only the adapter contract values in the SAML assertion** option on the
+**Mapping Method** tab and click **Next**.
 
 	<%= image_tag('../images/pingfederate_mapping_method.png', :alt => 'Screenshot of the "IdP Adapter
 	Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
@@ -145,7 +153,8 @@ To configure assertion creation:
 	The final radio button is selected and a red box is drawn around it.
 	At the bottom right are "Cancel", "Save Draft", "Previous", and "Next" buttons.') %>
 
-1. Select your adapter instance as the **Source** and the email as the **Value** on the **Attribute Contract Fullfillment** tab and click **Next**.
+1. Select your adapter instance as the **Source** and the email as the **Value** on the **Attribute
+Contract Fulfillment** tab and click **Next**.
 
 	<%= image_tag('../images/pingfederate_attribute_contract_fullfillment.png', :alt => 'Screenshot of
 	the "IdP Adapter Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
@@ -155,7 +164,8 @@ To configure assertion creation:
 	a dropdown with the option "email" selected, and the text "None available".
 	At the bottom right are "Cancel", "Save Draft", "Previous", and "Next" buttons.') %>
 
-1. (Optional) Select any authorization conditions you want on the **Issuance Criteria** tab and then click **Next**.
+1. (Optional) Select any authorization conditions you want on the **Issuance Criteria** tab and then
+click **Next**.
 
 1. Click **Done** on the **Summary** tab.
 
@@ -172,7 +182,8 @@ To configure protocol settings:
 
 1. Click **Configure Protocol Settings** on the **Protocol Settings** tab.
 
-1. Select **POST** for **Binding** and specify the single sign-on endpoint URL in the **Endpoint URL** field on the **Assertion Consumer Service URL** tab. Click **Next**
+1. Select **POST** for **Binding** and specify the single sign-on endpoint URL in the **Endpoint URL**
+field on the **Assertion Consumer Service URL** tab. Click **Next**
 
 	<%= image_tag('../images/pingfederate_service_url.png', :alt => 'Screenshot of
 	the "Protocol Settings" section within the "IdP Configuration" tab within the PingFederate UI.
@@ -194,9 +205,11 @@ To configure protocol settings:
 	Only the "POST" checkbox is selected and there is a red box drawn around it.
 	At the bottom right are "Cancel", "Save Draft", "Previous", and "Next" buttons.') %>
 
-1. Select your desired signature policies for assertions on the **Signature Policy** tab and click **Next**.
+1. Select your desired signature policies for assertions on the **Signature Policy** tab and click
+**Next**.
 
-1. Select your desired encryption policy for assertions on the **Encryption Policy** tab and click **Next**.
+1. Select your desired encryption policy for assertions on the **Encryption Policy** tab and click
+**Next**.
 
 1. Click **Done** on the **Protocol Settings Summary** tab.
 
@@ -209,7 +222,8 @@ To configure credentials:
 
 1. Click **Configure Credentials** on the **Credentials** tab.
 
-1. Select the **Signing Certificate** to use with the <%= vars.product_full %> service and select **Include the certificate in the signature <keyinfo> element**. Click **Next**.
+1. Select the **Signing Certificate** to use with the <%= vars.product_full %> service and select
+**Include the certificate in the signature <keyinfo> element**. Click **Next**.
 
 	<%= image_tag('../images/pingfederate_digital_signature.png', :alt => 'Screenshot of
 	the "Credentials" section within the "IdP Configuration" tab within the PingFederate UI.
@@ -226,7 +240,8 @@ To configure credentials:
 
 1. Click **Next** on the **Credentials** tab.
 
-1. Select **Active** for the **Connection Status** on the **Activation & Summary** tab and click **Save**.
+1. Select **Active** for the **Connection Status** on the **Activation & Summary** tab and click
+**Save**.
 
 1. Click **Manage All** under **SP Connections**.
 
