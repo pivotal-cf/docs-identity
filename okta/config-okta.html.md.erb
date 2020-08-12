@@ -40,13 +40,18 @@ To configure the SAML settings:
 
 1. Under **Settings**, click **Edit**, and select **SAML 2.0**.
 
-	<%= image_tag('../images/saml_radio_button.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/saml_radio_button.png', :alt => 'Screenshot of the "Sign On" tab in Okta.
+	In the "Settings" section a red box is drawn around the "SAML 2.0" box.
+	Credentials Details are the bottom of the screenshot.
+	At the right are descriptions of SAML 2.0 and the application username.') %>
 
 1. Click the **General** tab.
 
 1. Under **SAML Settings**, click **Edit** and then click **Next**.
 
-	<%= image_tag('../images/okta_saml_config.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/okta_saml_config.png', :alt => 'Screenshot of the "Configure SAML" tab
+	within the "Edit SAML Integration" section.
+	The settings are in three sections: "General", "Attribute Statements (Optional)", and "Group Attribute Statements (Optional)".') %>
 
 1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into
 **Single sign on URL**. <br>
@@ -60,7 +65,7 @@ To configure the SAML settings:
 	Where `PORTAL-FQDN` is the fully qualified domain name (FQDN) for your login portal.
 
 	<p class="note">
-		<strong>Note: </strong>The portal FQDN uses the format <code>AUTH-DOMAIN.login.SYSTEM-DOMAIN</code>.
+		<strong>Note:</strong> The portal FQDN uses the format <code>AUTH-DOMAIN.login.SYSTEM-DOMAIN</code>.
 		You can view the portal FQDN for a plan by logging into the <%= vars.operator_dash %>, clicking the name of
 		your plan, and selecting <strong>Edit Plan</strong>.
 	</p>
@@ -114,4 +119,8 @@ To download the metadata:
 You need this Okta metadata for the [Configure a <%= vars.product_short %> Service Provider](./config-sso.html)
 procedure.
 
-	<%= image_tag('../images/id_provider_metadata.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/id_provider_metadata.png', :alt => 'Screenshot of the "Sign On" tab in Okta.
+	In the "SAML 2.0" box of the "Settings" section, a red box is drawn around the link
+	"Identity Provider metadata".
+	Credentials Details are the bottom of the screenshot.
+	At the right are descriptions of SAML 2.0 and the application username.'') %>
