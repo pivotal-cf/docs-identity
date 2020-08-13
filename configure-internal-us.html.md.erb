@@ -9,8 +9,7 @@ access to <%= vars.app_runtime_abbr %> apps with the internal user store.
 
 ## <a id='overview'></a> Overview
 
-As of <%= vars.product_short %> v1.13, the internal user store is not configurable from the operator
-dashboard UI.
+As of <%= vars.product_short %> v1.13, you cannot configure the internal user store from the <%= vars.operator_dash %>.
 These settings are still configurable from the User Account and Authentication (UAA) API.
 By default, each <%= vars.product_short %> service plan comes with an internal user store, which
 natively stores user accounts in a UAA database.
@@ -87,7 +86,7 @@ To obtain an access token for your admin client:
 
 To configure the internal user store through the UAAC:
 
-1. If you have not already done so, complete the [Obtain an Access Token](#create-zone-admin-client)
+1. If you have not already done so, complete the [Obtain an Access Token](#obtain-token)
 procedure above.
 
 1. List the identity providers by running:
@@ -151,7 +150,7 @@ see [Manage Users in an Internal User Store](./manage-users.html#internal).
 
 To create new internal user accounts through the UAAC:
 
-1. If you have not already done so, complete the [Obtain an Access Token](#create-zone-admin-client)
+1. If you have not already done so, complete the [Obtain an Access Token](#obtain-token)
 procedure above.
 
 1. Add a new user by running:
