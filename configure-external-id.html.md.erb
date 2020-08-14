@@ -100,7 +100,6 @@ After a Space Developer defines the resources required by an app, an admin can m
 to those resources.
 For information about how Space Developers define resources, see
 [Create or Edit Resources](./manage-resources.html#create-resources).
-
 After resource permissions mappings are configured and a user authenticates, the user group
 memberships are mapped to scopes in the resulting token.
 
@@ -126,64 +125,64 @@ You can configure external group mappings as follows:
       </tr>
     </table>
 
-<p class="note">
-  <strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.
-</p>
+    <p class="note">
+      <strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not
+      editable.
+    </p>
 
-<p class="note">
-  <strong>Note:</strong> You can use the UAA API to automate the above procedure.
-  To do this automation, you need an identity zone admin client.
-  For instructions about creating the identity zone
-  admin client,
-  see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
-  <br><br>
-
-  For instructions about granting admin permissions to mapped external identity groups,
-  see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
-    Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
-</p>
+    <p class="note">
+      <strong>Note:</strong> You can use the UAA API to automate the above procedure.
+      To do this automation, you need an identity zone admin client.
+      For instructions about creating the identity zone
+      admin client, see
+      <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
+      <br><br>
+      For instructions about granting admin permissions to mapped external identity groups,
+      see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
+        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry
+        documentation.
+    </p>
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
-  An admin can include groups from an external IdP in a group allowlist.
-  The list of groups in the allowlist propagates into the `roles` claim of the ID token and the
-  `roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
+An admin can include groups from an external IdP in a group allowlist.
+The list of groups in the allowlist propagates into the `roles` claim of the ID token and the
+`roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
 
-  <p class="note">
-    <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
-    containing external groups, the app must request the <code>roles</code> claim and the group
-    allowlist must include the external groups.
-  </p>
+    <p class="note">
+      <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
+      containing external groups, the app must request the <code>roles</code> claim and the group
+      allowlist must include the external groups.
+    </p>
 
-  Configure a group allowlist as follows:
+    Configure a group allowlist as follows:
 
-  a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
-  from the radio group.
-  <table>
-    <col style="width:40%">
-    <col style="width:60%">
-      <tr>
-        <th>Field</th>
-        <th>Description</th>
-      </tr>
-      <tr>
-        <td><strong>Allow all groups</strong></td>
-        <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
-      </tr>
-      <tr>
-        <td><strong>Do not allow any groups</strong></td>
-        <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
-      </tr>
-      <tr>
-        <td><strong>Select groups to allow</strong></td>
-        <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
-        To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
-        </td>
-      </tr>
-    </table>
+    1. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
+    from the radio group.
+    <table>
+      <col style="width:40%">
+      <col style="width:60%">
+        <tr>
+          <th>Field</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><strong>Allow all groups</strong></td>
+          <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Do not allow any groups</strong></td>
+          <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Select groups to allow</strong></td>
+          <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
+          To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
+          </td>
+        </tr>
+      </table>
 
-
-1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields as
-follows:
+    1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields
+    as follows:
     <table>
       <tr>
         <th>Field</th>
@@ -465,9 +464,9 @@ number'](user-attributes.png)
 After a Space Developer defines the resources required by an app, an admin can map existing groups
 to those resources.
 For information about how Space Developers define resources, see
-[Create or Edit Resources](./manage-resources.html#create-resources).<br><br>
+[Create or Edit Resources](./manage-resources.html#create-resources).
 After resource permissions mappings are configured and a user authenticates, the user group
-memberships are mapped to scopes in the resulting token.<br><br>
+memberships are mapped to scopes in the resulting token.
 You can configure external group mappings as follows:
     <table>
       <tr>
@@ -517,62 +516,64 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
     Configure a group allowlist as follows:
 
-      a. Select **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
-      <table>
-        <col style="width:40%">
-        <col style="width:60%">
-          <tr>
-            <th>Field</th>
-            <th>Description</th>
-          </tr>
-          <tr>
-            <td><strong>Allow all groups</strong></td>
-            <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
-          </tr>
-          <tr>
-            <td><strong>Do not allow any groups</strong></td>
-            <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
-          </tr>
-          <tr>
-            <td><strong>Select groups to allow</strong></td>
-            <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
-            To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
-            </td>
-          </tr>
-        </table>
-
-      b. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields as follows:
-      <table>
+    1. Select **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from
+    the radio group.
+    <table>
+      <col style="width:40%">
+      <col style="width:60%">
         <tr>
           <th>Field</th>
-          <th>Instructions</th>
+          <th>Description</th>
         </tr>
         <tr>
-        <td><strong>Custom Attributes</strong></td>
-          <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
-            They are sent to apps through OpenID tokens,
-            along with any other stored user information issued by <%= vars.product_short %>.
-            <ol>
-              <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
-                Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
-              <li>Enter an <strong>SSO Attribute Name</strong>.</li>
-              <li>Enter an <strong>IdP Attribute Name</strong> with the corresponding attribute from the incoming OIDC ID token.</li>
-            </ol>
+          <td><strong>Allow all groups</strong></td>
+          <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Do not allow any groups</strong></td>
+          <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Select groups to allow</strong></td>
+          <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
+          To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
           </td>
         </tr>
       </table>
-      ![Screenshot of the 'Custom Attributes' section.
-      There is a selected 'Persist Custom Attributes' checkbox.
-      Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
-      At the bottom is a 'Add New Item' button.](custom-attributes.png)
+
+    1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields
+    as follows:
+    <table>
+      <tr>
+        <th>Field</th>
+        <th>Instructions</th>
+      </tr>
+      <tr>
+      <td><strong>Custom Attributes</strong></td>
+        <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
+          They are sent to apps through OpenID tokens,
+          along with any other stored user information issued by <%= vars.product_short %>.
+          <ol>
+            <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
+              Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
+            <li>Enter an <strong>SSO Attribute Name</strong>.</li>
+            <li>Enter an <strong>IdP Attribute Name</strong> with the corresponding attribute from
+              the incoming OIDC ID token.</li>
+          </ol>
+        </td>
+      </tr>
+    </table>
+    ![Screenshot of the 'Custom Attributes' section.
+    There is a selected 'Persist Custom Attributes' checkbox.
+    Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
+    At the bottom is a 'Add New Item' button.](custom-attributes.png)
 
 1. Click **Save** to save the IdP.
 
 
 ### <a id='config-ext-ldap'></a> Add an LDAP Provider
 
-When integrating <%= vars.product_short %> with a LDAP external IdP,
-authentication is chained.
+When integrating <%= vars.product_short %> with a LDAP external IdP, authentication is chained.
 An authentication attempt with user credentials is first attempted against the internal user store
 before the external LDAP IdP.
 
@@ -587,10 +588,10 @@ When using an LDAP external IdP, you should not:
 VMware recommends that you do not reuse LDAP service accounts
 across environments. You can only have one LDAP external IdP per service plan.
 
-To add a LDAP IdP:
+To add an LDAP IdP:
 
-1. Log in to the <%= vars.operator_dash %> at
-`https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin
+credentials.
 You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %>
 on the **Credentials** tab.
 
@@ -732,14 +733,15 @@ You can configure external group mappings as follows:
     </table>
 
     <p class="note">
-      <strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not editable.
+      <strong>Note:</strong> Groups with unsupported characters in Permission Mappings are not
+      editable.
     </p>
 
     <p class="note">
       <strong>Note:</strong> You can use the UAA API to automate the above procedure.
       To do this automation, you need an identity zone admin client.
-      For instructions about creating the identity zone admin client,
-      see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
+      For instructions about creating the identity zone admin client, see
+      <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
       <br><br>
 
       For instructions about granting admin permissions to mapped external identity groups,
@@ -753,47 +755,47 @@ An admin can include groups from an external IdP in a group allowlist.
 The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the
 `roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
 
-  <p class="note">
-    <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
-    containing external groups, the app must request the <code>roles</code> claim and the group
-    allowlist must include the external groups.
-  </p>
+    <p class="note">
+      <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
+      containing external groups, the app must request the <code>roles</code> claim and the group
+      allowlist must include the external groups.
+    </p>
 
-  Configure a group allowlist as follows:
+    Configure a group allowlist as follows:
 
-  a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
-  from the radio group.
-  <table>
-    <col style="width:40%">
-    <col style="width:60%">
-      <tr>
-        <th>Field</th>
-        <th>Description</th>
-      </tr>
-      <tr>
-        <td><strong>Allow all groups</strong></td>
-        <td>All groups appear in the <code>roles</code> claim of the ID token and the
-          <code>roles</code> key of the /userinfo endpoint</td>
-      </tr>
-      <tr>
-        <td><strong>Do not allow any groups</strong></td>
-        <td>No groups appear in the <code>roles</code> claim of the ID token and the
-          <code>roles</code> key of the /userinfo endpoint</td>
-      </tr>
-      <tr>
-        <td><strong>Select groups to allow</strong></td>
-        <td>Groups are rejected by default. Only groups matching the specified matchers are present in
-          the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo
-          endpoint.
-        To specify a matcher, choose a <strong>Match Type</strong>, then specify an
-        <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity
-        Provider.
-        </td>
-      </tr>
-    </table>
+    1. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
+    from the radio group.
+    <table>
+      <col style="width:40%">
+      <col style="width:60%">
+        <tr>
+          <th>Field</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><strong>Allow all groups</strong></td>
+          <td>All groups appear in the <code>roles</code> claim of the ID token and the
+            <code>roles</code> key of the /userinfo endpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Do not allow any groups</strong></td>
+          <td>No groups appear in the <code>roles</code> claim of the ID token and the
+            <code>roles</code> key of the /userinfo endpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Select groups to allow</strong></td>
+          <td>Groups are rejected by default. Only groups matching the specified matchers are present in
+            the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo
+            endpoint.
+          To specify a matcher, choose a <strong>Match Type</strong>, then specify an
+          <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity
+          Provider.
+          </td>
+        </tr>
+      </table>
 
-1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the
-fields as follows:
+    1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the
+    fields as follows:
     <table>
       <tr>
         <th>Field</th>
@@ -831,10 +833,10 @@ fields as follows:
 
 To delete an external IdP:
 
-1. Log in to the <%= vars.operator_dash %>
-at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_abbr %> tile
-in <%= vars.ops_manager %> on the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin
+credentials.
+You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %>
+on the **Credentials** tab.
 
 1. Click the plan name and navigate to the **Identity Providers** tab.
 
