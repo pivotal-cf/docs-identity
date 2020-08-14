@@ -3,9 +3,8 @@ title: Configuring External Identity Providers
 owner: Identity Service
 ---
 
-This topic describes how admins configure a
-<%= vars.product_full %> service plan to manage user access to <%= vars.app_runtime_abbr %>
-apps using an external identity provider (IdP).
+This topic describes how admins configure a <%= vars.product_full %> service plan to manage user
+access to <%= vars.app_runtime_abbr %> apps using an external identity provider (IdP).
 
 <p class="note">
   <strong>Note:</strong> You can also configure a <%= vars.product_short %> service plan to use the
@@ -83,30 +82,18 @@ their app.
 
 To configure user attributes and external group mappings:
 
-1. Under **Attribute & Group Mappings**, scroll to **User Attributes** and configure the
-fields as follows:
-    <table>
-      <tr>
-        <th>Field</th>
-        <th>Instructions</th>
-      </tr>
+1. Under **Attribute & Group Mappings**, scroll to **User Attributes**.
 
-      <tr>
-        <td><strong>User Attributes</strong></td>
-        <td>Enter any user attributes to propagate from the IdP to the service provider. <br>
-          These attributes can include email addresses, given names, family names, or phone numbers.
-          They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_short %>.
-          <ol>
-            <li>Enter a <strong>SAML Attribute Name</strong> next to the corresponding attribute from
-              the incoming SAML assertion.</li>
-          </ol>
-        </td>
-      </tr>
-    </table>
-    ![Screenshot of the 'Attribute & Group Mapping' section.
-    There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
-    number'](user-attributes.png)
+1. Enter any user attributes to propagate from the IdP to the service provider.
+These attributes can include email addresses, given names, family names, or phone numbers.
+They are sent to apps through OpenID tokens, along with any other stored user information issued by
+<%= vars.product_short %>
+
+1. Enter a **SAML Attribute Name** next to the corresponding attribute from the incoming SAML
+assertion.
+![Screenshot of the 'Attribute & Group Mapping' section.
+There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
+number'](user-attributes.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app, an admin can map existing groups
@@ -172,8 +159,8 @@ You can configure external group mappings as follows:
   a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
   from the radio group.
   <table>
-    <col style="width:30%">
-    <col style="width:70%">
+    <col style="width:40%">
+    <col style="width:60%">
       <tr>
         <th>Field</th>
         <th>Description</th>
@@ -459,37 +446,33 @@ This description is displayed to the Space Developers when they select an IdP fo
 
 #### <a id='oidc-atts-maps'></a> (Optional) Configure User Attributes and External Group Mappings
 
-1. Under **Attribute & Group Mapping**, scroll to **User Attributes** and configure the fields as
-follows:
-    <table>
-      <tr>
-        <th>Field</th>
-        <th>Instructions</th>
-      </tr>
+To configure user attributes and external group mappings:
 
-      <tr>
-        <td><strong>User Attributes</strong></td>
-        <td>Enter any user attributes to propagate from the IdP to the service provider. <br>
-          These attributes can include email addresses, given names, family names, usernames and phone numbers.
-          They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_short %>.
-          <ol>
-            <li>Enter a <strong>ID Token Attribute Name</strong> next to the corresponding attribute from the incoming OIDC ID token</li>
-          </ol>
-        </td>
-      </tr>
-    </table>
-    ![Screenshot of the 'Attribute & Group Mapping' section.
-    There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
-    number'](user-attributes.png)
+1. Under **Attribute & Group Mapping**, scroll to **User Attributes**.
+
+1. Enter any user attributes to propagate from the IdP to the service provider.
+These attributes can include email addresses, given names, family names, usernames and phone numbers.
+They are sent to apps through OpenID tokens, along with any other stored user information issued by
+<%= vars.product_short %>.
+
+1. Enter a <strong>ID Token Attribute Name</strong> next to the corresponding attribute from the
+incoming OIDC ID token.
+
+![Screenshot of the 'Attribute & Group Mapping' section.
+There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
+number'](user-attributes.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
-After a Space Developer defines the resources required by an app,
-an admin can map existing groups to those resources.
-For information about how Space Developers define resources,
-see [Create or Edit Resources](./manage-resources.html#create-resources).<br><br>
-After resource permissions mappings are configured and a user authenticates,
-the user group memberships are mapped to scopes in the resulting token.<br><br>
+
+After a Space Developer defines the resources required by an app, an admin can map existing groups to
+those resources.
+
+For information about how Space Developers define resources, see
+[Create or Edit Resources](./manage-resources.html#create-resources).<br><br>
+
+After resource permissions mappings are configured and a user authenticates, the user group
+memberships are mapped to scopes in the resulting token.<br><br>
+
 You can configure external group mappings as follows:
     <table>
       <tr>
@@ -541,10 +524,10 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
     Configure a group allowlist as follows:
 
-      a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
+      a. Select **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
       <table>
-        <col style="width:30%">
-        <col style="width:70%">
+        <col style="width:40%">
+        <col style="width:60%">
           <tr>
             <th>Field</th>
             <th>Description</th>
@@ -718,12 +701,15 @@ You can only have one LDAP provider per Service Plan.
 
 #### <a id='ldap-atts-maps'></a> (Optional) Configure User Attributes and External Group Mappings
 
+To configure user attributes and external group mappings:
+
 1. Under **Attribute & Group Mappings**, scroll to **User Attributes**.
 
 1. Enter any user attributes to propagate from the IdP to the service provider.
 They are sent to apps through OpenID tokens, along with any other stored user information issued by
 <%= vars.product_short %>.
 These attributes can include given names, family names, or phone numbers.
+
 1. Enter an <strong>LDAP Attribute Name</strong> next to the corresponding User Schema Attribute.
 ![Screenshot of the 'Attribute & Group Mapping' section.
 There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone number'](user-attributes.png)
@@ -785,8 +771,8 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
   a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
   from the radio group.
   <table>
-    <col style="width:30%">
-    <col style="width:70%">
+    <col style="width:40%">
+    <col style="width:60%">
       <tr>
         <th>Field</th>
         <th>Description</th>
