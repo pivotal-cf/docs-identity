@@ -13,6 +13,7 @@ apps using an external identity provider (IdP).
   For more information, see <a href="./configure-internal-us.html">Configuring Internal User Store</a>.
 </p>
 
+
 ## <a id='config-ext-prov'></a> Configure an External Identity Provider
 
 You can configure <%= vars.product_short %> to use external IdPs that support:
@@ -24,20 +25,24 @@ You can configure <%= vars.product_short %> to use external IdPs that support:
 To delete an external IdP,
 see [Delete an External Identity Provider](#delete-idp) below.
 
+
 ### <a id='config-saml-prov'></a> Add a SAML Provider
 
 To add an external SAML IdP:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %> on the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin
+credentials.
+You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %>
+on the **Credentials** tab.
 
 1. Click the plan name and navigate to the **Identity Providers** tab.
 
 1. Click **Add IDP**.
 
 1. Enter an **Identity Provider Name**. This name is displayed as a link on the login page.
-1. Enter an **Identity Provider Description**. This is the name of the group that the IdP authenticates.
-  This description is displayed to the Space Developers when they select an IdP for their app.
+1. Enter an **Identity Provider Description**. This is the name of the group that the IdP
+authenticates. This description is displayed to the Space Developers when they select an IdP for
+their app.
 1. Under **Identity Provider type**, select **SAML 2.0**.
 
 1. Configure **Identity Provider Metadata** by configuring one of the below fields as follows:
@@ -73,7 +78,13 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
 
 1. Enter **Email Domains**. This is a comma-separated list of domains for IdP discovery.
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **User Attributes** and configure the fields as follows:
+
+#### <a id='saml-atts-maps'></a> (Optional) Configure User Attributes and External Group Mappings
+
+To configure user attributes and external group mappings:
+
+1. Under **Attribute & Group Mappings**, scroll to **User Attributes** and configure the
+fields as follows:
     <table>
       <tr>
         <th>Field</th>
@@ -87,23 +98,24 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
           They are sent to apps through OpenID tokens,
           along with any other stored user information issued by <%= vars.product_short %>.
           <ol>
-            <li>Enter a <strong>SAML Attribute Name</strong> next to the corresponding attribute from the
-              incoming SAML assertion.</li>
+            <li>Enter a <strong>SAML Attribute Name</strong> next to the corresponding attribute from
+              the incoming SAML assertion.</li>
           </ol>
         </td>
       </tr>
     </table>
     ![Screenshot of the 'Attribute & Group Mapping' section.
-    There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone number'](user-attributes.png)
+    There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
+    number'](user-attributes.png)
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
-After a Space Developer defines the resources required by an app,
-an admin can map existing groups to those resources.
-For information about how Space Developers define resources,
-see [Create or Edit Resources](./manage-resources.html#create-resources).
+1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
+After a Space Developer defines the resources required by an app, an admin can map existing groups
+to those resources.
+For information about how Space Developers define resources, see
+[Create or Edit Resources](./manage-resources.html#create-resources).
 
-After resource permissions mappings are configured and a user authenticates,
-the user group memberships are mapped to scopes in the resulting token.
+After resource permissions mappings are configured and a user authenticates, the user group
+memberships are mapped to scopes in the resulting token.
 
 You can configure external group mappings as follows:
     <table>
@@ -113,7 +125,8 @@ You can configure external group mappings as follows:
       </tr>
       <tr>
         <td><strong>SAML Groups Attribute Name</strong></td>
-        <td>Enter the name of the attribute in the SAML Assertion which contains the list of group memberships.</td>
+        <td>Enter the name of the attribute in the SAML Assertion which contains the list of group
+          memberships.</td>
       </tr>
       <tr>
         <td>External Group Name</td>
@@ -121,7 +134,8 @@ You can configure external group mappings as follows:
       </tr>
       <tr>
         <td>Permissions</td>
-        <td>search and select the SSO permissions that users in the external group should have access to.</td>
+        <td>Search and select the SSO permissions that users in the external group should have access
+          to.</td>
       </tr>
     </table>
 
@@ -142,21 +156,24 @@ You can configure external group mappings as follows:
     Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
 </p>
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
+1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
   An admin can include groups from an external IdP in a group allowlist.
-  The list of groups in the allowlist propagates into the `roles` claim of the ID token and the `roles` key of the /userinfo endpoint response when a
-   user authenticates using an external IdP.
+  The list of groups in the allowlist propagates into the `roles` claim of the ID token and the
+  `roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
 
   <p class="note">
-    <strong>Note:</strong> For an app to retrieve an ID token or a
-    <code>/userinfo</code> response containing external groups, the app must request
-    the <code>roles</code> claim and the group allowlist must include the external groups.
+    <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
+    containing external groups, the app must request the <code>roles</code> claim and the group
+    allowlist must include the external groups.
   </p>
 
   Configure a group allowlist as follows:
 
-  a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
+  a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
+  from the radio group.
   <table>
+    <col style="width:30%">
+    <col style="width:70%">
       <tr>
         <th>Field</th>
         <th>Description</th>
@@ -178,7 +195,8 @@ You can configure external group mappings as follows:
     </table>
 
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields as follows:
+1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields as
+follows:
     <table>
       <tr>
         <th>Field</th>
@@ -205,11 +223,8 @@ You can configure external group mappings as follows:
 
 1. Click **Save** to save the IdP.
 
-1. (Optional) Configure the service provider SAML settings for
-    signing authentication requests and incoming assertions,
-    by following the procedure in [Configure SAML Settings](#config-ext-settings) below.
 
-### <a id='config-ext-settings'></a> Configure SAML Settings
+### <a id='config-ext-settings'></a> (Optional) Configure SAML Settings
 
 For each plan, you can configure SAML settings
 when SAML is used for exchanging authentication and authorization data
@@ -258,22 +273,27 @@ tile in <%= vars.ops_manager %> under the **Credentials** tab.
 
 1. Click **Download Metadata**.
 
+
 ### <a id='config-ext-oidc'></a> Add an OIDC Provider
 
-To add a external OIDC IdP:
+To add an external OIDC IdP:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
-using your UAA admin credentials. You can find these credentials in
-your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin
+credentials.
+You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %>
+on the **Credentials** tab.
 
 1. Click the plan name and navigate to the **Identity Providers** tab.
 
 1. Click **Add IDP**.
 
-1. Enter an **Identity Provider Name**. This name must match your origin key. However, you can replace lowercase letters with capital letters and replace dashes with spaces. This name is displayed as a link on the login page.
+1. Enter an **Identity Provider Name**. This name must match your origin key. However, you can replace
+lowercase letters with capital letters and replace dashes with spaces. This name is displayed as a
+link on the login page.
 
-1. Enter an **Identity Provider Description**. This is the name of the group that the IdP authenticates.
-  This description is displayed to the Space Developers when they select an IdP for their app.
+1. Enter an **Identity Provider Description**. This is the name of the group that the IdP
+authenticates.
+This description is displayed to the Space Developers when they select an IdP for their app.
 
 1. Under **Identity Provider type**, select **OpenID Connect**.
 
@@ -436,7 +456,11 @@ your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Crede
 
 1. Enter **Email Domains**. This is a comma-separated list of domains for IdP discovery.
 
-1. (Optional) Under **Attribute & Group Mapping**, scroll to **User Attributes** and configure the fields as follows:
+
+#### <a id='oidc-atts-maps'></a> (Optional) Configure User Attributes and External Group Mappings
+
+1. Under **Attribute & Group Mapping**, scroll to **User Attributes** and configure the fields as
+follows:
     <table>
       <tr>
         <th>Field</th>
@@ -456,9 +480,10 @@ your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Crede
       </tr>
     </table>
     ![Screenshot of the 'Attribute & Group Mapping' section.
-    There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone number'](user-attributes.png)
+    There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
+    number'](user-attributes.png)
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
+1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app,
 an admin can map existing groups to those resources.
 For information about how Space Developers define resources,
@@ -503,7 +528,7 @@ You can configure external group mappings as follows:
         Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
     </p>
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
+1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
 An admin can include groups from an external IdP in a group allowlist.
 The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the
 `roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
@@ -518,6 +543,8 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
       a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
       <table>
+        <col style="width:30%">
+        <col style="width:70%">
           <tr>
             <th>Field</th>
             <th>Description</th>
@@ -538,7 +565,7 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
           </tr>
         </table>
 
-      b. (Optional) Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields as follows:
+      b. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields as follows:
       <table>
         <tr>
           <th>Field</th>
@@ -565,6 +592,7 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
 1. Click **Save** to save the IdP.
 
+
 ### <a id='config-ext-ldap'></a> Add an LDAP Provider
 
 When integrating <%= vars.product_short %> with a LDAP external IdP,
@@ -587,8 +615,8 @@ To add a LDAP IdP:
 
 1. Log in to the <%= vars.operator_dash %> at
 `https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_full %> tile in
-<%= vars.ops_manager %> on the **Credentials** tab.
+You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %>
+on the **Credentials** tab.
 
 1. Click the plan name and navigate to the **Identity Providers** tab.
 
@@ -655,12 +683,12 @@ You can only have one LDAP provider per Service Plan.
 
     <tr>
       <td><strong>Search Filter</strong> (Optional)</td>
-      <td> Enter a string to use for LDAP user search criteria. </td>
+      <td>Enter a string to use for LDAP user search criteria. </td>
     </tr>
 
     <tr>
       <td><strong>Just in Time Provisioning</strong></td>
-      <td>  If this option is enabled, users are created at login time. <br>
+      <td>If this option is enabled, users are created at login time. <br>
         If this option is not enabled, users must be created before being able to log in</td>
     </tr>
 
@@ -670,7 +698,7 @@ You can only have one LDAP provider per Service Plan.
 
     <tr>
       <td><strong>Search Base</strong> (Optional)</td>
-      <td> Enter the location in the LDAP directory tree where the LDAP group search begins.<br>
+      <td>Enter the location in the LDAP directory tree where the LDAP group search begins.<br>
       To use the <strong>memberOf</strong> attribute on user objects,
       enter the value <code>memberOf</code> as the Search Base instead of
       an LDAP path for a group organizational unit.
@@ -687,27 +715,20 @@ You can only have one LDAP provider per Service Plan.
 
 1. Enter **Email Domains**. This is a comma-separated list of domains for IdP discovery.
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **User Attributes** and configure the fields as follows:
-    <table>
-      <tr>
-        <th>Field</th>
-        <th>Instructions</th>
-      </tr>
 
-      <tr>
-        <td><strong>User Attributes</strong></td>
-        <td>Enter any user attributes to propagate from the IdP to the service provider. <br>
-          They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_short %>.<br><br>
-          These attributes can include given names, family names, or phone numbers.<br><br>
-          Enter a <strong>LDAP Attribute Name</strong> next to the corresponding User schema Attribute.
-        </td>
-      </tr>
-    </table>
-    ![Screenshot of the 'Attribute & Group Mapping' section.
-    There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone number'](user-attributes.png)
+#### <a id='ldap-atts-maps'></a> (Optional) Configure User Attributes and External Group Mappings
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
+1. Under **Attribute & Group Mappings**, scroll to **User Attributes**.
+
+1. Enter any user attributes to propagate from the IdP to the service provider.
+They are sent to apps through OpenID tokens, along with any other stored user information issued by
+<%= vars.product_short %>.
+These attributes can include given names, family names, or phone numbers.
+1. Enter an <strong>LDAP Attribute Name</strong> next to the corresponding User Schema Attribute.
+![Screenshot of the 'Attribute & Group Mapping' section.
+There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone number'](user-attributes.png)
+
+1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app,
 an admin can map existing groups to those resources.
 For information about how Space Developers define resources,
@@ -744,13 +765,14 @@ You can configure external group mappings as follows:
 
       For instructions about granting admin permissions to mapped external identity groups,
       see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
-        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
+        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry
+        documentation.
     </p>
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
+1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
 An admin can include groups from an external IdP in a group allowlist.
-The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the `roles` key of the /userinfo endpoint response when a
- user authenticates using an external IdP.
+The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the
+`roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
 
   <p class="note">
     <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
@@ -760,29 +782,39 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
   Configure a group allowlist as follows:
 
-  a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from the radio group.
+  a. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
+  from the radio group.
   <table>
+    <col style="width:30%">
+    <col style="width:70%">
       <tr>
         <th>Field</th>
         <th>Description</th>
       </tr>
       <tr>
         <td><strong>Allow all groups</strong></td>
-        <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+        <td>All groups appear in the <code>roles</code> claim of the ID token and the
+          <code>roles</code> key of the /userinfo endpoint</td>
       </tr>
       <tr>
         <td><strong>Do not allow any groups</strong></td>
-        <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+        <td>No groups appear in the <code>roles</code> claim of the ID token and the
+          <code>roles</code> key of the /userinfo endpoint</td>
       </tr>
       <tr>
         <td><strong>Select groups to allow</strong></td>
-        <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
-        To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
+        <td>Groups are rejected by default. Only groups matching the specified matchers are present in
+          the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo
+          endpoint.
+        To specify a matcher, choose a <strong>Match Type</strong>, then specify an
+        <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity
+        Provider.
         </td>
       </tr>
     </table>
 
-1. (Optional) Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields as follows:
+1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the
+fields as follows:
     <table>
       <tr>
         <th>Field</th>
@@ -809,6 +841,7 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
 1. Click **Save** to save the IdP.
 
+
 ### <a id='delete-idp'></a> Delete an External Identity Provider
 
 <p class="note warning">
@@ -833,11 +866,13 @@ in <%= vars.ops_manager %> on the **Credentials** tab.
 1. In the dialog box that appears, click **Delete Identity Provider** to
 confirm that you want to delete the IdP, along with all of its configurations.
 
+
 ## <a id='mapping-allowlist'></a> Transfer Group Membership and Roles
 
 You can use the <%= vars.operator_dash %> to configure resource permissions mappings
 and group allowlists to transfer group membership and roles from existing IdP groups to
 <%= vars.product_short %>.
+
 
 ### <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
 
@@ -850,9 +885,11 @@ in <%= vars.ops_manager %> on the **Credentials** tab.
 
 1. Click the plan name and navigate to the **Identity Providers** tab.
 
-1. Click on the name of the external IdP you want to delete permissions for and scroll to the **External Group Mapping** section.
+1. Click on the name of the external IdP you want to delete permissions for and scroll to the
+**External Group Mapping** section.
 
-1. Click the trash can icon next to the group name whose resource permission mappings you want to delete.
+1. Click the trash can icon next to the group name whose resource permission mappings you want to
+delete.
 
 1. Click **Save** at the bottom of the page.
 
@@ -863,12 +900,13 @@ in <%= vars.ops_manager %> on the **Credentials** tab.
 <p class="note">
   <strong>Note:</strong> You can use the UAA API to automate the above procedure.
   To do this automation, you need an identity zone admin client.
-  For instructions about creating the identity zone  admin client,
-  see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.<br><br>
+  For instructions about creating the identity zone  admin client, see
+  <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.<br><br>
   For information about un-mapping a group mapping,
   see <a href="http://docs.cloudfoundry.org/api/uaa/version/74.4.0/index.html#unmap">Unmap</a> in the
   UAA API documentation.
 </p>
+
 
 ## <a id='testing-identity-provider-configurations'></a> Test Identity Provider Configurations
 
