@@ -457,22 +457,17 @@ They are sent to apps through OpenID tokens, along with any other stored user in
 
 1. Enter a <strong>ID Token Attribute Name</strong> next to the corresponding attribute from the
 incoming OIDC ID token.
-
 ![Screenshot of the 'Attribute & Group Mapping' section.
 There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
 number'](user-attributes.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
-
-After a Space Developer defines the resources required by an app, an admin can map existing groups to
-those resources.
-
+After a Space Developer defines the resources required by an app, an admin can map existing groups
+to those resources.
 For information about how Space Developers define resources, see
 [Create or Edit Resources](./manage-resources.html#create-resources).<br><br>
-
 After resource permissions mappings are configured and a user authenticates, the user group
 memberships are mapped to scopes in the resulting token.<br><br>
-
 You can configure external group mappings as follows:
     <table>
       <tr>
@@ -501,11 +496,9 @@ You can configure external group mappings as follows:
       <strong>Note:</strong>
       You can use the UAA API to automate the above procedure.
       To do this automation, you need an identity zone admin client.
-      For instructions about creating the identity zone
-      admin client,
-      see <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
+      For instructions about creating the identity zone admin client, see
+      <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
       <br><br>
-
       For instructions about granting admin permissions to mapped external identity groups,
       see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
         Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
@@ -715,12 +708,12 @@ These attributes can include given names, family names, or phone numbers.
 There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone number'](user-attributes.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
-After a Space Developer defines the resources required by an app,
-an admin can map existing groups to those resources.
-For information about how Space Developers define resources,
-see [Create or Edit Resources](./manage-resources.html#create-resources).<br><br>
-After resource permissions mappings are configured and a user authenticates,
-the user group memberships are mapped to scopes in the resulting token.<br><br>
+After a Space Developer defines the resources required by an app, an admin can map existing groups
+to those resources.
+For information about how Space Developers define resources, see
+[Create or Edit Resources](./manage-resources.html#create-resources).<br><br>
+After resource permissions mappings are configured and a user authenticates, the user group
+memberships are mapped to scopes in the resulting token.<br><br>
 You can configure external group mappings as follows:
     <table>
       <tr>
@@ -855,8 +848,8 @@ confirm that you want to delete the IdP, along with all of its configurations.
 
 ## <a id='mapping-allowlist'></a> Transfer Group Membership and Roles
 
-You can use the <%= vars.operator_dash %> to configure resource permissions mappings
-and group allowlists to transfer group membership and roles from existing IdP groups to
+You can use the <%= vars.operator_dash %> to configure resource permissions mappings and group
+allowlists to transfer group membership and roles from existing IdP groups to
 <%= vars.product_short %>.
 
 
@@ -864,10 +857,10 @@ and group allowlists to transfer group membership and roles from existing IdP gr
 
 To delete a resource permissions mapping:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
-using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_abbr %> tile
-in <%= vars.ops_manager %> on the **Credentials** tab.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA
+admin credentials.
+You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %>
+on the **Credentials** tab.
 
 1. Click the plan name and navigate to the **Identity Providers** tab.
 
