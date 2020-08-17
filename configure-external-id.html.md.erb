@@ -53,7 +53,7 @@ their app.
 
       <tr>
         <td><strong>Identity Provider Metadata URL</strong></td>
-        <td>Click the <strong>Identity Provider Metadata URL</strong> radio button, then
+        <td>Select the <strong>Identity Provider Metadata URL</strong> radio button, then
         enter a URL and click <strong>Preview Metadata</strong>. If you select this option,
           your metadata is periodically fetched from the configured URL.
           This keeps the metadata up-to-date. </td>
@@ -61,7 +61,7 @@ their app.
 
       <tr>
         <td><strong>SAML File Metadata</strong></td>
-        <td>Click the <strong>Upload IdP Metadata File</strong> radio button, then click browse to
+        <td>Select the <strong>Upload IdP Metadata File</strong> radio button, then click browse to
           upload the XML metadata that you downloaded from your external IdP.
           If you select this option, your metadata is not periodically updated.
           If the metadata changes, you must manually upload the file again.
@@ -91,8 +91,8 @@ They are sent to apps through OpenID tokens, along with any other stored user in
 1. Enter a **SAML Attribute Name** next to the corresponding attribute from the incoming SAML
 assertion.
 ![Screenshot of the 'Attribute & Group Mapping' section.
-There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
-number'](user-attributes.png)
+There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name',
+and 'phone number'](user-attributes.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app, an admin can map existing groups
@@ -137,8 +137,7 @@ You can configure external group mappings as follows:
       <br><br>
       For instructions about granting admin permissions to mapped external identity groups,
       see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
-        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry
-        documentation.
+        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
     </p>
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
@@ -249,8 +248,8 @@ tile in <%= vars.ops_manager %> under the **Credentials** tab.
     ![Screenshot of the 'Configure' tab of the 'dev-plan' section.
     At the top left is a dropdown labeled 'Plan' with the option 'dev-plan' selected.
     At the top right is an Auth Domain URL that is partly redacted.
-    In the 'Configure SAML Service Provider' section there are selected checkboxes for 'Perform signed
-    authentication requests' and 'Require signed assertions'.
+    In the 'Configure SAML Service Provider' section there are selected checkboxes for
+    'Perform signed authentication requests' Require signed assertions'.
     Below that are 'Save' and 'Download Metadata' buttons.](configure-saml-provider.png)
 
 1. Click **Save** to save the configurations.
@@ -455,8 +454,8 @@ They are sent to apps through OpenID tokens, along with any other stored user in
 1. Enter a <strong>ID Token Attribute Name</strong> next to the corresponding attribute from the
 incoming OIDC ID token.
 ![Screenshot of the 'Attribute & Group Mapping' section.
-There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone
-number'](user-attributes.png)
+There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name',
+and 'phone number'](user-attributes.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app, an admin can map existing groups
@@ -744,8 +743,7 @@ You can configure external group mappings as follows:
 
       For instructions about granting admin permissions to mapped external identity groups,
       see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
-        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry
-        documentation.
+        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
     </p>
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
