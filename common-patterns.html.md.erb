@@ -17,7 +17,7 @@ Markup Language (SAML) or by OpenID Connect (OIDC) providers using JSON Web Toke
 <a id="concept-diagram"></a>The following diagram is a conceptual view of an
 externally hosted app protected by a SAML or OIDC enterprise identity provider (IDP).
 
-![external-app](ext-app-calling-pcf.png)
+![external-app](ext-app-calling-pcf.png)<%# Images require alt text that describes the image in detail. %>
 
 In this diagram:
 
@@ -48,7 +48,7 @@ and UAA can also use an OIDC enterprise IDP.
 In that case, JWT ID tokens replace SAML and SAML assertions.
 
 
-![code-grant](code-grant.png)
+![code-grant](code-grant.png)<%# Images require alt text that describes the image in detail. %>
 
 In this model:
 
@@ -72,7 +72,7 @@ a logged in session with the IDP.
 
 The following sequence diagram illustrates the SAML bearer token exchange model.
 
-![token-exchange](token-exchange.png)
+![token-exchange](token-exchange.png)<%# Images require alt text that describes the image in detail. %>
 
 In this model:
 
@@ -143,7 +143,7 @@ Recipient="https://demo.login.uaa-example.com/oauth/token/alias/demo.login.uaa-e
 The following sequence diagram illustrates the JWT bearer token exchange model.
 This flow is for externally hosted apps using OIDC.
 
-![jwt-exchange](jwt-exchange.png)
+![jwt-exchange](jwt-exchange.png)<%# Images require alt text that describes the image in detail. %>
 
 This model is similar to the SAML bearer token exchange flow:
 
@@ -184,7 +184,7 @@ However, you can abstract away the token exchange from the app.
 Instead, a gateway such as Apigee or Mulesoft intercepts the call and handles the
 token exchange transparently, as shown in the diagram below.
 
-![jwt-exchange-gateway](jwt-exchange-gateway.png)
+![jwt-exchange-gateway](jwt-exchange-gateway.png)<%# Images require alt text that describes the image in detail. %>
 
 ### <a id='setup'></a>Set Up for SAML or JWT Bearer Token Exchange
 
