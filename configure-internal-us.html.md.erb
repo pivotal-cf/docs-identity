@@ -9,7 +9,8 @@ access to <%= vars.app_runtime_abbr %> apps with the internal user store.
 
 ## <a id='overview'></a> Overview
 
-As of <%= vars.product_short %> v1.13, you cannot configure the internal user store from the <%= vars.operator_dash %>.
+As of <%= vars.product_short %> v1.13, you cannot configure the internal user store from the
+<%= vars.operator_dash %>.
 These settings are still configurable from the User Account and Authentication (UAA) API.
 By default, each <%= vars.product_short %> service plan comes with an internal user store, which
 natively stores user accounts in a UAA database.
@@ -58,8 +59,10 @@ and ensure it has the following permissions:
 	```
 	uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
 	```
-	Where `AUTH-DOMAIN` is the **Auth Domain** you submitted in
+	Where:
+	* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
 	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+	<%# * `SYSTEM-DOMAIN` is %>
 
 
 ## <a id='obtain-token'></a> Obtain an Access Token
@@ -75,11 +78,11 @@ To obtain an access token for your admin client:
  	uaac token client get APP-ID
 	```
 
-	Where `APP-ID` is the **App ID** you recorded above in the
-	[Set up an Admin Client](#set-up-client) procedure.
+	Where `APP-ID` is the **App ID** you recorded above in the [Set up an Admin Client](#set-up-client)
+	procedure.
 
-1. When prompted for the `Client secret`, enter the **App Secret** you recorded above in the
-[Set up an Admin Client](#set-up-client) procedure.
+1. When prompted for the `Client secret`, enter the **App Secret** you recorded in the
+[Set up an Admin Client](#set-up-client) procedure above.
 
 
 ## <a id='config-int-store'></a> Configure the Internal User Store
@@ -94,6 +97,10 @@ procedure above.
 	```
 	uaac curl https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers -X GET
 	```
+	Where:
+	* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
+	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+	<%# * `SYSTEM-DOMAIN` is %>
 
 1. From the output, capture the JSON and record the `id` for the identity provider named `uaa`.
 
@@ -137,6 +144,10 @@ captured JSON.
 	    "identityZoneId": "xyz-123"
 	  }'
 	```
+	Where:
+	* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
+	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+	<%# * `SYSTEM-DOMAIN` is %>
 
 
 ## <a id='add-to-int'></a> Add Internal Users
@@ -176,6 +187,9 @@ procedure above.
 		```
  		uaac member add GROUP-NAME USER-NAME
 		```
+		Where:
+		* `GROUP-NAME` is the name of your new group
+		* `USER-NAME` is the member you are adding to your new group
 
 
 ## <a id='test-id-config'></a> Test Identity Provider Configurations
