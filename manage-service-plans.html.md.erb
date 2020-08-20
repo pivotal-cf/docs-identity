@@ -5,7 +5,8 @@ owner: Identity Service
 
 This topic describes how admins manage <%= vars.product_full %> service plans.
 
-<%= vars.product_full %> is a multi-tenant service, which enables a deployment to host multiple tenants as service plans.
+<%= vars.product_full %> is a multi-tenant service, which enables a deployment to host multiple
+tenants as service plans.
 Each service plan can have its own admins, apps, and users.
 This lets enterprises segregate access by using separate plans.
 For example, the following tenants might require separate plans:
@@ -16,16 +17,19 @@ For example, the following tenants might require separate plans:
 
 * Development, staging, and production instances
 
-You may also want to configure an <%= vars.product_short %> as an OpenID Connect (OIDC) identity provider.
+You may also want to configure an <%= vars.product_short %> as an OpenID Connect (OIDC) identity
+provider.
 For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/index.html).
+
 
 ## <a id='create-svc-plan'></a> Create or Edit Service Plans
 
-Admins can create new <%= vars.product_short %> service plans at any time
-from the <%= vars.operator_dash %>. You can use the <%= vars.operator_dash %> to
-create and configure service plans at any time.
+Admins can create new <%= vars.product_short %> service plans at any time from the
+<%= vars.operator_dash %>.
+You can use the <%= vars.operator_dash %> to create and configure service plans at any time.
 
-<p class="note"><strong>Note</strong>: You must create at least one plan for any service before your
+<p class="note">
+	<strong>Note</strong>: You must create at least one plan for any service before your
 	apps can use it.
 </p>
 
@@ -41,15 +45,17 @@ You can find these credentials in the <%= vars.app_runtime_full %> tile in <%= v
 
 1. Enter a **Description** to appear as a plan feature in the Services Marketplace.
 
-1. Enter an **Auth Domain** to be the hostname where users authenticate to access apps covered by the service plan.
+1. Enter an **Auth Domain** to be the hostname where users authenticate to access apps covered by the
+service plan.
 
-1. Enter an **Instance Name** to appear on the login page and in other user-facing content, such as email communications.
+1. Enter an **Instance Name** to appear on the login page and in other user-facing content, such as
+email communications.
 
 1. Add **Plan Administrators**. These users can view the plan and manage identity providers.
 
 	<p class="note">
-		<strong>Note</strong>: You cannot add system operators to this list. System operators do not appear in this list because they already have Plan Administrator
-		privileges.
+		<strong>Note</strong>: You cannot add system operators to this list. System operators do not
+		appear in this list because they already have Plan Administrator privileges.
 	</p>
 
 1. Under **Organizations**, select specific orgs in your deployment

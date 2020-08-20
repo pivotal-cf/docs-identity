@@ -60,9 +60,10 @@ and ensure it has the following permissions:
 	uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
 	```
 	Where:
-	* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
+	* `AUTH-DOMAIN` is the hostname you submitted in
 	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
-	<%# * `SYSTEM-DOMAIN` is %>
+	* `SYSTEM-DOMAIN` is the system domain you submitted in
+	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
 
 
 ## <a id='obtain-token'></a> Obtain an Access Token
@@ -109,7 +110,9 @@ captured JSON.
 
 1. Remove the `version`, `created`, and `last_modified` keys from the JSON.
 
-1. To apply the modified JSON, send it through UAAC by running:
+1. To apply the modified JSON, send it through UAAC.
+
+For example:
 
 	```
 	uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/<uaa-idp-id>?rawConfig=true' -X PUT \
