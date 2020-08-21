@@ -21,26 +21,21 @@ You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= 
 
 1. Click the plan name.
 
-1. Click the external identity provider you want to manage and select the <your idp name> **Users** tab
+1. Click the external identity provider you want to manage, then select the <your idp name> **Users** tab.
 This brings you to the users admin pane for that external identity provider.
-![External Identity Provider Users Search](images/manage_users.png)<%# Images require alt text that describes the image in detail. %>
+![External Identity Provider Users Page](images/manage_users.png)<%# Images require alt text that describes the image in detail. %>
 
 From the external identity provider users admin pane, you can:
 
 * **Search** existing users by entering a value into the search bar and clicking **Search**.
 Entering a blank value returns all users in the service plan internal user store.
-![External Identity Provider Users Search Results](images/okta_results.png)<%# Images require alt text that describes the image in detail. %>
 
-* **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
+* **Delete a user** by selecting the checkbox next to their username and clicking **Delete User(s)**.
 
-* **View information about a user** by clicking their username.
-![User Profile - Verified](images/user_profile_verified.png)<%# Images require alt text that describes the image in detail. %>
+* **View information about a user** and their **user permissions** by clicking on a username.
+![User Profile and Permissions](images/user_details.png)<%# Images require alt text that describes the image in detail. %>
 
-* **View user permissions** by clicking the **Permissions** tab.
-![External User Permissions](images/external_user_permissions.png)<%# Images require alt text that describes the image in detail. %>
-
-* **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
-
+* **Update user permissions** by typing the corresponding permissions into the search field, clicking enter, then clicking **Update User Permissions**.
 
 ## <a id="uaac"></a> Manage Users with the UAA CLI
 
