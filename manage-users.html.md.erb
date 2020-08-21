@@ -5,54 +5,7 @@ owner: Identity Service
 
 This topic describes how a Plan Administrator uses
 <%= vars.product_full %> to manage user access to <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) apps,
-for users with accounts in the internal user store or with external identity providers.
-
-## <a id="internal"></a> Manage Users in an Internal User Store
-
-<%= vars.product_full %> has an **Internal Users** admin pane that lets you manage
-user accounts in the internal user store: invite and delete
-users, request users to reset their passwords, and update user attributes and permissions.
-
-To open the **Internal Users** pane:
-
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
-using your User Account and Authentication (UAA) admin credentials.
-You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= vars.ops_manager %> under the **Credentials** tab.
-
-1. Click the plan name and select **Manage Identity Providers** from the dropdown.
-
-1. Click **Internal User Store** and select **Internal Users** from the dropdown.
-This brings you to the admin screen.
-![Single Sign-On Admin](images/admin.png)<%# Images require alt text that describes the image in detail. %>
-
-From the **Internal Users** pane, you can:
-
-* **Invite users** by clicking **Invite User**, entering their email address, and clicking **Send Invite**.
-![Invite User](images/invite_user.png)<%# Images require alt text that describes the image in detail. %>
-
-* **Search existing users** by entering a value into the search bar and clicking **Search**.
-Entering a blank value returns all users in the service plan’s internal user store.
-![Internal Users](images/internal_users.png)<%# Images require alt text that describes the image in detail. %>
-
-* **Resend an invite** to an unverified user by selecting the checkbox next to their
-username and clicking **Resend Invite**.
-
-* Ask a verified user to **reset their password** by selecting the checkbox next to
-their username and clicking **Reset Password**.
-
-* **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
-
-* **View information about a user** by clicking their username.
-![User Profile - Unverified](images/user_profile_unverified.png)<%# Images require alt text that describes the image in detail. %>
-
-* **Update a user profile** including their **Email**, **First Name**, **Last Name**,
-and **Phone Number** by entering the updated values and clicking **Save User**.
-
-* **View user permissions** by clicking the **Permissions** tab.
-![Internal User Permissions](images/internal_user_permissions.png)<%# Images require alt text that describes the image in detail. %>
-
-* **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
-
+for users with accounts in external identity providers.
 
 ## <a id="external"></a> Manage Users from an External Identity Provider
 
@@ -66,17 +19,17 @@ To open the external identity provider users admin pane:
 using your User Account and Authentication (UAA) admin credentials.
 You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> under the **Credentials** tab.
 
-1. Click the plan name and select **Manage Identity Providers** from the dropdown.
+1. Click the plan name.
 
-1. Click the external identity provider you want to manage and select the **Users**
-choice for the provider from the dropdown. This brings you to the users admin pane.
-![Okta Users Search](images/okta_search.png)<%# Images require alt text that describes the image in detail. %>
+1. Click the external identity provider you want to manage and select the <your idp name> **Users** tab
+This brings you to the users admin pane for that external identity provider.
+![External Identity Provider Users Search](images/manage_users.png)<%# Images require alt text that describes the image in detail. %>
 
 From the external identity provider users admin pane, you can:
 
 * **Search** existing users by entering a value into the search bar and clicking **Search**.
 Entering a blank value returns all users in the service plan internal user store.
-![Okta Users Search Results](images/okta_results.png)<%# Images require alt text that describes the image in detail. %>
+![External Identity Provider Users Search Results](images/okta_results.png)<%# Images require alt text that describes the image in detail. %>
 
 * **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
 
