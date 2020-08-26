@@ -111,7 +111,7 @@ captured JSON.
 
 1. Remove the `version`, `created`, and `last_modified` keys from the JSON.
 
-1. To apply the modified JSON, send it through UAAC.
+1. To apply the modified JSON, send it through UAAC by running:
 
 	```
 	uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/<uaa-idp-id>?rawConfig=true' -X PUT \
