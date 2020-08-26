@@ -7,27 +7,34 @@ This topic describes how admins or plan admins can manage <%= vars.product_full 
 service plan configurations using the <%= vars.operator_dash %> or API using the User Account and
 Authentication Command Line Interface (UAAC).
 
-<%= vars.product_short %> manages configurations within the UAA and the Cloud Controller (CC) components of the
-<%= vars.app_runtime_full %>. Each <%= vars.product_short %> service plan ties together a CC plan and a UAA identity zone.
+<%= vars.product_short %> manages configurations within the UAA and the Cloud Controller (CC)
+components of the <%= vars.app_runtime_full %>.
+Each <%= vars.product_short %> service plan ties together a CC plan and a UAA identity zone.
 
-Beginning with <%= vars.product_short %> v1.6, you can use the UAAC to manage UAA identity zones configured as part of <%= vars.product_short %> service plans.
+Beginning with <%= vars.product_short %> v1.6, you can use the UAAC to manage UAA identity zones
+configured as part of <%= vars.product_short %> service plans.
 
 ## <a id='configure-token-policy'></a> Configure a Token Policy
 
-<%= vars.product_short %> enables admins and plan admins to override the default expiry of access tokens
-(12 hours) and refresh tokens (30 days) by zone.
+<%= vars.product_short %> enables admins and plan admins to override the default expiry of access
+tokens (12 hours) and refresh tokens (30 days) by zone.
 
 * **Access tokens** carry information about users and clients to servers that manage resources.
-Servers use access tokens to determine whether the client is authorized or not. Access tokens typically have a short-lived expiration time.
-* **Refresh tokens** carry information necessary to retrieve a new access token after an existing access token expires.
+Servers use access tokens to detect whether the client is authorized or not.
+Access tokens typically have a short-lived expiration time.
+* **Refresh tokens** carry information necessary to retrieve a new access token after an existing
+access token expires.
 Refresh tokens typically have a longer expiration time than access tokens.
 
 To configure the token policy:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA admin credentials.
-You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> in **Credentials**.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA
+admin credentials.
+You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %>
+in **Credentials**.
 
-2. Select the name of the plan that you want to configure a token policy for, and click **Configure** from the dropdown.
+2. Select the name of the plan that you want to configure a token policy for, and click **Configure**
+from the dropdown.
 
 3. Enter the number of seconds for **Access Token Expiration** or select **Use System Default**.
 
@@ -56,25 +63,31 @@ see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentat
 To make UAA identity zone API calls:
 
 <ol>
-<li> Create an identity zone admin client by following the procedure in <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.</li>
+<li> Create an identity zone admin client by following the procedure in
+  <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.
+</li>
 
 <li> Find the UAA identity zone ID:</li>
     <ol type="a">
         <li>
-          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.SYSTEM-DOMAIN</code> using your User Account and Authentication (UAA) admin credentials. You can find these credentials in the <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> in <strong>Credentials</strong>.
+          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.SYSTEM-DOMAIN</code>
+          using your User Account and Authentication (UAA) admin credentials. You can find these
+          credentials in the <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> in
+          <strong>Credentials</strong>.
         </li>
 
         <li>
-        Click the name of the <%= vars.product_short %> service plan that you want to configure on the <%= vars.operator_dash %>, and select
-        <strong>Edit Plan</strong> from the dropdown.
+        Click the name of the <%= vars.product_short %> service plan that you want to configure on
+        the <%= vars.operator_dash %>, and select <strong>Edit Plan</strong> from the dropdown.
         </li>
 
-        <li> Record the identity zone ID for your plan from the <%= vars.operator_dash %> URL. The URL looks similar to the below.
+        <li> Record the identity zone ID for your plan from the <%= vars.operator_dash %> URL.
+          The URL looks similar to the below.
           <pre>https://p-identity.SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</pre>
           Where <code>YOUR-IDENTITY-ZONE-ID</code> is your plan’s identity zone ID.
         </li>
     </ol>
-<li> Run the following command, directing the output to a text file: <br>
+<li> Direct the output to a text file by running: <br>
 
     <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID > JSON-BLOB.txt</pre>
 
@@ -85,7 +98,8 @@ To make UAA identity zone API calls:
     </ul>
 </li>
 <li> In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper,
-leaving just the JSON blob. Confirm that the <code>id</code> in this output matches <code>YOUR-IDENTITY-ZONE-ID</code>.<br><br>
+leaving just the JSON blob. Confirm that the <code>id</code> in this output matches
+<code>YOUR-IDENTITY-ZONE-ID</code>.<br><br>
 
     Your remaining JSON blob looks similar to the truncated sample below:
 
@@ -113,14 +127,19 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 }
 </pre>
 </li>
-<li> In your <code>JSON-BLOB.txt</code> file, update the configurations in the JSON blob as needed, and then save the file.
-  <p class="note warning"><strong>Warning:</strong> You must provide all <code>config</code> values,
-    otherwise, data can be lost when doing an API update as a <code>PUT</code> command.
+<li> In your <code>JSON-BLOB.txt</code> file, update the configurations in the JSON blob as needed,
+  and then save the file.
+  <p class="note warning">
+    <strong>Warning:</strong> You must provide all <code>config</code> values, otherwise, data can
+    be lost when doing an API update as a <code>PUT</code> command.
   </p>
 </li>
 
-<li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown below.
-    <p class="note warning"><strong>Warning:</strong> You must always run this command with the latest data by doing a <code>GET</code> before a <code>PUT</code> command.
+<li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown
+  below.
+    <p class="note warning">
+      <strong>Warning:</strong> You must always run this command with the latest data by doing a
+      <code>GET</code> before a <code>PUT</code> command.
     </p>
 
     <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT
@@ -159,30 +178,35 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
   For a full list of UAA API update parameters, see the
   <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.
 
-## <a id="enable-default-idp"></a> Set Default Identity Provider (IDP)
+## <a id="enable-default-idp"></a> Set Default Identity Provider (IdP)
 
-For <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) v2.4 or later, a default IDP can be set so that end users are automatically
-redirected to an appropriate enterprise IDP. <br>
+For <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) v2.4 or later, you can set a default
+IdP so that end users are automatically redirected to an appropriate enterprise IdP. <br>
 
-To set a default IDP:
+To set a default IdP:
 
  <ol>
-   <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+   <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with
+     the API</a> above.
+   </li>
 
    <li>
      In step 5, add the following line to the config section in the JSON blob:
      <pre>"defaultIdentityProvider": "YOUR-IDP"</pre>
-     Where <code>YOUR-IDP</code> is the IDP you want to set as the default.
+     Where <code>YOUR-IDP</code> is the IdP you want to set as the default.
    </li>
-   <li>Complete the procedure by doing step 6.</li>
+   <li>Finish the procedure by doing step 6.</li>
 </ol>
 
- For information about <code>defaultIdentityProvider</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a> in the UAA documentation.
+ For information about <code>defaultIdentityProvider</code>, see
+ <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a>
+ in the UAA documentation.
 
 ## <a id="disable-sso-plans"></a> Disable <%= vars.product_short %> Plans
 
-For <%= vars.app_runtime_abbr %> v2.4 and later, <%= vars.product_short %> plans that are no longer in use can be disabled.
-Disabled plans can be re-enabled later when they need to be used again. <br>
+For <%= vars.app_runtime_abbr %> v2.4 and later, you can disable <%= vars.product_short %> plans that
+are no longer in use.
+You can re-enable disabled plans later when they need to be used again. <br>
 
 To disable <%= vars.product_short %> plans:
 
@@ -192,20 +216,24 @@ To disable <%= vars.product_short %> plans:
       <pre>"active": false</pre>
 </li>
 
-<li>Complete the procedure by doing step 6.</li>
+<li>Finish the procedure by doing step 6.</li>
 </ol>
 
-For information about <code>active</code>, see <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a> in the UAA documentation.
+For information about <code>active</code>, see
+<a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a>
+in the UAA documentation.
 
-## <a id="branding"></a> Modify Branding
+## <a id="branding"></a> (Optional) Modify Branding
 
-Optionally, you can modify the branding on your login page such as your company name, logos,
-legal text, and legal links.
+You can modify the branding on your login page, such as your company name, logos, legal text, and
+legal links.
 
-To modify branding of the login page:
+To modify branding on the login page:
 
 <ol>
-  <li>Follow steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow steps 1&ndash;4 in
+    <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.
+  </li>
   <li>
     In step 5, add or modify the branding section in the JSON blob according
     to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
@@ -230,20 +258,22 @@ To modify branding of the login page:
   },
     </pre>
   </li>
-  <li>Complete the procedure by doing step 6.</li>
+  <li>Finish the procedure by doing step 6.</li>
 </ol>
 
-## <a id="default-groups"></a> Add Default Groups for Users
+## <a id="default-groups"></a> (Optional) Add Default Groups for Users
 
-Optionally, you can add additional default groups for all users.
+You can add additional default groups for all users.
 You do not need to do manual group assignment or group mappings for these groups.
-Use default groups only for universal scopes that all users can have, such as
-for a global read-only resource.<br>
+Use default groups only for universal scopes that all users can have, such as for a global read-only
+resource.<br>
 
 To add default groups for users:
 
 <ol>
-  <li>Follow the steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow the steps 1&ndash;4 in
+    <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.
+  </li>
   <li>
     In step 5, update the default groups section in the JSON blob according
     to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
@@ -270,7 +300,7 @@ To add default groups for users:
   },
   </pre>
   </li>
-  <li>Complete the procedure by doing step 6.</li>
+  <li>Finish the procedure by doing step 6.</li>
 </ol>
 
 ##<a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
@@ -279,9 +309,10 @@ To rotate JWT signing keys:
 
 <ol>
   <li>
-    Generate a private key that can be used for signing. For example, run <code>ssh-keygen -t rsa</code>.<br><br>
-    Generate your signing keys in a secure manner.
-    Refer to your security organization for acceptable key generation practices.
+    Generate a private key that can be used for signing. For example, run
+    <code>ssh-keygen -t rsa</code>.<br><br>
+    Generate your signing keys securely.
+    Ask your security organization for acceptable key generation practices.
   </li>
   <li>
     Take the value of the generated private key and make it a single
@@ -298,19 +329,22 @@ To rotate JWT signing keys:
 
   <pre><code>-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n</code></pre>
   </li>
-  <li>Follow the steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
+  <li>Follow the steps 1&ndash;4 in
+    <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.
+  </li>
   <li>
-    In step 5, update the token policy section to add your new generated private key as the value for <code>signingKey</code>.
+    In step 5, update the token policy section to add your new generated private key as the value for
+    <code>signingKey</code>.
     An example of this section is shown below:
 
     <p class="note"><strong>Note</strong>:
-      After you begin to configure JWT signing keys within a service plan,
-      you can no longer default to share the multi-tenant JWT signing key inherited from the default zone.
+      After you begin to configure JWT signing keys within a service plan, you can no longer default
+      to share the multi-tenant JWT signing key inherited from the default zone.
     </p>
 
     <p class="note"><strong>Note</strong>:
-      The first time you set a signing key for an identity zone,
-      existing issued tokens are immediately invalidated for online validation.
+      The first time you set a signing key for an identity zone, existing issued tokens are immediately
+      invalidated for online validation.
       You might need to restart apps that do offline validation for the new signing keys to take effect.
     </p>
 
@@ -330,5 +364,5 @@ To rotate JWT signing keys:
   </pre>
     For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
   </li>
-  <li>Complete the procedure by doing step 6.</li>
+  <li>Finish the procedure by doing step 6.</li>
 </ol>
