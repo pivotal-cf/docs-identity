@@ -35,9 +35,9 @@ Install UAA Command Line Client (UAAC), if you do not already have it installed:
 
 1. Install UAAC by running:
 
-		```
-		gem install cf-uaac
-		```
+	```
+	gem install cf-uaac
+	```
 
 
 ## <a id='set-up-client'></a> Set up an Admin Client
@@ -56,14 +56,14 @@ and ensure it has the following permissions:
 
 1. Target the login portal of your <%= vars.product_short %> service plan by running:
 
-		```
-		uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
-		```
-		Where:
-		* `AUTH-DOMAIN` is the hostname you submitted in
-		[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
-		* `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
-		<%= vars.app_runtime_abbr %> tile.
+	```
+	uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
+	```
+	Where:
+	* `AUTH-DOMAIN` is the hostname you submitted in
+	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+	* `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
+	<%= vars.app_runtime_abbr %> tile.
 
 
 ## <a id='obtain-token'></a> Obtain an Access Token
@@ -75,11 +75,11 @@ To obtain an access token for your admin client:
 
 1. Run:
 
-		```
-		uaac token client get APP-ID
-		```
-		Where `APP-ID` is the **App ID** you recorded above in the
-		[Set up an Admin Client](#set-up-client) procedure.
+	```
+	uaac token client get APP-ID
+	```
+	Where `APP-ID` is the **App ID** you recorded above in the
+	[Set up an Admin Client](#set-up-client) procedure.
 
 1. When prompted for the `Client secret`, enter the **App Secret** you recorded in the
 [Set up an Admin Client](#set-up-client) procedure above.
@@ -94,14 +94,14 @@ procedure above.
 
 1. List the identity providers by running:
 
-		```
-		uaac curl https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers -X GET
-		```
-		Where:
-		* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
-		[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
-		* `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
-		<%= vars.app_runtime_abbr %> tile.
+	```
+	uaac curl https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers -X GET
+	```
+	Where:
+	* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
+	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+	* `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
+	<%= vars.app_runtime_abbr %> tile.
 
 1. From the output, capture the JSON and record the `id` for the identity provider named `uaa`.
 
@@ -112,46 +112,46 @@ captured JSON.
 
 1. To apply the modified JSON, send it through UAAC by running:
 
-		```
-		uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/UAA-IDP-ID?rawConfig=true' -X PUT \
-		  -H 'Content-Type: application/json' \
-		  -d '{
-		    "type": "uaa",
-		    "config": {
-		      "emailDomain": [],
-		      "additionalConfiguration": null,
-		      "providerDescription": null,
-		      "passwordPolicy": {
-		        "minLength": 1,
-		        "maxLength": 255,
-		        "requireUpperCaseCharacter": 0,
-		        "requireLowerCaseCharacter": 0,
-		        "requireDigit": 0,
-		        "requireSpecialCharacter": 0,
-		        "passwordNewerThan": null,
-		        "expirePasswordInMonths": 0
-		      },
-		      "lockoutPolicy": {
-		        "lockoutPeriodSeconds": 300,
-		        "lockoutAfterFailures": 5,
-		        "countFailuresWithin": 3600
-		      },
-		      "disableInternalUserManagement": false
-		    },
-		    "id": "UAA-IDP-ID",
-		    "originKey": "uaa",
-		    "name": "uaa",
-		    "active": true,
-		    "identityZoneId": "IDENTITY-ZONE-ID"
-		  }'
-		```
-		Where:
-		* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
-		[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
-		* `UAA-IDP-ID` is the UAA identity provider ID
-		* `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
-		<%= vars.app_runtime_abbr %> tile.
-		* `IDENTITY-ZONE-ID` is the identity zone ID.
+	```
+	uaac curl 'https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers/UAA-IDP-ID?rawConfig=true' -X PUT \
+	  -H 'Content-Type: application/json' \
+	  -d '{
+	    "type": "uaa",
+	    "config": {
+	      "emailDomain": [],
+	      "additionalConfiguration": null,
+	      "providerDescription": null,
+	      "passwordPolicy": {
+	        "minLength": 1,
+	        "maxLength": 255,
+	        "requireUpperCaseCharacter": 0,
+	        "requireLowerCaseCharacter": 0,
+	        "requireDigit": 0,
+	        "requireSpecialCharacter": 0,
+	        "passwordNewerThan": null,
+	        "expirePasswordInMonths": 0
+	      },
+	      "lockoutPolicy": {
+	        "lockoutPeriodSeconds": 300,
+	        "lockoutAfterFailures": 5,
+	        "countFailuresWithin": 3600
+	      },
+	      "disableInternalUserManagement": false
+	    },
+	    "id": "UAA-IDP-ID",
+	    "originKey": "uaa",
+	    "name": "uaa",
+	    "active": true,
+	    "identityZoneId": "IDENTITY-ZONE-ID"
+	  }'
+	```
+	Where:
+	* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
+	[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+	* `UAA-IDP-ID` is the UAA identity provider ID
+	* `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
+	<%= vars.app_runtime_abbr %> tile.
+	* `IDENTITY-ZONE-ID` is the identity zone ID.
 
 
 ## <a id='add-to-int'></a> Add Internal Users
