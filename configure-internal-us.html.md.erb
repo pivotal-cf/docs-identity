@@ -37,7 +37,7 @@ Install UAA Command Line Client (UAAC), if you do not already have it installed:
 
     ```
 		gem install cf-uaac
-		```
+    ```
 
 
 ## <a id='set-up-client'></a> Set up an Admin Client
@@ -59,7 +59,7 @@ and ensure it has the following permissions:
     ```
 	  uaac target https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
 	  ```
-	  Where:
+    Where:
 	  * `AUTH-DOMAIN` is the hostname you submitted in
 	  [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
 	  * `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
@@ -77,8 +77,7 @@ To obtain an access token for your admin client:
 
     ```
  		uaac token client get APP-ID
-		```
-
+    ```
     Where `APP-ID` is the **App ID** you recorded above in the
 		[Set up an Admin Client](#set-up-client) procedure.
 
@@ -98,7 +97,7 @@ procedure above.
     ```
 		uaac curl https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/identity-providers -X GET
 		```
-		Where:
+    Where:
 		* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
 		[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
 		* `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
@@ -146,7 +145,7 @@ captured JSON.
 		    "identityZoneId": "xyz-123"
 		  }'
 		```
-		Where:
+    Where:
 		* `AUTH-DOMAIN` is the **Auth Domain** you submitted in
 		[Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
 		* `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the

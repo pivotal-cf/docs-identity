@@ -72,8 +72,11 @@ be configured by an admin for the service plan.
     ```
     uaac target AUTH-DOMAIN.login.SYSTEM-DOMAIN
     ```
-    Where `AUTH-DOMAIN` is the **Auth Domain** you entered in
+    Where:
+    * `AUTH-DOMAIN` is the **Auth Domain** you entered in
     [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+    * `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
+    <%= vars.app_runtime_abbr %> tile.
     <br><br>
     For example:
     <pre class="terminal">
@@ -91,7 +94,6 @@ memberships or `scim.create` to only create users.
     ```
     uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET
     ```
-
     Where:
     * `ADMIN-APP-ID` is your **App ID** and
     * `ADMIN-APP-SECRET` is your **App Secret**.
@@ -138,7 +140,7 @@ sufficient `scim.write` or `scim.create` permissions under the `scope` section:
     $ uaac user add Adam -p newSecretPassword --emails adam<span>@</span>example.com
     </pre>
 
-1. Add any group to any user (internal or external) by running:
+1. Add any group to any internal or external user by running:
 
     ```
     uaac member add GROUP USERNAME
