@@ -3,7 +3,7 @@ title: Managing Users
 owner: Identity Service
 ---
 
-This topic describes how a Plan Administrator uses
+This topic describes how a Plan Administrator<%# |Admin| is preferred. %> uses
 <%= vars.product_full %> to manage user access to <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) apps,
 for users with accounts in external identity providers.
 
@@ -23,7 +23,7 @@ You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= 
 
 1. Click the external identity provider you want to manage, then select the <your idp name> **Users** tab.
 This brings you to the users admin pane for that external identity provider.
-![External Identity Provider Users Page](images/manage_users.png)<%# Images require alt text that describes the image in detail. %>
+![External Identity Provider Users Page](images/manage_users.png)<%# Alt text must describe the image in detail. %><%# Images require alt text that describes the image in detail. %>
 
 From the external identity provider users admin pane, you can:
 
@@ -33,22 +33,22 @@ Entering a blank value returns all users in the service plan internal user store
 * **Delete a user** by selecting the checkbox next to their username and clicking **Delete User(s)**.
 
 * **View information about a user** and their **user permissions** by clicking on a username.
-![User Profile and Permissions](images/user_details.png)<%# Images require alt text that describes the image in detail. %>
+![User Profile and Permissions](images/user_details.png)<%# Alt text must describe the image in detail. %><%# Images require alt text that describes the image in detail. %>
 
 * **Update user permissions** by typing the corresponding permissions into the search field, clicking enter, then clicking **Update User Permissions**.
 
 ## <a id="uaac"></a> Manage Users with the UAA CLI
 
-You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac),
+You may<%# |can| usually works better. Use |might| to convey possibility. %> also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac),<%# Type |in GitHub| somewhere in the cross-reference sentence. %>
 to manage users for <%= vars.product_short %>.
 You can use this approach to programmatically create new internal users or assign
 groups (scopes) to any user (whether internal or external).
 These operations require administrative access through an admin client that must
-be configured by an admin for the service plan.
+be configured by<%# Active voice is preferred. %> an admin for the service plan.
 
 <p class="note"><strong>Note</strong>:
   Clients and Groups for <%= vars.product_short %> should be created directly using
-  the <%= vars.developer_dash %> or through app manifest bootstrapping.
+  the <%= vars.operator_dash %> or through app manifest bootstrapping.
   Do not create these through UAAC, as additional metadata is required for their
   usage by <%= vars.product_short %>.
 </p>
@@ -80,12 +80,12 @@ memberships or `scim.create` to only create users.
 1. Authenticate and obtain an access token for the admin client for your service plan by running:
 
     ```
-    uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET
+    uaac token client get ADMIN-APP<%# |APP-NAME| is preferred. %>-ID -s ADMIN-APP<%# |APP-NAME| is preferred. %>-SECRET
     ```
 
     Where:
-    * `ADMIN-APP-ID` is your **App ID** and
-    * `ADMIN-APP-SECRET` is your **App Secret**.
+    * `ADMIN-APP<%# |APP-NAME| is preferred. %>-ID` is your **App ID** and
+    * `ADMIN-APP<%# |APP-NAME| is preferred. %>-SECRET` is your **App Secret**.
 
     For example:
     <pre class="terminal">
@@ -94,7 +94,7 @@ memberships or `scim.create` to only create users.
 
     UAAC stores the token in `~/.uaac.yml`.
 
-1. Display the client context by running the following command and  verify that you have the sufficient `scim.write`
+1. Display the client context by running the following command<%# Replace with just |run:| %> and  verify that you have the sufficient `scim.write`
 or `scim.create` permissions under the `scope` section:
 
     ```
@@ -118,7 +118,7 @@ or `scim.create` permissions under the `scope` section:
 
     ```
     uaac user add NEW-USERNAME -p NEW-PASSWORD --emails NEW-EMAIL
-    ```
+    ```<%# Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| %>
     Replace `NEW-USERNAME`, `NEW-PASSWORD`, and `NEW-EMAIL` with appropriate information.
     <br><br>
     For example:
@@ -130,7 +130,7 @@ or `scim.create` permissions under the `scope` section:
 
     ```
     uaac member add GROUP USERNAME
-    ```
+    ```<%# Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| %>
     Replace `GROUP` and `USERNAME` with appropriate information.
     <br><br>
     For example:
@@ -142,7 +142,7 @@ or `scim.create` permissions under the `scope` section:
 
     ```
     uaac member delete GROUP USERNAME
-    ```
+    ```<%# Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| %>
     Replace `GROUP` and `USERNAME` with appropriate information.
     <br><br>
     For example:
