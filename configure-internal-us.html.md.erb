@@ -88,8 +88,9 @@ To obtain an access token for your admin client:
 ## <a id='config-int-store'></a> Configure the Internal User Store
 
 By default, when creating a new plan in v1.13, the internal user store is not enabled.
-UAA will not present the internal user store as an option for users attempting to log in to the zone.
-For plans that were created using an earlier version, the internal user store will retain its previous settings.
+UAA does not present the internal user store as an option for users attempting to log in to the zone.
+For plans that were created using an earlier version, the internal user store retains its previous
+settings.
 
 To configure the internal user store through the UAAC:
 
@@ -109,8 +110,11 @@ procedure above.
 
 1. From the output, capture the JSON and record the `id` for the identity provider named `uaa`.
 
-1. To enable the internal user store, set `active` to `true` within the captured JSON.
-Additionally, to enable user management (adding, updating and deleting internal users), set `config.disableInternalUserManagement` to `false`.
+1. Enable the internal user store by setting `active` to `true` within the captured JSON.
+
+1. Enable user management (adding, updating and deleting internal users), by setting 
+`config.disableInternalUserManagement` to `false`. Enabling user management enables you to add,
+update, and delete internal users.
 
 1. Configure to your needs the password policy, email domains, and other settings within the
 captured JSON.
