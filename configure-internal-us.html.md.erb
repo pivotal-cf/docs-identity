@@ -73,12 +73,12 @@ You need an access token for your admin client for the
 
 To obtain an access token for your admin client:
 
-1. Run:<%# Write what this command does. As in |Do x by running:| or |To do x, run:|. %>
+1. Run:
 
 	```
-	uaac token client get APP<%# |APP-NAME| is preferred. %>-ID
+	uaac token client get APP-ID
 	```
-	Where `APP<%# |APP-NAME| is preferred. %>-ID` is the **App ID** you recorded above in the
+	Where `APP-ID` is the **App ID** you recorded above in the
 	[Set up an Admin Client](#set-up-client) procedure.
 
 1. When prompted for the `Client secret`, enter the **App Secret** you recorded in the
@@ -164,7 +164,7 @@ captured JSON.
 	* `IDENTITY-ZONE-ID` is the identity zone ID.
 
 	You can also modify the values for `config.passwordPolicy`, `config.lockoutPolicy`, and
-	`config.emailDomain`. For more information, see the
+	`config.emailDomain` to your preferences. For more information, see the
 	[Cloud Foundry documentation](https://docs.cloudfoundry.org/api/uaa/version/74.23.0/index.html#update).
 
 
