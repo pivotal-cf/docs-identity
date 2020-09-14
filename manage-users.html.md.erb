@@ -7,6 +7,7 @@ This topic describes how a Plan Admin uses <%= vars.product_full %> to manage us
 <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) apps, for users with accounts in external
 identity providers.
 
+
 ## <a id="external"></a> Manage Users from an External Identity Provider
 
 For each external identity provider that <%= vars.product_short %> connects to, a users admin pane
@@ -15,8 +16,8 @@ such as **Okta SSO Users**.
 
 To open the external identity provider users admin pane:
 
-1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
-using your User Account and Authentication (UAA) admin credentials.
+1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your User
+Account and Authentication (UAA) admin credentials.
 You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %>
 under the **Credentials** tab.
 
@@ -36,14 +37,15 @@ Entering a blank value returns all users in the service plan internal user store
 
 * **Delete a user** by selecting the checkbox next to their username and clicking **Delete User(s)**.
 
-* **View information about a user** and their **user permissions** by clicking on a username.
+* **View information about a user** and their **user permissions** by clicking on their username.
 ![Screenshot of the external identity provider users admin pane.
 There are Username, First Name, Last Name, Email, and Phone Number fields.
 At the bottom is a search field with example searches on the right.
 Below is an **UPDATE USER PERMISSIONS** button.](images/user_details.png)
 
-* **Update user permissions** by typing the corresponding permissions into the search field, clicking
-enter, then clicking **Update User Permissions**.
+* **Update user permissions** by typing the corresponding permissions into the search field, pressing
+Enter, then clicking **UPDATE USER PERMISSIONS**.
+
 
 ## <a id="uaac"></a> Manage Users with the UAA CLI
 
@@ -51,8 +53,8 @@ You can also use the UAA CLI, or UAAC to manage users for <%= vars.product_short
 For more information, see the [UAAC](https://github.com/cloudfoundry/cf-uaac) repository in GitHub.
 You can use this approach to programmatically create new internal users or assign groups (scopes) to
 any internal or external user.
-These operations require administrative access through an admin client that must
-be configured by an admin for the service plan.
+These operations require administrative access through an admin client that an admin must configure
+for the service plan.
 
 <p class="note">
   <strong>Note:</strong> Clients and groups for <%= vars.product_short %> should be created directly
@@ -105,12 +107,14 @@ memberships or `scim.create` to only create users.
 
     UAAC stores the token in `~/.uaac.yml`.
 
-1. Display the client context by running the following command and then verify that you have the
-sufficient `scim.write` or `scim.create` permissions under the `scope` section:
+1. Display the client context by running:
 
     ```
     uaac context
     ```
+
+1. Verify that you have the necessary `scim.write` or `scim.create` permissions under the `scope`
+section:
 
     For example:
     <pre class="terminal">
