@@ -10,11 +10,11 @@ identity providers.
 
 ## <a id="external"></a> Manage Users from an External Identity Provider
 
-For each external identity provider that <%= vars.product_short %> connects to, a users admin pane
+For each external identity provider that <%= vars.product_short %> connects to, a user admin pane
 lets you browse, delete, and update permissions for user accounts from external identity providers,
 such as **Okta SSO Users**.
 
-To open the external identity provider users admin pane:
+To open the external identity provider user admin pane:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your User
 Account and Authentication (UAA) admin credentials.
@@ -24,26 +24,32 @@ under the **Credentials** tab.
 1. Click the plan name.
 
 1. Click the external identity provider you want to manage and then select the **Users** tab for your
-IdP. This brings you to the users admin pane for that external identity provider.
-![The **Users** tab for an example IdP. There is a username search field near the top.
+IdP. This brings you to the user admin pane for that external identity provider.
+<img src="images/manage_users.png" alt="The user admin pane for an example IdP.
+There is a username search field near the top.
 Below that is a **DELETE USER(S)** button.
 Below that is a table with columns called Username, Name, Verified, and Last Modified.
-A single page number with navigation arrows is at the bottom left.](images/manage_users.png)
-<br><br>From the external identity provider users admin pane, you can:
+A single page number with navigation arrows is at the bottom left.">
+From the external identity provider user admin pane, you can:
 <ul>
-  <li>Search existing users by entering a value into the search bar and clicking
-    <strong>Search</strong>. Entering a blank value returns all users in the service plan internal
+  <li><strong>Search existing users:</strong> To do so, enter a value into the
+    search bar and click <strong>Search</strong>.
+    Entering a blank value returns all users in the service plan internal
     user store.</li>
-  <li>Delete a user by selecting the checkbox next to their username and clicking
-     <strong>Delete User(s)</strong>.</li>
-  <li>View information about a user and their user permissions by clicking on their username.
-     <img src="./images/user_details.png" alt="Screenshot of the external identity provider users
-     admin pane.
-     There are Username, First Name, Last Name, Email, and Phone Number fields.
-     At the bottom is a search field with example searches on the right.
-     Below is an UPDATE USER PERMISSIONS button."></li>
-  <li>Update user permissions by typing the corresponding permissions into the search
-    field, pressing Enter, then clicking <strong>UPDATE USER PERMISSIONS</strong>.</li>
+  <li><strong>Delete a user:</strong> To do so, select the checkbox next to their
+    username and click <strong>Delete User(s)</strong>.
+  </li>
+  <li><strong>View information about a user and their user permissions:</strong> To do so,
+    click on their username.
+  </li>
+  <li><strong>Update user permissions:</strong> To do so, type the corresponding
+    permissions into the search field, press Enter, then click
+    <strong>UPDATE USER PERMISSIONS</strong>.
+    <img src="./images/user_details.png" alt="Screenshot of an example user.
+    There are Username, First Name, Last Name, Email, and Phone Number fields.
+    At the bottom is a search field with example permissions on the right.
+    Below is an UPDATE USER PERMISSIONS button.">
+  </li>
 </ul>
 
 
