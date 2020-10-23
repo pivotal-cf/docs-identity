@@ -21,11 +21,6 @@ To install <%= vars.product_short %>, you must have:
 
 ## <a id='install'></a> Install <%= vars.product_short %> Using <%= vars.ops_manager %>
 
-<p class="note"><strong>Note:</strong> If you are upgrading to this version of <%= vars.product_short %>,
-  you must update the definitions of any BOSH Add-Ons you are using to
-  include the Xenial stemcell.
-	See <a href="#update-addons">Update Add-ons to Run with Xenial Stemcell</a> below.</p>
-
 1. From [<%= vars.product_network %>](https://network.pivotal.io/products/p-identity), select
 a **<%= vars.product_short %>** tile version and download the product release file.
 
@@ -92,19 +87,3 @@ Optionally, you can configure access to your external identity provider to recei
 For how to set up ASGs, see [Application Security
 Groups](http://docs.pivotal.io/platform/application-service/operating/app-sec-groups.html).
 
-## <a id="update-addons"></a>Update Add-ons to Run with Xenial Stemcell
-
-<%= vars.product_short %> v1.7.1 and later requires a Xenial stemcell.
-If you are using any of the following BOSH Add-ons with your deployment,
-you must update the add-on definition to include the Xenial stemcell before you
-deploy <%= vars.product_short %> v1.7.1:
-
-+ File Integrity Monitoring.
-  For update instructions,
-  see [Updating File Integrity Monitoring to Run with Xenial Stemcells](https://docs.pivotal.io/addon-fim/updating-for-xenial.html).
-+ Anti-Virus.
-  For update instructions,
-  see [Updating Anti-Virus to Run with Xenial Stemcells](https://docs.pivotal.io/addon-antivirus/1-4/updating-for-xenial.html).
-+ IPsec.
-  For update instructions,
-  see [Updating IPsec to Run with Xenial Stemcells](https://docs.pivotal.io/addon-ipsec/updating-for-xenial.html).
