@@ -38,9 +38,10 @@ staging area.
     a network during installation, select the <strong>Deployment</strong> network,
     also known as the <%= vars.app_runtime_full %> network.</p>
 
-1. (Optional) Click on the **Property Configurations** pane to configure which buildpack is used when 
-'cf pushing' the apps in this tile. It is recommended to use the default `java_buildpack_offline`.
-The applications within the tile are Java based and require a Java compatible buildpack.
+1. (Optional) Click **Property Configurations** to set which buildpack
+   <%= vars.product_short %> uses when it pushes its component apps.
+   VMware recommends the default `java_buildpack_offline` buildpack.
+   Because the component apps are Java-based, you must specify a Java-compatible buildpack.
 
 1. In the <%= vars.ops_manager %> Dashboard, do the following to complete the installation:
 
