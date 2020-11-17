@@ -86,7 +86,7 @@ To configure user attributes and external group mappings:
 1. Enter any user attributes to propagate from the IdP to the service provider.
 These attributes can include email addresses, given names, family names, or phone numbers.
 They are sent to apps through OpenID tokens, along with any other stored user information issued by
-<%= vars.product_short %>
+<%= vars.product_short %>.
 
 1. Enter a **SAML Attribute Name** next to the corresponding attribute from the incoming SAML
 assertion.
@@ -135,15 +135,14 @@ You can configure external group mappings as follows:
       admin client, see
       <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
       <br><br>
-      For instructions about granting admin permissions to mapped external identity groups,
-      see <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">
-        Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
+      For instructions about granting admin permissions to mapped external identity groups, see
+      <a href="https://docs.cloudfoundry.org/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a> in the Cloud Foundry documentation.
     </p>
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
 An admin can include groups from an external IdP in a group allowlist.
 The list of groups in the allowlist propagates into the `roles` claim of the ID token and the
-`roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
+`roles` key of the `/userinfo` endpoint response when a user authenticates using an external IdP.
 
     <p class="note">
       <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
@@ -153,8 +152,8 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
     Configure a group allowlist as follows:
 
-    1. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
-    from the radio group.
+    Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from
+    the radio group.
     <table>
       <col style="width:40%">
       <col style="width:60%">
@@ -164,45 +163,46 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
         </tr>
         <tr>
           <td><strong>Allow all groups</strong></td>
-          <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+          <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the <code>/userinfo</code> endpoint</td>
         </tr>
         <tr>
           <td><strong>Do not allow any groups</strong></td>
-          <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+          <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the <code>/userinfo</code> endpoint</td>
         </tr>
         <tr>
           <td><strong>Select groups to allow</strong></td>
-          <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
+          <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the
+          <code>/userinfo</code> endpoint.
           To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
           </td>
         </tr>
-      </table>
-
-    1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields
-    as follows:
-    <table>
-      <tr>
-        <th>Field</th>
-        <th>Instructions</th>
-      </tr>
-      <tr>
-        <td><strong>Custom Attributes</strong></td>
-        <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
-          They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_short %>.
-          <ol>
-            <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
-              Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
-            <li>Enter an <strong>SSO Attribute Name</strong>.</li>
-            <li>Enter an <strong>IdP Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion.</li>
-          </ol>
-        </td>
-      </tr>
     </table>
-    ![Screenshot of the 'Custom Attributes' section.
-    There is a selected 'Persist Custom Attributes' checkbox.
-    Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
-    At the bottom is an 'Add New Item' button.](custom-attributes.png)
+
+1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields
+as follows:
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Instructions</th>
+  </tr>
+  <tr>
+    <td><strong>Custom Attributes</strong></td>
+    <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
+      They are sent to apps through OpenID tokens,
+      along with any other stored user information issued by <%= vars.product_short %>.
+      <ol>
+        <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
+          Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
+        <li>Enter an <strong>SSO Attribute Name</strong>.</li>
+        <li>Enter an <strong>IdP Attribute Name</strong> with the corresponding attribute from the incoming SAML assertion.</li>
+      </ol>
+    </td>
+  </tr>
+</table>
+![Screenshot of the 'Custom Attributes' section.
+There is a selected 'Persist Custom Attributes' checkbox.
+Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
+At the bottom is an 'Add New Item' button.](custom-attributes.png)
 
 1. Click **Save** to save the IdP.
 
@@ -503,8 +503,9 @@ You can configure external group mappings as follows:
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
 An admin can include groups from an external IdP in a group allowlist.
-The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the
-`roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
+The list of groups in the allowlist propagates into the `roles` claim of the ID token and the
+`roles` key of the <code>/userinfo</code> endpoint response when a user authenticates using an
+external IdP.
 
     <p class="note">
       <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
@@ -514,7 +515,7 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
     Configure a group allowlist as follows:
 
-    1. Select **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from
+    Select **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from
     the radio group.
     <table>
       <col style="width:40%">
@@ -525,46 +526,47 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
         </tr>
         <tr>
           <td><strong>Allow all groups</strong></td>
-          <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+          <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the <code>/userinfo</code> endpoint</td>
         </tr>
         <tr>
           <td><strong>Do not allow any groups</strong></td>
-          <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint</td>
+          <td>No groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the <code>/userinfo</code> endpoint</td>
         </tr>
         <tr>
           <td><strong>Select groups to allow</strong></td>
-          <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo endpoint.
+          <td>Groups are rejected by default. Only groups matching the specified matchers are present in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the
+            <code>/userinfo</code> endpoint.
           To specify a matcher, choose a <strong>Match Type</strong>, then specify an <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity Provider.
           </td>
         </tr>
       </table>
 
-    1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields
-    as follows:
-    <table>
-      <tr>
-        <th>Field</th>
-        <th>Instructions</th>
-      </tr>
-      <tr>
-      <td><strong>Custom Attributes</strong></td>
-        <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
-          They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_short %>.
-          <ol>
-            <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
-              Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
-            <li>Enter an <strong>SSO Attribute Name</strong>.</li>
-            <li>Enter an <strong>IdP Attribute Name</strong> with the corresponding attribute from
-              the incoming OIDC ID token.</li>
-          </ol>
-        </td>
-      </tr>
-    </table>
-    ![Screenshot of the 'Custom Attributes' section.
-    There is a selected 'Persist Custom Attributes' checkbox.
-    Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
-    At the bottom is a 'Add New Item' button.](custom-attributes.png)
+1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the fields
+as follows:
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Instructions</th>
+  </tr>
+  <tr>
+  <td><strong>Custom Attributes</strong></td>
+    <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
+      They are sent to apps through OpenID tokens,
+      along with any other stored user information issued by <%= vars.product_short %>.
+      <ol>
+        <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
+          Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
+        <li>Enter an <strong>SSO Attribute Name</strong>.</li>
+        <li>Enter an <strong>IdP Attribute Name</strong> with the corresponding attribute from
+          the incoming OIDC ID token.</li>
+      </ol>
+    </td>
+  </tr>
+</table>
+![Screenshot of the 'Custom Attributes' section.
+There is a selected 'Persist Custom Attributes' checkbox.
+Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
+At the bottom is a 'Add New Item' button.](custom-attributes.png)
 
 1. Click **Save** to save the IdP.
 
@@ -750,7 +752,8 @@ You can configure external group mappings as follows:
 1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
 An admin can include groups from an external IdP in a group allowlist.
 The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the
-`roles` key of the /userinfo endpoint response when a user authenticates using an external IdP.
+`roles` key of the <code>/userinfo</code> endpoint response when a user authenticates using an
+external IdP.
 
     <p class="note">
       <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
@@ -760,7 +763,7 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 
     Configure a group allowlist as follows:
 
-    1. Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
+    Select either **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
     from the radio group.
     <table>
       <col style="width:40%">
@@ -772,18 +775,18 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
         <tr>
           <td><strong>Allow all groups</strong></td>
           <td>All groups appear in the <code>roles</code> claim of the ID token and the
-            <code>roles</code> key of the /userinfo endpoint</td>
+            <code>roles</code> key of the <code>/userinfo</code> endpoint</td>
         </tr>
         <tr>
           <td><strong>Do not allow any groups</strong></td>
           <td>No groups appear in the <code>roles</code> claim of the ID token and the
-            <code>roles</code> key of the /userinfo endpoint</td>
+            <code>roles</code> key of the <code>/userinfo</code> endpoint</td>
         </tr>
         <tr>
           <td><strong>Select groups to allow</strong></td>
           <td>Groups are rejected by default. Only groups matching the specified matchers are present in
-            the <code>roles</code> claim of the ID token and the <code>roles</code> key of the /userinfo
-            endpoint.
+            the <code>roles</code> claim of the ID token and the <code>roles</code> key of the
+            <code>/userinfo</code> endpoint.
           To specify a matcher, choose a <strong>Match Type</strong>, then specify an
           <strong>Allowed External Group Name Pattern</strong> that matches group names in your Identity
           Provider.
@@ -791,31 +794,31 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
         </tr>
       </table>
 
-    1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the
-    fields as follows:
-    <table>
-      <tr>
-        <th>Field</th>
-        <th>Instructions</th>
-      </tr>
-      <tr>
-        <td><strong>Custom Attributes</strong></td>
-        <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
-          They are sent to apps through OpenID tokens,
-          along with any other stored user information issued by <%= vars.product_short %>.
-          <ol>
-            <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
-              Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
-            <li>Enter an <strong>SSO Attribute Name</strong>.</li>
-            <li>Enter an <strong>IdP Attribute Name</strong> with the corresponding attribute from LDAP.</li>
-          </ol>
-        </td>
-      </tr>
-    </table>
-    ![Screenshot of the 'Custom Attributes' section.
-    There is a selected 'Persist Custom Attributes' checkbox.
-    Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
-    At the bottom is a 'Add New Item' button.](custom-attributes.png)
+1. Under **Attribute & Group Mappings**, scroll to **Custom Attributes** and configure the
+fields as follows:
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Instructions</th>
+  </tr>
+  <tr>
+    <td><strong>Custom Attributes</strong></td>
+    <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
+      They are sent to apps through OpenID tokens,
+      along with any other stored user information issued by <%= vars.product_short %>.
+      <ol>
+        <li> (Optional) To expose custom user attributes through the <code>/userinfo</code> endpoint, select <strong>Persist Custom Attributes</strong>.
+          Your app must also have the <code>user_attributes</code> scope assigned for the custom attributes to appear.</li>
+        <li>Enter an <strong>SSO Attribute Name</strong>.</li>
+        <li>Enter an <strong>IdP Attribute Name</strong> with the corresponding attribute from LDAP.</li>
+      </ol>
+    </td>
+  </tr>
+</table>
+![Screenshot of the 'Custom Attributes' section.
+There is a selected 'Persist Custom Attributes' checkbox.
+Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
+At the bottom is a 'Add New Item' button.](custom-attributes.png)
 
 1. Click **Save** to save the IdP.
 
@@ -852,9 +855,9 @@ allowlists to transfer group membership and roles from existing IdP groups to
 <%= vars.product_short %>.
 
 
-### <a id='delete-resource-perm'></a> Delete Resource Permissions Mapping
+### <a id='delete-resource-perm'></a> Delete Resource Permissions Mappings
 
-To delete a resource permissions mapping:
+To delete resource permissions mappings:
 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` using your UAA
 admin credentials.
@@ -866,7 +869,7 @@ on the **Credentials** tab.
 1. Click on the name of the external IdP you want to delete permissions for and scroll to the
 **External Group Mapping** section.
 
-1. Click the trash can icon next to the group name whose resource permission mappings you want to
+1. Click the trash can icon next to the group name whose resource permissions mappings you want to
 delete.
 
 1. Click **Save** at the bottom of the page.
