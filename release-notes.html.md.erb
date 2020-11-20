@@ -8,39 +8,18 @@ These are release notes for the
 
 <%= partial vars.path_to_partials + "/upgrade-planner" %>
 
-## <a id="1-13-1"></a> v1.13.1
+## <a id="1-14-0"></a> v1.14.0
 
-**Release Date: October 28, 2020**
-
-### Security Fixes
-
-This release includes the following security fix:
-
-* High [CVE-2020-5425: User Impersonation possible in Tanzu SSO](https://tanzu.vmware.com/security/cve-2020-5425)
-
-### <a id="1-13-1-known"></a> Known Issues
-
-This release has the following issues:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-
-## <a id="1-13-0"></a> v1.13.0
-
-**Release Date: September 29, 2020**
+**Release Date: November 23, 2020**
 
 ### <a id="1-13-0-features"></a> Features
 
 New features and changes in this release:
 
-- **Upgraded Operator Dashboard UI:**
-  - Improved external group mapping workflow
-  - Easier dashboard navigation
-  - With the exception of the Internal User Store,
-    the new Operator Dashboard has the same functionality as the Legacy Dashboard
-  - Ability to switch back to the Legacy Dashboard
+- Removal of Legacy Operator Dashboard UI
+- Support to specify a buildpack to use with cf push command (i.e. cf push an-app -b $BUILDPACK)
 
-
-### <a id="1-13-0-known"></a> Known Issues
+### <a id="1-14-0-known"></a> Known Issues
 
 This release has the following issues:
 
