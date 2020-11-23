@@ -92,7 +92,7 @@ They are sent to apps through OpenID tokens, along with any other stored user in
 assertion.
 ![Screenshot of the 'Attribute & Group Mapping' section.
 There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name',
-and 'phone number'](user-attributes.png)
+and 'phone number'](user-attributes-SAML.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app, an admin can map existing groups
@@ -445,15 +445,15 @@ To configure user attributes and external group mappings:
 1. Under **Attribute & Group Mapping**, scroll to **User Attributes**.
 
 1. Enter any user attributes to propagate from the IdP to the service provider.
-These attributes can include email addresses, given names, family names, usernames and phone numbers.
+These attributes can include email addresses, usernames, given names, family names, and phone numbers.
 They are sent to apps through OpenID tokens, along with any other stored user information issued by
 <%= vars.product_short %>.
 
 1. Enter a <strong>ID Token Attribute Name</strong> next to the corresponding attribute from the
 incoming OIDC ID token.
 ![Screenshot of the 'Attribute & Group Mapping' section.
-There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name',
-and 'phone number'](user-attributes.png)
+There are 'SAML Attribute Name' fields for 'email', 'user name', 'given name', 'family name',
+and 'phone number'](user-attributes-OIDC.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app, an admin can map existing groups
@@ -700,9 +700,9 @@ They are sent to apps through OpenID tokens, along with any other stored user in
 <%= vars.product_short %>.
 These attributes can include given names, family names, or phone numbers.
 
-1. Enter an <strong>LDAP Attribute Name</strong> next to the corresponding User Schema Attribute.
+1. Enter an <strong>LDAP Field Name</strong> next to the corresponding User Schema Attribute.
 ![Screenshot of the 'Attribute & Group Mapping' section.
-There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone number'](user-attributes.png)
+There are 'LDAP Field Name' fields for 'given name', 'family name', and 'phone number'](user-attributes-LDAP.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app, an admin can map existing groups
