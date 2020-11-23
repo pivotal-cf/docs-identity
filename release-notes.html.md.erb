@@ -16,10 +16,13 @@ These are release notes for the
 
 New features and changes in this release:
 
-- **Operator Dashboard UI decommissions the following:**
-  - Internal user store.  Internal users can be managed via CLI.  For more information, see [Manage Users with the UAA CLI](./manage-users.html#uaac). 
-  - Toggle to Legacy Operator Dashboard
-- Ability to specify a buildpack to use with cf push command (i.e. `cf push an-app -b $BUILDPACK`)
+- **Removes the following from the <%= vars.operator_dash %> UI:**
+  - The internal user store is no longer available.
+  You can manage internal users using the UAA CLI.
+  For more information, see [Manage Users with the UAA CLI](./manage-users.html#uaac).
+  - The toggle to legacy <%= vars.operator_dash %> is no longer available.
+- **Adds the ability to specify a buildpack to use with cf push command*:*
+For example, `cf push APP-NAME -b $BUILDPACK`.
 
 ### <a id="1-14-0-known"></a> Known Issues
 
