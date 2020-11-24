@@ -7,15 +7,18 @@ This topic explains how developers configure their
 apps to use <%= vars.product_full %> and use the SSO Admin Client to manage connections
 between SSO identity providers, apps, users, and other resources.
 
+
 ## <a id="overview"></a> Overview
 
 <%= vars.product_short %> enables users to log in through a single sign-on service
 and access other apps that are hosted or protected by the service.
 Eliminating the need for users to log in to individual apps improves security and productivity.
 
+
 ## <a id="register"></a> Register an App
 
 Follow the instructions below to register an app for <%= vars.product_short %>.
+
 
 ### <a id="prereq"></a> Prerequisites for Registering Apps
 
@@ -24,11 +27,16 @@ and choose your <%= vars.product_short %> app type as follows:
 
 1. Create a service instance by doing the procedure in [Create Service Instances](./manage-service-instances.html#create-svc-instance).
 
-1. Determine your app's <%= vars.product_short %> app type. This informs which OAuth Grant Type you should use for your app.
-   For more information, see [Determining <%= vars.product_short %> Application Type](./determine-type.html).
+1. Determine your app's <%= vars.product_short %> app type.
+This informs which OAuth Grant Type you should use for your app.
+For more information, see [Determining <%= vars.product_short %> Application Type](./determine-type.html).
 
-   	<p class="note"><strong>Note:</strong> If your app is a resource server, you do not need to register the app because it only consumes tokens and does not handle any token acquisition flow itself.
-    A resource server hosts protected resources and accepts and responds to protected resource requests using access tokens, such as an API.</p>
+    <p class="note">
+      <strong>Note:</strong> If your app is a resource server, you do not need to register the app
+      because it only consumes tokens and does not handle any token acquisition flow itself.
+      A resource server hosts protected resources and accepts and responds to protected resource
+      requests using access tokens, such as an API.
+    </p>
 
 1. Choose a method to register your app with the <%= vars.product_short %> service:
     - If your app is hosted on <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>),
@@ -36,34 +44,37 @@ and choose your <%= vars.product_short %> app type as follows:
     - If your app is not hosted on <%= vars.app_runtime_abbr %>,
     follow one of the procedures in [Register an Externally Hosted App](#external) below.
 
+
 ### <a id="internal"></a> Register a <%= vars.app_runtime_abbr %> App
 
- To configure <%= vars.product_short %> for a <%= vars.app_runtime_abbr %> app,
- use one of the following methods:
+To configure <%= vars.product_short %> for a <%= vars.app_runtime_abbr %> app, use one of the
+following methods:
 
- * [Configure <%= vars.product_short %> Properties with JSON Bind Parameters](#configure-bind-params)
- * [Configure <%= vars.product_short %> Properties with the App Manifest](#configure-app-manifest)
+* [Configure <%= vars.product_short %> Properties with JSON Bind Parameters](#configure-bind-params)
+* [Configure <%= vars.product_short %> Properties with the App Manifest](#configure-app-manifest)
 
-   <p class="note"><strong>Note:</strong>
-   	Apps that have environment variables set using the app manifest do not work with
-     <code>cf bind-service</code>. If you have leftover environment variables previously set using the app manifest, you need to remove them with
-     <code>cf unset-env APP-NAME PROPERTY-NAME</code> before you perform a service bind.</p>
+    <p class="note">
+      <strong>Note:</strong> Apps that have environment variables set using the app manifest do not
+      work with <code>cf bind-service</code>.
+      If you have leftover environment variables previously set using the app manifest, you must
+      remove them with <code>cf unset-env APP-NAME PROPERTY-NAME</code> before you perform a service
+      bind.
+    </p>
 
 
 #### <a id="configure-bind-params"></a> Configure <%= vars.product_short %> Properties with JSON Bind Parameters
 
-In <%= vars.product_short %> v1.7.0 and later, you can use a JSON file or string containing bind parameters to
-configure <%= vars.product_short %> properties.
+In <%= vars.product_short %> v1.7.0 and later, you can use a JSON file or string containing bind
+parameters to configure <%= vars.product_short %> properties.
 For more information about bind parameters, see [Bind Parameters](#bind-params) below.
 
-To configure <%= vars.product_short %> properties with JSON bind parameters, run the following command:
+To configure <%= vars.product_short %> properties with JSON bind parameters, run the following
+command:
 
 ```
 cf bind-service APP-NAME INSTANCE-NAME -c JSON
 ```
-
 Where:
-
 + `APP-NAME` is the name of your app.
 + `INSTANCE-NAME` is the name of the service instance you are binding.
 + `JSON` is the path to the JSON file or the full JSON string containing bind parameters.
@@ -100,134 +111,137 @@ in the Cloud Foundry CLI Reference Guide.
 You can also bind service instances with Apps Manager. For more information, see
 [Bind a Service Instance to an Application](https://docs.pivotal.io/pivotalcf/appsman-services/adding-services-marketplace.html#bind-instance).
 
+
 ##### Bind Parameters
 
 The table below provides descriptions and default values for bind parameters:
 
 <table>
-	<col style="width:45%">
-    <col style="width:47%">
-    <col style="width:8%">
-	<tr>
-		<th>Property&nbsp;Name</th>
-		<th>Description</th>
-		<th>Default</th>
-	</tr>
-	<tr>
-		<td><code>grant_types</code></td>
-		<td>The following grant types are supported by <%= vars.product_short %>:
-		  <ul>
-             <li><code>authorization_code</code></li>
-             <li><code>password</code></li>
-             <li><code>client_credentials</code></li>
-             <li><code>implicit</code></li>
-           </ul>
-            If you want to use more than one grant type, you can only use the <code>authorization_code</code>
-            and <code>client_credentials</code> grant types at the same time. Otherwise, you can only use one grant type per app.
-		</td>
-		<td> </td>
-	</tr>
-	<tr>
-		<td><code>identity_providers</code></td>
-		<td>Allowed identity providers for the app through the <%= vars.product_short %> service plan.
-			This is a comma-separated list of identity provider origin keys. <br><br>
-			The origin keys are derived from the identity provider name using the following rules:
-			<ul><li>Uppercase letters are converted to lowercase letters.</li>
-				<li>Spaces, periods, and underscores are converted to hyphens.</li>
-				<li>Multiple hyphens are combined into a single hyphen.</li>
-			</ul>
-			For example, if your identity provider name is <code>example.com Provider</code>,
-			the corresponding origin key is <code>example-com-provider</code>.</td>
-		<td><code>uaa</code></td>
-	</tr>
-	<tr>
-		<td><code>redirect_uris</code></td>
-		<td>Comma-separated allow list of redirection URIs allowed for the app.
-                    Each value must be a valid URI.
-                    Custom URIs are supported for mobile apps.</td>
-		<td>Always includes the app route</td>
-	</tr>
-	<tr>
-		<td><code>scopes</code></td>
-		<td>Comma-separated list of scopes that belong to the app and are registered
-			as client scopes with <%= vars.product_short %>.
-			This value is ignored for client credential grant type apps.</td>
-		<td><code>openid</code></td>
-	</tr>
-	<tr>
-		<td><code>auto_approved_scopes</code></td>
-		<td>Comma-separated list of scopes that the app is automatically authorized
-			when acting on behalf of users through <%= vars.product_short %>.</td>
-		<td>Defaults to existing <code>scopes/authorities</code></td>
-	</tr>
-	<tr>
-		<td><code>authorities</code></td>
-		<td>Comma-separated list of authorities that belong to the app and are
-			registered as client authorities with <%= vars.product_short %>.
-			Privileged identity zone/plan admin scopes, such as
-			<code>scim.read</code>, <code>idps.write</code> cannot be bootstrapped
-			and must be assigned by zone/plan admins.
-			This value is ignored for any grant type other than client credentials.</td>
-		<td><code>uaa.resource</code></td>
-	</tr>
-	<tr>
-		<td><code>required_user_groups</code></td>
-		<td>Comma-separated list of permissions a user must have to log in to the app.
+  <col style="width:45%">
+  <col style="width:47%">
+  <col style="width:8%">
+  <tr>
+    <th>Property&nbsp;Name</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td>
+      <code>grant_types</code>
+    </td>
+    <td>The following grant types are supported by <%= vars.product_short %>:
+      <ul>
+        <li><code>authorization_code</code></li>
+        <li><code>password</code></li>
+        <li><code>client_credentials</code></li>
+        <li><code>implicit</code></li>
+      </ul>
+      If you want to use more than one grant type, you can only use the <code>authorization_code</code>
+      and <code>client_credentials</code> grant types at the same time.
+      Otherwise, you can only use one grant type per app.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>identity_providers</code></td>
+    <td>Allowed identity providers for the app through the <%= vars.product_short %> service plan.
+      This is a comma-separated list of identity provider origin keys.
+      <br><br>
+      The origin keys are derived from the identity provider name using the following rules:
+      <ul>
+        <li>Uppercase letters are converted to lowercase letters.</li>
+        <li>Spaces, periods, and underscores are converted to hyphens.</li>
+        <li>Multiple hyphens are combined into a single hyphen.</li>
+      </ul>
+      For example, if your identity provider name is <code>example.com Provider</code>, the
+      corresponding origin key is <code>example-com-provider</code>.</td>
+    <td><code>uaa</code></td>
+  </tr>
+  <tr>
+    <td><code>redirect_uris</code></td>
+    <td>Comma-separated allowlist of redirection URIs allowed for the app.
+      Each value must be a valid URI. Custom URIs are supported for mobile apps.</td>
+    <td>Always includes the app route</td>
+  </tr>
+  <tr>
+    <td><code>scopes</code></td>
+    <td>Comma-separated list of scopes that belong to the app and are registered as client scopes
+      with <%= vars.product_short %>. This value is ignored for client credential grant type apps.</td>
+    <td><code>openid</code></td>
+  </tr>
+  <tr>
+    <td><code>auto_approved_scopes</code></td>
+    <td>Comma-separated list of scopes that the app is automatically authorized when acting on behalf
+      of users through <%= vars.product_short %>.</td>
+    <td>Defaults to existing <code>scopes/authorities</code></td>
+  </tr>
+  <tr>
+    <td><code>authorities</code></td>
+    <td>Comma-separated list of authorities that belong to the app and are registered as client
+      authorities with <%= vars.product_short %>. Privileged identity zone/plan admin scopes, such as
+      <code>scim.read</code> and <code>idps.write</code> cannot be bootstrapped and must be assigned
+      by zone/plan admins. This value is ignored for any grant type other than client credentials.</td>
+    <td><code>uaa.resource</code></td>
+  </tr>
+  <tr>
+    <td><code>required_user_groups</code></td>
+    <td>Comma-separated list of permissions a user must have to log in to the app.
       The user must have all of the listed permissions to access the app.</td>
-		<td>No value</td>
-	</tr>
-	<tr>
-		<td><code>access_token_lifetime</code></td>
-		<td>Lifetime in seconds for the access token issued to the app by <%= vars.product_short %>.</td>
-		<td><code>43200</code></td>
-	</tr>
-	<tr>
-		<td><code>refresh_token_lifetime</code></td>
-		<td>Lifetime in seconds for the refresh token issued to the app by <%= vars.product_short %>.</td>
-		<td><code>2592000</code> (not used for client credentials)</td>
-	</tr>
-	<tr>
-		<td><code>resources</code></td>
-		<td>Resources for the app to use as scopes and authorities for <%= vars.product_short %>
-			created during bind, if they do not already exist.
-			All permissions within the same top level permission,
-			such as <code>todo.read</code> and <code>todo.write</code>, must be
-			specified in the same bind command.
-			You cannot specify additional permissions in the same top level permission,
-			such as <code>todo.admin</code>, in additional binds.</td>
-		<td>No value</td>
-	</tr>
-	<tr>
-		<td><code>icon</code></td>
-		<td>App icon displayed next to the app name on the Account dashboard.
-			It is displayed if <code>show_on_home_page</code> is set to <code>true</code>.
-			Do not exceed 64kb.</td>
-		<td>No value</td>
-	</tr>
-	<tr>
-		<td><code>launch_url</code></td>
-		<td>App launch URL used for the app on the Account dashboard
-			if <code>show_on_home_page</code> is set to <code>true</code>.</td>
-		<td>The application route</td>
-	</tr>
-	<tr>
-		<td><code>show_on_home_page</code></td>
-		<td>If set to <code>true</code>, the app appears on the Account
-			dashboard with the corresponding icon and launch URL.</td>
-		<td><code>true</code></td>
-	</tr>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td><code>access_token_lifetime</code></td>
+    <td>Lifetime in seconds for the access token issued to the app by <%= vars.product_short %>.</td>
+    <td><code>43200</code></td>
+  </tr>
+  <tr>
+    <td><code>refresh_token_lifetime</code></td>
+    <td>Lifetime in seconds for the refresh token issued to the app by <%= vars.product_short %>.</td>
+    <td><code>2592000</code> (not used for client credentials)</td>
+  </tr>
+  <tr>
+    <td><code>resources</code></td>
+    <td>Resources for the app to use as scopes and authorities for <%= vars.product_short %>
+      created during bind, if they do not already exist.
+      All permissions within the same top level permission, such as <code>todo.read</code> and
+      <code>todo.write</code>, must be specified in the same bind command.
+      You cannot specify additional permissions in the same top level permission, such as
+      <code>todo.admin</code>, in additional binds.</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td><code>icon</code></td>
+    <td>App icon displayed next to the app name on the Account dashboard. It is displayed if
+      <code>show_on_home_page</code> is set to <code>true</code>. Do not exceed 64kb.</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td><code>launch_url</code></td>
+    <td>App launch URL used for the app on the Account dashboard if <code>show_on_home_page</code>
+      is set to <code>true</code>.</td>
+    <td>The application route</td>
+  </tr>
+  <tr>
+    <td><code>show_on_home_page</code></td>
+    <td>If set to <code>true</code>, the app appears on the Account dashboard with the corresponding
+      icon and launch URL.</td>
+    <td><code>true</code></td>
+  </tr>
 </table>
+
 
 #### <a id="configure-app-manifest"></a> Configure <%= vars.product_short %> Properties with the App Manifest
 
-If you configure <%= vars.product_short %> properties with the app manifest, you do not need to manually bind
-your app to the service instance after you deploy your app.
-<%= vars.product_short %> reads its configuration properties from environment variables
-that are set in the apps that use it.
+If you configure <%= vars.product_short %> properties with the app manifest, you do not need to
+manually bind your app to the service instance after you deploy your app.
+<%= vars.product_short %> reads its configuration properties from environment variables that are set
+in the apps that use it.
 
-<p class="note"><strong>Note:</strong> These configurations are only applied at
-	the time of the initial service bind. If you run <code>cf push</code> again, the app does
-	not update the configurations. You can update the configurations through the <%= vars.developer_dash %>.</p>
+<p class="note">
+  <strong>Note:</strong> These configurations are only applied at the time of the initial service bind.
+  If you run <code>cf push</code> again, the app does not update the configurations.
+  You can update the configurations through the <%= vars.developer_dash %>.
+</p>
 
 To register your app with the app manifest, do the following in your app manifest:
 
@@ -250,29 +264,31 @@ applications:
       SSO_IDENTITY_PROVIDERS: uaa, sample-identity-provider
 ```
 
-For examples of configuring <%= vars.product_short %> properties in an app manifest, see the `manifest.yml` files in the
-[identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps) GitHub repository.
+For examples of configuring <%= vars.product_short %> properties in an app manifest, see the
+`manifest.yml` files in the [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps)
+GitHub repository.
 
-The table below provides descriptions and default values for <%= vars.product_short %> properties to include in the app manifest:
+The table below provides descriptions and default values for <%= vars.product_short %> properties to
+include in the app manifest:
 
 <table>
-	<col style="width:45%">
+  <col style="width:45%">
     <col style="width:47%">
     <col style="width:8%">
-	<tr>
-		<th>Property&nbsp;Name</th>
-		<th>Description</th>
-		<th>Default</th>
-	</tr>
-	<tr>
-		<td><code>name</code></td>
-		<td>Name of the app</td>
-		<td> <em>n/a</em>. This value is required.</td>
-	</tr>
-	<tr>
-		<td><code>GRANT_TYPE</code></td>
-		<td>The following grant types are supported by <%= vars.product_short %>:
-		  <ul>
+  <tr>
+    <th>Property&nbsp;Name</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><code>name</code></td>
+    <td>Name of the app</td>
+    <td> <em>n/a</em>. This value is required.</td>
+  </tr>
+  <tr>
+    <td><code>GRANT_TYPE</code></td>
+    <td>The following grant types are supported by <%= vars.product_short %>:
+      <ul>
              <li><code>authorization_code</code></li>
              <li><code>password</code></li>
              <li><code>client_credentials</code></li>
@@ -280,78 +296,77 @@ The table below provides descriptions and default values for <%= vars.product_sh
            </ul>
             If you want to use more than one grant type, you can only use the <code>authorization_code</code>
             and <code>client_credentials</code> grant types at the same time. Otherwise, you can only use one grant type per app.
-        		</td>
-		<td><code>authorization_code</code>(Web application type)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_IDENTITY_PROVIDERS</code></td>
-		<td>Allowed identity providers for the app through the <%= vars.product_short %> service plan.
-			This is a comma-separated list of identity provider origin keys.
-			The origin keys are derived from the identity provider name using the
-			following rules:
-			<ul>
-				<li> Uppercase letters are converted to lowercase letters.</li>
-				<li>Spaces, periods, and underscores are converted to hyphens.</li>
-				<li>Multiple hyphens are combined into a single hyphen.</li>
-			</ul>
-			For example, if your identity provider name is <code>example.com Provider</code>,
-			the corresponding origin key is <code>example-com-provider</code>.</td>
-		<td><code>uaa</code>(<%= vars.ops_manager %> internal user store)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_REDIRECT_URIS</code></td>
-		<td>Comma-separated allow list of redirection URIs for the app.
-                    Each value must be a valid URI.
-                    Custom URIs are supported for mobile apps.</td>
-		<td>(Always includes the app route)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_SCOPES</code></td>
-		<td>Comma-separated list of scopes that belong to the app and are registered
-			as client scopes with <%= vars.product_short %>. This value is ignored for client credential grant type apps.<br><br>
-      VMware recommends including <code>openid</code>, which
-      is not added to your user-provided list by default.
-		<td><code>openid</code></td>
-	</tr>
-	<tr>
-		<td><code>SSO_AUTO_APPROVED_SCOPES</code></td>
-		<td>Comma-separated list of scopes that the app is automatically authorized
-			when acting on behalf of users through <%= vars.product_short %>.</td>
-		<td>(Defaults to existing scopes and authorities)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_AUTHORITIES</code></td>
-		<td>Comma-separated list of authorities that belong to the app and are
-			registered as client authorities with <%= vars.product_short %>.
-			Privileged identity zone and plan admin scopes, such as <code>scim.read</code>,
-			<code>idps.write</code> cannot be bootstrapped and must be assigned
-			by zone and plan admins.
-			This value is ignored for any grant type other than client credentials.
+            </td>
+    <td><code>authorization_code</code>(Web application type)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_IDENTITY_PROVIDERS</code></td>
+    <td>Allowed identity providers for the app through the <%= vars.product_short %> service plan.
+      This is a comma-separated list of identity provider origin keys.
+      The origin keys are derived from the identity provider name using the
+      following rules:
+      <ul>
+        <li> Uppercase letters are converted to lowercase letters.</li>
+        <li>Spaces, periods, and underscores are converted to hyphens.</li>
+        <li>Multiple hyphens are combined into a single hyphen.</li>
+      </ul>
+      For example, if your identity provider name is <code>example.com Provider</code>,
+      the corresponding origin key is <code>example-com-provider</code>.</td>
+    <td><code>uaa</code>(<%= vars.ops_manager %> internal user store)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_REDIRECT_URIS</code></td>
+    <td>Comma-separated allowlist of redirection URIs for the app. Each value must be a valid URI.
+      Custom URIs are supported for mobile apps.</td>
+    <td>(Always includes the app route)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_SCOPES</code></td>
+    <td>Comma-separated list of scopes that belong to the app and are registered as client scopes with
+      <%= vars.product_short %>. This value is ignored for client credential grant type apps.<br><br>
+      VMware recommends including <code>openid</code>, which is not added to your user-provided list
+      by default.
+    <td><code>openid</code></td>
+  </tr>
+  <tr>
+    <td><code>SSO_AUTO_APPROVED_SCOPES</code></td>
+    <td>Comma-separated list of scopes that the app is automatically authorized
+      when acting on behalf of users through <%= vars.product_short %>.</td>
+    <td>(Defaults to existing scopes and authorities)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_AUTHORITIES</code></td>
+    <td>Comma-separated list of authorities that belong to the app and are
+      registered as client authorities with <%= vars.product_short %>.
+      Privileged identity zone and plan admin scopes, such as <code>scim.read</code>,
+      <code>idps.write</code> cannot be bootstrapped and must be assigned
+      by zone and plan admins.
+      This value is ignored for any grant type other than client credentials.
         <br><br>
-			VMware recommends including <code>uaa.resource</code>, which
+      VMware recommends including <code>uaa.resource</code>, which
       is not added your user-provided list by default.
 
-			</td>
-		<td><code>uaa.resource</code></td>
-	</tr>
-	<tr>
-		<td><code>SSO_REQUIRED_USER_GROUPS</code></td>
-		<td>Comma-separated list of permissions a user must have to log in to the app. The user must have all of the listed permissions to access the app.</td>
-		<td>(No value)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_ACCESS_TOKEN_LIFETIME</code></td>
-		<td>Lifetime in seconds for the access token issued to the app by <%= vars.product_short %>.</td>
-		<td><code>43200</code></td>
-	</tr>
-	<tr>
-		<td><code>SSO_REFRESH_TOKEN_LIFETIME</code></td>
-		<td>Lifetime in seconds for the refresh token issued to the app by <%= vars.product_short %>.</td>
-		<td><code>2592000</code> (not used for client credentials)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_RESOURCES</code></td>
-		<td>Resources that the app uses as scopes and authorities
+      </td>
+    <td><code>uaa.resource</code></td>
+  </tr>
+  <tr>
+    <td><code>SSO_REQUIRED_USER_GROUPS</code></td>
+    <td>Comma-separated list of permissions a user must have to log in to the app. The user must have all of the listed permissions to access the app.</td>
+    <td>(No value)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_ACCESS_TOKEN_LIFETIME</code></td>
+    <td>Lifetime in seconds for the access token issued to the app by <%= vars.product_short %>.</td>
+    <td><code>43200</code></td>
+  </tr>
+  <tr>
+    <td><code>SSO_REFRESH_TOKEN_LIFETIME</code></td>
+    <td>Lifetime in seconds for the refresh token issued to the app by <%= vars.product_short %>.</td>
+    <td><code>2592000</code> (not used for client credentials)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_RESOURCES</code></td>
+    <td>Resources that the app uses as scopes and authorities
             for <%= vars.product_short %> to be created during bootstrapping if they do not already exist.
             The input format can be referenced in the provided sample manifest.
             Currently, all permissions within the same top-level permission,
@@ -359,30 +374,31 @@ The table below provides descriptions and default values for <%= vars.product_sh
             specified in the same app manifest.
             Currently you cannot specify additional permissions in the same top level permission,
             such as <code>todo.admin</code>, in additional app manifests.</td>
-		<td>(No value)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_ICON</code></td>
-		<td>App icon that is displayed next to the app name on the Account dashboard if <strong>Show on Homepage</strong> is enabled. Do not exceed 64kb.</td>
-		<td>(No value)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_LAUNCH_URL</code></td>
-		<td>App launch URL that is used for the app on the Account
-			dashboard if <strong>Show on Homepage</strong> is enabled.</td>
-		<td>(App route)</td>
-	</tr>
-	<tr>
-		<td><code>SSO_SHOW_ON_HOME_PAGE</code></td>
-		<td>If set to <code>true</code>, the app appears on the Account dashboard
-			with the corresponding icon and launch URL.</td>
-		<td><code>true</code></td>
-	</tr>
+    <td>(No value)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_ICON</code></td>
+    <td>App icon that is displayed next to the app name on the Account dashboard if <strong>Show on Homepage</strong> is enabled. Do not exceed 64kb.</td>
+    <td>(No value)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_LAUNCH_URL</code></td>
+    <td>App launch URL that is used for the app on the Account
+      dashboard if <strong>Show on Homepage</strong> is enabled.</td>
+    <td>(App route)</td>
+  </tr>
+  <tr>
+    <td><code>SSO_SHOW_ON_HOME_PAGE</code></td>
+    <td>If set to <code>true</code>, the app appears on the Account dashboard
+      with the corresponding icon and launch URL.</td>
+    <td><code>true</code></td>
+  </tr>
 </table>
 
 For more information and app manifest examples, see the
 [identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps)
 GitHub repository.
+
 
 ### <a id="external"></a> Register an Externally Hosted App
 
@@ -391,6 +407,7 @@ use one of the following methods:
 
 * [Register an Externally Hosted App Using Service Keys](#register-service-keys)
 * [Register an Externally Hosted App Using the <%= vars.developer_dash %>](#register-dashboard)
+
 
 #### <a id="register-service-keys"></a> Register an Externally Hosted App Using Service Keys
 
@@ -402,7 +419,7 @@ Service keys enable you to register apps for automation, such as scripts or pipe
 
 To register an externally hosted app using service keys:
 
-1. To create a service key, run the following command:
+1. To create a service key, run:
 
     ```
     cf create-service-key INSTANCE-NAME SERVICE-KEY -c JSON
@@ -412,8 +429,8 @@ To register an externally hosted app using service keys:
     + `SERVICE-KEY` is the name you want for your service key.
     + `JSON` is the path to the JSON file or the full JSON string containing bind parameters.
 
-    You must include the `name` parameter in your JSON file or string. The value of `name` is the user-defined
-    name of your externally hosted app. <br><br>
+    You must include the `name` parameter in your JSON file or string. The value of `name` is the
+    user-defined name of your externally hosted app. <br><br>
 
     For example:
 
@@ -445,13 +462,11 @@ To register an externally hosted app using service keys:
     see [create-service-key](https://cli.cloudfoundry.org/en-US/cf/create-service-key.html)
     in the Cloud Foundry CLI Reference Guide.
 
-1. To obtain the service key credentials, run the following command:
-
+1. To obtain the service key credentials, run:
 
     ```
     cf service-key INSTANCE-NAME SERVICE-KEY
     ```
-
     Where:
     + `INSTANCE-NAME` is the name of your service instance.
     + `SERVICE-KEY` is the name of the service key you created in step 1.
@@ -459,9 +474,12 @@ To register an externally hosted app using service keys:
     For more information about how to use these values, see
     [Integrate <%= vars.product_short %> with Your App](./integrating-sso.html).
 
-    <p class="note"><strong>Note:</strong> <code>client_credentials</code> grant types, administrative scopes, and
-    scopes in other spaces are not available. These must be manually added by a plan
-    admin or system operator through the <%= vars.operator_dash %> or UAA CLI.</p>
+    <p class="note">
+      <strong>Note:</strong> <code>client_credentials</code> grant types, administrative scopes, and
+      scopes in other spaces are not available. These must be manually added by a plan admin or
+      system operator through the <%= vars.operator_dash %> or UAA CLI.
+    </p>
+
 
 #### <a id="register-dashboard"></a> Register an Externally Hosted App Using the <%= vars.developer_dash %>
 
@@ -474,30 +492,30 @@ For more information, see [Determining <%= vars.product_short %> Application Typ
 1. Under **Services**, click **Manage** next to the <%= vars.product_short %>service instance.
 This launches the <%= vars.developer_dash %>.
 
-	<%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
+  <%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
   <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
 1. Enter an **App Name**.
 1. Choose an app type under **Select an App Type**.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store
   is the default.
-	<p class="note"><strong>Note:</strong> When registering an externally hosted app,
-		a Space Developer can choose from internal and external identity providers.
-		If the Space Developer selects multiple identity providers, users must
-		select which provider to use when they sign in.
-		This option is available for all app types except
-		<code>Service-to-Service App</code>.</p>
+  <p class="note"><strong>Note:</strong> When registering an externally hosted app,
+    a Space Developer can choose from internal and external identity providers.
+    If the Space Developer selects multiple identity providers, users must
+    select which provider to use when they sign in.
+    This option is available for all app types except
+    <code>Service-to-Service App</code>.</p>
 
     <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`,
-   under **App Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
+   under **App Settings** enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
    <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
-    enforced by the API and the scopes to be requested by the app.
+    that the API enforces and the scopes that the app requests.
      <table class="nice">
        <tr>
          <th width="25%">Scope</th>
@@ -530,12 +548,12 @@ This launches the <%= vars.developer_dash %>.
     </table>
 
     <p class="note"><strong>Note:</strong> Add the <code>user_attributes</code> scope
-	  to the client scopes to return user attributes from the ID token.</p>
+    to the client scopes to return user attributes from the ID token.</p>
     <p class="note"><strong>Note:</strong> Under <strong>Scopes</strong>, you can
-	  select resources defined in any space if the app type is a <code>Web App</code>,
-	  <code>Native App</code>, or <code>Single-Page JavaScript App</code>.
-	  If the app type is a <code>Service-to-Service App</code>, you can only select
-	  resources defined within the space.</p>
+    select resources defined in any space if the app type is a <code>Web App</code>,
+    <code>Native App</code>, or <code>Single-Page JavaScript App</code>.
+    If the app type is a <code>Service-to-Service App</code>, you can only select
+    resources defined within the space.</p>
 
 1. (Optional) Under **Auto-Approved Scopes**, select any scopes that <%= vars.product_short %>
    automatically approves when the app makes a request on behalf of a user.
@@ -544,13 +562,15 @@ This launches the <%= vars.developer_dash %>.
 
 1. (Optional) Under **Authentication**, select the permissions that users must have
   to log in to the app. The user must have all of the selected permissions to access the app.
-   <p class="note"><strong>Note:</strong>
-     The <strong>Authentication</strong> settings do not apply to the
-      <code>Service-to-Service App</code> app type.</p>
+   <p class="note">
+     <strong>Note:</strong> The <strong>Authentication</strong> settings do not apply to the
+     <code>Service-to-Service App</code> app type.
+   </p>
 
 1. (Optional) Under **Token Validity**, change the token expiration times.
 The default is set in the configuration for the <%= vars.product_short %> service plan.
-For more information about tokens, see [Configure a Token Policy](./manage-service-plans-api.html#configure-token-policy).
+For more information about tokens, see
+[Configure a Token Policy](./manage-service-plans-api.html#configure-token-policy).
 
 1. (Optional) If your App Type is a `Web App` or `Single-Page JavaScript App`, you can enable
     **Show on Homepage** to display the app on the UAA or Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
@@ -563,8 +583,8 @@ Record these credentials to use in other <%= vars.product_short %> procedures.
 <p class="note"><strong>Note:</strong>
   You can only view the <strong>App Secret</strong> when an app is first registered or
   the secret is regenerated.</p>
-1. (Optional) If you want to view examples of how to integrate <%= vars.product_short %> into your Spring Boot apps, click **Download Sample Apps**.
-		<%= image_tag("download_sample_apps.png", :alt => "Download Sample Apps") %>
+1. (Optional) To view examples of how to integrate <%= vars.product_short %> into your Spring Boot apps, click **Download Sample Apps**.
+    <%= image_tag("download_sample_apps.png", :alt => "Download Sample Apps") %>
 
 ## <a id="sso-dashboard"></a> Manage App Configurations
 
@@ -576,34 +596,36 @@ resources available within their space.
 Before you access the dashboard, you must
 create a service instance for your space. See [Create Service Instances](./manage-service-instances.html#create-svc-instance).
 
+
 ### <a id="config-proced"></a> Procedure
+
 To manage your app configurations through the <%= vars.developer_dash %>:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
 
-	<%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
+  <%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
   <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
-	<p class="note"><strong>Note:</strong> When binding an <%= vars.app_runtime_abbr %> app, a Space Developer
-		can choose from internal and external identity providers.
-		If the Space Developer selects multiple identity providers, users must select
-		which provider to use when they sign in.
-		This option is available for all app types except
-		<code>Service-to-Service App</code>.</p>
+  <p class="note"><strong>Note:</strong> When binding an <%= vars.app_runtime_abbr %> app, a Space Developer
+    can choose from internal and external identity providers.
+    If the Space Developer selects multiple identity providers, users must select
+    which provider to use when they sign in.
+    This option is available for all app types except
+    <code>Service-to-Service App</code>.</p>
 
     <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings**
-   enter an allow list of URIs beneath **Redirect URIs Whitelist**.
+   enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the
    URIs specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
    <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request
     on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
     is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
-    enforced by the API and the scopes to be requested by the app.
+    that the API enforces and the scopes that the app requests.
      <table class="nice">
        <tr>
          <th width="25%">Scope</th>
@@ -635,11 +657,13 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 
     </table>
 
-    <p class="note"><strong>Note:</strong> Under <strong>Scopes</strong>,
-      you can select resources defined in any space if the app type is a
-      <code>Web App</code>, <code>Native App</code>, or <code>Single-Page
-      JavaScript App</code>. If the app type is a <code>Service-to-Service App</code>,
-      you can only select resources defined within the space.</p>
+    <p class="note">
+      <strong>Note:</strong> Under <strong>Scopes</strong>, you can select resources defined in any
+      space if the app type is a <code>Web App</code>, <code>Native App</code>, or
+      <code>Single-Page JavaScript App</code>.
+      If the app type is a <code>Service-to-Service App</code>, you can only select resources defined
+      within the space.
+    </p>
 
 1. (Optional) Under **Auto-Approved Scopes**, select any scopes that <%= vars.product_short %> automatically
    approves when the app makes a request on behalf of a user.
@@ -652,13 +676,16 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 
 1. (Optional) If your App Type is a `Web App` or `Single-Page JavaScript App`, you can enable
 **Show on Homepage** to display the app on the UAA or Account home page.
-	<p class="note"><strong>Note:</strong> If you want an app to display on
-		the home page, you must enter an **App Launch URL** or upload an app icon.</p>
+  <p class="note">
+    <strong>Note:</strong> If you want an app to display on the home page, you must enter an
+    <strong>App Launch URLM</strong> or upload an app icon.
+  </p>
     1. In **App Launch URL**, enter the address you want for your app.
     1. Upload an app icon for your app.
     <%= image_tag("sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
 
 1. Click **Update App**.
+
 
 ## <a id="view-credentials"></a> Credentials of Existing App Configurations
 
@@ -672,19 +699,22 @@ To view credentials of an existing app:
 1. Under **Services**, click the **<%= vars.product_short %>** service.
 1. Click **Manage** next to your <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
 1. Under **Apps**, click **Credentials** near the name of your app.
-	<p class="note"><strong>Note:</strong>
-		You can only view the <strong>App Secret</strong> when an app is first registered or
-		the secret is regenerated.</p>
-	<%= image_tag("sso_dev_creds.png", :alt => "App credentials") %>
+  <p class="note">
+    <strong>Note:</strong> You can only view the <strong>App Secret</strong> when an app is first
+    registered or the secret is regenerated.
+  </p>
+  <%= image_tag("sso_dev_creds.png", :alt => "App credentials") %>
   <a href="./images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
+
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
 
-<p class="note warning"><strong>Warning:</strong>
-	You must not regenerate an app secret for <%= vars.app_runtime_abbr %> bound apps,
-	because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
-	To regenerate a client for an <%= vars.app_runtime_abbr %> bound app, you need to delete and re-create the
-	service binding from your app to <%= vars.product_short %>.</p>
+<p class="note warning">
+  <strong>Warning:</strong> You must not regenerate an app secret for <%= vars.app_runtime_abbr %>
+  bound apps, because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
+  To regenerate a client for an <%= vars.app_runtime_abbr %> bound app, you must delete and re-create
+  the service binding from your app to <%= vars.product_short %>.
+</p>
 
 To regenerate an app secret of an existing app:
 
@@ -694,22 +724,23 @@ To regenerate an app secret of an existing app:
 1. Click **Manage** next to your <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
 1. Under **Apps**, click the **Credentials** near the name of your app.
 1. Click **Regenerate App secret** under the **App Secret** field.
-1. On the pop-up, click **Regenerate App Secret** to confirm that you want to regenerate an
+1. On the dialog box, click **Regenerate App Secret** to confirm that you want to regenerate an
    app's secret value.
 1. View and download the **App ID** and regenerated **App Secret**.
-Record these credentials to use in other <%= vars.product_short %> procedures.
+1. Record these credentials to use in other <%= vars.product_short %> procedures.
 
-	<p class="note"><strong>Note:</strong>
-		Regenerating an <strong>App Secret</strong> requires you to update the
-		secret at the client.</p>
+<p class="note">
+  <strong>Note:</strong> Regenerating an <strong>App Secret</strong> requires you to update the
+  secret at the client.
+</p>
+
 
 ## <a id="admin"></a> Create Admin Client
 
-You can create an admin client to perform administrative functions,
-such as managing identity providers, apps, users, groups, and resources
-in a specific zone where you create the client.
+You can create an admin client to perform administrative functions, such as managing identity
+providers, apps, users, groups, and resources in a specific zone where you create the client.
 
-You must be at least a plan admin to perform these steps.
+You must be at least a plan admin to follow these steps.
 
 To create an admin client:
 
@@ -773,17 +804,20 @@ To create an admin client:
 
 9. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
-Record these credentials to use in other <%= vars.product_short %> procedures.
-<p class="note"><strong>Note:</strong>
-  You can only view the <strong>App Secret</strong> when an app is first registered or
-  the secret is regenerated.</p>
+1. Record these credentials to use in other <%= vars.product_short %> procedures.
+<p class="note">
+  <strong>Note:</strong> You can only view the <strong>App Secret</strong> when an app is first
+  registered or the secret is regenerated.
+</p>
+
 
 ## <a id="unregister"></a> Unregister App from <%= vars.product_short %>
 
 To unregister an app from <%= vars.product_short %>:
 
-+ If you configured an <%= vars.app_runtime_abbr %> app in [Set Up Apps to Use <%= vars.product_short %>](#set-up) above,
-see [Unregister an <%= vars.app_runtime_abbr %> App](#unregister-pcf) below.
++ If you configured an <%= vars.app_runtime_abbr %> app in
+[Set Up Apps to Use <%= vars.product_short %>](#set-up) above, see
+[Unregister an <%= vars.app_runtime_abbr %> App](#unregister-pcf) below.
 
 + If you registered an externally hosted app using service keys in
 [Register an Externally Hosted App Using Service Keys](#register-service-keys) above,
@@ -795,14 +829,12 @@ see [Unregister an Externally Hosted App Using the Service Instance Developer Da
 
 ### <a id="unregister-pcf"></a> Unregister a <%= vars.app_runtime_abbr %> App
 
-To unregister a <%= vars.app_runtime_abbr %> app, run the following command:
+To unregister a <%= vars.app_runtime_abbr %> app, run:
 
 ```
 cf unbind-service APP-NAME INSTANCE-NAME
 ```
-
 Where:
-
 + `APP-NAME` is the name of your app.
 + `INSTANCE-NAME` is the name of the service instance you are binding.
 
@@ -810,18 +842,25 @@ For more information about the `cf unbind-service` command,
 see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
 in the Cloud Foundry CLI Reference Guide.
 
-<p class="note"><strong>Note:</strong> If you delete a <%= vars.app_runtime_abbr %> app,
-  the app is automatically unregistered from <%= vars.product_short %>.</p>
+<p class="note">
+  <strong>Note:</strong> When you unbind the app, all SSO configuration for the app is permanently
+  deleted.
+</p>
+
+<p class="note">
+  <strong>Note:</strong> If you delete a <%= vars.app_runtime_abbr %> app, the app is automatically
+  unregistered from <%= vars.product_short %>.
+</p>
+
 
 ### <a id="unregister-service-keys"></a> Unregister an Externally Hosted App Using Service Keys
 
-To unregister an externally hosted app using service keys, run the following command:
+To unregister an externally hosted app using service keys, run:
 
 ```
 cf delete-service-key INSTANCE-NAME SERVICE-KEY
 ```
 Where:
-
 + `INSTANCE-NAME` is the name of your service instance.
 + `SERVICE-KEY` is the name you want for your service key.
 
@@ -829,17 +868,19 @@ For more information about the `cf delete-service-key` command,
 see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html)
 in the Cloud Foundry CLI Reference Guide.
 
+
 ### <a id="unregister-dashboard"></a> Unregister an Externally Hosted App Using <%= vars.developer_dash %>
 
 To unregister an externally hosted app using the <%= vars.developer_dash %>:
 
-1. To navigate to the <%= vars.developer_dash %>, do the procedure in [Access the <%= vars.developer_dash %>](./manage-service-instances.html#access-svc-instance-developer-dashboard).
-3. Click your app.
-4. Click **Unregister App** at the bottom of the page.
-5. When prompted, click **Unregister App** to confirm that you want to unregister the app
-   and its configurations.
+1. To navigate to the <%= vars.developer_dash %>, follow the procedure in
+[Access the <%= vars.developer_dash %>](./manage-service-instances.html#access-svc-instance-developer-dashboard).
+1. Click your app.
+1. Click **Unregister App** at the bottom of the page.
+1. When prompted, click **Unregister App** to confirm that you want to unregister the app and its
+configurations.
 
-	<p class="note"><strong>Note:</strong>
-		Deleting an externally hosted app removes the app and its
-		configurations from the <%= vars.developer_dash %>.
-		However, it still exists on your hosted platform.</p>
+<p class="note">
+  <strong>Note:</strong> Deleting an externally hosted app removes the app and its configurations
+  from the <%= vars.developer_dash %>. However, it still exists on your hosted platform.
+</p>
