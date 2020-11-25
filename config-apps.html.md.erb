@@ -826,9 +826,8 @@ To unregister a <%= vars.app_runtime_abbr %> app, run:
 ```
 cf unbind-service APP-NAME INSTANCE-NAME
 ```
-Where:
-* `APP-NAME` is the name of your app.
-* `INSTANCE-NAME` is the name of the service instance you are binding.
+Where `APP-NAME` is the name of your app and `INSTANCE-NAME` is the name of the service instance you
+are binding.
 
 For more information about the `cf unbind-service` command,
 see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
@@ -852,9 +851,8 @@ To unregister an externally hosted app using service keys, run:
 ```
 cf delete-service-key INSTANCE-NAME SERVICE-KEY
 ```
-Where:
-* `INSTANCE-NAME` is the name of your service instance.
-* `SERVICE-KEY` is the name you want for your service key.
+Where `INSTANCE-NAME` is the name of your service instance and `SERVICE-KEY` is the name you want for
+your service key.
 
 For more information about the `cf delete-service-key` command,
 see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html)
