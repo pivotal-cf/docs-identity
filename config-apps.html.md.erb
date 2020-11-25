@@ -609,7 +609,7 @@ To manage your app configurations through the <%= vars.developer_dash %>:
   <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
 1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
-  <p class="note"><strong>Note:</strong> When binding an <%= vars.app_runtime_abbr %> app, a Space Developer
+  <p class="note"><strong>Note:</strong> When binding a <%= vars.app_runtime_abbr %> app, a Space Developer
     can choose from internal and external identity providers.
     If the Space Developer selects multiple identity providers, users must select
     which provider to use when they sign in.
@@ -678,7 +678,7 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 **Show on Homepage** to display the app on the UAA or Account home page.
   <p class="note">
     <strong>Note:</strong> If you want an app to display on the home page, you must enter an
-    <strong>App Launch URLM</strong> or upload an app icon.
+    <strong>App Launch URL</strong> or upload an app icon.
   </p>
     1. In **App Launch URL**, enter the address you want for your app.
     1. Upload an app icon for your app.
@@ -712,7 +712,7 @@ To view credentials of an existing app:
 <p class="note warning">
   <strong>Warning:</strong> You must not regenerate an app secret for <%= vars.app_runtime_abbr %>
   bound apps, because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
-  To regenerate a client for an <%= vars.app_runtime_abbr %> bound app, you must delete and re-create
+  To regenerate a client for a <%= vars.app_runtime_abbr %> bound app, you must delete and re-create
   the service binding from your app to <%= vars.product_short %>.
 </p>
 
@@ -815,9 +815,9 @@ To create an admin client:
 
 To unregister an app from <%= vars.product_short %>:
 
-+ If you configured an <%= vars.app_runtime_abbr %> app in
++ If you configured a <%= vars.app_runtime_abbr %> app in
 [Set Up Apps to Use <%= vars.product_short %>](#set-up) above, see
-[Unregister an <%= vars.app_runtime_abbr %> App](#unregister-pcf) below.
+[Unregister a <%= vars.app_runtime_abbr %> App](#unregister-pcf) below.
 
 + If you registered an externally hosted app using service keys in
 [Register an Externally Hosted App Using Service Keys](#register-service-keys) above,
