@@ -75,9 +75,9 @@ command:
 cf bind-service APP-NAME INSTANCE-NAME -c JSON
 ```
 Where:
-+ `APP-NAME` is the name of your app.
-+ `INSTANCE-NAME` is the name of the service instance you are binding.
-+ `JSON` is the path to the JSON file or the full JSON string containing bind parameters.
+* `APP-NAME` is the name of your app.
+* `INSTANCE-NAME` is the name of the service instance you are binding.
+* `JSON` is the path to the JSON file or the full JSON string containing bind parameters.
 
 For example:
 
@@ -126,9 +126,7 @@ The table below provides descriptions and default values for bind parameters:
     <th>Default</th>
   </tr>
   <tr>
-    <td>
-      <code>grant_types</code>
-    </td>
+    <td><code>grant_types</code></td>
     <td>The following grant types are supported by <%= vars.product_short %>:
       <ul>
         <li><code>authorization_code</code></li>
@@ -140,7 +138,7 @@ The table below provides descriptions and default values for bind parameters:
       and <code>client_credentials</code> grant types at the same time.
       Otherwise, you can only use one grant type per app.
     </td>
-    <td></td>
+    <td>n/a</td>
   </tr>
   <tr>
     <td><code>identity_providers</code></td>
@@ -283,7 +281,7 @@ include in the app manifest:
   <tr>
     <td><code>name</code></td>
     <td>Name of the app</td>
-    <td> <em>n/a</em>. This value is required.</td>
+    <td>None, but this value is required.</td>
   </tr>
   <tr>
     <td><code>GRANT_TYPE</code></td>
@@ -345,14 +343,13 @@ include in the app manifest:
         <br><br>
       VMware recommends including <code>uaa.resource</code>, which
       is not added your user-provided list by default.
-
       </td>
     <td><code>uaa.resource</code></td>
   </tr>
   <tr>
     <td><code>SSO_REQUIRED_USER_GROUPS</code></td>
     <td>Comma-separated list of permissions a user must have to log in to the app. The user must have all of the listed permissions to access the app.</td>
-    <td>(No value)</td>
+    <td><em>n/a</em></td>
   </tr>
   <tr>
     <td><code>SSO_ACCESS_TOKEN_LIFETIME</code></td>
@@ -374,12 +371,12 @@ include in the app manifest:
             specified in the same app manifest.
             Currently you cannot specify additional permissions in the same top level permission,
             such as <code>todo.admin</code>, in additional app manifests.</td>
-    <td>(No value)</td>
+    <td><em>n/a</em></td>
   </tr>
   <tr>
     <td><code>SSO_ICON</code></td>
     <td>App icon that is displayed next to the app name on the Account dashboard if <strong>Show on Homepage</strong> is enabled. Do not exceed 64kb.</td>
-    <td>(No value)</td>
+    <td><em>n/a</em></td>
   </tr>
   <tr>
     <td><code>SSO_LAUNCH_URL</code></td>
@@ -396,8 +393,7 @@ include in the app manifest:
 </table>
 
 For more information and app manifest examples, see the
-[identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps)
-GitHub repository.
+[identity-sample-apps](https://github.com/pivotal-cf/identity-sample-apps) GitHub repository.
 
 
 ### <a id="external"></a> Register an Externally Hosted App
@@ -411,8 +407,8 @@ use one of the following methods:
 
 #### <a id="register-service-keys"></a> Register an Externally Hosted App Using Service Keys
 
-You can use a JSON file or string containing bind parameters to register an
-externally hosted app using service keys.
+You can use a JSON file or string containing bind parameters to register an externally hosted app
+using service keys.
 For more information about bind parameters, see [Bind Parameters](#bind-params) above.
 
 Service keys enable you to register apps for automation, such as scripts or pipelines.
@@ -486,86 +482,85 @@ To register an externally hosted app using service keys:
 To register an externally hosted app using the <%= vars.developer_dash %>:
 
 1. Determine the <%= vars.product_short %> app type for your app.
-For more information, see [Determining <%= vars.product_short %> Application Type](./determine-type.html).
+For more information, see
+[Determining <%= vars.product_short %> Application Type](./determine-type.html).
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the <%= vars.product_short %>service instance.
 This launches the <%= vars.developer_dash %>.
-
-  <%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
-  <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
+    <%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
+    <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
 1. Enter an **App Name**.
 1. Choose an app type under **Select an App Type**.
-1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store
-  is the default.
-  <p class="note"><strong>Note:</strong> When registering an externally hosted app,
-    a Space Developer can choose from internal and external identity providers.
-    If the Space Developer selects multiple identity providers, users must
-    select which provider to use when they sign in.
-    This option is available for all app types except
-    <code>Service-to-Service App</code>.</p>
-
+1. Under **Select Identity Providers**, select an identity provider for your app.
+Internal User Store is the default.
+    <p class="note">
+      <strong>Note:</strong> When registering an externally hosted app, a Space Developer can choose
+      from internal and external identity providers.
+      If the Space Developer selects multiple identity providers, users must select which provider to
+      use when they sign in.
+      This option is available for all app types except <code>Service-to-Service App</code>.
+    </p>
     <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
-1. If your App Type is `Web App` or `Single-Page JavaScript App`,
-   under **App Settings** enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
-   The redirect query parameter specified on the OAuth request must match the URIs
-   specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
-   <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
-1. Under **Authorization**, select the **System Permissions** that the app can request
-    on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
-    is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
-    that the API enforces and the scopes that the app requests.
-     <table class="nice">
+1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings** enter an
+allowlist of URIs beneath **Redirect URIs Whitelist**.
+The redirect query parameter specified on the OAuth request must match the URIs specified in this
+list. Otherwise, <%= vars.product_short %> rejects the request.
+    <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
+1. Under **Authorization**, select the **System Permissions** that the app can request on the user’s
+behalf. If this app is only for authentication purposes, then the `openid` scope is sufficient.
+If the app makes API calls on behalf of the end user, specify both the scopes that the API enforces
+and the scopes that the app requests.
+    <table class="nice">
        <tr>
          <th width="25%">Scope</th>
          <th>Description</th>
        </tr>
-
        <tr>
          <td><code>open</code></td>
          <td>Provides access to make OpenID Connect request.
            The default for Web, Native, and Single-Page JavaScript Apps</td>
-      </tr>
-
-      <tr>
+       </tr>
+       <tr>
         <td><code>user_attributes</code></td>
         <td>Provides access to custom attributes from an external identity provider</td>
-      </tr>
-
-      <tr>
+       </tr>
+       <tr>
         <td><code>roles</code></td>
         <td>Provides access to external groups from an identity provider</td>
-      </tr>
-
-      <tr>
+       </tr>
+       <tr>
         <td><code>uaa.resource</code></td>
         <td>Provides access to the <code>check\_token</code> endpoint for service-to-service flows.
-          The default for Service-to-Service Apps.
-          </td>
-      </tr>
-
+          The default for Service-to-Service Apps.</td>
+       </tr>
     </table>
 
-    <p class="note"><strong>Note:</strong> Add the <code>user_attributes</code> scope
-    to the client scopes to return user attributes from the ID token.</p>
-    <p class="note"><strong>Note:</strong> Under <strong>Scopes</strong>, you can
-    select resources defined in any space if the app type is a <code>Web App</code>,
-    <code>Native App</code>, or <code>Single-Page JavaScript App</code>.
-    If the app type is a <code>Service-to-Service App</code>, you can only select
-    resources defined within the space.</p>
+    <p class="note">
+      <strong>Note:</strong> Add the <code>user_attributes</code> scope to the client scopes to
+      return user attributes from the ID token.
+    </p>
+    <p class="note">
+      <strong>Note:</strong> Under <strong>Scopes</strong>, you can select resources defined in any
+      space if the app type is a <code>Web App</code>, <code>Native App</code>, or
+      <code>Single-Page JavaScript App</code>.
+      If the app type is a <code>Service-to-Service App</code>, you can only select resources defined
+      within the space.
+    </p>
 
 1. (Optional) Under **Auto-Approved Scopes**, select any scopes that <%= vars.product_short %>
-   automatically approves when the app makes a request on behalf of a user.
-   Select only scopes pertaining to apps owned and managed by your company.
-   Do not select scopes that pertain to externally hosted apps.
+automatically approves when the app makes a request on behalf of a user.
+Select only scopes pertaining to apps owned and managed by your company.
+Do not select scopes that pertain to externally hosted apps.
 
-1. (Optional) Under **Authentication**, select the permissions that users must have
-  to log in to the app. The user must have all of the selected permissions to access the app.
-   <p class="note">
-     <strong>Note:</strong> The <strong>Authentication</strong> settings do not apply to the
-     <code>Service-to-Service App</code> app type.
-   </p>
+1. (Optional) Under **Authentication**, select the permissions that users must have to log in to the
+app. The user must have all of the selected permissions to access the app.
+
+<p class="note">
+  <strong>Note:</strong> The <strong>Authentication</strong> settings do not apply to the
+  <code>Service-to-Service App</code> app type.
+</p>
 
 1. (Optional) Under **Token Validity**, change the token expiration times.
 The default is set in the configuration for the <%= vars.product_short %> service plan.
@@ -573,28 +568,35 @@ For more information about tokens, see
 [Configure a Token Policy](./manage-service-plans-api.html#configure-token-policy).
 
 1. (Optional) If your App Type is a `Web App` or `Single-Page JavaScript App`, you can enable
-    **Show on Homepage** to display the app on the UAA or Account home page. If you want an app to display on the home page, you must enter an **App Launch URL** or upload an app icon.
-      1. In **App Launch URL**, enter the address you want for your app.
-      1. Upload an app icon for your app.
-      <%= image_tag("sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
+**Show on Homepage** to display the app on the UAA or Account home page.
+If you want an app to display on the home page, you must enter an **App Launch URL** or upload an
+app icon.
+1. In **App Launch URL**, enter the address you want for your app.
+1. Upload an app icon for your app.
+    <%= image_tag("sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
 1. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other <%= vars.product_short %> procedures.
-<p class="note"><strong>Note:</strong>
-  You can only view the <strong>App Secret</strong> when an app is first registered or
-  the secret is regenerated.</p>
-1. (Optional) To view examples of how to integrate <%= vars.product_short %> into your Spring Boot apps, click **Download Sample Apps**.
+    <p class="note">
+      <strong>Note:</strong> You can only view the <strong>App Secret</strong> when an app is first
+      registered or the secret is regenerated.
+    </p>
+1. (Optional) To view examples of how to integrate <%= vars.product_short %> into your Spring Boot
+apps, click **Download Sample Apps**.
     <%= image_tag("download_sample_apps.png", :alt => "Download Sample Apps") %>
+
 
 ## <a id="sso-dashboard"></a> Manage App Configurations
 
 The <%= vars.developer_dash %> enables app developers to view the app configurations and
 resources available within their space.
 
+
 ### <a id="config-prereq"></a> Prerequisite
 
 Before you access the dashboard, you must
-create a service instance for your space. See [Create Service Instances](./manage-service-instances.html#create-svc-instance).
+create a service instance for your space. See
+[Create Service Instances](./manage-service-instances.html#create-svc-instance).
 
 
 ### <a id="config-proced"></a> Procedure
@@ -603,58 +605,54 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
-1. Under **Services**, click **Manage** next to the <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
-
-  <%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
-  <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
+1. Under **Services**, click **Manage** next to the <%= vars.product_short %> service instance to
+launch the <%= vars.developer_dash %>.
+    <%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
+    <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click your app.
-1. Under **Select Identity Providers**, select an identity provider for your app. Internal User Store is the default.
-  <p class="note"><strong>Note:</strong> When binding a <%= vars.app_runtime_abbr %> app, a Space Developer
-    can choose from internal and external identity providers.
-    If the Space Developer selects multiple identity providers, users must select
-    which provider to use when they sign in.
-    This option is available for all app types except
-    <code>Service-to-Service App</code>.</p>
-
+1. Under **Select Identity Providers**, select an identity provider for your app.
+Internal User Store is the default.
+    <p class="note">
+      <strong>Note:</strong> When binding an <%= vars.app_runtime_abbr %> app, a Space Developer
+      can choose from internal and external identity providers.
+      If the Space Developer selects multiple identity providers, users must select which provider to
+      use when they sign in.
+      This option is available for all app types except <code>Service-to-Service App</code>.
+    </p>
     <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings**
-   enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
-   The redirect query parameter specified on the OAuth request must match the
-   URIs specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
-   <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
-1. Under **Authorization**, select the **System Permissions** that the app can request
-    on the user’s behalf. If this app is only for authentication purposes, then the `openid` scope
-    is sufficient. If the app makes API calls on behalf of the end user, specify both the scopes
-    that the API enforces and the scopes that the app requests.
-     <table class="nice">
+enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
+The redirect query parameter specified on the OAuth request must match the URIs specified in this
+list. Otherwise, <%= vars.product_short %> rejects the request.
+    <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
+1. Under **Authorization**, select the **System Permissions** that the app can request on the user’s
+behalf. If this app is only for authentication purposes, then the `openid` scope is sufficient.
+If the app makes API calls on behalf of the end user, specify both the scopes that the API enforces
+and the scopes that the app requests.
+    <table class="nice">
        <tr>
          <th width="25%">Scope</th>
          <th>Description</th>
        </tr>
-
        <tr>
          <td><code>open</code></td>
-         <td>Provides access to make OpenID Connect request.
-           The default for Web, Native, and Single-Page JavaScript Apps</td>
-      </tr>
-
-      <tr>
-        <td><code>user_attributes</code></td>
-        <td>Provides access to custom attributes from an external identity provider</td>
-      </tr>
-
-      <tr>
-        <td><code>roles</code></td>
-        <td>Provides access to external groups from an identity provider</td>
-      </tr>
-
-      <tr>
-        <td><code>uaa.resource</code></td>
-        <td>Provides access to the <code>check_token</code> endpoint for service-to-service flows.
-          The default for Service-to-Service Apps.
-          </td>
-      </tr>
-
+         <td>Provides access to make OpenID Connect request. The default for Web, Native, and
+           Single-Page JavaScript Apps</td>
+       </tr>
+       <tr>
+         <td><code>user_attributes</code></td>
+         <td>Provides access to custom attributes from an external identity provider</td>
+       </tr>
+       <tr>
+         <td><code>roles</code></td>
+         <td>Provides access to external groups from an identity provider</td>
+       </tr>
+       <tr>
+         <td><code>uaa.resource</code></td>
+         <td>Provides access to the <code>check_token</code> endpoint for service-to-service flows.
+           The default for Service-to-Service Apps.
+         </td>
+       </tr>
     </table>
 
     <p class="note">
@@ -665,25 +663,25 @@ To manage your app configurations through the <%= vars.developer_dash %>:
       within the space.
     </p>
 
-1. (Optional) Under **Auto-Approved Scopes**, select any scopes that <%= vars.product_short %> automatically
-   approves when the app makes a request on behalf of a user.
-   Select only scopes pertaining to apps owned and managed by your company.
-   Do not select scopes that pertain to externally hosted apps.
+1. (Optional) Under **Auto-Approved Scopes**, select any scopes that <%= vars.product_short %>
+automatically approves when the app makes a request on behalf of a user.
+Select only scopes pertaining to apps owned and managed by your company.
+Do not select scopes that pertain to externally hosted apps.
 
 1. (Optional) Under **Token Validity**, change the token expiration times.
-   The default is set in the configuration for the <%= vars.product_short %> service plan.
-   For more information about tokens, see [Configure a Token Policy](./manage-service-plans-api.html#configure-token-policy).
+The default is set in the configuration for the <%= vars.product_short %> service plan.
+For more information about tokens, see
+[Configure a Token Policy](./manage-service-plans-api.html#configure-token-policy).
 
 1. (Optional) If your App Type is a `Web App` or `Single-Page JavaScript App`, you can enable
 **Show on Homepage** to display the app on the UAA or Account home page.
-  <p class="note">
-    <strong>Note:</strong> If you want an app to display on the home page, you must enter an
-    <strong>App Launch URL</strong> or upload an app icon.
-  </p>
-    1. In **App Launch URL**, enter the address you want for your app.
-    1. Upload an app icon for your app.
+    <p class="note">
+      <strong>Note:</strong> If you want an app to display on the home page, you must enter an
+      <strong>App Launch URLM</strong> or upload an app icon.
+    </p>
+1. In **App Launch URL**, enter the address you want for your app.
+1. Upload an app icon for your app.
     <%= image_tag("sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
-
 1. Click **Update App**.
 
 
@@ -697,14 +695,15 @@ To view credentials of an existing app:
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click the **<%= vars.product_short %>** service.
-1. Click **Manage** next to your <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
+1. Click **Manage** next to your <%= vars.product_short %> service instance to launch the
+<%= vars.developer_dash %>.
 1. Under **Apps**, click **Credentials** near the name of your app.
-  <p class="note">
-    <strong>Note:</strong> You can only view the <strong>App Secret</strong> when an app is first
-    registered or the secret is regenerated.
-  </p>
-  <%= image_tag("sso_dev_creds.png", :alt => "App credentials") %>
-  <a href="./images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
+    <p class="note">
+      <strong>Note:</strong> You can only view the <strong>App Secret</strong> when an app is first
+      registered or the secret is regenerated.
+    </p>
+    <%= image_tag("sso_dev_creds.png", :alt => "App credentials") %>
+    <a href="./images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
 
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
@@ -721,11 +720,12 @@ To regenerate an app secret of an existing app:
 1. Log in to Apps Manager as a Space Developer.
 1. Select the space where your service instance is located.
 1. Under **Services**, click the **<%= vars.product_short %>** service.
-1. Click **Manage** next to your <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
+1. Click **Manage** next to your <%= vars.product_short %> service instance to launch the
+<%= vars.developer_dash %>.
 1. Under **Apps**, click the **Credentials** near the name of your app.
 1. Click **Regenerate App secret** under the **App Secret** field.
 1. On the dialog box, click **Regenerate App Secret** to confirm that you want to regenerate an
-   app's secret value.
+app's secret value.
 1. View and download the **App ID** and regenerated **App Secret**.
 1. Record these credentials to use in other <%= vars.product_short %> procedures.
 
@@ -745,64 +745,55 @@ You must be at least a plan admin to follow these steps.
 To create an admin client:
 
 1. Log in to Apps Manager.
-2. Select the space where your service instance is located.
-   This specifies the zone you manage as an admin client.
-3. Under **Services**, click the **<%= vars.product_short %>** service.
-4. Click **Manage** next to your <%= vars.product_short %> service instance to launch the <%= vars.developer_dash %>.
-5. Click **Register App**.
-6. Enter an **App Name**.
-7. Under **Select an App Type**, select **Service-to-Service App**.
-8. Under **Authorization**, select what actions the admin client can perform
-   from the following **Admin Permissions**:
-   <table>
-     <tr>
+1. Select the space where your service instance is located.
+This specifies the zone you manage as an admin client.
+1. Under **Services**, click the **<%= vars.product_short %>** service.
+1. Click **Manage** next to your <%= vars.product_short %> service instance to launch the
+<%= vars.developer_dash %>.
+1. Click **Register App**.
+1. Enter an **App Name**.
+1. Under **Select an App Type**, select **Service-to-Service App**.
+1. Under **Authorization**, select what actions the admin client can perform from the following
+**Admin Permissions**:
+    <table>
+      <tr>
        <th width="25%">Scope</th>
        <th>Description</th>
       </tr>
-
       <tr>
         <td><code>clients.admin</code></td>
         <td>Provides superuser access to create, modify, and delete clients</td>
       </tr>
-
       <tr>
         <td><code>clients.read</code></td>
         <td>Provides access to read information about clients</td>
       </tr>
-
       <tr>
         <td><code>clients.write</code></td>
         <td>Provides access to create and modify clients </td>
       </tr>
-
       <tr>
         <td><code>scim.create</code></td>
         <td>Provides access to create users</td>
       </tr>
-
       <tr>
         <td><code>scim.read</code></td>
         <td>Provides access to read information about users and group memberships</td>
       </tr>
-
       <tr>
         <td><code>scim.write</code></td>
         <td>Provides access to create, modify, and delete users and group memberships</td>
       </tr>
-
       <tr>
         <td><code>idps.read</code></td>
         <td>Provides access to read information about identity providers</td>
       </tr>
-
       <tr>
         <td><code>idps.write</code></td>
         <td>Provides access to create, modify, and delete identity providers</td>
       </tr>
-
-      </table>
-
-9. Click **Register App**.
+    </table>
+1. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
 1. Record these credentials to use in other <%= vars.product_short %> procedures.
 <p class="note">
@@ -826,6 +817,7 @@ see [Unregister an Externally Hosted App Using Service Keys](#unregister-service
 + If you registered an externally hosted app using the <%= vars.developer_dash %> in
 [Register an Externally Hosted App Using the <%= vars.developer_dash %>](#register-dashboard) above,
 see [Unregister an Externally Hosted App Using the Service Instance Developer Dashboard](#unregister-dashboard) below.
+
 
 ### <a id="unregister-pcf"></a> Unregister a <%= vars.app_runtime_abbr %> App
 
