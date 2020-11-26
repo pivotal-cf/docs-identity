@@ -3,13 +3,15 @@ title: Configuring Azure Active Directory as an OIDC Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to integrate Azure Active Directory (Azure AD) as an
-identity provider for a <%= vars.product_full %> plan,
-by configuring OpenID Connect (OIDC) in both <%= vars.product_short %> and Azure AD.
+This topic describes how to integrate Azure Active Directory (Azure AD) as an identity provider for
+a <%= vars.product_full %> plan, by configuring OpenID Connect (OIDC) in both
+<%= vars.product_short %> and Azure AD.
+
 
 ## <a id="overview"></a> Overview
 
-Azure Active Directory (Azure AD) is Microsoft’s multi-tenant cloud-based directory and identity management service.
+Azure Active Directory (Azure AD) is Microsoft’s multi-tenant cloud-based directory and identity
+management service.
 It is one of several identity providers you can use in a <%= vars.product_short %> service plan.
 
 To set up the integration, follow the procedures below:
@@ -17,14 +19,17 @@ To set up the integration, follow the procedures below:
 1. [Set up a Relying Party in Azure AD](#procedure)
 1. [Set up the OIDC Identity Provider in <%= vars.product_short %>](#config-sso)
 
+
 ## <a id="prereqs"></a> Prerequisites
 
 Before you can set up a relying party in Azure AD, you must meet the prerequisites
 listed in [Azure Active Directory OIDC Integration Guide Overview](./index.html).
 
+
 ## <a id="procedure"></a> Set Up a Relying Party in Azure AD
 
 Follow the procedures below to set up a relying party in Azure AD.
+
 
 ### <a id="register-an-app"></a> Register a New App
 
@@ -32,25 +37,35 @@ To register a new app:
 
 1. Log in to your Azure account and navigate to **Azure Active Directory** &gt; **App registrations**.
 
-	<%= image_tag('../images/azure-oidc-app-registrations.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    <%= image_tag('../images/azure-oidc-app-registrations.png', :alt => 'Screenshot of Azure Active
+    Directory. The "App registrations" button in the sub-navigation panel is highlighted.') %>
 
 1. Select **+** to create a **New application registration**. A configuration pane appears.
 
-	<%= image_tag('../images/azure-oidc-new-app-reg.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    <%= image_tag('../images/azure-oidc-new-app-reg.png', :alt => 'Screenshot of the "App registrations"
+    tab. "New application registration", "Endpoints", and "Troubleshoot" buttons are at the top.
+    Below is the sentence "To view and manage your registrations for converged applications, please
+    visit the Microsoft Application Console."
+    Below that is a search field for names or App IDs. Next to it is a dropdown with the option
+    "All apps" selected.') %>
 
 1. Enter a name of your choice in the **Name** field.
 
 1. Select **Web App/API** from the **Application type** dropdown.
 
 1. Enter the sign-on URL in the **Sign-on URL** field.
-This can be the URL for the login portal, if you want. This URL has the following pattern:
+You can use the URL for the login portal, if you want. This URL has the following pattern:
 
-	```
-	https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
-	```
-	For example:
+    ```
+    https://AUTH-DOMAIN.login.SYSTEM-DOMAIN
+    ```
+    For example:
 
-	<%= image_tag('../images/azure-oidc-app-reg-create.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+    <%= image_tag('../images/azure-oidc-app-reg-create.png', :alt => 'Screenshot of the "Create"
+    section. At the top right are "Maximize Window" and "Close" buttons.
+    There is a "Name" field that contains the text "Example OIDC Client".
+    Below that is an "Application type" dropdown that has the option "Web app / API" selected.
+    Below that is a "Sign-on URL" field that contains an example URL.') %>
 
 
 ### <a id="generate-secret"></a> Generate a Relying Party OAuth Client Secret
@@ -59,25 +74,65 @@ To create a client secret:
 
 1. Use the search bar to find your app registration, and click on its listing in the search results.
 
-	<%= image_tag('../images/azure-oidc-app-reg-searched.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    <%= image_tag('../images/azure-oidc-app-reg-searched.png', :alt => 'Screenshot of the app
+    registration section.
+    "New application registration", "Endpoints", and "Troubleshoot" buttons are at the top.
+    Below is the sentence "To view and manage your registrations for converged applications, please
+    visit the Microsoft Application Console."
+    Below that is a field that contains the text "OIDC".
+    Next to it is a dropdown with the option "All apps" selected.
+    Below that are "Display Name", "Application Type", and "Application ID" columns.
+    The row below has "Example OIDC Client" as the display name, "Web app / API" as the application
+    type, and redacted text as the application ID.') %>
 
 1. <a id="app-id"></a>Record the **Application ID** displayed on the screen. This is the **Relying Party OAuth Client ID**.
 
-	<%= image_tag('../images/azure-oidc-app-reg-id.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    <%= image_tag('../images/azure-oidc-app-reg-id.png', :alt => 'Screenshot of the app
+    registration section.
+    The app name "Example OIDC Client" is at the top left.
+    "Pin", "Maximize Window", and "Close" buttons at at the top right.
+    "Settings", "Manifest", and "Delete" buttons are at the top left.
+    In the expanded "Essentials" section there are the app details "Display name", "Application type",
+    "Home page", "Application ID", "Object ID", and "Managed application in local directory".
+    The application ID and object ID values are both redacted.
+    At the bottom right is a button labeled "All settings".') %>
 
 1. Open the **Keys** tab.
 
-	<%= image_tag('../images/azure-oidc-app-keys.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    <%= image_tag('../images/azure-oidc-app-keys.png', :alt => 'Screenshot of the "Keys" tab.
+    The "Keys" button in the "Settings" sub-navigation panel is highlighted.
+    At the top left of the "Keys" section are "Save" and "Discard" buttons.
+    The table in the "Keys" section has "Description", "Expires", and "Value" columns.
+    Below "Description" is the text "No results".
+    Below "No results" is a "Key description" field in the "Description" column, a "Duration" dropdown
+    in the "Expires" column, and a text field in the "Value" column that has the placeholder text
+    "Value will be displayed on save".') %>
 
 1. Enter a name for the key in the **DESCRIPTION** field.
 
 1. Select a duration appropriate for your security requirements in the **EXPIRES** field.
 
-	<%= image_tag('../images/azure-oidc-app-secret-set.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+  <%= image_tag('../images/azure-oidc-app-secret-set.png', :alt => 'Screenshot of the "Keys" tab.
+  At the top left is the "Keys" title.
+  Below that are "Save" and "Discard" buttons.
+  Below the buttons is a table that has "Description", "Expires", and "Value" columns.
+  In the "Description" column is a text field that contains the text "Client Secret".
+  In the "Expires" column is a dropdown with the option "Duration" selected.
+  Other options in the dropdown are visible, including "Never expires".
+  In the "Value" column is a text field with the placeholder text "Value will be displayed on save".') %>
 
 1. <a id="key"></a>Click **Save** to generate your key value. This value is the **Relying Party OAuth Client Secret**. Record this value for later use.
 
-	<%= image_tag('../images/azure-oidc-app-secret-show.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+  <%= image_tag('../images/azure-oidc-app-secret-show.png', :alt => 'Screenshot of the "Keys" tab.
+  At the top left is the "Keys" title.
+  Below that are "Save" and "Discard" buttons.
+  Below the buttons is the warning "Copy the key value. You won\'t be able to retrieve after you leave
+  this blade."
+  Below the warning is a table that has "Description", "Expires", and "Value" columns.
+  In the first row are the values "Client Secret", an expiry date, and redacted text in the "Value"
+  column.
+  In the second row is a field containing the placeholder text "Key description", a dropdown in the
+  Expiry column, and a text field with the placeholder text "Value will be displayed on save".') %>
 
 
 ### <a id="configure-urls"></a> Configure Reply and Endpoint URLs
@@ -86,39 +141,63 @@ To create reply and endpoint URLs:
 
 1. Under **Reply URLs**, configure and save the URL using the following pattern:
 
-	```
-	https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/login/callback/ORIGIN-KEY
-	```
+    ```
+    https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/login/callback/ORIGIN-KEY
+    ```
+    Where:
+    - `AUTH-DOMAIN` is the **Auth Domain** you entered in
+    [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
+    - `ORIGIN-KEY` is based on the **Identity Provider Name** you set in the
+    <%= vars.operator_dash %> in **Set Up OIDC Identity Provider in SSO** as shown below.
+    Do not use spaces or uppercase letters in this value.
 
-	Where:
-  - `AUTH-DOMAIN` is the **Auth Domain** you entered in [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
-  - `ORIGIN-KEY` is based on the **Identity Provider Name** you set in the <%= vars.operator_dash %> in **Set Up OIDC Identity Provider in SSO** as shown below. Do not use spaces or uppercase letters in this value. You might need to change this later.
+    <p class="note warning">
+      <strong>Warning:</strong> The origin key does not change after it is assigned, even if the
+      <strong>Identity Provider Name</strong> is modified.
+    </p>
 
-	<%= image_tag('../images/azure-oidc-reply.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    <%= image_tag('../images/azure-oidc-reply.png', :alt => 'Screenshot of the "Reply URLs" tab.
+    The "Reply URLs" button is highlighted in the "Settings" sub-navigation panel.
+    At the top left of the "Reply URLs" section are "Save" and "Discard" buttons.
+    Below the buttons are two text fields.
+    The top field contains an example URL.
+    The bottom field is empty.') %>
 
-1. Identify your **Azure Tenant Name**. One location you can use to help you identify this is the **App ID URI** which uses the form `https://TENANT-NAME/APPLICATION-ID`.
+1. Identify your **Azure Tenant Name**. One location you can use to help you identify this is the
+**App ID URI** which uses the form `https://TENANT-NAME/APPLICATION-ID`.
 <br><br>
-For example, in the App ID URI `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b1-a2zf-ro5cd03f9584`, the Azure Tenant Name is `tenant.onmicrosoft.com`.
+For example, in the App ID URI `https://tenant.onmicrosoft.com/cj8472j2-d3d2-44b1-a2zf-ro5cd03f9584`,
+the Azure Tenant Name is `tenant.onmicrosoft.com`.
 
-	<%= image_tag('../images/azure-oidc-tenant-name.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    <%= image_tag('../images/azure-oidc-tenant-name.png', :alt => 'Screenshot of the "Properties" tab.
+    The "Properties" button is highlighted in the "Settings" sub-navigation panel.
+    At the top left of the "Properties" section are "Save" and "Discard" buttons.
+    Below the buttons are the fields "Name", "Object ID", "Application ID",
+    and "App ID URI", one on top of the other
+    Below that is an app logo.
+    Below the logo are the fields "Upload new logo", "Home page URL", "Logout URL", and
+    "Application type".
+    At the bottom are "Yes" and "No" buttons below the text "Multi-tenanted".') %>
 
-1. <a id="relying"></a>Construct the URL for the OpenID Connect metadata endpoint by replacing `TENANT-NAME` with your Azure Tenant Name in the following string:
-`https://login.microsoftonline.com/TENANT-NAME/.well-known/openid-configuration`. Example: `https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`
+1. <a id="relying"></a>Construct the URL for the OpenID Connect metadata endpoint by replacing
+`TENANT-NAME` with your Azure Tenant Name in the following string:
+`https://login.microsoftonline.com/TENANT-NAME/.well-known/openid-configuration`. Example:
+`https://login.microsoftonline.com/tenant.onmicrosoft.com/.well-known/openid-configuration`
 <br><br>
 Record these values for the [next step](#config-sso), configuring your OpenID Connect identity provider in <%= vars.product_short %>.
 
-	<%= image_tag('../images/azure-oidc-connect-string.png', :alt => 'Screenshot of OpenID Connect metadata') %>
+    <%= image_tag('../images/azure-oidc-connect-string.png', :alt => 'Screenshot of OpenID Connect
+    metadata') %>
 
 
 ## <a id="config-sso"></a> Set Up the OIDC Identity Provider in <%= vars.product_short %>
 
-Follow the steps below to set up an OIDC provider for <%= vars.product_short %>.
+Follow the steps below to set up an OIDC provider for <%= vars.product_short %>:
 
 1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc).
 
-1. Clear the **Enable Discovery** checkbox and enter the following information
-from the **OpenID Connect metadata endpoint** you constructed in the final step of
-[the previous section](#relying).
+1. Clear the **Enable Discovery** checkbox and enter the following information from the
+**OpenID Connect metadata endpoint** you constructed in the final step of [the previous section](#relying).
     <table>
       <tr>
         <th>For…</th>
