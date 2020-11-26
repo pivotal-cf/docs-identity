@@ -3,9 +3,10 @@ title: Configuring GCP as an OIDC Identity Provider
 owner: Identity Service
 ---
 
-This topic describes how to set up Google Cloud Platform (GCP) as an identity provider
-for a <%= vars.product_full %> service plan
+This topic describes how to set up Google Cloud Platform (GCP) as an identity provider for a
+<%= vars.product_full %> service plan
 by configuring OpenID Connect (OIDC) integration in both <%= vars.product_short %> and GCP.
+
 
 ## <a id='overview'></a> Overview
 
@@ -14,61 +15,71 @@ To set up the integration, follow the procedures below:
 1. [Generate GCP Client Credentials](#gcp-rp)
 2. [Set up the OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso)
 
+
 ## <a id='gcp-rp'></a> Generate GCP Client Credentials
 
-Follow the steps below to generate GCP client credentials.
+Follow the steps below to generate GCP client credentials:
 
-1. Log in to your Google Cloud Platform console.
+1. Log in to your GCP console.
 
 1. Under the **Credentials** tab, click **Create credentials** &gt; **OAuth client ID**.
 
-	<%= image_tag '../images/gcp-create-oauth.png' %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag '../images/gcp-create-oauth.png' %>
 
-1. In the configuration pane that appears, select **Web application** under **Application type** and enter any **Name**.
-   Under **Restrictions**, leave **Authorized JavaScript Origins** blank.
-   and for **Authorized redirect URIs** enter a redirect URI using the following pattern:
+1. In the configuration pane that appears, select **Web application** under **Application type** and
+enter any **Name**. Under **Restrictions**, leave **Authorized JavaScript Origins** blank and for
+**Authorized redirect URIs** enter a redirect URI using the following pattern:
 
-	```
-  https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/login/callback/ORIGIN-KEY
-	```
-	Where:
-  - `AUTH-DOMAIN` is the **Auth Domain** you entered in [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
-  - `ORIGIN-KEY` is identical to the **Identity Provider Name** you set later in the <%= vars.operator_dash %>
-     in [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso), except that it cannot include uppercase letters or spaces.
-     You can change this value later if, for example, you want to enter a different identity provider name later.
+    ```
+    https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/login/callback/ORIGIN-KEY
+    ```
+    Where:
+    - `AUTH-DOMAIN` is the **Auth Domain** you entered in
+    [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
+    - `ORIGIN-KEY` is identical to the **Identity Provider Name** you set later in the
+    <%= vars.operator_dash %> in
+    [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso), except that it
+    cannot include uppercase letters or spaces.
+    <p class="note warning">
+      <strong>Warning:</strong> The origin key does not change after it is assigned, even if the
+      <strong>Identity Provider Name</strong> is modified.
+    </p>
+    <%= image_tag '../images/gcp-config-oauth.png' %>
 
-	<%= image_tag '../images/gcp-config-oauth.png' %><%# Images require alt text that describes the image in detail. %>
+1. Click **Create** and record the **client ID** and **client secret** generated. You enter these
+values as your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret** in the
+<%= vars.operator_dash %> in
+[Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso) below.
 
-1. Click **Create** and record the **client ID** and **client secret** generated.
-   You enter these values as your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
-   in the <%= vars.operator_dash %> in [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso) below.
+    <%= image_tag '../images/gcp-oauth-keypair.png' %>
 
-	<%= image_tag '../images/gcp-oauth-keypair.png' %><%# Images require alt text that describes the image in detail. %>
 
 ## <a id='gcp-oidc-sso'></a> Set up the OIDC Identity Provider in <%= vars.product_short %>
 
-Follow the steps below to set up the OIDC identity provider in <%= vars.product_short %>.
+Follow the steps below to set up the OIDC identity provider in <%= vars.product_short %>:
 
 1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc).
 
-1. In the **Discovery Endpoint URL** field, enter `https://accounts.google.com/.well-known/openid-configuration`.
+1. In the **Discovery Endpoint URL** field, enter
+`https://accounts.google.com/.well-known/openid-configuration`.
 
 1. Click **Fetch Scopes**.
 
-1. Enter your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret**
-   from the [Generate GCP Client Credentials](#gcp-rp) above.
+1. Enter your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret** from the
+[Generate GCP Client Credentials](#gcp-rp) above.
 
-	<%= image_tag '../images/gcp-oidc-settings.png' %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag '../images/gcp-oidc-settings.png' %>
 
-1. Ensure that `openid` and `email` are selected as scopes.
-   You can select additional scopes if you want.
+1. Ensure that `openid` and `email` are selected as scopes. You can select additional scopes if you
+want.
 
-	<%= image_tag '../images/gcp-scopes.png', :width => "200" %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag '../images/gcp-scopes.png', :width => "200" %>
 
-1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**, select **email** as the **User Schema Attribute** and enter `user_name` as the **Attribute Name**.
-   This enables <%= vars.product_short %> to identify the authenticated user.
+1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
+select **email** as the **User Schema Attribute** and enter `user_name` as the **Attribute Name**.
+This enables <%= vars.product_short %> to identify the authenticated user.
 
-	<%= image_tag '../images/gcp-advanced-settings.png' %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag '../images/gcp-advanced-settings.png' %>
 
 1. (Optional) Configure additional attribute mappings.
 
