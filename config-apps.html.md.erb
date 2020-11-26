@@ -74,9 +74,12 @@ To configure <%= vars.product_short %> properties with JSON bind parameters, run
 cf bind-service APP-NAME INSTANCE-NAME -c JSON
 ```
 Where:
-* `APP-NAME` is the name of your app.
-* `INSTANCE-NAME` is the name of the service instance you are binding.
-* `JSON` is the path to the JSON file or the full JSON string containing bind parameters.
+<ul>
+  <li><code>APP-NAME</code> is the name of your app</li>
+  <li><code>INSTANCE-NAME</code> is the name of the service instance you are binding</li>
+  <li><code>JSON</code> is the path to the JSON file or the full JSON string containing bind
+    parameters</li>
+</ul>
 
 For example:
 
@@ -137,7 +140,7 @@ The table below provides descriptions and default values for bind parameters:
       and <code>client_credentials</code> grant types at the same time.
       Otherwise, you can only use one grant type per app.
     </td>
-    <td>n/a</td>
+    <td><em>n/a</em></td>
   </tr>
   <tr>
     <td><code>identity_providers</code></td>
@@ -184,7 +187,7 @@ The table below provides descriptions and default values for bind parameters:
     <td><code>required_user_groups</code></td>
     <td>Comma-separated list of permissions a user must have to log in to the app.
       The user must have all of the listed permissions to access the app.</td>
-    <td>n/a</td>
+    <td><em>n/a</em></td>
   </tr>
   <tr>
     <td><code>access_token_lifetime</code></td>
@@ -204,13 +207,13 @@ The table below provides descriptions and default values for bind parameters:
       <code>todo.write</code>, must be specified in the same bind command.
       You cannot specify additional permissions in the same top level permission, such as
       <code>todo.admin</code>, in additional binds.</td>
-    <td>n/a</td>
+    <td><em>n/a</em></td>
   </tr>
   <tr>
     <td><code>icon</code></td>
     <td>App icon displayed next to the app name on the Account dashboard. It is displayed if
       <code>show_on_home_page</code> is set to <code>true</code>. Do not exceed 64kb.</td>
-    <td>n/a</td>
+    <td><em>n/a</em></td>
   </tr>
   <tr>
     <td><code>launch_url</code></td>
@@ -710,7 +713,8 @@ To view credentials of an existing app:
 
 <p class="note warning">
   <strong>Warning:</strong> You must not regenerate an app secret for <%= vars.app_runtime_abbr %>
-  bound apps, because <code>VCAP_SERVICES</code> does not update with the new <code>client_secret</code>.
+  bound apps, because <code>VCAP_SERVICES</code> does not update with the new
+  <code>client_secret</code>.
   To regenerate a client for a <%= vars.app_runtime_abbr %> bound app, you must delete and re-create
   the service binding from your app to <%= vars.product_short %>.
 </p>
@@ -826,8 +830,11 @@ To unregister a <%= vars.app_runtime_abbr %> app, run:
 ```
 cf unbind-service APP-NAME INSTANCE-NAME
 ```
-Where `APP-NAME` is the name of your app and `INSTANCE-NAME` is the name of the service instance you
-are binding.
+Where:
+<ul>
+  <li><code>APP-NAME</code> is the name of your app</li>
+  <li><code>INSTANCE-NAME</code> is the name of the service instance you are binding</li>
+</ul>
 
 For more information about the `cf unbind-service` command,
 see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
@@ -851,8 +858,11 @@ To unregister an externally hosted app using service keys, run:
 ```
 cf delete-service-key INSTANCE-NAME SERVICE-KEY
 ```
-Where `INSTANCE-NAME` is the name of your service instance and `SERVICE-KEY` is the name you want for
-your service key.
+Where:
+<ul>
+  <li><code>INSTANCE-NAME</code> is the name of your service instance</li>
+  <li><code>SERVICE-KEY</code> is the name you want for your service key</li>
+</ul>
 
 For more information about the `cf delete-service-key` command,
 see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html)
