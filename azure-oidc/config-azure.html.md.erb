@@ -85,7 +85,8 @@ To create a client secret:
     The row below has "Example OIDC Client" as the display name, "Web app / API" as the application
     type, and redacted text as the application ID.') %>
 
-1. <a id="app-id"></a>Record the **Application ID** displayed on the screen. This is the **Relying Party OAuth Client ID**.
+1. <a id="app-id"></a>Record the **Application ID** displayed on the screen.
+This is the **Relying Party OAuth Client ID**.
 
     <%= image_tag('../images/azure-oidc-app-reg-id.png', :alt => 'Screenshot of the app
     registration section.
@@ -112,27 +113,28 @@ To create a client secret:
 
 1. Select a duration appropriate for your security requirements in the **EXPIRES** field.
 
-  <%= image_tag('../images/azure-oidc-app-secret-set.png', :alt => 'Screenshot of the "Keys" tab.
-  At the top left is the "Keys" title.
-  Below that are "Save" and "Discard" buttons.
-  Below the buttons is a table that has "Description", "Expires", and "Value" columns.
-  In the "Description" column is a text field that contains the text "Client Secret".
-  In the "Expires" column is a dropdown with the option "Duration" selected.
-  Other options in the dropdown are visible, including "Never expires".
-  In the "Value" column is a text field with the placeholder text "Value will be displayed on save".') %>
+    <%= image_tag('../images/azure-oidc-app-secret-set.png', :alt => 'Screenshot of the "Keys" tab.
+    At the top left is the "Keys" title.
+    Below that are "Save" and "Discard" buttons.
+    Below the buttons is a table that has "Description", "Expires", and "Value" columns.
+    In the "Description" column is a text field that contains the text "Client Secret".
+    In the "Expires" column is a dropdown with the option "Duration" selected.
+    Other options in the dropdown are visible, including "Never expires".
+    In the "Value" column is a text field with the placeholder text "Value will be displayed on save".') %>
 
-1. <a id="key"></a>Click **Save** to generate your key value. This value is the **Relying Party OAuth Client Secret**. Record this value for later use.
+1. <a id="key"></a>Click **Save** to generate your key value. This value is the
+**Relying Party OAuth Client Secret**. Record this value for later use.
 
-  <%= image_tag('../images/azure-oidc-app-secret-show.png', :alt => 'Screenshot of the "Keys" tab.
-  At the top left is the "Keys" title.
-  Below that are "Save" and "Discard" buttons.
-  Below the buttons is the warning "Copy the key value. You won\'t be able to retrieve after you leave
-  this blade."
-  Below the warning is a table that has "Description", "Expires", and "Value" columns.
-  In the first row are the values "Client Secret", an expiry date, and redacted text in the "Value"
-  column.
-  In the second row is a field containing the placeholder text "Key description", a dropdown in the
-  Expiry column, and a text field with the placeholder text "Value will be displayed on save".') %>
+    <%= image_tag('../images/azure-oidc-app-secret-show.png', :alt => 'Screenshot of the "Keys" tab.
+    At the top left is the "Keys" title.
+    Below that are "Save" and "Discard" buttons.
+    Below the buttons is the warning "Copy the key value. You won\'t be able to retrieve after you
+    leave this blade."
+    Below the warning is a table that has "Description", "Expires", and "Value" columns.
+    In the first row are the values "Client Secret", an expiry date, and redacted text in the "Value"
+    column.
+    In the second row is a field containing the placeholder text "Key description", a dropdown in the
+    Expiry column, and a text field with the placeholder text "Value will be displayed on save".') %>
 
 
 ### <a id="configure-urls"></a> Configure Reply and Endpoint URLs
@@ -199,7 +201,8 @@ Follow the steps below to set up an OIDC provider for <%= vars.product_short %>:
 1. Follow steps 1&ndash;6 in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc).
 
 1. Clear the **Enable Discovery** checkbox and enter the following information from the
-**OpenID Connect metadata endpoint** you constructed in the final step of [the previous section](#relying).
+**OpenID Connect metadata endpoint** you constructed in the final step of
+[the previous section](#relying).
     <table>
       <tr>
         <th>For…</th>
@@ -249,8 +252,8 @@ Follow the steps below to set up an OIDC provider for <%= vars.product_short %>:
 1. Select `openid` as a scope. You can select additional scopes.
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
-select **user_name** as the **User Schema Attribute** and enter `unique_name` as the **Attribute Name**.
-This enables <%= vars.product_short %> to identify the authenticated user.
+select **user_name** as the **User Schema Attribute** and enter `unique_name` as the
+**Attribute Name**. This enables <%= vars.product_short %> to identify the authenticated user.
 
 1. (Optional) Configure additional attribute mappings.
 
