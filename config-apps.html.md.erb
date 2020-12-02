@@ -68,50 +68,49 @@ In <%= vars.product_short %> v1.7.0 and later, you can use a JSON file or string
 parameters to configure <%= vars.product_short %> properties.
 For more information about bind parameters, see [Bind Parameters](#bind-params) below.
 
-To configure <%= vars.product_short %> properties with JSON bind parameters, run:
+To configure <%= vars.product_short %> properties with JSON bind parameters:
 
-```
-cf bind-service APP-NAME INSTANCE-NAME -c JSON
-```
-Where:
-<ul>
-  <li><code>APP-NAME</code> is the name of your app</li>
-  <li><code>INSTANCE-NAME</code> is the name of the service instance you are binding</li>
-  <li><code>JSON</code> is the path to the JSON file or the full JSON string containing bind
-    parameters</li>
-</ul>
+1. Run:
 
-For example:
+    ```
+    cf bind-service APP-NAME INSTANCE-NAME -c JSON
+    ```
+    Where:
+    * `APP-NAME` is the name of your app
+    * `INSTANCE-NAME` is the name of the service instance you are binding
+    * `JSON` is the path to the JSON file or the full JSON string containing bind parameters
 
-<pre class="terminal">
-$ cf bind-service my-app my-instance -c example.json
-Binding service my-instance to my-app in org my-org / space test as user@example.com...
-OK
+    For example:
 
-$ cat example.json
-{
-    "grant_types": ["authorization_code"],
-    "scopes": ["openid", "todo.read", "todo.write"],
-    "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"],
-    "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"],
-    "auto_approved_scopes": ["openid", "todo.read"],
-    "identity_providers": ["uaa","ldap","my-saml-provider"],
-    "required_user_groups": ["openid","todo.read"],
-    "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"},
-    "access_token_lifetime": 300,
-    "refresh_token_lifetime": 86400,
-    "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
-    "launch_url": "http://my-app.example.com",
-    "show_on_home_page": true
-}
-</pre>
+    <pre class="terminal">
+    $ cf bind-service my-app my-instance -c example.json
+    Binding service my-instance to my-app in org my-org / space test as user@example.com...
+    OK
 
-For more information about the `cf bind-service` command,
-see [bind-service](https://cli.cloudfoundry.org/en-US/cf/bind-service.html)
-in the Cloud Foundry CLI Reference Guide.
+    $ cat example.json
+    {
+        "grant_types": ["authorization_code"],
+        "scopes": ["openid", "todo.read", "todo.write"],
+        "authorities": ["openid", "uaa.resource", "todo.read", "todo.write"],
+        "redirect_uris": ["https://my-app.example.com/**","http://my-app.example.com/path/to/app"],
+        "auto_approved_scopes": ["openid", "todo.read"],
+        "identity_providers": ["uaa","ldap","my-saml-provider"],
+        "required_user_groups": ["openid","todo.read"],
+        "resources": {"todo.read" : "Read to list", "todo.write": "Write to list"},
+        "access_token_lifetime": 300,
+        "refresh_token_lifetime": 86400,
+        "icon": "R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+        "launch_url": "http://my-app.example.com",
+        "show_on_home_page": true
+    }
+    </pre>
 
-You can also bind service instances with Apps Manager. For more information, see
-[Bind a Service Instance to an Application](https://docs.pivotal.io/pivotalcf/appsman-services/adding-services-marketplace.html#bind-instance).
+    For more information about the `cf bind-service` command,
+    see [bind-service](https://cli.cloudfoundry.org/en-US/cf/bind-service.html)
+    in the Cloud Foundry CLI Reference Guide.
+    <br><br>
+    You can also bind service instances with Apps Manager. For more information, see
+    [Bind a Service Instance to an Application](https://docs.pivotal.io/pivotalcf/appsman-services/adding-services-marketplace.html#bind-instance).
 
 
 ##### Bind Parameters
@@ -616,7 +615,7 @@ launch the <%= vars.developer_dash %>.
 1. Under **Select Identity Providers**, select an identity provider for your app.
 Internal User Store is the default.
     <p class="note">
-      <strong>Note:</strong> When binding an <%= vars.app_runtime_abbr %> app, a Space Developer
+      <strong>Note:</strong> When binding a <%= vars.app_runtime_abbr %> app, a Space Developer
       can choose from internal and external identity providers.
       If the Space Developer selects multiple identity providers, users must select which provider to
       use when they sign in.
@@ -825,48 +824,48 @@ see [Unregister an Externally Hosted App Using the Service Instance Developer Da
 
 ### <a id="unregister-pcf"></a> Unregister a <%= vars.app_runtime_abbr %> App
 
-To unregister a <%= vars.app_runtime_abbr %> app, run:
+To unregister a <%= vars.app_runtime_abbr %> app:
 
-```
-cf unbind-service APP-NAME INSTANCE-NAME
-```
-Where:
-<ul>
-  <li><code>APP-NAME</code> is the name of your app</li>
-  <li><code>INSTANCE-NAME</code> is the name of the service instance you are binding</li>
-</ul>
+1. Run:
 
-For more information about the `cf unbind-service` command,
-see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
-in the Cloud Foundry CLI Reference Guide.
+    ```
+    cf unbind-service APP-NAME INSTANCE-NAME
+    ```
+    Where:
+    * `APP-NAME` is the name of your app
+    * `INSTANCE-NAME` is the name of the service instance you are binding
 
-<p class="note warning">
-  <strong>Warning:</strong> When you unbind the app, all SSO configuration for the app is permanently
-  deleted.
-</p>
+    For more information about the `cf unbind-service` command,
+    see [unbind-service](https://cli.cloudfoundry.org/en-US/cf/unbind-service.html)
+    in the Cloud Foundry CLI Reference Guide.
 
-<p class="note">
-  <strong>Note:</strong> If you delete a <%= vars.app_runtime_abbr %> app, the app is automatically
-  unregistered from <%= vars.product_short %>.
-</p>
+    <p class="note warning">
+      <strong>Warning:</strong> When you unbind the app, all SSO configuration for the app is permanently
+      deleted.
+    </p>
+
+    <p class="note">
+      <strong>Note:</strong> If you delete a <%= vars.app_runtime_abbr %> app, the app is automatically
+      unregistered from <%= vars.product_short %>.
+    </p>
 
 
 ### <a id="unregister-service-keys"></a> Unregister an Externally Hosted App Using Service Keys
 
-To unregister an externally hosted app using service keys, run:
+To unregister an externally hosted app using service keys:
 
-```
-cf delete-service-key INSTANCE-NAME SERVICE-KEY
-```
-Where:
-<ul>
-  <li><code>INSTANCE-NAME</code> is the name of your service instance</li>
-  <li><code>SERVICE-KEY</code> is the name you want for your service key</li>
-</ul>
+1. Run:
 
-For more information about the `cf delete-service-key` command,
-see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html)
-in the Cloud Foundry CLI Reference Guide.
+    ```
+    cf delete-service-key INSTANCE-NAME SERVICE-KEY
+    ```
+    Where:
+    * `INSTANCE-NAME` is the name of your service instance
+    * `SERVICE-KEY` is the name you want for your service key
+
+    For more information about the `cf delete-service-key` command,
+    see [delete-service-key](https://cli.cloudfoundry.org/en-US/cf/delete-service-key.html)
+    in the Cloud Foundry CLI Reference Guide.
 
 
 ### <a id="unregister-dashboard"></a> Unregister an Externally Hosted App Using <%= vars.developer_dash %>
