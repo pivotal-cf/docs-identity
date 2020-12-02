@@ -43,7 +43,6 @@ from the dropdown.
 5. Click **Save**.
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
-
 <%= partial '../../identity/partials/identity/create_zone_admin' %>
 
 ## <a id="updating"></a> Update UAA Identity Zone Configurations with the API
@@ -305,14 +304,39 @@ To add default groups for users:
 
 ##<a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
 
+<p class="note"><strong>Note</strong>:
+  After you begin to configure JWT signing keys within a service plan, you can no longer default
+  to share the multi-tenant JWT signing key inherited from the default zone.
+</p>
+
+<p class="note"><strong>Note</strong>:
+  The first time you set a signing key for an identity zone, existing issued tokens are immediately
+  invalidated for online validation.
+  You might need to restart apps that do offline validation for the new signing keys to take effect.
+</p>
+
 To rotate JWT signing keys:
 
 <ol>
   <li>
-    Generate a private key that can be used for signing. For example, run
-    <code>ssh-keygen -t rsa</code>.<br><br>
+    Generate a private key that can be used for signing.
+    This will typically be an asymmetric PEM-encoded private key that begins with <code>-----BEGIN RSA PRIVATE KEY-----</code>.
+    Other key types may be supported by the UAA, please see <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a> for more information.
+
+    <pre>
+    # These are examples only
+    $ ssh-keygen -t rsa -m PEM -b 2048 -f <output-file-name> # Use empty password
+    $ openssl genrsa -out <output-file-name> 2048
+    </pre>
+
+    <br><br>
     Generate your signing keys securely.
     Ask your security organization for acceptable key generation practices.
+
+    <p class="note warning">
+      <strong>Warning:</strong> Do not use private keys that begin with <code>-----BEGIN OPENSSH PRIVATE KEY-----</code>
+    </p>
+
   </li>
   <li>
     Take the value of the generated private key and make it a single
@@ -333,36 +357,29 @@ To rotate JWT signing keys:
     <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.
   </li>
   <li>
-    In step 5, update the token policy section to add your new generated private key as the value for
+    In step 5, update the token policy section in <code>JSON-BLOB.txt</code> to add your new generated private key as the value for
     <code>signingKey</code>.
     An example of this section is shown below:
 
-    <p class="note"><strong>Note</strong>:
-      After you begin to configure JWT signing keys within a service plan, you can no longer default
-      to share the multi-tenant JWT signing key inherited from the default zone.
-    </p>
-
-    <p class="note"><strong>Note</strong>:
-      The first time you set a signing key for an identity zone, existing issued tokens are immediately
-      invalidated for online validation.
-      You might need to restart apps that do offline validation for the new signing keys to take effect.
-    </p>
-
   <pre>
-  "tokenPolicy": {
-    "accessTokenValidity": -1,
-    "refreshTokenValidity": -1,
-    "jwtRevocable": false,
-    "refreshTokenUnique": false,
-    "refreshTokenFormat": "jwt",
-    "activeKeyId": "first-signing-key",
-    "keys" : {
-            "first-signing-key" : {
-              "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
-             }
-    },
+  {
+    "config": {
+      "tokenPolicy": {
+        "accessTokenValidity": -1,
+        "refreshTokenValidity": -1,
+        "jwtRevocable": false,
+        "refreshTokenUnique": false,
+        "refreshTokenFormat": "jwt",
+        "activeKeyId": "first-signing-key",
+        "keys" : {
+                "first-signing-key" : {
+                  "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
+                 }
+        },
+      }
+    }
   </pre>
-    For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
+    For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>, specifically <em>Updating an Identity Zone</em>.
   </li>
   <li>Finish the procedure by doing step 6.</li>
 </ol>
