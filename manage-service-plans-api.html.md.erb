@@ -320,10 +320,23 @@ To rotate JWT signing keys:
 <ol>
   <li>
     Generate a private key that can be used for signing.
-    For example, run <code>ssh-keygen -t rsa</code>.
+    This will typically be an asymmetric PEM-encoded private key that begins with <code>-----BEGIN RSA PRIVATE KEY-----</code>.
+    Other key types may be supported by the UAA, please see <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a> for more information.
+
+    <pre>
+    # These are examples only
+    $ ssh-keygen -t rsa -m PEM -b 2048 -f <output-file-name> # Use empty password
+    $ openssl genrsa -out <output-file-name> 2048
+    </pre>
+
     <br><br>
     Generate your signing keys securely.
     Ask your security organization for acceptable key generation practices.
+
+    <p class="note warning">
+      <strong>Warning:</strong> Do not use private keys that begin with <code>-----BEGIN OPENSSH PRIVATE KEY-----</code>
+    </p>
+
   </li>
   <li>
     Take the value of the generated private key and make it a single
