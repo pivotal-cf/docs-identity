@@ -234,8 +234,7 @@ To modify branding of the login page:
       "Terms of Service": "https://run.pivotal.io/policies/terms-of-service",
       "Up to three links, label here": "https://link-here"
     }
-},
-    </pre>
+},</pre>
   </li>
 </ol>
 
@@ -261,22 +260,22 @@ To add default groups for users:
       Users automatically have these scopes though they are not explicitly assigned to users.
     </p>
 
-    <pre>
-      "userConfig": {
-          "defaultGroups": [
-            "openid",
-            "password.write",
-            "uaa.user",
-            "approvals.me",
-            "profile",
-            "roles",
-            "user_attributes",
-            "uaa.offline_token",
-            "new.group.everyone.should.have",
-            "another.new.group.everyone.should.have"
-          ]
-      },
-    </pre>
+<pre>
+"userConfig": {
+    "defaultGroups": [
+      "openid",
+      "password.write",
+      "uaa.user",
+      "approvals.me",
+      "profile",
+      "roles",
+      "user_attributes",
+      "uaa.offline_token",
+      "new.group.everyone.should.have",
+      "another.new.group.everyone.should.have"
+    ]
+},
+</pre>
   </li>
 </ol>
 
@@ -297,10 +296,10 @@ To rotate JWT signing keys:
     The UAA might support other key types. For more information, see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
     An example is below:
 
-    <pre class="terminal">
-    $ ssh-keygen -t rsa -m PEM -b 2048 -f OUTPUT-FILE-NAME # Use empty password
-    $ openssl genrsa -out OUTPUT-FILE-NAME 2048
-    </pre>
+<pre class="terminal">
+$ ssh-keygen -t rsa -m PEM -b 2048 -f OUTPUT-FILE-NAME # Use empty password
+$ openssl genrsa -out OUTPUT-FILE-NAME 2048
+</pre>
 
     Generate your signing keys securely.
     Ask your security organization for acceptable key generation practices.
@@ -314,12 +313,11 @@ To rotate JWT signing keys:
     Take the value of the generated private key and make it a single
     line of text, replacing all new lines with <code>\n</code>. For example:
 
-  <pre>
-  -----BEGIN RSA PRIVATE KEY-----
-  MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
-  5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x
-  -----END RSA PRIVATE KEY-----
-  </pre>
+<pre>-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
+5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x
+-----END RSA PRIVATE KEY-----
+</pre>
 
     Becomes:
 
@@ -330,23 +328,22 @@ To rotate JWT signing keys:
     An example of this section is shown below:
 
   <pre>
-  {
-    "config": {
-      "tokenPolicy": {
-        "accessTokenValidity": -1,
-        "refreshTokenValidity": -1,
-        "jwtRevocable": false,
-        "refreshTokenUnique": false,
-        "refreshTokenFormat": "jwt",
-        "activeKeyId": "first-signing-key",
-        "keys" : {
-                "first-signing-key" : {
-                  "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
-                 }
-        },
-      }
+{
+  "config": {
+    "tokenPolicy": {
+      "accessTokenValidity": -1,
+      "refreshTokenValidity": -1,
+      "jwtRevocable": false,
+      "refreshTokenUnique": false,
+      "refreshTokenFormat": "jwt",
+      "activeKeyId": "first-signing-key",
+      "keys" : {
+              "first-signing-key" : {
+                "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
+               }
+      },
     }
-  </pre>
+  }</pre>
     For more information, see <em>Updating an Identity Zone</em> in the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
   </li>
   <li>
