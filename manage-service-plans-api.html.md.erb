@@ -274,6 +274,17 @@ To add default groups for users:
 
 ##<a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
 
+<p class="note"><strong>Note</strong>:
+  After you begin to configure JWT signing keys within a service plan, you can no longer default
+  to share the multi-tenant JWT signing key inherited from the default zone.
+</p>
+
+<p class="note"><strong>Note</strong>:
+  The first time you set a signing key for an identity zone, existing issued tokens are immediately
+  invalidated for online validation.
+  You might need to restart apps that do offline validation for the new signing keys to take effect.
+</p>
+
 To rotate JWT signing keys:
 
 <ol>
@@ -299,35 +310,29 @@ To rotate JWT signing keys:
   </li>
   <li>Follow the steps 1&ndash;4 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above.</li>
   <li>
-    In step 5, update the token policy section to add your new generated private key as the value for <code>signingKey</code>.
+    In step 5, update the token policy section in <code>JSON-BLOB.txt</code> to add your new generated private key as the value for
+    <code>signingKey</code>.
     An example of this section is shown below:
 
-    <p class="note"><strong>Note</strong>:
-      After you begin to configure JWT signing keys within a service plan,
-      you can no longer default to share the multi-tenant JWT signing key inherited from the default zone.
-    </p>
-
-    <p class="note"><strong>Note</strong>:
-      The first time you set a signing key for an identity zone,
-      existing issued tokens are immediately invalidated for online validation.
-      You might need to restart apps that do offline validation for the new signing keys to take effect.
-    </p>
-
   <pre>
-  "tokenPolicy": {
-    "accessTokenValidity": -1,
-    "refreshTokenValidity": -1,
-    "jwtRevocable": false,
-    "refreshTokenUnique": false,
-    "refreshTokenFormat": "jwt",
-    "activeKeyId": "first-signing-key",
-    "keys" : {
-            "first-signing-key" : {
-              "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
-             }
-    },
+  {
+    "config": {
+      "tokenPolicy": {
+        "accessTokenValidity": -1,
+        "refreshTokenValidity": -1,
+        "jwtRevocable": false,
+        "refreshTokenUnique": false,
+        "refreshTokenFormat": "jwt",
+        "activeKeyId": "first-signing-key",
+        "keys" : {
+                "first-signing-key" : {
+                  "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
+                 }
+        },
+      }
+    }
   </pre>
-    For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
+    For more information, see <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>, specifically <em>Updating an Identity Zone</em>.
   </li>
   <li>Complete the procedure by doing step 6.</li>
 </ol>
