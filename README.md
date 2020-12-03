@@ -14,8 +14,8 @@ as well as to Ops Manager, Apps Manager, and other Cloud Foundry components.
 |**1.13** | This branch contains the published documentation for the v1.13 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-13/">https://docs.pivotal.io/p-identity/1-13/</a> |
 |**1.12** | This branch contains the published documentation for the v1.12 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-12/">https://docs.pivotal.io/p-identity/1-12/</a> |
 |**1.11** | This branch contains the published documentation for the v1.11 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-11/">https://docs.pivotal.io/p-identity/1-11/</a> |
-|**1.10** | This branch contains the published documentation for the v1.10 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-10/">https://docs.pivotal.io/p-identity/1-10/</a> |
-|**1.9** |  **Do not update**. This branch is obsolete.  | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-9/</a> |
+|**1.10** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-10/</a> |
+|**1.9** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-9/</a>|
 |**1.8** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-8/">https://docs.pivotal.io/p-identity/1-8/</a>|
 |**1.7** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-7/">https://docs.pivotal.io/p-identity/1-7/</a>|
 |**1.6** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-6/">https://docs.pivotal.io/p-identity/1-6/</a>|
