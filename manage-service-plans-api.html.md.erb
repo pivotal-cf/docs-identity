@@ -330,7 +330,7 @@ MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
     <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in step 5, update the token policy section in <code>JSON-BLOB.txt</code> to add your new generated private key as the value for <code>signingKey</code>.
     An example of this section is shown below:
 
-  <pre>
+<pre>
 {
   "config": {
     "tokenPolicy": {
@@ -341,12 +341,13 @@ MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
       "refreshTokenFormat": "jwt",
       "activeKeyId": "first-signing-key",
       "keys" : {
-              "first-signing-key" : {
-                "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
-               }
-      },
+        "first-signing-key" : {
+          "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
+        }
+      }
     }
-  }</pre>
+  }
+}</pre>
     For more information, see <em>Updating an Identity Zone</em> in the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
   </li>
   <li>
