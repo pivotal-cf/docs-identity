@@ -32,32 +32,22 @@ listed in [Azure Active Directory OIDC Integration Guide Overview](./index.html)
 
 ## <a id="create-azure-rp"></a> Set Up a Relying Party in Azure AD
 
-Follow the procedures below to set up a relying party in Azure AD.
-
 Here are some helpful Azure guides that can assist with any questions.
 Note that Azure functionality, user interface, and documentation may change frequently.
 The text and screenshots below are included for reference only.
 If there is a discrepancy or issue in the guidance below, please raise an issue on github using the link at the
    bottom of the page.
 
-<ul>
-   <li>
-   [OAuth 2.0 and OpenID Connect protocols on Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols)
-   </li>
-   <li>
-   [Quickstart: Register an application with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
-   </li>
-</ul>
+  + [OAuth 2.0 and OpenID Connect protocols on Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols)
+  + [Quickstart: Register an application with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
 <p class="note">
-   <strong>Note</strong>: Azure Active Directory v1 and v2 will have slightly different integration instructions.
-   This guide is written against v2. Notes will call out when v1 is different than v2.
+   <strong>Note</strong>: Azure Active Directory v1 and v2 have slightly different integration instructions.
+   This guide is written against v2. Notes such as this one will call out when v1 is different than v2.
 </p>
 
 
 ### <a id="register-an-app"></a> Register a New App
-
-To register a new app:
 
 1. Log in to your Azure account and navigate to **Azure Active Directory** &gt; **App registrations**.
 
@@ -67,7 +57,7 @@ To register a new app:
     <%= image_tag('../images/azure-oidc-v2-Azure-Active-Directory-Menu.png', :alt => 'Screenshot of Azure Active
     Directory. The "App registrations" button in the sub-navigation panel is highlighted.') %>
 
-1. Select **+ New registration** to create a **New application registration**. A configuration pane appears.
+1. Select **+ New registration** to create a **New application registration**.
 
     <%= image_tag('../images/azure-oidc-v2-Register-An-Application.png', :alt =>
     'Screenshot of the "Register an application" tab. "Name", "Supported account types", and "Redirect URI (optional)"
@@ -84,18 +74,16 @@ To register a new app:
 
 1. Select an option for **Supported account types**.
 To make an appropriate selection, please consult your security organization and Azure documentation.
-Be sure to keep track of this choice, since your Discovery Metadata URL will depend on this choice.
+Be sure to keep track of this choice, since your OIDC Discovery Metadata URL will depend on this choice.
 
-1. Leave the **Redirect URI (optional)** blank. You will provide this later.
+1. Leave **Redirect URI (optional)** blank. You will provide this later.
 
 1. Click **Register**. You will be redirected to the application configuration page.
 
 1. Copy the **Application (client) ID** from the Application configuration page.
-This is the **Relying Party OAuth Client Secret** that will be provided in the **Operator Dashboard** below.
+This is the **Relying Party OAuth Client Secret** that will be provided in the **Operator Dashboard** in a later step.
 
 ### <a id="generate-secret"></a> Generate a Relying Party OAuth Client Secret
-
-To create a client secret:
 
 1. Navigate to the application's configuration page and select **Certificates & secrets**.
 If you just completed the previous step, you should already be on this page.
@@ -110,19 +98,20 @@ Provide description and expiration length as per your security organization's gu
 Then click **Add**.
 
 1. Copy the **Value** corresponding to the newly-created Client secret.
-This is the **Relying Party OAuth Client Secret** that will be provided in the **Operator Dashboard** below.
+This is the **Relying Party OAuth Client Secret** that will be provided in the **Operator Dashboard** in a later step.
 
 ### <a id="configure-urls"></a> Configure Redirect URIs
 
-1. Navigate to the application's configuration page and select **Authentication**.
+1. Navigate to the application's configuration page.
    If you just completed the previous step, you should already be on this page.
    Otherwise, search for your application name in the App registrations list.
+   Then select **Authentication**.
 
    <%= image_tag('../images/azure-oidc-v2-App-Nav-To-Authentication.png',
    :alt => 'Screenshot of the application configuration page\'s navigation panel.
    The "Authentication" button in the navigation panel is highlighted.') %>
 
-1. Under **Platform configuration** select **+Add a platform**.
+1. Under **Platform configuration** select **+ Add a platform**.
 
    <%= image_tag('../images/azure-oidc-v2-App-Authentication.png',
    :alt => 'Screenshot of the application configuration page\'s Authentication page,
@@ -138,6 +127,7 @@ This is the **Relying Party OAuth Client Secret** that will be provided in the *
     Where:
     - `AUTH-DOMAIN` is the **Auth Domain** you entered in
     [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
+    - `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the TAS for VMs tile.
     - `ORIGIN-KEY` is based on the **Identity Provider Name** you set in the
     <%= vars.operator_dash %> in **Set Up OIDC Identity Provider in SSO** as shown below.
     Do not use spaces or uppercase letters in this value.
@@ -161,14 +151,13 @@ The Azure Active Directory v2 metadata URL will take the form of `https://login.
    <strong>Note</strong>: Azure Active Directory v1 metadata URLs will take the form of of `https://login.microsoftonline.com/{tenant}/.well-known/openid-configuration`
 </p>
 
-1. Determine the appropriate `{tenant}` for your application
+1. Consult the [Azure Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc#fetch-the-openid-connect-metadata-document)
+   to determine the appropriate `{tenant}` for your application. The `{tenant}` will take on one of several possible values,
+   depending on the choice of **Supported account types** chosen above.
 
-As per the [Azure Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc#fetch-the-openid-connect-metadata-document),
- the `{tenant}` will take on one of several possible values,
- depending on the choice of **Supported account types** chosen above.
-
-1. To allow **Only users from a specific Azure AD tenant** to sign into your application, navigate to **Azure Active Directory**
-The `Tenant ID` (this should be a GUID value) and `Primary domain` should be shown there.
+1. If your choice of **Supported account types** was **Only users from a specific Azure AD tenant** to sign into your application,
+   you will need to determine the appropriate `Tenant ID`. Navigate to **Azure Active Directory**.
+   The `Tenant ID` (this should be a GUID value) and `Primary domain` should be shown there.
    Either value can be used as the `{tenant}` in the metadata URL.
 
    <%= image_tag('../images/azure-oidc-v2-select-Azure-Active-Directory.png', :alt => 'Screenshot of Azure\'s main
@@ -181,21 +170,21 @@ Follow the steps below to set up an OIDC provider for <%= vars.product_short %>:
 
 1. Follow steps in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc), using option **DISCOVER OIDC CONFIGURATION**.
 
-<p class="note">
-   <strong>Note</strong>: Azure Active Directory v1 may require options **MANUALLY ENTER OIDC CONFIGURATION**
-</p>
+  <p class="note">
+     <strong>Note</strong>: Azure Active Directory v1 may require option **MANUALLY ENTER OIDC CONFIGURATION**
+  </p>
 
 1. When selecting supported scopes, select at least `openid` and `profile`.
 
-See [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes)
-for an explanation of what each scope means.
+  See [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes)
+  for an explanation of what each scope means.
 
-We recommend using scope `profile` so that Azure will include `preferred_username` in the ID token,
-as shown in the [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens).
+  We recommend using scope `profile` so that Azure will include `preferred_username` in the ID token,
+  as shown in the [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens).
 
-<p class="note">
-   <strong>Note</strong>: Azure Active Directory v1 only requires scope `openid`, although other scopes may be requested.
-</p>
+  <p class="note">
+     <strong>Note</strong>: Azure Active Directory v1 only requires scope `openid`, although other scopes may be requested.
+  </p>
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
 select **user_name** as the **User Schema Attribute** and enter `preferred_username` as the
