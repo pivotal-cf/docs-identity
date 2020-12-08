@@ -297,8 +297,9 @@ To rotate JWT signing keys:
     Two example commands are below:
 
 <pre class="terminal">
-$ ssh-keygen -t rsa -m PEM -b 2048 -f OUTPUT-FILE-NAME # Use empty password
+$ ssh-keygen -t rsa -m PEM -b 2048 -f OUTPUT-FILE-NAME
 </pre>
+After running the above command, enter a blank password when prompted.
 
 <pre class="terminal">
 $ openssl genrsa -out OUTPUT-FILE-NAME 2048
