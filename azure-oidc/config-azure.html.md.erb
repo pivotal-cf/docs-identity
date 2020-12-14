@@ -59,13 +59,6 @@ To register a new app:
 
 1. Log in to your Azure account and navigate to **Azure Active Directory** &gt; **App registrations**.
 
-    <%= image_tag('../images/azure-oidc-v2-select-Azure-Active-Directory.png',
-    :alt => 'Screenshot of Azure\'s main navigation panel.
-    The "Azure Active Directory" button in the navigation panel is highlighted.') %>
-    <%= image_tag('../images/azure-oidc-v2-Azure-Active-Directory-Menu.png',
-    :alt => 'Screenshot of Azure Active Directory.
-    The "App registrations" button in the sub-navigation panel is highlighted.') %>
-
 1. Select **+ New registration** to create a **New application registration**.
 
     <%= image_tag('../images/azure-oidc-v2-Register-An-Application.png', :alt =>
@@ -103,10 +96,6 @@ Otherwise, search for your app name in the App registrations list.
 
 1. Select **Certificates & secrets**.
 
-    <%= image_tag('../images/azure-oidc-v2-App-Nav-To-Secrets.png',
-    :alt => 'Screenshot of the application configuration page\'s navigation panel.
-    The "Certificates & secrets" button in the navigation panel is highlighted.') %>
-
 1. Select **+ New client secret**.
 Provide description and expiration length that follows your security organization's guidelines.
 Then click **Add**.
@@ -124,10 +113,6 @@ If you just completed the previous step, you should already be on this page.
 Otherwise, search for your application name in the App registrations list.
 
 1. Select **Authentication**.
-
-    <%= image_tag('../images/azure-oidc-v2-App-Nav-To-Authentication.png',
-    :alt => 'Screenshot of the application configuration page\'s navigation panel.
-    The "Authentication" button in the navigation panel is highlighted.') %>
 
 1. Under **Platform configuration** select **+ Add a platform**.
 
@@ -184,9 +169,6 @@ to sign into your app, you must determine the appropriate `Tenant ID`.
 Navigate to **Azure Active Directory**.
 The `Tenant ID`, which is a GUID value, and `Primary domain` should be shown there.
 Either value can be used as the `{tenant}` in the metadata URL.
-
-    <%= image_tag('../images/azure-oidc-v2-select-Azure-Active-Directory.png', :alt => 'Screenshot of Azure\'s main
-    navigation panel. The "Azure Active Directory" button in the navigation panel is highlighted.') %>
 
 
 ## <a id="configure-idp"></a> Set Up the OIDC Identity Provider in <%= vars.product_short %>
