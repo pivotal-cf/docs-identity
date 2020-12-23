@@ -10,17 +10,23 @@ These are release notes for the
 
 ## <a id="1-13-2"></a> v1.13.2
 
-**Release Date: December 22, 2020**
+**Release Date: December 23, 2020**
 
-### Security Fixes
+### Resolved Issues
 
-This release includes the following fix:
+This release has the following fix:
 
-* The **Manage** button in Ops Manager for service instances created prior to v1.9 now redirect properly.
+* In Apps Manager, the **Manage** link for SSO service instances now links
+  to the correct page for all instances.
+  Previously, this link did not work for SSO service instances created
+  with <%= vars.product_short %> v1.8 or earlier.
+
+    For an example of how the **Manage** link is used,
+    see [Monitor App Events](logging-monitoring.html#app).
 
 ### <a id="1-13-2-known"></a> Known Issues
 
-This release has the following issues:
+This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 
