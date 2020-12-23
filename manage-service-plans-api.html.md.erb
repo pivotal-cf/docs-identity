@@ -301,7 +301,7 @@ To add default groups for users:
 ## <a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
 
 <p class="note">
-  <strong>Note:</strong> After you configure JWT signing keys within a service plan you can no longer
+  <strong>Note:</strong> After you configure JWT signing keys within a service plan, you can no longer
   default to sharing the multi-tenant JWT signing key inherited from the default zone.
 </p>
 
@@ -347,7 +347,7 @@ MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
   <pre><code>-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n</code></pre>
   </li>
   <li>Follow the steps 1&ndash;6 in
-    <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in step 5, update the token policy section in <code>JSON-BLOB.txt</code> to add your new generated private key as the value for <code>signingKey</code>.
+    <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in step 5, update the token policy section in <code>JSON-BLOB.txt</code> to add your new, generated private key as the value for <code>signingKey</code>.
     An example of this section is shown below:
 
 <pre>
@@ -372,7 +372,7 @@ MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
   </li>
   <li>
     The first time you set a signing key for an identity zone, existing issued tokens are immediately
-    invalidated for online validation. Restart apps that do offline validation for any new signing
-    keys to take effect.
+    invalidated for online validation. Restart apps that do offline validation so that new signing
+    keys take effect.
   </li>
 </ol>
