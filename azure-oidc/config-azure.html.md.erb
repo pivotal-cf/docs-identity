@@ -17,7 +17,7 @@ It is one of several identity providers you can use in a <%= vars.product_short 
 To set up the integration:
 
 1. [Set up a Relying Party in Azure AD](#create-azure-rp)
-1. [Locate the appropriate OIDC Metadata](#locate-azure-metadata)
+1. [Locate the Appropriate OIDC Metadata](#locate-azure-metadata)
 1. [Set up the OIDC Identity Provider in <%= vars.product_short %>](#configure-idp)
 
 
@@ -83,8 +83,8 @@ Record this choice because your OIDC Discovery Metadata URL depends on this choi
 1. Click **Register**. This redirects you to the app configuration page.
 
 1. Copy the **Application (client) ID** from the app configuration page.
-This is the **Relying Party OAuth Client ID** that will be provided in the
-**Operator Dashboard** in a later step.
+This is the **Relying Party OAuth Client ID** that you will enter into the
+<%= vars.operator_dash %> in a later step.
 
 ### <a id="generate-secret"></a> Generate a Relying Party OAuth Client Secret
 
@@ -97,12 +97,12 @@ Otherwise, search for your app name in the App registrations list.
 1. Select **Certificates & secrets**.
 
 1. Select **+ New client secret**.
-Provide description and expiration length that follows your security organization's guidelines.
+Provide a description and an expiration length that follows your security organization's guidelines.
 Then click **Add**.
 
-1. Copy the **Value** corresponding to the newly-created Client secret.
-This is the **Relying Party OAuth Client Secret** that will be provided in the
-**Operator Dashboard** in a later step.
+1. Copy the **Value** corresponding to the newly-created client secret.
+This is the **Relying Party OAuth Client Secret** that you will enter into the
+<%= vars.operator_dash %> in a later step.
 
 ### <a id="configure-urls"></a> Configure Redirect URIs
 
@@ -147,7 +147,7 @@ Otherwise, search for your application name in the App registrations list.
     :alt => 'Screenshot of configuring a web platform\'s "Redirect URI",
     where "Logout URL" and "Implicit grant" are left empty.') %>
 
-## <a id="locate-azure-metadata"></a> Locate the appropriate OIDC Metadata
+## <a id="locate-azure-metadata"></a> Locate the Appropriate OIDC Metadata
 
 The Azure Active Directory v2 metadata URL takes the form of
 `https://login.microsoftonline.com/{tenant}/v2.0/.well-known/openid-configuration`.
@@ -162,13 +162,14 @@ To locate the OIDC metadata:
 1. Consult the [Azure Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc#fetch-the-openid-connect-metadata-document)<%# The link name must be |Microsoft documentation|. %>
    to determine the appropriate `{tenant}` for your application.
    The `{tenant}` takes on one of several possible values,
-   depending on the choice of **Supported account types** chosen above.
+   depending on the option you selected for **Supported account types** in
+   [Register a New App](#register-an-app) above.
 
 1. If your choice of **Supported account types** was **Only users from a specific Azure AD tenant**
 to sign into your app, you must determine the appropriate `Tenant ID`.
 Navigate to **Azure Active Directory**.
 The `Tenant ID`, which is a GUID value, and `Primary domain` should be shown there.
-Either value can be used as the `{tenant}` in the metadata URL.
+You can use either value as the `{tenant}` in the metadata URL.
 
 
 ## <a id="configure-idp"></a> Set Up the OIDC Identity Provider in <%= vars.product_short %>
