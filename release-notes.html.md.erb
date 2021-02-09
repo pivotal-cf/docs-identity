@@ -13,6 +13,25 @@ These are release notes for the
 <%= partial vars.path_to_partials + '/services/services-lts-notice', :locals => {
   :eogs_date => "April 2022"} %>
 
+## <a id="1-14-2"></a> v1.14.2
+
+**Release Date: February 12, 2021**
+
+### Resolved Issues
+
+This release has the following fix:
+
+* When managing external group mappings the limit on
+  number of mappings that can be managed via the UI
+  has been raised from 100 to 500.
+
+
+### Known Issues
+
+This release has the following issue:
+
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
 ## <a id="1-14-1"></a> v1.14.1
 
 **Release Date: December 23, 2020**
