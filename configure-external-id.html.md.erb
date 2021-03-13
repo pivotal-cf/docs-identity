@@ -340,7 +340,14 @@ This description is displayed to the Space Developers when they select an IdP fo
 
 
     <div id="tab1" class="tabcontent" style="display:block">
-      <img src="./images/discovery-url.png" alt="Pane for configuring a Discovery Endpoint URL."><%# Images require alt text that describes the image in detail. %>
+      <img src="./images/discovery-url.png" alt="Pane for configuring a Discovery Endpoint URL.
+       The Skip SSL validation checkbox is clear. The Discover OIDC configuration radio button is selected.
+       The Manually enter OIDC configuration radio button is not selected.
+       The Discovery Endpoint URL field shows https://example.com/.well-known/openid-configuration.
+       The Relying Party OAuth Client ID field shows abc123.
+       The Relying Party OAuth Client Secret field shows 6 asterisks.
+       Under the Scopes heading is the FETCH SUPPORTED SCOPES button.
+       The following checkboxes are all selected: email, offline_access, openid, and profile.">
       <ol>
         <li>(Optional) If you do not want to use SSL validation, select <strong>Skip SSL Validation</strong>.</li>
         <li>Select the <strong>Discover OIDC Configuration</strong> radio button.</li>
@@ -374,7 +381,19 @@ This description is displayed to the Space Developers when they select an IdP fo
       </ol>
     </div>
     <div id="tab2" class="tabcontent">
-      <img src="./images/manual-oidc-configuration.png" alt="Pane for manually configuring OIDC settings."><%# Images require alt text that describes the image in detail. %>
+      <img src="./images/manual-oidc-configuration.png" alt="Pane for manually configuring OIDC settings.
+       The Skip SSL validation checkbox is clear. The Discover OIDC configuration radio button is not selected.
+       The Manually enter OIDC configuration radio button is selected.
+       The Authorization Endpoint field shows https://example.com/oauth2/v1/authorize.
+       The Token Endpoint field shows https://example.com/oauth2/v1/token.
+       The Token Key field shows https://example.com/oauth2/v1/keys.
+       The Issuer (Optional) field shows https://example.com.
+       The User Info Endpoint (Optional) field shows https://example.com/oauth2/v1/userinfo.
+       The Response Type field shows code.
+       The Relying Party OAuth Client ID field shows abc1223.
+       The Relying Party Oauth Client Secret field shows 6 asterisks.
+       Under the Scopes heading the openid checkbox is selected, the email is clear, and
+       the profile checkbox is selected.">
       <ol>
         <li>(Optional) If you do not want to use SSL validation,
           select <strong>Skip SSL Validation</strong>.</li>
