@@ -42,8 +42,9 @@ externally hosted apps using SAML or OIDC enterprise IDPs to call into APIs:
 
 The following sequence diagram illustrates the UAA authorization code grant model:
 
-
 ![Diagram described in list below](code-grant.png)
+
+<a href="images/code-grant.png" target="_blank">View a larger version of this image.</a>
 
 The diagram above shows a SAML flow, but the interactions between the app, enterprise IDP,
 and UAA can also use an OIDC enterprise IDP.
@@ -72,6 +73,8 @@ a logged in session with the IDP.
 The following sequence diagram illustrates the SAML bearer token exchange model:
 
 ![Diagram described in list below](token-exchange.png)
+
+<a href="images/token-exchange.png" target="_blank">View a larger version of this image.</a>
 
 The following describes the SAML bearer token exchange model:
 
@@ -144,6 +147,8 @@ This flow is for externally hosted apps using OIDC.
 
 ![Diagram described below.](jwt-exchange.png)
 
+<a href="images/jwt-exchange.png" target="_blank">View a larger version of this image.</a>
+
 The following describes the JWT bearer token exchange model, which is similar to the SAML bearer token exchange model:
 
 * The upstream app contacts UAA and requests a JWT native to <%= vars.app_runtime_abbr %>.
@@ -186,6 +191,9 @@ token exchange transparently, as shown in the diagram below.
 ![Diagram shows the gateway that sits between the Enterprise IDP (OIDC) and UAA.
   All communication from the app and Enterprise IDP (OIDC) to UAA and the foundation
   microservice passes through the gateway.](jwt-exchange-gateway.png)
+
+<a href="images/jwt-exchange-gateway.png" target="_blank">View a larger version of this image.</a>
+
 
 ### <a id='setup'></a>Set Up for SAML or JWT Bearer Token Exchange
 
