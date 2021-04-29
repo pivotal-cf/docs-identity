@@ -11,8 +11,8 @@ This topic describes how to resolve common errors that arise when configuring a 
 
 The login page looks as follows:
 
-<%= image_tag("../images/gcp-no-link.png", :alt => "Dialog box says welcome to Example, Email,
-    Password and fields and a sign-in button.", :width => "350") %>
+<%= image_tag("../images/gcp-no-link.png", :alt => "Dialog box says welcome to Example.
+Followed by Email and Password fields and a sign-in button.", :width => "350") %>
 
 ### Explanation
 
@@ -24,7 +24,9 @@ Incorrect or unavailable discovery URL. No link will appear on the login page.
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/gcp-no-client.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/gcp-no-client.png', :alt => "The error message page reads,
+Google. 401. That's an error. Error: invalid_client. The OAuth client was not found.
+The error message is followed by a dropdown for Request Details.") %>
 
 ### Explanation
 
@@ -36,7 +38,9 @@ Incorrect OAuth Client ID configured.
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/gcp-unauthorized.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/gcp-unauthorized.png', :alt => "The error message page reads,
+There was an error when authenticating against the external identity provider:
+401 Unauthorized.") %>
 
 ### Explanation
 
@@ -48,7 +52,11 @@ Incorrect OAuth client secret configured.
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/gcp-mismatch.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/gcp-mismatch.png', :alt => "The partially redacted error message page reads,
+Google. 400. That's an error. Error: redirect_uri_mismatch. The redirect URI in the
+request, (partially redacted URL beginning with https://example.login),
+does not match the ones authorized for the OAuth client.
+Visit (partially redacted URL) to update the authorized redirect URIs.") %>
 
 ### Explanation
 
@@ -60,7 +68,9 @@ Incorrect authorization redirect URI on OAuth Client.
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/gcp-empty.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/gcp-empty.png', :alt => "The error message page reads,
+There was an error when authenticating against the external identity provider:
+Username cannot be empty.") %>
 
 ### Explanation
 
@@ -72,7 +82,9 @@ The `user_name` attribute was not mapped to `email`.
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/gcp-empty.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/gcp-empty.png' , :alt => "The error message page reads,
+There was an error when authenticating against the external identity provider:
+Username cannot be empty.") %>
 
 ### Explanation
 

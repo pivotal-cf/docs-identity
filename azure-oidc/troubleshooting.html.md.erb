@@ -11,7 +11,9 @@ This topic describes how to resolve common errors that arise when configuring a 
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure-oidc-bad-request.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure-oidc-bad-request.png', :alt => "The error message page reads,
+There was an error when authenticating against the external identity provider:
+400 Bad request.") %>
 
 ### Explanations
 
@@ -27,7 +29,9 @@ Possible explanations are as follows:
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure-oidc-no-username.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure-oidc-no-username.png', :alt => "The error message page reads,
+There was an error when authenticating against the external identity provider:
+Cannot determine username from credentials supplied.") %>
 
 ### Explanation
 
@@ -40,7 +44,8 @@ Under the identity provider attributes, map the `unique_name` attribute to `user
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure-oidc-address-error.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure-oidc-address-error.png', :alt => "The error message
+on the sign in page reads: Sorry, but we're having trouble signing you in. We received a bad request.") %>
 
 ### Explanation
 
@@ -52,7 +57,8 @@ The reply URL is misconfigured. Ensure you entered your callback URL correctly a
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure-oidc-login-404.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure-oidc-login-404.png', :alt => "The error message page reads:
+This login.windows.net page can't be found.") %>
 
 ### Explanation
 
@@ -64,7 +70,9 @@ The Authorization Endpoint URL might be incorrectly entered or not available. En
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure-oidc-idp-404.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure-oidc-idp-404.png', :alt => "The error message page reads,
+There was an error when authenticating against the external identity provider:
+404 Not Found.") %>
 
 ### Explanation
 
@@ -76,7 +84,9 @@ The Token Key URL might be incorrectly entered or not available. Ensure that you
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure-oidc-invalid-token.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure-oidc-invalid-token.png', :alt => "The partially redacted
+error message page reads, There was an error when authenticating against
+the external identity provider: Invalid issuer (redacted) for token did not match expected (redacted).") %>
 
 ### Explanation
 
@@ -88,7 +98,10 @@ The Token Key URL might be incorrectly entered. Ensure that you entered the issu
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure-oidc-post-error.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure-oidc-post-error.png', :alt => "The error message page reads,
+HTTP Status 405 - Request method 'POST' not supported. Type: status report.
+Message: Request method 'POST' not supported. Description: The specified HTTP method
+is not allowed for the requested resource.") %>
 
 ### Explanation
 
@@ -100,7 +113,9 @@ This error can occur if you configure a response type that Azure AD does not sup
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure-oidc-client-id-error.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure-oidc-client-id-error.png', :alt => "The partially redacted
+error message page reads, There was an error when authenticating against
+the external identity provider: Some parties were not in the token audience (redacted).") %>
 
 ### Explanation
 

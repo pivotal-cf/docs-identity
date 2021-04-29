@@ -32,7 +32,8 @@ For more information, see [Test Your Configurations in Azure AD](./testing.html#
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure_app_id.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure_app_id.png', :alt => "The error message on the
+sign in page reads: Sorry, but we're having trouble signing you in. We received a bad request.") %>
 
 ### Explanation
 
@@ -44,7 +45,8 @@ The App ID URI is misconfigured on Azure AD.
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure_reply_url.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure_reply_url.png', :alt => "The error message on the
+sign in page reads: Sorry, but we're having trouble signing you in. We received a bad request.") %>
 
 ### Explanation
 
@@ -56,7 +58,9 @@ The Reply URL is misconfigured on Azure AD.
 
 You see an error similar to the following screenshot:
 
-<%= image_tag '../images/azure_missing_nameid.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('../images/azure_missing_nameid.png' , :alt => "In the Identity
+provider metadata section of a plan pane, the error message below the Fetch Metadata
+button reads: Error processing metadata.") %>
 
 ### Explanation
 
