@@ -114,11 +114,6 @@ replacing the publication with the same version.
 
 ## Troubleshooting Markdown
 
-<<<<<<< HEAD
-[docs-book-identity](https://github.com/pivotal-cf/docs-book-identity/blob/master/config.yml)
-
-[docs-book-runpivotal](https://github.com/pivotal-cf/docs-book-runpivotal/blob/master/config.yml)
-=======
 | Problem | List displays as a paragraph |
 |---------|-----------|
 | Symptom:| Bulleted or numbered lists look fine on GitHub but display as a single paragraph in HTML.|
@@ -128,7 +123,6 @@ replacing the publication with the same version.
 |---------|-----------|
 | Symptom:| Each numbered item in a list is a `1.` instead of `1.`, `2.`, `3.`, etc|
 | Solution: | Try removing any blank newlines within each step.|
->>>>>>> af162c3 (Update README)
 
 | Problem | Code boxes not showing |
 |---------|-----------|
