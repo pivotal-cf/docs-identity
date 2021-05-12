@@ -59,7 +59,7 @@ See the [SSO sample applications](https://github.com/pivotal-cf/identity-sample-
 	</tr>
 	<tr>
 		<td><code>SSO_REDIRECT_URIS</td>
-		<td>Comma-separated whitelist of redirection URIs allowed for the app. Each value must start with <code>http://</code> or <code>https://</code>.</td>
+		<td>Comma-separated allowlist of redirection URIs allowed for the app. Each value must start with <code>http://</code> or <code>https://</code>.</td>
 		<td>(Always includes the app route)</td>
 	</tr>
 	<tr>
@@ -210,7 +210,7 @@ The SSO dashboard allows application developers to view the app configurations a
 	<p class="note"><strong>Note</strong>: If you would like app to display on the home page, you must enter an **App Launch URL** or upload an app icon.</p>
 1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
 <p class="note"><strong>Note</strong>: When binding a PCF app, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except <code>Service-to-Service App</code>.</p>
-1. If your Application Type is `Web App` or `Single-Page JavaScript App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**.
+1. If your Application Type is `Web App` or `Single-Page JavaScript App`, enter an allowlist of **Auth Redirect URIs** beneath **Redirect URIs**.
    The redirect query parameter specified on the OAuth request must match the URIs specified in this list.
    Otherwise, SSO rejects the request.
 1. For the **Scopes** field, specify the permissions that the app can request on the user’s behalf.
@@ -249,7 +249,7 @@ The SSO dashboard allows application developers to view the app configurations a
 	<p class="note"><strong>Note</strong>: To display the app on the home page, you must enter an **App Launch URL** or Upload an app icon.</p>
 1. Select one or more **Identity Providers** for your app. Internal User Store is the default.
 	<p class="note"><strong>Note</strong>: When registering an externally-hosted app, a Space Developer can choose from internal and external identity providers. If the Space Developer selects multiple identity providers, users must select which provider to use when they sign in. This option is available for all application types except <code>Service-to-Service App</code>.</p>
-1. If your Application Type is `Web App` or `Single-Page JavaScript App`, enter a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**.
+1. If your Application Type is `Web App` or `Single-Page JavaScript App`, enter an allowlist of **Auth Redirect URIs** beneath **Redirect URIs**.
    The redirect query parameter specified on the OAuth request must match the URIs specified in this list. Otherwise, SSO rejects the request.
 1. For the **Scopes** field, specify the permissions that the app can request on the user’s behalf.
    This field defaults to `openid` for Web, Native Mobile, and Single-Page JavaScript Apps.
