@@ -244,13 +244,13 @@ Also, LDAP service accounts should not be subject to automated deletions, since 
 
 <p class="note warning"><strong>Note</strong>: Deleting an external identity provider deletes all of its configurations. Users will no longer be able to authenticate using the external identity provider. This action cannot be undone.</p>
 
-## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
+## <a id='config-whitelist'></a> Configure Group Allowlist for an External Identity Provider
 
-An administrator can include groups from an external identity provider in a Group Whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider. An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
+An administrator can include groups from an external identity provider in a group allowlist. The list of groups in the allowlist propagates in the ID token when a user authenticates through an external identity provider. An app can then retrieve from the ID token the list of external groups that the user belongs to. An administrator can use these groups to assign permissions by group rather than individual users.
 
 For more details on how to create resource permission mappings, see <a href="./manage-resources.html#create-resource-perm">Create or Edit Resource Permissions</a>.
 
-<p class="note"><strong>Note</strong>: For an app to retrieve a Group Whitelist containing external groups, the app must request the <code>roles</code> scope, and the Group Whitelist must list the external group.</p>
+<p class="note"><strong>Note</strong>: For an app to retrieve a group allowlist containing external groups, the app must request the <code>roles</code> scope, and the group allowlist must list the external group.</p>
 
 1. Log in to the SSO dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA administrator credentials. You can find these credentials in your Pivotal Elastic Runtime tile in Ops Manager under the Credentials tab.
 
