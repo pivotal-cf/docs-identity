@@ -105,7 +105,7 @@ The table below provides descriptions and default values for bind parameters:
 	</tr>
 	<tr>
 		<td><code>redirect_uris</code></td>
-		<td>Comma-separated whitelist of redirection URIs allowed for the app.
+		<td>Comma-separated allowlist of redirection URIs allowed for the app.
                     Each value must be a valid URI.
                     Custom URIs are supported for mobile apps.</td>
 		<td>Always includes the app route</td>
@@ -251,7 +251,7 @@ and the `manifest.yml` files in the same repository for examples of [bootstrappi
 	</tr>
 	<tr>
 		<td><code>SSO_REDIRECT_URIS</code></td>
-		<td>Comma separated whitelist of redirection URIs allowed for the app.
+		<td>Comma separated allowlist of redirection URIs allowed for the app.
                     Each value must be a valid URI.
                     Custom URIs are supported for mobile apps.</td>
 		<td>(Always includes the app route)</td>
@@ -543,7 +543,7 @@ This launches the SSO dashboard.
 		This option is available for all app types except
 		<code>Service-to-Service App</code>.</p>
 1. If your Application Type is `Web App` or `Single-Page JavaScript App`, enter
-   a whitelist of **Auth Redirect URIs** beneath **Redirect URIs**.
+   a allowlist of **Auth Redirect URIs** beneath **Redirect URIs**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, SSO rejects the request.
 1. For the **Scopes** field, specify the permissions that the app can request on the user’s behalf.
