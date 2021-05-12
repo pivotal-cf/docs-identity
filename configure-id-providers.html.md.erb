@@ -264,7 +264,7 @@ LDAP service accounts should not be subject to automated deletions as disruption
      [Create or Edit Resource Permissions Mapping](#create-resource-perm) below.
   1. To propagate the existing LDAP user group memberships into the `roles` claim of the OpenID tokens
      issued by the Single Sign-On service,
-     follow the procedure in [Configure Group Whitelist for an External Identity Provider](#config-whitelist) below.
+     follow the procedure in [Configure Group Allowlist for an External Identity Provider](#config-whitelist) below.
 
 ## <a id='delete-idp'></a> Delete an External Identity Provider
 
@@ -280,16 +280,16 @@ LDAP service accounts should not be subject to automated deletions as disruption
 
 <p class="note warning"><strong>Note:</strong> Deleting an external identity provider deletes all of its configurations, preventing users from authenticating through the external identity provider. This action cannot be undone.</p>
 
-## <a id='config-whitelist'></a> Configure Group Whitelist for an External Identity Provider
+## <a id='config-whitelist'></a> Configure Group Allowlist for an External Identity Provider
 
-An admin can include groups from an external identity provider in a group whitelist. The list of groups in the whitelist propagates in the ID token when a user authenticates through an external identity provider.
+An admin can include groups from an external identity provider in a group allowlist. The list of groups in the allowlist propagates in the ID token when a user authenticates through an external identity provider.
 
 An app can retrieve from the ID token the list of external groups that the user belongs to. An admin can use these groups to assign permissions by group rather than by individual users.
 
 For information about how to create resource permission mappings,
 see <a href="#create-resource-perm">Create or Edit Resource Permissions Mapping</a> below.
 
-<p class="note"><strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the <code>roles</code> claim and the group whitelist must include the external groups.</p>
+<p class="note"><strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response containing external groups, the app must request the <code>roles</code> claim and the group allowlist must include the external groups.</p>
 
 1. Log in to the SSO Operator Dashboard at `https://p-identity.YOUR-SYSTEM-DOMAIN` using your UAA admin credentials.
    You can find these credentials in your PAS tile in Ops Manager under the Credentials tab.
