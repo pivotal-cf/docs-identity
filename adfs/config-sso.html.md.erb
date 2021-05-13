@@ -8,7 +8,7 @@ This topic describes how to add an Active Directory Federation Services (ADFS) e
 
 ## <a id='overview'></a> Overview
 When you integrate ADFS with your deployment, you must configure an ADFS external SAML identity provider with
-specific settings. 
+specific settings.
 For information about how to add an external SAML identity provider in general, see [Add a SAML Provider](../configure-id-providers.html#config-saml-prov).
 
 To configure an ADFS external SAML identity provider, do the following:
@@ -48,7 +48,7 @@ Follow the steps below to configure a new identity provider:
 1. Click **SAML File Metadata (optional)** and then click **Upload Identity Provider Metadata** to upload the XML metadata that you downloaded from your ADFS server. You do not need to enter a **Identity Provider Metadata URL**.
 <p class="note"><strong>Note</strong>: Uploading the Identity Provider Metadata as an XML file makes you unable to use the <strong>Fetch Metadata</strong> option to update your Identity Provider metadata later. If metadata changes on the Identity Provider side, you will have to manually re-upload them as an updated XML file.</p>
 
-1. Enter the email domains you want to include as a comma-separated list under **Email Domains**. 
+1. Enter the email domains you want to include as a comma-separated list under **Email Domains**.
 
 1. Under **Advanced Settings**, click **Attribute Mappings (optional)**.
 1.  Configure **User Attributes** to determine how user attributes are propagated from the ADFS identity provider to the SSO service provider.
@@ -56,7 +56,7 @@ For example, you might want to map ADFS's SAML groups to SSO's `external_groups`
 To map ADFS's SAML groups to SSO's `external_groups`, do the following:
 
 	1. Under **User Schema Attribute**, select **external_groups**.
-	2. If you followed the steps in [Create Custom Value Groups](./config-adfs.html#groups), type `groups` under **Attribute Name**. 
+	2. If you followed the steps in [Create Custom Value Groups](./config-adfs.html#groups), type `groups` under **Attribute Name**.
 	An attribute mapping with a customized SAML assertion value looks like this:<br><br>
 	<%= image_tag '../images/customized.png' %><br><br>
 	If you did not follow the steps in [Create Custom Value Groups](./config-adfs.html#groups), type `http://schemas.xmlsoap.org/claims/group` under **Attribute Name**.
@@ -68,7 +68,7 @@ To map ADFS's SAML groups to SSO's `external_groups`, do the following:
 1. From the identity provider list, click on the name of the ADFS identity provider and then click **Group Whitelist**.
 
 1. Follow the instructions in
-[Configure Group Whitelist for an External Identity Provider](../configure-id-providers.html#config-whitelist)
+[Configure Group Allowlist for an External Identity Provider](../configure-id-providers.html#config-whitelist)
 to enter the ADFS SAML group names to be propagated in the SSO-generated ID token.
 These SAML groups are now included in the roles claim of the user’s ID token.
 
