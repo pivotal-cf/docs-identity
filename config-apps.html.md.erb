@@ -139,7 +139,7 @@ The table below provides descriptions and default values for bind parameters:
 	</tr>
 	<tr>
 		<td><code>redirect_uris</code></td>
-		<td>Comma-separated allow list of redirection URIs allowed for the app.
+		<td>Comma-separated allowlist of redirection URIs allowed for the app.
                     Each value must be a valid URI.
                     Custom URIs are supported for mobile apps.</td>
 		<td>Always includes the app route</td>
@@ -296,7 +296,7 @@ The table below provides descriptions and default values for <%= vars.product_sh
 	</tr>
 	<tr>
 		<td><code>SSO_REDIRECT_URIS</code></td>
-		<td>Comma-separated allow list of redirection URIs for the app.
+		<td>Comma-separated allowlist of redirection URIs for the app.
                     Each value must be a valid URI.
                     Custom URIs are supported for mobile apps.</td>
 		<td>(Always includes the app route)</td>
@@ -487,7 +487,7 @@ This launches the <%= vars.developer_dash %>.
 
     <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`,
-   under **App Settings** enter an allow list of URIs beneath **Redirect URIs Whitelist**.
+   under **App Settings** enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the URIs
    specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
    <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
@@ -587,7 +587,7 @@ To manage your app configurations through the <%= vars.developer_dash %>:
 
     <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings**
-   enter an allow list of URIs beneath **Redirect URIs Whitelist**.
+   enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
    The redirect query parameter specified on the OAuth request must match the
    URIs specified in this list. Otherwise, <%= vars.product_short %> rejects the request.
    <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
