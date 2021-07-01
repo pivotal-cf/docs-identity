@@ -1,6 +1,6 @@
-# Single Sign-On (SSO) for VMware Tanzu Docs
+# Single Sign-On (SSO) for VMware Tanzu Application Service Docs
 
-This repo contains the documentation for Single Sign-On for VMware Tanzu, which enables users to
+This repo contains the documentation for Single Sign-On for VMware Tanzu Application Service, which enables users to
 authenticate with an external identity provider rather than having to create a new account or re-enter
 credentials. Single Sign-On grants users centralized access to applications in various spaces,
 as well as to Ops Manager, Apps Manager, and other Cloud Foundry components.
