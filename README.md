@@ -12,10 +12,10 @@ as well as to Ops Manager, Apps Manager, and other Cloud Foundry components.
 |**master** | This branch is on staging. ADD ALL NEW CONTENT  to this branch — if there's going to be 1.15 or a 2.0. | <a href="https://docs-pcf-staging.cfapps.io/p-identity/1-n/">https://docs-pcf-staging.cfapps.io/p-identity/1-n/</a> |
 |**master-pws** | This branch contains PWS-specific SSO content. The audience is plan administrators and developers; not operators. This content is stale.| <a href="https://docs.run.pivotal.io/sso/index.html">https://docs.run.pivotal.io/sso/</a>|
 |**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-14/">https://docs.pivotal.io/p-identity/1-14/</a> |
-|**1.13** | This branch contains the published documentation for the v1.13 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-13/">https://docs.pivotal.io/p-identity/1-13/</a> |
-|**1.12** | This branch contains the published documentation for the v1.12 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-12/">https://docs.pivotal.io/p-identity/1-12/</a> |
-|**1.11** | This branch contains the published documentation for the v1.11 release of SSO.  | <a href="https://docs.pivotal.io/p-identity/1-11/">https://docs.pivotal.io/p-identity/1-11/</a> |
-|**1.10** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-10/</a> |
+|**1.13** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-13/">https://docs.pivotal.io/p-identity/1-13/</a> |
+|**1.12** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-12/">https://docs.pivotal.io/p-identity/1-12/</a> |
+|**1.11** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-11/">https://docs.pivotal.io/p-identity/1-11/</a> |
+|**1.10** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-10/">https://docs.pivotal.io/p-identity/1-10/</a> |
 |**1.9** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-9/</a>|
 |**1.8** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-8/">https://docs.pivotal.io/p-identity/1-8/</a>|
 |**1.7** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-7/">https://docs.pivotal.io/p-identity/1-7/</a>|
