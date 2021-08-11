@@ -39,7 +39,166 @@ You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= 
 
 ## <a id="creating"></a> Create a UAA Identity Zone Admin Client
 
-<%= partial '../../identity/partials/identity/create_zone_admin' %>
+<p>
+To use the UAAC with your <%= vars.product_full %> service plan, you need an identity zone admin client. To create
+the identity zone admin client, you need to create a UAA admin client that corresponds to your <%= vars.product_short %>
+service plan.
+</p>
+
+### <a id="admin"></a> Create an Admin Client
+
+To create a UAA admin client:
+
+1. Follow the procedure in [Create an Admin Client](./manage-clients-api.html#creating).
+
+<% if current_page.data.title == "Updating Identity Providers with UAAC" %>
+2. Using the instructions above, give the admin client the `idps.read`, `idps.write` and,
+`clients.admin` scopes.
+<% end %>
+
+<% if current_page.data.title == "Updating Service Plans with UAAC" %>
+2. Using the instructions above, give the admin client the `clients.admin` scope.
+<%end%>
+
+3. Record the **App ID** and **App Secret**. You need these for the procedure below.
+
+###  <a id="zone-admin"></a> Create a UAA Identity Zone Admin Client
+
+To create a UAA identity zone admin client:
+
+1. Install the UAAC as follows:
+
+    ```
+    gem install cf-uaac
+    ```
+
+    For information about the UAAC,
+    see [the UAAC Github Repository](https://github.com/cloudfoundry/cf-uaac).
+
+1. Use the UAAC to target your service plan:
+
+    ```
+    uaac target MY-AUTH-DOMAIN.login.example.com
+    ```
+
+    Where `MY-AUTH-DOMAIN` is the **Auth Domain** you entered when you created the <a href="./manage-service-plans.html#create-svc-plan">Service Plan</a>.
+
+1. Run the command below to authenticate and obtain
+an access token for the admin client for your service plan. UAAC stores the token in `~/.uaac.yml`.
+
+
+    ```
+    uaac token client get MY-APP-ID -s MY-APP-SECRET
+    ```
+
+    Where:<br>
+    * `MY-APP-ID` is your admin app ID.
+    * `MY-APP-SECRET` is your app secret.<br>
+
+    Use the **App ID** and **App Secret** provided when you created the admin client in the
+    procedure above.
+
+<% if current_page.data.title == "Updating Identity Providers with UAAC" %>
+1. Run the following command to display your client context and verify that you have `idps.read`, `idps.write`, and `clients.admin` under the scope section.
+
+    ```
+    uaac context
+    ```
+
+    For example:
+    <pre class="terminal">
+    $ uaac context
+    [1]*[ExampleAppID]
+      client\_id: ExampleAppID
+        access\_token: aBcdEfg0hIJKlm123.e
+        token\_type: bearer
+        expires\_in: 43200
+        scope: uaa.resource idps.read idps.write clients.admin
+        jti: 91b3-abcd1233
+    </pre>
+<% end %>
+
+<% if current_page.data.title == "Updating Service Plans with UAAC" %>
+1. Run the following command to display your client context and verify that you have `clients.admin`
+under the scope section.
+
+    ```
+    uaac context
+    ```
+
+    For example:
+    <pre class="terminal">
+    $ uaac context
+    [1]*[ExampleAppID]
+      client\_id: ExampleAppID
+        access\_token: aBcdEfg0hIJKlm123.e
+        token\_type: bearer
+        expires\_in: 43200
+        scope: uaa.resource clients.admin
+        jti: 91b3-abcd1233
+    </pre>
+<% end %>
+
+1. Run the following command to create an identity zone admin client. <br>
+
+    ```
+    uaac client add ZONE-ADMIN-CLIENT-ID --authorized_grant_types client_credentials --authorities uaa.admin
+    ```
+    Where `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.<br><br>
+
+    When prompted for a `New client secret`, provide a client secret for this
+    identity zone admin client.
+    Ensure you use a secure value for your client secret. <br><br>
+
+    For example:
+    <pre class="terminal">
+    $ uaac client add ExampleZoneAdminClientID --authorized\_grant\_types client\_credentials --authorities uaa.admin
+    New client secret:  *****
+    Verify new client secret:  *****
+    </pre>
+
+    Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`.<br><br>
+
+    You can delete the original admin client created through the <%= vars.operator_dash %> after you create the identity zone client.
+
+1. Run the following command to authenticate and obtain an access token for the
+identity zone admin client for your service plan.
+
+    ```
+    uaac token client get ZONE-ADMIN-CLIENT-ID
+    ```
+
+    Where `ZONE-ADMIN-CLIENT-ID` is zone admin client ID you provided in the previous step.<br><br>
+    When prompted for a `Client secret`, use the client secret you provided in the previous step.
+
+    For example:
+    <pre class="terminal">
+    $ uaac token client get ExampleZoneAdminClientID
+    Client secret:  *****
+    </pre>
+
+1. Use the following command to display your client context and verify that you have `uaa.admin`
+under the scope section.
+
+    ```
+    uaac context
+    ```
+
+    For example:
+    <pre class="terminal">
+    $ uaac context
+    [1]*[ExampleZoneAdminClientID]
+      client\_id: ExampleZoneAdminClientID
+        access\_token: asdioqwuelk12312.e21e
+        token\_type: bearer
+        expires\_in: 43200
+        scope: uaa.admin
+        jti: 123908dkl1-23298
+    </pre>
+    <p>
+    You can now do operator level API configurations for the <%= vars.product_short %> service plan.
+    You do not have permissions for any other <%= vars.product_short %> service plan.
+    </p>
 
 
 ## <a id="updating"></a> Update UAA Identity Zone Configurations with the API

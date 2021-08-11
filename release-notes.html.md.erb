@@ -5,7 +5,7 @@ owner: Identity Service
 
 These are release notes for [<%= vars.product_full %>](https://network.pivotal.io/products/p-identity).
 
-<%= partial vars.path_to_partials + "/upgrade-planner" %>
+For product versions and upgrade paths, see [Upgrade Planner](https://upgrade-planner.pivotal.io/).
 
 ## <a id="1-12-4"></a> v1.12.4
 
@@ -21,8 +21,8 @@ This release includes the following security fix:
 
 This release has the following issue:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
 
 ## <a id="1-12-3"></a> v1.12.3
 
@@ -41,8 +41,8 @@ New features and changes in this release:
 
 This release has the following issue:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
 
 ## <a id="1-12-2"></a> v1.12.2
 
@@ -59,8 +59,8 @@ on the **Register App** page.
 
 This release has the following issue:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
 
 ## <a id="1-12-1"></a> v1.12.1
 
@@ -78,9 +78,10 @@ on the **Register App** page.
 
 This release has the following issue:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
-<%= partial vars.path_to_partials + "/identity/space-permissions" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
+* Space Developers cannot view and select permissions from other spaces in the <%= vars.developer_dash %>
+on the **Register App** page.
 
 ## <a id="1-12-0"></a> v1.12.0
 
@@ -104,10 +105,12 @@ The new dashboard enables you to:
 
 This release has the following issues:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
-<%= partial vars.path_to_partials + "/identity/space-permissions" %>
-<%= partial vars.path_to_partials + "/identity/profile-scope" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
+* Space Developers cannot view and select permissions from other spaces in the <%= vars.developer_dash %>
+on the **Register App** page.
+* Space Developers cannot select the `profile` scope in the <%= vars.developer_dash %>
+on the **Register App** page.
 * Editing **User Attributes** in the <%= vars.operator_dash %> fails on consecutive saves.
 
 
