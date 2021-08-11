@@ -3,13 +3,17 @@ title: Release Notes
 owner: Identity Service
 ---
 
-<%= partial '../../identity/partials/branding-change' %>
+<p class="note"><strong>Note:</strong> Pivotal has renamed <i><%= vars.product_old %></i> to 
+  <i><%= vars.product_full %></i>.
+</p>
 
-<%= partial '../../identity/partials/pcf-name-change' %>
+<p class="note"><strong>Note:</strong> Pivotal has renamed <i><%= vars.platform_old %></i> to
+  <i><%= vars.platform_name %></i>.
+</p>
 
 These are release notes for the [<%= vars.product_full %>](https://network.pivotal.io/products/p-identity).
 
-<%= partial vars.path_to_partials + '/upgrade-planner' %>
+For product versions and upgrade paths, see [Upgrade Planner](https://upgrade-planner.pivotal.io/).
 
 ## <a id="1-11-3"></a> v1.11.3
 
@@ -25,8 +29,8 @@ This release includes the following security fix:
 
 This release has the following issue:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
 
 ## <a id="1-11-2"></a> v1.11.2
 
@@ -43,8 +47,8 @@ on the **Register App** page.
 
 This release has the following issue:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
 
 ## <a id="1-11-1"></a> v1.11.1
 
@@ -61,9 +65,10 @@ on the **Register App** page.
 
 This release has the following issue:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
-<%= partial vars.path_to_partials + "/identity/space-permissions" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
+* Space Developers cannot view and select permissions from other spaces in the <%= vars.developer_dash %>
+on the **Register App** page.
 
 ## <a id="1-11-0"></a> v1.11.0
 
@@ -85,10 +90,12 @@ For more information, see [Pivotal Single Sign‑On User Roles](./getting-starte
 
 This release has the following issues:
 
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/logout-ki" %>
-<%= partial vars.path_to_partials + "/identity/space-permissions" %>
-<%= partial vars.path_to_partials + "/identity/profile-scope" %>
+* **Authorization for Okta OpenID Connect (OIDC):** When using an Okta OIDC provider, the roles claim in the ID token does not get populated with external identity provider (IdP) groups. This impacts the mapping of external IdP groups to scopes. Despite this limitation, you can still use Okta OIDC provider for authentication.
+* Users are unexpectedly logged out from <%= vars.operator_dash %>.
+* Space Developers cannot view and select permissions from other spaces in the <%= vars.developer_dash %>
+on the **Register App** page.
+* Space Developers cannot select the `profile` scope in the <%= vars.developer_dash %>
+on the **Register App** page.
 
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
