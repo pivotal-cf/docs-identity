@@ -77,25 +77,12 @@ Follow the steps below to set up the OIDC identity provider in <%= vars.product_
 1. Enter your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret** from the
 [Generate GCP Client Credentials](#gcp-rp) above.
 
-    <%= image_tag('../images/gcp-oidc-settings.png', :alt => 'Screenshot of the
-    OpenID Connect settings. There are two checkboxes with the labels skip SSL Validation and
-    enable discovery. Below this is the Discovery Endpoint URL field and the Fetch scopes button.
-    Bellow this are the fields Relying Party OAuth Client ID and Relying Party OAuth Client Secret.') %>
-
 1. Ensure that `openid` and `email` are selected as scopes. You can select additional scopes if you
 want.
-
-    <%= image_tag('../images/gcp-scopes.png', :width => "200", :alt => 'Screenshot of
-    the scopes section. The checkboxes for openid and email are selected.') %>
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
 select **email** as the **User Schema Attribute** and enter `user_name` as the **Attribute Name**.
 This enables <%= vars.product_short %> to identify the authenticated user.
-
-    <%= image_tag('../images/gcp-advanced-settings.png', :alt => 'Screenshot of the
-      advanced settings section. The attribute mappings dropdown has been clicked
-      revealing the user attributes section. The section contains a dropdown to
-      choose the user schema attribute and a field to enter the attribute name.') %>
 
 1. (Optional) Configure additional attribute mappings.
 
