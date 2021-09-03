@@ -24,7 +24,11 @@ Follow the steps below to generate GCP client credentials:
 
 1. Under the **Credentials** tab, click **Create credentials** &gt; **OAuth client ID**.
 
-    <%= image_tag '../images/gcp-create-oauth.png' %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag('../images/gcp-create-oauth.png', :alt => 'A screenshot of the GCP console.
+    There are three side tabs: dashboard, library, and credentials. The credentials
+    tab is highlighted and the Credentials pane is showing. On the credentials pane
+    the create credentials dropdown has been selected. From the dropdown list, OAuth Client
+    ID is selected. ')%>
 
 1. In the configuration pane that appears, select **Web application** under **Application type** and
 enter any **Name**. Under **Restrictions**, leave **Authorized JavaScript Origins** blank and for
@@ -45,14 +49,18 @@ enter any **Name**. Under **Restrictions**, leave **Authorized JavaScript Origin
       <strong>Warning:</strong> The origin key does not change after it is assigned, even if the
       <strong>Identity Provider Name</strong> is modified.
     </p>
-    <%= image_tag '../images/gcp-config-oauth.png' %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag('../images/gcp-config-oauth.png', :alt => 'A screenshot of the OAuth client configuration pane.
+    The available fields have been described in this step. The create and cancel buttons are at
+    the bottom of the screen.') %>
 
 1. Click **Create** and record the **client ID** and **client secret** generated. You enter these
 values as your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret** in the
 <%= vars.operator_dash %> in
 [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso) below.
 
-    <%= image_tag '../images/gcp-oauth-keypair.png' %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag('../images/gcp-oauth-keypair.png', :alt => 'A screenshot of the
+    OAuth client dialog box, which has fields that contain the generated client ID and
+    client secret. Both fields have a copy button.') %>
 
 
 ## <a id='gcp-oidc-sso'></a> Set up the OIDC Identity Provider in <%= vars.product_short %>
@@ -69,18 +77,25 @@ Follow the steps below to set up the OIDC identity provider in <%= vars.product_
 1. Enter your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret** from the
 [Generate GCP Client Credentials](#gcp-rp) above.
 
-    <%= image_tag '../images/gcp-oidc-settings.png' %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag('../images/gcp-oidc-settings.png', :alt => 'Screenshot of the
+    OpenID Connect settings. There are two checkboxes with the labels skip SSL Validation and
+    enable discovery. Below this is the Discovery Endpoint URL field and the Fetch scopes button.
+    Bellow this are the fields Relying Party OAuth Client ID and Relying Party OAuth Client Secret.') %>
 
 1. Ensure that `openid` and `email` are selected as scopes. You can select additional scopes if you
 want.
 
-    <%= image_tag '../images/gcp-scopes.png', :width => "200" %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag('../images/gcp-scopes.png', :width => "200", :alt => 'Screenshot of
+    the scopes section. The checkboxes for openid and email are selected.') %>
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
 select **email** as the **User Schema Attribute** and enter `user_name` as the **Attribute Name**.
 This enables <%= vars.product_short %> to identify the authenticated user.
 
-    <%= image_tag '../images/gcp-advanced-settings.png' %><%# Images require alt text that describes the image in detail. %>
+    <%= image_tag('../images/gcp-advanced-settings.png', :alt => 'Screenshot of the
+      advanced settings section. The attribute mappings dropdown has been clicked
+      revealing the user attributes section. The section contains a dropdown to
+      choose the user schema attribute and a field to enter the attribute name.') %>
 
 1. (Optional) Configure additional attribute mappings.
 
