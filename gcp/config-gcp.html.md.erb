@@ -72,17 +72,20 @@ Follow the steps below to set up the OIDC identity provider in <%= vars.product_
 1. In the **Discovery Endpoint URL** field, enter
 `https://accounts.google.com/.well-known/openid-configuration`.
 
-1. Click **Fetch Scopes**.
-
 1. Enter your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret** from the
 [Generate GCP Client Credentials](#gcp-rp) above.
+
+1. Click **Fetch Scopes**.
 
 1. Ensure that `openid` and `email` are selected as scopes. You can select additional scopes if you
 want.
 
-1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
-select **email** as the **User Schema Attribute** and enter `user_name` as the **Attribute Name**.
+1. Under **Attribute & Group Mapping (Optional)** &gt; **User Attributes**,
+for the **email** and **user_name**  **User Schema Attributes**, enter `email` as the **OIDC Claim Name**.
 This enables <%= vars.product_short %> to identify the authenticated user.
+![Screenshot of the 'Attribute & Group Mapping' section.
+There are 'OIDC Claim Name' fields for 'email', 'user_name', 'given_name', 'family_name',
+and 'phone_number'. The word 'email' has been entered into the 'email' and 'user_name' fields.](user-attributes-gcp.png)
 
 1. (Optional) Configure additional attribute mappings.
 
