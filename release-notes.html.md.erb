@@ -17,14 +17,6 @@ These are release notes for the
 
 **Release Date: November 8, 2021**
 
-### Resolved Issues
-
-This release has the following fix:
-
-* SSO Service Broker properly handles application without any environment values, represented as null, in the Cloud Controller request payload. 
-
-Workaround: In lieu of 1.14.4, workaround is to give the application a dummy value in its environment(manifest file) so null values are prevented.
-
 ### Maintenance Changes
 
 Dependency upgrades in this release:
@@ -36,6 +28,13 @@ Dependency upgrades in this release:
 This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
+### Resolved Issues
+
+This release has the following fix:
+
+* SSO Service Broker handles apps without any environment values in the Cloud Controller request payload. 
+
 
 ## <a id="1-14-3"></a> v1.14.3
 
@@ -54,6 +53,11 @@ Dependency upgrades in this release:
 This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
+* **SSO Service Broker does not handle apps that do not have environment values
+  in the Cloud Controller request payload:**
+  The workaround is to give the app a dummy value in its environment, manifest file so null values are prevented.
+
 
 ## <a id="1-14-2"></a> v1.14.2
 
