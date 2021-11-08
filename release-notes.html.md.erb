@@ -33,7 +33,7 @@ This release has the following issue:
 
 This release has the following fix:
 
-* SSO Service Broker handles apps without any environment values in the Cloud Controller request payload. 
+* **The SSO service broker can handle apps without any environment variables in the Cloud Controller request payload.**
 
 
 ## <a id="1-14-3"></a> v1.14.3
@@ -50,14 +50,10 @@ Dependency upgrades in this release:
 
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-
-* **SSO Service Broker does not handle apps that do not have environment values
-  in the Cloud Controller request payload:**
-  The workaround is to give the app a dummy value in its environment, manifest file so null values are prevented.
-
+<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 ## <a id="1-14-2"></a> v1.14.2
 
@@ -73,9 +69,10 @@ This release has the following fix:
 
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 ## <a id="1-14-1"></a> v1.14.1
 
@@ -94,11 +91,13 @@ This release has the following fix:
     see [Monitor App Events](logging-monitoring.html#app).
 
 
+
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 ## <a id="1-14-0"></a> v1.14.0
 
@@ -123,9 +122,10 @@ New features and changes in this release:
 
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
