@@ -17,14 +17,6 @@ These are release notes for the
 
 **Release Date: November 8, 2021**
 
-### Resolved Issues
-
-This release has the following fix:
-
-* SSO Service Broker properly handles application without any environment values, represented as null, in the Cloud Controller request payload. 
-
-Workaround: In lieu of 1.14.4, workaround is to give the application a dummy value in its environment(manifest file) so null values are prevented.
-
 ### Maintenance Changes
 
 Dependency upgrades in this release:
@@ -36,6 +28,13 @@ Dependency upgrades in this release:
 This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
+### Resolved Issues
+
+This release has the following fix:
+
+* **The SSO service broker can handle apps without any environment variables in the Cloud Controller request payload.**
+
 
 ## <a id="1-14-3"></a> v1.14.3
 
@@ -51,9 +50,10 @@ Dependency upgrades in this release:
 
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 ## <a id="1-14-2"></a> v1.14.2
 
@@ -69,9 +69,10 @@ This release has the following fix:
 
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 ## <a id="1-14-1"></a> v1.14.1
 
@@ -90,11 +91,13 @@ This release has the following fix:
     see [Monitor App Events](logging-monitoring.html#app).
 
 
+
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 ## <a id="1-14-0"></a> v1.14.0
 
@@ -119,9 +122,10 @@ New features and changes in this release:
 
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 
 ## <a id="viewing"></a> Viewing Release Notes for Another Version
