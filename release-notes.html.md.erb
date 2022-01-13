@@ -12,7 +12,24 @@ These are release notes for the
 
 <%= partial vars.path_to_partials + '/services/services-lts-notice', :locals => {
   :eogs_date => "April 2022"} %>
+## <a id="1-14-6"></a> v1.14.6
 
+**Release Date: January 14, 2021**
+
+### Security Fixes
+
+Addresses log4j CVEs.  The tile does not include log4j-core in supported versions, and all other log4j-related dependencies have been updated.
+
+Dependency upgrades in this release:
+
+* Apache log4j-api to 2.17.1
+* Apache log4j-to-slf4j to 2.17.1
+
+### Known Issues
+
+This release has the following issue:
+
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 
 ## <a id="1-14-6"></a> v1.14.6
 
