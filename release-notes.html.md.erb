@@ -13,6 +13,27 @@ These are release notes for the
 <%= partial vars.path_to_partials + '/services/services-lts-notice', :locals => {
   :eogs_date => "April 2022"} %>
 
+## <a id="1-14-8"></a> v1.14.8
+
+**Release Date: April 14, 2022**
+
+### Maintenance Changes
+
+This release addresses CVE-2022-22965; note that this does not mean prior versions were actually vulnerable.
+Because the SSO Tile uses Java 8, it is not vulnerable to this CVE, and this update is not necessary for secure operation.
+However, in the interest of avoiding false positives in security tools, and to enable maximum customer confidence,
+we have produced this maintenance release, which also updates the affected Spring libraries to alleviate any concern.
+
+Dependency upgrades in this release:
+
+* Spring Boot to 2.5.12
+
+### Known Issues
+
+This release has the following issue:
+
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
 ## <a id="1-14-7"></a> v1.14.7
 
 **Release Date: January 14, 2022**
