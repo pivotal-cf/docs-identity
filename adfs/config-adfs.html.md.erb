@@ -149,3 +149,130 @@ To create two claim rules:
 	with a different outgoing claim value, and Replace incoming e-mail suffix claims with a new
 	e-mail suffix.The Pass through all claim values radio button is selected.
 	Previous, Finish and Cancel buttons are at the bottom right.") %>
+
+1. Double-click the new Relying Party Trust to open the properties.
+
+1. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
+
+  <%= image_tag("../images/adfs_remove_cert.png", :alt => "Screenshot of the Encryption tab of the
+	window titled ADFS PCF SSO Properties. There is a red box drawn around the Encryption tab.
+	Below that are encryption certificate details.
+	Below that are Browse, View, and Remove buttons.
+	There is a red box drawn around the Remove button.
+	OK, Cancel and Apply buttons are at the bottom right.") %>
+
+1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that
+matches the
+[SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
+
+	<%= image_tag("../images/adfs_sha1.png", :alt => "Screenshot of the Advanced tab of the window
+	titled ADFS PCF SSO Properties.
+	There is a red box drawn around the Advanced tab.
+	Below that is dropdown labeled Secure hash algorithm with the option SHA-1 selected.
+	OK, Cancel and Apply buttons are at the bottom right.") %>
+
+
+## <a id='disable-crl-checks'></a> (Optional) Disable CRL Checks
+
+If you are using a self-signed certificate, disable CRL checks:
+
+1. Open **Windows Powershell** as an admin.
+
+1. Disable the CRL checks by running:
+```
+set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
+```
+
+1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the
+<%= vars.ops_manager %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate`
+and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key
+Certificate" certificate signed by <%= vars.ops_manager %> ROOT CA.
+
+1. (Optional) To specify any application or group attributes that you want to map to users in the ID
+token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**.
+For more information, see the next section.
+
+
+## <a id='adfs-groups'></a> Set up Groups in SAML from AD FS
+
+To set up groups in SAML from AD FS:
+
+1. Right-click your **Relying Party Trust** and select **Edit Claim Rules...**.
+
+  <%= image_tag("../images/edit-claim-rules.png", :alt => "Screenshot of a context menu.
+	Edit Claim Rules... is highlighted.") %>
+
+1. Select **Add Rule**.
+
+1. Select **Send Group Membership as a Claim** and click **Next**.
+
+	<%= image_tag("../images/send-group-membership-as-claim.png", :alt => "Screenshot of the
+	Choose Rule Type step of the window titled Add Transform Claim Rule Wizard.
+	There is a Claim rule template dropdown with the option Send Group Membership as a Claim
+	selected.
+	Below is a description of the claim rule template.
+	Previous, Next and Cancel buttons are at the bottom right.") %>
+
+1. Enter the **Claim rule name**.
+
+1. Click **Browse** to select your **User’s group**.
+
+1. Select **Group** as your **Outgoing claim type**.
+
+1. Set your **Outgoing claim value** to match your group’s name.
+
+1. Click **Finish**.
+
+	<%= image_tag("../images/claim-rule-name-type.png", :alt => "Screenshot of the Select Group window.
+	There is a Select the object type field with an Object Types... button.
+	Below that is a From this location field with a Locations... button.
+	Below that is an Enter the object name to select field with a Check Names button.
+	Advanced..., OK, and Cancel buttons are at the bottom of the window.") %>
+
+1. To save these configurations and use the default SAML assertion of
+`http://schemas.xmlsoap.org/claims/Group`,
+click **OK**. If you want to pass the claims assertion as a custom value `“groups”` in the SAML
+assertion, continue to the [Create Custom Value Groups](#groups) procedure below.
+
+
+## <a id='groups'></a> Create Custom Value Groups
+
+To create custom value groups:
+
+1. Select your newly created rule and click **Edit Rule**.
+
+	<%= image_tag("../images/edit-rule.png", :alt => "Screenshot of the Issuance Transform Rules tab
+	of the window titled Edit Claim Rules for PWS Demo Login. There is a list of transform rules.
+	A rule named MYGROUP is selected.
+	Below the list are Add Rule..., Edit Rule..., and Remove Rule... buttons.
+	OK, Cancel and Apply buttons are at the bottom right.") %>
+
+1. Click **View Rule Language**.
+
+1. Copy the text in the **Claim rule language** field to a notepad or other location. You need this
+text for the next steps.
+
+1. Exit the **Edit Rule** menu. Select the rule you just added and click **Remove Rule**.
+
+1. Click **Add Rule**.
+
+1. Select **Send Claims Using a Custom Rule** from the **Claim rule template** dropdown.
+
+1. Click **Next**.
+
+	<%= image_tag("../images/send-claim-using-custom-rule.png", :alt => "Screenshot of the
+	Choose Rule Type step of the window titled Add Transform Claim Rule Wizard.
+	There is a Claim rule template dropdown with the option Send Claims Using a Custom Rule
+	selected.
+	Below that is a description of the selected claim rule.
+	Previous, Next and Cancel buttons are at the bottom right.") %>
+
+1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that
+it only says `“groups”`.
+
+	<%= image_tag("../images/edit-type.png", :alt => "Screenshot of an Edit Rule window.
+	It has a Claim rule name field containing the text MYGROUP.
+	Below that is a Custom rule field containing an example rule.
+	OK and Cancel buttons are at the bottom of the window.") %>
+
+1. Click **OK** to finish making your changes and save the changes you made.
