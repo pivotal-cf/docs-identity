@@ -35,49 +35,49 @@ To set up SAML in AD FS:
 
 1. On the Welcome step, click **Start**.
 
-	<%= image_tag("../images/adfs_add_relying_party.png", :alt => 'Screenshot of the "Welcome" step of
-	the window titled "Add Relying Party Trust Wizard". A red box is drawn around the "Start" button to
-	show where it is. The "Start" button is in the lower-right of the window to the
-	right of the "Previous" button and to the left of the "Cancel" button. The body of the window has
-	several paragraphs of text and starts with "Welcome to the Add Relying Party Trust Wizard..."') %>
+    <%= image_tag("../images/adfs_add_relying_party.png", :alt => "Screenshot of the Welcome step of
+    the window titled Add Relying Party Trust Wizard. A red box is drawn around the Start button to
+    show where it is. The Start button is in the lower-right of the window to the
+    right of the Previous button and to the left of the Cancel button. The body of the window has
+    several paragraphs of text and starts with Welcome to the Add Relying Party Trust Wizard...") %>
 
 1. Select **Import data about the relying party from a file**, enter the path to the downloaded
 service provider metadata, and click **Next**.
 
-	<%= image_tag("../images/adfs_import_metadata.png", :alt => 'Screenshot of the "Select Data Source"
-	step of the window titled "Add Relying Party Trust Wizard". Red boxes are drawn around the "Import
-	data about the relying party from a file" radio button, the "Federation metadata file location"
-	field, and the "Browse" button to show where they are. The "Import data about the relying party from
-	a file" radio button is below the line of text that starts with "Example". The "Browse" button is to
-	the right of the "Federation metadata file location" field. The body of the window has several
-	paragraphs of text and begins with "Select an option that this wizard...".
-	The "Previous", "Next" and "Cancel" buttons are at the bottom right.') %>
+	<%= image_tag("../images/adfs_import_metadata.png", :alt => "Screenshot of the Select Data Source
+	step of the window titled Add Relying Party Trust Wizard. Red boxes are drawn around the Import
+	data about the relying party from a file radio button, the Federation metadata file location
+	field, and the Browse button to show where they are. The Import data about the relying party from
+	a file radio button is below the line of text that starts with Example. The Browse button is to
+	the right of the Federation metadata file location field. The body of the window has several
+	paragraphs of text and begins with Select an option that this wizard.
+	The Previous, Next and Cancel buttons are at the bottom right.") %>
 
 1. Enter a name for **Display name** and click **Next**.
 
-	<%= image_tag("../images/adfs_display_name.png", :alt => 'Screenshot of the "Specify Display Name"
-	step of the window titled "Add Relying Party Trust Wizard". A red box is drawn around the
-	"Display name" text field. A text field labeled "Notes:" is below.
-	The "Previous", "Next" and "Cancel" buttons are at the bottom right.') %>
+	<%= image_tag("../images/adfs_display_name.png", :alt => "Screenshot of the Specify Display Name
+	step of the window titled Add Relying Party Trust Wizard. A red box is drawn around the
+	Display name text field. A text field labeled Notes is below.
+	The Previous, Next and Cancel buttons are at the bottom right.") %>
 
 1. Leave the default multi-factor authentication selection and click **Next**.
 
-	<%= image_tag("../images/adfs_mfa.png", :alt => 'Screenshot of the "Configure Multi-factor
-	Authentication Now?" step of the window titled "Add Relying Party Trust Wizard". There is a list of
-	multi-factor authentication requirement statuses. Each status reads "Not configured". Below it, a
-	red box is drawn around the "I do not want to configure multi-factor authentication settings for
-	this relying party trust at this time." radio button. Below that is the "Configure multi-factor
-	authentication settings for this relying party trust." radio button.
-	The "Previous", "Next" and "Cancel" buttons are at the bottom right.') %>
+	<%= image_tag("../images/adfs_mfa.png", :alt => "Screenshot of the Configure Multi-factor
+	Authentication Now? step of the window titled Add Relying Party Trust Wizard. There is a list of
+	multi-factor authentication requirement statuses. Each status reads Not configured. Below it, a
+	red box is drawn around the I do not want to configure multi-factor authentication settings for
+	this relying party trust at this time. radio button. Below that is the Configure multi-factor
+	authentication settings for this relying party trust. radio button.
+	The Previous, Next and Cancel buttons are at the bottom right.") %>
 
 1. Select **Permit all users to access this relying party** and click **Next**.
 
-	<%= image_tag("../images/adfs_permit_users.png", :alt => 'Screenshot of the "Choose Issuance
-	Authorization Rules" step of the window titled "Add Relying Party Trust Wizard".
-	There is a description of issuance authorization rules. A red box is drawn around the "Permit all
-	users to access this relying party" radio button, which is selected. Below it is a radio button
-	labeled "Deny all users access to this relying party."
-	The "Previous", "Next" and "Cancel" buttons are at the bottom right.') %>
+	<%= image_tag("../images/adfs_permit_users.png", :alt => "Screenshot of the Choose Issuance
+	Authorization Rules step of the window titled Add Relying Party Trust Wizard.
+	There is a description of issuance authorization rules. A red box is drawn around the Permit all
+	users to access this relying party radio button, which is selected. Below it is a radio button
+	labeled Deny all users access to this relying party.
+	The Previous, Next and Cancel buttons are at the bottom right.") %>
 
 1. Review your settings and click **Next**.
 
@@ -95,12 +95,12 @@ To create two claim rules:
 
 1. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
 
-	<%= image_tag("../images/adfs_ldap_claims.png", :alt => 'Screenshot of the "Choose Rule Type" step
-	of the window titled "Add Transform Claim Rule Wizard".
-	A red box is drawn around a "Claim rule template:" dropdown with the option "Send LDAP Attributes
-	Claims" selected.
+	<%= image_tag("../images/adfs_ldap_claims.png", :alt => "Screenshot of the Choose Rule Type step
+	of the window titled Add Transform Claim Rule Wizard.
+	A red box is drawn around a Claim rule template dropdown with the option Send LDAP Attributes
+	Claims selected.
 	Below is a description of the selected claim rule template.
-	The "Previous", "Next" and "Cancel" buttons are at the bottom right.') %>
+	The Previous, Next and Cancel buttons are at the bottom right.") %>
 
 1. Enter a **Claim rule name**.
 
@@ -110,25 +110,25 @@ To create two claim rules:
 
 1. Click **Finish**.
 
-	<%= image_tag("../images/adfs_ldap_claim_mappings.png", :alt => 'Screenshot of the "Choose Rule Type"
-	step of the window titled "Add Transform Claim Rule Wizard". There is a "Claim rule name:" dropdown
-	with the option "LDAP email" selected.
-	Below that is an "Attribute store:" dropdown with the option "Active Directory" selected.
-	Below that are "LDAP Attribute" and "Outgoing Claim Type" dropdowns.
-	The "LDAP Attribute" dropdown has the option "Email Addresses" selected.
-	The "Outgoing Claim Type" dropdown has the option "Email Address" selected.
-	Red boxes are drawn around all the "Claim rule name:" field and all the dropdowns.
-	"Previous", "Finish" and "Cancel" buttons are at the bottom right.') %>
+	<%= image_tag("../images/adfs_ldap_claim_mappings.png", :alt => "Screenshot of the Choose Rule Type
+	step of the window titled Add Transform Claim Rule Wizard. There is a Claim rule name dropdown
+	with the option LDAP email selected.
+	Below that is an Attribute store dropdown with the option Active Directory selected.
+	Below that are LDAP Attribute and Outgoing Claim Type dropdowns.
+	The LDAP Attribute dropdown has the option Email Addresses selected.
+	The Outgoing Claim Type dropdown has the option Email Address selected.
+	Red boxes are drawn around all the Claim rule name field and all the dropdowns.
+	Previous, Finish and Cancel buttons are at the bottom right.") %>
 
 1. Click **Add Rule**.
 
 1. Select **Transform an Incoming Claim** from the **Claim rule template** dropdown and click **Next**.
 
-	<%= image_tag("../images/adfs_transform_claims.png", :alt => 'Screenshot of the "Select Rule Template"
-	step of the window titled "Add Transform Claim Rule Wizard". A red box is drawn around a
-	"Claim rule template:" dropdown with the option "Transform an Incoming Claim" selected.
+	<%= image_tag("../images/adfs_transform_claims.png", :alt => "Screenshot of the Select Rule Template
+	step of the window titled Add Transform Claim Rule Wizard. A red box is drawn around a
+	Claim rule template dropdown with the option Transform an Incoming Claim selected.
 	Below that is a description of the selected claim rule template.
-	"Previous", "Next" and "Cancel" buttons are at the bottom right.') %>
+	Previous, Next and Cancel buttons are at the bottom right.") %>
 
 1. Enter a **Claim rule name**.
 
@@ -140,37 +140,36 @@ To create two claim rules:
 
 1. Click **Finish**.
 
-	<%= image_tag("../images/adfs_transform_claim_mappings.png", :alt => 'Screenshot of the "Configure
-	Claim Rule" step of the window titled "Add Transform Claim Rule Wizard".
-	There is a red box drawn around a "Claim rule name:" field with "NameID" filled in.
-	Below that a red box is drawn around the dropdowns "Incoming claim type:",
-	"Incoming name ID format:", "Outgoing claim type:", and "Outgoing name ID format".
-	Below that are the radio buttons "Pass through all claim values", "Replace an incoming claim value
-	with a different outgoing claim value", and "Replace incoming e-mail suffix claims with a new
-	e-mail suffix".
-	The "Pass through all claim values" radio button is selected.
-	"Previous", "Finish" and "Cancel" buttons are at the bottom right.') %>
+	<%= image_tag("../images/adfs_transform_claim_mappings.png", :alt => "Screenshot of the Configure
+	Claim Rule step of the window titled Add Transform Claim Rule Wizard.
+	There is a red box drawn around a Claim rule name field with NameID filled in.
+	Below that a red box is drawn around the dropdowns Incoming claim type,
+	Incoming name ID format, Outgoing claim type, and Outgoing name ID format.
+	Below that are the radio buttons Pass through all claim values, Replace an incoming claim value
+	with a different outgoing claim value, and Replace incoming e-mail suffix claims with a new
+	e-mail suffix.The Pass through all claim values radio button is selected.
+	Previous, Finish and Cancel buttons are at the bottom right.") %>
 
 1. Double-click the new Relying Party Trust to open the properties.
 
 1. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
 
-	<%= image_tag("../images/adfs_remove_cert.png", :alt => 'Screenshot of the "Encryption" tab of the
-	window titled "ADFS PCF SSO Properties". There is a red box drawn around the "Encryption" tab.
+  <%= image_tag("../images/adfs_remove_cert.png", :alt => "Screenshot of the Encryption tab of the
+	window titled ADFS PCF SSO Properties. There is a red box drawn around the Encryption tab.
 	Below that are encryption certificate details.
-	Below that are "Browse...", "View...", and "Remove" buttons.
-	There is a red box drawn around the "Remove" button.
-	"OK", "Cancel" and "Apply" buttons are at the bottom right.') %>
+	Below that are Browse, View, and Remove buttons.
+	There is a red box drawn around the Remove button.
+	OK, Cancel and Apply buttons are at the bottom right.") %>
 
 1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that
 matches the
 [SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
 
-	<%= image_tag("../images/adfs_sha1.png", :alt => 'Screenshot of the "Advanced" tab of the window
-	titled "ADFS PCF SSO Properties".
-	There is a red box drawn around the "Advanced" tab.
-	Below that is dropdown labeled "Secure hash algorithm:" with the option "SHA-1" selected.
-	"OK", "Cancel" and "Apply" buttons are at the bottom right.') %>
+	<%= image_tag("../images/adfs_sha1.png", :alt => "Screenshot of the Advanced tab of the window
+	titled ADFS PCF SSO Properties.
+	There is a red box drawn around the Advanced tab.
+	Below that is dropdown labeled Secure hash algorithm with the option SHA-1 selected.
+	OK, Cancel and Apply buttons are at the bottom right.") %>
 
 
 ## <a id='disable-crl-checks'></a> (Optional) Disable CRL Checks
@@ -200,19 +199,19 @@ To set up groups in SAML from AD FS:
 
 1. Right-click your **Relying Party Trust** and select **Edit Claim Rules...**.
 
-  <%= image_tag("../images/edit-claim-rules.png", :alt => 'Screenshot of a context menu.
-	"Edit Claim Rules..." is highlighted.') %>
+  <%= image_tag("../images/edit-claim-rules.png", :alt => "Screenshot of a context menu.
+	Edit Claim Rules... is highlighted.") %>
 
 1. Select **Add Rule**.
 
 1. Select **Send Group Membership as a Claim** and click **Next**.
 
-	<%= image_tag("../images/send-group-membership-as-claim.png", :alt => 'Screenshot of the
-	"Choose Rule Type" step of the window titled "Add Transform Claim Rule Wizard".
-	There is a "Claim rule template:" dropdown with the option "Send Group Membership as a Claim"
+	<%= image_tag("../images/send-group-membership-as-claim.png", :alt => "Screenshot of the
+	Choose Rule Type step of the window titled Add Transform Claim Rule Wizard.
+	There is a Claim rule template dropdown with the option Send Group Membership as a Claim
 	selected.
 	Below is a description of the claim rule template.
-	"Previous", "Next" and "Cancel" buttons are at the bottom right.') %>
+	Previous, Next and Cancel buttons are at the bottom right.") %>
 
 1. Enter the **Claim rule name**.
 
@@ -224,11 +223,11 @@ To set up groups in SAML from AD FS:
 
 1. Click **Finish**.
 
-	<%= image_tag("../images/claim-rule-name-type.png", :alt => 'Screenshot of the "Select Group" window.
-	There is a "Select the object type:" field with an "Object Types..." button.
-	Below that is a "From this location:" field with a "Locations..." button.
-	Below that is an "Enter the object name to select" field with a "Check Names" button.
-	"Advanced...", "OK", and "Cancel" buttons are at the bottom of the window.') %>
+	<%= image_tag("../images/claim-rule-name-type.png", :alt => "Screenshot of the Select Group window.
+	There is a Select the object type field with an Object Types... button.
+	Below that is a From this location field with a Locations... button.
+	Below that is an Enter the object name to select field with a Check Names button.
+	Advanced..., OK, and Cancel buttons are at the bottom of the window.") %>
 
 1. To save these configurations and use the default SAML assertion of
 `http://schemas.xmlsoap.org/claims/Group`,
@@ -242,11 +241,11 @@ To create custom value groups:
 
 1. Select your newly created rule and click **Edit Rule**.
 
-	<%= image_tag("../images/edit-rule.png", :alt => 'Screenshot of the "Issuance Transform Rules" tab
-	of the window titled "Edit Claim Rules for PWS Demo Login". There is a list of transform rules.
-	A rule named "MYGROUP" is selected.
-	Below the list are "Add Rule...", "Edit Rule...", and "Remove Rule..." buttons.
-	"OK", "Cancel" and "Apply" buttons are at the bottom right.') %>
+	<%= image_tag("../images/edit-rule.png", :alt => "Screenshot of the Issuance Transform Rules tab
+	of the window titled Edit Claim Rules for PWS Demo Login. There is a list of transform rules.
+	A rule named MYGROUP is selected.
+	Below the list are Add Rule..., Edit Rule..., and Remove Rule... buttons.
+	OK, Cancel and Apply buttons are at the bottom right.") %>
 
 1. Click **View Rule Language**.
 
@@ -261,19 +260,19 @@ text for the next steps.
 
 1. Click **Next**.
 
-	<%= image_tag("../images/send-claim-using-custom-rule.png", :alt => 'Screenshot of the
-	"Choose Rule Type" step of the window titled "Add Transform Claim Rule Wizard".
-	There is a "Claim rule template:" dropdown with the option "Send Claims Using a Custom Rule"
+	<%= image_tag("../images/send-claim-using-custom-rule.png", :alt => "Screenshot of the
+	Choose Rule Type step of the window titled Add Transform Claim Rule Wizard.
+	There is a Claim rule template dropdown with the option Send Claims Using a Custom Rule
 	selected.
 	Below that is a description of the selected claim rule.
-	"Previous", "Next" and "Cancel" buttons are at the bottom right.') %>
+	Previous, Next and Cancel buttons are at the bottom right.") %>
 
 1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that
 it only says `“groups”`.
 
-	<%= image_tag("../images/edit-type.png", :alt => 'Screenshot of an "Edit Rule" window.
-	It has a "Claim rule name:" field containing the text "MYGROUP".
-	Below that is a "Custom rule:" field containing an example rule.
-	"OK" and "Cancel" buttons are at the bottom of the window.') %>
+	<%= image_tag("../images/edit-type.png", :alt => "Screenshot of an Edit Rule window.
+	It has a Claim rule name field containing the text MYGROUP.
+	Below that is a Custom rule field containing an example rule.
+	OK and Cancel buttons are at the bottom of the window.") %>
 
 1. Click **OK** to finish making your changes and save the changes you made.
