@@ -4,21 +4,16 @@ owner: Identity Service
 ---
 
 This topic describes how to set up Azure Active Directory (AD) as your identity provider by
-configuring SAML integration in both <%= vars.product_full %> and Azure AD.
 
 
 ## <a id='overview'></a> Overview
 
 To set up Azure AD as your identity provider through SAML integration:
 
-1. [Set up SAML in <%= vars.product_short %>](#pcf)
 1. [Set up SAML in Azure AD](#azure)
 1. [Set up Claims Mapping](#claims)
 
 
-## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
-
-To set up SAML in <%= vars.product_short %>, follow the steps in
 [Configure SAML Settings](../configure-external-id.html#config-ext-settings).
 
 
@@ -32,14 +27,11 @@ To set up SAML in Azure AD:
 
 3. Select **Non-gallery application**. Provide a name and click **Add**.
 
-
 1. Navigate to **Azure Active Directory** > **Enterprise applications**.
 
 1. Click your app and then click the **Single sign-on** tab.
 
 1. Select **SAML-based Sign-on** from the dropdown and then click **Upload metadata file** to upload
-the metadata file you downloaded earlier in [Set up SAML in <%= vars.product_short %>](#pcf).
-
 
 1. Record the **App Federation Metadata Url**. You need this for setting up the SSO identity provider
 configurations.
@@ -51,7 +43,6 @@ For more information, see [Setting up SAML](./config-sso.html#set-up-saml).
 1. Navigate to the **Users and groups** tab and then click **Add User** .
 
 1. Select users or group names from the dropdown. For example, you can add a group that includes all
-users that should be able to log in to the <%= vars.product_short %> plan.
 
 
 ## <a id='claims'></a> Set up Claims Mapping
@@ -59,8 +50,6 @@ users that should be able to log in to the <%= vars.product_short %> plan.
 To set up claims mapping:
 
 1. Navigate to **Azure Active Directory** > **App registration**. Click your app.
-
-
 
 1. To enable user attribute mappings:
 
@@ -70,8 +59,6 @@ To set up claims mapping:
 
     For more information, see the
     [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
-
-
 
 2. To pass group membership claims to the app:
     1. Click **Manifest**.
@@ -83,11 +70,9 @@ To set up claims mapping:
     1. Save the change.
 
     For more information, see the
-    [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
-
+    [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization)
 
 1. Navigate to **Azure Active Directory** > **Groups**.
 
-1. For each group that the <%= vars.product_short %> plan uses, record the **Object ID**.
-Azure AD passes the Object ID of these groups to the <%= vars.product_short %> plan.
+
 For more information, see [Configure Group Permissions](./config-sso.html#config-permissions).
