@@ -25,6 +25,7 @@
     *   [Integrating <%= vars.product_short %> with your App](../integrating-sso.html)
 *   [**Integration Guides**](../integration-guide-index.html)
     *   [Active Directory Federation Services Integration Guide](../adfs/index.html)
+        *   [Configuring Active Directory Federation Services as an Identity Provider](../adfs/config-adfs.html)
         *   [Configuring a Single Sign-On Service Provider](../adfs/config-sso.html)
         *   [Testing](../adfs/testing.html)
         *   [Troubleshooting](../adfs/troubleshooting.html)
