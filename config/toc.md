@@ -50,6 +50,7 @@
         *   [Testing](../okta/testing.html)
         *   [Troubleshooting](../okta/troubleshooting.html)
     *   [PingFederate Integration Guide](../pingfederate/index.html)
+        *   [Configuring PingFederate as an Identity Provider](../pingfederate/config-pingfederate.html)
         *   [Configuring a Single Sign-On Service Provider](../pingfederate/config-sso.html)
         *   [Testing](../pingfederate/testing.html)
         *   [Troubleshooting](../pingfederate/troubleshooting.html)
