@@ -37,21 +37,40 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Under **SP Connections**, click the **Create New** button.
 
-	<%= image_tag('../images/pingfederate_create_new_sp.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "IdP Configuration" tab within the PingFederate UI.
+    There are links below the headers "Application Integration", "Authentication Policies", and
+    "Federation Info".
+    There are "Manage All" and "Create New" buttons below the header "SP Affiliations".
+    There are "Manage All", "Crete New", and "Import" buttons below the header "SP Connections", and a
+    red box is drawn around the "Create New" button.](../images/pingfederate_create_new_sp.png)
 
 1. Select the **Browser SSO Profiles** connection template on the **Connection Type** tab and click **Next**.
 
 1. Select **Browser SSO** on the **Connection Options** tab and click **Next**.
 
-1. Select **File** as the method for importing metadata and click **Choose file** to choose the SSO metadata on the **Import Metadata** tab. Click **Next**.
+1. Select **File** as the method for importing metadata and click **Choose file** to choose the SSO
+metadata on the **Import Metadata** tab. Click **Next**.
 
-	<%= image_tag('../images/pingfederate_import_metadata.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "SP Connection" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "Import Metadata" tab is selected.
+    There are the "Metadata" radio buttons "None", "File", and "URL".
+    There is a red box drawn around the "File" radio button.
+    Next to "spring_saml_metadata.xml" is a "Choose file" button, which also has a red box around it.
+    At the bottom right are "Cancel", "Previous", and "Next" buttons.](../images/pingfederate_import_metadata.png)
 
 1. Review the information on the **Metadata Summary** tab and click **Next**.
 
 1. Ensure that the **Partner's Entity ID**, **Connection Name**, and **Base URL** fields pre-populate based on the metadata. Click **Next**.
 
-	<%= image_tag('../images/pingfederate_general_info.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "SP Connection" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "General Info" tab is selected.
+    There is a paragraph that begins "This information identifies your partner\'s unique connection
+    identifier..."
+    Below this paragraph are fields for "Partner Entity ID (Connection ID)", "Connection Name",
+    "Virtual Server IDs", and "Base URL".
+    There is an "Add" button next to the "Virtual Server IDs" field.
+    The "Partner Entity ID (Connection ID)", "Connection Name" and "Base URL" fields have values as
+    supplied by the imported metadata.](../images/pingfederate_general_info.png)
 
 
 ###<a id="browser-sso"></a> Configure Browser SSO
@@ -60,7 +79,14 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Select the **IdP-Initiated SSO** and **SP-Initiated SSO** options on the **SAML Profiles** tab and click **Next**.
 
-	<%= image_tag('../images/pingfederate_saml_profiles.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "Browser SSO" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "SAML Profiles" tab is selected.
+    There are "Single Sign-On (SSO) Profiles" and "Single Logout (SLO) Profiles" columns.
+    In the first row are "IDP-INITIATED SSO" and "IDP-INITIATED SLO" checkboxes.
+    The "IDP-INITIATED SSO" checkbox is selected and there is a red box drawn around it.
+    In the second row are "SP-INITIATED SSO" and "SP-INITIATED SLO" checkboxes.
+    The "SP-INITIATED SSO" checkbox is selected and there is a red box drawn around it.
+    At the bottom right are "Cancel", "Save Draft", and "Next" buttons.](../images/pingfederate_saml_profiles.png)
 
 1. Enter your desired assertion validity time from on the **Assertion Lifetime** tab and click **Next**.
 
@@ -74,23 +100,58 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Select a **Subject Name Format** for the **SAML_SUBJECT** on the **Attribute Contract** tab and click **Next**.
 
-	<%= image_tag('../images/pingfederate_attribute_contract.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "Assertion Creation" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "Attribute Contract" tab is selected.
+    There are "Attribute Contract" and "Subject Name Format" labels next to one another.
+    Below these labels are the text "SAML_SUBJECT" and a dropdown.
+    A red box is drawn around the text "SAML_SUBJECT" and a dropdown.
+    Below are the labels "Extend the Contract" and "Attribute Name Format" next to one another.
+    Below these labels are an empty field and a dropdown.
+    An "Add" button is at the far right.
+    At the bottom right are "Cancel", "Save Draft", "Previous", and "Next" buttons.](../images/pingfederate_attribute_contract.png)
 
 1. Click **Map New Adapter Instance** on the **Authentication Source Mapping** tab.
 
-1. Select an **Adapter Instance** and click **Next**. The adapter must include the user's email address.
+1. Select an **Adapter Instance** and click **Next**. The adapter must include the user's email
+address.
 
-	<%= image_tag('../images/pingfederate_adapter_instance.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "IdP Adapter
+    Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "Adapter Instance" tab is selected.
+    Next to the "Adapter Instance" text is a dropdown with the "Adapter" option selected.
+    Below the "Adapter Contract" label is the text "username".
+    Below that is an unselected checkbox labeled "Override Instance Settings".
+    Below that is a "Manage Adapter Instances" button.
+    At the bottom right are "Cancel", "Save Draft", and "Next" buttons.](../images/pingfederate_adapter_instance.png)
 
-1. Select the **Use only the adapter contract values in the SAML assertion** option on the **Mapping Method** tab and click **Next**.
+1. Select the **Use only the adapter contract values in the SAML assertion** option on the
+**Mapping Method** tab and click **Next**.
 
-	<%= image_tag('../images/pingfederate_mapping_method.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "IdP Adapter
+    Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "Mapping Method" tab is selected.
+    There is an "Adapter Contract" header and, below it, are the texts "email", "givenName", and
+    "username".
+    Below are the radio buttons
+    "RETRIEVE ADDITIONAL ATTRIBUTES FROM MULTIPLE DATA STORES USING ONE MAPPING",
+    "RETRIEVE ADDITIONAL ATTRIBUTES FROM A DATA STORE - INCLUDES OPTIONS",
+    "TO USE ALTERNATE DATA STORES AND/OR A FAILSAFE MAPPING",
+    and finally "USE ONLY THE ADAPTER CONTRACT VALUES IN THE SAML ASSERTION".
+    The final radio button is selected and a red box is drawn around it.
+    At the bottom right are "Cancel", "Save Draft", "Previous", and "Next" buttons.](../images/pingfederate_mapping_method.png)
 
-1. Select your adapter instance as the **Source** and the email as the **Value** on the **Attribute Contract Fullfillment** tab and click **Next**.
+1. Select your adapter instance as the **Source** and the email as the **Value** on the **Attribute
+Contract Fulfillment** tab and click **Next**.
 
-	<%= image_tag('../images/pingfederate_attribute_contract_fullfillment.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "IdP Adapter Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "Attribute Contract Fulfillment" tab is selected.
+    There is a table with "Attribute Contract", "Source", "Value", and "Actions" columns.
+    In the single row below is the text "SAML_SUBJECT", a dropdown with the option "Adapter" selected,
+    a dropdown with the option "email" selected, and the text "None available".
+    At the bottom right are "Cancel", "Save Draft", "Previous", and "Next" buttons.](../images/pingfederate_attribute_contract_fullfillment.png)
 
-1. (Optional) Select any authorization conditions you would like on the **Issuance Criteria** tab and click **Next**.
+1. (Optional) Select any authorization conditions you want on the **Issuance Criteria** tab and then
+click **Next**.
 
 1. Click **Done** on the **Summary** tab.
 
@@ -106,11 +167,23 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Select POST for **Binding** and specify the single sign-on endpoint url in the **Endpoint URL** field on the **Assertion Consumer Service URL** tab. Click **Next**
 
-	<%= image_tag('../images/pingfederate_service_url.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "Protocol Settings" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "Assertion Consumer Service URL" tab is selected.
+    There is a table with "Default", "Index", "Binding", "Endpoint URL", and "Action" columns.
+    In the row below is the text "default", the number zero, the text "POST", an endpoint URL, and
+    inside the "Action" column are "Edit" and "Delete" links.
+    In the row below is an unselected checkbox, an empty field, an empty dropdown, an empty field, and
+    an "Add" button.
+    At the bottom right are "Cancel", "Save Draft", "Previous", and "Next" buttons.](../images/pingfederate_service_url.png)
 
 1. Select **POST** on the **Allowable SAML Bindings** tab and click **Next**.
 
-	<%= image_tag('../images/pingfederate_saml_bindings.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "Protocol Settings" section within the "IdP Configuration" tab within the PingFederate UI.
+    There is a row of tabs across the top. The "Allowable SAML Bindings" tab is selected.
+    Below is the sentence "When the SP sends messages, what SAML bindings do you want to show?"
+    Below that are the checkboxes "ARTIFACT", "POST", "REDIRECT", AND "SOAP".
+    Only the "POST" checkbox is selected and there is a red box drawn around it.
+    At the bottom right are "Cancel", "Save Draft", "Previous", and "Next" buttons.](../images/pingfederate_saml_bindings.png)
 
 1. Select your desired signature policies for assertions on the **Signature Policy** tab and click **Next**.
 
@@ -126,7 +199,14 @@ integration in both <%= vars.product_full %> and PingFederate.
 
 1. Select the **Signing Certificate** to use with the <%= vars.product_full %> service and select **Include the certificate in the signature <keyinfo> element**. Click **Next**.
 
-	<%= image_tag('../images/pingfederate_digital_signature.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+    ![Screenshot of the "Credentials" section within the "IdP Configuration" tab within the PingFederate UI.
+    There are two tabs across the top. The "Digital Signature Settings" tab is selected.
+    Below is the text "SIGNING CERTIFICATE" and next to it is a dropdown.
+    Below is the selected checkbox "INCLUDE THE CERTIFICATE IN THE SIGNATURE <KEY INFO> ELEMENT."
+    Below that is the unselected checkbox "INCLUDE THE RAW KEY IN THE SIGNATURE <KEY VALUE> ELEMENT."
+    Below is the text "SIGNING ALGORITHM" and next to it is a dropdown with the option "RSA SHA256"
+    selected. In the bottom left is the "Manage Certificates" button.
+    At the bottom right are "Cancel", "Save Draft", and "Next" buttons.](../images/pingfederate_digital_signature.png)
 
 1. Click **Done** on the **Summary** tab.
 
