@@ -34,6 +34,7 @@
         *   [Testing](../azure/testing.html)
         *   [Troubleshooting](../azure/troubleshooting.html)
     *   [Azure Active Directory OIDC Integration Guide](../azure-oidc/index.html)
+        *   [Configuring Azure Active Directory as an OIDC Identity Provider](../azure-oidc/config-azure.html)
         *   [Testing](../azure-oidc/testing.html)
         *   [Troubleshooting](../azure-oidc/troubleshooting.html)
     *   [Layer7 SiteMinder Single Sign-On Integration Guide](../ca-sso/index.html)
