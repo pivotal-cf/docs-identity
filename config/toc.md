@@ -46,7 +46,6 @@
         *   [Testing](../gcp/testing.html)
         *   [Troubleshooting](../gcp/troubleshooting.html)
     *   [Okta Integration Guide](../okta/index.html)
-        *   [Configuring Okta as an Identity Provider](../okta/config-okta.html)
         *   [Configuring a Single Sign-On Service Provider](../okta/config-sso.html)
         *   [Testing](../okta/testing.html)
         *   [Troubleshooting](../okta/troubleshooting.html)
