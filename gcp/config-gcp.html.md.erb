@@ -24,11 +24,11 @@ Follow the steps below to generate GCP client credentials:
 
 1. Under the **Credentials** tab, click **Create credentials** &gt; **OAuth client ID**.
 
-    <%= image_tag('../images/gcp-create-oauth.png', :alt => 'A screenshot of the GCP console.
+    ![A screenshot of the GCP console.
     There are three side tabs: dashboard, library, and credentials. The credentials
     tab is highlighted and the Credentials pane is showing. On the credentials pane
     the create credentials dropdown has been selected. From the dropdown list, OAuth Client
-    ID is selected. ')%>
+    ID is selected.](../images/gcp-create-oauth.png)
 
 1. In the configuration pane that appears, select **Web application** under **Application type** and
 enter any **Name**. Under **Restrictions**, leave **Authorized JavaScript Origins** blank and for
@@ -49,18 +49,17 @@ enter any **Name**. Under **Restrictions**, leave **Authorized JavaScript Origin
       <strong>Warning:</strong> The origin key does not change after it is assigned, even if the
       <strong>Identity Provider Name</strong> is modified.
     </p>
-    <%= image_tag('../images/gcp-config-oauth.png', :alt => 'A screenshot of the OAuth client configuration pane.
+    ![A screenshot of the OAuth client configuration pane.
     The available fields have been described in this step. The create and cancel buttons are at
-    the bottom of the screen.') %>
+    the bottom of the screen.'](../images/gcp-config-oauth.png)
 
 1. Click **Create** and record the **client ID** and **client secret** generated. You enter these
 values as your **Relying Party OAuth Client ID** and **Relying Party OAuth Client Secret** in the
 <%= vars.operator_dash %> in
 [Set Up OIDC Identity Provider in <%= vars.product_short %>](#gcp-oidc-sso) below.
 
-    <%= image_tag('../images/gcp-oauth-keypair.png', :alt => 'A screenshot of the
-    OAuth client dialog box, which has fields that contain the generated client ID and
-    client secret. Both fields have a copy button.') %>
+    ![A screenshot of the OAuth client dialog box, which has fields that contain the generated client ID and
+    client secret. Both fields have a copy button.](../images/gcp-oauth-keypair.png)
 
 
 ## <a id='gcp-oidc-sso'></a> Set up the OIDC Identity Provider in <%= vars.product_short %>
