@@ -30,7 +30,6 @@
         *   [Testing](../adfs/testing.html)
         *   [Troubleshooting](../adfs/troubleshooting.html)
     *   [Azure Active Directory SAML Integration Guide](../azure/index.html)
-        *   [Configuring Azure Active Directory as a SAML Identity Provider](../azure/config-azure.html)
         *   [Configuring a Single Sign-On Service Provider](../azure/config-sso.html)
         *   [Testing](../azure/testing.html)
         *   [Troubleshooting](../azure/troubleshooting.html)
