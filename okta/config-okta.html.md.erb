@@ -1,0 +1,126 @@
+---
+title: Configuring Okta as an Identity Provider
+owner: Identity Service
+---
+
+This topic describes how to set up Okta as your identity provider by configuring SAML integration in both
+<%= vars.product_full %> and Okta.
+
+
+## <a id='overview'></a> Overview
+
+To set up Okta as your identity provider:
+
+1. [Set up SAML in <%= vars.product_short %>](#pcf)
+1. [Sign in to Okta](#okta)
+1. [Configure the SAML Settings](#saml-settings)
+1. [(Optional) Configure Single Logout](#single-logout)
+1. [(Optional) Specify Attribute Statements](#attr)
+1. [Download the Metadata](#metadata)
+
+
+## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
+
+To set up SAML in <%= vars.product_short %>, follow the steps in
+[Configure SAML Settings](../configure-external-id.html#config-ext-settings).
+
+
+## <a id='okta'></a> Sign in to Okta
+
+To sign in to Okta:
+
+1. Sign in as an Okta admin.
+
+1. Navigate to your app and click the **Sign On** tab.
+
+
+## <a id='saml-settings'></a> Configure the SAML Settings
+
+To configure the SAML settings:
+
+1. Under **Settings**, click **Edit**, and select **SAML 2.0**.
+
+	<%= image_tag('../images/saml_radio_button.png', :alt => 'Screenshot of the "Sign On" tab in Okta.
+	In the "Settings" section a red box is drawn around the "SAML 2.0" box.
+	Credentials Details are the bottom of the screenshot.
+	At the right are descriptions of SAML 2.0 and the application username.') %>
+
+1. Click the **General** tab.
+
+1. Under **SAML Settings**, click **Edit** and then click **Next**.
+
+	<%= image_tag('../images/okta_saml_config.png', :alt => 'Screenshot of the "Configure SAML" tab
+	within the "Edit SAML Integration" section.
+	The settings are in three sections: "General", "Attribute Statements (Optional)", and "Group Attribute Statements (Optional)".') %>
+
+1. Enter the `AssertionConsumerService Location URL` from your downloaded service provider metadata into
+**Single sign on URL**. <br>
+
+	For example:
+
+	```
+	https://PORTAL-FQDN/saml/SSO/alias/PORTAL-FQDN
+	```
+
+	Where `PORTAL-FQDN` is the fully qualified domain name (FQDN) for your login portal.
+
+	<p class="note">
+		<strong>Note:</strong> The portal FQDN uses the format <code>AUTH-DOMAIN.login.SYSTEM-DOMAIN</code>.
+		You can view the portal FQDN for a plan by logging into the <%= vars.operator_dash %>, clicking the name of
+		your plan, and selecting <strong>Edit Plan</strong>.
+	</p>
+
+1. Enter the FQDN for your login portal into **Audience URI (SP Entity ID)**.
+This value is available in the downloaded service provider metadata as the entity ID.
+
+1. Select a **Name ID format**.
+
+1. Select an **Application username**.
+
+
+## <a id='single-logout'></a> (Optional) Configure Single Logout
+
+To configure single logout:
+
+1. Click **Show Advanced Settings**.
+
+1. For **Enable Single Logout**, select **Allow application** to initiate single logout.
+
+1. Enter the `SingleLogoutService Location URL` from your downloaded service provider metadata into
+		**Single Logout URL**.
+
+1. Enter your `Auth Domain URL` into **SP Issuer**.
+
+1. Click **Upload Signature Certificate** to upload the signature certificate from your downloaded service
+provider metadata.
+You must copy the `X509Certificate` information from the downloaded service provider metadata and reformat
+it as a valid certificate file to upload.
+
+
+## <a id='attr'></a> (Optional) Specify Attribute Statements
+
+To specify attribute statements:
+
+1. Under **Attribute Statements (Optional)**, specify any attribute statements that you want to map to users
+in the ID token.
+
+1. Under **Group Attribute Statements (Optional)**, specify any group attribute statements that you
+want to map to users in the ID token. This is a group that users belong to within Okta.
+
+
+## <a id='metadata'></a> Download the Metadata
+
+To download the metadata:
+
+1. Click **Next** and then click **Finish**.
+
+1. Click **Identity Provider metadata** to download the metadata, or copy and save the link address of the
+**Identity Provider metadata**.
+You need this Okta metadata for the [Configure a <%= vars.product_short %> Service Provider](./config-sso.html)
+procedure.
+
+	<%= image_tag('../images/id_provider_metadata.png', :alt => 'Screenshot of the "Sign On" tab in Okta.
+	In the "SAML 2.0" box of the "Settings" section, a red box is drawn around the link
+	"Identity Provider metadata".
+	Credentials details are the bottom of the screenshot.
+	At the right are descriptions of SAML 2.0 and the application username.') %>

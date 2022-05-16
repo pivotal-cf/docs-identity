@@ -1,0 +1,180 @@
+---
+title: Configuring Layer7 SiteMinder as an Identity Provider
+owner: Identity Service
+---
+
+This topic describes how to set up Layer7 SiteMinder as your identity provider by
+configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMinder.
+
+
+## <a id='overview'></a> Overview
+
+To set up Layer7 SiteMinder as your identity provider through SAML integration:
+
+1. [Set up SAML in <%= vars.product_short %>](#pcf)
+1. [Create an Entity](#create-entity)
+1. [Configure the Entity](#config-entity)
+1. [Import the Metadata](#metadata)
+1. [Create a Partnership](#create-partner)
+1. [Configure the Partnership](#config-partner)
+1. [Add Federation Users](#add-fed-users)
+1. [Configure the Assertion](#assert-config)
+1. [Configure the SSO and SLO Authentication](#sso-slo)
+1. [Configure the Signature and Encryption](#sig-encrypt)
+
+
+## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
+
+Follow the steps in
+[Configure SAML Settings](../configure-external-id.html#config-ext-settings).
+
+
+## <a id='create-entity'></a> Create an Entity
+
+To create an entity:
+
+1. Sign in as a Layer7 SiteMinder admin.
+
+1. Click the **Federation** tab.
+
+1. Click on the **Entities** link.
+
+1. Click **Create Entity**.
+
+1. Select **Local** for **Entity Location**.
+
+1. Select **SAML2 IDP** for **New Entity Type**.
+
+1. Click **Next**.
+
+
+## <a id='config-entity'></a> Configure the Entity
+
+To configure the entity in the **Entities** section:
+
+1. Enter an **Entity ID**.
+
+1. Enter an **Entity Name**.
+
+1. Enter a **Description**.
+
+1. Enter the URL for your Layer7 SiteMinder as the **Base URL**.
+
+1. Select or import a **Signing Private Key Alias**.
+
+1. Select a **Name ID format**.
+
+1. Click **Next**.
+
+1. Confirm the Entity Details and click **Finish**.
+
+
+## <a id='metadata'></a> Import the Metadata
+
+To import the metadata you downloaded earlier in the
+[Configure SAML Settings](../configure-external-id.html#config-ext-settings) procedure:
+
+1. Click the **Federation** tab.
+
+1. Click the **Entities** link.
+
+1. Click **Import Metadata**.
+
+1. Click **Browse** and select the downloaded metadata for **Metadata file**.
+
+1. Select **Remote Entity** for **Import As**.
+
+1. Select **Create New** for **Operation**.
+
+1. Click **Next**.
+
+1. In the **Select Entity Defined in Metadata File** section, fill in the **Entity Name** field and then click **Next**.
+
+1. In the **Select Key Entries to Import** section, fill in the **Alias** field and then click **Next**.
+
+1. Click **Finish**.
+
+
+## <a id='create-partner'></a> Create a Partnership
+
+To create a partnership:
+
+1. Click on the **Federation** tab.
+
+2. Click **Create Partnership** and select **SAML2 IDP -> SP**.
+
+
+## <a id='config-partner'></a> Configure the Partnership
+
+To configure the partnership in the **Configure Partnership** section:
+
+1. Enter a **Partnership Name**.
+
+1. Enter a **Description**.
+
+1. Select a previously created local entity for **Local IDP**.
+
+1. Select a previously created remote entity for **Remote SP**.
+
+1. Enter a **Skew Time**.
+
+1. Add any **User Directories**.
+
+1. Click **Next**.
+
+
+## <a id='add-fed-users'></a> Add Federation Users
+
+To add federation users:
+
+1. Add the users you want to include in the partnership.
+
+1. Click **Next**.
+
+
+## <a id='assert-config'></a> Configure the Assertion
+
+To configure the assertion:
+
+1. Select a **Name ID Format**.
+
+1. Select **User Attribute** as the **Name ID Type**.
+
+1. Enter `mail` as the **Value**.
+
+1. (Optional) Under **Assertion Attributes**, specify any app or group attributes that you want to map to users
+in the ID token.
+The value for sending a user's groups is <code>FMATTR:SM_USERGROUPS</code>.
+
+1. Click **Next**.
+
+
+## <a id='sso-slo'></a> Configure the SSO and SLO Authentication
+
+To configure the SSO and SLO in the **SSO and SLO** section:
+
+1. Enter the **Authentication URL**.
+
+1. Select **HTTP-Post** for **SSO Binding**.
+
+1. Select **Both IDP and SP initiated** for **Transactions Allowed**.
+
+1. Click **Next**.
+
+
+## <a id='sig-encrypt'></a> Configure the Signature and Encryption
+
+To configure the signature and encryption in the **Signature and Encryption** section:
+
+1. Select your key alias for **Signing Private Key Alias**.
+
+1. Select your certificate alias for **Verification Certificate Alias**.
+
+1. Click **Next**.
+
+1. Click **Finish**.
+
+1. Click the **Action** dropdown and select **Activate**.
+
+1. Click the **Action** dropdown and select **Export Metadata** to obtain the metadata needed for the
+[Configuring a Single Sign-On Service Provider](./config-sso.html) procedure.

@@ -1,0 +1,58 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between Okta and <%= vars.product_full %>.
+
+##<a id='404'></a> Page Not Found
+
+#### Symptom:
+
+<%= image_tag('../images/error_404.png', :alt => "The error message page reads,
+404 Page not found. We couldn't find the page you were looking for.
+The message is followed by the button Go to Homepage.") %>
+
+#### Explanations:
+
+- The Okta instance is inactive.
+
+- The Recipient URL is misconfigured in Okta.
+
+- The identity provider SSO URL is misconfigured in the <%= vars.product_short %> plan settings.
+
+##<a id="no-valid-assertion"></a> No Valid Assertion
+
+#### Symptom:
+
+<%= image_tag('../images/error_no_valid_assertion.png', :alt => "The error message page reads,
+Response doesn't have any valid assertion which would pass subject validation.") %>
+
+#### Explanations:
+
+- The service provider Entity ID is misconfigured in Okta.
+
+- The Destination URL is misconfigured in Okta.
+
+##<a id="no-webpage"></a> Webpage Not Available
+
+#### Symptom:
+
+<%= image_tag('../images/error_webpage_not_available.png', :alt => "The error message page reads,
+This webpage is not available. DNS_PROBE_FINISHED_NXDOMAIN.
+The message is followed by a link for Details.") %>
+
+#### Explanation:
+
+- The SSO URL is misconfigured in Okta.
+
+##<a id="no-metadata"></a> Metadata Not Found
+
+#### Symptom:
+
+<%= image_tag('../images/error_metadata_not_found.png', :alt => "The error message page reads,
+Metadata for issuer http://www.okta.com/exk5s... wasn't found.") %>
+
+#### Explanation:
+
+- The identity provider Entity ID is misconfigured in the <%= vars.product_short %> plan settings.

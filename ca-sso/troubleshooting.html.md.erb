@@ -1,0 +1,96 @@
+---
+title: Troubleshooting
+owner: Identity Service
+---
+
+This topic describes how to resolve common errors that arise when configuring a single sign-on partnership between PLayer7 SiteMinder and <%= vars.product_full %>.
+
+##<a id='inactive'></a> Layer7 SiteMinder Partnership is Inactive
+
+#### Symptom:
+
+<%= image_tag('../images/ca_sso_inactive.png' , :alt => "The error message reads,
+The following error occurred: 403 - Request Forbidden. Transaction ID: d5ddb... failed.") %>
+
+#### Explanations:
+
+- The Layer7 SiteMinder is inactive in Layer7 SiteMinder.
+
+##<a id="sp-entityid"></a> Service Provider Entity ID Misconfigured
+
+#### Symptom:
+
+<%= image_tag('../images/ca_sso_misconfigured_entity_id.png', :alt => "The error message reads,
+HTTP Status 403 - Request Forbidden. Transaction ID: 174f3... failed.
+Type: status report. Message: Request Forbidden. Transaction ID: 174f3... failed.
+Description: Access to the specified resource has been forbidden.") %>
+
+#### Explanation:
+
+- The service provider Entity ID is misconfigured in Layer7 SiteMinder.
+
+##<a id="invalid-saml"></a> Incoming SAML message is invalid
+
+#### Symptom:
+
+<%= image_tag('../images/ca_sso_misconfigured_idp_entity_id.png', :alt => "The error message reads,
+HTTP Status 401 - Authentication failed. Incoming SAML message is invalid.
+Type: status report. Message: Authentication failed. Incoming SAML message is invalid.
+Description: The request requires HTTP authentication.") %>
+
+#### Explanation:
+
+- The identity provider Entity ID is misconfigured in Layer7 SiteMinder or in <%= vars.product_short %>.
+
+- The Name ID Format was misconfigured in Layer7 SiteMinder.
+
+##<a id="ACU"></a> Assertion Consumer Service URL Misconfigured
+
+#### Symptom:
+
+<%= image_tag('../images/ca_sso_acu_misconfigured.png', :alt => "The error message reads,
+HTTP Status 401 - Authentication failed. Error determining metadata contacts.
+Type: status report. Message: Authentication failed. Error determining metadata contacts.
+Description: The request requires HTTP authentication.") %>
+
+#### Explanation:
+
+- The service provider Assertion Consumer Service (ACS) is misconfigured in Layer7 SiteMinder.
+
+
+##<a id="audience"></a> Audience Field Misconfigured
+
+#### Symptom:
+
+<%= image_tag('../images/ca_sso_audience_misconfigured.png', :alt => "The error message reads,
+HTTP Status 401 - Authentication failed. Error validating SAML message.
+Type: status report. Message: Authentication failed. Error validating SAML message.
+Description: The request requires HTTP authentication.") %>
+
+#### Explanation:
+
+- The service provider Audience Field is misconfigured in Layer7 SiteMinder.
+
+##<a id="cert"></a> Expired Certificate
+
+#### Symptom:
+
+<%= image_tag('../images/ca_sso_expired_cert.png', :alt => "The error message reads,
+The following error occurred: 500 - Internal Error occurred while trying to processing
+the request. Transaction ID: 276fB...") %>
+
+#### Explanation:
+
+- The certificate has expired in Layer7 SiteMinder.
+
+##<a id="idp-url"></a> Identity Provider SSO URL Misconfigured
+
+#### Symptom:
+
+<%= image_tag('../images/ca_sso_idp_url_misconfigured.png', :alt => "The error message reads,
+HTTP Status 404 - /affwebservices/public/saml2ss. Type: status report.
+Message: /affwebservices/public/saml2ss. Description: The requested resource is not available.") %>
+
+#### Explanation:
+
+- The identity provider SSO URL is misconfigured in <%= vars.product_short %>.

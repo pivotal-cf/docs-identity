@@ -1,0 +1,86 @@
+---
+title: Configuring PingOne Cloud as an Identity Provider
+owner: Identity Service
+---
+
+This topic describes how to set up PingOne Cloud as your identity provider by configuring SAML integration in
+both <%= vars.product_full %> and PingOne Cloud.
+
+## <a id='overview'></a> Overview
+
+To set up PingOne Cloud as your identity provider through SAML integration:
+
+1. [Set up SAML in <%= vars.product_short %>](#pcf)
+1. [Add a New SAML App](#new-app)
+1. [Configure the SAML Settings](#config-saml)
+1. [(Optional) Specify App and Group Attributes](#attr)
+1. [Publish the SAML App](#publish)
+
+
+## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
+
+To set up SAML in <%= vars.product_short %>, follow the steps in
+[Configure SAML Settings](../configure-external-id.html#config-ext-settings).
+
+
+## <a id='new-app'></a> Add a New SAML App
+
+To add a new SAML app:
+
+1. Sign in as a PingOne Cloud admin.
+
+1. Navigate to your app by clicking on **Apps**.
+
+1. Click **Add Application** and choose **New SAML Application**.
+
+	<%= image_tag("../images/saml_add_application.png", :alt => "PingOne Cloud Dashboard My Applications
+	section.
+	There is an 'Add Application' button that reveals a dropdown.
+	Next to it at the far right is a 'Pause All SSO' button.
+	A red box is drawn around the 'New SAML Application' option.") %>
+
+1. Enter the **Application Name**, **Application Description**, **Category** and any **Graphics**.
+
+1. Click **Continue to Next Step** to configure SAML.
+
+
+## <a id='config-saml'></a> Configure the SAML Settings
+
+To configure the SAML settings:
+
+1. Select **I have the SAML configuration**.
+
+1. For **SAML Metadata**, click **Download** to download the identity provider metadata.
+
+1. For **Protocol Version**, select **SAML v 2.0**.
+
+1. For **Upload Metadata**, click **Select File** and select the service provider metadata.
+
+1. Click **Continue to Next Step**.
+
+	<%= image_tag("../images/pingone_saml_config.png", :alt => "Applications Configuration section.
+	There are many options. At the bottom right are 'Cancel', 'Back', and 'Continue to Next Step'
+	buttons.") %>
+
+
+## <a id='attr'></a> (Optional) Specify App and Group Attributes
+
+To specify app and group attributes:
+
+1. Under **SSO Attribute Mapping**, specify any app or group attributes that you want to map to users in the
+ID token.
+
+	<%= image_tag("../images/pingone_attribute_mapping.png", :alt => "SSO Attribute Mapping section.
+	There is a table that has 'Application Attribute', 'Identity Bridge Attribute or Literal Value', and
+	'Required' columns.
+	At the bottom left is an 'Add new attribute' button.
+	At the bottom right are 'Cancel', 'Back', and 'Save & Publish' buttons.") %>
+
+
+## <a id='publish'></a> Publish the SAML App
+
+To publish the SAML app:
+
+1. Click **Save \& Publish**.
+
+1. Click **Finish**.

@@ -1,0 +1,33 @@
+---
+title: Azure Active Directory SAML Integration Guide Overview
+owner: Identity Service
+---
+
+This documentation introduces how to set up Azure Active Directory (Azure AD) with Security Assertion Markup Language (SAML) as the identity provider for <%= vars.product_full %>.
+
+Azure Active Directory (Azure AD) is Microsoft's multi-tenant cloud based directory and identity management service.
+
+For how to set up Azure AD with Open ID Connect (OIDC),
+see [Azure Active Directory OIDC Integration Guide](../azure-oidc/index.html).
+
+## <a id='prereqs'></a>Prerequisites
+
+To integrate Azure AD with <%= vars.ops_manager %>, you must have the following:
+
+* An Azure AD subscription
+* A user with admin privileges
+
+<p class="note"><strong>Note</strong>: To configure SAML, you must <%=vars.sso_plan_enabled%></p>
+
+## <a id='azure'></a> Azure AD Integration Guide
+
+### Configuring Azure AD with <%= vars.product_short %>
+Complete both steps below to integrate your deployment with Azure AD and <%= vars.product_short %>.
+
+1. <a href="config-azure.html">Configure Azure AD as a SAML Identity Provider</a>
+1. <a href="config-sso.html">Configure a <%= vars.product_short %> Service Provider</a>
+
+### Testing and Troubleshooting
+
+* <a href="testing.html">Testing</a>
+* <a href="troubleshooting.html">Troubleshooting</a>

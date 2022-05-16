@@ -1,0 +1,48 @@
+---
+title: Testing Your Single Sign-On Connection
+owner: Identity Service
+---
+
+This topic describes how an administrator can test the OpenID Connect (OIDC) connection between <%= vars.product_full %> and Azure Active Directory (Azure AD).
+
+<%=vars.test_with_sample_apps%>
+
+Follow the steps below to test your <%= vars.product_short %> connection.
+
+1. Log in to Apps Manager at `https://apps.SYSTEM-DOMAIN` and navigate to the org and space where your app is located.
+
+1. Under **Services**, locate the service instance of the <%= vars.product_short %> plan bound to your app.
+
+	<%= image_tag '../images/azure-oidc-instance.png' %><%# Images require alt text that describes the image in detail. %>
+
+1. Select the service instance and click **Manage**.
+
+	<%= image_tag '../images/azure-oidc-manage-instance.png' %><%# Images require alt text that describes the image in detail. %>
+
+1. Under the **Apps** tab, select your app.
+
+	<%= image_tag '../images/azure-oidc-app.png' %><%# Images require alt text that describes the image in detail. %>
+
+1. Under **Identity Providers**, select the Azure AD identity provider. Remove any other identity providers.
+
+	<%= image_tag '../images/azure-oidc-app-idp.png' %><%# Images require alt text that describes the image in detail. %>
+
+1. Return to Apps Manager and click the URL listed below your app to access your app.
+
+	<%= image_tag '../images/azure-oidc-app-url.png' %><%# Images require alt text that describes the image in detail. %>
+
+1. Navigate to your login. You will be redirected to the identity provider to authenticate.
+
+	<%= image_tag '../images/azure-oidc-app-prompt.png' %><%# Images require alt text that describes the image in detail. %>
+
+1. On the identity provider sign-in page, enter your credentials and sign in.
+
+	<%= image_tag '../images/azure-oidc-login.png' %><%# Images require alt text that describes the image in detail. %>
+
+1. If the app prompts for authorization to the necessary scopes, click **Accept**.
+
+	<%= image_tag '../images/azure-oidc-accept.png' %><%# Images require alt text that describes the image in detail. %>
+
+1. If you are now logged into your app, your Azure AD OIDC to <%= vars.product_short %> connection works.
+
+	<%= image_tag '../images/azure-oidc-confirm.png' %><%# Images require alt text that describes the image in detail. %>
