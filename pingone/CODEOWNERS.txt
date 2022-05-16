@@ -1,4 +1,0 @@
-# These owners are the default subject matter owners for this repo.
-# The user below will be requested for
-# review when someone opens a pull request.
-*       @tnwang  @jncd
