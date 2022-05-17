@@ -75,7 +75,9 @@ To configure <%= vars.product_short %> properties with JSON bind parameters:
     ```
     cf bind-service APP-NAME INSTANCE-NAME -c JSON
     ```
+
     Where:
+
     * `APP-NAME` is the name of your app
     * `INSTANCE-NAME` is the name of the service instance you are binding
     * `JSON` is the path to the JSON file or the full JSON string containing bind parameters
@@ -422,7 +424,9 @@ To register an externally hosted app using service keys:
     ```
     cf create-service-key INSTANCE-NAME SERVICE-KEY -c JSON
     ```
+
     Where:
+
     + `INSTANCE-NAME` is the name of your service instance.
     + `SERVICE-KEY` is the name you want for your service key.
     + `JSON` is the path to the JSON file or the full JSON string containing bind parameters.
@@ -465,7 +469,9 @@ To register an externally hosted app using service keys:
     ```
     cf service-key INSTANCE-NAME SERVICE-KEY
     ```
+
     Where:
+
     + `INSTANCE-NAME` is the name of your service instance.
     + `SERVICE-KEY` is the name of the service key you created in step 1.
 
@@ -490,7 +496,8 @@ For more information, see
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the <%= vars.product_short %>service instance.
 This launches the <%= vars.developer_dash %>.
-    <%= image_tag("sso_dev_dashboard_apps.png", :alt => "SSO Developer Dashboard") %>
+    <%= image_tag("images/sso_dev_dashboard_apps.png", :alt => "Screenshot of SSO Developer Dashboard
+        with Apps tab selected. Shows register app button on right.") %>
     <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
 1. Click **Register App**.
 1. Enter an **App Name**.
@@ -504,12 +511,15 @@ Internal User Store is the default.
       use when they sign in.
       This option is available for all app types except <code>Service-to-Service App</code>.
     </p>
-    <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
+    <%= image_tag("images/sso_dev_select_idp.png", :alt => "Screenshot of Select Identity Providers section of the page.
+        Shows Internal User Store selected as the Identity Provider. Type is UAA and Origin Key is uaa.") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings** enter an
 allowlist of URIs beneath **Redirect URIs Whitelist**.
 The redirect query parameter specified on the OAuth request must match the URIs specified in this
 list. Otherwise, <%= vars.product_short %> rejects the request.
-    <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
+    <%= image_tag("images/sso_dev_redirect_uri.png", :alt => "Screenshot of App Settings section of the page.
+     Shows textbox labeled Redirect URI Whitespace where you enter a comma-separated list of URIs.
+     Each URI must start with a URI scheme. For example, https://,custom-scheme://") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request on the user’s
 behalf. If this app is only for authentication purposes, then the `openid` scope is sufficient.
 If the app makes API calls on behalf of the end user, specify both the scopes that the API enforces
@@ -534,7 +544,7 @@ and the scopes that the app requests.
        </tr>
        <tr>
         <td><code>uaa.resource</code></td>
-        <td>Provides access to the <code>check\_token</code> endpoint for service-to-service flows.
+        <td>Provides access to the <code>check_token</code> endpoint for service-to-service flows.
           The default for Service-to-Service Apps.</td>
        </tr>
     </table>
@@ -575,7 +585,9 @@ If you want an app to display on the home page, you must enter an **App Launch U
 app icon.
 1. In **App Launch URL**, enter the address you want for your app.
 1. Upload an app icon for your app.
-    <%= image_tag("sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
+    <%= image_tag("images/sso_dev_show_homepage.png", :alt => "Screenshot of the Show on Homepage section of the page.
+          Under the App Icon (Optional) heading is the UPLOAD APP ICON button. To the right of that button
+          is the REMOVE button, which is not yet available to click.") %>
 1. Click **Register App**.
 1. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other <%= vars.product_short %> procedures.
@@ -585,7 +597,8 @@ Record these credentials to use in other <%= vars.product_short %> procedures.
     </p>
 1. (Optional) To view examples of how to integrate <%= vars.product_short %> into your Spring Boot
 apps, click **Download Sample Apps**.
-    <%= image_tag("download_sample_apps.png", :alt => "Download Sample Apps") %>
+    <%= image_tag("images/download_sample_apps.png", :alt => "Screenshot of the DOWNLOAD SAMPLE APPS button
+        under the heading Easily test these settings with a ready-to-go Spring Boot app.") %>
 
 
 ## <a id="sso-dashboard"></a> Manage App Configurations
@@ -621,12 +634,15 @@ Internal User Store is the default.
       use when they sign in.
       This option is available for all app types except <code>Service-to-Service App</code>.
     </p>
-    <%= image_tag("sso_dev_select_idp.png", :alt => "Select Identity Providers within dashboard") %>
+    <%= image_tag("images/sso_dev_select_idp.png", :alt => "Screenshot of Select Identity Providers section of the page.
+        Shows Internal User Store selected as the Identity Provider. Type is UAA and Origin Key is uaa.") %>
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings**
 enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
 The redirect query parameter specified on the OAuth request must match the URIs specified in this
 list. Otherwise, <%= vars.product_short %> rejects the request.
-    <%= image_tag("sso_dev_redirect_uri.png", :alt => "App Settings within dashboard") %>
+    <%= image_tag("images/sso_dev_redirect_uri.png", :alt => "Screenshot of App Settings section of the page.
+     Shows textbox labeled Redirect URI Whitespace where you enter a comma-separated list of URIs.
+     Each URI must start with a URI scheme. For example, https://,custom-scheme://") %>
 1. Under **Authorization**, select the **System Permissions** that the app can request on the user’s
 behalf. If this app is only for authentication purposes, then the `openid` scope is sufficient.
 If the app makes API calls on behalf of the end user, specify both the scopes that the API enforces
@@ -683,7 +699,9 @@ For more information about tokens, see
     </p>
 1. In **App Launch URL**, enter the address you want for your app.
 1. Upload an app icon for your app.
-    <%= image_tag("sso_dev_show_homepage.png", :alt => "Show on Homepage within dashboard") %>
+    <%= image_tag("images/sso_dev_show_homepage.png", :alt => "Screenshot of the Show on Homepage section of the page.
+          Under the App Icon (Optional) heading is the UPLOAD APP ICON button. To the right of that button
+          is the REMOVE button, which is not yet available to click.") %>
 1. Click **Update App**.
 
 
@@ -704,7 +722,10 @@ To view credentials of an existing app:
       <strong>Note:</strong> You can only view the <strong>App Secret</strong> when an app is first
       registered or the secret is regenerated.
     </p>
-    <%= image_tag("sso_dev_creds.png", :alt => "App credentials") %>
+    <%= image_tag("images/sso_dev_creds.png", :alt => "Screenshot labeled Service-to-Service App for example called my-app.
+      The following fields are on the page: App ID, App Secret (The App Secret can only be displayed once.
+      Under the App Secret field there is a link for Regenerate app secret.), SSO Service URL, OAuth Token URL,
+      and Token Verification Keys.") %>
     <a href="./images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
 
 
@@ -831,7 +852,9 @@ To unregister a <%= vars.app_runtime_abbr %> app:
     ```
     cf unbind-service APP-NAME INSTANCE-NAME
     ```
+
     Where:
+
     * `APP-NAME` is the name of your app
     * `INSTANCE-NAME` is the name of the service instance you are binding
 
@@ -859,7 +882,9 @@ To unregister an externally hosted app using service keys:
     ```
     cf delete-service-key INSTANCE-NAME SERVICE-KEY
     ```
+
     Where:
+
     * `INSTANCE-NAME` is the name of your service instance
     * `SERVICE-KEY` is the name you want for your service key
 
