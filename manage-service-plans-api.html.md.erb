@@ -66,89 +66,90 @@ see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentat
 
 To make UAA identity zone API calls:
 
-<ol>
-<li> Create an identity zone admin client by following the procedure in
+1. Create an identity zone admin client by following the procedure in
   <a href="#creating">Create a UAA Identity Zone Admin Client</a> above.
-</li>
 
-<li> Find the UAA identity zone ID:</li>
-    <ol type="a">
-        <li>
-          Log in to the <%= vars.operator_dash %> at <code>https://p-identity.SYSTEM-DOMAIN</code>
-          using your User Account and Authentication (UAA) admin credentials. You can find these
-          credentials in the <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> in
-          <strong>Credentials</strong>.
-        </li>
+1. Find the UAA identity zone ID:
 
-        <li>
-        Click the name of the <%= vars.product_short %> service plan that you want to configure on
-        the <%= vars.operator_dash %>, and select <strong>Edit Plan</strong> from the dropdown.
-        </li>
+    1. Log in to the <%= vars.operator_dash %> at <code>https://p-identity.SYSTEM-DOMAIN</code>
+    using your User Account and Authentication (UAA) admin credentials. You can find these
+    credentials in the <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> in
+    <strong>Credentials</strong>.
 
-        <li> Record the identity zone ID for your plan from the <%= vars.operator_dash %> URL.
-          The URL looks similar to the below:
+    1. Click the name of the <%= vars.product_short %> service plan that you want to configure on
+    the <%= vars.operator_dash %>, and select <strong>Edit Plan</strong> from the dropdown.
 
-          <pre>https://p-identity.SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</pre>
-          Where <code>YOUR-IDENTITY-ZONE-ID</code> is your plan’s identity zone ID.
-        </li>
-    </ol>
-<li> Direct the output to a text file by running:<br>
+    1. Record the identity zone ID for your plan from the <%= vars.operator_dash %> URL.
+    The URL looks similar to the below:
 
-    <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID > JSON-BLOB.txt</pre>
+        <pre class="terminal">https://p-identity.SYSTEM-DOMAIN/dashboard/edit_plan/YOUR-IDENTITY-ZONE-ID</pre>
+
+        Where <code>YOUR-IDENTITY-ZONE-ID</code> is your plan’s identity zone ID.
+
+1. Direct the output to a text file by running:
+
+    ```
+    uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID > JSON-BLOB.txt
+    ```
+
     Where:
     <ul>
       <li><code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone ID you obtained in step 2c.</li>
       <li><code>JSON-BLOB.txt</code> is the name of your text file.</li>
     </ul>
-</li>
-<li> In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper,
+
+1. In the <code>JSON-BLOB.txt</code> file, delete the header information and array wrapper,
 leaving just the JSON blob. Confirm that the <code>id</code> in this output matches
-<code>YOUR-IDENTITY-ZONE-ID</code>.<br><br>
+<code>YOUR-IDENTITY-ZONE-ID</code>.
 
     Your remaining JSON blob looks similar to the truncated sample below:
 
-    <pre>
-{
-  "id": "d324e405-4976-49a4-a142-cf33e19d4715",
-  "subdomain": "demo",
-  "config": {
-    "clientSecretPolicy": {
-    "minLength": -1,
-    "maxLength": -1,
-    "requireUpperCaseCharacter": -1,
-    "requireLowerCaseCharacter": -1,
-    "requireDigit": -1,
-    "requireSpecialCharacter": -1
-    },
-    ...
-  },
-  "name": "demo",
-  "version": 2,
-  "description": "{\"plan_display_name\":\"demo\",
-  \"plan_description\":\"Demo Service Plan\"}",
-  "created": 1510116389000,
-  "last_modified": 1519859509000
-}
-</pre>
-</li>
-<li> In your <code>JSON-BLOB.txt</code> file, update the configurations in the JSON blob as needed,
+    <pre class="terminal">
+    {
+      "id": "d324e405-4976-49a4-a142-cf33e19d4715",
+      "subdomain": "demo",
+      "config": {
+        "clientSecretPolicy": {
+        "minLength": -1,
+        "maxLength": -1,
+        "requireUpperCaseCharacter": -1,
+        "requireLowerCaseCharacter": -1,
+        "requireDigit": -1,
+        "requireSpecialCharacter": -1
+        },
+        ...
+      },
+      "name": "demo",
+      "version": 2,
+      "description": "{\"plan_display_name\":\"demo\",
+      \"plan_description\":\"Demo Service Plan\"}",
+      "created": 1510116389000,
+      "last_modified": 1519859509000
+    }
+    </pre>
+
+1. In your <code>JSON-BLOB.txt</code> file, update the configurations in the JSON blob as needed,
 and then save the file.
+
     <p class="note warning">
       <strong>Warning:</strong> You must provide all <code>config</code> values, otherwise, data can
       be lost when doing an API update as a <code>PUT</code> command.
     </p>
-</li>
 
-<li> Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown
+1. Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown
   below.
+
     <p class="note warning">
       <strong>Warning:</strong> You must always run this command with the latest data by doing a
       <code>GET</code> before a <code>PUT</code> command.
     </p>
 
-    <pre>uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT
-    \-H 'Content-Type: application/json' -d "$(cat file.txt)"</pre>
-    Where <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone ID you obtained in step 2c.<br><br>
+    ```
+    uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT
+    \-H 'Content-Type: application/json' -d "$(cat file.txt)"
+    ```
+
+    Where <code>YOUR-IDENTITY-ZONE-ID</code> is the UAA identity zone ID you obtained in step 2c.
 
     A truncated example command looks similar to the below:
 
@@ -176,8 +177,7 @@ and then save the file.
            "last_modified" : 1529690485998
          }
     </pre>
-</li>
-</ol>
+
 For a full list of UAA API update parameters, see the
 <a href="http://docs.cloudfoundry.org/api/uaa/version/4.19.0/index.html#updating-an-identity-zone">Identity Zones Update Documentation</a>.
 
@@ -189,13 +189,14 @@ IdP so that end users are automatically redirected to an appropriate enterprise 
 
 To set a default IdP:
 
- <ol>
-   <li>Follow steps 1&ndash;6 in <a href="#updating">Update UAA Identity Provider Configurations with
-     the API</a> above, and in step 5, add the following line to the config section in the JSON blob:
-     <pre>"defaultIdentityProvider": "YOUR-IDP"</pre>
-     Where <code>YOUR-IDP</code> is the IdP you want to set as the default.
-   </li>
-</ol>
+1. Follow steps 1&ndash;6 in <a href="#updating">Update UAA Identity Provider Configurations with
+  the API</a> above, and in step 5, add the following line to the config section in the JSON blob:
+
+    ```
+    "defaultIdentityProvider": "YOUR-IDP"
+    ```
+
+    Where <code>YOUR-IDP</code> is the IdP you want to set as the default.
 
 For information about <code>defaultIdentityProvider</code>, see
 <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#creating-an-identity-zone">Creating an identity zone</a>
@@ -210,11 +211,11 @@ You can re-enable disabled plans later when they need to be used again. <br>
 
 To disable <%= vars.product_short %> plans:
 
-<ol>
-  <li>Follow steps 1&ndash;6 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in step 5, add the following line to the config section in the JSON blob:
-    <pre>"active": false</pre>
-  </li>
-</ol>
+1. Follow steps 1&ndash;6 in <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in step 5, add the following line to the config section in the JSON blob:
+
+    ```
+    "active": false
+    ```
 
 For information about <code>active</code>, see
 <a href="http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#updating-an-identity-zone">Updating an Identity Zone</a>
@@ -228,12 +229,11 @@ legal links.
 
 To modify branding on the login page:
 
-<ol>
-  <li>Follow steps 1&ndash;6 in
-    <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in
-    step 5, add or modify the branding section in the JSON blob according
-    to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
-    An example branding section is shown below:
+1. Follow steps 1&ndash;6 in
+<a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in
+step 5, add or modify the branding section in the JSON blob according
+to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
+An example branding section is shown below:
 
     <p class="note">
       <strong>Note:</strong> All values are optional.
@@ -241,20 +241,20 @@ To modify branding on the login page:
       <code>base64 image.png</code>.
     </p>
 
-    <pre>
-"branding": {
-    "companyName": "VMware",
-    "productLogo": "(base64 of png image here, will show up as image on login page)",
-    "squareLogo": "(base64 of png image here, will show up as browser icon)",
-    "footerLegalText": "©2017 VMware, Inc. or its affiliates All Rights Reserved.",
-    "footerLinks": {
-      "Privacy Policy": "https://run.pivotal.io/policies/privacy-policy/",
-      "Terms of Service": "https://run.pivotal.io/policies/terms-of-service",
-      "Up to three links, label here": "https://link-here"
-    }
-},</pre>
-  </li>
-</ol>
+    <pre class="terminal">
+    "branding": {
+        "companyName": "VMware",
+        "productLogo": "(base64 of png image here, will show up as image on login page)",
+        "squareLogo": "(base64 of png image here, will show up as browser icon)",
+        "footerLegalText": "©2017 VMware, Inc. or its affiliates All Rights Reserved.",
+        "footerLinks": {
+          "Privacy Policy": "https://run.pivotal.io/policies/privacy-policy/",
+          "Terms of Service": "https://run.pivotal.io/policies/terms-of-service",
+          "Up to three links, label here": "https://link-here"
+        }
+    },
+    </pre>
+
 
 
 ## <a id="default-groups"></a> (Optional) Add Default Groups for Users
@@ -266,36 +266,33 @@ resource.<br>
 
 To add default groups for users:
 
-<ol>
-  <li>Follow the steps 1&ndash;6 in
-    <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in
-    step 5, update the default groups section in the JSON blob according
-    to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
-    An example default groups section is shown below:
+1. Follow the steps 1&ndash;6 in
+<a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in
+step 5, update the default groups section in the JSON blob according
+to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
+An example default groups section is shown below:
 
     <p class="note">
       <strong>Note:</strong> You can add more groups to the array list.
       Users automatically have these scopes though they are not explicitly assigned to users.
     </p>
 
-<pre>
-"userConfig": {
-    "defaultGroups": [
-      "openid",
-      "password.write",
-      "uaa.user",
-      "approvals.me",
-      "profile",
-      "roles",
-      "user_attributes",
-      "uaa.offline_token",
-      "new.group.everyone.should.have",
-      "another.new.group.everyone.should.have"
-    ]
-},
-</pre>
-  </li>
-</ol>
+    <pre class="terminal">
+    "userConfig": {
+        "defaultGroups": [
+          "openid",
+          "password.write",
+          "uaa.user",
+          "approvals.me",
+          "profile",
+          "roles",
+          "user_attributes",
+          "uaa.offline_token",
+          "new.group.everyone.should.have",
+          "another.new.group.everyone.should.have"
+        ]
+    },
+    </pre>
 
 
 ## <a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
@@ -307,22 +304,20 @@ To add default groups for users:
 
 To rotate JWT signing keys:
 
-<ol>
-  <li>
-    Generate a private key that can be used for signing.
-    This is typically an asymmetric PEM-encoded private key that begins with <code>-----BEGIN RSA PRIVATE KEY-----</code>.
-    The UAA might support other key types. For more information, see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
-    <br><br>
-    Two example commands are below:
+1. Generate a private key that can be used for signing.
+This is typically an asymmetric PEM-encoded private key that begins with <code>-----BEGIN RSA PRIVATE KEY-----</code>.
+The UAA might support other key types. For more information, see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
+<br><br>
+Two example commands are below:
 
-<pre class="terminal">
-$ ssh-keygen -t rsa -m PEM -b 2048 -f OUTPUT-FILE-NAME
-</pre>
-After running the above command, enter a blank password when prompted.
+    <pre class="terminal">
+    $ ssh-keygen -t rsa -m PEM -b 2048 -f OUTPUT-FILE-NAME
+    </pre>
+    After running the above command, enter a blank password when prompted.
 
-<pre class="terminal">
-$ openssl genrsa -out OUTPUT-FILE-NAME 2048
-</pre>
+    <pre class="terminal">
+    $ openssl genrsa -out OUTPUT-FILE-NAME 2048
+    </pre>
 
     Generate your signing keys securely.
     Ask your security organization for acceptable key generation practices.
@@ -331,48 +326,45 @@ $ openssl genrsa -out OUTPUT-FILE-NAME 2048
       <strong>Warning:</strong> Do not use private keys that begin with <code>-----BEGIN OPENSSH PRIVATE KEY-----</code>
     </p>
 
-  </li>
-  <li>
-    Take the value of the generated private key and make it a single
-    line of text, replacing all new lines with <code>\n</code>. For example:
+1. Take the value of the generated private key and make it a single
+line of text, replacing all new lines with <code>\n</code>. For example:
 
-<pre>-----BEGIN RSA PRIVATE KEY-----
-MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
-5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x
------END RSA PRIVATE KEY-----
-</pre>
+    <pre class="terminal">-----BEGIN RSA PRIVATE KEY-----
+    MIIEogIBAAKCAQEA63iy3EpQG46eRzUKpI8sB/AQdbZwwrDkfPGg5Xt5xNM/wQrO
+    5l/yWp3lCElSqnKPJbCGu1DQThB47kGQjBoXL8TcrkxuCyuxaV7B5ryq3w+g3R1x
+    -----END RSA PRIVATE KEY-----
+    </pre>
 
     Becomes:
 
-  <pre><code>-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n</code></pre>
-  </li>
-  <li>Follow the steps 1&ndash;6 in
-    <a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in step 5, update the token policy section in <code>JSON-BLOB.txt</code> to add your new, generated private key as the value for <code>signingKey</code>.
-    An example of this section is shown below:
+    <pre class="terminal">-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n</pre>
 
-<pre>
-{
-  "config": {
-    "tokenPolicy": {
-      "accessTokenValidity": -1,
-      "refreshTokenValidity": -1,
-      "jwtRevocable": false,
-      "refreshTokenUnique": false,
-      "refreshTokenFormat": "jwt",
-      "activeKeyId": "first-signing-key",
-      "keys" : {
-        "first-signing-key" : {
-          "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
+1. Follow the steps 1&ndash;6 in
+<a href="#updating">Update UAA Identity Provider Configurations with the API</a> above, and in step 5, update the token policy section in <code>JSON-BLOB.txt</code> to add your new, generated private key as the value for <code>signingKey</code>.
+An example of this section is shown below:
+
+    <pre class="terminal">
+    {
+      "config": {
+        "tokenPolicy": {
+          "accessTokenValidity": -1,
+          "refreshTokenValidity": -1,
+          "jwtRevocable": false,
+          "refreshTokenUnique": false,
+          "refreshTokenFormat": "jwt",
+          "activeKeyId": "first-signing-key",
+          "keys" : {
+            "first-signing-key" : {
+              "signingKey" : "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA63iSAMPLEzUKpI8sB/AQdbZwwrDkSAMPLEt5xNM/wQrO\n5l/yWp3lCElSqnKSAMPLE8TcrkxuCyuxaV7B5ryq3w+g3R1x\n-----END RSA PRIVATE KEY-----\n"
+            }
+          }
         }
       }
     }
-  }
-}</pre>
+    </pre>
+
     For more information, see <em>Updating an Identity Zone</em> in the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
-  </li>
-  <li>
-    The first time you set a signing key for an identity zone, existing issued tokens are immediately
-    invalidated for online validation. Restart apps that do offline validation so that new signing
-    keys take effect.
-  </li>
-</ol>
+
+1. The first time you set a signing key for an identity zone, existing issued tokens are immediately
+invalidated for online validation. Restart apps that do offline validation so that new signing
+keys take effect.
