@@ -24,7 +24,9 @@ The Authorization Code grant type uses the following roles:
 
 The following diagram shows the flow for the Authorization Code grant type:
 
-<%= image_tag '../images/oauth_auth_code.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag("images/oauth_auth_code.png", :alt => "Diagram of the authorization code grant type flow described in detail in the list below.")  %>
+
+The flow of the Authorization Code grant type is:
 
 1. **Access Application**: The user accesses the app and triggers authentication and authorization.
 2. **Authentication and Request Authorization**: The app redirects the user to the authorization server where it prompts the user for their username and password. The first time the user goes through this flow for the app, the user sees an approval page. On this page, the user can choose permissions to authorize the app to access resources on their behalf.
@@ -58,7 +60,9 @@ The Client Credentials grant type uses the following roles:
 
 The following diagram shows the flow for the Client Credentials grant type:
 
-<%= image_tag '../images/oauth_client_credentials.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag("images/oauth_client_credentials.png", :alt => "Diagram of the Client Credentials grant type flow described in detail in the list below.")  %>
+
+The flow of the Client Credentials grant type is:
 
 1. **Authenticate w/ Client ID and Secret**: The app authenticates with the authorization server
      using its client ID and client secret.
@@ -95,7 +99,9 @@ The Resource Owner Password grant type uses the following roles:
 
 The following diagram shows the flow for the Resource Owner Password grant type:
 
-<%= image_tag '../images/oauth_password.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('images/oauth_password.png', :alt => "Diagram of the Resource Owner Password grant type flow described in detail in the list below.")  %>
+
+The flow of the Resource Owner Password grant type is:
 
 1. **Authenticate w/ Username and Password**: The user authenticates with the app using their username and password.
 2. **Send Username/Password**: The app sends the username and password to the authorization server for validation.
@@ -123,7 +129,9 @@ The Implicit grant type uses the following roles:
 
 The following diagram shows the flow for the Implict grant type:
 
-<%= image_tag '../images/oauth_implicit.png' %><%# Images require alt text that describes the image in detail. %>
+<%= image_tag('images/oauth_implicit.png', :alt => "Diagram of the Implicit grant type flow described in detail in the list below.")  %>
+
+The flow of the Implicit grant type is:
 
 1. **Access Application**: The user accesses the app and triggers authentication and authorization.
 2. **Authentication and Request Authorization**: The app prompts the user for their username and password. The first time the user goes through this flow for the app, the user sees an approval page. On this page, the user can choose permissions to authorize the app to access resources on their behalf.
