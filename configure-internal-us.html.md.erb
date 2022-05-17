@@ -35,7 +35,7 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in
 1. Under **Name**, click **Internal User Store** and select **Edit Provider** from the dropdown.
 
 1. Under **Email Domains**, enter a comma-separated list of the email domains for service plan.
-	![Email Domains field for the Internal User Store](email-domains.png)
+	![Email Domains field for the Internal User Store](images/email-domains.png)
 
 1. (Optional) Under **Authentication Policy** select one of the following:
 	- **Disable Internal Authentication**: This option prevents authentication against the internal user store.
@@ -46,11 +46,12 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in
 	from managing internal users.
 	<p class="note"><strong>Note:</strong> The login page does not include <strong>Create Account</strong>
 		and <strong>Reset Password</strong> links if you select this option.</p>
-	![Authentication Policy field for the Internal User Store](auth-policy.png)
+	![Authentication Policy field for the Internal User Store](images/auth-policy.png)
 
 1. Under **Password Policy Settings**, select **Use Recommended Settings**, **Use Default Settings**,
 or enter custom settings in the **Password Complexity** and **Lockout Policy** fields.
-![ Password Policy Settings for the Internal User Store](password-complex.png)
+
+	![ Password Policy Settings for the Internal User Store](images/password-complex.png)
 
 	See the following table for configuration instructions:
 
@@ -59,55 +60,44 @@ or enter custom settings in the **Password Complexity** and **Lockout Policy** f
 			<th>Field</th>
 			<th>Instructions</th>
 		</tr>
-
 		<tr>
 			<th style="text-align:center" colspan="2">Password Complexity</th>
 		</tr>
-
 		<tr>
 			<td><strong>Min Length</strong></td>
 			<td>Enter the minimum password length.</td>
 		</tr>
-
 		<tr>
 			<td><strong>Uppercase</strong></td>
 			<td>Enter the minimum number of uppercase characters required in a password.</td>
 		</tr>
-
 		<tr>
 			<td><strong>Lowercase</strong></td>
 			<td>Enter the minimum number of lowercase characters required in a password.</td>
 		</tr>
-
 		<tr>
 			<td><strong>Special Characters</strong></td>
 			<td>Enter the minimum number of special characters required in a password.</td>
 		</tr>
-
 		<tr>
 			<td><strong>Numerals</strong></td>
 			<td>Enter the minimum number of numeric characters required in a password.</td>
 		</tr>
-
 		<tr>
 			<th style="text-align:center" colspan="2">Lockout Policy</th>
 		</tr>
-
 		<tr>
 			<td><strong>Failures Allowed</strong></td>
 			<td>Enter the number of failed login attempts permitted per hour before a user is locked out.</td>
 		</tr>
-
 		<tr>
 			<td><strong>Lockout Period</strong></td>
 			<td>Enter the number of seconds a user is locked out for after excessive failed login attempts.</td>
 		</tr>
-
 		<tr>
 			<td><strong>Password Expires</strong></td>
 			<td>Enter the number of months passwords are valid for before users needs to enter a new password.</td>
 		</tr>
-
 	</table>
 
 1. Click **Save Identity Provider**.
