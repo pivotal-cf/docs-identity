@@ -31,6 +31,7 @@ Below that is a Delete User(s) button.
 Below that is a table with columns called Username, Name, Verified, and Last Modified.
 An example user has been added to the table.
 A single page number with navigation arrows is at the bottom left.">
+
 From the external identity provider user admin pane, you can:
 <ul>
   <li><strong>Search existing users:</strong> To do so, enter a value into the
@@ -81,13 +82,16 @@ for the service plan.
     ```
     uaac target AUTH-DOMAIN.login.SYSTEM-DOMAIN
     ```
+
     Where:
+
     * `AUTH-DOMAIN` is the **Auth Domain** you entered in
     [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
     * `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
     <%= vars.app_runtime_abbr %> tile.
-    <br><br>
+
     For example:
+
     <pre class="terminal">
     $ uaac target my-auth-domain.login.example.com
     </pre>
@@ -103,11 +107,14 @@ memberships or `scim.create` to only create users.
     ```
     uaac token client get ADMIN-APP-ID -s ADMIN-APP-SECRET
     ```
+
     Where:
+
     * `ADMIN-APP-ID` is your **App ID** and
     * `ADMIN-APP-SECRET` is your **App Secret**.
 
     For example:
+
     <pre class="terminal">
     $ uaac token client get MyAdminAppId -s MyAdminAppSecret
     </pre>
@@ -124,6 +131,7 @@ memberships or `scim.create` to only create users.
 section:
 
     For example:
+
     <pre class="terminal">
     $ uaac context
 
@@ -141,12 +149,15 @@ section:
     ```
     uaac user add NEW-USERNAME -p NEW-PASSWORD --emails NEW-EMAIL
     ```
+
     Where:
+
     * `NEW-USERNAME` is the username
     * `NEW-PASSWORD` is the password
     * `NEW-EMAIL` is the email address
-    <br><br>
+
     For example:
+
     <pre class="terminal">
     $ uaac user add Adam -p newSecretPassword --emails adam<span>@</span>example.com
     </pre>
@@ -156,9 +167,11 @@ section:
     ```
     uaac member add GROUP USERNAME
     ```
+
     Where `GROUP` is the group name and `USERNAME` is the user.
-    <br><br>
+
     For example:
+
     <pre class="terminal">
     $ uaac member add my-app.my-scope Adam
     </pre>
@@ -168,9 +181,11 @@ section:
     ```
     uaac member delete GROUP USERNAME
     ```
+
     Where `GROUP` is the group name and `USERNAME` is the user.
-    <br><br>
+
     For example:
+
     <pre class="terminal">
     $ uaac member delete my-app.my-scope Adam
     </pre>

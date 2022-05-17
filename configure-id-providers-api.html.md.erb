@@ -26,30 +26,34 @@ To make UAA identity provider API calls, do the following:
 
 1. Create an identity zone admin client following [Create a UAA Identity Zone Admin Client](#creating) above.
 
-1. To retrieve your identity provider ID, run the following command: <br>
+1. To retrieve your identity provider ID, run the following command:
 
     ```
     uaac curl -k /identity-providers > ID-TEXT.txt
     ```
+
     Where:
-      * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
-      * `ID-TEXT.txt` is the name of your text file.
+
+    * `YOUR-IDENTITY-PROVIDER-ID` is your identity provider ID.
+    * `ID-TEXT.txt` is the name of your text file.
 
     The command above outputs a JSON blob similar to the example below.
 
-    <pre>
-      {
-        "type" : "uaa",
-        "config" : "null",
-        "id" : "4be9d903-b6ce-4a57-9c56-94e731b58628",
-        "originKey" : "uaa",
-        "name" : "uaa",
-        "version" : 3,
-        "created" : 946684800000,
-        "last_modified" : 1538589026045,
-        "active" : true,
-        "identityZoneId" : "uaa"
+    <pre class="terminal">
+    {
+      "type" : "uaa",
+      "config" : "null",
+      "id" : "4be9d903-b6ce-4a57-9c56-94e731b58628",
+      "originKey" : "uaa",
+      "name" : "uaa",
+      "version" : 3,
+      "created" : 946684800000,
+      "last_modified" : 1538589026045,
+      "active" : true,
+      "identityZoneId" : "uaa"
+    }
     </pre>
+
     Your identity provider ID is the value of `id`. In most cases, this command returns one
     identity provider. If there are several, you can identify your identity provider by the `name`.
 
@@ -60,14 +64,15 @@ To make UAA identity provider API calls, do the following:
     ```
 
     Where:
-      * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrieved in the above step.
-      * `JSON-BLOB.txt` is the name of your text file.
+
+    * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrieved in the above step.
+    * `JSON-BLOB.txt` is the name of your text file.
 
 3. The command above outputs a JSON blob similar
 to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-PROVIDER-ID`.
 
-	<pre>
-	{
+    <pre class="terminal">
+    {
       "type": "uaa",
       "config": "{"emailDomain\":null,
       \"additionalConfiguration\":null,
@@ -84,7 +89,7 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
       "active": true,
       "identityZoneId": "uaa"
     }
-	</pre>
+    </pre>
 
 4. In your `JSON-BLOB.txt`, update the configurations in the JSON blob as needed, and then save the file.
   <p class="note warning"><strong>Warning:</strong> You must provide all <code>config</code> values, otherwise,
@@ -94,36 +99,36 @@ to the example below. Confirm that the ID in this output matches `YOUR-IDENTITY-
     <p class="note warning"><strong>Warning:</strong> You must always run this command with the latest data by doing a <code>GET</code> before the below <code>PUT</code> command.</p>
 
     ```
-    $ uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT
+    uaac curl -k /identity-providers/YOUR-IDENTITY-PROVIDER-ID -X PUT
     \-H 'Content-Type: application/json' -d "$(cat file.txt)"
     ```
-    Where:
-    * `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrieved in the above step.
 
-     A minimal example command would look similar to the following:
+    Where `YOUR-IDENTITY-PROVIDER-ID` is the identity provider ID retrieved in the above step.
 
-     <pre class="terminal">$ uaac curl -k /identity-providers/b38dfbbc-f187-4eeb-a3f3-21a3c72c6975\
-         -X PUT \
-         -H 'Content-Type: application/json' \
-         -d '{
-             "type": "uaa",
-             "config": {
-                 "emailDomain": null,
-                 "providerDescription": null,
-                 "passwordPolicy": null,
-                 "lockoutPolicy": {
-                     "lockoutPeriodSeconds": 8,
-                     "lockoutAfterFailures": 8,
-                     "countFailuresWithin": 8
-                 },
-                 "disableInternalUserManagement": false
-             },
-             "originKey": "uaa",
-             "name": "uaa",
-             "version": 0,
-             "active": true
-             }'
-     </pre>
+    A minimal example command would look similar to the following:
+
+    <pre class="terminal">$ uaac curl -k /identity-providers/b38dfbbc-f187-4eeb-a3f3-21a3c72c6975\
+       -X PUT \
+       -H 'Content-Type: application/json' \
+       -d '{
+           "type": "uaa",
+           "config": {
+               "emailDomain": null,
+               "providerDescription": null,
+               "passwordPolicy": null,
+               "lockoutPolicy": {
+                   "lockoutPeriodSeconds": 8,
+                   "lockoutAfterFailures": 8,
+                   "countFailuresWithin": 8
+               },
+               "disableInternalUserManagement": false
+           },
+           "originKey": "uaa",
+           "name": "uaa",
+           "version": 0,
+           "active": true
+           }'
+    </pre>
 
    For a full list of UAA API update parameters,
    see the [Identity Providers Update Documentation](http://docs.cloudfoundry.org/api/uaa/version/4.24.0/index.html#update).
