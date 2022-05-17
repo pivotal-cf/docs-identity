@@ -7,11 +7,15 @@ This topic describes how to resolve common errors that arise when configuring a 
 
 ##<a id='error'></a> Error
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag '../images/error_pingone.png' %><%# Images require alt text that describes the image in detail. %>
 
-#### Explanations:
+### Explanation
+
+Possible explanations are as follows:
 
 - Single sign-on is disabled on PingOne.
 
@@ -21,30 +25,36 @@ This topic describes how to resolve common errors that arise when configuring a 
 
 ##<a id="uh-oh"></a> Something went amiss
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag '../images/something_went_amiss.png' %><%# Images require alt text that describes the image in detail. %>
 
-#### Explanation:
+### Explanation
 
-- The service provider Assertion Consumer Service (ACS) is misconfigured on PingOne.
+The service provider Assertion Consumer Service (ACS) is misconfigured on PingOne.
 
 ##<a id="no-metadata"></a> Metadata Not Found
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag '../images/pingone_error_metadata_not_found.png' %><%# Images require alt text that describes the image in detail. %>
 
-#### Explanation:
+### Explanation
 
-- The identity provider Entity ID is misconfigured in the <%= vars.product_short %> plan settings.
+The identity provider Entity ID is misconfigured in the <%= vars.product_short %> plan settings.
 
 ##<a id="missing-nameid"></a> Missing Name ID
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag '../images/pingone_missing_nameid.png' %><%# Images require alt text that describes the image in detail. %>
 
-#### Explanation:
+### Explanation
 
-- The identity provider metadata is missing configurations for Name ID. See [Configure Identity Provider Metadata](config-sso.html#configure-metadata).
+The identity provider metadata is missing configurations for Name ID. See [Configure Identity Provider Metadata](config-sso.html#configure-metadata).

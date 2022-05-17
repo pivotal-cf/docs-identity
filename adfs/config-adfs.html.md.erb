@@ -180,9 +180,10 @@ If you are using a self-signed certificate, disable CRL checks:
 1. Open **Windows Powershell** as an admin.
 
 1. Disable the CRL checks by running:
-```
-set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
-```
+
+    ```
+    set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
+    ```
 
 1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the
 <%= vars.ops_manager %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate`

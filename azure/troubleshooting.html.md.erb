@@ -7,10 +7,13 @@ This topic describes how to resolve common errors that arise when configuring a 
 
 ##<a id='login'></a> Failed Login
 
-#### Symptom:
+### Symptom
+
 You cannot log in to your <%= vars.product_short %> plan.
 
-#### Solutions:
+### Solution
+
+Possible solutions are as follows:
 
 + VMware recommends using a different browser or deleting your browser cache and history before
 you log in to your <%= vars.product_short %> plan. Your <%= vars.product_short %> plan can fail if you are already logged in to Azure AD as the
@@ -25,30 +28,36 @@ For more information, see [Test Your Configurations in Azure AD](./testing.html#
 
 ##<a id='app_id'></a> App ID Not Found
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag '../images/azure_app_id.png' %><%# Images require alt text that describes the image in detail. %>
 
-#### Explanations:
+### Explanation
 
-- The App ID URI is misconfigured on Azure AD.
+The App ID URI is misconfigured on Azure AD.
 
 ##<a id="reply_url"></a> Reply URL Does Not Match
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag '../images/azure_reply_url.png' %><%# Images require alt text that describes the image in detail. %>
 
-#### Explanation:
+### Explanation
 
-- The Reply URL is misconfigured on Azure AD.
+The Reply URL is misconfigured on Azure AD.
 
 ##<a id="missing-nameid"></a> Missing Name ID
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag '../images/azure_missing_nameid.png' %><%# Images require alt text that describes the image in detail. %>
 
-#### Explanation:
+### Explanation
 
-- The identity provider metadata has the `RoleDescriptor` elements or is missing configurations for Name ID. See [Configure Identity Provider Metadata](config-sso.html#configure-metadata).
+The identity provider metadata has the `RoleDescriptor` elements or is missing configurations for Name ID. See [Configure Identity Provider Metadata](config-sso.html#configure-metadata).
