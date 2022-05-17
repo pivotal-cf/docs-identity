@@ -70,28 +70,32 @@ You can find these credentials in your <%= vars.app_runtime_abbr %> tile in <%= 
 
 1. Click the external identity provider you want to manage and select the **Users**
 choice for the provider from the dropdown. This brings you to the users admin pane.
-![Okta Users Search](images/okta_search.png)
+
+    ![Okta Users Search](images/okta_search.png)
 
 From the external identity provider users admin pane, you can:
 
 * **Search** existing users by entering a value into the search bar and clicking **Search**.
 Entering a blank value returns all users in the service plan internal user store.
-![Okta Users Search Results](images/okta_results.png)
+
+    ![Okta Users Search Results](images/okta_results.png)
 
 * **Delete a user** by selecting the checkbox next to their username and clicking **Delete User**.
 
 * **View information about a user** by clicking their username.
-![User Profile - Verified](images/user_profile_verified.png)
+
+    ![User Profile - Verified](images/user_profile_verified.png)
 
 * **View user permissions** by clicking the **Permissions** tab.
-![External User Permissions](images/external_user_permissions.png)
+
+    ![External User Permissions](images/external_user_permissions.png)
 
 * **Update user permissions** by selecting the corresponding permissions and clicking **Save User**.
 
 
 ## <a id="uaac"></a> Manage Users with the UAA CLI
 
-You may also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac),
+You can also use the UAA CLI, or [UAAC](https://github.com/cloudfoundry/cf-uaac),
 to manage users for <%= vars.product_short %>.
 You can use this approach to programmatically create new internal users or assign
 groups (scopes) to any user (whether internal or external).
@@ -116,9 +120,16 @@ be configured by an admin for the service plan.
     ```
     uaac target AUTH-DOMAIN.login.SYSTEM-DOMAIN
     ```
-    Where `AUTH-DOMAIN` is the **Auth Domain** you entered in [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
-    <br><br>
+
+    Where:
+
+    * `AUTH-DOMAIN` is the **Auth Domain** you entered in
+    [Create or Edit Service Plans](./manage-service-plans.html#create-svc-plan).
+    * `SYSTEM-DOMAIN` is the domain for system-level components you chose when installing the
+    <%= vars.app_runtime_abbr %> tile.
+
     For example:
+
     <pre class="terminal">
     $ uaac target my-auth-domain.login.example.com
     </pre>
@@ -136,10 +147,12 @@ memberships or `scim.create` to only create users.
     ```
 
     Where:
+
     * `ADMIN-APP-ID` is your **App ID** and
     * `ADMIN-APP-SECRET` is your **App Secret**.
 
     For example:
+
     <pre class="terminal">
     $ uaac token client get MyAdminAppId -s MyAdminAppSecret
     </pre>
@@ -154,6 +167,7 @@ or `scim.create` permissions under the `scope` section:
     ```
 
     For example:
+
     <pre class="terminal">
     $ uaac context
 
@@ -171,9 +185,15 @@ or `scim.create` permissions under the `scope` section:
     ```
     uaac user add NEW-USERNAME -p NEW-PASSWORD --emails NEW-EMAIL
     ```
-    Replace `NEW-USERNAME`, `NEW-PASSWORD`, and `NEW-EMAIL` with appropriate information.
-    <br><br>
+
+    Where:
+
+    * `NEW-USERNAME` is the username
+    * `NEW-PASSWORD` is the password
+    * `NEW-EMAIL` is the email address
+
     For example:
+
     <pre class="terminal">
     $ uaac user add Adam -p newSecretPassword --emails adam<span>@</span>example.com
     </pre>
@@ -183,9 +203,11 @@ or `scim.create` permissions under the `scope` section:
     ```
     uaac member add GROUP USERNAME
     ```
-    Replace `GROUP` and `USERNAME` with appropriate information.
-    <br><br>
+
+    Where `GROUP` is the group name and `USERNAME` is the user.
+
     For example:
+
     <pre class="terminal">
     $ uaac member add my-app.my-scope Adam
     </pre>
@@ -195,9 +217,11 @@ or `scim.create` permissions under the `scope` section:
     ```
     uaac member delete GROUP USERNAME
     ```
-    Replace `GROUP` and `USERNAME` with appropriate information.
-    <br><br>
+
+    Where `GROUP` is the group name and `USERNAME` is the user.
+
     For example:
+
     <pre class="terminal">
     $ uaac member delete my-app.my-scope Adam
     </pre>

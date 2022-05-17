@@ -36,20 +36,22 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
 1. Click **New Identity Provider**.
 
 1. Enter an **Identity Provider Name**. This name is displayed as a link on the login page.
-1. Enter an **Identity Provider Description**. This is the name of the group that the IdP authenticates.
-  This description is displayed to the Space Developers when they select an IdP for their app.
+
+1. Enter an **Identity Provider Description**. This is the name of the group that the IdP
+authenticates. This description is displayed to the Space Developers when they select an IdP for
+their app.
+
 1. Under **Identity Provider type**, select **SAML 2.0**.
 
 1. Configure **Identity Provider Metadata** by configuring one of the below fields as follows:
 
-    ![SAML IdP Metadata configurations](saml-metadata.png)
+    ![SAML IdP Metadata configurations](images/saml-metadata.png)
 
     <table>
       <tr>
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-
       <tr>
         <td><strong>Identity Provider Metadata URL</strong></td>
         <td>Enter a <strong>Identity Provider Metadata URL</strong>
@@ -57,7 +59,6 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
           your metadata is periodically fetched from the configured URL.
           This keeps the metadata up-to-date. </td>
       </tr>
-
       <tr>
         <td><strong>SAML File Metadata</strong></td>
         <td>Click <strong>Upload Identity Provider Metadata</strong>
@@ -71,13 +72,14 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
 1. Enter **Email Domains**. This is a comma-separated list of domains for IdP discovery.
 
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and configure the fields as follows:
-    ![Attribute Mappings fields](attribute-mappings.png)
+
+    ![Attribute Mappings fields](images/attribute-mappings.png)
+
     <table>
       <tr>
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-
       <tr>
         <td><strong>User Attributes</strong></td>
         <td>Enter any user attributes to propagate from the IdP to the service provider. <br>
@@ -91,7 +93,6 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
           </ol>
         </td>
       </tr>
-
       <tr>
         <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
@@ -105,7 +106,6 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
           </ol>
         </td>
       </tr>
-
     </table>
 
 1. Click **Create Identity Provider** to save the IdP.
@@ -116,8 +116,8 @@ You can find these credentials in your <%= vars.app_runtime_full %> tile in <%= 
 
 1. (Optional) Transfer group memberships and roles from existing SAML groups to
 <%= vars.product_short %> by following the procedures in
-     [Create or Edit Resource Permissions Mapping](#create-resource-perm)
-     and [Configure Group Allowlist for an External Identity Provider](#config-allowlist) below.
+[Create or Edit Resource Permissions Mapping](#create-resource-perm)
+and [Configure Group Allowlist for an External Identity Provider](#config-allowlist) below.
 
 
 ### <a id='config-ext-settings'></a> Configure SAML Settings
@@ -141,6 +141,7 @@ tile in <%= vars.ops_manager %> under the **Credentials** tab.
 1. Click **Configure SAML Service Provider**.
 
 1. Configure the fields as follows:
+
     <table>
       <tr>
         <th width=35%>Field</th>
@@ -344,13 +345,14 @@ your <%= vars.app_runtime_abbr %> tile in <%= vars.ops_manager %> on the **Crede
 
 1. (Optional) Under **Advanced Settings**,
 click **Attribute Mappings** and configure the fields as follows:
-    ![Attribute Mappings fields](attribute-mappings.png)
+
+    ![Attribute Mappings fields](images/attribute-mappings.png)
+
     <table>
       <tr>
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-
       <tr>
         <td><strong>User Attributes</strong></td>
         <td>Enter any user attributes to propagate from the IdP to the service provider. <br>
@@ -363,7 +365,6 @@ click **Attribute Mappings** and configure the fields as follows:
           </ol>
         </td>
       </tr>
-
       <tr>
         <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
@@ -377,7 +378,6 @@ click **Attribute Mappings** and configure the fields as follows:
           </ol>
         </td>
       </tr>
-
     </table>
 
 1. Click **Create Identity Provider** to save the IdP.
@@ -426,99 +426,88 @@ This description is displayed to the Space Developers when they select an IdP fo
 You can only have one LDAP provider per Service Plan.
 
 1. Configure the fields as follows:
-  ![Fields for configuring a connection to a LDAP IdP](ldap-connection.png)
-  <table>
-    <tr>
-      <th width=30%>Field</th>
-      <th>Instructions</th>
-    </tr>
 
-    <tr>
-      <th colspan="2" style="text-align: center;">Connection</th>
-    </tr>
+    ![Fields for configuring a connection to a LDAP IdP](images/ldap-connection.png)
 
-    <tr>
-      <td><strong>Hostname</strong></td>
-      <td>Enter the hostname for your LDAP server.</td>
-    </tr>
-
-    <tr>
-      <td><strong>Port</strong></td>
-      <td>Enter the post name for your LDAP server.</td>
-    </tr>
-
-    <tr>
-      <td><strong>Security protocol</strong></td>
-      <td>Select the security protocol that your LDAP uses for connection.</td>
-    </tr>
-
-    <tr>
-      <td><strong>Referral</strong></td>
-      <td>Select how UAA handles LDAP server referrals to other user stores.</td>
-    </tr>
-
-    <tr>
-      <td><strong>User DN</strong></td>
-      <td>Enter the LDAP Distinguished Name (DN) for binding to your LDAP server.</td>
-    </tr>
-
-    <tr>
-      <td><strong>Bind Password</strong></td>
-      <td>Enter the password for binding to your LDAP server.</td>
-    </tr>
-
-    <tr>
-      <th colspan="2" style="text-align: center;">Users</th>
-    </tr>
-
-    <tr>
-      <td><strong>Search Base</strong></td>
-      <td>Enter the location in the LDAP directory tree where LDAP user search begins.
-        The LDAP search base typically matches your domain name.</td>
-    </tr>
-
-    <tr>
-      <td><strong>Search Filter</strong> (Optional)</td>
-      <td> Enter a string to use for LDAP user search criteria. </td>
-    </tr>
-
-    <tr>
-      <td><strong>Just in Time Provisioning</strong></td>
-      <td>  If this option is enabled, users are created at login time. <br>
-        If this option is not enabled, users must be created before being able to log in</td>
-    </tr>
-
-    <tr>
-      <th colspan="2" style="text-align: center;">Groups</th>
-    </tr>
-
-    <tr>
-      <td><strong>Search Base</strong> (Optional)</td>
-      <td> Enter the location in the LDAP directory tree where the LDAP group search begins.<br>
-      To use the <strong>memberOf</strong> attribute on user objects,
-      enter the value <code>memberOf</code> as the Search Base instead of
-      an LDAP path for a group organizational unit.
-      This causes <%= vars.product_short %> to ignore the <strong>Search Filter</strong> value.</td>
-    </tr>
-
-    <tr>
-      <td><strong>Search filter</strong> (Optional)</td>
-      <td>Enter a string that defines LDAP group search criteria.
-        The standard value is <strong>member={0}</strong>.</td>
-    </tr>
-  </table>
+    <table>
+      <tr>
+        <th width=30%>Field</th>
+        <th>Instructions</th>
+      </tr>
+      <tr>
+        <th colspan="2" style="text-align: center;">Connection</th>
+      </tr>
+      <tr>
+        <td><strong>Hostname</strong></td>
+        <td>Enter the hostname for your LDAP server.</td>
+      </tr>
+      <tr>
+        <td><strong>Port</strong></td>
+        <td>Enter the post name for your LDAP server.</td>
+      </tr>
+      <tr>
+        <td><strong>Security protocol</strong></td>
+        <td>Select the security protocol that your LDAP uses for connection.</td>
+      </tr>
+      <tr>
+        <td><strong>Referral</strong></td>
+        <td>Select how UAA handles LDAP server referrals to other user stores.</td>
+      </tr>
+      <tr>
+        <td><strong>User DN</strong></td>
+        <td>Enter the LDAP Distinguished Name (DN) for binding to your LDAP server.</td>
+      </tr>
+      <tr>
+        <td><strong>Bind Password</strong></td>
+        <td>Enter the password for binding to your LDAP server.</td>
+      </tr>
+      <tr>
+        <th colspan="2" style="text-align: center;">Users</th>
+      </tr>
+      <tr>
+        <td><strong>Search Base</strong></td>
+        <td>Enter the location in the LDAP directory tree where LDAP user search begins.
+          The LDAP search base typically matches your domain name.</td>
+      </tr>
+      <tr>
+        <td><strong>Search Filter</strong> (Optional)</td>
+        <td> Enter a string to use for LDAP user search criteria. </td>
+      </tr>
+      <tr>
+        <td><strong>Just in Time Provisioning</strong></td>
+        <td>  If this option is enabled, users are created at login time. <br>
+          If this option is not enabled, users must be created before being able to log in</td>
+      </tr>
+      <tr>
+        <th colspan="2" style="text-align: center;">Groups</th>
+      </tr>
+      <tr>
+        <td><strong>Search Base</strong> (Optional)</td>
+        <td> Enter the location in the LDAP directory tree where the LDAP group search begins.<br>
+        To use the <strong>memberOf</strong> attribute on user objects,
+        enter the value <code>memberOf</code> as the Search Base instead of
+        an LDAP path for a group organizational unit.
+        This causes <%= vars.product_short %> to ignore the <strong>Search Filter</strong> value.</td>
+      </tr>
+      <tr>
+        <td><strong>Search filter</strong> (Optional)</td>
+        <td>Enter a string that defines LDAP group search criteria.
+          The standard value is <strong>member={0}</strong>.</td>
+      </tr>
+    </table>
 
 1. Enter **Email Domains**. This is a comma-separated list of domains for IdP discovery.
 
 1. (Optional) Under **Advanced Settings**, click **Attribute Mappings** and
 configure the fields as follows:
-    ![Attribute Mappings fields](attribute-mappings.png)
+
+    ![Attribute Mappings fields](images/attribute-mappings.png)
+
     <table>
       <tr>
         <th>Field</th>
         <th>Instructions</th>
       </tr>
-
       <tr>
         <td><strong>User Attributes</strong></td>
         <td>Enter any user attributes to propagate from the IdP to the service provider. <br>
@@ -535,7 +524,6 @@ configure the fields as follows:
           </ol>
         </td>
       </tr>
-
       <tr>
         <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
@@ -553,7 +541,6 @@ configure the fields as follows:
           </ol>
         </td>
       </tr>
-
     </table>
 
 1. Click **Create Identity Provider** to save the IdP.
