@@ -7,42 +7,50 @@ This topic describes how to resolve common errors that arise when configuring a 
 
 ##<a id='no-link'></a> No Link for OIDC
 
-#### Symptom:
+### Symptom
+
+The login page looks as follows:
 
 <%= image_tag("../images/gcp-no-link.png", :alt => "Dialog box says welcome to Example.
 Followed by Email and Password fields and a sign-in button.", :width => "350") %>
 
-#### Explanation:
+### Explanation
 
-- Incorrect or unavailable discovery URL. No link will appear on the login page.
+Incorrect or unavailable discovery URL. No link will appear on the login page.
 
 ##<a id="no-client"></a> No OAuth Client Found
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/gcp-no-client.png', :alt => "The error message page reads,
 Google. 401. That's an error. Error: invalid_client. The OAuth client was not found.
 The error message is followed by a dropdown for Request Details.") %>
 
-#### Explanation:
+### Explanation
 
-- Incorrect OAuth Client ID configured.
+Incorrect OAuth Client ID configured.
 
 ##<a id="unauthorized"></a> Unauthorized
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/gcp-unauthorized.png', :alt => "The error message page reads,
 There was an error when authenticating against the external identity provider:
 401 Unauthorized.") %>
 
-#### Explanation:
+### Explanation
 
-- Incorrect OAuth client secret configured.
+Incorrect OAuth client secret configured.
 
 ##<a id="mismatch"></a> Redirect URI Mismatch
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/gcp-mismatch.png', :alt => "The partially redacted error message page reads,
 Google. 400. That's an error. Error: redirect_uri_mismatch. The redirect URI in the
@@ -50,30 +58,34 @@ request, (partially redacted URL beginning with https://example.login),
 does not match the ones authorized for the OAuth client.
 Visit (partially redacted URL) to update the authorized redirect URIs.") %>
 
-#### Explanation:
+### Explanation
 
-- Incorrect authorization redirect URI on OAuth Client.
+Incorrect authorization redirect URI on OAuth Client.
 
 ##<a id="empty"></a> Empty Username
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/gcp-empty.png', :alt => "The error message page reads,
 There was an error when authenticating against the external identity provider:
 Username cannot be empty.") %>
 
-#### Explanation:
+### Explanation
 
-- `user_name` attribute was not mapped to `email`.
+The `user_name` attribute was not mapped to `email`.
 
 ##<a id="cant-map"></a> Unable to map claim to a username
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/gcp-empty.png' , :alt => "The error message page reads,
 There was an error when authenticating against the external identity provider:
 Username cannot be empty.") %>
 
-#### Explanation:
+### Explanation
 
-- The scope for "email" was not configured. Select the "email" scope in your identity provider configurations.
+The scope for "email" was not configured. Select the "email" scope in your identity provider configurations.
