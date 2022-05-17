@@ -146,7 +146,9 @@ To create reply and endpoint URLs:
     ```
     https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/login/callback/ORIGIN-KEY
     ```
+
     Where:
+
     - `AUTH-DOMAIN` is the **Auth Domain** you entered in
     [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
     - `ORIGIN-KEY` is based on the **Identity Provider Name** you set in the
@@ -201,6 +203,7 @@ Follow the steps below to set up an OIDC provider for <%= vars.product_short %>:
 1. Clear the **Enable Discovery** checkbox and enter the following information from the
 **OpenID Connect metadata endpoint** you constructed in the final step of
 [the previous section](#relying).
+
     <table>
       <tr>
         <th>For…</th>
@@ -245,7 +248,6 @@ Follow the steps below to set up an OIDC provider for <%= vars.product_short %>:
         </td>
       </tr>
     </table>
-    <br>
 
 1. Select `openid` as a scope. You can select additional scopes.
 

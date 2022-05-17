@@ -7,61 +7,73 @@ This topic describes how to resolve common errors that arise when configuring a 
 
 ##<a id='no-link'></a> No Link for OIDC
 
-#### Symptom:
+### Symptom
+
+The login page looks as follows:
 
 <%= image_tag("gcp-no-link.png", :alt => "Dialog box says welcome to Example, Email,
     Password and fields and a sign-in button.", :width => "350") %>
 
-#### Explanation:
+### Explanation
 
-- Incorrect or unavailable discovery URL. No link will appear on the login page.
+Incorrect or unavailable discovery URL. No link will appear on the login page.
 
 ##<a id="no-client"></a> No OAuth Client Found
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag 'gcp-no-client.png' %>
 
-#### Explanation:
+### Explanation
 
-- Incorrect OAuth Client ID configured.
+Incorrect OAuth Client ID configured.
 
 ##<a id="unauthorized"></a> Unauthorized
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag 'gcp-unauthorized.png' %>
 
-#### Explanation:
+### Explanation
 
-- Incorrect OAuth client secret configured.
+Incorrect OAuth client secret configured.
 
 ##<a id="mismatch"></a> Redirect URI Mismatch
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag 'gcp-mismatch.png' %>
 
-#### Explanation:
+### Explanation
 
-- Incorrect authorization redirect URI on OAuth Client.
+Incorrect authorization redirect URI on OAuth Client.
 
 ##<a id="empty"></a> Empty Username
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag 'gcp-empty.png' %>
 
-#### Explanation:
+### Explanation
 
-- `user_name` attribute was not mapped to `email`.
+The `user_name` attribute was not mapped to `email`.
 
 ##<a id="cant-map"></a> Unable to map claim to a username
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag 'gcp-empty.png' %>
 
-#### Explanation:
+### Explanation
 
-- The scope for "email" was not configured. Select the "email" scope in your identity provider configurations.
+The scope for "email" was not configured. Select the "email" scope in your identity provider configurations.
