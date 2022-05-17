@@ -5,7 +5,11 @@ owner: SSO
 
 This topic explains how to resolve common errors that can arise when you configure a single sign-on partnership between two <%= vars.product_full %> service plans, one acting as an Identity Provider (IDP) and one acting as a Relying Party (RP).
 
-## No link for OIDC, or the Service Provider Login page is blank
+##<a id='no-link'></a>  No link for OIDC, or the Service Provider Login page is blank
+
+### Symptom
+
+The service provider login screen looks as follows:
 
 <img src="../images/error-blank-service-provider.png"
 alt="A blank service provider login screen">
@@ -16,7 +20,11 @@ alt="A blank service provider login screen">
 * This error can occur if you do not enable **Skip SSL Connection** and the IDP service plan is
 on an instance that uses a self-signed certificate.
 
-## Authorization Request Error
+##<a id='auth-request'></a> Authorization Request Error
+
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <img src="../images/error-no-client-w-requested-id.png"
 alt="The error message page reads, No client with requested id: ec2f8...
@@ -24,9 +32,14 @@ Authorization Request Error. There was an error. The request for authorization w
 
 ### Cause
 
-You may have configured your OAuth client ID incorrectly.
+You might have configured your OAuth client ID incorrectly.
 
-## 401 Unauthorized
+##<a id='401-error'></a> 401 Unauthorized
+
+### Symptom
+
+You see an error similar to the following screenshot:
+
 <img src="../images/error-401-unauth.png"
 alt="The error message page reads, There was an error when authenticating against
 the external identity provider: 401 Unauthorized.">
@@ -35,7 +48,11 @@ the external identity provider: 401 Unauthorized.">
 
 You may have configured your OAuth client secret incorrectly.
 
-## 405 Method Not Allowed
+##<a id='405-error'></a> 405 Method Not Allowed
+
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <img src="../images/error-405-method-not-allowed.png"
 alt="The error message page reads, HTTP Status 405 ? Method Not Allowed.
@@ -48,7 +65,11 @@ but not supported by the target resource.">
 * You may have omitted the <code>openid</code> scope in the IDP configuration on the RP service plan.
 * You may be requesting the wrong scopes or scopes that are not supported by the other <%= vars.product_short %> plan. Confirm that you are only requesting <code>openid</code> scopes.
 
-## Cannot determine username with given credentials
+##<a id='cannot-find-username'></a> Cannot determine username with given credentials
+
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <img src="../images/error-cannot-determine-username.png"
 alt="The error message page reads, There was an error when authenticating against
@@ -56,9 +77,13 @@ the external identity provider: Cannot determine username from credentials suppl
 
 ### Cause
 
-The username you used may not have a value mapped to it. In the IDP attributes, map the "username" attribute to "username."
+The username you used might not have a value mapped to it. In the IDP attributes, map the "username" attribute to "username."
 
-## Invalid redirect
+##<a id='invalid-redirect'></a> Invalid redirect
+
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <img src="../images/error-invalid-redirect.png"
 alt="The error message page reads, Invalid redirect https://sp.login.uaa-acceptance.cf-app.com/login/...

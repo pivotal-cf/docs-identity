@@ -7,38 +7,46 @@ This topic describes how to resolve common errors that arise when configuring a 
 
 ##<a id='inactive'></a> Layer7 SiteMinder Partnership is Inactive
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/ca_sso_inactive.png' , :alt => "The error message reads,
 The following error occurred: 403 - Request Forbidden. Transaction ID: d5ddb... failed.") %>
 
-#### Explanations:
+### Explanation
 
-- The Layer7 SiteMinder is inactive in Layer7 SiteMinder.
+The Layer7 SiteMinder is inactive in Layer7 SiteMinder.
 
 ##<a id="sp-entityid"></a> Service Provider Entity ID Misconfigured
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/ca_sso_misconfigured_entity_id.png', :alt => "The error message reads,
 HTTP Status 403 - Request Forbidden. Transaction ID: 174f3... failed.
 Type: status report. Message: Request Forbidden. Transaction ID: 174f3... failed.
 Description: Access to the specified resource has been forbidden.") %>
 
-#### Explanation:
+### Explanation
 
-- The service provider Entity ID is misconfigured in Layer7 SiteMinder.
+The service provider Entity ID is misconfigured in Layer7 SiteMinder.
 
 ##<a id="invalid-saml"></a> Incoming SAML message is invalid
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/ca_sso_misconfigured_idp_entity_id.png', :alt => "The error message reads,
 HTTP Status 401 - Authentication failed. Incoming SAML message is invalid.
 Type: status report. Message: Authentication failed. Incoming SAML message is invalid.
 Description: The request requires HTTP authentication.") %>
 
-#### Explanation:
+### Explanation
+
+Possible explanations are as follows:
 
 - The identity provider Entity ID is misconfigured in Layer7 SiteMinder or in <%= vars.product_short %>.
 
@@ -46,51 +54,59 @@ Description: The request requires HTTP authentication.") %>
 
 ##<a id="ACU"></a> Assertion Consumer Service URL Misconfigured
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/ca_sso_acu_misconfigured.png', :alt => "The error message reads,
 HTTP Status 401 - Authentication failed. Error determining metadata contacts.
 Type: status report. Message: Authentication failed. Error determining metadata contacts.
 Description: The request requires HTTP authentication.") %>
 
-#### Explanation:
+### Explanation
 
-- The service provider Assertion Consumer Service (ACS) is misconfigured in Layer7 SiteMinder.
+The service provider Assertion Consumer Service (ACS) is misconfigured in Layer7 SiteMinder.
 
 
 ##<a id="audience"></a> Audience Field Misconfigured
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/ca_sso_audience_misconfigured.png', :alt => "The error message reads,
 HTTP Status 401 - Authentication failed. Error validating SAML message.
 Type: status report. Message: Authentication failed. Error validating SAML message.
 Description: The request requires HTTP authentication.") %>
 
-#### Explanation:
+### Explanation
 
-- The service provider Audience Field is misconfigured in Layer7 SiteMinder.
+The service provider Audience Field is misconfigured in Layer7 SiteMinder.
 
 ##<a id="cert"></a> Expired Certificate
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/ca_sso_expired_cert.png', :alt => "The error message reads,
 The following error occurred: 500 - Internal Error occurred while trying to processing
 the request. Transaction ID: 276fB...") %>
 
-#### Explanation:
+### Explanation
 
-- The certificate has expired in Layer7 SiteMinder.
+The certificate has expired in Layer7 SiteMinder.
 
 ##<a id="idp-url"></a> Identity Provider SSO URL Misconfigured
 
-#### Symptom:
+### Symptom
+
+You see an error similar to the following screenshot:
 
 <%= image_tag('../images/ca_sso_idp_url_misconfigured.png', :alt => "The error message reads,
 HTTP Status 404 - /affwebservices/public/saml2ss. Type: status report.
 Message: /affwebservices/public/saml2ss. Description: The requested resource is not available.") %>
 
-#### Explanation:
+### Explanation
 
-- The identity provider SSO URL is misconfigured in <%= vars.product_short %>.
+The identity provider SSO URL is misconfigured in <%= vars.product_short %>.
