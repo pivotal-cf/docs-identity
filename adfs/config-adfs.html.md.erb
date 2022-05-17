@@ -159,7 +159,11 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 	1. Open **Windows Powershell** as an Administrator.
 
-	2. Execute the following command: <pre class="terminal">> set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None</pre>
+	2. Run the following command:
+
+      ```
+      set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
+      ```
 
 1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the <%= vars.ops_manager %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
 

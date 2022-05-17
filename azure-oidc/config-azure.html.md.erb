@@ -125,7 +125,9 @@ Otherwise, search for your application name in the App registrations list.
     ```
     https://AUTH-DOMAIN.login.SYSTEM-DOMAIN/login/callback/ORIGIN-KEY
     ```
+
     Where:
+
     - `AUTH-DOMAIN` is the **Auth Domain** you entered in
     [Create or Edit Service Plans](../manage-service-plans.html#create-svc-plan).
     - `SYSTEM-DOMAIN` is the domain for system-level components you chose when
@@ -180,26 +182,29 @@ Follow the steps below to set up an OIDC provider for <%= vars.product_short %>:
 
 1. Follow steps in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc),
 using the option **DISCOVER OIDC CONFIGURATION**.
-<p class="note">
-   <strong>Note</strong>: Azure Active Directory v1 might require the option
-   <strong>MANUALLY ENTER OIDC CONFIGURATION</strong>.
-</p>
+
+    <p class="note">
+       <strong>Note</strong>: Azure Active Directory v1 might require the option
+       <strong>MANUALLY ENTER OIDC CONFIGURATION</strong>.
+    </p>
 
 1. When selecting supported scopes, select at least `openid` and `profile`.
 For an explanation of what each scope means, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes).
 <br><br>
 VMware recommends using scope `profile` so that Azure includes `preferred_username` in the ID token,
 as shown in the [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens).
-<p class="note">
-   <strong>Note</strong>: Azure Active Directory v1 only requires scope <code>openid</code>, although other scopes can be requested.
-</p>
+
+    <p class="note">
+       <strong>Note</strong>: Azure Active Directory v1 only requires scope <code>openid</code>, although other scopes can be requested.
+    </p>
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
 select **user_name** as the **User Schema Attribute** and enter `preferred_username` as the
 **Attribute Name**. This enables <%= vars.product_short %> to identify the authenticated user.
-<p class="note">
-   <strong>Note</strong>: Azure Active Directory v1 uses <code>unique_name</code> instead of <code>preferred_username</code>.
-</p>
+
+    <p class="note">
+       <strong>Note</strong>: Azure Active Directory v1 uses <code>unique_name</code> instead of <code>preferred_username</code>.
+    </p>
 
 1. (Optional) Configure additional attribute mappings.
 
