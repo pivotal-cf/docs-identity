@@ -69,6 +69,7 @@ an access token for the admin client for your service plan. UAAC stores the toke
     ```
 
     For example:
+    
     <pre class="terminal">
     $ uaac context
     [1]*[ExampleAppID]
@@ -80,25 +81,26 @@ an access token for the admin client for your service plan. UAAC stores the toke
         jti: 91b3-abcd1233
     </pre>
 
-1. Run the following command to create an identity zone admin client. <br>
+1. Run the following command to create an identity zone admin client.
 
     ```
     uaac client add ZONE-ADMIN-CLIENT-ID --authorized_grant_types client_credentials --authorities uaa.admin
     ```
-    Where `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.<br><br>
+    Where `ZONE-ADMIN-CLIENT-ID` is an ID you want to use to identify this zone admin client.
 
     When prompted for a `New client secret`, provide a client secret for this
     identity zone admin client.
-    Ensure you use a secure value for your client secret. <br><br>
+    Ensure you use a secure value for your client secret.
 
     For example:
+
     <pre class="terminal">
     $ uaac client add ExampleZoneAdminClientID --authorized_grant_types client_credentials --authorities uaa.admin
     New client secret:  *****
     Verify new client secret:  *****
     </pre>
 
-    Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`.<br><br>
+    Record the values you provide for `ZONE-ADMIN-CLIENT-ID` and `New client secret`.
 
     You can delete the original admin client created through the <%= vars.operator_dash %> after you create the identity zone client.
 
