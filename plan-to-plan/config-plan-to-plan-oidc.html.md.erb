@@ -30,24 +30,45 @@ If you have not completed these prerequisites, see [Create or Edit Service Plans
 
 Follow the instructions below to set up relying party configurations in the identity provider plan.
 
-<ol>
-	<li>Navigate to Apps Manager.</li>
-	<li>Select the space.</li>
-	<li>Click into the <strong>Service</strong> tab.</li>
-	<li>Click the service you want to modify.</li>
-	<li>Click <strong>Manage</strong>.<br/>
-	<img src="../images/manage-button.png"></li><%# Images require alt text that describes the image in detail. %>
-	<li>Click <strong>New App</strong>.</li>
-	<li>Type a name in the <strong>App Name</strong> field.</li>
-	<li>Choose <strong>Web App</strong> from the list of app types.</li>
-	<li>Type a temporary URL in the <strong>Auth Redirect URIs</strong> field. You replace this URL after configuring an identity provider on the relying party plan.</li>
-	<li>In the <strong>Scopes</strong> field, type <code>openid</code>.<br/>
-	Optionally, select <code>openid</code> from the list of <strong>Auto-Approved Scopes</strong>. By adding <code>openid</code> as an automatically approved scope, you prevent users from being prompted to authorize a login from the identity provider.</li>
-	<li>Click <strong>Register App</strong>. When the app is created successfully, you are prompted to download your app credentials.
-	<img src="../images/dl-app-creds.png"><br/></li><%# Images require alt text that describes the image in detail. %>
-	<li>Click <strong>Download App Credentials</strong> to save the credentials for your app.<br/>
-	<p class="note warning"><strong>Warning:</strong> This is the last time you can download your app credentials. VMware recommends that you download the credentials and store them securely.</p></li>
-</ol>
+1. Navigate to Apps Manager.
+
+1. Select the space.
+
+1. Click into the **Service** tab.
+
+1. Click the service you want to modify.
+
+1. Click **Manage**.
+
+    ![Screenshot of the Single Sign-On service in Apps Manager.
+    There is a row of tabs across the top of the pane labeled Overview, Plan, and Settings. To the right of the tabs are links for
+    Docs, Support, and Manage. The Manage link is highlighted.](../images/manage-button.png)
+
+1. Click **New App**.
+
+1. Type a name in the **App Name** field.
+
+1. Choose **Web App** from the list of app types.
+
+1. Type a temporary URL in the **Auth Redirect URIs** field. You replace this URL after configuring an identity provider on the relying party plan.
+
+1. In the **Scopes** field, type `openid`. Optionally, select `openid` from the list of **Auto-Approved Scopes**.
+By adding `openid` as an automatically approved scope, you prevent users from being prompted to authorize a login from the identity provider.
+
+1. Click **Register App**. When the app is created successfully, you are prompted to download your app credentials.
+
+    ![Screenshot of the Download App Credentials dialog box,
+    which has fields that contain the App ID and the obscured App Secret.
+    Below the app secret field is the Show App Secret button.
+    Text below these fields reads 'this is the last time these App Credentials will be available for download.'
+    At the bottom of the box is the Download App Credentials button.](../images/dl-app-creds.png)
+
+1. Click **Download App Credentials** to save the credentials for your app.
+
+    <p class="note warning">
+      <strong>Warning:</strong> This is the last time you can download your app credentials.
+      VMware recommends that you download the credentials and store them securely.
+    </p>
 
 ## <a id="rp"></a>Set Up the OIDC Identity Provider Configuration in the Relying Party Plan
 
