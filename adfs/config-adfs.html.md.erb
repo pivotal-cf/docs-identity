@@ -85,85 +85,85 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 1. Create two claim rules by following these steps:
 
-	1. Click **Add Rule**.
+    1. Click **Add Rule**.
 
-	2. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
+    2. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
 
-    ![Screenshot of the "Choose Rule Type" step
-    of the window titled "Add Transform Claim Rule Wizard".
-    A red box is drawn around a "Claim rule template:" dropdown with the option "Send LDAP Attributes
-    Claims" selected.
-    Below is a description of the selected claim rule template.
-    The "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_ldap_claims.png)
+        ![Screenshot of the "Choose Rule Type" step
+        of the window titled "Add Transform Claim Rule Wizard".
+        A red box is drawn around a "Claim rule template:" dropdown with the option "Send LDAP Attributes
+        Claims" selected.
+        Below is a description of the selected claim rule template.
+        The "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_ldap_claims.png)
 
-	3. Enter a **Claim rule name**.
+    3. Enter a **Claim rule name**.
 
-	4. Select **Active Directory** for **Attribute store**.
+    4. Select **Active Directory** for **Attribute store**.
 
-	5. Select **E-Mail-Addresses** for **LDAP Attribute** and select **E-mail Address** for **Outgoing Claim Type**.
+    5. Select **E-Mail-Addresses** for **LDAP Attribute** and select **E-mail Address** for **Outgoing Claim Type**.
 
-	6. Click **Finish**.
+    6. Click **Finish**.
 
-    ![Screenshot of the "Choose Rule Type"
-    step of the window titled "Add Transform Claim Rule Wizard". There is a "Claim rule name:" dropdown
-    with the option "LDAP email" selected.
-    Below that is an "Attribute store:" dropdown with the option "Active Directory" selected.
-    Below that are "LDAP Attribute" and "Outgoing Claim Type" dropdowns.
-    The "LDAP Attribute" dropdown has the option "Email Addresses" selected.
-    The "Outgoing Claim Type" dropdown has the option "Email Address" selected.
-    Red boxes are drawn around all the "Claim rule name:" field and all the dropdowns.
-    "Previous", "Finish" and "Cancel" buttons are at the bottom right.](../images/adfs_ldap_claim_mappings.png)
+        ![Screenshot of the "Choose Rule Type"
+        step of the window titled "Add Transform Claim Rule Wizard". There is a "Claim rule name:" dropdown
+        with the option "LDAP email" selected.
+        Below that is an "Attribute store:" dropdown with the option "Active Directory" selected.
+        Below that are "LDAP Attribute" and "Outgoing Claim Type" dropdowns.
+        The "LDAP Attribute" dropdown has the option "Email Addresses" selected.
+        The "Outgoing Claim Type" dropdown has the option "Email Address" selected.
+        Red boxes are drawn around all the "Claim rule name:" field and all the dropdowns.
+        "Previous", "Finish" and "Cancel" buttons are at the bottom right.](../images/adfs_ldap_claim_mappings.png)
 
-	1. Click **Add Rule**.
+    1. Click **Add Rule**.
 
-	2. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
+    2. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
 
-    ![Screenshot of the "Select Rule Template"
-    step of the window titled "Add Transform Claim Rule Wizard". A red box is drawn around a
-    "Claim rule template:" dropdown with the option "Transform an Incoming Claim" selected.
-    Below that is a description of the selected claim rule template.
-    "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_transform_claims.png)
+        ![Screenshot of the "Select Rule Template"
+        step of the window titled "Add Transform Claim Rule Wizard". A red box is drawn around a
+        "Claim rule template:" dropdown with the option "Transform an Incoming Claim" selected.
+        Below that is a description of the selected claim rule template.
+        "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_transform_claims.png)
 
-	3. Enter a **Claim rule name**.
+    3. Enter a **Claim rule name**.
 
-	4. Select **E-Mail Address** for **Incoming claim type**.
+    4. Select **E-Mail Address** for **Incoming claim type**.
 
-	5. Select **Name ID** for **Outgoing claim type**
+    5. Select **Name ID** for **Outgoing claim type**
 
-	6. Select **Email** for **Outgoing name ID format**.
+    6. Select **Email** for **Outgoing name ID format**.
 
-	6. Click **Finish**.
+    6. Click **Finish**.
 
-    ![Screenshot of the "Configure
-    Claim Rule" step of the window titled "Add Transform Claim Rule Wizard".
-    There is a red box drawn around a "Claim rule name:" field with "NameID" filled in.
-    Below that a red box is drawn around the dropdowns "Incoming claim type:",
-    "Incoming name ID format:", "Outgoing claim type:", and "Outgoing name ID format".
-    Below that are the radio buttons "Pass through all claim values", "Replace an incoming claim value
-    with a different outgoing claim value", and "Replace incoming e-mail suffix claims with a new
-    e-mail suffix".
-    The "Pass through all claim values" radio button is selected.
-    "Previous", "Finish" and "Cancel" buttons are at the bottom right.](../images/adfs_transform_claim_mappings.png)
+        ![Screenshot of the "Configure
+        Claim Rule" step of the window titled "Add Transform Claim Rule Wizard".
+        There is a red box drawn around a "Claim rule name:" field with "NameID" filled in.
+        Below that a red box is drawn around the dropdowns "Incoming claim type:",
+        "Incoming name ID format:", "Outgoing claim type:", and "Outgoing name ID format".
+        Below that are the radio buttons "Pass through all claim values", "Replace an incoming claim value
+        with a different outgoing claim value", and "Replace incoming e-mail suffix claims with a new
+        e-mail suffix".
+        The "Pass through all claim values" radio button is selected.
+        "Previous", "Finish" and "Cancel" buttons are at the bottom right.](../images/adfs_transform_claim_mappings.png)
 
-1. Double-click on the new Relying Party Trust to open the properties.
+    1. Double-click on the new Relying Party Trust to open the properties.
 
-1. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
+    1. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
 
-	<%= image_tag('../images/adfs_remove_cert.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+        <%= image_tag('../images/adfs_remove_cert.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
-1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
+    1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
 
-	<%= image_tag('../images/adfs_sha1.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+        <%= image_tag('../images/adfs_sha1.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
 
-1. (Optional) If you are using a self-signed certificate, disable CRL checks by following these steps:
+    1. (Optional) If you are using a self-signed certificate, disable CRL checks by following these steps:
 
-	1. Open **Windows Powershell** as an Administrator.
+    1. Open **Windows Powershell** as an Administrator.
 
-	2. Run the following command:
+    2. Run the following command:
 
-      ```
-      set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
-      ```
+        ```
+        set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
+        ```
 
 1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the <%= vars.ops_manager %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
 
@@ -231,9 +231,9 @@ continue to the [Create Custom Value Groups](#groups) procedure below.
 
 1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that it only says `“groups”`.
 
-	![Screenshot of an "Edit Rule" window.
-	It has a "Claim rule name:" field containing the text "MYGROUP".
-	Below that is a "Custom rule:" field containing an example rule.
-	"OK" and "Cancel" buttons are at the bottom of the window.](../images/edit-type.png)
+    ![Screenshot of an "Edit Rule" window.
+    It has a "Claim rule name:" field containing the text "MYGROUP".
+    Below that is a "Custom rule:" field containing an example rule.
+    "OK" and "Cancel" buttons are at the bottom of the window.](../images/edit-type.png)
 
 1. Click **OK** to finish making your changes and save the changes you made.
