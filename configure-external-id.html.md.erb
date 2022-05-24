@@ -290,6 +290,60 @@ This description is displayed to the Space Developers when they select an IdP fo
 The following tabs expand to show instructions for using a discovery endpoint URL
 to fetch the settings, or manually entering the OIDC settings:
 
+    <style>
+    .tab {
+       overflow: hidden;
+       border: 1px solid #ccc;
+       background-color: #f1f1f1;
+    }
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+       background-color: inherit;
+       float: left;
+       border: inherit;
+       outline: none;
+       cursor: pointer;
+       padding: ;
+       transition: 0.3s;
+    }
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+       background-color: #ddd;
+    }
+    /* Create an active/current tablink class */
+    .tab button.active {
+       background-color: #ccc;
+    }
+    /* Style the tab content */
+    .tabcontent {
+       display: none;
+       padding: 6px 12px;
+       border: 1px solid #ccc;
+       border-top: none;
+    }
+    </style>
+
+    <script>
+    function openDocs(evt, docsName) {
+       // Declare all variables
+       var i, tabcontent, tablinks;
+       // Get all elements with class="tabcontent" and hide them
+       tabcontent = document.getElementsByClassName("tabcontent");
+       for (i = 0; i < tabcontent.length; i++) {
+           tabcontent[i].style.display = "none";
+       }
+       // Get all elements with class="tablinks" and remove the class "active"
+       tablinks = document.getElementsByClassName("tablinks");
+       for (i = 0; i < tablinks.length; i++) {
+           tablinks[i].className = tablinks[i].className.replace(" active", "");
+       }
+       // Show the current tab, and add an "active" class to the button that opened the tab
+       document.getElementById(docsName).style.display = "block";
+       evt.currentTarget.className += " active";
+    }
+    </script>
+
+
     <div class="tab">
      <!- Tab headers and links ->
      <button class="tablinks active" onclick="openDocs(event, 'tab1')">Discover OIDC Configuration</button>
