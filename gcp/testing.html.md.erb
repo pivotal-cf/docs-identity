@@ -14,34 +14,38 @@ This topic describes how administrators can test the OpenID Connect (OIDC) conne
 
 1. Under **Services**, locate the service instance of the <%= vars.product_short %> plan bound to your app.
 
-	<%= image_tag '../images/gcp-appsman-sso.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of Service tab in Apps Manager. Under the Services section, the
+    button for the Single Sign-On service is highlighted.](../images/appsman-sso.png)
 
 1. Select the service instance and click **Manage**.
 
-	<%= image_tag '../images/gcp-appsman-manage.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the example-service-instance service screen in Apps Manager.
+    Below the title, the manage link is highlighted.](../images/appsman-manage.png)
 
 1. Under the **Apps** tab, select your app.
 
-	<%= image_tag '../images/gcp-appsman-app.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Apps tab in Apps Manager showing a tile for the example-authcode-sample app.](../images/appsman-app.png)
 
 1. Under **Identity Providers**, select the GCP identity provider. Remove any other identity providers.
 
-	<%= image_tag '../images/gcp-appsman-ips.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the identity providers section with the Example Google Origin button and an Internal User Store button.](../images/gcp-appsman-ips.png)
 
 1. Return to Apps Manager and click the URL listed below your app to access your app.
 
-	<%= image_tag '../images/gcp-appsman-route.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of example-authcode-sample app page Apps Manager. Under the Route tab, there is one route listed.](../images/appsman-route.png)
 
 1. Navigate to your login. You will be redirected to the identity provider to authenticate.
 
-	<%= image_tag '../images/gcp-sample.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Authcode Sample app. In the What do you want to do section, the link says, "Log in via Auth Code Grant Type."](../images/sample.png)
 
 1. On the identity provider sign-in page, enter your credentials and sign in.
 
-	<%= image_tag '../images/gcp-sign-in.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of a Google sign in page with a field to enter an email address
+    or phone number and a "Next" button.](../images/gcp-sign-in.png)
 
 1. If the app prompts for authorization to the necessary scopes, click **Authorize**.
 
 If you are now logged in to your app, your GCP OIDC to <%= vars.product_short %> connection works.
 
-<%= image_tag '../images/gcp-sample-confirm.png' %><%# Images require alt text that describes the image in detail. %>
+![Screenshot of the Authcode Sample app. The text says "You've used the authcode flow!
+Here's the result of calling /userinfo."](../images/sample-confirm.png)
