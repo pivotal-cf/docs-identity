@@ -13,36 +13,39 @@ Follow the steps below to test your <%= vars.product_short %> connection.
 
 1. Under **Services**, locate the service instance of the <%= vars.product_short %> plan bound to your app.
 
-	<%= image_tag '../images/azure-oidc-instance.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of Service tab in Apps Manager. Under the Services section, the
+    button for the Single Sign-On service is highlighted.](../images/appsman-sso.png)
 
 1. Select the service instance and click **Manage**.
 
-	<%= image_tag '../images/azure-oidc-manage-instance.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the example-service-instance service screen in Apps Manager.
+    Below the title, the manage link is highlighted.](../images/appsman-manage.png)
 
 1. Under the **Apps** tab, select your app.
 
-	<%= image_tag '../images/azure-oidc-app.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Apps tab in Apps Manager showing a tile for the example-authcode-sample app.](../images/appsman-app.png)
 
 1. Under **Identity Providers**, select the Azure AD identity provider. Remove any other identity providers.
 
-	<%= image_tag '../images/azure-oidc-app-idp.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the identity providers section with the Example Azure Origin button and an Internal User Store button.](../images/azure-oidc-app-idp.png)
 
 1. Return to Apps Manager and click the URL listed below your app to access your app.
 
-	<%= image_tag '../images/azure-oidc-app-url.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of example-authcode-sample app page Apps Manager. Under the Route tab, there is one route listed.](../images/appsman-route.png)
 
 1. Navigate to your login. You will be redirected to the identity provider to authenticate.
 
-	<%= image_tag '../images/azure-oidc-app-prompt.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Authcode Sample app. In the What do you want to do section, the link says, "Log in via Auth Code Grant Type."](../images/sample.png)
 
 1. On the identity provider sign-in page, enter your credentials and sign in.
 
-	<%= image_tag '../images/azure-oidc-login.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Example OIDC Client sign-in page with fields to enter an email address or phone number and password. Below are "Sign in" and "Back" buttons.](../images/azure-oidc-login.png)
 
 1. If the app prompts for authorization to the necessary scopes, click **Accept**.
 
-	<%= image_tag '../images/azure-oidc-accept.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of Example OIDC Client permissions page. The page states that Example OIDC Client needs permission to Sign you in and read your profile and includes a link to show more details. Below are the "Accept" and "Cancel" buttons.](../images/azure-oidc-accept.png)
 
 1. If you are now logged into your app, your Azure AD OIDC to <%= vars.product_short %> connection works.
 
-	<%= image_tag '../images/azure-oidc-confirm.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Authcode Sample app. The text says "You've used the authcode flow!
+    Here's the result of calling /userinfo."](../images/sample-confirm.png)
