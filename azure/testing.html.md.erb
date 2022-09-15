@@ -19,9 +19,9 @@ This topic describes how an administrator can test the connection between <%= va
 
     If you have setup all configuration correctly, you should see something like the images below. Otherwise, you should see some meaningful error message.
 
-    <%= image_tag '../images/azure-test-saml-settings.png' %><%# Images require alt text that describes the image in detail. %>
+    ![A screen with title "Test single sign-on new_test". There are two buttons, "Sign in as current user" and "Sign in as someone else". Below the buttons is a green tick next to the text "Azure AD successfully issued a token..." There are links to download the SAML request and response. There are also unexpanded drop downs for User Unique Identifier, Token Claims, Token signing certificate.](../images/azure-test-saml-settings.png)
 
-    <%= image_tag '../images/azure-token-claims.png' %><%# Images require alt text that describes the image in detail. %>
+    ![The Token Claims drop down label is expanded showing a table with two columns, Name and Value. There are four entries in the table.](../images/azure-token-claims.png)
 
 ## <a id="service-provider"></a>Test Your Service Provider Connection
 
@@ -29,37 +29,39 @@ This topic describes how an administrator can test the connection between <%= va
 
 2. Under **Services**, locate the service instance of the <%= vars.product_short %> plan bound to your app. Click on the service instance and click **Manage**.
 
-	<%= image_tag '../images/click_service.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of overview tab in Apps Manager. Under the Services section, the
+    button for the Single Sign-On service is highlighted.](../images/click_service.png)
 
-	<%= image_tag '../images/azure_click_manage.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Single Sign-On service screen in Apps Manager.
+    Below the title, the manage link is highlighted.](../images/azure_click_manage.png)
 
 1. Under the **Apps** tab, click your app.
 
-	<%= image_tag '../images/azure_select_authcode_app_tile.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of Apps tab in Apps Manager showing a tile for the authcode-sample app.](../images/azure_select_authcode_app_tile.png)
 
 1. Under **Identity Providers**, select the Azure AD identity provider.
 
-	<%= image_tag '../images/click_azure_pcf.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the app configuration screen. The Azure PCF SSO button in the Identity Providers section is highlighted.](../images/click_azure_pcf.png)
 
 1. Return to Apps Manager and click on the URL below your app to be redirected to the identity provider to authenticate.
 
-	<%= image_tag '../images/authcode_sample_address.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of overview tab in Apps Manager. Under the Apps section, the URL in the Route column of table is highlighted](../images/authcode_sample_address.png)
 
 1. Click the link.
 
-	<%= image_tag '../images/authcode_sample.png' %><%# Images require alt text that describes the image in detail. %>
+    ![A browser window with the authcode sample web app showing. The app has a link at the bottom of the web page with the text "Log in via Auth Code Grant Type"](../images/authcode_sample.png)
 
 1. On the identity provider sign-in page, enter your credentials and click **Sign In**.
 
-	<%= image_tag '../images/azure_sign_in.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Microsoft Azure sign-in page with fields to enter an email address or phone number and password. Below are "Sign in" and "Back" buttons.](../images/azure_sign_in.png)
 
 1. The app asks for authorization to the necessary scopes. Click **Authorize**.
 
-	<%= image_tag '../images/popup_authcode.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Application Authorization page for the authcode sample app. There are check boxes for two scopes: openid and Read TODO list. Both checkboxes are selected. At the bottom of the page, there are buttons for Deny and Authorize.](../images/popup_authcode.png)
 
 1. The access token and ID token displays.
 
-	<%= image_tag '../images/azure_authcode_sample_code.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of a page showing JSON for the result of calling /userinfo, the access token that was used, and the ID token. At the bottom of the page there are links for TODO list, See your account profile, and Log out.](../images/azure_authcode_sample_code.png)
 
 ## <a id="identity-provider"></a>Test Your Identity Provider Connection
 
@@ -67,13 +69,13 @@ This topic describes how an administrator can test the connection between <%= va
 
 1. Sign in to Azure AD.
 
-	<%= image_tag '../images/azure_sign_in.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Microsoft Azure sign-in page with fields to enter an email address or phone number and password. Below are "Sign in" and "Back" buttons.](../images/azure_sign_in.png)
 
 1. Navigate to your app and click it.
 
 1. You are redirected to the page that lists apps you have access to.
 
-	<%= image_tag '../images/app_list.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of Apps Manager apps tab with tiles for three apps shown.](../images/app_list.png)
 
 ## <a id="sso"></a>Test Your Single Sign-Off
 
@@ -82,8 +84,8 @@ Test single sign-off to ensure that when users log out of the application, they 
 1. Sign into the sample app. Information about the access and ID token displays, as well as the “What do you want to do?” section.
 1. Under "What do you want to do?", click **Log out**.
 
-	<%= image_tag '../images/what_do_you_want.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Link in the What do you want to do section. There are links for TODO list, See your account profile, and Log out.](../images/what_do_you_want.png)
 
 1. You are logged out and redirected to the Azure AD login page.
 
-	<%= image_tag '../images/azure_sign_in.png' %><%# Images require alt text that describes the image in detail. %>
+    ![Screenshot of the Microsoft Azure sign-in page with fields to enter an email address or phone number and password. Below are "Sign in" and "Back" buttons.](../images/azure_sign_in.png)
