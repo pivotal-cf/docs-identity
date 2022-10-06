@@ -27,18 +27,15 @@ To set up SAML in Azure AD:
 
 2. Go to the **Azure Active Directory** tab > **Enterprise application**.
 
-    ![Screenshot of the "Overview" section in the "Azure Active Directory" tab in Azure AD.
-    A red box frames the link "Enterprise application".](../images/azure-saml-entreprise-applications.png)
+    ![Screenshot of the "Overview" section in the "Azure Active Directory" tab in Azure AD. A red box frames the link "Enterprise application".](../images/azure-saml-entreprise-applications.png)
 
 3. Click **New application**.
 
-    ![Screenshot of the "All applications" section in the "Azure Active Directory" tab in
-    Azure AD. A red box frames the "New application" button.](../images/azure-saml-new-application.png)
+    ![Screenshot of the "All applications" section in the "Azure Active Directory" tab in Azure AD.](../images/azure-saml-new-application.png)
 
 4. Click **Create your own application**.
 
-    ![Screenshot of the "Browse Azure AD Gallery" section in the "Azure Active Directory" tab in
-    Azure AD. A red box frames the "Create your own application" button.](../images/azure-saml-create-your-own-application.png)
+    ![Screenshot of the "Browse Azure AD Gallery" section in the "Azure Active Directory" tab in Azure AD.](../images/azure-saml-create-your-own-application.png)
 
 5. Enter a name and then click **Integrate any other application you don't find in the gallery (Non-gallery)**.
 
@@ -49,20 +46,17 @@ To set up SAML in Azure AD:
 
 7. In the application overview, click **Set up single sign on** > **SAML**.
 
-    ![Screenshot of the "Application Overview" section in the "Azure Active Directory" tab in
-    Azure AD. A red box frames the "Set up single sign on" button.](../images/azure-saml-application-overview-sso.png)
+    ![Screenshot of the "Application Overview" section in the "Azure Active Directory" tab in Azure AD. A red box frames the "Set up single sign on" button.](../images/azure-saml-application-overview-sso.png)
 
 8. Click **Upload metadata file** to upload the metadata file you downloaded earlier in
    [Set up SAML in <%= vars.product_short %>](#pcf). Save the configuration when prompted.
 
-    ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in
-    Azure AD. A red box frames the "Upload metadata file" button.](../images/azure-saml-sso-upload-metadata-file.png)
+    ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in Azure AD. A red box frames the "Upload metadata file" button.](../images/azure-saml-sso-upload-metadata-file.png)
 
 9. Record the **App Federation Metadata Url**. You need this for setting up the SSO identity provider
    configurations. For more information, see [Setting up SAML](config-sso.html.md.erb#set-up-saml).
 
-    ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in
-    Azure AD. A red box frames the "App Federation Metadata URL" button.](../images/azure-saml-app-federation-metadata-url.png)
+    ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in Azure AD. A red box frames the "App Federation Metadata URL" button.](../images/azure-saml-app-federation-metadata-url.png)
 
 10. Go to the **Users and groups** tab and then click **Add User**.
     Select users or group names from the search box. For example, you can add a group that
@@ -82,15 +76,13 @@ To enable user attribute mappings:
 
 1. In the **Attributes and Claims** section, click **Edit**.
 
-   ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in Azure AD.
-   The "Attributes and Claims" section is shown.](../images/azure-saml-attributes-and-claims.png)
+   ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in Azure AD. The "Attributes and Claims" section is shown.](../images/azure-saml-attributes-and-claims.png)
 
 2. Edit the attributes.
 
 3. Pass group membership claims to the app by clicking **Add a group claim**:
 
-   ![Screenshot of the "Group Claims" modal in the "Azure Active Directory" tab in Azure AD.
-   Red boxes are drawn around "Add group claim" and the "All groups" and "Security Groups" options.](../images/azure-saml-attributes-group-claim.png)
+   ![Screenshot of the "Group Claims" modal in the "Azure Active Directory" tab in Azure AD. Red boxes frame "Add group claim" and the "All groups" and "Security Groups" options.](../images/azure-saml-attributes-group-claim.png)
 
    1. Select one of the following:
 
