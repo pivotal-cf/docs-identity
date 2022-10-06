@@ -19,21 +19,21 @@ In this README:
 
 | Branch name | Use for… | Publishes to… |
 |-------------| ------|--------|
-|**master** | This branch is on staging. ADD ALL NEW CONTENT  to this branch — if there's going to be 1.15 or a 2.0. | <a href="https://docs-staging.vmware.com/en/draft/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.15/documentation/GUID-index.html</a> |
-|**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | https://docs-staging.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/documentation/GUID-index.html |
-|**1.13** | **Do not update**. This branch is obsolete. | https://docs-staging.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.13/documentation/GUID-index.html |
-|**1.12** | **Do not update**. This branch is obsolete. | https://docs-staging.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.12/documentation/GUID-index.html |
-|**1.11** | **Do not update**. This branch is obsolete. | https://docs-staging.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.11/documentation/GUID-index.html |
-|**1.10** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-10/">https://docs.pivotal.io/p-identity/1-10/</a> |
-|**1.9** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-9/">https://docs.pivotal.io/p-identity/1-9/</a>|
-|**1.8** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-8/">https://docs.pivotal.io/p-identity/1-8/</a>|
-|**1.7** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-7/">https://docs.pivotal.io/p-identity/1-7/</a>|
-|**1.6** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-6/">https://docs.pivotal.io/p-identity/1-6/</a>|
-|**1.5** |  **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/p-identity/1-5/">https://docs.pivotal.io/p-identity/1-5/</a>|
-|**1.4** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.4.pdf">https://docs.pivotal.io/archives/docs-identity-1.4.pdf</a>|
-|**1.3** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.3.pdf">https://docs.pivotal.io/archives/docs-identity-1.3.pdf</a>|
-|**1.2** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.2.pdf">https://docs.pivotal.io/archives/docs-identity-1.2.pdf</a>|
-|**1.1** | **Do not update**. This branch is obsolete. | <a href="https://docs.pivotal.io/archives/docs-identity-1.1.pdf">https://docs.pivotal.io/archives/docs-identity-1.1.pdf</a>|
+|**master** | This branch is on staging. ADD ALL NEW CONTENT  to this branch — if there's going to be 1.15 or a 2.0. | https://docs-staging.vmware.com/en/draft/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.15/sso/GUID-index.html |
+|**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html |
+|**1.13** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.13/sso/GUID-index.html |
+|**1.12** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.12/sso/GUID-index.html |
+|**1.11** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-11/ |
+|**1.10** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-10/ |
+|**1.9** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-9/ |
+|**1.8** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-8/ |
+|**1.7** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-7/ |
+|**1.6** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-6/ |
+|**1.5** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-5/ |
+|**1.4** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/archives/docs-identity-1.4.pdf |
+|**1.3** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/archives/docs-identity-1.3.pdf |
+|**1.2** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/archives/docs-identity-1.2.pdf |
+|**1.1** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/archives/docs-identity-1.1.pdf |
 |**1.0** | **Do not update**. This branch is unpublished. The branch contains the  documentation for the EOL'd v1.0.10 release of SSO.|
 | **master-on-April27** | A temporary snapshot of master to keep while we make large changes to the master branch. Please keep in sync with v1.6. |
 
