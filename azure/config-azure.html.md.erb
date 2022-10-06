@@ -6,7 +6,6 @@ owner: Identity Service
 This topic describes how to set up Azure Active Directory (AD) as your identity provider by
 configuring SAML integration in both <%= vars.product_full %> and Azure AD.
 
-
 ## <a id='overview'></a> Overview
 
 To set up Azure AD as your identity provider through SAML integration:
@@ -15,91 +14,92 @@ To set up Azure AD as your identity provider through SAML integration:
 1. [Set up SAML in Azure AD](#azure)
 1. [Set up Claims Mapping](#claims)
 
-
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
 
 To set up SAML in <%= vars.product_short %>, follow the steps in
-[Configure SAML Settings](../configure-external-id.html#config-ext-settings).
-
+[Configure SAML Settings](../configure-external-id.html.md.erb#config-ext-settings).
 
 ## <a id='azure'></a> Set up SAML in Azure AD
 
 To set up SAML in Azure AD:
 
-1. Log in to Azure AD as a Global Admin at https://portal.azure.com/.
+1. Log in to Azure AD as a Global Admin in the [Microsoft Azure portal](https://portal.azure.com/).
 
-1. Navigate to **Azure Active Directory** tab > **Enterprise application**.
+2. Go to the **Azure Active Directory** tab > **Enterprise application**.
 
     ![Screenshot of the "Overview" section in the "Azure Active Directory" tab in Azure AD.
-    A red box are drawn around the link "Enterprise application".](../images/azure-saml-entreprise-applications.png)
+    A red box frames the link "Enterprise application".](../images/azure-saml-entreprise-applications.png)
 
-1. Add a **New application**.
+3. Click **New application**.
 
     ![Screenshot of the "All applications" section in the "Azure Active Directory" tab in
-    Azure AD. A red box is drawn around the "New application" button.](../images/azure-saml-new-application.png)
+    Azure AD. A red box frames the "New application" button.](../images/azure-saml-new-application.png)
 
-1. Click **Create your own application**.
+4. Click **Create your own application**.
 
     ![Screenshot of the "Browse Azure AD Gallery" section in the "Azure Active Directory" tab in
-    Azure AD. A red box is drawn around the "Create your own application" button.](../images/azure-saml-create-your-own-application.png)
+    Azure AD. A red box frames the "Create your own application" button.](../images/azure-saml-create-your-own-application.png)
 
-1. Provide a name, and select **Integrate any other application you don't find in the gallery (Non-gallery)**.
+5. Enter a name and then click **Integrate any other application you don't find in the gallery (Non-gallery)**.
 
     ![Screenshot of the "Create your own application" section in the "Azure Active Directory" tab in
     Azure AD.](../images/azure-saml-create-your-own-application-non-gallery.png)
 
-1. In the **All applications** tab of **Entreprise applications**, select your your newly created application.
+6. In the **All applications** tab of **Enterprise applications**, click your newly created application.
 
-1. In the application overiew, select **Setup Single Sign On**, then select **SAML**.
+7. In the application overview, click **Set up single sign on** > **SAML**.
 
     ![Screenshot of the "Application Overview" section in the "Azure Active Directory" tab in
-    Azure AD. A red box is drawn around the "Setup single sign on" button.](../images/azure-saml-application-overview-sso.png)
+    Azure AD. A red box frames the "Set up single sign on" button.](../images/azure-saml-application-overview-sso.png)
 
-1. Select **Upload metadata file** to upload the metadata file you downloaded earlier
-in [Set up SAML in <%= vars.product_short %>](#pcf). Save the configuration when prompted.
-
-    ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in
-    Azure AD. A red box is drawn around the "Upload metadata file" button.](../images/azure-saml-sso-upload-metadata-file.png)
-
-1. Record the **App Federation Metadata Url**. You need this for setting up the SSO identity provider
-configurations.
-For more information, see [Setting up SAML](./config-sso.html#set-up-saml).
+8. Click **Upload metadata file** to upload the metadata file you downloaded earlier in
+   [Set up SAML in <%= vars.product_short %>](#pcf). Save the configuration when prompted.
 
     ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in
-    Azure AD. A red box is drawn around the "App Federation Metadata URL" button.](../images/azure-saml-app-federation-metadata-url.png)
+    Azure AD. A red box frames the "Upload metadata file" button.](../images/azure-saml-sso-upload-metadata-file.png)
 
-1. Navigate to the **Users and groups** tab and then click **Add User** . Select users or group names from the search field.
-For example, you can add a group that includes all users that should be able to log in to the <%= vars.product_short %> plan.
+9. Record the **App Federation Metadata Url**. You need this for setting up the SSO identity provider
+   configurations. For more information, see [Setting up SAML](config-sso.html.md.erb#set-up-saml).
 
+    ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in
+    Azure AD. A red box frames the "App Federation Metadata URL" button.](../images/azure-saml-app-federation-metadata-url.png)
 
-## <a id='claims'></a> Set up Claims Mapping
+10. Go to the **Users and groups** tab and then click **Add User**.
+    Select users or group names from the search box. For example, you can add a group that
+    includes all users who can log in to the <%= vars.product_short %> plan.
+
+## <a id='claims'></a> Set up claims mapping
 
 To set up claims mapping:
 
-1. Navigate to **Azure Active Directory** > **Entreprise Applications**. Click on your app. Select *Single Sign On*.
+1. Go to **Azure Active Directory** > **Enterprise Applications**.
 
-1. To enable user attribute mappings:
+2. Click your app and then click **Single sign-on**.
 
-    1. In **2. Attributes and Claims** section, click **Edit**
+### <a id='user-attr-maps'></a> Enable user attribute mappings
 
-        ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in
-        Azure AD. The "Attributes and Claims" section is shown.](../images/azure-saml-attributes-and-claims.png)
+To enable user attribute mappings:
 
-    1. Modify the attributes.
+1. In the **Attributes and Claims** section, click **Edit**.
 
-    1. To pass group membership claims to the app, click **Add a group claim**:
+   ![Screenshot of the "SAML-based Sign-On" section in the "Azure Active Directory" tab in Azure AD.
+   The "Attributes and Claims" section is shown.](../images/azure-saml-attributes-and-claims.png)
 
-        ![Screenshot of the "Group Claims" modal in the "Azure Active Directory" tab in
-        Azure AD. Red boxes are drawn around "Add group claim" and the "All groups" and "
-        Security Groups" options.](../images/azure-saml-attributes-group-claim.png)
+2. Edit the attributes.
 
-        1. Select one of the following
-            - `SecurityGroup`. Groups claim contains identifiers of all security groups of which the user is
-            a member.
-            - `All`. Groups claim contains the identifiers of all security groups and distribution lists of
-            which the user is a member.
+3. Pass group membership claims to the app by clicking **Add a group claim**:
 
-        1. Save the change.
+   ![Screenshot of the "Group Claims" modal in the "Azure Active Directory" tab in Azure AD.
+   Red boxes are drawn around "Add group claim" and the "All groups" and "Security Groups" options.](../images/azure-saml-attributes-group-claim.png)
 
-    For more information, see the
-    [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
+   1. Select one of the following:
+
+      - **SecurityGroup**, which is a group claim containing identifiers of all security groups of
+        which the user is a member.
+      - **All**, which is a group claim containing the identifiers of all security groups and
+        distribution lists of which the user is a member.
+
+   1. Save the change.
+
+For more information, see the
+[Microsoft documentation](https://learn.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
