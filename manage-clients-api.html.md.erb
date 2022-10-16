@@ -4,7 +4,7 @@ owner: Identity Service
 ---
 
 This topic explains how plan administrators use the User Account and Authentication Command Line Interface (UAAC)
-to manage existing UAA Identity Zone clients. 
+to manage existing UAA Identity Zone clients.
 
 ##<a id="about"></a> About Managing Clients with UAAC
 
@@ -43,8 +43,8 @@ To use the UAAC to modify clients, you need an admin client that corresponds to 
 If you do not already have an admin client for your UAA Identity Zone,
 follow the steps below to create an admin client.
 
-<p class="note"><strong>Note:</strong>  
-You can use the same admin client for updating service plans and identity providers. 
+<p class="note"><strong>Note:</strong>
+You can use the same admin client for updating service plans and identity providers.
 For information, see <a href="./manage-service-plans-api.html">Updating Service Plans with UAAC</a> and
 <a href="./configure-id-providers-api.html">Updating Identity Providers with UAAC</a>.
 </p>
@@ -91,7 +91,7 @@ For information, see <a href="./manage-service-plans-api.html">Updating Service 
 ## <a id="updating"></a> Update Clients with UAAC
 
 Use the UAAC to update a client to have multiple grant types
-or set a special value that is not available on the SSO Developer Dashboard. 
+or set a special value that is not available on the SSO Developer Dashboard.
 
 The example shown here adds the `client credentials` grant type
 and the corresponding client credentials `authorities` to an existing web-app
@@ -109,14 +109,14 @@ configured via SSO Developer Dashboard.
     uaac target AUTH-DOMAIN
     ```
 
-    Where `AUTH-DOMAIN` is the tenant-specific URL at which the service plan is accessible.  
+    Where `AUTH-DOMAIN` is the tenant-specific URL at which the service plan is accessible.
 
     For example:
 
-    <pre class="terminal">$ uaac target my-auth-domain.login.example.com  </pre> 
+    <pre class="terminal">$ uaac target my-auth-domain.login.example.com  </pre>
 
 
-1. To authenticate and obtain an access token for the admin client for your service plan, 
+1. To authenticate and obtain an access token for the admin client for your service plan,
 run the following command:
 
     ```
@@ -124,15 +124,15 @@ run the following command:
     ```
 
     Where:
-    * `ADMIN-APP-ID` is the App ID. 
+    * `ADMIN-APP-ID` is the App ID.
     * `ADMIN-APP-SECRET` is the App Secret.
-   
-    Use the App ID and App Secret that you created in 
+
+    Use the App ID and App Secret that you created in
       [Create a UAA Identity Zone Admin Client](#creating) above.
     For example:
 
     <pre class="terminal">$ uaac token client get MyAdminAppId -s MyAdminAppSecret </pre>
- 
+
      UAAC stores the token in  `~/.uaac.yml`.
 
 
@@ -167,7 +167,7 @@ run the following command:
 
     Where `MY-WEB-APP-ID` is your web app's App ID. You can obtain this in the SSO Developer Dashboard.<br><br>
 
-    For example: 
+    For example:
     <pre class="terminal">
      $ uaac client get MyWebAppId
 
@@ -194,12 +194,12 @@ run the following command:
 1. To update the client configuration, pass in flags with the following command:
 
     ```
-    uaac client update MY-WEB-APP-ID --PROPERTY-1 VALUE-1,VALUE-2 --PROPERTY-N VALUE-N 
+    uaac client update MY-WEB-APP-ID --PROPERTY-1 VALUE-1,VALUE-2 --PROPERTY-N VALUE-N
     ```
 
     Where:
-    * `PROPERTY-N`'s are from the list returned in step 6 above, for example, `redirect_uri`.  
-    * `VALUE-N`'s are the configurations you want the client to have. 
+    * `PROPERTY-N`'s are from the list returned in step 6 above, for example, `redirect_uri`.
+    * `VALUE-N`'s are the configurations you want the client to have.
 
     For example:
 
@@ -209,7 +209,7 @@ run the following command:
        authorization_code,refresh_token,client_credentials \
        --authorities todo.read,todo.write
     </pre>
-   
+
     The example specifies grant types of `authorization_code` for the web app and respecifies
    the existing grant types.
     The example also replaces the `uaa.resource` authority with `todo.read` and `todo.write`.
