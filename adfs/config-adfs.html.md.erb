@@ -14,7 +14,7 @@ To set up AD FS as your identity provider through SAML integration:
 1. [Set up SAML in <%= vars.product_short %>](#pcf)
 1. [Set up SAML in AD FS](#adfs)
 1. [Create Claim Rules](#create-claim-rules)
-1. [(Optional) Disable CRL Checks](#disable-crl-checks)
+1. [(Optional) Deactivate CRL Checks](#deactivate-crl-checks)
 1. [Set up Groups in SAML from AD FS](#adfs-groups)
 1. [Create Custom Value Groups](#groups)
 
@@ -173,13 +173,13 @@ matches the
     "OK", "Cancel" and "Apply" buttons are at the bottom right.](../images/adfs_sha1.png)
 
 
-## <a id='disable-crl-checks'></a> (Optional) Disable CRL Checks
+## <a id='deactivate-crl-checks'></a> (Optional) Deactivate CRL Checks
 
-If you are using a self-signed certificate, disable CRL checks:
+If you are using a self-signed certificate, deactivate CRL checks:
 
 1. Open **Windows Powershell** as an admin.
 
-1. Disable the CRL checks by running:
+1. Deactivate the CRL checks by running:
 
     ```
     set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
