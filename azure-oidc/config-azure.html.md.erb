@@ -61,27 +61,19 @@ To register a new app:
 
 1. Select **+ New registration** to create a **New application registration**.
 
-    ![Screenshot of the Register an application tab. Name, Supported account types, and Redirect URI (optional)
-    form inputs are shown.
-    The description for the Name input is
-    The user-facing display name for this application (this can be changed later).
-    The description for the Supported account types input is Who can use this application or access this API?.
-    The description for the Redirect URI (optional) input is
-    We’ll return the authentication response to this URI after successfully authenticating the user.
-    Providing this now is optional and it can be changed later,
-    but a value is required for most authentication scenarios.](../images/azure-oidc-v2-Register-An-Application.png)
+    ![Screenshot of the Register an application tab. Form inputs are shown for Name, Supported account types, and Redirect URI.](../images/azure-oidc-v2-Register-An-Application.png)
 
-1. Enter a name of your choice in the **Name** field.
+2. Enter a name of your choice in the **Name** field.
 
-1. Select an option for **Supported account types**.
+3. Select an option for **Supported account types**.
 To make an appropriate selection, consult your security organization and the Azure documentation.
 Record this choice because your OIDC Discovery Metadata URL depends on this choice.
 
 1. Leave **Redirect URI (optional)** blank. You provide this later.
 
-1. Click **Register**. This redirects you to the app configuration page.
+2. Click **Register**. This redirects you to the app configuration page.
 
-1. Copy the **Application (client) ID** from the app configuration page.
+3. Copy the **Application (client) ID** from the app configuration page.
 This is the **Relying Party OAuth Client ID** that will be provided in the
 **Operator Dashboard** in a later step.
 

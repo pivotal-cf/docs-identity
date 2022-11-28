@@ -35,18 +35,18 @@ configuring SAML integration in both <%= vars.product_full %> and Azure AD.
 2. Navigate to **Azure Active Directory** tab > **Enterprise application**.
 
     ![Screenshot of the Overview section in the Azure Active Directory tab in Azure AD.
-    Red boxes are drawn around the Azure Active Directory tab and the link Enterprise application.](../images/azure-create-ent-app.png)
+    Red boxes frame the Azure Active Directory tab and the link Enterprise application.](../images/azure-create-ent-app.png)
 
 3. Select **Non-gallery application**. Provide a name and click **Add**.
 
     ![Screenshot of the Add an application section in the Azure Active Directory tab in
-    Azure AD. Red boxes are drawn around the Azure Active Directory tab, the Non-gallery application link,
+    Azure AD. Red boxes frame the Azure Active Directory tab, the Non-gallery application link,
     the Name field, and the Add button.](../images/azure-nongallery-app.png)
 
 1. Navigate to **Azure Active Directory** > **Enterprise applications**.
 
     <%= image_tag("../images/azure-manage-ent-app.png", :width => 300, :alt => "Screenshot of tabs and
-    categories in Azure AD. A red box is drawn around the Enterprise applications category.") %>
+    categories in Azure AD. A red box frames the Enterprise applications category.") %>
 
 1. Click your app and then click the **Single sign-on** tab.
 
@@ -103,7 +103,7 @@ users that should be able to log in to the <%= vars.product_short %> plan.
     [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
 
     ![Screenshot of the User Attributes
-    section. A red box is drawn around the View and edit all other user attributes checkbox.
+    section. A red box frames the checkbox labeled View and edit all other user attributes.
     The checkbox is selected.
     Below that is a table of SAML token attributes, which includes Name, Value, and Namespace
     columns.
@@ -112,23 +112,23 @@ users that should be able to log in to the <%= vars.product_short %> plan.
 
 2. To pass group membership claims to the app:
     1. Click **Manifest**.
-    1. Locate `groupMembershipClaims` and set the value to one of the following:
+    2. Locate `groupMembershipClaims` and set the value to one of the following:
         - `SecurityGroup`. Groups claim contains identifiers of all security groups of which the user is
         a member.
         - `All`. Groups claim contains the identifiers of all security groups and distribution lists of
         which the user is a member.
-    1. Save the change.
+    3. Save the change.
 
     For more information, see the
     [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
 
     ![Screenshot of an example manifest in
     the Edit Manifest section. The ID values are redacted.
-    A red box is drawn around line 28: groupMembershipClaims key and its value SecurityGroup.](../images/azure-edit-manifest.png)
+    A red box frames the key line 28 colon groupMembershipClaims and its value Security Group.](../images/azure-edit-manifest.png)
 
-1. Navigate to **Azure Active Directory** > **Groups**.
+3. Navigate to **Azure Active Directory** > **Groups**.
 
-1. For each group that the <%= vars.product_short %> plan uses, record the **Object ID**.
+4. For each group that the <%= vars.product_short %> plan uses, record the **Object ID**.
 Azure AD passes the Object ID of these groups to the <%= vars.product_short %> plan.
 For more information, see [Configure Group Permissions](./config-sso.html#config-permissions).
 
