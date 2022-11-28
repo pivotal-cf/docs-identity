@@ -11,21 +11,21 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 1. Log into the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the dropdown.
 
-	<%= image_tag("../images/pingone_manage_id_providers.png", :alt => "SSO Dashboard Plans screen") %>
+	<%= image_tag("../images/pingone_manage_id_providers.png", :alt => "Screenshot of the Plans tab on the SSO Operator Dashboard. There is a drop-down menu labeled CA SSO PCF SSO. The option Manage Identity Providers in this menu is framed in red.") %>
 
-1. Click **Configure SAML Service Provider**.
+2. Click **Configure SAML Service Provider**.
 
-	<%= image_tag("../images/pingone_config_saml_service_provider.png", :alt => "Identity Providers screen") %>
+	<%= image_tag("../images/pingone_config_saml_service_provider.png", :alt => "Screenshot of the Identity Providers tab. The Configure SAML Service Provider tab is framed in red.") %>
 
-1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
+3. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
 
-	<%= image_tag("../images/saml_auth_checkbox.png", :alt => "Configure SAML Service Provider section") %>
+	<%= image_tag("../images/saml_auth_checkbox.png", :alt => "Screenshot of the Configure SAML Service Provider section. There is a button labeled Download Metadata at the top-right. There are buttons labeled Cancel and Save at the bottom-right.") %>
 
-2. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
+4. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
 
-3. Click **Download Metadata** to download the service provider metadata.
+5. Click **Download Metadata** to download the service provider metadata.
 
-4. Click **Save**.
+6. Click **Save**.
 
 ## <a id='pingone'></a> Set up SAML in PingOne Cloud
 
@@ -35,15 +35,14 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 
 3. Click **Add Application** and choose **New SAML Application**.
 
-	<%= image_tag("../images/saml_add_application.png", :alt => "PingOne Cloud Dashboard My Applications section") %>
+	<%= image_tag("../images/saml_add_application.png", :alt => "Screenshot of the My Applications section in the Ping One Cloud Dashboard. In the Add Application drop-down menu, the option New SAML Application is framed in red.") %>
 
 1. Enter the **Application Name**, **Application Description**, **Category** and any **Graphics**.
 
 2. Click **Continue to Next Step** to configure SAML.
 
     ![Applications Configuration section.
-    There are many options. At the bottom right are 'Cancel', 'Back', and 'Continue to Next Step'
-    buttons.](../images/pingone_saml_config.png)
+    There are many options. At the bottom right are buttons for Cancel, Back, and Continue to Next Step.](../images/pingone_saml_config.png)
 
 3. In the **Application Configuration** section, perform the following steps:
 
@@ -59,7 +58,7 @@ This topic describes how to set up PingOne Cloud as your identity provider by co
 
 4. (Optional) Under **SSO Attribute Mapping**, specify any app or group attributes that you want to map to users in the ID token.
 
-	<%= image_tag("../images/pingone_attribute_mapping.png", :alt => "SSO Attribute Mapping section") %>
+	<%= image_tag("../images/pingone_attribute_mapping.png", :alt => "SSO Attribute Mapping section. At the bottom right are buttons labeled Cancel, Back, and Save ampersand Publish.") %>
 
 5. Click **Save \& Publish**.
 

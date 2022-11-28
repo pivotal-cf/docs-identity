@@ -14,37 +14,37 @@ An administrator can test both service provider and identity provider connection
 
 2. Under **Services**, locate the service instance of the <%= vars.product_short %> plan bound to your app. Click the service instance and then click **Manage**.
 
-	<%= image_tag '../images/click_service.png' %>
+	<%= image_tag('../images/click_service.png', :alt => 'Screenshot of the Overview tab. The service Pivotal Single Sign-On is framed in red.' %>
 
-	<%= image_tag '../images/pingfederate_click_manage.png' %>
+	<%= image_tag('../images/pingfederate_click_manage.png', :alt => 'Screenshot of the Pivotal Single Sign-On section. The button labeled Manage is framed in red.' %>
 
 1. Under the **Apps** tab, click your app.
 
-	<%= image_tag '../images/pingfederate_select_authcode_app_tile.png' %>
+	<%= image_tag('../images/pingfederate_select_authcode_app_tile.png', :alt => 'Screenshot of the Apps tab. There is a card titled authcode dash sample.' %>
 
 1. Under **Identity Providers**, select the PingFederate identity provider.
 a
-	<%= image_tag '../images/click_pingfederate_pcf.png' %>
+	<%= image_tag('../images/click_pingfederate_pcf.png', :alt => 'Screenshot of the authcode dash sample web app section. The green button labeled Ping Federate PCF SSO is framed in red.' %>
 
 1. Return to Apps Manager and click the URL below your app to authenticate with the identity provider.
 
-	<%= image_tag '../images/authcode_sample_address.png' %>
+	<%= image_tag('../images/authcode_sample_address.png', :alt => 'Screenshot of the Overview tab. The URL in the Route table column is framed in red.' %>
 
 1. Click the link to **Log in via Auth Code Grant Type**.
 
-	<%= image_tag '../images/authcode_sample.png' %>
+	<%= image_tag('../images/authcode_sample.png', :alt => 'Screenshot of the web page for authcode dash sample. There is a hyperlink with the text Log in via Auth Code Grant Type.' %>
 
 1. On the identity provider sign-in page, enter your credentials and click **Sign On**.
 
-	<%= image_tag '../images/pingfederate_sign_in.png' %>
+	<%= image_tag('../images/pingfederate_sign_in.png', :alt => 'Screenshot of the identity provider sign-in page. There are text boxes. One is for a user name. The other text box is for a password. There is a button labeled Login.' %>
 
 1. The app asks for authorization to the necessary scopes. Click **Authorize**.
 
-	<%= image_tag '../images/popup_authcode.png' %>
+	<%= image_tag('../images/popup_authcode.png', :alt => 'Screenshot of the Application Authorization pop-up window. There are two checkboxes, one for openID and one for Read TO DO list. Both checkboxes are selected. There are buttons labeled DENY and AUTHORIZE at the bottom.' %>
 
-1. View the access token and ID token.
+2. View the access token and ID token.
 
-	<%= image_tag '../images/pingfederate_authcode_sample_code.png' %>
+	<%= image_tag('../images/pingfederate_authcode_sample_code.png', :alt => 'Screenshot of code for the Access Token and the ID token.' %>
 
 ## <a id="identity-provider"></a>Test Your Identity Provider Connection
 
@@ -52,13 +52,13 @@ a
 
 1. Sign in to PingFederate.
 
-	<%= image_tag '../images/pingfederate_sign_in.png' %>
+	<%= image_tag('../images/pingfederate_sign_in.png', :alt => 'Screenshot of the identity provider sign-in page. There are text boxes. One is for a user name. The other text box is for a password. There is a button labeled Login.' %>
 
 1. Navigate to your app and click it.
 
 1. View the list of apps you have access to.
 
-	<%= image_tag '../images/app_list.png' %>
+	<%= image_tag('../images/app_list.png', :alt => 'Screenshot of the Apps tab, which shows cards for three applications.' %>
 
 ## <a id="sso"></a>Test Your Single Sign-Off
 
@@ -67,8 +67,8 @@ Test single sign-off to ensure that when users log out of the app, they are logg
 1. Sign into the sample app. Information about the access and ID token displays, as well as the **What do you want to do?** section.
 1. Under **What do you want to do?**, click **Log out**.
 
-	<%= image_tag '../images/what_do_you_want.png' %>
+	<%= image_tag('../images/what_do_you_want.png', :alt => 'Screenshot of the section titled What do you want to do? There are three links. The bottom link is Log out.' %>
 
 1. Ensure that you are logged out and redirected to the PingFederate login page.
 
-	<%= image_tag '../images/pingfederate_sign_in.png' %>
+	<%= image_tag('../images/pingfederate_sign_in.png', :alt => 'Screenshot of the identity provider sign-in page. There are text boxes. One is for a user name. The other text box is for a password. There is a button labeled Login.' %>

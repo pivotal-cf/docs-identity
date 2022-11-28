@@ -11,15 +11,15 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 1. Log in at `https://p-identity.SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
-	<%= image_tag('../images/ca_sso_manage_id_providers.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/ca_sso_manage_id_providers.png', :alt => 'Screenshot of the Plans tab on the SSO Operator Dashboard. There is a drop-down menu labeled CA SSO PCF SSO. The option Manage Identity Providers in this menu is framed in red.') %>
 
 1. Click **Configure SAML Service Provider**.
 
-	<%= image_tag('../images/ca_sso_config_saml_service_provider.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/ca_sso_config_saml_service_provider.png', :alt => 'Screenshot of the Identity Providers tab. The Configure SAML Service Provider tab is framed in red.') %>
 
 1. (Optional) Select **Perform signed authentication requests** to enforce SSO private key signature and identity provider validation.
 
-	<%= image_tag('../images/saml_auth_checkbox.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/saml_auth_checkbox.png', :alt => 'Screenshot of the Configure SAML Service Provider section. There is a button labeled Download Metadata at the top-right. There are buttons labeled Cancel and Save at the bottom-right.') %>
 
 2. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
 
@@ -61,7 +61,7 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 6. Confirm the Entity Details and click the **Finish** button.
 
-	<%= image_tag('../images/ca_sso_local_entity.png', :alt => 'Screenshot of all the entity details') %>
+	<%= image_tag('../images/ca_sso_local_entity.png', :alt => 'Screenshot of all the entity details.') %>
 
 1. Click the **Federation** tab.
 
@@ -91,13 +91,13 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 6. Confirm the Entity Details and click the **Finish** button.
 
-	<%= image_tag('../images/ca_sso_remote_entity.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/ca_sso_remote_entity.png', :alt => 'Screenshot of all the entity details after entering new entity details.') %>
 
-1. Click on the **Federation** tab.
+7. Click on the **Federation** tab.
 
-2. Click **Create Partnership** and select **SAML2 IDP -> SP**.
+8. Click **Create Partnership** and select **SAML2 IDP -> SP**.
 
-3. In the **Configure Partnership** section, perform the following steps:
+9. In the **Configure Partnership** section, perform the following steps:
 
 	1. Enter a **Partnership Name**.
 
@@ -113,13 +113,13 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	7. Click the **Next** button.
 
-	<%= image_tag('../images/ca_sso_partnership.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/ca_sso_partnership.png', :alt => 'Screenshot of the Configure Partnership stage of the Partnerships section. This is the first stage.') %>
 
-4. Configure **Federation Users** by adding the users you want to include in the partnership and click **Next**.
+10. Configure **Federation Users** by adding the users you want to include in the partnership and click **Next**.
 
-	<%= image_tag('../images/ca_sso_federation.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/ca_sso_federation.png', :alt => 'Screenshot of the Federation Users stage of the Partnerships section. This is the second stage.') %>
 
-5. In the **Assertion Configuration** section, perform the following steps:
+11. In the **Assertion Configuration** section, perform the following steps:
 
 	1. Select a **Name ID Format**.
 
@@ -133,9 +133,9 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	5. Click the **Next** button.
 
-	<%= image_tag('../images/ca_sso_assertion.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/ca_sso_assertion.png', :alt => 'Screenshot of the Assertion Configuration stage of the Partnerships section. This is the third stage.') %>
 
-6. In the **SSO and SLO** section, perform the following steps:
+12. In the **SSO and SLO** section, perform the following steps:
 
 	1. Enter the **Authentication URL**.
 
@@ -145,9 +145,9 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	4. Click the **Next** button.
 
-	<%= image_tag('../images/ca_sso_sso_slo.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/ca_sso_sso_slo.png', :alt => 'Screenshot of the SSO and SLO section, which has many text boxes, including for idle time out duration.') %>
 
-7. In the **Signature and Encryption** section, perform the following steps:
+13. In the **Signature and Encryption** section, perform the following steps:
 
 	1. Select your key alias for **Signing Private Key Alias**.
 
@@ -155,12 +155,12 @@ configuring SAML integration in both <%= vars.ops_manager %> and Layer7 SiteMind
 
 	3. Click the **Next** button.
 
-	<%= image_tag('../images/ca_sso_signature.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/ca_sso_signature.png', :alt => 'Screenshot of the Signature and Encryption stage of the Partnerships section. This is the fifth stage.') %>
 
-8. Confirm the Partnership Details and click the **Finish** button.
+14. Confirm the Partnership Details and click the **Finish** button.
 
-9. Click the **Action** button and click **Activate**.
+15. Click the **Action** button and click **Activate**.
 
-	<%= image_tag('../images/ca_sso_activate.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/ca_sso_activate.png', :alt => 'Screenshot of the Federation Partnership list. A Create Partnership button is at the top-right.') %>
 
-10. Click the **Action** button and click **Export Metadata**.
+16. Click the **Action** button and click **Export Metadata**.

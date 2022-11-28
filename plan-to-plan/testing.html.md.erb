@@ -3,26 +3,38 @@ title: Testing OIDC Integrations
 owner: UAA, SSO
 ---
 
-This topic describes how an administrator can test the OpenID Connect (OIDC) connection between a <%= vars.product_full %> service plan acting as an Identity Provider (IDP), and another <%= vars.product_short %> service plan acting as a Relying Party (RP). 
+This topic describes how an administrator can test the OpenID Connect (OIDC) connection between a <%= vars.product_full %> service plan acting as an Identity Provider (IDP), and another <%= vars.product_short %> service plan acting as a Relying Party (RP).
 
 ## Testing Your <%= vars.product_short %> Connection
-<ol>
-	<li>Log in to Apps Manager at <code>ht<span>tps</span>://apps.SYSTEM-DOMAIN</code>.</li>
-	<li>Navigate to the org and space where your app is located.</li>
-	<li>Locate the service instance of the <%= vars.product_short %> plan bound to your app.<br />
-	<img src="../images/sso-service.png"></li>
-	<li>Select the service instance.</li>
-	<li>Click <strong>Manage</strong>.<br/>
-	<img src="../images/manage-services.png"></li>
-	<li>In the <strong>Apps</strong> tab, click your app.<br/>
-	<img src="../images/choose-app.png"></li>
-	<li>Under <strong>Identity Providers</strong>, select the SSO Identity Plan Origin. Remove any other identity providers.<br/>
-	<img src="../images/select-plan-provider.png"></li>
-	<li>Return to Apps Manager.</li>
-	<li>Click the URL listed below your app to access the app.<br/>
-	<img src="../images/app-route-url.png"></li>
-	<li>Log in to the app. You will be redirected to the IDP to authenticate.</li>
-	<li>Sign in to the IDP.</li>
-	<li>If necessary, authorize the necessary scopes to connect the IDP with your app. If you need to do this, the IDP will prompt you.</li>
-	<li>After authorizing the scopes, you should be logged into the app.</li>
-</ol>
+
+1. Log in to Apps Manager at <code>ht<span>tps</span>://apps.SYSTEM-DOMAIN</code>.
+2. Navigate to the org and space where your app is located.
+3. Locate the service instance of the <%= vars.product_short %> plan bound to your
+   app.
+
+   ![Screenshot of the Services tab. The Single Sign-On service is framed in red.](../images/sso-service.png)
+
+4. Select the service instance.
+5. Click <strong>Manage</strong>.
+
+   ![Screenshot of the Overview tab. The Manage button is framed in red.](../images/manage-services.png)
+
+6. In the <strong>Apps</strong> tab, click your app.
+
+   ![Screenshot of the Apps tab. There is a card titled example dash authcode dash sample.](../images/choose-app.png)
+
+7. Under <strong>Identity Providers</strong>, select the SSO Identity Plan Origin.
+   Remove any other identity providers.
+
+   ![Screenshot of the authcode dash sample web app section. There is a green button labeled SSO Identity Plan Origin.](../images/select-plan-provider.png)
+
+8. Return to Apps Manager.
+9. Click the URL listed below your app to access the app.
+
+   ![Screenshot of the Route tab. The Route URL is partially redacted. At the far right is a blue button labeled MAP A ROUTE.](../images/app-route-url.png)
+
+10. Log in to the app. You will be redirected to the IDP to authenticate.
+11. Sign in to the IDP.
+12. If necessary, authorize the necessary scopes to connect the IDP with your app.
+    If you need to do this, the IDP will prompt you.
+13. After authorizing the scopes, you should be logged into the app.

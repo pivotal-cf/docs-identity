@@ -11,30 +11,29 @@ This topic describes how to add an external identity provider to your <%= vars.p
 
 2. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
-	![Screenshot of the Plans pane. In the dropdown menu for the plan Okta PCF SSO,
-  the option Manage Identity Providers is highlighted.](../images/okta_manage_id_providers.png)
+	![Screenshot of the SSO Operator Dashboard. A drop-down menu is open and the option Manage Identity Providers is framed in red.](../images/okta_manage_id_providers.png)
 
 3. Click **New Identity Provider** to create a new identity provider.
 
-	![Screenshot of the New Identity Provider Pane.](../images/new_id_provider.png)
+	![Screenshot of the New Identity Provider page, which has a form for creating a new provider. Blue buttons labeled Create Identity Provider are at the top-right and bottom-right.](../images/new_id_provider.png)
 
-1. To create a new identity provider, perform the following steps:
+4. To create a new identity provider, perform the following steps:
 	1. Enter an identity provider name into **Identity Provider Name**.
 	2. (Optional) Enter a description into **Identity Provider Description**.
 	3. Specify Identity Provider Metadata from Step 11 of the [Configure Okta as an Identity Provider](config-okta.html)  topic.
 		1. Option 1: Enter your **Input Identity Provider Metadata URL** and **Fetch Metadata** to fetch your identity provider metadata from an endpoint.
 		2. Option 2: Click **SAML File Metadata (optional)** to upload your metadata XML manually.
 
-	1. (Optional) Under **Advanced SAML Settings**, click **Attribute Mappings** to enter the mappings.
+	4. (Optional) Under **Advanced SAML Settings**, click **Attribute Mappings** to enter the mappings.
 
-1. Click **Create Identity Provider**.
+5. Click **Create Identity Provider**.
 
-1. Click **Resource Permissions**.
+6. Click **Resource Permissions**.
 
-2. Click **New Permissions Mapping** and perform the following steps:
+7. Click **New Permissions Mapping** and perform the following steps:
     1. Enter a **Group Name**.
     2. For **Select Permissions**, select the permissions that the members of the group from the external identity provider should have access to.
 
-3. Navigate to the identity provider list.
+8. Navigate to the identity provider list.
 
-4. Click **Group Whitelist** and enter the group names from the external identity provider that should be propagated in the ID token.
+9. Click **Group Whitelist** and enter the group names from the external identity provider that should be propagated in the ID token.

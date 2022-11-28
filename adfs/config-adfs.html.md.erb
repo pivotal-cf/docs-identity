@@ -10,21 +10,21 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 1. Log in to the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN` as a Plan Administrator.
 1. Select your plan and click **Manage Identity Providers** on the drop-down menu.
 
-	<%= image_tag('../images/adfs_manage_id_providers.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/adfs_manage_id_providers.png', :alt => 'Screenshot of the SSO Operator Dashboard. A drop-down menu is open and the option Manage Identity Providers is framed in red.') %>
 
-1. Click **Configure SAML Service Provider**.
+2. Click **Configure SAML Service Provider**.
 
-	<%= image_tag('../images/adfs_config_saml_service_provider.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/adfs_config_saml_service_provider.png', :alt => 'Screenshot of the Identity Providers page within the SSO Operator Dashboard. The Configure SAML Service Provider tab is framed in red.') %>
 
-1. (Optional) Select **Perform signed authentication requests** to enforce single sign-on private key signature and identity provider validation.
+3. (Optional) Select **Perform signed authentication requests** to enforce single sign-on private key signature and identity provider validation.
 
-	<%= image_tag('../images/saml_auth_checkbox.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+	<%= image_tag('../images/saml_auth_checkbox.png', :alt => 'Screenshot of the Configure SAML Service Provider tab within the SSO Operator Dashboard. There is checkbox next to the text Perform signed authentication requests. The checkbox is selected. Save and Cancel buttons are at the bottom right.') %>
 
-1. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
+4. (Optional) Select **Require signed assertions** to validate the origin of signed responses.
 
-1. Click **Download Metadata** to download the service provider metadata.
+5. Click **Download Metadata** to download the service provider metadata.
 
-1. Click **Save**.
+6. Click **Save**.
 
 ## <a id='adfs'></a> Set Up SAML in AD FS
 
@@ -34,67 +34,66 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 1. On the Welcome step, click **Start**.
 
-    ![Screenshot of the "Welcome" step of
-    the window titled "Add Relying Party Trust Wizard". A red box is drawn around the "Start" button to
-    show where it is. The "Start" button is in the lower-right of the window to the
-    right of the "Previous" button and to the left of the "Cancel" button. The body of the window has
-    several paragraphs of text and starts with "Welcome to the Add Relying Party Trust Wizard...](../images/adfs_add_relying_party.png)
+    ![Screenshot of the Welcome step of
+    the window titled Add Relying Party Trust Wizard. A red box is drawn around the Start button to
+    show where it is. The Start button is in the lower-right of the window to the
+    right of the Previous button and to the left of the Cancel button. The body of the window has
+    several paragraphs of text and starts with Welcome to the Add Relying Party Trust Wizard.](../images/adfs_add_relying_party.png)
 
-1. Select **Import data about the relying party from a file**, enter the path to the downloaded service provider metadata, and click **Next**.
+2. Select **Import data about the relying party from a file**, enter the path to the downloaded service provider metadata, and click **Next**.
 
-    ![Screenshot of the "Select Data Source"
-    step of the window titled "Add Relying Party Trust Wizard". Red boxes are drawn around the "Import
-    data about the relying party from a file" radio button, the "Federation metadata file location"
-    field, and the "Browse" button to show where they are. The "Import data about the relying party from
-    a file" radio button is below the line of text that starts with "Example". The "Browse" button is to
-    the right of the "Federation metadata file location" field. The body of the window has several
-    paragraphs of text and begins with "Select an option that this wizard...".
-    The "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_import_metadata.png)
+    ![Screenshot of the Select Data Source step of the window titled Add Relying Party Trust Wizard.
+    Red boxes are drawn around the Import data about the relying party from a file radio button, the
+    Federation metadata file location field, and the Browse button to show where they are.
+    The Import data about the relying party from a file radio button is below the line of text that
+    starts with the word Example.
+    The Browse button is to the right of the Federation metadata file location field.
+    The body of the window has several paragraphs of text and begins with Select an option that this
+    wizard.
+    The Previous, Next and Cancel buttons are at the bottom right.](../images/adfs_import_metadata.png)
 
-1. Enter a name for **Display name** and click **Next**.
+3. Enter a name for **Display name** and click **Next**.
 
-    ![Screenshot of the "Specify Display Name"
-    step of the window titled "Add Relying Party Trust Wizard". A red box is drawn around the
-    "Display name" text field. A text field labeled "Notes:" is below.
-    The "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_display_name.png)
+    ![Screenshot of the Specify Display Name step of the window titled Add Relying Party Trust Wizard.
+    A red box is drawn around the Display name text field. A text field labeled Notes: is below.
+    The Previous, Next and Cancel buttons are at the bottom right.](../images/adfs_display_name.png)
 
-1. Leave the default multi-factor authentication selection and click **Next**.
+4. Leave the default multi-factor authentication selection and click **Next**.
 
-    ![Screenshot of the "Configure Multi-factor
-    Authentication Now?" step of the window titled "Add Relying Party Trust Wizard". There is a list of
-    multi-factor authentication requirement statuses. Each status reads "Not configured". Below it, a
-    red box is drawn around the "I do not want to configure multi-factor authentication settings for
-    this relying party trust at this time." radio button. Below that is the "Configure multi-factor
-    authentication settings for this relying party trust." radio button.
-    The "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_mfa.png)
+    ![Screenshot of the Configure Multi-factor Authentication Now? step of the window titled
+    Add Relying Party Trust Wizard. There is a list of multi-factor authentication requirement statuses.
+    Each status reads Not configured. Below it, a red box is drawn around the radio button for the text
+    I do not want to configure multi-factor authentication settings for this relying party trust at
+    this time. Below that is the radio button for Configure multi-factor authentication settings for
+    this relying party trust.
+    The Previous, Next and, Cancel buttons are at the bottom right.](../images/adfs_mfa.png)
 
-1. Select **Permit all users to access this relying party** and click **Next**.
+5. Select **Permit all users to access this relying party** and click **Next**.
 
-    ![Screenshot of the "Choose Issuance
-    Authorization Rules" step of the window titled "Add Relying Party Trust Wizard".
-    There is a description of issuance authorization rules. A red box is drawn around the "Permit all
-    users to access this relying party" radio button, which is selected. Below it is a radio button
-    labeled "Deny all users access to this relying party."
-    The "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_permit_users.png)
+    ![Screenshot of the Choose Issuance Authorization Rules step of the window titled
+    Add Relying Party Trust Wizard.
+    There is a description of issuance authorization rules. A red box is drawn around the
+    Permit all users to access this relying party radio button, which is selected.
+    Below it is a radio button labeled Deny all users access to this relying party.
+    The Previous, Next, and Cancel buttons are at the bottom right.](../images/adfs_permit_users.png)
 
-1. Review your settings and click **Next**.
+6. Review your settings and click **Next**.
 
-1. Click **Close** to finish the wizard.
+7. Click **Close** to finish the wizard.
 
-1. The claim rule editor should open by default. If it does not, select your Relying Party Trust and click **Edit Claim Rules...** in the Actions pane.
+8. The claim rule editor should open by default. If it does not, select your Relying Party Trust and click **Edit Claim Rules...** in the Actions pane.
 
-1. Create two claim rules by following these steps:
+9. Create two claim rules by following these steps:
 
     1. Click **Add Rule**.
 
     2. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
 
-        ![Screenshot of the "Choose Rule Type" step
-        of the window titled "Add Transform Claim Rule Wizard".
-        A red box is drawn around a "Claim rule template:" dropdown with the option "Send LDAP Attributes
-        Claims" selected.
+        ![Screenshot of the Choose Rule Type step of the window titled Add Transform Claim Rule Wizard.
+        A red box is drawn around a Claim rule template: drop-down menu with the option
+        Send LDAP Attributes Claims selected.
         Below is a description of the selected claim rule template.
-        The "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_ldap_claims.png)
+        The Previous, Next, and Cancel buttons are at the bottom right.](../images/adfs_ldap_claims.png)
 
     3. Enter a **Claim rule name**.
 
@@ -104,76 +103,76 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
     6. Click **Finish**.
 
-        ![Screenshot of the "Choose Rule Type"
-        step of the window titled "Add Transform Claim Rule Wizard". There is a "Claim rule name:" dropdown
-        with the option "LDAP email" selected.
-        Below that is an "Attribute store:" dropdown with the option "Active Directory" selected.
-        Below that are "LDAP Attribute" and "Outgoing Claim Type" dropdowns.
-        The "LDAP Attribute" dropdown has the option "Email Addresses" selected.
-        The "Outgoing Claim Type" dropdown has the option "Email Address" selected.
-        Red boxes are drawn around all the "Claim rule name:" field and all the dropdowns.
-        "Previous", "Finish" and "Cancel" buttons are at the bottom right.](../images/adfs_ldap_claim_mappings.png)
+        ![Screenshot of the Choose Rule Type step of the window titled Add Transform Claim Rule Wizard.
+        There is a Claim rule name: drop-down menu with the option LDAP email selected.
+        Below that is a drop-down menu named Attribute store colon. The option Active Directory selected
+        in this menu.
+        Below that are drop-down menus named LDAP Attribute and Outgoing Claim Type.
+        The LDAP Attribute drop-down menu has the option Email Addresses selected.
+        The Outgoing Claim Type drop-down menu has the option Email Address selected.
+        Red boxes are drawn around all the Claim rule name: field and all the drop-down menus.
+        Previous, Finish, and Cancel buttons are at the bottom right.](../images/adfs_ldap_claim_mappings.png)
 
-    1. Click **Add Rule**.
+    7. Click **Add Rule**.
 
-    2. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
+    8. Select **Transform an Incoming Claim** for **Claim rule template** and click **Next**.
 
-        ![Screenshot of the "Select Rule Template"
-        step of the window titled "Add Transform Claim Rule Wizard". A red box is drawn around a
-        "Claim rule template:" dropdown with the option "Transform an Incoming Claim" selected.
+        ![Screenshot of the Select Rule Template step of the window titled
+        Add Transform Claim Rule Wizard. A red box is drawn around a drop-down menu labeled
+        Claim rule template colon. The option Transform an Incoming Claim is selected.
         Below that is a description of the selected claim rule template.
-        "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_transform_claims.png)
+        Previous, Next, and Cancel buttons are at the bottom right.](../images/adfs_transform_claims.png)
 
-    3. Enter a **Claim rule name**.
+    9. Enter a **Claim rule name**.
 
-    4. Select **E-Mail Address** for **Incoming claim type**.
+    10. Select **E-Mail Address** for **Incoming claim type**.
 
-    5. Select **Name ID** for **Outgoing claim type**
+    11. Select **Name ID** for **Outgoing claim type**
 
-    6. Select **Email** for **Outgoing name ID format**.
+    12. Select **Email** for **Outgoing name ID format**.
 
-    6. Click **Finish**.
+    13. Click **Finish**.
 
-        ![Screenshot of the "Configure
-        Claim Rule" step of the window titled "Add Transform Claim Rule Wizard".
-        There is a red box drawn around a "Claim rule name:" field with "NameID" filled in.
-        Below that a red box is drawn around the dropdowns "Incoming claim type:",
-        "Incoming name ID format:", "Outgoing claim type:", and "Outgoing name ID format".
-        Below that are the radio buttons "Pass through all claim values", "Replace an incoming claim value
-        with a different outgoing claim value", and "Replace incoming e-mail suffix claims with a new
-        e-mail suffix".
-        The "Pass through all claim values" radio button is selected.
-        "Previous", "Finish" and "Cancel" buttons are at the bottom right.](../images/adfs_transform_claim_mappings.png)
+        ![Screenshot of the Configure Claim Rule step of the window titled
+        Add Transform Claim Rule Wizard.
+        There is a red box drawn around a Claim rule name colon field with Name ID filled in.
+        Below that a red box is drawn around the drop-down menus Incoming claim type colon,
+        Incoming name ID format colon, Outgoing claim type colon, and Outgoing name ID format.
+        Below that are the radio buttons Pass through all claim values, Replace an incoming claim value
+        with a different outgoing claim value, and Replace incoming e-mail suffix claims with a new
+        e-mail suffix.
+        The radio button for the text Pass through all claim values is selected.
+        Previous, Finish, and Cancel buttons are at the bottom right.](../images/adfs_transform_claim_mappings.png)
 
-    1. Double-click on the new Relying Party Trust to open the properties.
+    14. Double-click on the new Relying Party Trust to open the properties.
 
-    1. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
+    15. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
 
-        <%= image_tag('../images/adfs_remove_cert.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+        <%= image_tag('../images/adfs_remove_cert.png', :alt => 'The ADFS PCF SSO Properties window. The Encryption tab is open and the tab title is framed in red. The Remove button on this tab is also framed in red.') %>
 
-    1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
+    16. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that matches the [SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
 
-        <%= image_tag('../images/adfs_sha1.png', :alt => 'The information depicted in this screenshot is described in the step above.') %>
+        <%= image_tag('../images/adfs_sha1.png', :alt => 'The ADFS PCF SSO Properties window. The Advanced tab is open and the tab title is framed in red. The drop-down menu labeled Secure hash algorithm colon is also framed in red. The drop-down menu has the option SHA dash 1 selected.') %>
 
-    1. (Optional) If you are using a self-signed certificate, disable CRL checks by following these steps:
+    17. (Optional) If you are using a self-signed certificate, disable CRL checks by following these steps:
 
-    1. Open **Windows Powershell** as an Administrator.
+    18. Open **Windows Powershell** as an Administrator.
 
-    2. Run the following command:
+    19. Run the following command:
 
         ```
         set-ADFSRelyingPartyTrust -TargetName "< Relying Party Trust >" -SigningCertificateRevocationCheck None
         ```
 
-1. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the <%= vars.ops_manager %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
+10. (Optional) If you are using a self-signed certificate, add it to the AD FS trust store. Obtain the <%= vars.ops_manager %> certificate from `https://OPS_MANAGER_IP/api/v0/security/root_ca_certificate` and add this CA certificate to the AD FS trust store, so AD FS can trust the "Service Provider Key Certificate" certificate signed by OpsManager ROOT CA.
 
-1. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**. For more information, see the next section.
+11. (Optional) To specify any application or group attributes that you want to map to users in the ID token, click **Edit Claim Rules...** and configure **Send LDAP Attributes as Claims**. For more information, see the next section.
 
 ## <a id='adfs-groups'></a> Setting Up Groups in SAML from AD FS
 
 1. Right-click your **Relying Party Trust** and select **Edit Claim Rules...**.
 
-    ![Screenshot of a context menu. "Edit Claim Rules..." is highlighted.](../images/edit-claim-rules.png)
+    ![Screenshot of a context menu. Edit Claim Rules... is highlighted.](../images/edit-claim-rules.png)
 
 1. Select **Add Rule**.
 
@@ -195,9 +194,9 @@ This topic describes how to set up Active Directory Federation Services (AD FS) 
 
 1. Click **Finish**.
 
-	<%= image_tag('../images/claim-rule-name-type.png', :alt => 'The information depicted in this screenshot is described in the steps above.') %>
+	<%= image_tag('../images/claim-rule-name-type.png', :alt => 'Window titled Add Transform Claim Rule Wizard. There is a drop-down menu named Claim rule template colon and the option selected is Send Group Membership as a Claim. Below the drop-down menu is a paragraph with the title Claim rule template description colon.') %>
 
-1. To save these configurations and use the default SAML assertion of `http://schemas.xmlsoap.org/claims/Group`,
+2. To save these configurations and use the default SAML assertion of `http://schemas.xmlsoap.org/claims/Group`,
 click **OK**. If you want to pass the claims assertion as a custom value `“groups”` in the SAML assertion,
 continue to the [Create Custom Value Groups](#groups) procedure below.
 
@@ -206,34 +205,34 @@ continue to the [Create Custom Value Groups](#groups) procedure below.
 
 1. Select your newly created rule and click **Edit Rule**.
 
-    ![Screenshot of the "Issuance Transform Rules" tab
-    of the window titled "Edit Claim Rules for PWS Demo Login". There is a list of transform rules.
-    A rule named "MYGROUP" is selected.
-    Below the list are "Add Rule...", "Edit Rule...", and "Remove Rule..." buttons.
-    "OK", "Cancel" and "Apply" buttons are at the bottom right.](../images/edit-rule.png)
+    ![Screenshot of the Issuance Transform Rules tab
+    of the window titled Edit Claim Rules for PWS Demo Login. There is a list of transform rules.
+    A rule named MYGROUP is selected.
+    Below the list are buttons labeled Add Rule..., Edit Rule..., and Remove Rule....
+    OK, Cancel, and Apply buttons are at the bottom right.](../images/edit-rule.png)
 
-1. Click **View Rule Language**.
+2. Click **View Rule Language**.
 
-1. Copy the text in the **Claim rule language** field to a notepad or other location. You need this text for the next steps.
+3. Copy the text in the **Claim rule language** field to a notepad or other location. You need this text for the next steps.
 
-1. Exit the **Edit Rule** menu. Select the rule you just added and click **Remove Rule**.
+4. Exit the **Edit Rule** menu. Select the rule you just added and click **Remove Rule**.
 
-1. Click **Add Rule**.
+5. Click **Add Rule**.
 
-1. Select **Send Claims Using a Custom Rule** from the **Claim rule template** dropdown.
+6. Select **Send Claims Using a Custom Rule** from the **Claim rule template** dropdown.
 
-1. Click **Next**.
+7. Click **Next**.
 
-    ![Screenshot of the "Choose Rule Type" step of the window titled "Add Transform Claim Rule Wizard".
-    There is a "Claim rule template:" dropdown with the option "Send Claims Using a Custom Rule"
+    ![Screenshot of the Choose Rule Type step of the window titled Add Transform Claim Rule Wizard.
+    There is a Claim rule template: drop-down menu with the option Send Claims Using a Custom Rule
     selected. Below that is a description of the selected claim rule.
-    "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/send-claim-using-custom-rule.png)
+    Previous, Next, and Cancel buttons are at the bottom right.](../images/send-claim-using-custom-rule.png)
 
-1. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that it only says `“groups”`.
+8. Paste in the text you previously copied in step 3 from the removed rule. Edit the `Type` so that it only says `“groups”`.
 
-    ![Screenshot of an "Edit Rule" window.
-    It has a "Claim rule name:" field containing the text "MYGROUP".
-    Below that is a "Custom rule:" field containing an example rule.
-    "OK" and "Cancel" buttons are at the bottom of the window.](../images/edit-type.png)
+    ![Screenshot of an Edit Rule window.
+    It has a Claim rule name colon field containing the text MYGROUP.
+    Below that is a Custom rule colon field containing an example rule.
+    OK and Cancel buttons are at the bottom of the window.](../images/edit-type.png)
 
-1. Click **OK** to finish making your changes and save the changes you made.
+9. Click **OK** to finish making your changes and save the changes you made.

@@ -14,34 +14,34 @@ This topic describes how administrators can test the OpenID Connect (OIDC) conne
 
 1. Under **Services**, locate the service instance of the <%= vars.product_short %> plan bound to your app.
 
-	<%= image_tag '../images/gcp-appsman-sso.png' %>
+	<%= image_tag('../images/gcp-appsman-sso.png', :alt => 'Screenshot of the Services tab. The Single Sign-On service is framed in red.' %>
 
 1. Select the service instance and click **Manage**.
 
-	<%= image_tag '../images/gcp-appsman-manage.png' %>
+	<%= image_tag('../images/gcp-appsman-manage.png', :alt => 'Screenshot of the Overview tab. The Manage button at the far right is framed in red.' %>
 
 1. Under the **Apps** tab, select your app.
 
-	<%= image_tag '../images/gcp-appsman-app.png' %>
+	<%= image_tag('../images/gcp-appsman-app.png', :alt => 'Screenshot of the Apps tab. There is a card titled example dash authcode dash sample.' %>
 
 1. Under **Identity Providers**, select the GCP identity provider. Remove any other identity providers.
 
-	<%= image_tag '../images/gcp-appsman-ips.png' %>
+	<%= image_tag('../images/gcp-appsman-ips.png', :alt => 'Screenshot of the authcode dash sample web app section. There is a green button labeled Example Google Origin.' %>
 
 1. Return to Apps Manager and click the URL listed below your app to access your app.
 
-	<%= image_tag '../images/gcp-appsman-route.png' %>
+	<%= image_tag('../images/gcp-appsman-route.png', :alt => 'Screenshot of the Route tab. The Route URL is partially redacted. At the far right is a blue button labeled MAP A ROUTE.' %>
 
 1. Navigate to your login. You will be redirected to the identity provider to authenticate.
 
-	<%= image_tag '../images/gcp-sample.png' %>
+	<%= image_tag('../images/gcp-sample.png', :alt => 'Screenshot of the web page for authcode dash sample. There is a hyperlink with the text Log in via Auth Code Grant Type.' %>
 
 1. On the identity provider sign-in page, enter your credentials and sign in.
 
-	<%= image_tag '../images/gcp-sign-in.png' %>
+	<%= image_tag('../images/gcp-sign-in.png', :alt => 'Screenshot of the Google sign-in page. There is a text box for an email address or phone number. A blue button labeled Next is below the text box.' %>
 
 1. If the app prompts for authorization to the necessary scopes, click **Authorize**.
 
 If you are now logged in to your app, your GCP OIDC to <%= vars.product_short %> connection works.
 
-<%= image_tag '../images/gcp-sample-confirm.png' %>
+<%= image_tag('../images/gcp-sample-confirm.png', :alt => 'Screenshot of the auth code sample web page. It includes a success message that says You've used the auth code flow exclamation mark. Here's the result of calling forward slash user info colon.' %>

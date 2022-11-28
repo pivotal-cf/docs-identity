@@ -13,37 +13,37 @@ This topic describes how an administrator can test the connection between <%= va
 
 2. Under **Services**, locate the service instance of the <%= vars.product_short %> plan bound to your app. Click on the service instance and click **Manage**.
 
-	<%= image_tag '../images/click_service.png' %>
+	<%= image_tag('../images/click_service.png', :alt => 'Screenshot of the Overview tab. The service Pivotal Single Sign-On is framed in red.' %>
 
-	<%= image_tag '../images/adfs_click_manage.png' %>
+	<%= image_tag('../images/adfs_click_manage.png', :alt => 'Screenshot of the Pivotal Single Sign-On section. The button labeled Manage is framed in red.' %>
 
-1. Under the **Apps** tab, click your app.
+3. Under the **Apps** tab, click your app.
 
-	<%= image_tag '../images/adfs_select_authcode_app_tile.png' %>
+	<%= image_tag('../images/adfs_select_authcode_app_tile.png', :alt => 'Screenshot of the Apps tab. There is a card titled authcode dash sample.' %>
 
-1. Under **Identity Providers**, select the AD FS identity provider.
+4. Under **Identity Providers**, select the AD FS identity provider.
 
-	<%= image_tag '../images/click_adfs_pcf.png' %>
+	<%= image_tag('../images/click_adfs_pcf.png', :alt => 'Screenshot of the authcode dash sample web app section. The green button labeled ADFS PCF SSO is framed in red.' %>
 
-1. Return to Apps Manager and click on the URL below your app to be redirected to the identity provider to authenticate.
+5. Return to Apps Manager and click on the URL below your app to be redirected to the identity provider to authenticate.
 
-	<%= image_tag '../images/authcode_sample_address.png' %>
+	<%= image_tag('../images/authcode_sample_address.png', :alt => 'Screenshot of the Overview tab. The URL in the Route table column is framed in red.' %>
 
-1. Click the link.
+6. Click the link.
 
-	<%= image_tag '../images/authcode_sample.png' %>
+	<%= image_tag('../images/authcode_sample.png', :alt => 'Screenshot of the web page for authcode dash sample. There is a hyperlink with the text Log in via Auth Code Grant Type.' %>
 
-1. On the identity provider sign-in page, enter your credentials and click **Sign in**.
+7. On the identity provider sign-in page, enter your credentials and click **Sign in**.
 
-	<%= image_tag '../images/adfs_sign_in.png' %>
+	<%= image_tag('../images/adfs_sign_in.png', :alt => 'Screenshot of the ADFS Single Sign-On sign-in page. There are text boxes for an email address and a password. There is a blue button labeled Sign In.' %>
 
-1. The application asks for authorization to the necessary scopes. Click **Authorize**.
+8. The application asks for authorization to the necessary scopes. Click **Authorize**.
 
-	<%= image_tag '../images/popup_authcode.png' %>
+	<%= image_tag('../images/popup_authcode.png', :alt => 'Screenshot of the Application Authorization pop-up window. There are two checkboxes, one for openID and one for Read TO DO list. Both checkboxes are selected. There are buttons labeled DENY and AUTHORIZE at the bottom.' %>
 
-1. The access token and ID token displays.
+9. The access token and ID token displays.
 
-	<%= image_tag '../images/adfs_authcode_sample_code.png' %>
+	<%= image_tag('../images/adfs_authcode_sample_code.png', :alt => 'Screenshot of code for the Access Token and the ID token.' %>
 
 ## <a id="identity-provider"></a>Test Your Identity Provider Connection
 
@@ -51,13 +51,13 @@ This topic describes how an administrator can test the connection between <%= va
 
 1. Sign in to AD FS.
 
-	<%= image_tag '../images/adfs_sign_in.png' %>
+	<%= image_tag('../images/adfs_sign_in.png', :alt => 'Screenshot of the ADFS Single Sign-On sign-in page. There are text boxes for an email address and a password. There is a blue button labeled Sign In.' %>
 
 1. Navigate to your app and click it.
 
 1. You are redirected to the page that lists apps you have access to.
 
-	<%= image_tag '../images/app_list.png' %>
+	<%= image_tag('../images/app_list.png', :alt => 'Screenshot of the Apps tab, which shows cards for three applications.' %>
 
 ## <a id="sso"></a>Test Your Single Sign-Off
 
@@ -66,8 +66,8 @@ Test single sign-off to ensure that when users log out of the application, they 
 1. Sign in to the sample app. Information about the access and ID token displays, as well as the **What do you want to do?** section.
 1. Under **What do you want to do?**, click **Log out**.
 
-	<%= image_tag '../images/what_do_you_want.png' %>
+	<%= image_tag('../images/what_do_you_want.png', :alt => 'Screenshot of the section titled What do you want to do? There are three links. The bottom link is Log out.' %>
 
 1. You are logged out and redirected to the AD FS login page.
 
-	<%= image_tag '../images/adfs_sign_in.png' %>
+	<%= image_tag('../images/adfs_sign_in.png', :alt => 'Screenshot of the ADFS Single Sign-On sign-in page. There are text boxes for an email address and a password. There is a blue button labeled Sign In.' %>

@@ -13,36 +13,36 @@ Follow the steps below to test your <%= vars.product_short %> connection.
 
 1. Under **Services**, locate the service instance of the <%= vars.product_short %> plan bound to your app.
 
-	<%= image_tag '../images/azure-oidc-instance.png' %>
+	<%= image_tag('../images/azure-oidc-instance.png', :alt => 'Screenshot of the Service tab. The Single Sign-On service is framed in red.' %>
 
 1. Select the service instance and click **Manage**.
 
-	<%= image_tag '../images/azure-oidc-manage-instance.png' %>
+	<%= image_tag('../images/azure-oidc-manage-instance.png', :alt => 'Screenshot of the Overview tab. At the far right, the Manage button is framed in red.' %>
 
 1. Under the **Apps** tab, select your app.
 
-	<%= image_tag '../images/azure-oidc-app.png' %>
+	<%= image_tag('../images/azure-oidc-app.png', :alt => 'Screenshot of the Apps tab. There is a card for example dash auth code dash sample.' %>
 
 1. Under **Identity Providers**, select the Azure AD identity provider. Remove any other identity providers.
 
-	<%= image_tag '../images/azure-oidc-app-idp.png' %>
+	<%= image_tag('../images/azure-oidc-app-idp.png', :alt => 'Screenshot of the Identity Providers section. There is a green button labeled Example Azure Origin.' %>
 
 1. Return to Apps Manager and click the URL listed below your app to access your app.
 
-	<%= image_tag '../images/azure-oidc-app-url.png' %>
+	<%= image_tag('../images/azure-oidc-app-url.png', :alt => 'Screenshot of the route tab. Some of the URL displayed is redacted.' %>
 
 1. Navigate to your login. You will be redirected to the identity provider to authenticate.
 
-	<%= image_tag '../images/azure-oidc-app-prompt.png' %>
+	<%= image_tag('../images/azure-oidc-app-prompt.png', :alt => 'Screenshot of the auth code sample web page. A link is at the bottom, which reads Log in via Auth Code Grant Type.' %>
 
 1. On the identity provider sign-in page, enter your credentials and sign in.
 
-	<%= image_tag '../images/azure-oidc-login.png' %>
+	<%= image_tag('../images/azure-oidc-login.png', :alt => 'Screenshot of the Example OIDC Client sign-in page. There are text boxes. One is for an email address or phone number. The other text box is for a password. There is a blue button labeled Sign in.' %>
 
 1. If the app prompts for authorization to the necessary scopes, click **Accept**.
 
-	<%= image_tag '../images/azure-oidc-accept.png' %>
+	<%= image_tag('../images/azure-oidc-accept.png', :alt => 'Screenshot of the authorization pop-up window. Some of the text is redacted. A blue button labeled Accept is at the bottom next to a Cancel button.' %>
 
 1. If you are now logged into your app, your Azure AD OIDC to <%= vars.product_short %> connection works.
 
-	<%= image_tag '../images/azure-oidc-confirm.png' %>
+	<%= image_tag('../images/azure-oidc-confirm.png', :alt => 'Screenshot of the auth code sample web page. It includes a success message that says You've used the auth code flow exclamation mark. Here's the result of calling forward slash user info colon.' %>
