@@ -13,6 +13,29 @@ These are release notes for the
 <%= partial vars.path_to_partials + '/services/services-lts-notice', :locals => {
   :eogs_date => "April 2022", :product_version => "1.14"} %>
 
+## <a id="1-14-9"></a> v1.14.9
+
+**Release Date: February 24, 2022**
+
+### Resolved Issues
+
+This release has the following fix:
+
+* The SSO tile is no longer overwriting the ClientAuthInBody attribute in the UAA, which was causing user settings to be removed upon accessing SSO Tile configuration.
+
+### Maintenance Changes
+
+* Non-breaking changes to comply with VMware's inclusive language effort are included.
+
+Dependency upgrades in this release:
+
+* Spring Boot to 2.7.8
+
+### Known Issues
+
+This release has the following issue:
+
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 ## <a id="1-14-8"></a> v1.14.8
 
 **Release Date: April 14, 2022**
