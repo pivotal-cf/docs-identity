@@ -13,6 +13,41 @@ These are release notes for the
 <%= partial vars.path_to_partials + '/services/services-lts-notice', :locals => {
   :eogs_date => "April 2022", :product_version => "1.14"} %>
 
+## <a id="1-14-10"></a> v1.14.10
+
+**Release Date: March XX, 2023**
+
+### Resolved Issues
+
+This release has the following fix:
+
+* The `clientAuthInBody` attribute is now configurable via the UI when configuring an OIDC identity provider.
+The checkbox in the UI is labeled `Client Credentials in Request Body`, and indicates that during a token
+request to the external identity provider, the client secret will be sent in the body of the request.
+Reference: [OpenID Connect Core 1.0, Section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication), client_secret_post
+
+### New Features
+
+The identity service broker can now expose the UAA Issuer URI in the application's VCAP_SERVICES
+environment variable. This feature is not enabled by default for backwards compatibility, and can be
+configured in as part of the installation. <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
+### Maintenance Changes
+
+Changes in this release:
+
+* Non-breaking changes to comply with VMware's inclusive language effort.
+
+Dependency upgrades in this release:
+
+* Spring Boot is updated to v2.7.8.
+
+### Known Issues
+
+This release has the following issue:
+
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+
 ## <a id="1-14-9"></a> v1.14.9
 
 **Release Date: February 24, 2023**
