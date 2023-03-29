@@ -43,6 +43,34 @@ staging area.
    VMware recommends the default `java_buildpack_offline` buildpack.
    Because the component apps are Java-based, you must specify a Java-compatible buildpack.
 
+1. (Optional) Click **Property Configurations** to exposes the UAA issuer URI
+   to applications as part of `VCAP_SERVICES` environment variable.
+   ![Screenshot of the UAA Issuer configuration.](./images/property-configuration-uaa-issuer-uri.png))
+
+   When the <%= vars.product_short %> has this option configured, checked, the <%= vars.product_short %> will expose
+   the UAA Issuer URI in the VCAP services environment variable under the `p-identity.credentials.issuer_uri` value
+   adjacent to the `p-identity.credentials.client_id` and `p-identity.credentials.client_secret` values.
+
+   This option is beneficial when the UAA has a custom Issuer URI set. In that scenario,
+   the <%= vars.product_short %> portion of the VCAP_SERVICES variable may look like (shortened for clarity):
+   ```
+   {
+     "p-identity": [
+     {
+       "label": "p-identity",
+       ...
+       "credentials": {
+       ...
+       "auth_domain": "https://dev-plan.login.system-domain.com",
+       "client_secret": "00cf5e1c-dea3-43af-9b2d-c0ad6319b206",
+       "issuer_uri": "https://dev-plan.login.custom-domain.com/oauth/token",
+       "client_id": "0402c634-67de-4c0b-bb7d-1be3f7310fab"
+       },
+       ...
+     }]
+   }
+   ```
+
 1. In the <%= vars.ops_manager %> Dashboard, do the following to complete the installation:
 
     1. If you are using <%= vars.ops_manager %> v2.3 or later, click **Review Pending Changes**.
