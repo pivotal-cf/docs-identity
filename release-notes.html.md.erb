@@ -15,26 +15,29 @@ These are release notes for the
 
 ## <a id="1-14-10"></a> v1.14.10
 
-**Release Date: March XX, 2023**
+**Release Date: March 29, 2023**
 
 ### Resolved Issues
 
 This release has the following fix:
 
-* The `clientAuthInBody` attribute is now configurable via the UI when configuring an OIDC identity provider.
-The checkbox in the UI is labeled `Client Credentials in Request Body`, and indicates that during a token
-request to the external identity provider, the client secret will be sent in the body of the request.
-Reference: [OpenID Connect Core 1.0, Section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication), client_secret_post
+* The `clientAuthInBody` attribute is now configurable via the UI when configuring an OIDC identity
+  provider. The checkbox in the UI is labeled `Client Credentials in Request Body`, and indicates that
+  during a token request to the external identity provider, the client secret will be sent in the body
+  of the request.
+  For more information, see `client_secret_post` in
+  [OpenID Connect Core 1.0, Section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication).
 
 ### New Features
 
-The identity service broker can now expose the UAA Issuer URI in the application's VCAP_SERVICES
+The identity service broker can now expose the UAA Issuer URI in the application's `VCAP_SERVICES`
 environment variable. This feature is not enabled by default for backwards compatibility, and can be
-configured in as part of the installation. <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
+configured as part of the installation.
+<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 
 ### Maintenance Changes
 
-Changes in this release:
+No changes in this release.
 
 ### Known Issues
 
