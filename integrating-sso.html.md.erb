@@ -11,15 +11,16 @@ Because <%= vars.product_short %> is based on the OAuth protocol, any app that u
 
 ### <a id="app-integration-java"></a>Java Apps
 
-If you are using Java, see the [<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository.
-These are sample [Spring Boot](https://projects.spring.io/spring-boot/) apps
-that demonstrate how to use <%= vars.product_short %> Service libraries to configure the app for OAuth.
+If you are using Java, use the [java-cfenv-boot-pivotal-sso](https://github.com/pivotal-cf/java-cfenv/tree/master/java-cfenv-boot-pivotal-sso) library.
+For example Spring Boot apps that demonstrate how to use <%= vars.product_short %> service libraries to
+configure the app for OAuth, see the `spring-boot-2.3` branch of the
+[<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps)
+repository in GitHub.
 
-For Spring Boot 1.5, use [spring-cloud-sso-connector](https://github.com/pivotal-cf/spring-cloud-sso-connector)
-and see the `spring-boot-1.5` branch of the [<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository for examples.
-
-For Spring Boot 2.1, use [java-cfenv-boot-pivotal-sso](https://github.com/pivotal-cf/java-cfenv/tree/master/java-cfenv-boot-pivotal-sso)
-and see the `spring-boot-2.1` branch of the [<%= vars.product_short %> Service Sample Applications](https://github.com/pivotal-cf/identity-sample-apps) repository for examples.
+<p class="note">
+  <strong>Note:</strong> These examples use Spring Boot v2.3 and are only provided to get you started.
+  VMware recommends that you use a supported version of Spring Boot.
+</p>
 
 After binding the app to a <%= vars.product_short %> service instance,
 you must restart the app for the new <%= vars.product_short %> configuration to take effect.
