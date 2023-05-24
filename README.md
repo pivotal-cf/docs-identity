@@ -19,7 +19,7 @@ In this README:
 
 | Branch name | Use for… | Publishes to… |
 |-------------| ------|--------|
-|**master** | This branch is on staging. ADD ALL NEW CONTENT  to this branch — if there's going to be 1.15 or a 2.0. | https://docs-staging.vmware.com/en/draft/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.15/sso/GUID-index.html |
+|**main** | This branch is on staging. ADD ALL NEW CONTENT  to this branch — if there's going to be 1.15 or a 2.0. | https://docs-staging.vmware.com/en/draft/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.15/sso/GUID-index.html |
 |**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html |
 |**1.13** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.13/sso/GUID-index.html |
 |**1.12** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.12/sso/GUID-index.html |
@@ -39,10 +39,10 @@ In this README:
 
 ## Releasing a New Minor Version
 
-Because **master** is the latest and greatest documentation, the process would be to cut a **x.x** branch
-for the version that **master** was targeting during that time.
+Because **main** is the latest and greatest documentation, the process would be to cut a **x.x** branch
+for the version that **main** was targeting during that time.
 
-After this point, **master** will then be the target for the next version of this product.
+After this point, **main** will then be the target for the next version of this product.
 
 
 ## Partials
