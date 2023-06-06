@@ -23,13 +23,13 @@ In this README:
 |**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html |
 |**1.13** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.13/sso/GUID-index.html |
 |**1.12** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.12/sso/GUID-index.html |
-|**1.11** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-11/ |
-|**1.10** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-10/ |
-|**1.9** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-9/ |
-|**1.8** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-8/ |
-|**1.7** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-7/ |
-|**1.6** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-6/ |
-|**1.5** |  **Do not update**. This branch is obsolete. | https://docs.pivotal.io/p-identity/1-5/ |
+|**1.11** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.11/Single-Sign-On-VMware-Tanzu-Application-service-1-11.pdf |
+|**1.10** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.10/Single-Sign-On-VMware-Tanzu-Application-service-1-10.pdf |
+|**1.9** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.9/Single-Sign-On-VMware-Tanzu-Application-service-1-9.pdf |
+|**1.8** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.8/Single-Sign-On-VMware-Tanzu-Application-service-1-8.pdf |
+|**1.7** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.7/Single-Sign-On-VMware-Tanzu-Application-service-1-7.pdf |
+|**1.6** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.6/Single-Sign-On-VMware-Tanzu-Application-service-1-6.pdf |
+|**1.5** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.5/Single-Sign-On-VMware-Tanzu-Application-service-1-5.pdf |
 |**1.4** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/archives/docs-identity-1.4.pdf |
 |**1.3** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/archives/docs-identity-1.3.pdf |
 |**1.2** | **Do not update**. This branch is obsolete. | https://docs.pivotal.io/archives/docs-identity-1.2.pdf |
