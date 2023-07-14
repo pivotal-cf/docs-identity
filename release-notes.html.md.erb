@@ -1,5 +1,5 @@
 ---
-title: Release Notes
+title: Release notes
 owner: Identity Service
 ---
 
@@ -8,27 +8,27 @@ This topic describes the changes in this minor release of
 
 <%= partial vars.path_to_partials + "/upgrade-planner" %>
 
-## <a id="lts"></a> Long-Term Support for <%= vars.product_full %> v1.14
+## <a id="lts"></a> Long-term support for <%= vars.product_full %> v1.14
 
 <%= partial vars.path_to_partials + '/services/services-lts-notice', :locals => {
   :eogs_date => "April 2022", :product_version => "1.14"} %>
 
 
-  ## <a id="1-14-11"></a> v1.14.11
+## <a id="1-14-11"></a> v1.14.11
 
-  **Release Date: July 14, 2023**
+**Release date: July 14, 2023**
 
-  ### Maintenance Changes
+### Maintenance changes
 
-  Dependency upgrades in this release:
+Dependency upgrades in this release:
 
 * Spring Boot is updated to v2.7.13.
 
 ## <a id="1-14-10"></a> v1.14.10
 
-**Release Date: March 29, 2023**
+**Release date: March 29, 2023**
 
-### New Features
+### New features
 
 New features and changes in this release:
 
@@ -37,7 +37,7 @@ The identity service broker can now expose the UAA Issuer URI in the app's `VCAP
 environment variable. This feature is deactivated by default for backwards compatibility.
 You can enable it as part of the installation. For more information, see [Install <%= vars.product_short %> Using <%= vars.ops_manager %>](installation.html#install).
 
-### Resolved Issues
+### Resolved issues
 
 This release has the following fix:
 
@@ -49,11 +49,11 @@ This release has the following fix:
   For more information, see `client_secret_post` in
   [OpenID Connect Core 1.0, Section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication).
 
-### Maintenance Changes
+### Maintenance changes
 
 No changes in this release.
 
-### Known Issues
+### Known issues
 
 This release has the following issue:
 
@@ -61,15 +61,15 @@ This release has the following issue:
 
 ## <a id="1-14-9"></a> v1.14.9
 
-**Release Date: February 24, 2023**
+**Release date: February 24, 2023**
 
-### Resolved Issues
+### Resolved issues
 
 This release has the following fix:
 
 * The `clientAuthInBody` attribute now remains persistent during client updates through the UI.
 
-### Maintenance Changes
+### Maintenance changes
 
 Changes in this release:
 
@@ -79,7 +79,7 @@ Dependency upgrades in this release:
 
 * Spring Boot is updated to v2.7.8.
 
-### Known Issues
+### Known issues
 
 This release has the following issue:
 
@@ -87,9 +87,9 @@ This release has the following issue:
 
 ## <a id="1-14-8"></a> v1.14.8
 
-**Release Date: April 14, 2022**
+**Release date: April 14, 2022**
 
-### Maintenance Changes
+### Maintenance changes
 
 Changes in this release:
 
@@ -110,7 +110,7 @@ Dependency upgrades in this release:
 
 * Spring Boot to 2.5.12
 
-### Known Issues
+### Known issues
 
 This release has the following issue:
 
@@ -118,9 +118,9 @@ This release has the following issue:
 
 ## <a id="1-14-7"></a> v1.14.7
 
-**Release Date: January 14, 2022**
+**Release date: January 14, 2022**
 
-### Security Fixes
+### Security fixes
 
 Addresses log4j CVEs.  The tile does not include log4j-core in supported versions, and all other log4j-related dependencies have been updated.
 
@@ -129,7 +129,7 @@ Dependency upgrades in this release:
 * Apache log4j-api to 2.17.1
 * Apache log4j-to-slf4j to 2.17.1
 
-### Known Issues
+### Known issues
 
 This release has the following issue:
 
@@ -137,9 +137,9 @@ This release has the following issue:
 
 ## <a id="1-14-6"></a> v1.14.6
 
-**Release Date: December 16, 2021**
+**Release date: December 16, 2021**
 
-### Security Fixes
+### Security fixes
 
 Addresses CVE 2021-44228.  The tile does not include log4j-core in supported versions, and all other log4j-related dependencies have been updated.
 
@@ -156,21 +156,21 @@ This release has the following issue:
 
 ## <a id="1-14-4"></a> v1.14.4
 
-**Release Date: November 8, 2021**
+**Release date: November 8, 2021**
 
-### Maintenance Changes
+### Maintenance changes
 
 Dependency upgrades in this release:
 
 * Spring Boot
 
-### Known Issues
+### Known issues
 
 This release has the following issue:
 
 <%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
 
-### Resolved Issues
+### Resolved issues
 
 This release has the following fix:
 
@@ -179,9 +179,9 @@ This release has the following fix:
 
 ## <a id="1-14-3"></a> v1.14.3
 
-**Release Date: July 13, 2021**
+**Release date: July 13, 2021**
 
-### Maintenance Changes
+### Maintenance changes
 
 Dependency upgrades in this release:
 
@@ -189,7 +189,7 @@ Dependency upgrades in this release:
 * Apache Tomcat
 
 
-### Known Issues
+### Known issues
 
 This release has the following issues:
 
@@ -198,9 +198,9 @@ This release has the following issues:
 
 ## <a id="1-14-2"></a> v1.14.2
 
-**Release Date: February 11, 2021**
+**Release date: February 11, 2021**
 
-### Resolved Issues
+### Resolved issues
 
 This release has the following fix:
 
@@ -208,7 +208,7 @@ This release has the following fix:
   has increased from 100 to 500.
 
 
-### Known Issues
+### Known issues
 
 This release has the following issues:
 
@@ -217,9 +217,9 @@ This release has the following issues:
 
 ## <a id="1-14-1"></a> v1.14.1
 
-**Release Date: December 23, 2020**
+**Release date: December 23, 2020**
 
-### Resolved Issues
+### Resolved issues
 
 This release has the following fix:
 
@@ -233,7 +233,7 @@ This release has the following fix:
 
 
 
-### Known Issues
+### Known issues
 
 This release has the following issues:
 
@@ -242,7 +242,7 @@ This release has the following issues:
 
 ## <a id="1-14-0"></a> v1.14.0
 
-**Release Date: December 4, 2020**
+**Release date: December 4, 2020**
 
 ### Features
 
@@ -261,7 +261,7 @@ New features and changes in this release:
     see [Install <%= vars.product_short %> Using <%= vars.ops_manager %>](installation.html#install)<%# Do not link to staging versions of the docs. %>
     in _Installing <%= vars.product_full %>_.
 
-### Known Issues
+### Known issues
 
 This release has the following issues:
 
@@ -269,7 +269,7 @@ This release has the following issues:
 <%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
 
 
-## <a id="viewing"></a> Viewing Release Notes for Another Version
+## <a id="viewing"></a> Viewing release notes for another version
 
 To view the release notes for another product version,
-select the version from the dropdown at the top of this page.
+select the version from the drop-down menu at the top of this page.
