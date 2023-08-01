@@ -13,6 +13,23 @@ This topic describes the changes in this minor release of
 <%= partial vars.path_to_partials + '/services/services-lts-notice', :locals => {
   :eogs_date => "April 2022", :product_version => "1.14"} %>
 
+## <a id="1-14-12"></a> v1.14.12
+
+**Release date: July 28, 2023**
+
+### Maintenance changes
+
+## <a id="1-14-12"></a> v1.14.12
+
+Support Changes:
+
+* The Identity Service Broker will by default deploy with the `cflinuxfs4` stack.
+  If that stack is not available, it will deploy with `cflinuxfs3`
+* `cflinuxfs2` is no longer supported
+
+Dependency upgrades in this release:
+
+* None
 
 ## <a id="1-14-11"></a> v1.14.11
 
