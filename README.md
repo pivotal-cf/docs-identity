@@ -21,8 +21,8 @@ In this README:
 |-------------| ------|--------|
 |**main** | This branch is on staging. ADD ALL NEW CONTENT  to this branch — if there's going to be 1.15 or a 2.0. | https://docs-staging.vmware.com/en/draft/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.15/sso/GUID-index.html |
 |**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html |
-|**1.13** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.13/sso/GUID-index.html |
-|**1.12** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.12/sso/GUID-index.html |
+|**1.13** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.13/Single-Sign-On-VMware-Tanzu-Application-service-1-13.pdf |
+|**1.12** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.12/Single-Sign-On-VMware-Tanzu-Application-service-1-12.pdf |
 |**1.11** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.11/Single-Sign-On-VMware-Tanzu-Application-service-1-11.pdf |
 |**1.10** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.10/Single-Sign-On-VMware-Tanzu-Application-service-1-10.pdf |
 |**1.9** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.9/Single-Sign-On-VMware-Tanzu-Application-service-1-9.pdf |
