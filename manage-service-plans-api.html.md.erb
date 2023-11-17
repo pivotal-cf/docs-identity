@@ -235,25 +235,25 @@ step 5, add or modify the branding section in the JSON blob according
 to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.
 An example branding section is shown below:
 
-    <p class="note">
-      <strong>Note:</strong> All values are optional.
-      You can also generate the base64 text of your PNG images using commands, such as
-      <code>base64 image.png</code>.
-    </p>
+  <p class="note">
+    <strong>Note:</strong> All values are optional.
+    You can also generate the base64 text of your PNG images using commands, such as
+    <code>base64 image.png</code>.
+  </p>
 
-    <pre class="terminal">
-    "branding": {
-        "companyName": "VMware",
-        "productLogo": "(base64 of png image here, will show up as image on login page)",
-        "squareLogo": "(base64 of png image here, will show up as browser icon)",
-        "footerLegalText": "©2017 VMware, Inc. or its affiliates All Rights Reserved.",
-        "footerLinks": {
-          "Privacy Policy": "https://run.pivotal.io/policies/privacy-policy/",
-          "Terms of Service": "https://run.pivotal.io/policies/terms-of-service",
-          "Up to three links, label here": "https://link-here"
-        }
-    },
-    </pre>
+  <pre class="terminal">
+  "branding": {
+      "companyName": "VMware",
+      "productLogo": "(base64 of png image here, will show up as image on login page)",
+      "squareLogo": "(base64 of png image here, will show up as browser icon)",
+      "footerLegalText": "©2017 VMware, Inc. or its affiliates All Rights Reserved.",
+      "footerLinks": {
+        "Privacy Policy": "https://www.vmware.com/help/privacy.html",
+        "Terms of Service": "https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/downloads/eula/vmware-cloud-services-universal-tos.pdf",
+        "Up to three links, label here": "https://link-here"
+      }
+  },
+  </pre>
 
 
 

@@ -14,9 +14,9 @@ To obtain the identity zone ID for <%= vars.product_short %> plans, do one of th
 
 To obtain the client ID for an app or UAA client, do the procedure in [Monitor App Events](#app) below.
 
-For information about configuring logging in <%= vars.app_runtime_full %>, see [Configuring Logging in <%= vars.app_runtime_full %>](https://docs.pivotal.io/pivotalcf/opsguide/logging-config-opsman.html).
+For information about configuring logging in <%= vars.app_runtime_full %>, see [Configuring Logging in <%= vars.app_runtime_full %>](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/3.0/tas-for-vms/logging-config-opsman.html).
 
-For information about UAA security events, see [UAA Logging](https://docs.pivotal.io/pivotalcf/loggregator/cc-uaa-logging.html#uaa).
+For information about UAA security events, see [UAA Logging](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/cc-uaa-logging.html).
 
 ## <a id="plan"></a>Monitor <%= vars.product_short %> Plan Events
 All <%= vars.product_short %> service plans are given a unique identity zone ID. You can monitor all events for a plan by filtering UAA generated logs using the plan's identity zone ID.
@@ -45,7 +45,7 @@ curl -X GET "https://sso-api.SYSTEM-DOMAIN/v1/plans" \
 Where `YOUR-TOKEN` is the access token you obtained in
 [Create a UAA Identity Zone Admin Client](./manage-service-plans-api.html#zone-admin).
 
-For more information, see [<%= vars.product_short %> Service Plan Automation API](http://docs.pivotal.io/p-identity/sso-api/#list-all-plans) in the <%= vars.product_short %> API documentation.
+For more information, see [<%= vars.product_short %> Service Plan Automation API](https://developer.vmware.com/docs/16116/GUID-B7745A59-0B23-4BB1-ACF7-FFC79FFDC36D.html) in the <%= vars.product_short %> API documentation.
 
 ###<a id="dashboard"></a>Use the <%= vars.operator_dash %>
 
