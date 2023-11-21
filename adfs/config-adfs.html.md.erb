@@ -11,12 +11,13 @@ provider by configuring SAML integration.
 
 To set up AD FS as your identity provider through SAML integration:
 
-1. [Set up SAML in <%= vars.product_short %>](#pcf)
-1. [Set up SAML in AD FS](#adfs)
-1. [Create Claim Rules](#create-claim-rules)
-1. [(Optional) Deactivate CRL Checks](#deactivate-crl-checks)
-1. [Set up Groups in SAML from AD FS](#adfs-groups)
-1. [Create Custom Value Groups](#groups)
+- [ Overview](#-overview)
+- [ Set up SAML in \<%= vars.product\_short %\>](#-set-up-saml-in--varsproduct_short-)
+- [ Set up SAML in AD FS](#-set-up-saml-in-ad-fs)
+- [ Create Claim Rules](#-create-claim-rules)
+- [ (Optional) Deactivate CRL Checks](#-optional-deactivate-crl-checks)
+- [ Set up Groups in SAML from AD FS](#-set-up-groups-in-saml-from-ad-fs)
+- [ Create Custom Value Groups](#-create-custom-value-groups)
 
 
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
@@ -164,7 +165,7 @@ To create two claim rules:
 
 1. Select the **Advanced** tab and select the SHA algorithm for the **Secure hash algorithm** that
 matches the
-[SHA Algorithm configured for <%= vars.app_runtime_full %>](http://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-saml).
+[SHA Algorithm configured for <%= vars.app_runtime_full %>](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/3.0/tas-for-vms/auth-sso.html#configure-saml).
 
     ![Screenshot of the "Advanced" tab of the window
     titled "ADFS PCF SSO Properties".
