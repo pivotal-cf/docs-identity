@@ -7,20 +7,24 @@ as well as to Ops Manager, Apps Manager, and other Cloud Foundry components.
 
 In this README:
 
-- [Branches in this Content Repo](#branches-in-this-content-repo)
-- [Releasing a New Minor Version](#releasing-a-new-minor-version)
-- [Partials](#partials)
-- [Contributing to Documentation](#contributing-to-documentation)
-- [Publishing Docs](#publishing-docs)
-- [Troubleshooting Markdown](#troubleshooting-markdown)
-- [Style Guide](#style-guide)
+- [Single Sign-On (SSO) for VMware Tanzu Application Service Docs](#single-sign-on-sso-for-vmware-tanzu-application-service-docs)
+    - [Branches](#branches)
+  - [Releasing a new minor version](#releasing-a-new-minor-version)
+  - [Partials](#partials)
+  - [Contributing to documentation](#contributing-to-documentation)
+  - [Publishing docs](#publishing-docs)
+    - [Prepare Markdown files](#prepare-markdown-files)
+    - [In Docsdash](#in-docsdash)
+    - [Promoting to pre-prod and prod](#promoting-to-pre-prod-and-prod)
+  - [Troubleshooting Markdown](#troubleshooting-markdown)
+  - [Style guide](#style-guide)
 
-### Branches in this Content Repo
+### Branches
 
 | Branch name | Use for… | Publishes to… |
 |-------------| ------|--------|
 |**main** | This branch is on staging. ADD ALL NEW CONTENT  to this branch — if there's going to be 1.15 or a 2.0. | https://docs-staging.vmware.com/en/draft/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.15/sso/GUID-index.html |
-|**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html |
+|**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | On staging at https://docs-staging.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html and on prod at https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html |
 |**1.13** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.13/single-sign-on-for-tas-1-13.pdf |
 |**1.12** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.12/single-sign-on-for-tas-1-12.pdf |
 |**1.11** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-service/1.11/Single-Sign-On-VMware-Tanzu-Application-service-1-11.pdf |
@@ -37,7 +41,7 @@ In this README:
 |**1.0** | **Do not update**. This branch is unpublished. The branch contains the  documentation for the EOL'd v1.0.10 release of SSO.|
 | **master-on-April27** | A temporary snapshot of master to keep while we make large changes to the master branch. Please keep in sync with v1.6. |
 
-## Releasing a New Minor Version
+## Releasing a new minor version
 
 Because **main** is the latest and greatest documentation, the process would be to cut a **x.x** branch
 for the version that **main** was targeting during that time.
@@ -50,7 +54,7 @@ After this point, **main** will then be the target for the next version of this 
 Cross-product partials for these docs are single sourced from the [Docs Partials](https://github.com/pivotal-cf/docs-partials) repository.
 
 
-## Contributing to Documentation
+## Contributing to documentation
 
 If there is some documentation to add for an unreleased patch version of these docs, then create a branch off of the **live** branch
 you intend to modify and create a pull request against that branch.
@@ -68,14 +72,14 @@ pull request using a fork, see
 in the documentation team wiki.
 
 
-## Publishing Docs
+## Publishing docs
 
 - [docworks](https://docworks.vmware.com/) is the main tool for managing docs used by writers.
 - [docsdash](https://docsdash.vmware.com/) is a deployment UI which manages the promotion from
 staging to pre-prod to production. The process below describes how to upload our docs to staging,
 replacing the publication with the same version.
 
-### Prepare Markdown Files
+### Prepare Markdown files
 
 - Markdown files live in this repo.
 - Images should live in an `images` directory at the same level and linked with a relative link.
@@ -89,7 +93,7 @@ replacing the publication with the same version.
 
    There should be an entry with a blue link which says `Documentation` and points to staging.
 
-### Promoting to Pre-Prod and Prod
+### Promoting to pre-prod and prod
 
 **Prerequisite** Needs additional privileges - reach out to a manager on the docs team [#tanzu-docs](https://vmware.slack.com/archives/C055V2M0H) or ask a writer to do this step for you.
 
@@ -132,7 +136,7 @@ replacing the publication with the same version.
 | Solution: | Make sure you're not using `shell` or `bash` or `console` or `yaml` after back ticks.|
 
 
-## Style Guide
+## Style guide
 
 SSO has a lot of difficult and inconsistent terminology. Jane learned the following, working with Peter Chen in early July 2018.
 
