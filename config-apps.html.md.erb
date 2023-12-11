@@ -496,30 +496,25 @@ For more information, see
 1. Select the space where your service instance is located.
 1. Under **Services**, click **Manage** next to the <%= vars.product_short %> service instance.
 This launches the <%= vars.developer_dash %>.
-    <%= image_tag("images/sso_dev_dashboard_apps.png", :alt => "Screenshot of SSO Developer Dashboard
-        with the Apps tab selected. It shows the register app button on right.") %>
-    <a href="./images/sso_dev_dashboard_apps.png" target="_blank">View a larger version of this image.</a>
+    ![SSO Developer Dashboard with the Apps tab selected. It shows the register app button on right.](images/sso_dev_dashboard_apps.png)
 1. Click **Register App**.
-1. Enter an **App Name**.
-1. Choose an app type under **Select an App Type**.
-1. Under **Select Identity Providers**, select an identity provider for your app.
+2. Enter an **App Name**.
+3. Choose an app type under **Select an App Type**.
+4. Under **Select Identity Providers**, select an identity provider for your app.
 Internal User Store is the default.
     <p class="note">
-      <strong>Note:</strong> When registering an externally hosted app, a Space Developer can choose
+      <span class="note__title">Note</span>When registering an externally hosted app, a Space Developer can choose
       from internal and external identity providers.
       If the Space Developer selects multiple identity providers, users must select which provider to
       use when they sign in.
       This option is available for all app types except <code>Service-to-Service App</code>.
     </p>
-    <%= image_tag("images/sso_dev_select_idp.png", :alt => "Screenshot of Select Identity Providers section of the page.
-        Shows Internal User Store selected as the Identity Provider. Type is UAA and Origin Key is uaa.") %>
+    ![Shows Select Identity Providers with Internal User Store as the Identity Provider, type is UAA, and Origin Key is uaa.](images/sso_dev_select_idp.png)
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings** enter an
 allowlist of URIs beneath **Redirect URIs Whitelist**.
 The redirect query parameter specified on the OAuth request must match the URIs specified in this
 list. Otherwise, <%= vars.product_short %> rejects the request.
-    <%= image_tag("images/sso_dev_redirect_uri.png", :alt => "Screenshot of App Settings section of the page.
-     Shows textbox labeled Redirect URI Whitespace where you enter a comma-separated list of URIs.
-     Each URI must start with a URI scheme. For example, https://,custom-scheme://") %>
+   ![Shows textbox labeled Redirect URI Whitespace where you enter a comma-separated list of URIs.](images/sso_dev_redirect_uri.png)
 1. Under **Authorization**, select the **System Permissions** that the app can request on the user’s
 behalf. If this app is only for authentication purposes, then the `openid` scope is sufficient.
 If the app makes API calls on behalf of the end user, specify both the scopes that the API enforces
@@ -584,13 +579,11 @@ For more information about tokens, see
 If you want an app to display on the home page, you must enter an **App Launch URL** or upload an
 app icon.
 1. In **App Launch URL**, enter the address you want for your app.
-1. Upload an app icon for your app.
+2. Upload an app icon for your app.
    The file size limit and 1&nbsp;MB, and the file type must be JPEG, GIF, or PNG.
-    <%= image_tag("images/sso_dev_show_homepage.png", :alt => "Screenshot of the Show on Homepage section of the page.
-          Under the App Icon (Optional) heading is the UPLOAD APP ICON button. To the right of that button
-          is the REMOVE button, which is not yet available to click.") %>
-1. Click **Register App**.
-1. View and download the **App ID** and **App Secret**.
+    ![Under the App Icon (Optional) heading is the Upload App Icon button. To the right of that is the REMOVE button, which is not yet available to click.](images/sso_dev_show_homepage.png)
+3. Click **Register App**.
+4. View and download the **App ID** and **App Secret**.
 Record these credentials to use in other <%= vars.product_short %> procedures.
     <p class="note">
       <strong>Note:</strong> You can only view the <strong>App Secret</strong> when an app is first
@@ -598,8 +591,7 @@ Record these credentials to use in other <%= vars.product_short %> procedures.
     </p>
 1. (Optional) To view examples of how to integrate <%= vars.product_short %> into your Spring Boot
 apps, click **Download Sample Apps**.
-    <%= image_tag("images/download_sample_apps.png", :alt => "Screenshot of the DOWNLOAD SAMPLE APPS button
-        under the heading Easily test these settings with a ready-to-go Spring Boot app.") %>
+    ![DOWNLOAD SAMPLE APPS button under the heading, Easily test these settings with a ready-to-go Spring Boot app.](images/download_sample_apps.png)
 
 
 ## <a id="sso-dashboard"></a> Manage App Configurations
@@ -633,15 +625,12 @@ Internal User Store is the default.
       use when they sign in.
       This option is available for all app types except <code>Service-to-Service App</code>.
     </p>
-    <%= image_tag("images/sso_dev_select_idp.png", :alt => "Screenshot of Select Identity Providers section of the page.
-        Shows Internal User Store selected as the Identity Provider. Type is UAA and Origin Key is uaa.") %>
+    ![Shows Internal User Store selected as the Identity Provider. Type is UAA and Origin Key is uaa.](images/sso_dev_select_idp.png)
 1. If your App Type is `Web App` or `Single-Page JavaScript App`, under **App Settings**
 enter an allowlist of URIs beneath **Redirect URIs Whitelist**.
 The redirect query parameter specified on the OAuth request must match the URIs specified in this
 list. Otherwise, <%= vars.product_short %> rejects the request.
-    <%= image_tag("images/sso_dev_redirect_uri.png", :alt => "Screenshot of App Settings section of the page.
-     Shows textbox labeled Redirect URI Whitespace where you enter a comma-separated list of URIs.
-     Each URI must start with a URI scheme. For example, https://,custom-scheme://") %>
+    ![Shows textbox labeled Redirect URI Whitespace where you enter a comma-separated list of URIs.](images/sso_dev_redirect_uri.png)
 1. Under **Authorization**, select the **System Permissions** that the app can request on the user’s
 behalf. If this app is only for authentication purposes, then the `openid` scope is sufficient.
 If the app makes API calls on behalf of the end user, specify both the scopes that the API enforces
@@ -697,11 +686,9 @@ For more information about tokens, see
       <strong>App Launch URL</strong> or upload an app icon.
     </p>
 1. In **App Launch URL**, enter the address you want for your app.
-1. Upload an app icon for your app.
-    <%= image_tag("images/sso_dev_show_homepage.png", :alt => "Screenshot of the Show on Homepage section of the page.
-          Under the App Icon (Optional) heading is the UPLOAD APP ICON button. To the right of that button
-          is the REMOVE button, which is not yet available to click.") %>
-1. Click **Update App**.
+2. Upload an app icon for your app.
+    ![Under the App Icon (Optional) heading is the UPLOAD APP ICON button. To the right of that button is the REMOVE button, which is not yet available to click.](images/sso_dev_show_homepage.png)
+3. Click **Update App**.
 
 
 ## <a id="view-credentials"></a> Credentials of Existing App Configurations
@@ -718,14 +705,10 @@ To view credentials of an existing app:
 <%= vars.developer_dash %>.
 1. Under **Apps**, click **Credentials** near the name of your app.
     <p class="note">
-      <strong>Note:</strong> You can only view the <strong>App Secret</strong> when an app is first
+      <span class="note__title">Note</span> You can only view the <strong>App Secret</strong> when an app is first
       registered or the secret is regenerated.
     </p>
-    <%= image_tag("images/sso_dev_creds.png", :alt => "Screenshot labeled Service-to-Service App for example called my-app.
-      The following fields are on the page: App ID, App Secret (The App Secret can only be displayed once.
-      Under the App Secret field there is a link for Regenerate app secret.), SSO Service URL, OAuth Token URL,
-      and Token Verification Keys.") %>
-    <a href="./images/sso_dev_creds.png" target="_blank">View a larger version of this image.</a>
+    ![Shows fields: App ID, App Secret, SSO Service URL, OAuth Token URL, and Token Verification Keys.](images/sso_dev_creds.png)
 
 
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
