@@ -35,7 +35,7 @@ To configure the connection:
 
 1. Under **SP Connections**, click **Create New**
 
-    ![Screenshot of the "IdP Configuration" tab within the PingFederate UI.
+    ![The "IdP Configuration" tab within the PingFederate UI.
     There are links below the headers "Application Integration", "Authentication Policies", and
     "Federation Info".
     There are "Manage All" and "Create New" buttons below the header "SP Affiliations".
@@ -50,7 +50,7 @@ To configure the connection:
 1. Select **File** as the method for importing metadata and click **Choose file** to choose the SSO
 metadata on the **Import Metadata** tab. Click **Next**.
 
-    ![Screenshot of the "SP Connection" section within the "IdP Configuration" tab within the PingFederate UI.
+    ![The "SP Connection" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "Import Metadata" tab is selected.
     There are the "Metadata" radio buttons "None", "File", and "URL".
     There is a red box drawn around the "File" radio button.
@@ -62,7 +62,7 @@ metadata on the **Import Metadata** tab. Click **Next**.
 1. Ensure that the **Partner's Entity ID**, **Connection Name**, and **Base URL** fields pre-populate
 based on the metadata. Click **Next**.
 
-    ![Screenshot of the "SP Connection" section within the "IdP Configuration" tab within the PingFederate UI.
+    ![The "SP Connection" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "General Info" tab is selected.
     There is a paragraph that begins "This information identifies your partner\'s unique connection
     identifier..."
@@ -82,7 +82,7 @@ To configure browser SSO:
 1. Select the **IdP-Initiated SSO** and **SP-Initiated SSO** options on the **SAML Profiles** tab and
 click **Next**.
 
-    ![Screenshot of the "Browser SSO" section within the "IdP Configuration" tab within the PingFederate UI.
+    ![The "Browser SSO" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "SAML Profiles" tab is selected.
     There are "Single Sign-On (SSO) Profiles" and "Single Logout (SLO) Profiles" columns.
     In the first row are "IDP-INITIATED SSO" and "IDP-INITIATED SLO" checkboxes.
@@ -109,7 +109,7 @@ To configure assertion creation:
 1. Select a **Subject Name Format** for the **SAML_SUBJECT** on the **Attribute Contract** tab and
 click **Next**.
 
-    ![Screenshot of the "Assertion Creation" section within the "IdP Configuration" tab within the PingFederate UI.
+    ![The "Assertion Creation" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "Attribute Contract" tab is selected.
     There are "Attribute Contract" and "Subject Name Format" labels next to one another.
     Below these labels are the text "SAML_SUBJECT" and a dropdown.
@@ -124,7 +124,7 @@ click **Next**.
 1. Select an **Adapter Instance** and click **Next**. The adapter must include the user's email
 address.
 
-    ![Screenshot of the "IdP Adapter
+    ![The "IdP Adapter
     Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "Adapter Instance" tab is selected.
     Next to the "Adapter Instance" text is a dropdown with the "Adapter" option selected.
@@ -136,7 +136,7 @@ address.
 1. Select the **Use only the adapter contract values in the SAML assertion** option on the
 **Mapping Method** tab and click **Next**.
 
-    ![Screenshot of the "IdP Adapter
+    ![The "IdP Adapter
     Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "Mapping Method" tab is selected.
     There is an "Adapter Contract" header and, below it, are the texts "email", "givenName", and
@@ -152,7 +152,7 @@ address.
 1. Select your adapter instance as the **Source** and the email as the **Value** on the **Attribute
 Contract Fulfillment** tab and click **Next**.
 
-    ![Screenshot of the "IdP Adapter Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
+    ![The "IdP Adapter Mapping" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "Attribute Contract Fulfillment" tab is selected.
     There is a table with "Attribute Contract", "Source", "Value", and "Actions" columns.
     In the single row below is the text "SAML_SUBJECT", a dropdown with the option "Adapter" selected,
@@ -180,7 +180,7 @@ To configure protocol settings:
 1. Select **POST** for **Binding** and specify the single sign-on endpoint URL in the **Endpoint URL**
 field on the **Assertion Consumer Service URL** tab. Click **Next**
 
-    ![Screenshot of the "Protocol Settings" section within the "IdP Configuration" tab within the PingFederate UI.
+    ![The "Protocol Settings" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "Assertion Consumer Service URL" tab is selected.
     There is a table with "Default", "Index", "Binding", "Endpoint URL", and "Action" columns.
     In the row below is the text "default", the number zero, the text "POST", an endpoint URL, and
@@ -191,7 +191,7 @@ field on the **Assertion Consumer Service URL** tab. Click **Next**
 
 1. Select **POST** on the **Allowable SAML Bindings** tab and click **Next**.
 
-    ![Screenshot of the "Protocol Settings" section within the "IdP Configuration" tab within the PingFederate UI.
+    ![The "Protocol Settings" section within the "IdP Configuration" tab within the PingFederate UI.
     There is a row of tabs across the top. The "Allowable SAML Bindings" tab is selected.
     Below is the sentence "When the SP sends messages, what SAML bindings do you want to show?"
     Below that are the checkboxes "ARTIFACT", "POST", "REDIRECT", AND "SOAP".
@@ -218,7 +218,7 @@ To configure credentials:
 1. Select the **Signing Certificate** to use with the <%= vars.product_full %> service and select
 **Include the certificate in the signature <keyinfo> element**. Click **Next**.
 
-    ![Screenshot of the "Credentials" section within the "IdP Configuration" tab within the PingFederate UI.
+    ![The "Credentials" section within the "IdP Configuration" tab within the PingFederate UI.
     There are two tabs across the top. The "Digital Signature Settings" tab is selected.
     Below is the text "SIGNING CERTIFICATE" and next to it is a dropdown.
     Below is the selected checkbox "INCLUDE THE CERTIFICATE IN THE SIGNATURE <KEY INFO> ELEMENT."
