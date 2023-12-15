@@ -1,19 +1,20 @@
 ---
-title: Configuring Azure Active Directory as a SAML Identity Provider
+title: Configuring Microsoft Entra ID as a SAML Identity Provider
 owner: Identity Service
 ---
 
-This topic tells you how to set up Azure Active Directory (AD) as your identity provider by
-configuring SAML integration in both <%= vars.product_full %> and Azure AD.
+This topic tells you how to set up Microsoft Entra ID as your identity provider by
+configuring SAML integration in both <%= vars.product_full %> and Microsoft Entra ID.
 
 
 ## <a id='overview'></a> Overview
 
-To set up Azure AD as your identity provider through SAML integration:
+To set up Microsoft Entra ID as your identity provider through SAML integration:
 
-1. [Set up SAML in <%= vars.product_short %>](#pcf)
-1. [Set up SAML in Azure AD](#azure)
-1. [Set up Claims Mapping](#claims)
+- [ Overview](#-overview)
+- [ Set up SAML in \<%= vars.product\_short %\>](#-set-up-saml-in--varsproduct_short-)
+- [ Set up SAML in Microsoft Entra ID](#-set-up-saml-in-microsoft-entra-id)
+- [ Set up Claims Mapping](#-set-up-claims-mapping)
 
 
 ## <a id='pcf'></a> Set up SAML in <%= vars.product_short %>
@@ -22,37 +23,30 @@ To set up SAML in <%= vars.product_short %>, follow the steps in
 [Configure SAML Settings](../configure-external-id.html#config-ext-settings).
 
 
-## <a id='azure'></a> Set up SAML in Azure AD
+## <a id='azure'></a> Set up SAML in Microsoft Entra ID
 
-To set up SAML in Azure AD:
+To set up SAML in Microsoft Entra ID:
 
-1. Log in to Azure AD as a Global Admin at https://portal.azure.com/.
+1. Log in to Microsoft Entra ID as a Global Admin at https://portal.azure.com/.
 
-2. Navigate to **Azure Active Directory** tab > **Enterprise application**.
+2. Navigate to **Microsoft Entra ID** tab > **Enterprise application**.
 
-    ![Screenshot of the "Overview" section in the "Azure Active Directory" tab in Azure AD.
-    Red boxes are drawn around the "Azure Active Directory" tab and the link "Enterprise application".](../images/azure-create-ent-app.png)
+    ![The "Overview" section in Microsoft Entra ID. Red boxes are drawn around the "Azure Active Directory" (Microsoft Entra ID) tab and the link "Enterprise application".](../images/azure-create-ent-app.png)
 
 3. Select **Non-gallery application**. Provide a name and click **Add**.
 
-    ![Screenshot of the "Add an application" section in the "Azure Active Directory" tab in
-    Azure AD. Red boxes are drawn around the "Azure Active Directory" tab, the "Non-gallery application" link,
-    the "Name" field", and the "Add" button.](../images/azure-nongallery-app.png)
+    ![The "Add an application" section, which allows you to choose between the app you're developing, a on-prem app, or a non-gallery app.](../images/azure-nongallery-app.png)
 
-1. Navigate to **Azure Active Directory** > **Enterprise applications**.
+4. Navigate to **Microsoft Entra ID** > **Enterprise applications**.
 
-    <%= image_tag("../images/azure-manage-ent-app.png", :width => 300, :alt => "Screenshot of tabs and
-    categories in Azure AD. A red box is drawn around the 'Enterprise applications' category.") %>
+    ![Shows available tabs and categories. A red box is drawn around the 'Enterprise applications' category.](../images/azure-manage-ent-app.png)
 
-1. Click your app and then click the **Single sign-on** tab.
+5. Click your app and then click the **Single sign-on** tab.
 
-1. Select **SAML-based Sign-on** from the dropdown and then click **Upload metadata file** to upload
+6. Select **SAML-based Sign-on** from the drop-down menu and click **Upload metadata file** to upload
 the metadata file you downloaded earlier in [Set up SAML in <%= vars.product_short %>](#pcf).
 
-    ![Screenshot of the "Single sign-on" category in Azure AD.
-    There is a "Single Sign-on Mode" dropdown with the option "SAML-based Sign-on" selected.
-    Below that is a link to the document "How to configure single sign-on between Azure AD and new_test."
-    Below that are "Identifier" and "Reply URL" fields that contain example URLs.](../images/azure-samlbased-signon.png)
+    ![Shows the "Single sign-on" category. There is a "Single Sign-on Mode" drop-down menu with the option "SAML-based Sign-on" selected, and "Identifier" and "Reply URL" fields that contain example URLs.](../images/azure-samlbased-signon.png)
 
 1. Record the **App Federation Metadata Url**. You need this for setting up the SSO identity provider
 configurations.
@@ -60,35 +54,24 @@ For more information, see [Setting up SAML](./config-sso.html#set-up-saml).
 
 1. Provide a **Notification Email** and click **Save**.
 
-    ![Screenshot of the "SAML Signing Certificate" section.
-    There is an "App Federation Metadata URL" field that contains a partially redacted example URL.
-    Below that are the certificate status, expiration date, thumbprint, and download links.
-    Below that is a "Create new certificate" link.
-    Below that is a "Show advanced certificate signing settings" checkbox.
-    At the bottom is a "Notification Email" field, which is empty.](../images/azure-app-fed-metadata-url.png)
+    ![Screenshot of the "SAML Signing Certificate" section, where you can manage the certificate used by Microsoft Entra ID to sign SAML tokens.](../images/azure-app-fed-metadata-url.png)
 
 1. Navigate to the **Users and groups** tab and then click **Add User** .
 
-    ![Screenshot of the "new_test - Users and groups" section of Azure AD.
-    The "Add user" button is highlighted.
-    Below that is a search field and below that are "Display Name" and "Object Type" columns.](../images/azure-users-groups.png)
+    ![The "new_test - Users and groups" section of Microsoft Entra ID, where you can manage and add groups, users, owners, and so on.](../images/azure-users-groups.png)
 
-1. Select users or group names from the dropdown. For example, you can add a group that includes all
+1. Select users or group names from the drop-down menu. For example, you can add a group that includes all
 users that should be able to log in to the <%= vars.product_short %> plan.
 
-    ![Screenshot of the "Users and groups" tab of the "Add Assignment" section of Azure AD.
-    There is a search field and, below that, a list of partially redacted users.](../images/azure-add-user.png)
+    ![The "Users and groups" tab of the "Add Assignment" section of Microsoft Entra ID, where you can select users or groups.](../images/azure-add-user.png)
 
 ## <a id='claims'></a> Set up Claims Mapping
 
 To set up claims mapping:
 
-1. Navigate to **Azure Active Directory** > **App registration**. Click your app.
+1. Navigate to **Microsoft Entra ID** (previously Azure Active Directory) > **App registration**. Click your app.
 
-    ![Screenshot of the "Default Directory - App registrations" section of Azure AD.
-    There is a filtering field and next to it is a dropdown with the option "All apps" selected.
-    Below are "Display Name", "Application Type", and "Application ID" columns.
-    There are two apps listed in the columns.](../images/azure-app-registration.png)
+    ![The "Default Directory - App registrations" section of Microsoft Entra ID where you can view app registrations or add new ones.](../images/azure-app-registration.png)
 
 1. To enable user attribute mappings:
 
@@ -99,22 +82,16 @@ To set up claims mapping:
     For more information, see the
     [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
 
-    ![Screenshot of the "User Attributes"
-    section. A red box is drawn around the "View and edit all other user attributes checkbox".
-    The checkbox is selected.
-    Below that is a table of SAML token attributes, which includes "Name", "Value", and "Namespace"
-    columns.
-    At the bottom is a link called "Add attribute".](../images/azure-user-attributes.png)
-    <a href="../images/azure-user-attributes.png" target="_blank">View a larger version of this image.</a>
+    ![Screenshot of the "User Attributes" section, where you can view, edit, and add user attributes.](../images/azure-user-attributes.png)
 
 2. To pass group membership claims to the app:
     1. Click **Manifest**.
-    1. Locate `groupMembershipClaims` and set the value to one of the following:
+    2. Locate `groupMembershipClaims` and set the value to one of the following:
         - `SecurityGroup`. Groups claim contains identifiers of all security groups of which the user is
         a member.
         - `All`. Groups claim contains the identifiers of all security groups and distribution lists of
         which the user is a member.
-    1. Save the change.
+    3. Save the change.
 
     For more information, see the
     [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization).
@@ -123,9 +100,9 @@ To set up claims mapping:
     the "Edit Manifest" section. The ID values are redacted.
     A red box is drawn around line 28: "groupMembershipClaims" key and its value "SecurityGroup".](../images/azure-edit-manifest.png)
 
-1. Navigate to **Azure Active Directory** > **Groups**.
+3. Navigate to **Azure Active Directory** > **Groups**.
 
-1. For each group that the <%= vars.product_short %> plan uses, record the **Object ID**.
+4. For each group that the <%= vars.product_short %> plan uses, record the **Object ID**.
 Azure AD passes the Object ID of these groups to the <%= vars.product_short %> plan.
 For more information, see [Configure Group Permissions](./config-sso.html#config-permissions).
 
