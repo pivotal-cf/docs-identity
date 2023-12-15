@@ -503,10 +503,8 @@ to those resources.
       </tr>
     </table>
 
-    <p class="note">
-      <span class="note__title">Note</span> Groups with unsupported characters in permissions mappings are not
-      editable. Supported characters are alphanumeric characters, hyphens, and underscores.
-    </p>
+    Groups with unsupported characters in permissions mappings are not editable. Supported characters are alphanumeric characters, hyphens, and underscores.
+
 
     <p class="note">
       <span class="note__title">Note</span>
@@ -526,11 +524,8 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 `roles` key of the <code>/userinfo</code> endpoint response when a user authenticates using an
 external IdP.
 
-    <p class="note">
-      <span class="note__title">Note</span> For an app to retrieve an ID token or a <code>/userinfo</code> response
-      containing external groups, the app must request the <code>roles</code> claim and the group
-      allowlist must include the external groups.
-    </p>
+For an app to retrieve an ID token or a `/userinfo` response containing external groups, the app must request the `roles` claim and the group allowlist must include the external groups.
+
 
     Select **Allow all groups**, **Do not allow any groups**, or **Select groups to allow** from
     the radio group.
@@ -743,10 +738,8 @@ to those resources.
       </tr>
     </table>
 
-    <p class="note">
-      <span class="note__title">Note</span> Groups with unsupported characters in permissions mappings are not
+    Groups with unsupported characters in permissions mappings are not
       editable. Supported characters are alphanumeric characters, hyphens, and underscores.
-    </p>
 
     <p class="note">
       <span class="note__title">Note</span> You can use the UAA API to automate the above procedure.
@@ -763,14 +756,12 @@ to those resources.
 1. Under **Attribute & Group Mappings**, scroll to **External Group Allowed List**.
 An admin can include groups from an external IdP in a group allowlist.
 The list of groups in the allowlist propagates into the `roles` claim of the ID token and and the
-`roles` key of the <code>/userinfo</code> endpoint response when a user authenticates using an
+`roles` key of the `/userinfo` endpoint response when a user authenticates using an
 external IdP.
 
-    <p class="note">
-      <span class="note__title">Note</span> For an app to retrieve an ID token or a <code>/userinfo</code> response
-      containing external groups, the app must request the <code>roles</code> claim and the group
-      allowlist must include the external groups.
-    </p>
+For an app to retrieve an ID token or a `/userinfo` response
+containing external groups, the app must request the `roles` claim and the group allowlist must include the external groups.
+
 
     Select **Allow all groups**, **Do not allow any groups**, or **Select groups to allow**
     from the radio group.
@@ -827,10 +818,7 @@ fields as follows:
       </tr>
     </table>
 
-    ![Screenshot of the 'Custom Attributes' section.
-    There is a selected 'Persist Custom Attributes' checkbox.
-    Below that are 'SSO Attribute Name' and 'IdP Attribute Name' fields.
-    At the bottom is a 'Add New Item' button.](images/custom-attributes.png)
+    ![The 'Custom Attributes' section, with fields as previously described.](images/custom-attributes.png)
 
 1. Click **Save** to save the IdP.
 
@@ -838,7 +826,7 @@ fields as follows:
 ### <a id='delete-idp'></a> Delete an External Identity Provider
 
 <p class="note caution">
-  <span class="note__title">Note</span> Deleting an external IdP deletes all of its configurations.
+<span class="note__title">Caution</span> Deleting an external IdP deletes all of its configurations.
   This prevents users from authenticating through the external IdP.
   You cannot undo this action.
 </p>
@@ -886,10 +874,7 @@ delete.
 
 1. Click **Save** at the bottom of the page.
 
-<p class="note">
-  <span class="note__title">Note</span> Groups with unsupported characters in permissions mappings are not editable.
-  Supported characters are alphanumeric characters, hyphens, and underscores.
-</p>
+   Groups with unsupported characters in permissions mappings are not editable. Supported characters are alphanumeric characters, hyphens, and underscores.
 
 <p class="note">
   <span class="note__title">Note</span> You can use the UAA API to automate the above procedure.
