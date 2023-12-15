@@ -54,8 +54,8 @@ from the dropdown.
 This section shows how to use the UAAC to update UAA identity zone configurations, using a
 <code>PUT</code> command.
 
-<p class="note warning">
-  <strong>Warning:</strong> This flow is for advanced users only.
+<p class="note caution">
+  <p class="note caution"> This flow is for advanced users only.
   You must always run the <code>PUT</code> command with the latest data by doing a <code>GET</code>
   before a <code>PUT</code> command.
   You must also provide all configuration values, otherwise, data might be lost.
@@ -131,16 +131,16 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 1. In your <code>JSON-BLOB.txt</code> file, update the configurations in the JSON blob as needed,
 and then save the file.
 
-    <p class="note warning">
-      <strong>Warning:</strong> You must provide all <code>config</code> values, otherwise, data can
+    <p class="note caution">
+      <p class="note caution"> You must provide all <code>config</code> values, otherwise, data can
       be lost when doing an API update as a <code>PUT</code> command.
     </p>
 
 1. Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown
   below.
 
-    <p class="note warning">
-      <strong>Warning:</strong> You must always run this command with the latest data by doing a
+    <p class="note caution">
+      <p class="note caution"> You must always run this command with the latest data by doing a
       <code>GET</code> before a <code>PUT</code> command.
     </p>
 
@@ -236,7 +236,7 @@ to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentati
 An example branding section is shown below:
 
     <p class="note">
-      <strong>Note:</strong> All values are optional.
+      <span class="note__title">Note</span> All values are optional.
       You can also generate the base64 text of your PNG images using commands, such as
       <code>base64 image.png</code>.
     </p>
@@ -273,7 +273,7 @@ to the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentati
 An example default groups section is shown below:
 
     <p class="note">
-      <strong>Note:</strong> You can add more groups to the array list.
+      <span class="note__title">Note</span> You can add more groups to the array list.
       Users automatically have these scopes though they are not explicitly assigned to users.
     </p>
 
@@ -298,7 +298,7 @@ An example default groups section is shown below:
 ## <a id="rotate-keys"></a> Rotate JSON Web Token (JWT) Signing Keys
 
 <p class="note">
-  <strong>Note:</strong> After you configure JWT signing keys within a service plan, you can no longer
+  <span class="note__title">Note</span> After you configure JWT signing keys within a service plan, you can no longer
   default to sharing the multi-tenant JWT signing key inherited from the default zone.
 </p>
 
@@ -322,8 +322,8 @@ The UAA might support other key types. For more information, see the <a href="ht
     Generate your signing keys securely.
     Ask your security organization for acceptable key generation practices.
 
-    <p class="note warning">
-      <strong>Warning:</strong> Do not use private keys that begin with <code>-----BEGIN OPENSSH PRIVATE KEY-----</code>
+    <p class="note caution">
+      <p class="note caution"> Do not use private keys that begin with <code>-----BEGIN OPENSSH PRIVATE KEY-----</code>
     </p>
 
 1. Take the value of the generated private key and make it a single
