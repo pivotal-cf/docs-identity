@@ -51,7 +51,7 @@ email communications.
 1. Add **Plan Administrators**. These users can view the plan and manage identity providers.
 
 	<p class="note">
-		<strong>Note</strong>: You cannot add system operators to this list. System operators do not
+		<span class="note__title">Note</span>You cannot add system operators to this list. System operators do not
 		appear in this list because they already have Plan Administrator privileges.
 	</p>
 
@@ -261,7 +261,7 @@ command for each plan administrator:
 		cf enable-service-access p-identity -p AUTH-DOMAIN
 		```
 
-		<p class="note"> VMware recommends only giving all orgs access to your <%= vars.product_short %> plans
+		<p class="note"><span class="note__title">Note</span> VMware recommends only giving all orgs access to your <%= vars.product_short %> plans
 			for test plans to enable developers to experiment with <%= vars.product_short %>.</p>
 
 For more information on how you can manage <%= vars.product_short %> plans using the <%= vars.product_short %> API, see the [<%= vars.product_short %> API](https://docs.pivotal.io/p-identity/sso-api) documentation.
@@ -272,7 +272,7 @@ Admins can grant users additional permissions to allow
 them to manage <%= vars.product_short %> plans.
 These permissions let users act as admins.
 
-<p class="note caution"><p class="note caution"> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assigned to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
+<p class="note caution"><span class="note__title">Caution</span> If you use external group mappings, create group mappings for these scopes instead. If you follow the below procedure, permissions are directly assigned to your users. For more information, see <a href="https://docs.pivotal.io/pivotalcf/uaa/uaa-user-management.html#external-group">Grant Admin Permissions to an External Group (SAML or LDAP)</a>.</p>
 
 To create a new admin:
 
