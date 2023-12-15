@@ -7,7 +7,7 @@ This topic tells you how admins configure a <%= vars.product_full %> service pla
 access to <%= vars.app_runtime_abbr %> apps using an external identity provider (IdP).
 
 <p class="note">
-  <strong>Note:</strong> You can also configure a <%= vars.product_short %> service plan to use the
+  <span class="note__title">Note</span> You can also configure a <%= vars.product_short %> service plan to use the
   internal user store to manage user accounts.
   For more information, see <a href="./configure-internal-us.html">Configuring Internal User Store</a>.
 </p>
@@ -127,12 +127,12 @@ to those resources.
     </table>
 
     <p class="note">
-      <strong>Note:</strong> Groups with unsupported characters in permissions mappings are not
+      <span class="note__title">Note</span> Groups with unsupported characters in permissions mappings are not
       editable. Supported characters are alphanumeric characters, hyphens, and underscores.
     </p>
 
     <p class="note">
-      <strong>Note:</strong> You can use the UAA API to automate the above procedure.
+      <span class="note__title">Note</span> You can use the UAA API to automate the above procedure.
       To do this automation, you need an identity zone admin client.
       For instructions about creating the identity zone
       admin client, see
@@ -148,7 +148,7 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 `roles` key of the `/userinfo` endpoint response when a user authenticates using an external IdP.
 
     <p class="note">
-      <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
+      <span class="note__title">Note</span> For an app to retrieve an ID token or a <code>/userinfo</code> response
       containing external groups, the app must request the <code>roles</code> claim and the group
       allowlist must include the external groups.
     </p>
@@ -513,12 +513,12 @@ to those resources.
     </table>
 
     <p class="note">
-      <strong>Note:</strong> Groups with unsupported characters in permissions mappings are not
+      <span class="note__title">Note</span> Groups with unsupported characters in permissions mappings are not
       editable. Supported characters are alphanumeric characters, hyphens, and underscores.
     </p>
 
     <p class="note">
-      <strong>Note:</strong>
+      <span class="note__title">Note</span>
       You can use the UAA API to automate the above procedure.
       To do this automation, you need an identity zone admin client.
       For instructions about creating the identity zone admin client, see
@@ -536,7 +536,7 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 external IdP.
 
     <p class="note">
-      <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
+      <span class="note__title">Note</span> For an app to retrieve an ID token or a <code>/userinfo</code> response
       containing external groups, the app must request the <code>roles</code> claim and the group
       allowlist must include the external groups.
     </p>
@@ -753,12 +753,12 @@ to those resources.
     </table>
 
     <p class="note">
-      <strong>Note:</strong> Groups with unsupported characters in permissions mappings are not
+      <span class="note__title">Note</span> Groups with unsupported characters in permissions mappings are not
       editable. Supported characters are alphanumeric characters, hyphens, and underscores.
     </p>
 
     <p class="note">
-      <strong>Note:</strong> You can use the UAA API to automate the above procedure.
+      <span class="note__title">Note</span> You can use the UAA API to automate the above procedure.
       To do this automation, you need an identity zone admin client.
       For instructions about creating the identity zone admin client, see
       <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.
@@ -776,7 +776,7 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 external IdP.
 
     <p class="note">
-      <strong>Note:</strong> For an app to retrieve an ID token or a <code>/userinfo</code> response
+      <span class="note__title">Note</span> For an app to retrieve an ID token or a <code>/userinfo</code> response
       containing external groups, the app must request the <code>roles</code> claim and the group
       allowlist must include the external groups.
     </p>
@@ -846,8 +846,8 @@ fields as follows:
 
 ### <a id='delete-idp'></a> Delete an External Identity Provider
 
-<p class="note warning">
-  <strong>Note:</strong> Deleting an external IdP deletes all of its configurations.
+<p class="note caution">
+  <span class="note__title">Note</span> Deleting an external IdP deletes all of its configurations.
   This prevents users from authenticating through the external IdP.
   You cannot undo this action.
 </p>
@@ -896,12 +896,12 @@ delete.
 1. Click **Save** at the bottom of the page.
 
 <p class="note">
-  <strong>Note:</strong> Groups with unsupported characters in permissions mappings are not editable.
+  <span class="note__title">Note</span> Groups with unsupported characters in permissions mappings are not editable.
   Supported characters are alphanumeric characters, hyphens, and underscores.
 </p>
 
 <p class="note">
-  <strong>Note:</strong> You can use the UAA API to automate the above procedure.
+  <span class="note__title">Note</span> You can use the UAA API to automate the above procedure.
   To do this automation, you need an identity zone admin client.
   For instructions about creating the identity zone  admin client, see
   <a href="./configure-id-providers-api.html#creating">Create a UAA Identity Zone Admin Client</a>.<br><br>
