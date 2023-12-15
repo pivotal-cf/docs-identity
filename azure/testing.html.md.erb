@@ -4,24 +4,24 @@ owner: Identity Service
 ---
 
 This topic tells you how an administrator can test the connection between <%= vars.product_full %>
-and Azure Active Directory (AD). An administrator can test both service provider and identity
+and Microsoft Entra ID. An administrator can test both service provider and identity
 provider connections.
 
 <%=vars.test_with_sample_apps%>
 
-## <a id="ad"></a>Test Your Configurations in Azure AD
+## <a id="ad"></a>Test Your Configurations in Microsoft Entra ID
 
-1. Log in to Azure AD at https://portal.azure.com/.
+1. Log in to Microsoft Entra ID at https://portal.azure.com/.
 
-1. Navigate to **Azure Active Directory** > **Enterprise Applications**.
+1. Navigate to **Azure Active Directory** (Microsoft Entra ID) > **Enterprise Applications**.
 
 1. Select your app and navigate to **Single Sign-on** > **Test SAML settings**.
 
 1. Select the user that you want to log in as.
 
-    If you have setup all configuration correctly, you should see something like the images below. Otherwise, you should see some meaningful error message.
+    If you have set up all configuration correctly, you should see something like the images below. Otherwise, you should see some meaningful error message.
 
-    ![A screen with title "Test single sign-on new_test". There are two buttons, "Sign in as current user" and "Sign in as someone else". Below the buttons is a green tick next to the text "Azure AD successfully issued a token..." There are links to download the SAML request and response. There are also unexpanded drop downs for User Unique Identifier, Token Claims, Token signing certificate.](../images/azure-test-saml-settings.png)
+    ![The Test single sign-on new_test page with two buttons, "Sign in as current user" and "Sign in as someone else".](../images/azure-test-saml-settings.png)
 
     ![The Token Claims drop down label is expanded showing a table with two columns, Name and Value. There are four entries in the table.](../images/azure-token-claims.png)
 
@@ -41,7 +41,7 @@ provider connections.
 
     ![Screenshot of the Apps tab in Apps Manager showing a tile for the authcode-sample app.](../images/azure_select_authcode_app_tile.png)
 
-1. Under **Identity Providers**, select the Azure AD identity provider.
+1. Under **Identity Providers**, select the Microsoft Entra ID identity provider.
 
     ![Screenshot of the app configuration screen. The Azure PCF SSO button in the Identity Providers section is highlighted.](../images/click_azure_pcf.png)
 
@@ -69,7 +69,7 @@ provider connections.
 
 <p class="note"><strong>Note:</strong> <%= vars.product_short %> does not support identity provider-initiated flow into applications, but it does redirect the user to the User Account and Authentication (UAA) page to select apps assigned to the user.</p>
 
-1. Sign in to Azure AD.
+1. Sign in to Microsoft Entra ID.
 
     ![Screenshot of the Microsoft Azure sign-in page with fields to enter an email address or phone number and password. Below are "Sign in" and "Back" buttons.](../images/azure_sign_in.png)
 
@@ -81,13 +81,13 @@ provider connections.
 
 ## <a id="sso"></a>Test Your Single Sign-Off
 
-Test single sign-off to ensure that when users log out of the application, they are logged out of Azure AD as well.
+Test single sign-off to ensure that when users log out of the application, they are logged out of Microsoft Entra ID as well.
 
 1. Sign into the sample app. Information about the access and ID token displays, as well as the “What do you want to do?” section.
 1. Under "What do you want to do?", click **Log out**.
 
     ![Link in the What do you want to do section. There are links for TODO list, See your account profile, and Log out.](../images/what_do_you_want.png)
 
-1. You are logged out and redirected to the Azure AD login page.
+1. You are logged out and redirected to the Microsoft Entra ID login page.
 
     ![Screenshot of the Microsoft Azure sign-in page with fields to enter an email address or phone number and password. Below are "Sign in" and "Back" buttons.](../images/azure_sign_in.png)

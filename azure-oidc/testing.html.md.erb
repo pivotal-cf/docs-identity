@@ -4,7 +4,7 @@ owner: Identity Service
 ---
 
 This topic tells you how an administrator can test the OpenID Connect (OIDC) connection between
-<%= vars.product_full %> and Azure Active Directory (Azure AD).
+<%= vars.product_full %> and Microsoft Entra ID.
 
 <%=vars.test_with_sample_apps%>
 
@@ -26,7 +26,7 @@ Follow the steps below to test your <%= vars.product_short %> connection.
 
     ![Screenshot of the Apps tab in Apps Manager showing a tile for the example-authcode-sample app.](../images/appsman-app.png)
 
-1. Under **Identity Providers**, select the Azure AD identity provider. Remove any other identity providers.
+1. Under **Identity Providers**, select the Microsoft Entra ID identity provider. Remove any other identity providers.
 
     ![Screenshot of the identity providers section with the Example Azure Origin button and an Internal User Store button.](../images/azure-oidc-app-idp.png)
 
@@ -46,7 +46,7 @@ Follow the steps below to test your <%= vars.product_short %> connection.
 
     ![Screenshot of Example OIDC Client permissions page. The page states that Example OIDC Client needs permission to Sign you in and read your profile and includes a link to show more details. Below are the "Accept" and "Cancel" buttons.](../images/azure-oidc-accept.png)
 
-1. If you are now logged into your app, your Azure AD OIDC to <%= vars.product_short %> connection works.
+1. If you are now logged into your app, your Microsoft Entra ID OIDC to <%= vars.product_short %> connection works.
 
     ![Screenshot of the Authcode Sample app. The text says "You've used the authcode flow!
     Here's the result of calling /userinfo."](../images/sample-confirm.png)

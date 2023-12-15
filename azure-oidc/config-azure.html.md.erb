@@ -1,37 +1,37 @@
 ---
-title: Configuring Azure Active Directory as an OIDC Identity Provider
+title: Configuring Microsoft Entra ID as an OIDC Identity Provider
 owner: Identity Service
 ---
 
-This topic tells you how to integrate Azure Active Directory (Azure AD) as an identity provider for
+This topic tells you how to integrate Microsoft Entra ID as an identity provider for
 a <%= vars.product_full %> plan, by configuring OpenID Connect (OIDC) in both <%= vars.product_short %>
-and Azure AD.
+and Microsoft Entra ID.
 
 
 ## <a id="overview"></a> Overview
 
-Azure Active Directory (Azure AD) is Microsoft’s multi-tenant cloud-based directory and identity
+Microsoft Entra ID is Microsoft’s multi-tenant cloud-based directory and identity
 management service.
 It is one of several identity providers you can use in a <%= vars.product_short %> service plan.
 
 To set up the integration:
 
-1. [Set up a Relying Party in Azure AD](#create-azure-rp)
+1. [Set up a Relying Party in Microsoft Entra ID](#create-azure-rp)
 1. [Locate the OIDC Metadata](#locate-azure-metadata)
 1. [Set up the OIDC Identity Provider in <%= vars.product_short %>](#configure-idp)
 
 
 ## <a id="prereqs"></a> Prerequisites
 
-Before you can set up a relying party in Azure AD, you must:
+Before you can set up a relying party in Microsoft Entra ID, you must:
 
-* Meet the prerequisites listed in the [Azure Active Directory OIDC Integration Guide Overview](./index.html).
+* Meet the prerequisites listed in the [Microsoft Entra ID OIDC Integration Guide Overview](./index.html).
 * [Create a Service Plan in <%= vars.product_short %>](../manage-service-plans.html#create-svc-plan).
 This is required to have the values for `AUTH-DOMAIN` and `ORIGIN-KEY` that are used to construct the **Redirect URI**
 necessary for the Azure Relying Party configuration.
 
 
-## <a id="create-azure-rp"></a> Set Up a Relying Party in Azure AD
+## <a id="create-azure-rp"></a> Set up a relying party in Microsoft Entra ID
 
 Here are some helpful Azure guides that can assist with any questions.
 Note that Azure functionality, UI, and documentation can change frequently.
@@ -43,11 +43,11 @@ using the link at the bottom of the page.
 + [Quickstart: Register an application with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
 <p class="note">
-   <strong>Note</strong>: Azure Active Directory v1 and v2 have slightly different integration instructions.
+   <span class="note__title">Note</span> Azure Active Directory (Microsoft Entra ID) v1 and v2 have slightly different integration instructions.
    This guide is written for v2. Notes such as this one will call out when v1 is different than v2.
 </p>
 
-Follow the procedures below to set up a relying party in Azure AD:
+Follow the procedures below to set up a relying party in Microsoft Entra ID:
 
 1. [Register a New App](#register-an-app)
 1. [Generate a Relying Party OAuth Client Secret](#generate-secret)
@@ -57,31 +57,23 @@ Follow the procedures below to set up a relying party in Azure AD:
 
 To register a new app:
 
-1. Log in to your Azure account and navigate to **Azure Active Directory** &gt; **App registrations**.
+1. Log in to your Azure account and navigate to **Microsoft Entra ID** &gt; **App registrations**.
 
 1. Select **+ New registration** to create a **New application registration**.
 
-    ![Screenshot of the "Register an application" tab. "Name", "Supported account types", and "Redirect URI (optional)"
-    form inputs are shown.
-    The description for the "Name" input is
-    "The user-facing display name for this application (this can be changed later)".
-    The description for the "Supported account types" input is "Who can use this application or access this API?".
-    The description for the "Redirect URI (optional)" input is
-    "We’ll return the authentication response to this URI after successfully authenticating the user.
-    Providing this now is optional and it can be changed later,
-    but a value is required for most authentication scenarios.".](../images/azure-oidc-v2-Register-An-Application.png)
+    ![The "Register an application" tab. "Name", "Supported account types", and "Redirect URI (optional)" form inputs are shown.](../images/azure-oidc-v2-Register-An-Application.png)
 
-1. Enter a name of your choice in the **Name** field.
+2. Enter a name of your choice in the **Name** field.
 
-1. Select an option for **Supported account types**.
+3. Select an option for **Supported account types**.
 To make an appropriate selection, consult your security organization and the Azure documentation.
 Record this choice because your OIDC Discovery Metadata URL depends on this choice.
 
 1. Leave **Redirect URI (optional)** blank. You provide this later.
 
-1. Click **Register**. This redirects you to the app configuration page.
+2. Click **Register**. This redirects you to the app configuration page.
 
-1. Copy the **Application (client) ID** from the app configuration page.
+3. Copy the **Application (client) ID** from the app configuration page.
 This is the **Relying Party OAuth Client ID** that you will enter into the
 <%= vars.operator_dash %> in a later step.
 
@@ -148,11 +140,11 @@ Otherwise, search for your application name in the App registrations list.
 
 ## <a id="locate-azure-metadata"></a> Locate the OIDC Metadata
 
-The Azure Active Directory v2 metadata URL takes the form of
+The Azure Active Directory (Microsoft Entra ID) v2 metadata URL takes the form of
 `https://login.microsoftonline.com/TENANT/v2.0/.well-known/openid-configuration`.
 
 <p class="note">
-   <strong>Note</strong>: Azure Active Directory v1 metadata URLs take the
+   <span class="note__title">Note</span> Azure Active Directory (Microsoft Entra ID) v1 metadata URLs take the
    form of <code>https://login.microsoftonline.com/TENANT/.well-known/openid-configuration</code>
 </p>
 
@@ -168,7 +160,7 @@ To locate your OIDC metadata:
 1. If the `TENANT` value is the domain name or the GUID,
    then find those values as follows:
 
-     1. Navigate to **Azure Active Directory**.
+     1. Navigate to **Azure Active Directory** (Microsoft Entra ID).
 
      2. Record the **Tenant ID** or the **Primary domain** shown.
 
@@ -178,13 +170,13 @@ To locate your OIDC metadata:
 
 ## <a id="configure-idp"></a> Set Up the OIDC Identity Provider in <%= vars.product_short %>
 
-Follow the steps below to set up an OIDC provider for <%= vars.product_short %>:
+Take the following steps to set up an OIDC provider for <%= vars.product_short %>:
 
 1. Follow steps in [Add an OIDC Provider](../configure-external-id.html#config-ext-oidc),
 using the option **DISCOVER OIDC CONFIGURATION**.
 
     <p class="note">
-       <strong>Note</strong>: Azure Active Directory v1 might require the option
+       <span class="note__title">Note</span> Azure Active Directory (Microsoft Entra ID) v1 might require the option
        <strong>MANUALLY ENTER OIDC CONFIGURATION</strong>.
     </p>
 
@@ -195,7 +187,7 @@ VMware recommends using scope `profile` so that Azure includes `preferred_userna
 as shown in the [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens).
 
     <p class="note">
-       <strong>Note</strong>: Azure Active Directory v1 only requires scope <code>openid</code>, although other scopes can be requested.
+       <span class="note__title">Note</span> Azure Active Directory (Microsoft Entra ID) v1  only requires scope <code>openid</code>, although other scopes can be requested.
     </p>
 
 1. Under **Advanced Settings** &gt; **Attribute Mappings (optional)** &gt; **User Attributes**,
@@ -203,11 +195,11 @@ select **user_name** as the **User Schema Attribute** and enter `preferred_usern
 **Attribute Name**. This enables <%= vars.product_short %> to identify the authenticated user.
 
     <p class="note">
-       <strong>Note</strong>: Azure Active Directory v1 uses <code>unique_name</code> instead of <code>preferred_username</code>.
+       <span class="note__title">Note</span> Azure Active Directory (Microsoft Entra ID) v1  uses <code>unique_name</code> instead of <code>preferred_username</code>.
     </p>
 
 1. (Optional) Configure additional attribute mappings.
 
-1. Click **Create Identity Provider** to save your settings.
+2. Click **Create Identity Provider** to save your settings.
 
-1. (Optional) [Enable identity provider discovery](../idp-discovery.html#how-to) for the service plan.
+3. (Optional) [Enable identity provider discovery](../idp-discovery.html#how-to) for the service plan.

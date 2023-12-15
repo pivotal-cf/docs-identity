@@ -23,14 +23,14 @@ This topic tells you how to add an external identity provider to your <%= vars.p
 2. To create a new identity provider, do the following:
 	1. Enter an **Identity Provider Name**.
 	2. (Optional) Enter an **Identity Provider Description**.
-	3. Enter the **App Federation Metadata Url** you obtained from step 7 in [Set up SAML in Azure Active Directory (AD)](./config-azure.html#azure) and click **Fetch Metadata**.
+	3. Enter the **App Federation Metadata Url** you obtained from step 7 in [Set up SAML in Microsoft Entra ID](./config-azure.html#azure) and click **Fetch Metadata**.
 	4. (Optional) Enter mappings under **Advanced SAML Settings** > **Attribute Mappings**.
 
 1. Click **Create Identity Provider**.
 
 ##<a id='config-permissions'></a> Configure Group Permissions
 
-<p class="note"><strong>Note:</strong> Azure AD passes the Object ID of the groups recorded in
+<p class="note"><strong>Note:</strong> Microsoft Entra ID passes the Object ID of the groups recorded in
 	step 5 of <a href="./config-azure.html#claims">Set up Claims Mapping</a> to the <%= vars.product_short %> plan.</p>
 
 1. Add groups to be propagated from the external identity provider to the ID token by following these steps:
