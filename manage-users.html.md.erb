@@ -64,12 +64,7 @@ any internal or external user.
 These operations require administrative access through an admin client that an admin must configure
 for the service plan.
 
-<p class="note">
-  <span class="note__title">Note</span> Clients and groups for <%= vars.product_short %> should be created directly
-  using the <%= vars.developer_dash %> or through app manifest bootstrapping.
-  Do not create these through UAAC, as additional metadata is required for their usage by
-  <%= vars.product_short %>.
-</p>
+Clients and groups for <%= vars.product_short %> should be created directly using the <%= vars.developer_dash %> or through app manifest bootstrapping. Do not create these through UAAC, as additional metadata is required for their usage by <%= vars.product_short %>.
 
 1. Install the UAAC by running:
 
@@ -77,7 +72,7 @@ for the service plan.
     gem install cf-uaac
     ```
 
-1. Target your service plan by running:
+2. Target your service plan by running:
 
     ```
     uaac target AUTH-DOMAIN.login.SYSTEM-DOMAIN
@@ -96,7 +91,7 @@ for the service plan.
     $ uaac target my-auth-domain.login.example.com
     </pre>
 
-1. Record the **App ID** and **App Secret** from your admin client created by
+3. Record the **App ID** and **App Secret** from your admin client created by
 following the steps in [Create Admin Client](./config-apps.html#admin).
 You must give your admin client `scim.read` to read user information.
 You can give your admin client either `scim.write` to create users and modify group (scope)
@@ -121,13 +116,13 @@ memberships or `scim.create` to only create users.
 
     UAAC stores the token in `~/.uaac.yml`.
 
-1. Display the client context by running:
+2. Display the client context by running:
 
     ```
     uaac context
     ```
 
-1. Verify that you have the necessary `scim.write` or `scim.create` permissions under the `scope`
+3. Verify that you have the necessary `scim.write` or `scim.create` permissions under the `scope`
 section:
 
     For example:
@@ -162,7 +157,7 @@ section:
     $ uaac user add Adam -p newSecretPassword --emails adam<span>@</span>example.com
     </pre>
 
-1. Add any group to any internal or external user by running:
+2. Add any group to any internal or external user by running:
 
     ```
     uaac member add GROUP USERNAME
@@ -176,7 +171,7 @@ section:
     $ uaac member add my-app.my-scope Adam
     </pre>
 
-1. Delete any group from any internal or external user.
+3. Delete any group from any internal or external user.
 
     ```
     uaac member delete GROUP USERNAME
