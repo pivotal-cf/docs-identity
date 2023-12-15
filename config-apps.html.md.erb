@@ -717,7 +717,7 @@ To view credentials of an existing app:
 ### <a id="regenerate-app-secret"></a> Regenerate an App Secret
 
 <p class="note caution">
-  <p class="note caution"> You must not regenerate an app secret for <%= vars.app_runtime_abbr %>
+<span class="note__title">Caution</span> You must not regenerate an app secret for <%= vars.app_runtime_abbr %>
   bound apps, because <code>VCAP_SERVICES</code> does not update with the new
   <code>client_secret</code>.
   To regenerate a client for a <%= vars.app_runtime_abbr %> bound app, you must delete and re-create
