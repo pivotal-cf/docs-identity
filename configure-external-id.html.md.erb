@@ -3,14 +3,13 @@ title: Configuring External Identity Providers
 owner: Identity Service
 ---
 
-This topic tells you how admins configure a <%= vars.product_full %> service plan to manage user
-access to <%= vars.app_runtime_abbr %> apps using an external identity provider (IdP).
+This topic tells you how admins configure a <%= vars.product_full %> service
+plan to manage user access to <%= vars.app_runtime_abbr %> apps using an
+external identity provider (IdP).
 
-<p class="note">
-  <span class="note__title">Note</span> You can also configure a <%= vars.product_short %> service plan to use the
-  internal user store to manage user accounts.
-  For more information, see <a href="./configure-internal-us.html">Configuring Internal User Store</a>.
-</p>
+You can also configure a <%= vars.product_short %> service plan to use the
+internal user store to manage user accounts. For more information, see <a
+href="./configure-internal-us.html">Configuring Internal User Store</a>.
 
 
 ## <a id='config-ext-prov'></a> Configure an External Identity Provider
@@ -69,11 +68,7 @@ their app.
       </tr>
     </table>
 
-    ![Screenshot of the SSO Operator Dashboard.
-    There is an 'Identity Provider Metadata URL' radio button.
-    Below it is a field to enter a URL and, next to it, a 'Preview Metadata' button.
-    Below that is an 'Upload IdP Metadata File' radio button.
-    Below that is a 'Browse' button with an adjacent field that displays the XML file selected.](images/saml-metadata.png)
+    ![The SSO Operator Dashboard, showing the previously described options.](images/saml-metadata.png)
 
 1. Enter **Email Domains**. This is a comma-separated list of domains for IdP discovery.
 
@@ -89,9 +84,7 @@ assertion.
 They are sent to apps through OpenID tokens, along with any other stored user information issued by
 <%= vars.product_short %>.
 
-    ![Screenshot of the 'Attribute & Group Mapping' section.
-    There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name',
-    and 'phone number'](images/user-attributes-SAML.png)
+    ![The 'Attribute & Group Mapping' section. There are 'SAML Attribute Name' fields for 'email', 'given name', 'family name', and 'phone number'.](images/user-attributes-SAML.png)
 
 1. Under **Attribute & Group Mappings**, scroll to **External Group Mappings**.
 After a Space Developer defines the resources required by an app, an admin can map existing groups
@@ -126,10 +119,8 @@ to those resources.
       </tr>
     </table>
 
-    <p class="note">
-      <span class="note__title">Note</span> Groups with unsupported characters in permissions mappings are not
-      editable. Supported characters are alphanumeric characters, hyphens, and underscores.
-    </p>
+    Groups with unsupported characters in permissions mappings are not editable.
+    Supported characters are alphanumeric characters, hyphens, and underscores.
 
     <p class="note">
       <span class="note__title">Note</span> You can use the UAA API to automate the above procedure.
