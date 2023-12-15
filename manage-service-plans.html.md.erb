@@ -26,12 +26,7 @@ For more information, see [Plan-to-Plan OIDC Integration Guide](./plan-to-plan/i
 
 Admins can create new <%= vars.product_short %> service plans at any time from the
 <%= vars.operator_dash %>.
-You can use the <%= vars.operator_dash %> to create and configure service plans at any time.
-
-<p class="note">
-	<strong>Note</strong>: You must create at least one plan for any service before your
-	apps can use it.
-</p>
+You can use the <%= vars.operator_dash %> to create and configure service plans at any time. You must create at least one plan for any service before your apps can use it.
 
 1. Log into the <%= vars.operator_dash %> at `https://p-identity.SYSTEM-DOMAIN`
 using your User Account and Authentication (UAA) admin credentials.
@@ -43,11 +38,11 @@ You can find these credentials in the <%= vars.app_runtime_full %> tile in <%= v
           The fields are described in the steps. Plan Administrators and Organizations are marked as Optional.
           Added plans and orgs appear next to the text boxes and can be deleted.') %>
 
-1. Enter a **Plan Name**.
+2. Enter a **Plan Name**.
 
-1. Enter a **Description** to appear as a plan feature in the Services Marketplace.
+3. Enter a **Description** to appear as a plan feature in the Services Marketplace.
 
-1. Enter an **Auth Domain** to be the hostname where users authenticate to access apps covered by the
+4. Enter an **Auth Domain** to be the hostname where users authenticate to access apps covered by the
 service plan.
 
 1. Enter an **Instance Name** to appear on the login page and in other user-facing content, such as
@@ -60,7 +55,7 @@ email communications.
 		appear in this list because they already have Plan Administrator privileges.
 	</p>
 
-1. Under **Organizations**, select specific orgs in your deployment
+2. Under **Organizations**, select specific orgs in your deployment
 that can access your <%= vars.product_short %> service plan, or select **Enable for all Orgs**. <br><br>
 	* If you select **Enable for all Orgs** the plan is available for use and displayed
 	in the Services Marketplace for all developers in any org.
