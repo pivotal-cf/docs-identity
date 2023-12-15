@@ -36,7 +36,7 @@ To set up SAML in AD FS:
 
 1. On the Welcome step, click **Start**.
 
-    ![Screenshot of the "Welcome" step of
+    ![The "Welcome" step of
     the window titled "Add Relying Party Trust Wizard". A red box is drawn around the "Start" button to
     show where it is. The "Start" button is in the lower-right of the window to the
     right of the "Previous" button and to the left of the "Cancel" button. The body of the window has
@@ -45,7 +45,7 @@ To set up SAML in AD FS:
 1. Select **Import data about the relying party from a file**, enter the path to the downloaded
 service provider metadata, and click **Next**.
 
-    ![Screenshot of the "Select Data Source"
+    ![The "Select Data Source"
     step of the window titled "Add Relying Party Trust Wizard". Red boxes are drawn around the "Import
     data about the relying party from a file" radio button, the "Federation metadata file location"
     field, and the "Browse" button to show where they are. The "Import data about the relying party from
@@ -56,14 +56,14 @@ service provider metadata, and click **Next**.
 
 1. Enter a name for **Display name** and click **Next**.
 
-    ![Screenshot of the "Specify Display Name"
+    ![The "Specify Display Name"
     step of the window titled "Add Relying Party Trust Wizard". A red box is drawn around the
     "Display name" text field. A text field labeled "Notes:" is below.
     The "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/adfs_display_name.png)
 
 1. Leave the default multi-factor authentication selection and click **Next**.
 
-    ![Screenshot of the "Configure Multi-factor
+    ![The "Configure Multi-factor
     Authentication Now?" step of the window titled "Add Relying Party Trust Wizard". There is a list of
     multi-factor authentication requirement statuses. Each status reads "Not configured". Below it, a
     red box is drawn around the "I do not want to configure multi-factor authentication settings for
@@ -73,7 +73,7 @@ service provider metadata, and click **Next**.
 
 1. Select **Permit all users to access this relying party** and click **Next**.
 
-    ![Screenshot of the "Choose Issuance
+    ![The "Choose Issuance
     Authorization Rules" step of the window titled "Add Relying Party Trust Wizard".
     There is a description of issuance authorization rules. A red box is drawn around the "Permit all
     users to access this relying party" radio button, which is selected. Below it is a radio button
@@ -96,7 +96,7 @@ To create two claim rules:
 
 1. Select **Send LDAP Attributes as Claims** for **Claim rule template** and click **Next**.
 
-    ![Screenshot of the "Choose Rule Type" step
+    ![The "Choose Rule Type" step
     of the window titled "Add Transform Claim Rule Wizard".
     A red box is drawn around a "Claim rule template:" dropdown with the option "Send LDAP Attributes
     Claims" selected.
@@ -111,7 +111,7 @@ To create two claim rules:
 
 1. Click **Finish**.
 
-    ![Screenshot of the "Choose Rule Type"
+    ![The "Choose Rule Type"
     step of the window titled "Add Transform Claim Rule Wizard". There is a "Claim rule name:" dropdown
     with the option "LDAP email" selected.
     Below that is an "Attribute store:" dropdown with the option "Active Directory" selected.
@@ -125,7 +125,7 @@ To create two claim rules:
 
 1. Select **Transform an Incoming Claim** from the **Claim rule template** dropdown and click **Next**.
 
-    ![Screenshot of the "Select Rule Template"
+    ![The "Select Rule Template"
     step of the window titled "Add Transform Claim Rule Wizard". A red box is drawn around a
     "Claim rule template:" dropdown with the option "Transform an Incoming Claim" selected.
     Below that is a description of the selected claim rule template.
@@ -141,7 +141,7 @@ To create two claim rules:
 
 1. Click **Finish**.
 
-    ![Screenshot of the "Configure
+    ![The "Configure
     Claim Rule" step of the window titled "Add Transform Claim Rule Wizard".
     There is a red box drawn around a "Claim rule name:" field with "NameID" filled in.
     Below that a red box is drawn around the dropdowns "Incoming claim type:",
@@ -156,7 +156,7 @@ To create two claim rules:
 
 1. Select the **Encryption** tab and click **Remove** to remove the encryption certificate.
 
-    ![Screenshot of the "Encryption" tab of the
+    ![The "Encryption" tab of the
     window titled "ADFS PCF SSO Properties". There is a red box drawn around the "Encryption" tab.
     Below that are encryption certificate details.
     Below that are "Browse...", "View...", and "Remove" buttons.
@@ -167,7 +167,7 @@ To create two claim rules:
 matches the
 [SHA Algorithm configured for <%= vars.app_runtime_full %>](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/3.0/tas-for-vms/auth-sso.html#configure-saml).
 
-    ![Screenshot of the "Advanced" tab of the window
+    ![The "Advanced" tab of the window
     titled "ADFS PCF SSO Properties".
     There is a red box drawn around the "Advanced" tab.
     Below that is dropdown labeled "Secure hash algorithm:" with the option "SHA-1" selected.
@@ -208,7 +208,7 @@ To set up groups in SAML from AD FS:
 
 1. Select **Send Group Membership as a Claim** and click **Next**.
 
-    ![Screenshot of the "Choose Rule Type" step of the window titled "Add Transform Claim Rule Wizard".
+    ![The "Choose Rule Type" step of the window titled "Add Transform Claim Rule Wizard".
     There is a "Claim rule template:" dropdown with the option "Send Group Membership as a Claim"
     selected.
     Below is a description of the claim rule template.
@@ -224,7 +224,7 @@ To set up groups in SAML from AD FS:
 
 1. Click **Finish**.
 
-    ![Screenshot of the "Select Group" window.
+    ![The "Select Group" window.
     There is a "Select the object type:" field with an "Object Types..." button.
     Below that is a "From this location:" field with a "Locations..." button.
     Below that is an "Enter the object name to select" field with a "Check Names" button.
@@ -242,7 +242,7 @@ To create custom value groups:
 
 1. Select your newly created rule and click **Edit Rule**.
 
-    ![Screenshot of the "Issuance Transform Rules" tab
+    ![The "Issuance Transform Rules" tab
     of the window titled "Edit Claim Rules for PWS Demo Login". There is a list of transform rules.
     A rule named "MYGROUP" is selected.
     Below the list are "Add Rule...", "Edit Rule...", and "Remove Rule..." buttons.
@@ -261,7 +261,7 @@ text for the next steps.
 
 1. Click **Next**.
 
-    ![Screenshot of the "Choose Rule Type" step of the window titled "Add Transform Claim Rule Wizard".
+    ![The "Choose Rule Type" step of the window titled "Add Transform Claim Rule Wizard".
     There is a "Claim rule template:" dropdown with the option "Send Claims Using a Custom Rule"
     selected. Below that is a description of the selected claim rule.
     "Previous", "Next" and "Cancel" buttons are at the bottom right.](../images/send-claim-using-custom-rule.png)
