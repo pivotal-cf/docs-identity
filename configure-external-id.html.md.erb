@@ -47,10 +47,10 @@ their app.
 1. Configure **Identity Provider Metadata** by configuring one of the below fields as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th>Field</th>
         <th>Instructions</th>
-      </tr>
+      </tr></thead>
       <tr>
         <td><strong>Identity Provider Metadata URL</strong></td>
         <td>Select the <strong>Identity Provider Metadata URL</strong> radio button, then
@@ -99,10 +99,10 @@ to those resources.
     You can configure external group mappings as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th>Field</th>
         <th>Instructions</th>
-      </tr>
+      </tr></thead>
       <tr>
         <td>SAML Groups Attribute Name</td>
         <td>Enter the name of the attribute in the SAML Assertion which contains the list of group
@@ -150,10 +150,10 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
     <table>
       <col style="width:40%">
       <col style="width:60%">
-        <tr>
+        <thead><tr>
           <th>Field</th>
           <th>Description</th>
-        </tr>
+        </tr></thead>
         <tr>
           <td><strong>Allow all groups</strong></td>
           <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the <code>/userinfo</code> endpoint</td>
@@ -175,10 +175,10 @@ The list of groups in the allowlist propagates into the `roles` claim of the ID 
 as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th>Field</th>
         <th>Instructions</th>
-      </tr>
+      </tr></thead>
       <tr>
         <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
@@ -224,11 +224,10 @@ tile in <%= vars.ops_manager %> under the **Credentials** tab.
 1. Configure the fields as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th width=35%>Field</th>
         <th>Description</th>
-      </tr>
-
+      </tr></thead>
       <tr>
         <td><strong>Perform signed authentication requests</strong></td>
         <td>Select this checkbox to enable the service provider to sign requests sent to the
@@ -357,10 +356,10 @@ to fetch the settings, or manually entering the OIDC settings:
 
         <li>Configure the fields as follows:
           <table>
-            <tr>
+            <thead><tr>
               <th>Field</th>
               <th>Instructions</th>
-            </tr>
+            </tr></thead>
 
             <tr>
               <td><strong>Discovery Endpoint URL</strong></td>
@@ -403,10 +402,10 @@ to fetch the settings, or manually entering the OIDC settings:
         <li>Select the <strong>Manually Enter OIDC Configuration</strong> radio button.</li>
         <li>Configure the fields as follows:
           <table>
-            <tr>
+            <thead><tr>
               <th>Field</th>
               <th>Description</th>
-            </tr>
+            </tr></thead>
 
             <tr>
               <td><strong>Authorization Endpoint URL</strong></td>
@@ -485,10 +484,10 @@ to those resources.
     You can configure external group mappings as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th>Field</th>
         <th>Instructions</th>
-      </tr>
+      </tr></thead>
       <tr>
         <td><strong>OIDC Groups Claim Name</strong></td>
         <td>Enter the name of the claim in the external IdP's OIDC token which contains the list of group memberships.</td>
@@ -533,10 +532,10 @@ For an app to retrieve an ID token or a `/userinfo` response containing external
     <table>
       <col style="width:40%">
       <col style="width:60%">
-        <tr>
+        <thead><tr>
           <th>Field</th>
           <th>Description</th>
-        </tr>
+        </tr></thead>
         <tr>
           <td><strong>Allow all groups</strong></td>
           <td>All groups appear in the <code>roles</code> claim of the ID token and the <code>roles</code> key of the <code>/userinfo</code> endpoint</td>
@@ -558,10 +557,10 @@ For an app to retrieve an ID token or a `/userinfo` response containing external
 as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th>Field</th>
         <th>Instructions</th>
-      </tr>
+      </tr></thead>
       <tr>
       <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
@@ -625,10 +624,10 @@ You can only have one LDAP provider per Service Plan.
 1. Configure the fields as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th width=30%>Field</th>
         <th>Instructions</th>
-      </tr>
+      </tr></thead>
       <tr>
         <th colspan="2" style="text-align: center;">Connection</th>
       </tr>
@@ -723,10 +722,10 @@ to those resources.
     You can configure external group mappings as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th>Field</th>
         <th>Instructions</th>
-      </tr>
+      </tr></thead>
       <tr>
         <td>External Group Name</td>
         <td>Enter the fully qualified LDAP paths.
@@ -769,10 +768,10 @@ containing external groups, the app must request the `roles` claim and the group
     <table>
       <col style="width:40%">
       <col style="width:60%">
-      <tr>
+      <thead><tr>
         <th>Field</th>
         <th>Description</th>
-      </tr>
+      </tr></thead>
       <tr>
         <td><strong>Allow all groups</strong></td>
         <td>All groups appear in the <code>roles</code> claim of the ID token and the
@@ -799,10 +798,10 @@ containing external groups, the app must request the `roles` claim and the group
 fields as follows:
 
     <table>
-      <tr>
+      <thead><tr>
         <th>Field</th>
         <th>Instructions</th>
-      </tr>
+      </tr></thead>
       <tr>
         <td><strong>Custom Attributes</strong></td>
         <td>Enter any custom attributes to propagate from the IdP to the service provider. <br>
