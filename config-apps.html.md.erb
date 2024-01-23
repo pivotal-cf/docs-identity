@@ -123,11 +123,11 @@ The table below provides descriptions and default values for bind parameters:
   <col style="width:45%">
   <col style="width:47%">
   <col style="width:8%">
-  <tr>
+  <thead><tr>
     <th>Property&nbsp;Name</th>
     <th>Description</th>
     <th>Default</th>
-  </tr>
+  </tr></thead>
   <tr>
     <td><code>grant_types</code></td>
     <td>The following grant types are supported by <%= vars.product_short %>:
@@ -277,11 +277,11 @@ include in the app manifest:
   <col style="width:45%">
     <col style="width:47%">
     <col style="width:8%">
-  <tr>
+  <thead><tr>
     <th>Property&nbsp;Name</th>
     <th>Description</th>
     <th>Default</th>
-  </tr>
+  </tr></thead>
   <tr>
     <td><code>name</code></td>
     <td>Name of the app</td>
@@ -520,11 +520,11 @@ list. Otherwise, <%= vars.product_short %> rejects the request.
 behalf. If this app is only for authentication purposes, then the `openid` scope is sufficient.
 If the app makes API calls on behalf of the end user, specify both the scopes that the API enforces
 and the scopes that the app requests.
-    <table class="nice">
-       <tr>
+    <table class="table">
+       <thead><tr>
          <th width="25%">Scope</th>
          <th>Description</th>
-       </tr>
+       </tr></thead>
        <tr>
          <td><code>open</code></td>
          <td>Provides access to make OpenID Connect request.
@@ -635,11 +635,11 @@ list. Otherwise, <%= vars.product_short %> rejects the request.
 behalf. If this app is only for authentication purposes, then the `openid` scope is sufficient.
 If the app makes API calls on behalf of the end user, specify both the scopes that the API enforces
 and the scopes that the app requests.
-    <table class="nice">
-       <tr>
+    <table class="table">
+       <thead><tr>
          <th width="25%">Scope</th>
          <th>Description</th>
-       </tr>
+       </tr></thead>
        <tr>
          <td><code>open</code></td>
          <td>Provides access to make OpenID Connect request. The default for Web, Native, and
@@ -763,10 +763,10 @@ This specifies the zone you manage as an admin client.
 1. Under **Authorization**, select what actions the admin client can perform from the following
 **Admin Permissions**:
     <table>
-      <tr>
+      <thead><tr>
        <th width="25%">Scope</th>
        <th>Description</th>
-      </tr>
+      </tr></thead>
       <tr>
         <td><code>clients.admin</code></td>
         <td>Provides superuser access to create, modify, and delete clients</td>
