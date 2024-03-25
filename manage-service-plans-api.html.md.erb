@@ -59,13 +59,6 @@ This section shows how to use the UAAC to update UAA identity zone configuration
 >before a `PUT` command. You must also provide all configuration values, otherwise, data might
 >be lost.
 
-<p class="note caution">
-<span class="note__title">Caution</span> This flow is for advanced users only.
-  You must always run the <code>PUT</code> command with the latest data by doing a <code>GET</code>
-  before a <code>PUT</code> command.
-  You must also provide all configuration values, otherwise, data might be lost.
-</p>
-
 For general information about UAA API,
 see the <a href="https://docs.cloudfoundry.org/api/uaa">Cloud Foundry documentation</a>.<br>
 
@@ -136,18 +129,17 @@ leaving just the JSON blob. Confirm that the <code>id</code> in this output matc
 1. In your <code>JSON-BLOB.txt</code> file, update the configurations in the JSON blob as needed,
 and then save the file.
 
-    <p class="note caution">
-<span class="note__title">Caution</span> You must provide all <code>config</code> values, otherwise, data can
-      be lost when doing an API update as a <code>PUT</code> command.
-    </p>
+    >**Caution**
+    >You must provide all `config` values, otherwise, data can
+    >be lost when doing an API update as a `PUT` command.
 
 1. Submit a UAAC curl request to apply your updated configurations to the identity zone, as shown
   below.
 
-    <p class="note caution">
-<span class="note__title">Caution</span> You must always run this command with the latest data by doing a
-      <code>GET</code> before a <code>PUT</code> command.
-    </p>
+    >**Caution**
+    >You must always run this command with the latest data by doing a
+    >`GET` before a `PUT` command.
+
 
     ```
     uaac curl -k /identity-zones/YOUR-IDENTITY-ZONE-ID -X PUT
@@ -327,9 +319,8 @@ The UAA might support other key types. For more information, see the <a href="ht
     Generate your signing keys securely.
     Ask your security organization for acceptable key generation practices.
 
-    <p class="note caution">
-<span class="note__title">Caution</span> Do not use private keys that begin with <code>-----BEGIN OPENSSH PRIVATE KEY-----</code>
-    </p>
+    >**Caution**
+    >Do not use private keys that begin with `-----BEGIN OPENSSH PRIVATE KEY-----`.
 
 1. Take the value of the generated private key and make it a single
 line of text, replacing all new lines with <code>\n</code>. For example:
