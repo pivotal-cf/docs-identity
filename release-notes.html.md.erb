@@ -8,15 +8,75 @@ This topic describes the changes in this minor release of
 
 <%= partial vars.path_to_partials + "/upgrade-planner" %>
 
-## <a id="lts"></a> Long-term Support for <%= vars.product_full %> v1.14 and v1.15
+## <a id="lts"></a> Long-term Support for <%= vars.product_full %> v1.16
 
 <%= partial vars.path_to_partials + '/services/services-lts-notice', :locals => {
-  :eogs_date => "April 2022", :product_version => "1.14"} %>
+  :eogs_date => "April 2026", :product_version => "1.16"} %>
 
-## <a id="1-14-16"></a> v1.14.16 (and v1.15.3 for Stemcell: Ubuntu Jammy)
+## <a id="1-16-0"></a> v1.16.1 (Stemcell: Ubuntu Jammy)
 
-**Release Date: March 19, 2024**
+**Release date: March 27, 2024**
 
+The 1.16.x release train is a modernization of the 1.14.x and 1.15.x branches.
+The tile requires the Ubuntu Jammy stemcell and Java 21 as a minimum runtime environment.
+
+The 1.16.1 version has been tested on TAS 6.0, 5.0, 4.0, 3.0, 2.13 and 2.11
+
+### Required Components and Notable Changes
+
+The default buildpack, `java_buildpack_offline`, will have Java 21 in newer versions, including newer patch versions,
+of the Tanzu Application Service that include the v4.65+ of the Java Buildpack.
+
+For installations that do not have an updated `java_buildpack_offline` the installer can set the
+value `https://github.com/cloudfoundry/java-buildpack` under **Property Configurations**
+in Ops Manager for the latest Java Buildpack to be used.
+
+### Installation Notes
+
+The SSO Tile is running as 4 separate microservices in the `system` org and the `identity-service-space` space:
+
+* Cloud Foundry Service Broker, `identity-service-broker`
+* Cloud Controller API service, `sso-api`
+* Operator Dashboard, `sso-operator-dashboard`
+* Developer Dashboard, `sso-developer-dashboard`
+
+```
+cf target -o system -s identity-service-space
+cf apps
+
+name                           requested state   processes   routes
+identity-service-broker        started           web:2/2     p-identity-broker.sys.demo.cf-app.com
+sso-api                        started           web:2/2     sso-api.sys.demo.cf-app.com
+sso-developer-dashboard        started           web:2/2     p-identity.sys.demo.cf-app.com/developer
+sso-operator-dashboard         started           web:2/2     p-identity.sys.demo.cf-app.com
+```
+
+During the installation, a green-blue deploy strategy is used (example for sso-operator-dashboard):
+
+1. A new microservice is installed with a `green` prefix, in this example `green-sso-operator-dashboard`
+2. It will initially be routable using a `green` prefix, for example: _green-sso-operator-dashboard.sys.demo.cf-app.com_
+3. Once the microservice is up and running, add the official route to it, for example: _p-identity.sys.demo.cf-app.com_
+4. The official route will be removed from the previous microservice
+5. The previous microservice will be renamed, adding `cold` as a suffix: `sso-operator-dashboard` -> `sso-operator-dashboard-cold`
+6. The newly installed microservice will be renamed, removing `green`: `green-sso-operator-dashboard` -> `sso-operator-dashboard`
+
+At the end of the installation, you will have the 8 total microservices, 4 of them running
+and the other 4 from the previous version paused with no running processes.
+
+```
+cf target -o system -s identity-service-space
+cf apps
+
+name                           requested state   processes   routes
+identity-service-broker        started           web:2/2     green-identity-service-broker.sys.demo.cf-app.com, p-identity-broker.sys.demo.cf-app.com
+identity-service-broker-cold   stopped           web:0/2     green-identity-service-broker.sys.demo.cf-app.com
+sso-api                        started           web:2/2     sso-api.sys.demo.cf-app.com
+sso-api-cold                   stopped           web:0/2
+sso-developer-dashboard        started           web:2/2     green-sso-developer-dashboard.sys.demo.cf-app.com, p-identity.sys.demo.cf-app.com/developer
+sso-developer-dashboard-cold   stopped           web:0/2     green-sso-developer-dashboard.sys.demo.cf-app.com
+sso-operator-dashboard         started           web:2/2     green-sso-operator-dashboard.sys.demo.cf-app.com, p-identity.sys.demo.cf-app.com
+sso-operator-dashboard-cold    stopped           web:0/2     green-sso-operator-dashboard.sys.demo.cf-app.com
+```
 ### Maintenance Changes
 
 Support changes:
@@ -25,464 +85,8 @@ Support changes:
 
 Dependency upgrades in this release:
 
-* byte-buddy-1.12.23.jar
-* jackson-annotations-2.17.0.jar
-* jackson-databind-2.17.0.jar
-* jackson-dataformat-xml-2.17.0.jar
-* jackson-datatype-jdk8-2.17.0.jar
-* jackson-datatype-jsr310-2.17.0.jar
-* jackson-module-kotlin-2.17.0.jar
-* jackson-module-parameter-names-2.17.0.jar
-* json-path-2.9.0.jar
-* lang-tag-1.7.jar
-* nimbus-jose-jwt-9.24.4.jar
-* oauth2-oidc-sdk-9.43.3.jar
-* pring-aop-5.3.33.jar
-* spring-beans-5.3.33.jar
-* spring-context-5.3.33.jar
-* spring-core-5.3.33.jar
-* spring-expression-5.3.33.jar
-* spring-jcl-5.3.33.jar
-* spring-security-config-5.8.10.jar
-* spring-security-core-5.8.10.jar
-* spring-security-crypto-5.8.10.jar
-* spring-security-oauth2-client-5.8.10.jar
-* spring-security-oauth2-core-5.8.10.jar
-* spring-security-oauth2-jose-5.8.10.jar
-* spring-security-oauth2-resource-server-5.8.10.jar
-* spring-security-web-5.8.10.jar
-* spring-web-5.3.33.jar
-* spring-webmvc-5.3.33.jar
-* stax2-api-4.2.2.jar
-* tomcat-embed-core-9.0.86.jar
-* tomcat-embed-el-9.0.86.jar
-* tomcat-embed-websocket-9.0.86.jar
-* woodstox-core-6.6.1.jar
+* Spring Boot 3.2.x
+* Spring Security 6.1.x
+* Apache Tomcat 10.1.x
+* Apache HTTP Client 5
 
-## <a id="1-14-15"></a> v1.14.15 (and v1.15.2 for Stemcell: Ubuntu Jammy)
-
-**Release Date: January 17, 2024**
-
-### Maintenance Changes
-
-Support changes:
-
-* None
-
-Dependency upgrades in this release:
-
-* accessors-smart-2.5.0.jar
-* annotations-24.1.0.jar
-* checker-qual-3.37.0.jar
-* commons-io-2.15.1.jar
-* commons-logging-1.3.0.jar
-* commons-validator-1.8.0.jar
-* error_prone_annotations-2.21.1.jar
-* guava-32.1.3-jre.jar
-* jackson-annotations-2.16.1.jar
-* jackson-core-2.16.1.jar
-* jackson-databind-2.16.1.jar
-* jackson-dataformat-xml-2.16.1.jar
-* jackson-datatype-jdk8-2.16.1.jar
-* jackson-datatype-jsr310-2.16.1.jar
-* jackson-module-kotlin-2.16.1.jar
-* jackson-module-parameter-names-2.16.1.jar
-* jakarta.activation-1.2.2.jar
-* jakarta.activation-api-1.2.2.jar
-* jakarta.xml.bind-api-2.3.3.jar
-* jaxb-runtime-2.3.9.jar
-* json-path-2.8.0.jar
-* json-smart-2.5.0.jar
-* log4j-api-2.17.2.jar
-* log4j-to-slf4j-2.17.2.jar
-* logback-classic-1.2.13.jar
-* logback-core-1.2.13.jar
-* lombok-1.18.30.jar
-* micrometer-core-1.9.17.jar
-* prettytime-5.0.7.Final.jar
-* snakeyaml-2.2.jar
-* spring-aop-5.3.31.jar
-* spring-beans-5.3.31.jar
-* spring-boot-2.7.18.jar
-* spring-boot-actuator-2.7.18.jar
-* spring-boot-autoconfigure-2.7.18.jar
-* spring-boot-autoconfigure-2.7.18.jar
-* spring-boot-jarmode-layertools-2.7.18.jar
-* spring-context-5.3.31.jar
-* spring-core-5.3.31.jar
-* spring-expression-5.3.31.jar
-* spring-jcl-5.3.31.jar
-* spring-web-5.3.31.jar
-* spring-webmvc-5.3.31.jar
-* tomcat-embed-core-9.0.83.jar
-* tomcat-embed-el-9.0.83.jar
-* tomcat-embed-websocket-9.0.83.jar
-
-
-## <a id="1-14-14"></a> v1.14.14 (and v1.15.1 for Stemcell: Ubuntu Jammy)
-
-**Release Date: November 06, 2023**
-
-### Maintenance Changes
-
-Support changes:
-
-* None
-
-Dependency upgrades in this release:
-
-* bcprov-jdk18on-1.74.jar
-* jackson-annotations-2.15.3.jar
-* jackson-core-2.15.3.jar
-* jackson-databind-2.15.3.jar
-* jackson-dataformat-xml-2.15.3.jar
-* jackson-datatype-jdk8-2.15.3.jar
-* jackson-datatype-jsr310-2.15.3.jar
-* jackson-module-kotlin-2.15.3.jar
-* jackson-module-parameter-names-2.15.3.jar
-* lombok-1.18.30.jar
-* micrometer-core-1.9.16.jar
-* spring-aop-5.3.30.jar
-* spring-beans-5.3.30.jar
-* spring-boot-2.7.17.jar
-* spring-boot-actuator-2.7.17.jar
-* spring-boot-actuator-autoconfigure-2.7.17.jar
-* spring-boot-autoconfigure-2.7.17.jar
-* spring-boot-jarmode-layertools-2.7.17.jar
-* spring-context-5.3.30.jar
-* spring-core-5.3.30.jar
-* spring-expression-5.3.30.jar
-* spring-jcl-5.3.30.jar
-* spring-security-config-5.7.11.jar
-* spring-security-core-5.7.11.jar
-* spring-security-crypto-5.7.11.jar
-* spring-security-oauth2-client-5.7.11.jar
-* spring-security-oauth2-core-5.7.11.jar
-* spring-security-oauth2-jose-5.7.11.jar
-* spring-security-oauth2-resource-server-5.7.11.jar
-* spring-security-rsa-1.1.1.jar
-* spring-security-web-5.7.11.jar
-* spring-web-5.3.30.jar
-* spring-webmvc-5.3.30.jar
-* tomcat-embed-core-9.0.82.jar
-* tomcat-embed-el-9.0.82.jar
-* tomcat-embed-websocket-9.0.82.jar
-* woodstox-core-6.5.1.jar
-
-## <a id="1-14-13"></a> v1.14.13
-
-**Release Date: August 24, 2023**
-
-### Maintenance Changes
-
-Support changes:
-
-* None
-
-Dependency upgrades in this release:
-
-* spring-aop-5.3.29
-* spring-beans-5.3.29
-* spring-boot-2.7.14
-* spring-boot-actuator-2.7.14
-* spring-boot-actuator-autoconfigure-2.7.14
-* spring-boot-autoconfigure-2.7.14
-* spring-boot-jarmode-layertools-2.7.14
-* spring-context-5.3.29
-* spring-core-5.3.29
-* spring-expression-5.3.29
-* spring-jcl-5.3.29
-* spring-security-config-5.7.10
-* spring-security-core-5.7.10
-* spring-security-crypto-5.7.10
-* spring-security-oauth2-client-5.7.10
-* spring-security-oauth2-core-5.7.10
-* spring-security-oauth2-jose-5.7.10
-* spring-security-oauth2-resource-server-5.7.10
-* spring-security-rsa-1.0.12.RELEASE
-* spring-security-web-5.7.10
-* spring-web-5.3.29
-* spring-webmvc-5.3.29
-* bcpkix-jdk18on-1.73
-* bcprov-jdk18on-1.73
-* bcutil-jdk18on-1.73
-* micrometer-core-1.9.13
-* tomcat-embed-core-9.0.78
-* tomcat-embed-el-9.0.78
-* tomcat-embed-websocket-9.0.78
-
-## <a id="1-14-12"></a> v1.14.12
-
-**Release Date: July 28, 2023**
-
-### Maintenance Changes
-
-Support changes:
-
-* By default, the Identity Service Broker deploys with the `cflinuxfs4` stack.
-  If that stack is not available, it deploys with `cflinuxfs3`.
-* `cflinuxfs2` is no longer supported.
-
-Dependency upgrades in this release:
-
-* None
-
-## <a id="1-14-11"></a> v1.14.11
-
-**Release Date: July 14, 2023**
-
-### Maintenance Changes
-
-Dependency upgrades in this release:
-
-* Spring Boot is updated to v2.7.13.
-
-## <a id="1-14-10"></a> v1.14.10
-
-**Release Date: March 29, 2023**
-
-### New features
-
-New features and changes in this release:
-
-- **UAA Issuer URI exposed in the app's `VCAP_SERVICES` environment variable:**
-The identity service broker can now expose the UAA Issuer URI in the app's `VCAP_SERVICES`
-environment variable. This feature is deactivated by default for backwards compatibility.
-You can enable it as part of the installation. For more information, see [Install <%= vars.product_short %> Using <%= vars.ops_manager %>](installation.html#install).
-
-### Resolved Issues
-
-This release has the following fix:
-
-* **Configuring the `clientAuthInBody` attribute:**
-  You can now configure the `clientAuthInBody` attribute using the UI when configuring an OIDC identity
-  provider. The checkbox in the UI is labeled `Client Credentials in Request Body`, and indicates that
-  during a token request to the external identity provider, the client secret is sent in the body
-  of the request.
-  For more information, see `client_secret_post` in
-  [OpenID Connect Core 1.0, Section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication).
-
-### Maintenance Changes
-
-No changes in this release.
-
-### Known Issues
-
-This release has the following issue:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-
-## <a id="1-14-9"></a> v1.14.9
-
-**Release Date: February 24, 2023**
-
-### Resolved Issues
-
-This release has the following fix:
-
-* The `clientAuthInBody` attribute now remains persistent during client updates through the UI.
-
-### Maintenance Changes
-
-Changes in this release:
-
-* Non-breaking changes to comply with VMware's inclusive language effort.
-
-Dependency upgrades in this release:
-
-* Spring Boot is updated to v2.7.8.
-
-### Known Issues
-
-This release has the following issue:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-
-## <a id="1-14-8"></a> v1.14.8
-
-**Release Date: April 14, 2022**
-
-### Maintenance Changes
-
-Changes in this release:
-
-* This release addresses [CVE-2022-22965](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-22965).
-
-<div class="note"><span class="note__title">Note</span>This does not mean prior versions were vulnerable.
-The <%= vars.product_short %> tile uses Java 8, which is not vulnerable to this CVE,
-so this update is not necessary for secure operation.
-However, VMware has produced this maintenance release in order to:<br><br>
-<ul>
-<li>Avoid false positives in security tools</li>
-<li>Enable maximum customer confidence</li>
-<li>Update the affected Spring libraries to alleviate concerns</li>
-</ul>
-</div>
-
-Dependency upgrades in this release:
-
-* Spring Boot to 2.5.12
-
-### Known Issues
-
-This release has the following issue:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-
-## <a id="1-14-7"></a> v1.14.7
-
-**Release Date: January 14, 2022**
-
-### Security fixes
-
-Addresses log4j CVEs.  The tile does not include log4j-core in supported versions, and all other log4j-related dependencies have been updated.
-
-Dependency upgrades in this release:
-
-* Apache log4j-api to 2.17.1
-* Apache log4j-to-slf4j to 2.17.1
-
-### Known Issues
-
-This release has the following issue:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-
-## <a id="1-14-6"></a> v1.14.6
-
-**Release Date: December 16, 2021**
-
-### Security fixes
-
-Addresses CVE 2021-44228.  The tile does not include log4j-core in supported versions, and all other log4j-related dependencies have been updated.
-
-Dependency upgrades in this release:
-
-* Apache log4j-api to 2.16
-* Apache log4j-to-slf4j to 2.16
-
-### Known Issues
-
-This release has the following issue:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-
-## <a id="1-14-4"></a> v1.14.4
-
-**Release Date: November 8, 2021**
-
-### Maintenance Changes
-
-Dependency upgrades in this release:
-
-* Spring Boot
-
-### Known Issues
-
-This release has the following issue:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-
-### Resolved Issues
-
-This release has the following fix:
-
-* **The SSO service broker can handle apps without any environment variables in the Cloud Controller request payload.**
-
-
-## <a id="1-14-3"></a> v1.14.3
-
-**Release Date: July 13, 2021**
-
-### Maintenance Changes
-
-Dependency upgrades in this release:
-
-* Spring Boot
-* Apache Tomcat
-
-
-### Known Issues
-
-This release has the following issues:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
-
-## <a id="1-14-2"></a> v1.14.2
-
-**Release Date: February 11, 2021**
-
-### Resolved Issues
-
-This release has the following fix:
-
-* The number of external group mappings that you can manage through the UI
-  has increased from 100 to 500.
-
-
-### Known Issues
-
-This release has the following issues:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
-
-## <a id="1-14-1"></a> v1.14.1
-
-**Release Date: December 23, 2020**
-
-### Resolved Issues
-
-This release has the following fix:
-
-* In Apps Manager, the **Manage** link for SSO service instances now links
-  to the correct page for all instances.
-  Previously, this link did not work for SSO service instances created
-  with <%= vars.product_short %> v1.8 or earlier.
-
-    For an example of how the **Manage** link is used,
-    see [Monitor App Events](logging-monitoring.html#app).
-
-
-
-### Known Issues
-
-This release has the following issues:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
-
-## <a id="1-14-0"></a> v1.14.0
-
-**Release Date: December 4, 2020**
-
-### Features
-
-New features and changes in this release:
-
-- **Removes the following from the <%= vars.operator_dash %>:**
-  - The internal user store is no longer configurable from the <%= vars.operator_dash %>.
-  However, you can manage internal users using the UAA Command Line Client (UAAC).
-  For more information, see [Configuring Internal User Store](configure-internal-us.html).
-  - The toggle to the legacy <%= vars.operator_dash %> is no longer available.
-
-- **Ability to specify buildpack:** Adds the ability to specify the buildpack
-    that <%= vars.product_short %> uses when it pushes its component apps.
-
-    For more information,
-    see [Install <%= vars.product_short %> Using <%= vars.ops_manager %>](installation.html#install)<%# Do not link to staging versions of the docs. %>
-    in _Installing <%= vars.product_full %>_.
-
-### Known Issues
-
-This release has the following issues:
-
-<%= partial vars.path_to_partials + "/identity/known-issue-okta-oidc" %>
-<%= partial vars.path_to_partials + "/identity/known-issue-null-env-var" %>
-
-
-## <a id="viewing"></a> Viewing release notes for another version
-
-To view the release notes for another product version,
-select the version from the drop-down menu at the top of this page.
