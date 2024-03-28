@@ -15,21 +15,21 @@ This topic describes the changes in this minor release of
 
 ## <a id="1-16-0"></a> v1.16.1 (Stemcell: Ubuntu Jammy)
 
-**Release date: March 27, 2024**
+**Release date: March 28, 2024**
 
 The 1.16.x release train is a modernization of the 1.14.x and 1.15.x branches.
 The tile requires the Ubuntu Jammy stemcell and Java 21 as a minimum runtime environment.
 
-The 1.16.1 version has been tested on TAS 6.0, 5.0, 4.0, 3.0, 2.13 and 2.11
+The 1.16.1 version has been tested on TAS 6.0, 5.0, 4.0, 3.0, 2.13 and 2.11.
 
 ### Required Components and Notable Changes
 
-The default buildpack, `java_buildpack_offline`, will have Java 21 in newer versions, including newer patch versions,
+The default buildpack, `java_buildpack_offline`, has Java 21 in newer versions, including newer patch versions,
 of the Tanzu Application Service that include the v4.65+ of the Java Buildpack.
 
-For installations that do not have an updated `java_buildpack_offline` the installer can set the
+For installations that do not have an updated `java_buildpack_offline`, the installer can set the
 value `https://github.com/cloudfoundry/java-buildpack` under **Property Configurations**
-in Ops Manager for the latest Java Buildpack to be used.
+in Tanzu Operations Manager for the latest Java Buildpack to be used.
 
 ### Installation Notes
 
@@ -53,12 +53,12 @@ sso-operator-dashboard         started           web:2/2     p-identity.sys.demo
 
 During the installation, a green-blue deploy strategy is used (example for sso-operator-dashboard):
 
-1. A new microservice is installed with a `green` prefix, in this example `green-sso-operator-dashboard`
-2. It will initially be routable using a `green` prefix, for example: _green-sso-operator-dashboard.sys.demo.cf-app.com_
-3. Once the microservice is up and running, add the official route to it, for example: _p-identity.sys.demo.cf-app.com_
-4. The official route will be removed from the previous microservice
-5. The previous microservice will be renamed, adding `cold` as a suffix: `sso-operator-dashboard` -> `sso-operator-dashboard-cold`
-6. The newly installed microservice will be renamed, removing `green`: `green-sso-operator-dashboard` -> `sso-operator-dashboard`
+1. A new microservice is installed with a `green` prefix, in this example `green-sso-operator-dashboard`.
+2. It is initially routable using a `green` prefix, for example: _green-sso-operator-dashboard.sys.demo.cf-app.com_.
+3. Once the microservice is up and running, add the official route to it, for example: _p-identity.sys.demo.cf-app.com_.
+4. The official route is removed from the previous microservice.
+5. The previous microservice is renamed, adding `cold` as a suffix: `sso-operator-dashboard` -> `sso-operator-dashboard-cold`.
+6. The newly installed microservice is renamed, removing `green`: `green-sso-operator-dashboard` -> `sso-operator-dashboard`.
 
 At the end of the installation, you will have the 8 total microservices, 4 of them running
 and the other 4 from the previous version paused with no running processes.
