@@ -24,6 +24,7 @@ In this README:
 | Branch name | Use for… | Publishes to… |
 |-------------| ------|--------|
 |**main** | This branch is on staging. ADD ALL NEW CONTENT  to this branch — if there's going to be 1.15 or a 2.0. | https://docs-staging.vmware.com/en/draft/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.15/sso/GUID-index.html |
+|**1.16** | This branch contains the published documentation for the v1.16 release of SSO.  | On staging at https://docs-staging.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.16/sso/GUID-index.html and on prod at https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.16/sso/GUID-index.html |
 |**1.14** | This branch contains the published documentation for the v1.14 release of SSO.  | On staging at https://docs-staging.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html and on prod at https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html |
 |**1.13** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.13/single-sign-on-for-tas-1-13.pdf |
 |**1.12** | **Do not update**. This branch is obsolete. | https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.12/single-sign-on-for-tas-1-12.pdf |
