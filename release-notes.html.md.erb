@@ -6,26 +6,161 @@ owner: Identity Service
 This topic describes the changes in this minor release of
 [<%= vars.product_full %>](https://network.tanzu.vmware.com/products/p-identity).
 
+The 1.15.x release train is a feature/binary clone of the 1.14.x release. The 1.15.x releases require
+the Ubuntu Jammy stemcell, while the 1.14 releases require the Ubuntu Xenial stemcell.
+No other changes are present.
+
 <%= partial vars.path_to_partials + "/upgrade-planner" %>
 
 ## <a id="1-15-3"></a> v1.15.3
 
 **Release Date: March 18, 2024**
 
+Support changes:
+
+* Requires Ubuntu Jammy Stemcell
+
+Dependency upgrades in this release:
+
+* byte-buddy-1.12.23.jar
+* jackson-annotations-2.17.0.jar
+* jackson-databind-2.17.0.jar
+* jackson-dataformat-xml-2.17.0.jar
+* jackson-datatype-jdk8-2.17.0.jar
+* jackson-datatype-jsr310-2.17.0.jar
+* jackson-module-kotlin-2.17.0.jar
+* jackson-module-parameter-names-2.17.0.jar
+* json-path-2.9.0.jar
+* lang-tag-1.7.jar
+* nimbus-jose-jwt-9.24.4.jar
+* oauth2-oidc-sdk-9.43.3.jar
+* pring-aop-5.3.33.jar
+* spring-beans-5.3.33.jar
+* spring-context-5.3.33.jar
+* spring-core-5.3.33.jar
+* spring-expression-5.3.33.jar
+* spring-jcl-5.3.33.jar
+* spring-security-config-5.8.10.jar
+* spring-security-core-5.8.10.jar
+* spring-security-crypto-5.8.10.jar
+* spring-security-oauth2-client-5.8.10.jar
+* spring-security-oauth2-core-5.8.10.jar
+* spring-security-oauth2-jose-5.8.10.jar
+* spring-security-oauth2-resource-server-5.8.10.jar
+* spring-security-web-5.8.10.jar
+* spring-web-5.3.33.jar
+* spring-webmvc-5.3.33.jar
+* stax2-api-4.2.2.jar
+* tomcat-embed-core-9.0.86.jar
+* tomcat-embed-el-9.0.86.jar
+* tomcat-embed-websocket-9.0.86.jar
+* woodstox-core-6.6.1.jar
 
 ## <a id="1-15-2"></a> v1.15.2
 
 **Release Date: January 18, 2024**
 
+Support changes:
+
+* Requires Ubuntu Jammy Stemcell
+
+Dependency upgrades in this release:
+
+* accessors-smart-2.5.0.jar
+* annotations-24.1.0.jar
+* checker-qual-3.37.0.jar
+* commons-io-2.15.1.jar
+* commons-logging-1.3.0.jar
+* commons-validator-1.8.0.jar
+* error_prone_annotations-2.21.1.jar
+* guava-32.1.3-jre.jar
+* jackson-annotations-2.16.1.jar
+* jackson-core-2.16.1.jar
+* jackson-databind-2.16.1.jar
+* jackson-dataformat-xml-2.16.1.jar
+* jackson-datatype-jdk8-2.16.1.jar
+* jackson-datatype-jsr310-2.16.1.jar
+* jackson-module-kotlin-2.16.1.jar
+* jackson-module-parameter-names-2.16.1.jar
+* jakarta.activation-1.2.2.jar
+* jakarta.activation-api-1.2.2.jar
+* jakarta.xml.bind-api-2.3.3.jar
+* jaxb-runtime-2.3.9.jar
+* json-path-2.8.0.jar
+* json-smart-2.5.0.jar
+* log4j-api-2.17.2.jar
+* log4j-to-slf4j-2.17.2.jar
+* logback-classic-1.2.13.jar
+* logback-core-1.2.13.jar
+* lombok-1.18.30.jar
+* micrometer-core-1.9.17.jar
+* prettytime-5.0.7.Final.jar
+* snakeyaml-2.2.jar
+* spring-aop-5.3.31.jar
+* spring-beans-5.3.31.jar
+* spring-boot-2.7.18.jar
+* spring-boot-actuator-2.7.18.jar
+* spring-boot-autoconfigure-2.7.18.jar
+* spring-boot-autoconfigure-2.7.18.jar
+* spring-boot-jarmode-layertools-2.7.18.jar
+* spring-context-5.3.31.jar
+* spring-core-5.3.31.jar
+* spring-expression-5.3.31.jar
+* spring-jcl-5.3.31.jar
+* spring-web-5.3.31.jar
+* spring-webmvc-5.3.31.jar
+* tomcat-embed-core-9.0.83.jar
+* tomcat-embed-el-9.0.83.jar
+* tomcat-embed-websocket-9.0.83.jar
 
 ## <a id="1-15-1"></a> v1.15.1
 
 **Release Date: November 2, 2023**
 
+Support changes:
 
-## <a id="1-15-2"></a> v1.15.0
+* Requires Ubuntu Jammy Stemcell
 
-**Release Date: October 4, 2023**
+Dependency upgrades in this release:
+
+* bcprov-jdk18on-1.74.jar
+* jackson-annotations-2.15.3.jar
+* jackson-core-2.15.3.jar
+* jackson-databind-2.15.3.jar
+* jackson-dataformat-xml-2.15.3.jar
+* jackson-datatype-jdk8-2.15.3.jar
+* jackson-datatype-jsr310-2.15.3.jar
+* jackson-module-kotlin-2.15.3.jar
+* jackson-module-parameter-names-2.15.3.jar
+* lombok-1.18.30.jar
+* micrometer-core-1.9.16.jar
+* spring-aop-5.3.30.jar
+* spring-beans-5.3.30.jar
+* spring-boot-2.7.17.jar
+* spring-boot-actuator-2.7.17.jar
+* spring-boot-actuator-autoconfigure-2.7.17.jar
+* spring-boot-autoconfigure-2.7.17.jar
+* spring-boot-jarmode-layertools-2.7.17.jar
+* spring-context-5.3.30.jar
+* spring-core-5.3.30.jar
+* spring-expression-5.3.30.jar
+* spring-jcl-5.3.30.jar
+* spring-security-config-5.7.11.jar
+* spring-security-core-5.7.11.jar
+* spring-security-crypto-5.7.11.jar
+* spring-security-oauth2-client-5.7.11.jar
+* spring-security-oauth2-core-5.7.11.jar
+* spring-security-oauth2-jose-5.7.11.jar
+* spring-security-oauth2-resource-server-5.7.11.jar
+* spring-security-rsa-1.1.1.jar
+* spring-security-web-5.7.11.jar
+* spring-web-5.3.30.jar
+* spring-webmvc-5.3.30.jar
+* tomcat-embed-core-9.0.82.jar
+* tomcat-embed-el-9.0.82.jar
+* tomcat-embed-websocket-9.0.82.jar
+* woodstox-core-6.5.1.jar
+
 
 
 ## <a id="viewing"></a> Viewing Release Notes for another Version
